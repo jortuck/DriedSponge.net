@@ -1,0 +1,104 @@
+.jumbotron{
+    background-color:#007BFF;
+    color:white;
+    width: 100%;
+    border: 2px solid black;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    margin-top: 10px;
+}
+
+/* Adds borders for tabs */
+.tab-content {
+    border-left: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    padding: 10px;
+}
+.nav-tabs {
+    margin-bottom: 0;
+}
+.page-header {
+    text-align: center;
+}
+.btn-success {
+    text-align: center;
+    border-radius: 15px;
+}
+.page-footer {
+    padding-bottom: 10px;
+    padding-top: 5px;
+}
+
+.page-footer cite{
+    color: white;
+}
+
+.whitehyperlink{
+    text-decoration: underline;
+    text-decoration-color: white;
+    color: white;
+}
+.btn-success{
+    background-color: white;
+    color: #007BFF;
+}
+.btn-success:hover{
+    background-color: rgb(201, 201, 201);
+    color: #007BFF;
+}
+.paragraph{
+    font-size: 1.3em;
+}
+.subheading{
+    color: #007BFF;
+    font-size: 1.6em;
+    font-style: italic;
+}
+.card{
+    margin-bottom: 8px;
+    margin-right: 3px;
+    margin-left: 3px;
+    
+    
+}
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+.app {
+    flex: 1 0 auto;
+}
+.card h4{
+color: white;
+font-weight: 900;
+-webkit-text-stroke-color: black; 
+-webkit-text-stroke-width: 2px;
+}
+.card h5{
+    color: #007BFF;
+        
+    }
+    .carousel slide{
+        color: #007BFF;
+    }
+.tippy-tooltip.active-theme{
+    background-color: #28A745;
+    color: white;
+}
+.tippy-tooltip.footer-theme{
+    background-color: white;
+    color: #007BFF;
+}
+.tippy-tooltip.idle-theme{
+    background-color: #FFC107;
+    color: #21251A;
+    
+}
+.tippy-tooltip.deprecated-theme{
+    background-color: #DC3545;
+    color: white;
+}
