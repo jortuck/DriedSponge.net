@@ -13,7 +13,7 @@
         <meta name="keywords" content="Portfolio,DriedSponge,info.driedsponge.net">
         <meta name="author" content="Jordan Tucker">
         <meta name="viewport" content="width = device-width, initial-scale = 1">
-        <link rel="icon" href="img/favicon.ico" type="image/x-icon">
+        <link id="favicon" >
         <title>Web Projects</title>
         <!-- Global site tag (gtag.js) - Google Analytics -->
                 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-140402227-3"></script>

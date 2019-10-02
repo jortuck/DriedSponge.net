@@ -29,4 +29,23 @@ if (document.title == "info.driedsponge.net")
 }
 
 
-
+var date = new Date();
+if (date.getMonth() == 9)
+{
+  var spookfavicon = document.getElementById('favicon');
+  spookfavicon.href = "https://cdn.driedsponge.net/img/favicon-spook.ico"
+  spookfavicon.rel="icon" 
+  spookfavicon.type="image/x-icon"
+  var css = document.getElementById('styless');
+  css.href = "spook.css"
+  css.rel="stylesheet" 
+} else {
+  var normalfav = document.getElementById('favicon');
+  normalfav.href = "https://cdn.driedsponge.net/img/zfavicon.ico"
+  normalfav.rel="icon" 
+  console.log("Not november");
+  normalfav.type="image/x-icon"
+  var normalcss = document.getElementById('styless');
+  normalcss.href = "textclass.css"
+  normalcss.rel="stylesheet" 
+}

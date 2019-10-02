@@ -1,6 +1,6 @@
 
 <footer>
-    <div class="page-footer" style="text-align: center; background-color:#007BFF;">
+    <div class="page-footer">
             <h4><em style="color: white;">Socials</em></h4>
                     
                         <a href="https://steamcommunity.com/id/driedsponge" target="_blank"><button  data-tippy-content="Steam" type="button" class="btn btn-success"><i class="fab fa-steam fa-2x"></i></button></a>

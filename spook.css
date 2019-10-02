@@ -1,9 +1,9 @@
 .nbth{
-    background-color: #007BFF;
-    color: #007BFF;
+    background-color: #E4541C;
+    color: #E4541C;
 }
 .jumbotron{
-    background-color:#007BFF;
+    background-color:#E4541C;
     color:white;
     width: 100%;
     border: 2px solid black;
@@ -19,6 +19,7 @@
     border-bottom: 1px solid #ddd;
     padding: 10px;
 }
+
 .nav-tabs {
     margin-bottom: 0;
 }
@@ -33,16 +34,13 @@
     padding-bottom: 10px;
     padding-top: 5px;
     text-align: center; 
-    background-color:#007BFF;
+    background-color:#E4541C;
 }
 
 .page-footer cite{
-    color: white;
+    color: black;
 }
-.navbar{
-    background-color: #007BFF;
-    color: #007BFF;
-}
+
 .whitehyperlink{
     text-decoration: underline;
     text-decoration-color: white;
@@ -50,17 +48,17 @@
 }
 .btn-success{
     background-color: white;
-    color: #007BFF;
+    color: #E4541C;
 }
 .btn-success:hover{
     background-color: rgb(201, 201, 201);
-    color: #007BFF;
+    color: #E4541C;
 }
 .paragraph{
     font-size: 1.3em;
 }
 .subheading{
-    color: #007BFF;
+    color: #E4541C;
     font-size: 1.6em;
     font-style: italic;
 }
@@ -88,11 +86,11 @@ font-weight: 900;
 -webkit-text-stroke-width: 2px;
 }
 .card h5{
-    color: #007BFF;
+    color: #E4541C;
         
     }
     .carousel slide{
-        color: #007BFF;
+        color: #E4541C;
     }
 .tippy-tooltip.active-theme{
     background-color: #28A745;
@@ -100,7 +98,7 @@ font-weight: 900;
 }
 .tippy-tooltip.footer-theme{
     background-color: white;
-    color: #007BFF;
+    color: #E4541C;
 }
 .tippy-tooltip.idle-theme{
     background-color: #FFC107;

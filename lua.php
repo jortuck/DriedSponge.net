@@ -12,7 +12,7 @@
         <meta name="keywords" content="Portfolio">
         <meta name="author" content="Jordan Tucker">
         <meta name="viewport" content="width = device-width, initial-scale = 1">
-        <link rel="icon" href="img/favicon.ico" type="image/x-icon">
+        <link id="favicon" >
         <title>Lua Projects</title>
         <!-- Global site tag (gtag.js) - Google Analytics -->
                 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-140402227-3"></script>
@@ -31,7 +31,7 @@
 
         <div class="page-header">
         
-            <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" >
+            <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top " >
                     <a class="navbar-brand" href="#"><strong>info.driedsponge.net</strong></a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarmain" aria-controls="navbarmain" aria-expanded="false" aria-label="Toggle navigation">
                             <span class="navbar-toggler-icon"></span>
