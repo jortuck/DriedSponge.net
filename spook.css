@@ -2,6 +2,17 @@
     background-color: #E4541C;
     color: #E4541C;
 }
+.list{
+    color: white;
+    font-size: 1.3em;
+}
+hgroup h2{
+    color: white;
+}
+
+.socials{
+    color: white;
+}
 .jumbotron{
     background-color:#E4541C;
     color:white;
@@ -38,16 +49,26 @@
 }
 
 .page-footer cite{
-    color: black;
+    color: white;
 }
+.btn-primary{
+    background-color: #E4541C;
+    border: 0px;
 
+}
+.btn-primary:hover{
+    background-color: rgb(189, 71, 25);
+    border: 0px;
+
+}
 .whitehyperlink{
     text-decoration: underline;
-    text-decoration-color: white;
-    color: white;
+    text-decoration-color: whitesmoke;
+    color: whitesmoke;
 }
 .btn-success{
     background-color: white;
+    border: 0px;  
     color: #E4541C;
 }
 .btn-success:hover{
@@ -56,9 +77,10 @@
 }
 .paragraph{
     font-size: 1.3em;
+    color: white;
 }
 .subheading{
-    color: #E4541C;
+    color: white;
     font-size: 1.6em;
     font-style: italic;
 }
@@ -66,11 +88,15 @@
     margin-bottom: 8px;
     margin-right: 3px;
     margin-left: 3px;
+    background-color: #444343;
     
-    
+}
+.card-text{
+    color: white;
 }
 body {
     display: flex;
+    background-color: #303030;
     min-height: 100vh;
     flex-direction: column;
     word-wrap: break-word;
@@ -80,13 +106,13 @@ body {
     flex: 1 0 auto;
 }
 .card h4{
-color: white;
+color: #E4541C;
 font-weight: 900;
 -webkit-text-stroke-color: black; 
 -webkit-text-stroke-width: 2px;
 }
 .card h5{
-    color: #E4541C;
+    color: white;
         
     }
     .carousel slide{

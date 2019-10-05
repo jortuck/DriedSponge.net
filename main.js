@@ -39,6 +39,7 @@ if (date.getMonth() == 9)
   var css = document.getElementById('styless');
   css.href = "spook.css"
   css.rel="stylesheet" 
+  document.getElementById('themefoot').innerHTML = "Spooky";
 } else {
   var normalfav = document.getElementById('favicon');
   normalfav.href = "https://cdn.driedsponge.net/img/zfavicon.ico"
@@ -48,4 +49,5 @@ if (date.getMonth() == 9)
   var normalcss = document.getElementById('styless');
   normalcss.href = "textclass.css"
   normalcss.rel="stylesheet" 
-}
+  document.getElementById('themefoot').innerHTML = "Normal";
+}themefoot
