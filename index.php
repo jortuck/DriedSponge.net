@@ -11,7 +11,11 @@
         <meta name="description" content="DriedSponge's Portfolio">
         <meta name="keywords" content="Portfolio">
         <meta name="author" content="Jordan Tucker">
+        <meta property="og:site_name" content="DriedSponge.net | Home" />
         <meta name="viewport" content="width = device-width, initial-scale = 1">
+        <?php 
+            include("meta.php"); 
+            ?>
         <link id="styless">
         <link id="favicon" >
         <title>driedsponge.net</title>

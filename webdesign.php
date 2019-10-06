@@ -12,6 +12,7 @@
         <meta name="keywords" content="Portfolio,DriedSponge,info.driedsponge.net">
         <meta name="author" content="Jordan Tucker">
         <meta name="viewport" content="width = device-width, initial-scale = 1">
+        <meta property="og:site_name" content="DriedSponge.net | Web Projects" />
         <link id="styless">
         <link id="favicon" >
         <title>Web Projects</title>

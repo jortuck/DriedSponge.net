@@ -11,6 +11,7 @@
         <meta name="description" content="DriedSponge's Lua Projects">
         <meta name="keywords" content="Portfolio">
         <meta name="author" content="Jordan Tucker">
+        <meta property="og:site_name" content="DriedSponge.net | Lua Projects" />
         <meta name="viewport" content="width = device-width, initial-scale = 1">
         <link id="styless">
         <link id="favicon" >
