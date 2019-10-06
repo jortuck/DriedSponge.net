@@ -28,6 +28,8 @@
                             </div>
                           </div>
                         </div>
+                        
                         <p><cite>Copyright © 2019 DriedSponge.net &bull; Thanks to eveyone in <a href="https://discord.gg/HfgcZKs" target="_blank" class="whitehyperlink" >Rainns Discord</a> for giving me insights on how this site should look &bull; Current theme: <a id="themefoot"></a> </cite></p>
+                                       
         </div>
       </footer>
