@@ -78,6 +78,14 @@
                               <a href="https://i.driedsponge.net/bIrPj" target="_blank"class="btn btn-primary">Visit Example</a>
                             </div>
                           </div>
+                          <div class="card">
+                            <h5 class="card-header">DriedSponge.net (This site!) <span class="badge badge-success">Active (obviously)</span></h5>
+                            <div class="card-body">
+                              <h5 class="card-title">About</h5>
+                              <p class="card-text">This site was created to show all the coding projects I've made. I also use it to practice my HTML, CSS, PHP, and js. I try to use all of my skills on this site. Most of the content is html and css, but I also use php and js for some other small things.</p>
+                              <a href="https://driedsponge.net/" target="_blank"class="btn btn-primary">Visit site</a>
+                            </div>
+                          </div>
             
 
 
