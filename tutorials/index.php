@@ -80,13 +80,10 @@
                                       <p class="card-text"><strong>Topic Covered</strong></p>
                                       
                                     <ul class="card-text">
-                                        <li>Addon Structure</li>
-                                        <li>Client/Shared/Server</li>
-                                        <li>Including files</li>
-                                        <li>Data Types</li>
-                                        <li>print(“hello world”)</li>
+                                    <li><a href="lua1.php#bct">Basic Coding Tools</a></li>
+                                    <li><a href="lua1.php#css">Client/Shared/Server</a></li>
+                                    <li><a href="lua1.php#dt">Data Types</a></li>
                                     </ul>
-                                   
                                     <a href="lua1.php" class="btn btn-primary">View Tutorial</a>
                                     </div>
                                 
