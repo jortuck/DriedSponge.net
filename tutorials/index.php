@@ -100,6 +100,7 @@
 </div>
 </div>
 </div> 
+</div> 
 <!-- end of app -->
 <?php 
     include("../footer.php"); // we include footer.php here. you can use .html extension, too.
