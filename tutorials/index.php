@@ -18,7 +18,7 @@
             ?>
         <link id="styless" rel="stylesheet" href = "../textclass.css">
         <link id="favicon" rel="icon" href = "https://cdn.driedsponge.net/img/zfavicon.ico" type="image/x-icon">
-        <title>Lua Projects</title>
+        <title>Tutorials</title>
         <script src="https://kit.fontawesome.com/0add82e87e.js" crossorigin="anonymous"></script>
     </head>
 
@@ -85,6 +85,8 @@
                                     <li><a href="lua1.php#dt">Data Types</a></li>
                                     </ul>
                                     <a href="lua1.php" class="btn btn-primary">View Tutorial</a>
+                                    
+                                    <a href="https://youtu.be/W53tk0yTJCo" targer="_blank" class="btn btn-primary">Watch Video</a>
                                     </div>
                                 
                             

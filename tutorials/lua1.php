@@ -9,7 +9,7 @@
         
         <meta charset="UTF-8">
         <meta name="description" content="Welcome to the first Lua tutorial. In this tutorial we will cover the following items: Basic coding tools, Client/Shared/Server, Data Types">
-        <meta name="keywords" content="Basic lua, Lua tutorial, gmod lua basics">
+        <meta name="keywords" content="Basic lua, Lua tutorial, gmod lua basics,Client/Shared/Server, DriedSponge Lua Tutorials basics">
         <meta name="author" content="Jordan Tucker">
         <meta property="og:site_name" content="DriedSponge.net | Lua Tutorial 1- Basics" />
         <meta name="viewport" content="width = device-width, initial-scale = 1">
@@ -50,13 +50,7 @@
     </div>
     <div class="app">
     <div class="container-fluid-lg" style="padding-top: 80px;">
-        
 
-        
-        
-
-                            
-   
         
             <div class="container">
                
@@ -72,6 +66,7 @@
                         </ul>
                     <p class="paragraph">The reason this tutorial is so short is because it contains essential information you will use forever.</p>
                     <h4 class="subheading">Video:</h4>  
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/W53tk0yTJCo" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                     <br>
                     <h4 class="subheading" id="bct">Basic coding tools</h4>
                         <p class="paragraph">In order to even start coding, you need syntax editor. This allows you to see your code properly and it makes it way easier to modify. Here is a list of the ones I recommend:</p>
