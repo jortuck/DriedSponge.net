@@ -73,26 +73,32 @@
                                     <h5 class="card-header">
                                             Lua Tutorial 1 - Basics
                                           </h5>    
-                                
                                     <div class="card-body">
-                                    
-                                      </h5>
-                                      <p class="card-text"><strong>Topic Covered</strong></p>
-                                      
+                                      <p class="card-text"><strong>Topics Covered</strong></p>
                                     <ul class="card-text">
                                     <li><a href="lua1.php#bct">Basic Coding Tools</a></li>
                                     <li><a href="lua1.php#css">Client/Shared/Server</a></li>
                                     <li><a href="lua1.php#dt">Data Types</a></li>
                                     </ul>
                                     <a href="lua1.php" class="btn btn-primary">View Tutorial</a>
-                                    
                                     <a href="https://youtu.be/W53tk0yTJCo" targer="_blank" class="btn btn-primary">Watch Video</a>
                                     </div>
-                                
-                            
-    
                         </div>
-                        
+                        <div class="card" style="width: 21rem;">
+                            <h5 class="card-header">
+                                    Lua Tutorial 2 - Getting Started
+                                  </h5>    
+                            <div class="card-body">
+                              <p class="card-text"><strong>Topics Covered</strong></p>
+                            <ul class="card-text">
+                            <li><a href="lua2.php#as">Addon Structure</a></li>
+                            <li><a href="lua2.php#f">Functions</a></li>
+                            <li><a href="lua2.php#v">Variables</a></li>
+                            </ul>
+                            <a href="lua2.php" class="btn btn-primary">View Tutorial</a>
+                            <a href="https://youtu.be/W53tk0yTJCo" targer="_blank" class="btn btn-primary">Watch Video</a>
+                            </div>
+                </div>
 
 
 
