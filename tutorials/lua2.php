@@ -86,13 +86,13 @@
                     <p class="paragraph">To test your code, start up gmod and click start new game.<strong>Make sure you have max players set to at least two</strong>, this is because the server side does not load in single player. Then click start game.</p>
                     <p class="paragraph">To check if your code worked, open console by pressing the tilda key (<i>The key right below the escape key. If this does not work, you might have to enable the devloper console in settings</i>). When you open your console look for  the <code>"hello shared"</code> string.</p>
                     <img src="https://i.driedsponge.net/images/gif/Wr5dz.gif" alt="print functions in console"></img>
-                    <p class="paragraph">As you can see it printed twice. Blue means server, yellow means client. You can tell this is shared because it printed once on the server and once on the client! Now that we have our first function out of the way, lets move on to variables.</p>
+                    <p class="paragraph">As you can see it printed twice. Blue means server, yellow means client. You can tell this is shared because it printed once on the server and once on the client! Now that we have our first function out of the way, lets move on to variables. In a futire tutorial I will talk about creating your own functions!</p>
                     <br>
                     <h4 class="subheading" id="dt">Variables</h4>
                     <p class="paragraph">In Lua (<i>and the majority of other coding languages</i>), there are three data types: string, boolean, and number. A string can store any alphanumeric character and most other symbols (<i>ex: !@#$%</i>). Strings are defined using quotes (<i>""</i>). A boolean or bool for short, is a <strong>true</strong> or <strong>false</strong> value. A number is any number obviously (<i>Decimals and negatives are supported!</i>). Below is an example screenshot:</p>
                     <img src="https://i.driedsponge.net/images/png/Sa8iQ.png" alt="datatype example"/>
                     <br>
-                    <p class="paragraph">This is the end of the first tutorial. This information will help you a lot in the future. If anybody needs help the best way to talk to me is in <a href="https://discord.gg/EEPXhqE" target="_blank">my discord server</a>. Have a good day/evening!</p>
+                    <p class="paragraph">This is the end of my second tutorial!. As always, if anyone needs help the best way to talk to me is in <a href="https://discord.gg/EEPXhqE" target="_blank">my discord server</a>. Have a good day/evening!</p>
 
                     
 
