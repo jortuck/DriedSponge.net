@@ -66,14 +66,7 @@
                     </hgroup>
                     <p class="paragraph">Here you can find a list of all of my web projects and you may be able to view some of them. Some of these were made in my web design class, that's why they might be a bit dull. This list also contains other web things I have made for other people</p>
                     
-                    <div class="card">
-                            <h5 class="card-header">The J-Prop Shop <span class="badge badge-danger">Deprecated</span></h5>
-                            <div class="card-body">
-                              <h5 class="card-title">About</h5>
-                              <p class="card-text">This was the very first site I made. It is from a made up scenario in the HTML/CSS text book we use in school. I did not do the CSS for this cite, only the HTML (<em>thats why it looks like its from 2005!</em>). This site was very easy to make and honestly it was a good one to get started on HTML with.</p>
-                              <a href="https://driedsponge.net/web_design/jpropshop/" target="_blank"class="btn btn-primary">Visit site</a>
-                            </div>
-                          </div>
+                    
                           <div class="card">
                             <h5 class="card-header">Custom Image Viewer <span class="badge badge-success">Active</span></h5>
                             <div class="card-body">
