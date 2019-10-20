@@ -82,7 +82,7 @@
                         <p class="paragraph">The lua file you put in the client folder will have all your client code. The lua file you put in the server folder will have all of your server code. This marks the end of this segment.</p>
                     <br>
                     <h4 class="subheading" id="f">Functions</h4> 
-                    <p class="paragraph">A function is basically a thing that tells the game to do something. As explained in <a href="lua1.php">the first tutorial</a>, there are server, client, and shared functions(See <a href="lua1.php#css">Client/Server/Shared</a>). An example of a functions would be <code>print("hello world")</code>. This tells the server or client to print the string hello world in console.</p>
+                    <p class="paragraph">A function is basically a thing that tells the game to do something. As explained in <a href="lua.php?page=1">the first tutorial</a>, there are server, client, and shared functions(See <a href="lua.php?page=1#css">Client/Server/Shared</a>). An example of a functions would be <code>print("hello world")</code>. This tells the server or client to print the string hello world in console.</p>
                     <p class="paragraph">Right now we are going to test this function. In your shared file enter <code>print("hello shared")</code>. It sould look like this:</p>
                     <img src="https://i.driedsponge.net/images/png/3BKVa.png" alt="print functions" />
                     <p class="paragraph">To test your code, start up gmod and click start new game.<strong>Make sure you have max players set to at least two</strong>, this is because the server side does not load in single player. Then click start game.</p>
@@ -95,7 +95,22 @@
                     <h4 class="subheading" id="v">Variables</h4>
                     <p class="paragraph">Variables are things that allow your addon to hold date. This data can be called and reused throughout your code. There are two types of variables, local variables and global variables. The difference between local and global variables is that local variables only exist in the block that they are declared, and global variables exist in the entire file. You can also use variables from other files if you use the <a href="http://wiki.garrysmod.com/page/Global/include" target="_blank">include</a> function and the <a href="http://wiki.garrysmod.com/page/Global/AddCSLuaFile" targert="_blank">AddCSLuaFile</a> function. This is how you define a variable:</p> 
                     <img src="https://i.driedsponge.net/images/png/oitVe.png" alt="variable example"/>
-                    <p class="paragraph">Alright, lets go back to our print function.</p>
+                    <p class="paragraph">Alright, lets go back to our print function. We can print out our vairalbe by changing our print function to <code>print(myvariable)</code> (<i>In my case I want to print <code>MyCar</code></i>).</p>
+                    <img src="https://i.driedsponge.net/images/png/ybqL4.png" alt="variable print example code"/>
+                    <img src="https://i.driedsponge.net/images/png/fyO5j.png" alt="variable print example"/>
+                    <p class="paragraph">Now we are going to talk about concatenation. This is basically allows you to join two strings together. All you gotta use is <code>..</code>. Here are some examples of how you would use this:</p>
+                    <p class="paragraph">Let's look to see what it printed:</p>
+                    <ul class="paragraph">
+                        <li><code>print("keeping two strings apart ".."for some reason")</code></li>
+                        <li><code>print("My car year is "..MyCarYear)</code></li>
+                        <li><code>print(MyCar.." is my car brand")</code></li>
+                        <li><code>print("My name is driedsponge and my new "..MyCar.." is from "..MyCarYear)</code></li>
+                    </ul>
+                    <img src="https://i.driedsponge.net/images/png/hZ4g3.png" alt="concatenation print example code"/>
+                    <img src="https://i.driedsponge.net/images/png/5mmAv.png" alt="concatenation print example"/>
+
+                    
+
                     <br>
                     <p class="paragraph">This is the end of my second tutorial!. As always, if anyone needs help the best way to talk to me is in <a href="https://discord.gg/EEPXhqE" target="_blank">my discord server</a>. Have a good day/evening!</p>
                     <br>
