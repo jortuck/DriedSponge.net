@@ -11,9 +11,7 @@
         <meta name="author" content="Jordan Tucker">
         <meta property="og:site_name" content="DriedSponge.net | Lua Tutorial 1 - Basics" />
         <meta name="viewport" content="width = device-width, initial-scale = 1">
-        <?php 
-            include("../meta.php"); 
-            ?>
+        
         <link id="styless" rel="stylesheet" href = "../textclass.css">
         <link id="favicon" rel="icon" href = "https://cdn.driedsponge.net/img/zfavicon.ico" type="image/x-icon">
         <title>Lua Tutorial 1 - Basics</title>
@@ -104,9 +102,9 @@
 </div> 
 
 <!-- end of app -->
-<?php 
-    include("../../footer.php"); 
-    ?>
+
+
+
 
 
                 
@@ -115,19 +113,7 @@
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
         <script src="https://unpkg.com/popper.js@1"></script>
         <script src="https://unpkg.com/tippy.js@4"></script>
-        <script>
-             var date = new Date();
-        if (date.getMonth() == 9)
-                    {
-                    var spookfavicon = document.getElementById('favicon');
-                    spookfavicon.href = "https://cdn.driedsponge.net/img/favicon-spook.ico"
-                    var css = document.getElementById('styless');
-                    css.href = "../spook.css"
-                    document.getElementById('themefoot').innerHTML = "Spooky";
-                    } else {
-                    document.getElementById('themefoot').innerHTML = "Normal";
-                    }
-        </script>
+
  </body>
 
 

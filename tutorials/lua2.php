@@ -67,48 +67,49 @@
                     <br>
                     <h4 class="subheading" id="as">Addon Structure</h4>
                         <p class="paragraph">Addon structure is very important when loading your addon. If you do it improperly, your addon will not load and therefore not work. I will do my best to describe how to structure your addon here, but it's probably better to watch the video.</p>
-                        <p class="paragraph">First, navigate to where your garrysmod folder is (<i>Usually in Steam\steamapps\common\GarrysMod\garrysmod</i>). In that folder you should see another folder called addons</p>
+                        <p class="paragraph">First, navigate to where your garrysmod folder is (<i>Usually in Steam\steamapps\common\GarrysMod\garrysmod</i>). In that folder you should see another folder called addons.</p>
                         <img src="https://i.driedsponge.net/images/png/1sIid.png" alt="GMOD Directory" />
-                        <p class="paragraph">This is the folder where all your addons will go (<i>The gma files are just addons from the workshop. You do not need to worry about them</i>). Enter the addons folder and create a new folder. You can name the folder what ever you want.</p>
+                        <p class="paragraph">This is the folder where all your addons will go (<i>The gma files are just addons from the workshop. You do not need to worry about them</i>). Enter the addons folder and create a new folder. You can name the folder whatever you want.</p>
                         <img src="https://i.driedsponge.net/images/png/D8vIT.png" alt="Addon Directory" />    
-                        <p class="paragraph">This is where every file regarding your addon will go. This includes lua/sound/materials and other items to. In this tutorial, I will only be talking about the lua folder, so go ahead a create that folder.</p>
+                        <p class="paragraph">This is where every file regarding your addon will go. This includes lua/sound/materials and other items to. In this tutorial, I will only be talking about the lua folder, so go ahead and create that folder.</p>
                         <img src="https://i.driedsponge.net/images/png/UsZGD.png" alt="Lua Directory" />
                         <p class="paragraph">In the lua folder, create a folder called autorun. This tells the game to automatically run the code when the script is loaded. You don't always have to use an autorun folder but it's good to use when getting started. 
                         <img src="https://i.driedsponge.net/images/png/Q1fC4.png" alt="Client/Server Directory" />
                         <p class="paragraph"> Next, create two folders in the autorun folder. One called <i>client</i> and one called <i>server</i>. You will also want to create a lua file called <i>shared.lua</i>.</p>
                         <img src="https://i.driedsponge.net/images/png/ZIytg.png" alt="Client/Server Directory" />
-                        <p class="paragraph">The client folder is where all your client code will go. The server folder is where your server code is stored. The shared.lua is for all of your shared code (<i>If it is neccesary, you can create multiple shared lua files! Also it does not have to be named shared.lua! That is just what I named it.</i>). Finally create a lua file in the client folder named whatever you want and crete a file in the server folder amed whatever you want. File names don't really matter, all that matters in the directory and that it's a lua file.</p>
+                        <p class="paragraph">The client folder is where all your client code will go. The server folder is where your server code is stored. The shared.lua is for all of your shared code (<i>If it is necessary, you can create multiple shared lua files! Also it does not have to be named shared.lua! That is just what I named it.</i>). Finally create a lua file in the client folder named whatever you want and create a lua file in the server folder named whatever you want. File names don't really matter, all that matters in the directory and that it's a lua file.</p>
                         <img src="https://i.driedsponge.net/images/gif/unkbn.gif" alt="Client/Server files" />
                         <p class="paragraph">The lua file you put in the client folder will have all your client code. The lua file you put in the server folder will have all of your server code. This marks the end of this segment.</p>
                     <br>
                     <h4 class="subheading" id="f">Functions</h4> 
-                    <p class="paragraph">A function is basically a thing that tells the game to do something. As explained in <a href="lua.php?page=1">the first tutorial</a>, there are server, client, and shared functions(See <a href="lua.php?page=1#css">Client/Server/Shared</a>). An example of a functions would be <code>print("hello world")</code>. This tells the server or client to print the string hello world in console.</p>
-                    <p class="paragraph">Right now we are going to test this function. In your shared file enter <code>print("hello shared")</code>. It sould look like this:</p>
+                    <p class="paragraph">A function is basically a thing that tells the game to do something. As explained in <a target="_blank" href="lua.php?page=1">the first tutorial</a>, there are server, client, and shared functions(See <a target="_blank" href="lua.php?page=1#css">Client/Server/Shared</a>). An example of a functions would be <code>print("hello world")</code>. This tells the server or client to print the string hello world in console.</p>
+                    <p class="paragraph">Right now we are going to test this function. In your shared file enter <code>print("hello shared")</code>. It should look like this:</p>
                     <img src="https://i.driedsponge.net/images/png/3BKVa.png" alt="print functions" />
                     <p class="paragraph">To test your code, start up gmod and click start new game.<strong>Make sure you have max players set to at least two</strong>, this is because the server side does not load in single player. Then click start game.</p>
-                    <p class="paragraph">To check if your code worked, open console by pressing the tilda key (<i>The key right below the escape key. If this does not work, you might have to enable the devloper console in settings</i>). When you open your console look for  the <code>"hello shared"</code> string.</p>
+                    <p class="paragraph">To check if your code worked, open the console by pressing the tilde key (<i>The key right below the escape key. If this does not work, you might have to enable the developer console in settings</i>). When you open your console look for  the <code>"hello shared"</code> string.</p>
                     <img src="https://i.driedsponge.net/images/gif/Wr5dz.gif" alt="print functions in console" />
-                    <p class="paragraph">As you can see it printed twice. Blue means server, yellow means client. You can tell this is shared because it printed once on the server and once on the client! Now that we have our first function out of the way, lets move on to variables. In a futire tutorial I will talk about creating your own functions, but for now lets move onto variables.</p>
+                    <p class="paragraph">As you can see it printed twice. Blue means server, yellow means client. You can tell this is shared because it printed once on the server and once on the client! Now that we have our first function out of the way, let's move on to variables. In a future tutorial, I will talk about creating your own functions.</p>
 
                     <br>
 
                     <h4 class="subheading" id="v">Variables</h4>
-                    <p class="paragraph">Variables are things that allow your addon to hold date. This data can be called and reused throughout your code. There are two types of variables, local variables and global variables. The difference between local and global variables is that local variables only exist in the block that they are declared, and global variables exist in the entire file. You can also use variables from other files if you use the <a href="http://wiki.garrysmod.com/page/Global/include" target="_blank">include</a> function and the <a href="http://wiki.garrysmod.com/page/Global/AddCSLuaFile" targert="_blank">AddCSLuaFile</a> function. This is how you define a variable:</p> 
+                    <p class="paragraph">Variables are things that allow your addon to hold date. This data can be called and reused throughout your code. This data  can be a boolean, string, or number (<i>See <a target="_blank" href="lua.php?page=1#dt">Data Types</a></i>). There are two types of variables, local variables and global variables. The difference between local and global variables is that local variables only exist in the block that they are defined, and global variables exist in the entire file. You can also use variables from other files if you use the <a href="http://wiki.garrysmod.com/page/Global/include" target="_blank">include</a> function and the <a href="http://wiki.garrysmod.com/page/Global/AddCSLuaFile" targert="_blank">AddCSLuaFile</a> function. This is how you define a variable:</p> 
                     <img src="https://i.driedsponge.net/images/png/oitVe.png" alt="variable example"/>
-                    <p class="paragraph">Alright, lets go back to our print function. We can print out our vairalbe by changing our print function to <code>print(myvariable)</code> (<i>In my case I want to print <code>MyCar</code></i>).</p>
+                    <p class="paragraph">Alright, let's go back to our print function. We can print out our variable by changing our print function to <code>print(myvariable)</code> (<i>In my case I want to print <code>MyCar</code></i>).</p>
                     <img src="https://i.driedsponge.net/images/png/ybqL4.png" alt="variable print example code"/>
                     <img src="https://i.driedsponge.net/images/png/fyO5j.png" alt="variable print example"/>
                     <p class="paragraph">Now we are going to talk about concatenation. This is basically allows you to join two strings together. All you gotta use is <code>..</code>. Here are some examples of how you would use this:</p>
-                    <p class="paragraph">Let's look to see what it printed:</p>
+                   
                     <ul class="paragraph">
                         <li><code>print("keeping two strings apart ".."for some reason")</code></li>
                         <li><code>print("My car year is "..MyCarYear)</code></li>
                         <li><code>print(MyCar.." is my car brand")</code></li>
                         <li><code>print("My name is driedsponge and my new "..MyCar.." is from "..MyCarYear)</code></li>
-                    </ul>
+                    </ul> 
+                    <p class="paragraph">Let's look to see what it printed:</p>
                     <img src="https://i.driedsponge.net/images/png/hZ4g3.png" alt="concatenation print example code"/>
                     <img src="https://i.driedsponge.net/images/png/5mmAv.png" alt="concatenation print example"/>
-
+                    <p class="paragraph">Concatenation and variables in general can be very useful when displaying information. Also, variables are very useful for reusing pieces of data, especially when your making some kind of menu and you want to have a primary color and secondary color.</p>
                     
 
                     <br>
@@ -123,9 +124,7 @@
 </div> 
 
 <!-- end of app -->
-<?php 
-    include("../footer.php"); 
-    ?>
+ 
 
 
                 
@@ -134,19 +133,7 @@
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
         <script src="https://unpkg.com/popper.js@1"></script>
         <script src="https://unpkg.com/tippy.js@4"></script>
-        <script>
-             var date = new Date();
-        if (date.getMonth() == 9)
-                    {
-                    var spookfavicon = document.getElementById('favicon');
-                    spookfavicon.href = "https://cdn.driedsponge.net/img/favicon-spook.ico"
-                    var css = document.getElementById('styless');
-                    css.href = "../spook.css"
-                    document.getElementById('themefoot').innerHTML = "Spooky";
-                    } else {
-                    document.getElementById('themefoot').innerHTML = "Normal";
-                    }
-        </script>
+
  </body>
 
 

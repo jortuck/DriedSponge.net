@@ -81,8 +81,11 @@
                                     <li><a href="lua1.php#dt">Data Types</a></li>
                                     </ul>
                                     <a href="lua.php?page=1" class="btn btn-primary">View Tutorial</a>
-                                    <a href="https://youtu.be/W53tk0yTJCo" targer="_blank" class="btn btn-primary">Watch Video</a>
+                                    <a href="https://youtu.be/W53tk0yTJCo" target="_blank" class="btn btn-primary">Watch Video</a>
                                     </div>
+                                    <div class="card-footer text-muted">
+                                       October 12, 2019 
+                                      </div>
                         </div>
                         <div class="card" style="width: 21rem;">
                             <h5 class="card-header">
@@ -96,8 +99,11 @@
                             <li><a href="lua2.php#v">Variables</a></li>
                             </ul>
                             <a href="lua.php?page=2" class="btn btn-primary">View Tutorial</a>
-                            <a href="https://youtu.be/W53tk0yTJCo" targer="_blank" class="btn btn-primary">Watch Video</a>
+                            <a href="https://youtu.be/W53tk0yTJCo" target="_blank" class="btn btn-primary">Watch Video</a>
                             </div>
+                            <div class="card-footer text-muted">
+                                October 20, 2019 
+                               </div>
                 </div>
 
 
