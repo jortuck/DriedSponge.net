@@ -80,7 +80,7 @@
                                     <li><a href="lua1.php#css">Client/Shared/Server</a></li>
                                     <li><a href="lua1.php#dt">Data Types</a></li>
                                     </ul>
-                                    <a href="lua1.php" class="btn btn-primary">View Tutorial</a>
+                                    <a href="lua.php?page=1" class="btn btn-primary">View Tutorial</a>
                                     <a href="https://youtu.be/W53tk0yTJCo" targer="_blank" class="btn btn-primary">Watch Video</a>
                                     </div>
                         </div>
@@ -95,7 +95,7 @@
                             <li><a href="lua2.php#f">Functions</a></li>
                             <li><a href="lua2.php#v">Variables</a></li>
                             </ul>
-                            <a href="lua2.php" class="btn btn-primary">View Tutorial</a>
+                            <a href="lua.php?page=2" class="btn btn-primary">View Tutorial</a>
                             <a href="https://youtu.be/W53tk0yTJCo" targer="_blank" class="btn btn-primary">Watch Video</a>
                             </div>
                 </div>

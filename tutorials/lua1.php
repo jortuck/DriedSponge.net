@@ -105,7 +105,7 @@
 
 <!-- end of app -->
 <?php 
-    include("../footer.php"); 
+    include("../../footer.php"); 
     ?>
 
 
