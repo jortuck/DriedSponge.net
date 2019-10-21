@@ -65,6 +65,8 @@
                     <h4 class="subheading">Video:</h4>  
                    
                     <br>
+
+
                     <h4 class="subheading" id="as">Addon Structure</h4>
                         <p class="paragraph">Addon structure is very important when loading your addon. If you do it improperly, your addon will not load and therefore not work. I will do my best to describe how to structure your addon here, but it's probably better to watch the video.</p>
                         <p class="paragraph">First, navigate to where your garrysmod folder is (<i>Usually in Steam\steamapps\common\GarrysMod\garrysmod</i>). In that folder you should see another folder called addons.</p>
@@ -93,7 +95,9 @@
                     <br>
 
                     <h4 class="subheading" id="v">Variables</h4>
-                    <p class="paragraph">Variables are things that allow your addon to hold date. This data can be called and reused throughout your code. This data  can be a boolean, string, or number (<i>See <a target="_blank" href="lua.php?page=1#dt">Data Types</a></i>). There are two types of variables, local variables and global variables. The difference between local and global variables is that local variables only exist in the block that they are defined, and global variables exist in the entire file. You can also use variables from other files if you use the <a href="http://wiki.garrysmod.com/page/Global/include" target="_blank">include</a> function and the <a href="http://wiki.garrysmod.com/page/Global/AddCSLuaFile" targert="_blank">AddCSLuaFile</a> function. This is how you define a variable:</p> 
+                    <h5><span class="badge badge-primary">Tip: To clear your console, use the <i>clear</i> console command.</span></h5>
+
+                    <p class="paragraph">Variables are things that allow your addon to hold data. This data can be called and reused throughout your code. This data  can be a boolean, string, or number (<i>See <a target="_blank" href="lua.php?page=1#dt">Data Types</a></i>). There are two types of variables, local variables and global variables. The difference between local and global variables is that local variables only exist in the block that they are defined, and global variables exist in the entire file. You can also use variables from other files if you use the <a href="http://wiki.garrysmod.com/page/Global/include" target="_blank">include</a> function and the <a href="http://wiki.garrysmod.com/page/Global/AddCSLuaFile" targert="_blank">AddCSLuaFile</a> function. This is how you define a variable:</p> 
                     <img src="https://i.driedsponge.net/images/png/oitVe.png" alt="variable example"/>
                     <p class="paragraph">Alright, let's go back to our print function. We can print out our variable by changing our print function to <code>print(myvariable)</code> (<i>In my case I want to print <code>MyCar</code></i>).</p>
                     <img src="https://i.driedsponge.net/images/png/ybqL4.png" alt="variable print example code"/>
