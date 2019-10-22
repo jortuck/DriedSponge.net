@@ -7,15 +7,10 @@
         
         <meta charset="UTF-8">
         <meta name="description" content="Welcome to my second Lua tutorial!. In this tutorial I will cover the following items: addon structure, functions, and variables.">
-        <meta name="keywords" content="lua functions, Lua tutorial, gmod lua functions,lua hooks, DriedSponge Lua Tutorials Getting Started,lua Getting Started">
+        <meta name="keywords" content="lua functions, Lua tutorial, gmod lua functions,lua variables, DriedSponge Lua Tutorials Getting Started,lua Getting Started">
         <meta name="author" content="Jordan Tucker">
         <meta property="og:site_name" content="DriedSponge.net | Lua Tutorial 2 - Getting Started" />
         <meta name="viewport" content="width = device-width, initial-scale = 1">
-        <?php 
-            include("../meta.php"); 
-            ?>
-        <link id="styless" rel="stylesheet" href = "../textclass.css">
-        <link id="favicon" rel="icon" href = "https://cdn.driedsponge.net/img/zfavicon.ico" type="image/x-icon">
         <title>Lua Tutorial 2 - Getting Started</title>
         <script src="https://kit.fontawesome.com/0add82e87e.js" crossorigin="anonymous"></script>
     </head>
@@ -63,7 +58,7 @@
                             <li><a href="#v">Variables</a></li>
                         </ul>
                     <h4 class="subheading">Video:</h4>  
-                   
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/h2qyMIxIA2o" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                     <br>
 
 

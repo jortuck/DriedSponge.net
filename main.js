@@ -23,7 +23,7 @@ tippy('.badge-success', {
 
 
 
-  var date = new Date();
+/*   var date = new Date();
 if (date.getMonth() == 9)
 {
   var spookfavicon = document.getElementById('favicon');
@@ -33,4 +33,4 @@ if (date.getMonth() == 9)
   document.getElementById('themefoot').innerHTML = "Spooky";
 } else {
   document.getElementById('themefoot').innerHTML = "Normal";
-}
+} */

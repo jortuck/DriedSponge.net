@@ -16,8 +16,7 @@
         <?php 
             include("meta.php"); 
             ?>
-        <link id="styless" rel="stylesheet" href = "textclass.css">
-        <link id="favicon" rel="icon" href = "https://cdn.driedsponge.net/img/zfavicon.ico" type="image/x-icon">
+            
         <title>Web Projects</title>
         <script src="https://kit.fontawesome.com/0add82e87e.js" crossorigin="anonymous"></script>
     </head>
