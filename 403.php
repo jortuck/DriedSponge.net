@@ -6,16 +6,16 @@
 <!--         Site created: 9/19/19
         Author: DriedSponge(Jordan Tucker) -->
 
-        <meta name="description" content="DriedSponge.net | 404">
+        <meta name="description" content="DriedSponge.net | 403">
         <meta name="keywords" content="Portfolio">
         <meta name="author" content="Jordan Tucker">
-        <meta property="og:site_name" content="DriedSponge.net | 404" />
+        <meta property="og:site_name" content="DriedSponge.net | 403" />
        
         <?php 
             include("meta.php"); 
             ?>
         
-        <title>Error</title>
+        <title>Access Denied</title>
         <script src="https://kit.fontawesome.com/0add82e87e.js" crossorigin="anonymous"></script>
         <style>
         hgroup h1{
@@ -69,13 +69,13 @@
             <div class="container">
                 <div class="jumbotron">
                 <hgroup >
-                        <h1><i class="far fa-question-circle"></i></h1>
-                    <h1><strong>Error: 404</strong></h1>
+                        <h1><i class="fas fa-user-shield"></i></h1>
+                    <h1><strong>Error: 403</strong></h1>
 
                     <br>
                 </hgroup>
 
-                <p class="ep">Uh oh! The page you are looking for does not exist or has been deleted!</p>
+                <p class="ep">Uh oh! Your access to this page/directory has been restricted/denied. Please contact an administrator if you believe this was a mistake!</p>
                 <br>
                 <p style="text-align: center;"><button class="btn btn-success" onclick="goback()"><strong class="btntext">Go Back</strong></button></p>
                  </div>
