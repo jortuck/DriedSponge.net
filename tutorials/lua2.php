@@ -3,14 +3,13 @@
 
 <html>
     <head>
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         
-        <meta charset="UTF-8">
+        
         <meta name="description" content="Welcome to my second Lua tutorial!. In this tutorial I will cover the following items: addon structure, functions, and variables.">
         <meta name="keywords" content="lua functions, Lua tutorial, gmod lua functions,lua variables, DriedSponge Lua Tutorials Getting Started,lua Getting Started">
         <meta name="author" content="Jordan Tucker">
         <meta property="og:site_name" content="DriedSponge.net | Lua Tutorial 2 - Getting Started" />
-        <meta name="viewport" content="width = device-width, initial-scale = 1">
+        
         <title>Lua Tutorial 2 - Getting Started</title>
         <script src="https://kit.fontawesome.com/0add82e87e.js" crossorigin="anonymous"></script>
     </head>

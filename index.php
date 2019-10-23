@@ -5,14 +5,12 @@
     <head>
 <!--         Site created: 9/19/19
         Author: DriedSponge(Jordan Tucker) -->
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
-        <meta charset="UTF-8">
         <meta name="description" content="DriedSponge's Portfolio - Find out info about me and the stuff I make. It's epic guys.">
         <meta name="keywords" content="Portfolio">
         <meta name="author" content="Jordan Tucker">
         <meta property="og:site_name" content="DriedSponge.net | Home" />
-        <meta name="viewport" content="width = device-width, initial-scale = 1">
+       
         <?php 
             include("meta.php"); 
             ?>

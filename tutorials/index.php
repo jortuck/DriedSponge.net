@@ -5,14 +5,12 @@
     <head>
 <!--         Site created: 9/19/19
         Author: DriedSponge(Jordan Tucker) -->
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         
-        <meta charset="UTF-8">
         <meta name="description" content="On my YouTube channel, I do various coding tutorials. Primarily with Lua but you might see some other languages on there too. For every tutorial I make, I create a web page for it. The web pages could include more information than the video so I recommend you always browse through them.">
         <meta name="keywords" content="Lua, tutorial, coding, coding tutorials, lua tutorials">
         <meta name="author" content="Jordan Tucker">
         <meta property="og:site_name" content="DriedSponge.net | Tutorials" />
-        <meta name="viewport" content="width = device-width, initial-scale = 1">
+      
         <?php 
             include("../meta.php"); 
             ?>
@@ -50,13 +48,6 @@
     <div class="app">
     <div class="container-fluid-lg" style="padding-top: 80px;">
         
-
-        
-        
-
-                            
-   
-        
             <div class="container">
                
                     <hgroup>
@@ -75,9 +66,9 @@
                                     <div class="card-body">
                                       <p class="card-text"><strong>Topics Covered</strong></p>
                                     <ul class="card-text">
-                                    <li><a href="lua1.php#bct">Basic Coding Tools</a></li>
-                                    <li><a href="lua1.php#css">Client/Shared/Server</a></li>
-                                    <li><a href="lua1.php#dt">Data Types</a></li>
+                                    <li><a href="lua.php?page=1#bct">Basic Coding Tools</a></li>
+                                    <li><a href="lua.php?page=1#css">Client/Shared/Server</a></li>
+                                    <li><a href="lua.php?page=1#dt">Data Types</a></li>
                                     </ul>
                                     <a href="lua.php?page=1" class="btn btn-primary">View Tutorial</a>
                                     <a href="https://youtu.be/W53tk0yTJCo" target="_blank" class="btn btn-primary">Watch Video</a>
@@ -86,24 +77,26 @@
                                        October 12, 2019 
                                       </div>
                         </div>
-                        <div class="card" style="width: 21rem;">
-                            <h5 class="card-header">
-                                    Lua Tutorial 2 - Getting Started
-                                  </h5>    
-                            <div class="card-body">
-                              <p class="card-text"><strong>Topics Covered</strong></p>
-                            <ul class="card-text">
-                            <li><a href="lua2.php#as">Addon Structure</a></li>
-                            <li><a href="lua2.php#f">Functions</a></li>
-                            <li><a href="lua2.php#v">Variables</a></li>
-                            </ul>
-                            <a href="lua.php?page=2" class="btn btn-primary">View Tutorial</a>
-                            <a href="https://youtu.be/W53tk0yTJCo" target="_blank" class="btn btn-primary">Watch Video</a>
-                            </div>
-                            <div class="card-footer text-muted">
-                                October 20, 2019 
-                               </div>
-                </div>
+                      <div class="card" style="width: 21rem;">
+                                  <h5 class="card-header">
+                                          Lua Tutorial 2 - Getting Started
+                                        </h5>    
+                                  <div class="card-body">
+                                    <p class="card-text"><strong>Topics Covered</strong></p>
+                                  <ul class="card-text">
+                                  <li><a href="lua.php?page=2#as">Addon Structure</a></li>
+                                  <li><a href="lua.php?page=2#f">Functions</a></li>
+                                  <li><a href="lua.php?page=2#v">Variables</a></li>
+                                  </ul>
+                                  <a href="lua.php?page=2" class="btn btn-primary">View Tutorial</a>
+                                  <a href="https://youtu.be/W53tk0yTJCo" target="_blank" class="btn btn-primary">Watch Video</a>
+                                  </div>
+                                  <div class="card-footer text-muted">
+                                      October 20, 2019 
+                                    </div>
+                      </div>
+
+                
 
 
 

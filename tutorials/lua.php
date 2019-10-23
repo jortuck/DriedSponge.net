@@ -6,10 +6,10 @@ $page = $_GET["page"];
 
 
 if (!is_numeric($page) || $page < 1){
-    $page = 1;
+    header("Location: https://driedsponge.net/404.php");
 }
 if (!is_numeric($page) || $page > 2){
-    $page = 1;
+    header("Location: https://driedsponge.net/404.php");
 }
 
 readfile("lua".$page.".php");
