@@ -52,6 +52,7 @@
                             <li class="nav-item"><a class="nav-link" href="webdesign.php">Web Projects</a></li>
                             <li class="nav-item"><a class="nav-link" href="lua.php">Lua Projects</a></li>
                             <li class="nav-item"><a class="nav-link" href="tutorials/index.php">Coding Tutorials</a></li>
+                            <li class="nav-item"><a class="nav-link" href="steam.php">Steam Tool</a></li>
                         
                         </ul>  
                         </div>

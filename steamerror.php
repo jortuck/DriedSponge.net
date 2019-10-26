@@ -6,10 +6,9 @@
 <!--         Site created: 9/19/19
         Author: DriedSponge(Jordan Tucker) -->
 
-        <meta name="description" content="DriedSponge.net | 404">
-        <meta name="keywords" content="Portfolio">
+        <meta name="description" content="DriedSponge.net | Steam Error">
         <meta name="author" content="Jordan Tucker">
-        <meta property="og:site_name" content="DriedSponge.net | 404" />
+        <meta property="og:site_name" content="DriedSponge.net | Steam Error" />
        
         <?php 
             include("meta.php"); 
@@ -48,11 +47,11 @@
                     <div class="collapse navbar-collapse" id="navbarmain">
                             
                         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-                            <li class="nav-item active"><a class="nav-link" href="index.php">Home<span class="sr-only">(current)</span></a></li>
-                            <li class="nav-item"><a class="nav-link" href="webdesign.php">Web Projects</a></li>
-                            <li class="nav-item"><a class="nav-link" href="lua.php">Lua Projects</a></li>
-                            <li class="nav-item"><a class="nav-link" href="tutorials/index.php">Coding Tutorials</a></li>
-                            <li class="nav-item"><a class="nav-link" href="steam.php">Steam Tool</a></li>
+                        <li class="nav-item"><a class="nav-link" href="index.php">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="webdesign.php">Web Projects</a></li>
+                        <li class="nav-item"><a class="nav-link" href="lua.php">Lua Projects</a></li>
+                        <li class="nav-item"><a class="nav-link" href="tutorials/index.php">Coding Tutorials</a></li>
+                        <li class="nav-item active"><a class="nav-link" href="steam.php">Steam Tool<span class="sr-only">(current)</span></a></li>
                         
                         </ul>  
                         </div>
@@ -70,15 +69,16 @@
             <div class="container">
                 <div class="jumbotron">
                 <hgroup >
-                        <h1><i class="far fa-question-circle"></i></h1>
-                    <h1><strong>Error: 404</strong></h1>
+                        <h1><i class="fas fa-user-times"></i></h1>
+                    <h1><strong>Error: Invalid data!</strong></h1>
 
                     <br>
                 </hgroup>
 
-                <p class="ep">Uh oh! The page you are looking for does not exist or has been deleted!</p>
+                <p class="ep">The data you entered in to the SteamID finder was invalid or the account no longer exist!</p>
                 <br>
                 <p style="text-align: center;"><button class="btn btn-success" onclick="goback()"><strong class="btntext">Go Back</strong></button></p>
+                <p style="text-align: center;"><a href="steam.php"><button class="btn btn-success"><strong class="btntext">Try Again</strong></button></a></p>
                  </div>
 
             </div>

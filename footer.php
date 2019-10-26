@@ -6,7 +6,8 @@ if ( date("m") == "10" ){
   $themetxt = "Default";
   
 }
-?>
+?> 
+    
 <footer>
     <div class="page-footer">
             <h4><em class="socials">Socials</em></h4>
@@ -38,6 +39,6 @@ if ( date("m") == "10" ){
                         </div>
                         
                         <p><cite>Copyright © 2019 DriedSponge.net &bull; Thanks to eveyone in <a href="https://discord.gg/HfgcZKs" target="_blank" class="whitehyperlink" >Rainns Discord</a> for giving me insights on how this site should look &bull; Current theme: <?php echo $themetxt; ?></cite></p>
-                                       
+                            
         </div>
       </footer>

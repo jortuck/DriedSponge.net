@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 
 
@@ -6,8 +7,8 @@
 <!--         Site created: 9/19/19
         Author: DriedSponge(Jordan Tucker) -->
         
-        <meta name="description" content="Here you can find a list of all of my web projects and you may be able to view some of them. Some of these were made in my web design class, that's why they might be a bit dull. This list also contains other web things I have made for other people">
-        <meta name="keywords" content="Portfolio,DriedSponge,info.driedsponge.net">
+        <meta name="description" content="Need to look something up about a user on steam? Do it here!">
+        <meta name="keywords" content="driedsponge.net, SteamID finder, SteamID, SteamAPI, Steam users, SteamID search">
         <meta name="author" content="Jordan Tucker">
         
         <meta property="og:site_name" content="DriedSponge.net | Web Projects" />
@@ -15,7 +16,7 @@
             include("meta.php"); 
             ?>
             
-        <title>Web Projects</title>
+        <title>Steam ID Tool</title>
         <script src="https://kit.fontawesome.com/0add82e87e.js" crossorigin="anonymous"></script>
     </head>
     
@@ -34,10 +35,10 @@
                             
                         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                             <li class="nav-item"><a class="nav-link" href="index.php">Home</a></li>
-                            <li class="nav-item active"><a class="nav-link" href="webdesign.php">Web Projects<span class="sr-only">(current)</span></a></li>
+                            <li class="nav-item"><a class="nav-link" href="webdesign.php">Web Projects</a></li>
                             <li class="nav-item"><a class="nav-link" href="lua.php">Lua Projects</a></li>
                             <li class="nav-item"><a class="nav-link" href="tutorials/index.php">Coding Tutorials</a></li>
-                            <li class="nav-item"><a class="nav-link" href="steam.php">Steam Tool</a></li>
+                            <li class="nav-item active"><a class="nav-link" href="steam.php">Steam Tool<span class="sr-only">(current)</span></a></li>
                         </ul>  
                         </div>
                   </nav>
@@ -59,28 +60,20 @@
                
                     <hgroup>
                             <!-- <img src="https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/18/18be38c2f230fea0fa667c8165e4da5cb1a787c0_full.jpg" alt="DriedSponge's Profile Picture"> -->
-                        <h2><strong>Web Projects</strong></h2>
+                        <h2><strong>Steam ID Tool</strong></h2>
                         <br>
                     </hgroup>
-                    <p class="paragraph">Here you can find a list of all of my web projects and you may be able to view some of them. Some of these were made in my web design class, that's why they might be a bit dull. This list also contains other web things I have made for other people</p>
+                    <p class="paragraph">Need to look something up about a user on steam? Do it here! For more info on the site visit my <a href="webdesign.php">Web Projects </a>page</p>
+                    <br>
+                    <form id="steamform">
+                      <div class="form-group">
+                        
+                        <input id="id64" type="text" class="form-control"  aria-describedby="emailHelp" placeholder="Enter a SteamID/SteamID64/SteamID3">
+                      </div>
+                      <button onclick="go()" type="submit" class="btn btn-primary">Submit</button>
+                    </form>
                     
-                    
-                          <div class="card">
-                            <h5 class="card-header">Custom Image Viewer <span class="badge badge-success">Active</span></h5>
-                            <div class="card-body">
-                              <h5 class="card-title">About</h5>
-                              <p class="card-text">I did not create the custom image uploader, I use a combination of <a target="_blank" href="https://getsharex.com/">ShareX</a>  and this thing called <a target="_blank" href="https://github.com/aerouk/imageserve">imageserver</a>. This works perfectly for when I want to upload and share my screen shots with my friends, the only issue was when you would open the image in chrome or any other browser, it would show the image but with very ugly html. So I decided to modify the viewer file to make the html and css way better. I also added some Javascript to add some additional functionality to the site.</p>
-                              <a href="https://i.driedsponge.net/bIrPj" target="_blank"class="btn btn-primary">Visit Example</a>
-                            </div>
-                          </div>
-                          <div class="card">
-                            <h5 class="card-header">DriedSponge.net (This site!) <span class="badge badge-success">Active (obviously)</span></h5>
-                            <div class="card-body">
-                              <h5 class="card-title">About</h5>
-                              <p class="card-text">This site was created to show all the coding projects I've made. I also use it to practice my HTML, CSS, PHP, and js. I try to use all of my skills on this site. Most of the content is html and css, but I also use php and js for some other small things.</p>
-                              <a href="https://driedsponge.net/" target="_blank"class="btn btn-primary">Visit site</a>
-                            </div>
-                          </div>
+                          
             
 
 
@@ -105,7 +98,15 @@
         <script src="https://unpkg.com/popper.js@1"></script>
         <script src="https://unpkg.com/tippy.js@4"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> 
-        <script src="main.js"></script>       
+        <script src="main.js"></script> 
+        <script>
+        function go(){
+        var input = document.getElementById("id64").value;
+        open("controller.php?id=" + input);
+    
+        }
+        </script>
+
  </body>
 
 

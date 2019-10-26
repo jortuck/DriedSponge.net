@@ -19,31 +19,10 @@
         <script src="https://kit.fontawesome.com/0add82e87e.js" crossorigin="anonymous"></script>
     </head>
  <body>
+<?php
+include("navbar.php")
+?>
 
-    <div class="container-fluid-lg">
-        <div class="page-header">
-        
-            <nav class="navbar navbar-expand-lg navbar-dark nbth fixed-top" >
-                    <a class="navbar-brand" href="#"><strong>driedsponge.net</strong></a>
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarmain" aria-controls="navbarmain" aria-expanded="false" aria-label="Toggle navigation">
-                            <span class="navbar-toggler-icon"></span>
-                          </button>
-                    <div class="collapse navbar-collapse" id="navbarmain">
-                            
-                        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-                            <li class="nav-item active"><a class="nav-link" href="index.php">Home<span class="sr-only">(current)</span></a></li>
-                            <li class="nav-item"><a class="nav-link" href="webdesign.php">Web Projects</a></li>
-                            <li class="nav-item"><a class="nav-link" href="lua.php">Lua Projects</a></li>
-                            <li class="nav-item"><a class="nav-link" href="tutorials/index.php">Coding Tutorials</a></li>
-                        
-                        </ul>  
-                        </div>
-                  </nav>
-                
-                  
-        </div>
-        
-    </div>
     <div class="app">
     <div class="container-fluid-lg" style="padding-top: 80px;">
         
@@ -74,7 +53,7 @@
                                     <strong>LUA: </strong><i class="fas fa-star fa-1x"></i><i class="fas fa-star fa-1x"></i><i class="fas fa-star fa-1x"></i><i class="fas fa-star-half-alt fa-1x"></i><i class="far fa-star fa-1x"></i>
                             </li>
                             <li>
-                                    <strong>PHP: </strong><i class="fas fa-star fa-1x"></i><i class="far fa-star fa-1x"></i><i class="far fa-star fa-1x"></i><i class="far fa-star fa-1x"></i><i class="far fa-star fa-1x"></i>
+                                    <strong>PHP: </strong><i class="fas fa-star fa-1x"></i><i class="fas fa-star fa-1x"></i><i class="far fa-star fa-1x"></i><i class="far fa-star fa-1x"></i><i class="far fa-star fa-1x"></i>
                             </li>
                             <li>
                                     <strong>CSS: </strong><i class="fas fa-star fa-1x"></i><i class="fas fa-star fa-1x"></i><i class="fas fa-star fa-1x"></i><i class="far fa-star fa-1x"></i><i class="far fa-star fa-1x"></i>
@@ -112,7 +91,10 @@
                 <script src="https://unpkg.com/popper.js@1"></script>
                 <script src="https://unpkg.com/tippy.js@4"></script>
                 <script src="main.js"></script>
-                
+                <script>
+                    var navitem = document.getElementById("homelink");
+                    navitem.class = "nav-item active";
+                </script>
      
  </body>
 
