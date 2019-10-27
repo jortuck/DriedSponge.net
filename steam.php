@@ -11,7 +11,7 @@
         <meta name="keywords" content="driedsponge.net, SteamID finder, SteamID, SteamAPI, Steam users, SteamID search" />
         <meta name="author" content="Jordan Tucker" />
         
-        <meta property="og:site_name" content="DriedSponge.net | Web Projects" />
+        <meta property="og:site_name" content="DriedSponge.net | Steam ID Tool" />
         <?php 
             include("meta.php"); 
             ?>
