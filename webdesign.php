@@ -60,7 +60,14 @@ include("navbar.php")
                               <a href="https://driedsponge.net/" target="_blank"class="btn btn-primary">Visit site</a>
                             </div>
                           </div>
-            
+                          <div class="card">
+                              <h5 class="card-header">SteamID Finder <span class="badge badge-success">Active (obviously)</span></h5>
+                              <div class="card-body">
+                                <h5 class="card-title">About</h5>
+                                <p class="card-text">I created this SteamID finder to practice my php skills. It uses the steam api and <a target="_blank" href="https://github.com/xPaw/SteamID.php">this SteamID converter</a> to looke up info about any steam user. It was a lot of fun to make and it can actually be pretty useful.</p>
+                                <a href="https://driedsponge.net/steam.php" target="_blank"class="btn btn-primary">Visit site</a>
+                              </div>
+                            </div>
 
 
 

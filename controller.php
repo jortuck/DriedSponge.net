@@ -2,9 +2,6 @@
 include("SteamID.php");
 $APIKEY = "0EBBACAEBC6039B06DF1066807D55D4C";
 $WHO = $_GET["id"];
-
-
-
 try
 {
 	// Constructor also accepts Steam3 and Steam2 representations
@@ -14,7 +11,6 @@ catch( InvalidArgumentException $e )
 {
 	header("Location: steamerror.php");;
 }
-
 // Renders SteamID in it's Steam3 representation (e.g. [U:1:24715681])
 $id3 = $s->RenderSteam3() . PHP_EOL;
 
@@ -25,15 +21,9 @@ $idn = $s->RenderSteam2() . PHP_EOL;
 $id64 = $s->ConvertToUInt64() . PHP_EOL;
 
 $json = file_get_contents("http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=".$APIKEY."&steamids=$id64");
-
-
 $apidata = json_decode($json);
-
-
-
 $name = $apidata->response->players[0]->personaname;
 $img = $apidata->response->players[0]->avatarfull;
-
 if (isset($apidata->response->players[0]->realname) == false ){
     $realname = "N/A";
 } else{
@@ -45,13 +35,10 @@ if (isset($apidata->response->players[0]->loccountrycode) == false ){
 } else{
     $country = $apidata->response->players[0]->loccountrycode;
 }
-
-
 $url = $apidata->response->players[0]->profileurl;
 if ($name == null || $img == null ){
     header("Location: steamerror.php");
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -63,6 +50,8 @@ if ($name == null || $img == null ){
             include("meta.php"); 
             ?>
         <meta name="twitter:card" content="summary_large_image" />
+        <meta name="description"  content="Name: <?php echo $name; ?>,SteamID64: <?php echo $id64; ?>, SteamID: <?php echo $idn; ?>, SteamID3: <?php echo $id3; ?>, URL: <?php echo $url; ?>" />
+        <meta name="keywords" content="<?php echo $name; ?>, <?php echo $id64; ?>, <?php echo $idn; ?>, <?php echo $id3; ?>" />
         <meta property="og:site_name" content="DriedSponge.net | SteamID Finder" /> <!-- Replace with your name or whatever you want-->
         <meta property="og:title" content="Info on <?php echo $name; ?>" />
         <meta property="og:image" content="<?php echo $img;?>" />

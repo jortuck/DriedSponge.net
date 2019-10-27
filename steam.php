@@ -7,9 +7,9 @@
 <!--         Site created: 9/19/19
         Author: DriedSponge(Jordan Tucker) -->
         
-        <meta name="description" content="Need to look something up about a user on steam? Do it here!">
-        <meta name="keywords" content="driedsponge.net, SteamID finder, SteamID, SteamAPI, Steam users, SteamID search">
-        <meta name="author" content="Jordan Tucker">
+        <meta name="description" content="Need to look something up about a user on steam? Do it here!" />
+        <meta name="keywords" content="driedsponge.net, SteamID finder, SteamID, SteamAPI, Steam users, SteamID search" />
+        <meta name="author" content="Jordan Tucker" />
         
         <meta property="og:site_name" content="DriedSponge.net | Web Projects" />
         <?php 
