@@ -6,7 +6,7 @@
 <!--         Site created: 9/19/19
         Author: DriedSponge(Jordan Tucker) -->
 
-        <meta name="description" content="DriedSponge.net | Steam Error">
+        <meta name="description" content="Steam Error">
         <meta name="author" content="Jordan Tucker">
         <meta property="og:site_name" content="DriedSponge.net | Steam Error" />
        
@@ -45,6 +45,14 @@ include("navbar.php")
    
         
             <div class="container">
+            <div class="form-group">
+            <hgroup>
+                        <h2><strong>Steam ID Tool</strong></h2>
+                        <br>
+                    </hgroup>
+                    <input id="id64" type="text" class="form-control"  aria-describedby="emailHelp" placeholder="Enter a SteamID/SteamID64/SteamID3">
+                    </div>
+                    <button onclick="go()"  class="btn btn-primary">Submit</button>
                 <div class="jumbotron">
                 <hgroup >
                         <h1><i class="fas fa-user-times"></i></h1>
@@ -55,8 +63,8 @@ include("navbar.php")
 
                 <p class="ep">The data you entered in to the SteamID finder was invalid or the account no longer exist!</p>
                 <br>
-                <p style="text-align: center;"><button class="btn btn-success" onclick="goback()"><strong class="btntext">Go Back</strong></button></p>
-                <p style="text-align: center;"><a href="steam.php"><button class="btn btn-success"><strong class="btntext">Try Again</strong></button></a></p>
+                <!-- <p style="text-align: center;"><button class="btn btn-success" onclick="goback()"><strong class="btntext">Go Back</strong></button></p>
+                <p style="text-align: center;"><a href="steam.php"><button class="btn btn-success"><strong class="btntext">Try Again</strong></button></a></p> -->
                  </div>
 
             </div>
@@ -84,6 +92,7 @@ include("navbar.php")
                     navitem = document.getElementById('steam').classList.add('active')
                     
                 </script>
+                <script src="search.js"></script>
  </body>
 
 

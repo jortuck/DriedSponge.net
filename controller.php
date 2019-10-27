@@ -57,10 +57,8 @@ if ($name == null || $img == null ){
         <meta property="og:image" content="<?php echo $img;?>" />
         <meta property="og:image:type" content="image/png" />
         <meta name="author" content="Jordan Tucker">
-        
+        <meta property="og:description"  content="SteamID64: <?php echo $id64; ?> SteamID: <?php echo $idn; ?> SteamID3: <?php echo $id3; ?> URL: <?php echo $url; ?>" />
         <meta property="og:site_name" content="<?php echo $name; ?> - driedsponge.net" />
-        
-            
         <title><?php echo $name; ?> - driedsponge.net</title>
         <script src="https://kit.fontawesome.com/0add82e87e.js" crossorigin="anonymous"></script>
         <style>
