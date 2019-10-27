@@ -5,49 +5,10 @@ $APIKEY = "0EBBACAEBC6039B06DF1066807D55D4C";
 $WHO = $_GET["id"];
 $str = substr($WHO, 0, 4);
 
-if ($str == "http"){
-$s = SteamID::SetFromURL( $WHO, function( $URL, $Type ) use ( $APIKEY )
-{
-	$Parameters =
-	[
-		'format' => 'json',
-		'key' => $APIKEY,
-		'vanityurl' => $URL,
-		'url_type' => $Type
-	];
-	
-	$c = curl_init( );
-	
-	curl_setopt_array( $c, [
-		CURLOPT_USERAGENT      => 'Steam Vanity URL Lookup',
-		CURLOPT_ENCODING       => 'gzip',
-		CURLOPT_RETURNTRANSFER => true,
-		CURLOPT_URL            => 'https://api.steampowered.com/ISteamUser/ResolveVanityURL/v1/?' . http_build_query( $Parameters ),
-		CURLOPT_CONNECTTIMEOUT => 5,
-		CURLOPT_TIMEOUT        => 5
-	] );
-	
-	$Response = curl_exec( $c );
-	
-	curl_close( $c );
-	
-	$Response = json_decode( $Response, true );
-	
-	if( isset( $Response[ 'response' ][ 'success' ] ) )
-	{
-		switch( (int)$Response[ 'response' ][ 'success' ] )
-		{
-			case 1: return $Response[ 'response' ][ 'steamid' ];
-            case 42: header("Location: steamerror.php");;
-            
-		}
-	}
-	
-    throw new Exception( 'Failed to perform API request' );
-    
-} );
 
-}else{
+
+
+
 try
 {
 	$s = new SteamID( $WHO );
@@ -55,9 +16,48 @@ try
  catch( InvalidArgumentException $e )
  {
 
-header("Location: steamerror.php");
+    $s = SteamID::SetFromURL( $WHO, function( $URL, $Type ) use ( $APIKEY )
+    {
+        $Parameters =
+        [
+            'format' => 'json',
+            'key' => $APIKEY,
+            'vanityurl' => $URL,
+            'url_type' => $Type
+        ];
+        
+        $c = curl_init( );
+        
+        curl_setopt_array( $c, [
+            CURLOPT_USERAGENT      => 'Steam Vanity URL Lookup',
+            CURLOPT_ENCODING       => 'gzip',
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_URL            => 'https://api.steampowered.com/ISteamUser/ResolveVanityURL/v1/?' . http_build_query( $Parameters ),
+            CURLOPT_CONNECTTIMEOUT => 5,
+            CURLOPT_TIMEOUT        => 5
+        ] );
+        
+        $Response = curl_exec( $c );
+        
+        curl_close( $c );
+        
+        $Response = json_decode( $Response, true );
+        
+        if( isset( $Response[ 'response' ][ 'success' ] ) )
+        {
+            switch( (int)$Response[ 'response' ][ 'success' ] )
+            {
+                case 1: return $Response[ 'response' ][ 'steamid' ];
+                case 42: header("Location: steamerror.php");;
+                
+            }
+        }
+        
+        throw new Exception( 'Failed to perform API request' );
+        
+    } );
  }
-}
+
 $id3 = $s->RenderSteam3() . PHP_EOL;
 $idn = $s->RenderSteam2() . PHP_EOL;
 $id64 = $s->ConvertToUInt64() . PHP_EOL;
@@ -88,6 +88,7 @@ if ($name == null || $img == null ){
     <head>
 <!--         Site created: 9/19/19
         Author: DriedSponge(Jordan Tucker) -->
+           
         <?php 
             include("meta.php"); 
             ?>
@@ -102,7 +103,11 @@ if ($name == null || $img == null ){
         <meta property="og:description"  content="SteamID64: <?php echo $id64; ?> SteamID: <?php echo $idn; ?> SteamID3: <?php echo $id3; ?> URL: <?php echo $url; ?>" />
         <meta property="og:site_name" content="<?php echo $name; ?> - driedsponge.net" />
         <title><?php echo $name; ?> - driedsponge.net</title>
+
         <script src="https://kit.fontawesome.com/0add82e87e.js" crossorigin="anonymous"></script>
+
+        <link rel="stylesheet" href = "//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" type="text/css" >
+       
         <style>
             .url{
                  color: white; 
@@ -153,16 +158,14 @@ if ($name == null || $img == null ){
                         <h2><strong>Steam ID Tool</strong></h2>
                         <br>
                         
-                      <div class="form-group">
-                        
-                        <input id="id64" type="text" class="form-control"  aria-describedby="emailHelp" placeholder="Enter a SteamID/SteamID64/SteamID3/ProfileURL">
-                      </div>
-                      <button onclick="go()" type="submit" class="btn btn-primary">Submit</button>
+                     <?php
+                        include("search.php");
+                     ?>
                     
                     <br>
                     </hgroup>
                     <div class="jumbotron" style="text-align: center;">
-                    <h2><img src="<?php echo $img; ?>"</h2>
+                    <h2><img src="<?php echo $img; ?>"/></h2>
                     <h1>Results for: <?php echo $name; ?></h1>
                     <p class="paragraph"><strong>SteamID64:</strong> <?php echo $id64; ?> <button  value="<?php echo $id64; ?>" onclick="copything(this.value)" class="btn btn-success"><i class="far fa-copy"></i></button></p>
                     <p class="paragraph"><strong>SteamID:</strong> <?php echo $idn; ?> <button  value="<?php echo $idn; ?>" onclick="copything(this.value)" class="btn btn-success"><i class="far fa-copy"></i></button></p>
@@ -192,22 +195,40 @@ if ($name == null || $img == null ){
 
 
 
-                
-                <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script> 
         <script src="https://unpkg.com/popper.js@1"></script>
         <script src="https://unpkg.com/tippy.js@4"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> 
         <script src="main.js"></script>
         
+
+        <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
         <script>
           function  copything(value){
             
 
             navigator.clipboard.writeText(value)
-            alert("Copied " + value + " to clipboard");
+            
+           toastr["success"](value + " was successfully copied to clipboard", "Congradulations!")
 
+           toastr.options = {
+                "closeButton": true,
+                "debug": false,
+                "newestOnTop": false,
+                "progressBar": true,
+                "positionClass": "toast-top-right",
+                "preventDuplicates": true,
+                "onclick": null,
+                "showDuration": "300",
+                "hideDuration": "1000",
+                "timeOut": "5000",
+                "extendedTimeOut": "1000",
+                "showEasing": "swing",
+                "hideEasing": "linear",
+                "showMethod": "fadeIn",
+                "hideMethod": "fadeOut"
+                }
           }
 
 

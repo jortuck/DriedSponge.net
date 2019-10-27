@@ -44,11 +44,9 @@ include("navbar.php")
                     <p class="paragraph">Need to look something up about a user on steam? Do it here! Use any SteamID or profile URL to look up information! For more info on the site visit my <a href="webdesign.php">Web Projects </a>page.</p>
                     <br>
                     
-                      <div class="form-group">
-                        
-                            <input id="id64" type="text" class="form-control"  aria-describedby="emailHelp" placeholder="Enter a SteamID/SteamID64/SteamID3/ProfileURL">
-                      </div>
-                      <button onclick="go()"  class="btn btn-primary">Submit</button>
+                    <?php
+                    include("search.php");
+                        ?>
                     
                     
 
