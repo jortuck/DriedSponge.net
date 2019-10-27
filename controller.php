@@ -48,9 +48,6 @@ if (isset($apidata->response->players[0]->loccountrycode) == false ){
 
 
 $url = $apidata->response->players[0]->profileurl;
-
-
-
 if ($name == null || $img == null ){
     header("Location: steamerror.php");
 }
@@ -126,13 +123,13 @@ if ($name == null || $img == null ){
                     <hgroup>
                         <h2><strong>Steam ID Tool</strong></h2>
                         <br>
-                        <form id="steamform">
+                        
                       <div class="form-group">
                         
                         <input id="id64" type="text" class="form-control"  aria-describedby="emailHelp" placeholder="Enter a SteamID/SteamID64/SteamID3">
                       </div>
                       <button onclick="go()" type="submit" class="btn btn-primary">Submit</button>
-                    </form> 
+                    
                     <br>
                     </hgroup>
                     <div class="jumbotron" style="text-align: center;">
@@ -186,13 +183,7 @@ if ($name == null || $img == null ){
 
 
         </script>
-        <script>
-        function go(){
-        var input = document.getElementById("id64").value;
-        open("controller.php?id=" + input);
-    
-        }
-        </script>
+        <script src="search.js"></script>
  </body>
 
 

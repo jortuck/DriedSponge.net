@@ -92,8 +92,8 @@ include("navbar.php")
                 <script src="https://unpkg.com/tippy.js@4"></script>
                 <script src="main.js"></script>
                 <script>
-                    var navitem = document.getElementById("homelink");
-                    navitem.class = "nav-item active";
+                    navitem = document.getElementById('homelink').classList.add('active')
+                    
                 </script>
      
  </body>

@@ -21,31 +21,7 @@
 
  <body>
         
-    <div class="container-fluid-lg">
-
-        <div class="page-header">
-        
-            <nav class="navbar navbar-expand-lg navbar-dark nbth fixed-top " >
-                    <a class="navbar-brand" href="#"><strong>driedsponge.net</strong></a>
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarmain" aria-controls="navbarmain" aria-expanded="false" aria-label="Toggle navigation">
-                            <span class="navbar-toggler-icon"></span>
-                          </button>
-                    <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-                            
-                        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-                            <li class="nav-item"><a class="nav-link" href="../index.php">Home</a></li>
-                            <li class="nav-item"><a class="nav-link" href="../webdesign.php">Web Projects</a></li>
-                            <li class="nav-item"><a class="nav-link" href="../lua.php">Lua Projects</a></li>
-                            <li class="nav-item active"><a class="nav-link" href="index.php">Coding Tutorials<span class="sr-only">(current)</span></a></li>
-                            <li class="nav-item"><a class="nav-link" href="steam.php">Steam Tool</a></li>
-                        </ul>  
-                        </div>
-                  </nav>
-                
-                  
-        </div>
-        
-    </div>
+<?php include("navbar.php") ;?>
     <div class="app">
     <div class="container-fluid-lg" style="padding-top: 80px;">
         
@@ -120,7 +96,10 @@
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
         <script src="https://unpkg.com/popper.js@1"></script>
         <script src="https://unpkg.com/tippy.js@4"></script>
-
+        <script>
+                    navitem = document.getElementById('tut').classList.add('active')
+                    
+        </script>
  </body>
 
 

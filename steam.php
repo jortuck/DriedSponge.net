@@ -21,32 +21,10 @@
     </head>
     
  <body>
-
+ <?php
+include("navbar.php")
+?>
      <div class="app">
-    <div class="container-fluid-lg">
-        <div class="page-header">
-        
-            <nav class="navbar navbar-expand-lg navbar-dark  nbth fixed-top" >
-                    <a class="navbar-brand" href="#"><strong>driedsponge.net</strong></a>
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarmain" aria-controls="navbarmain" aria-expanded="false" aria-label="Toggle navigation">
-                            <span class="navbar-toggler-icon"></span>
-                          </button>
-                    <div class="collapse navbar-collapse" id="navbarmain">
-                            
-                        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-                            <li class="nav-item"><a class="nav-link" href="index.php">Home</a></li>
-                            <li class="nav-item"><a class="nav-link" href="webdesign.php">Web Projects</a></li>
-                            <li class="nav-item"><a class="nav-link" href="lua.php">Lua Projects</a></li>
-                            <li class="nav-item"><a class="nav-link" href="tutorials/index.php">Coding Tutorials</a></li>
-                            <li class="nav-item active"><a class="nav-link" href="steam.php">Steam Tool<span class="sr-only">(current)</span></a></li>
-                        </ul>  
-                        </div>
-                  </nav>
-                
-                  
-        </div>
-        
-    </div>
     <div class="container-fluid-lg" style="padding-top: 80px;">
         
 
@@ -65,19 +43,13 @@
                     </hgroup>
                     <p class="paragraph">Need to look something up about a user on steam? Do it here! For more info on the site visit my <a href="webdesign.php">Web Projects </a>page</p>
                     <br>
-                    <form id="steamform">
+                    
                       <div class="form-group">
                         
                         <input id="id64" type="text" class="form-control"  aria-describedby="emailHelp" placeholder="Enter a SteamID/SteamID64/SteamID3">
                       </div>
-                      <button onclick="go()" type="submit" class="btn btn-primary">Submit</button>
-                    </form>
+                      <button onclick="go()"  class="btn btn-primary">Submit</button>
                     
-                          
-            
-
-
-
                     
 
                         </div>
@@ -99,14 +71,11 @@
         <script src="https://unpkg.com/tippy.js@4"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> 
         <script src="main.js"></script> 
+        <script src="search.js"></script>
         <script>
-        function go(){
-        var input = document.getElementById("id64").value;
-        open("controller.php?id=" + input);
-    
-        }
-        </script>
-
+                    navitem = document.getElementById('steam').classList.add('active')
+                    
+                </script>
  </body>
 
 

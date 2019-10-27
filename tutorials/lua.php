@@ -15,6 +15,7 @@ if (!is_numeric($page) || $page > 2){
 readfile("lua".$page.".php");
 include("../footer.php"); 
 include("../meta.php"); 
+include("navbar.php")
 ?>
 
 <!--         <script>
@@ -38,3 +39,7 @@ include("../meta.php");
             animateFill: false,
             })
         </script>
+        <script>
+                navitem = document.getElementById('tut').classList.add('active')
+                
+    </script>
