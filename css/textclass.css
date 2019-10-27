@@ -3,7 +3,7 @@
     color: #007BFF;
 }
 .socials{
-    color: black;
+    color: white;
 }
 .jumbotron{
     background-color:#007BFF;
@@ -123,4 +123,7 @@ font-weight: 900;
 .tippy-tooltip.deprecated-theme{
     background-color: #DC3545;
     color: white;
+}
+a{
+    color: #007BFF;
 }
