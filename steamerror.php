@@ -50,7 +50,7 @@ include("navbar.php")
                         <h2><strong>Steam ID Tool</strong></h2>
                         <br>
                     </hgroup>
-                    <input id="id64" type="text" class="form-control"  aria-describedby="emailHelp" placeholder="Enter a SteamID/SteamID64/SteamID3">
+                    <input id="id64" type="text" class="form-control"  aria-describedby="emailHelp" placeholder="Enter a SteamID/SteamID64/SteamID3/ProfileURL">
                     </div>
                     <button onclick="go()"  class="btn btn-primary">Submit</button>
                 <div class="jumbotron">

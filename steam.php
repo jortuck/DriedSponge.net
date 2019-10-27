@@ -7,8 +7,8 @@
 <!--         Site created: 9/19/19
         Author: DriedSponge(Jordan Tucker) -->
         
-        <meta name="description" content="Need to look something up about a user on steam? Do it here!" />
-        <meta name="keywords" content="driedsponge.net, SteamID finder, SteamID, SteamAPI, Steam users, SteamID search" />
+        <meta name="description" content="Need to look something up about a user on steam? Do it here! Use any SteamID or profile URL to look up information!" />
+        <meta name="keywords" content="driedsponge.net, SteamID finder, SteamID, SteamAPI, Steam users, SteamID search, steam convert, steamid converter, steamurl converter, steam converter, SteamID64, SteamID3, steam profile lookup" />
         <meta name="author" content="Jordan Tucker" />
         
         <meta property="og:site_name" content="DriedSponge.net | Steam ID Tool" />
@@ -41,12 +41,12 @@ include("navbar.php")
                         <h2><strong>Steam ID Tool</strong></h2>
                         <br>
                     </hgroup>
-                    <p class="paragraph">Need to look something up about a user on steam? Do it here! For more info on the site visit my <a href="webdesign.php">Web Projects </a>page</p>
+                    <p class="paragraph">Need to look something up about a user on steam? Do it here! Use any SteamID or profile URL to look up information! For more info on the site visit my <a href="webdesign.php">Web Projects </a>page.</p>
                     <br>
                     
                       <div class="form-group">
                         
-                        <input id="id64" type="text" class="form-control"  aria-describedby="emailHelp" placeholder="Enter a SteamID/SteamID64/SteamID3">
+                            <input id="id64" type="text" class="form-control"  aria-describedby="emailHelp" placeholder="Enter a SteamID/SteamID64/SteamID3/ProfileURL">
                       </div>
                       <button onclick="go()"  class="btn btn-primary">Submit</button>
                     

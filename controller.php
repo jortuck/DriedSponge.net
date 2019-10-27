@@ -1,23 +1,65 @@
 <?php
 include("SteamID.php");
+
 $APIKEY = "0EBBACAEBC6039B06DF1066807D55D4C";
 $WHO = $_GET["id"];
+$str = substr($WHO, 0, 4);
+
+if ($str == "http"){
+$s = SteamID::SetFromURL( $WHO, function( $URL, $Type ) use ( $APIKEY )
+{
+	$Parameters =
+	[
+		'format' => 'json',
+		'key' => $APIKEY,
+		'vanityurl' => $URL,
+		'url_type' => $Type
+	];
+	
+	$c = curl_init( );
+	
+	curl_setopt_array( $c, [
+		CURLOPT_USERAGENT      => 'Steam Vanity URL Lookup',
+		CURLOPT_ENCODING       => 'gzip',
+		CURLOPT_RETURNTRANSFER => true,
+		CURLOPT_URL            => 'https://api.steampowered.com/ISteamUser/ResolveVanityURL/v1/?' . http_build_query( $Parameters ),
+		CURLOPT_CONNECTTIMEOUT => 5,
+		CURLOPT_TIMEOUT        => 5
+	] );
+	
+	$Response = curl_exec( $c );
+	
+	curl_close( $c );
+	
+	$Response = json_decode( $Response, true );
+	
+	if( isset( $Response[ 'response' ][ 'success' ] ) )
+	{
+		switch( (int)$Response[ 'response' ][ 'success' ] )
+		{
+			case 1: return $Response[ 'response' ][ 'steamid' ];
+            case 42: header("Location: steamerror.php");;
+            
+		}
+	}
+	
+    throw new Exception( 'Failed to perform API request' );
+    
+} );
+
+}else{
 try
 {
-	// Constructor also accepts Steam3 and Steam2 representations
 	$s = new SteamID( $WHO );
 }
-catch( InvalidArgumentException $e )
-{
-	header("Location: steamerror.php");;
+ catch( InvalidArgumentException $e )
+ {
+
+header("Location: steamerror.php");
+ }
 }
-// Renders SteamID in it's Steam3 representation (e.g. [U:1:24715681])
 $id3 = $s->RenderSteam3() . PHP_EOL;
-
-// Renders SteamID in it's Steam2 representation (e.g. STEAM_0:1:12357840)
 $idn = $s->RenderSteam2() . PHP_EOL;
-
-// Converts this SteamID into it's 64bit integer form (e.g. 76561197984981409)
 $id64 = $s->ConvertToUInt64() . PHP_EOL;
 
 $json = file_get_contents("http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=".$APIKEY."&steamids=$id64");
@@ -113,7 +155,7 @@ if ($name == null || $img == null ){
                         
                       <div class="form-group">
                         
-                        <input id="id64" type="text" class="form-control"  aria-describedby="emailHelp" placeholder="Enter a SteamID/SteamID64/SteamID3">
+                        <input id="id64" type="text" class="form-control"  aria-describedby="emailHelp" placeholder="Enter a SteamID/SteamID64/SteamID3/ProfileURL">
                       </div>
                       <button onclick="go()" type="submit" class="btn btn-primary">Submit</button>
                     
