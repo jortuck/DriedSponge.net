@@ -70,6 +70,7 @@ include("navbar.php")
             </div>
         </div>
     </div>
+</div>
             <!-- end of app -->
             <?php 
             include("footer.php"); // we include footer.php here. you can use .html extension, too.
@@ -81,6 +82,10 @@ include("navbar.php")
                 <script src="https://unpkg.com/popper.js@1"></script>
                 <script src="https://unpkg.com/tippy.js@4"></script>
                 <script src="main.js"></script>
+                <script>
+                document.getElementById("id64").value = "<?php echo $WHO; ?>";
+
+                </script>
                 <script>
                       function goback() {
                         window.history.back();

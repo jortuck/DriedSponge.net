@@ -48,7 +48,7 @@ try
             switch( (int)$Response[ 'response' ][ 'success' ] )
             {
                 case 1: return $Response[ 'response' ][ 'steamid' ];
-                case 42: header("Location: steamerror.php");;
+                case 42: header("Location: steamerror.php");
                 
             }
         }
@@ -204,6 +204,10 @@ if ($name == null || $img == null ){
         
 
         <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+        <script>
+        document.getElementById("id64").value = "<?php echo $WHO;?>";
+
+        </script>
         <script>
           function  copything(value){
             

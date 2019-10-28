@@ -216,10 +216,12 @@ class SteamID
 		else if( self::IsNumeric( $Value ) )
 		{
 			$this->Data = gmp_init( $Value, 10 );
+			
 		}
 		else
 		{
-			throw new InvalidArgumentException( 'Provided SteamID is invalid.' );
+			header("Location: steamerror.php");
+			
 		}
 	}
 	
