@@ -221,6 +221,7 @@ class SteamID
 		else
 		{
 			header("Location: steamerror.php");
+			throw new InvalidArgumentException( 'Provided SteamID is invalid.' );
 			
 		}
 	}

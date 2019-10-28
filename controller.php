@@ -7,15 +7,6 @@ $str = substr($WHO, 0, 4);
 
 
 
-
-
-try
-{
-	$s = new SteamID( $WHO );
-}
- catch( InvalidArgumentException $e )
- {
-
     $s = SteamID::SetFromURL( $WHO, function( $URL, $Type ) use ( $APIKEY )
     {
         $Parameters =
@@ -56,7 +47,7 @@ try
         throw new Exception( 'Failed to perform API request' );
         
     } );
- }
+ 
 
 $id3 = $s->RenderSteam3() . PHP_EOL;
 $idn = $s->RenderSteam2() . PHP_EOL;
