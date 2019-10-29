@@ -38,7 +38,7 @@ if ( date("m") == "10" ){
                           </div>
                         </div>
                         
-                        <p><cite>Copyright © 2019 DriedSponge.net &bull; Current theme: <?php echo $themetxt; ?> &bull; <a href="https://driedsponge.net/privacy.php" class="whitehyperlink">Privacy Policy</a></cite></p>
+                        <p><cite>Copyright © 2019 DriedSponge.net &bull; Current theme: <?php echo $themetxt; ?> &bull; <a href="https://driedsponge.net/privacy.php" class="whitehyperlink">Privacy Policy</a> &bull; Please report any bugs on the site in my <a href="https://discordapp.com/invite/EEPXhqE" class="whitehyperlink" target="_blank">discord server</a></cite></p>
                             
         </div>
       </footer>
