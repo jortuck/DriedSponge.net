@@ -6,8 +6,8 @@ if ( date("m") == "10" ){
   $themetxt = "Default";
   
 }
-?> 
-    
+?>
+
 <footer>
     <div class="page-footer">
             <h4><em class="socials">Socials</em></h4>

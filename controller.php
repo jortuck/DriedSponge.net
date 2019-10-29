@@ -179,7 +179,9 @@ if ($name == null || $img == null ){
 </div>
 </div> 
 <!-- End of "app" -->
+
 <?php 
+include("hex.php");
     include("footer.php"); // we include footer.php here. you can use .html extension, too.
     ?>
 
