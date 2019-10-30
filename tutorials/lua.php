@@ -13,9 +13,11 @@ if (!is_numeric($page) || $page > 2){
 }
 
 readfile("lua".$page.".php");
+include("../hex.php");
 include("../footer.php"); 
 include("../meta.php"); 
-include("navbar.php")
+include("navbar.php");
+
 ?>
 
 <!--         <script>

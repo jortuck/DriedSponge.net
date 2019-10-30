@@ -76,7 +76,7 @@
 </div> 
 
 <!-- end of app -->
-
+<?php include("../hex.php") ?>
 
 
 

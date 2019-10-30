@@ -1,2 +1,2 @@
-<a   href="https://billing.hexanenetworks.com/aff.php?aff=330" target="_blank"style="text-align: center;"><img width="580px"  src="https://cdn.hexanenetworks.com/img/web/branding/hexane-networks-banner.png" /></a>
+<a href="https://billing.hexanenetworks.com/aff.php?aff=330" target="_blank"style="text-align: center;"><img width="580px"  src="https://cdn.hexanenetworks.com/img/web/branding/hexane-networks-banner.png" /></a>
 <br>
