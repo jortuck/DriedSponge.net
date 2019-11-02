@@ -8,7 +8,7 @@ $page = $_GET["page"];
 if (!is_numeric($page) || $page < 1){
     header("Location: https://driedsponge.net/404.php");
 }
-if (!is_numeric($page) || $page > 2){
+if (!is_numeric($page) || $page > 3){
     header("Location: https://driedsponge.net/404.php");
 }
 
