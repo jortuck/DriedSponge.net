@@ -14,7 +14,15 @@
                             <li class="nav-item" id="lua"><a class="nav-link" href="../lua.php">Lua Projects</a></li>
                             <li class="nav-item" id="tut"><a class="nav-link" href="index.php">Coding Tutorials</a></li>
                             <li class="nav-item" id="steam"><a class="nav-link" href="../steam.php">Steam Tool</a></li>
-                        
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Other
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <a class="dropdown-item" href="../contributors.php">Contributors</a>
+                                <a class="dropdown-item" href="../privacy.php">Privacy Policy</a>
+                                </div>
+                            </li>
                         </ul>  
                         </div>
                   </nav>

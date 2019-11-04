@@ -70,13 +70,13 @@
 
                     
 
-
+                        <?php include("../hex.php") ?>
 </div>
 </div>
 </div> 
 
 <!-- end of app -->
-<?php include("../hex.php") ?>
+
 
 
 

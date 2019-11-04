@@ -15,7 +15,7 @@
             include("meta.php"); 
             ?>
         
-        <title>driedsponge.net</title>
+        <title>DriedSponge.net</title>
         <script src="https://kit.fontawesome.com/0add82e87e.js" crossorigin="anonymous"></script>
     </head>
  <body>

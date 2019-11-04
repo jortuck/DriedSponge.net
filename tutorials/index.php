@@ -73,7 +73,24 @@
                                       October 20, 2019 
                                     </div>
                       </div>
-
+                      <div class="card" style="width: 21rem;">
+                                  <h5 class="card-header">
+                                          Lua Tutorial 3 - if/then/and/or
+                                        </h5>    
+                                  <div class="card-body">
+                                    <p class="card-text"><strong>Topics Covered</strong></p>
+                                  <ul class="card-text">
+                                  <li><a href="lua.php?page=3#h">Hooks</a></li>
+                                  <li><a href="lua.php?page=3#i">if then statements</a></li>
+                                  <li><a href="lua.php?page=3#a">and/or statements</a></li>
+                                  </ul>
+                                  <a href="lua.php?page=3" class="btn btn-primary">View Tutorial</a>
+                                  <a href="https://youtu.be/W53tk0yTJCo" target="_blank" class="btn btn-primary">Watch Video</a>
+                                  </div>
+                                  <div class="card-footer text-muted">
+                                      October 20, 2019 
+                                    </div>
+                      </div>
                 
 
 
