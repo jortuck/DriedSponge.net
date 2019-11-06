@@ -66,7 +66,7 @@
                     <p class="paragraph">In Lua (<i>and the majority of other coding languages</i>), there are three data types: string, boolean, and number. A string can store any alphanumeric character and most other symbols (<i>ex: !@#$%</i>). Strings are defined using quotes (<i>""</i>). A boolean or bool for short, is a <strong>true</strong> or <strong>false</strong> value. A number is any number obviously (<i>Decimals and negatives are supported!</i>). Below is an example screenshot:</p>
                     <img src="https://i.driedsponge.net/images/png/Sa8iQ.png" alt="datatype example"/>
                     <br>
-                    <p class="paragraph">This is the end of the first tutorial. This information will help you a lot in the future. If anybody needs help the best way to talk to me is in <a href="https://discord.gg/EEPXhqE" target="_blank">my discord server</a>. Have a good day/evening!</p>
+                    <p class="paragraph">This is the end of the first tutorial. This information will help you a lot in the future. If anybody needs help the best way to talk to me is in <a href="https://go.driedsponge.net/discord" target="_blank">my discord server</a>. Have a good day/evening!</p>
 
                     
 

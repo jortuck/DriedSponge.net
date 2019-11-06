@@ -53,7 +53,7 @@
                             <li><code>text</code> is the string of whatever the player said.</li>
                         </ul>
                         <p class="paragraph">To test your code, start your game and say something in chat. It should return the following:</p>
-                        <img src="https://i.driedsponge.net/TRWBN" alt="hook return" />
+                        <img src="https://i.driedsponge.net/images/png/TRWBN.png" alt="hook return" />
 
 
 
