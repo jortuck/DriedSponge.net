@@ -88,7 +88,7 @@
                     
 
                     <br>
-                    <p class="paragraph">This is the end of my second tutorial!. As always, if anyone needs help the best way to talk to me is in <a href="https://go.driedsponge.net/discord" target="_blank">my discord server</a>. Have a good day/evening!</p>
+                    <p class="paragraph">This is the end of my second tutorial!. As always, if anyone needs help the best way to talk to me is in <a href="https://driedsponge.net/discord" target="_blank">my discord server</a>. Have a good day/evening!</p>
                     <br>
                     
                     
