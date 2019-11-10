@@ -1,14 +1,17 @@
 <?php
+
 include("SteamID.php");
 
 $APIKEY = "0EBBACAEBC6039B06DF1066807D55D4C";
 $WHO = $_GET["id"];
-$str = substr($WHO, 0, 4);
+
 
 $url = $_SERVER["SCRIPT_NAME"];
 $break = Explode('/', $url);
 $file = $WHO;
-$cachefile = 'cache/cached-'.substr_replace($file ,"",-4).'.htm';
+$str = str_replace(":","+",$WHO);
+$str2 = str_replace("/","-",$str);
+$cachefile = 'cache/cached-'.substr_replace($str2 ,"",-4).'.htm';
 $cachetime = 300;
 
 // Serve from the cache if it is younger than $cachetime
@@ -233,6 +236,7 @@ include("hex.php");
 
 </html>
 <?php
+
 $cached = fopen($cachefile, 'w');
 fwrite($cached, ob_get_contents());
 fclose($cached);

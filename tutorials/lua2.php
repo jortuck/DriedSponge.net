@@ -76,10 +76,10 @@
                     <p class="paragraph">Now we are going to talk about concatenation. This is basically allows you to join two strings together. All you gotta use is <code>..</code>. Here are some examples of how you would use this:</p>
                    
                     <ul class="paragraph">
-                        <li><code>print("keeping two strings apart ".."for some reason")</code></li>
-                        <li><code>print("My car year is "..MyCarYear)</code></li>
-                        <li><code>print(MyCar.." is my car brand")</code></li>
-                        <li><code>print("My name is driedsponge and my new "..MyCar.." is from "..MyCarYear)</code></li>
+                        <li><code><a href="https://wiki.garrysmod.com/page/Global/print" target="_blank">print</a>("keeping two strings apart ".."for some reason")</code></li>
+                        <li><code><a href="https://wiki.garrysmod.com/page/Global/print" target="_blank">print</a>("My car year is "..MyCarYear)</code></li>
+                        <li><code><a href="https://wiki.garrysmod.com/page/Global/print" target="_blank">print</a>(MyCar.." is my car brand")</code></li>
+                        <li><code><a href="https://wiki.garrysmod.com/page/Global/print" target="_blank">print</a>("My name is driedsponge and my new "..MyCar.." is from "..MyCarYear)</code></li>
                     </ul> 
                     <p class="paragraph">Let's look to see what it printed:</p>
                     <img src="https://i.driedsponge.net/images/png/hZ4g3.png" alt="concatenation print example code"/>

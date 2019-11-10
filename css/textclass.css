@@ -72,6 +72,9 @@ hgroup h2{
 .paragraph{
     font-size: 1.3em;
 }
+blockquote{
+    background: #007BFF;
+}
 .subheading{
     color: #007BFF;
     font-size: 1.6em;
@@ -126,4 +129,8 @@ font-weight: 900;
 }
 a{
     color: #007BFF;
+}
+
+code{
+    color: rgb(0, 190, 0);
 }
