@@ -44,24 +44,47 @@ include("navbar.php")
                     
                     
 
-                        <h4 class="subheading">Known Languages</h4>
-                        <ul class="list">
-                            <li>
-                                <strong>HTML: </strong><i class="fas fa-star fa-1x"></i><i class="fas fa-star fa-1x"></i><i class="fas fa-star fa-1x"></i><i class="fas fa-star fa-1x"></i><i class="fas fa-star fa-1x"></i>
-                            </li>
-                            <li>
-                                    <strong>LUA: </strong><i class="fas fa-star fa-1x"></i><i class="fas fa-star fa-1x"></i><i class="fas fa-star fa-1x"></i><i class="fas fa-star-half-alt fa-1x"></i><i class="far fa-star fa-1x"></i>
-                            </li>
-                            <li>
-                                    <strong>PHP: </strong><i class="fas fa-star fa-1x"></i><i class="fas fa-star fa-1x"></i><i class="far fa-star fa-1x"></i><i class="far fa-star fa-1x"></i><i class="far fa-star fa-1x"></i>
-                            </li>
-                            <li>
-                                    <strong>CSS: </strong><i class="fas fa-star fa-1x"></i><i class="fas fa-star fa-1x"></i><i class="fas fa-star fa-1x"></i><i class="fas fa-star fa-1x"></i><i class="far fa-star fa-1x"></i>
-                            </li>
-                            <li>
-                                    <strong>Java Script: </strong><i class="fas fa-star fa-1x"></i><i class="fas fa-star fa-1x"></i><i class="far fa-star fa-1x"></i><i class="far fa-star fa-1x"></i><i class="far fa-star fa-1x"></i>
-                            </li>
-                        </ul>
+                        <h4 class="subheading" style="text-align: center;">Languages I know</h4>
+                        <br>
+                            <div class="row justify-content-center">
+                                <div class="card" style="width: 18rem; text-align:center;">
+                                <div class="card-body">
+                                <img src="img/html.png" alt="html5logo" height="100px" style="padding: none; margin: none;"/>
+                                    <p class="card-text"><i class="fas fa-star fa-1x"></i><i class="fas fa-star fa-1x"></i><i class="fas fa-star fa-1x"></i><i class="fas fa-star fa-1x"></i><i class="fas fa-star fa-1x"></i></p>
+                                    
+                                </div>
+                                </div>
+                                <div class="card" style="width: 18rem; text-align:center;">
+                                        <div class="card-body">
+                                        <img src="img/lua.png" alt="lualogo" height="100px" style="padding: none; margin: none;"/>
+                                            <p class="card-text"><i class="fas fa-star fa-1x"></i><i class="fas fa-star fa-1x"></i><i class="fas fa-star fa-1x"></i><i class="fas fa-star-half-alt fa-1x"></i><i class="far fa-star fa-1x"></i></p>
+                                            
+                                        </div>
+                                        </div>
+                                        <div class="card" style="width: 18rem; text-align:center;">
+                                                <div class="card-body">
+                                                <img src="img/php.png" alt="phplogo" height="100px" style="padding: none; margin: none;"/>
+                                                    <p class="card-text"><i class="fas fa-star fa-1x"></i><i class="fas fa-star fa-1x"></i><i class="far fa-star fa-1x"></i><i class="far fa-star fa-1x"></i><i class="far fa-star fa-1x"></i></p>
+                                                    
+                                                </div>
+                                                </div>
+                                                <div class="card" style="width: 18rem; text-align:center;">
+                                                        <div class="card-body">
+                                                        <img src="img/css.png" alt="csslogo" height="100px" style="padding: none; margin: none;"/>
+                                                            <p class="card-text"><i class="fas fa-star fa-1x"></i><i class="fas fa-star fa-1x"></i><i class="fas fa-star fa-1x"></i><i class="fas fa-star fa-1x"></i><i class="far fa-star fa-1x"></i></p>
+                                                            
+                                                        </div>
+                                                        </div>
+                                                        <div class="card" style="width: 18rem; text-align:center;">
+                                                                <div class="card-body">
+                                                                <img src="img/js.png" alt="csslogo" height="100px" style="padding: none; margin: none;"/>
+                                                                    <p class="card-text"><i class="fas fa-star fa-1x"></i><i class="fas fa-star fa-1x"></i><i class="far fa-star fa-1x"></i><i class="far fa-star fa-1x"></i><i class="far fa-star fa-1x"></i></p>
+                                                                    
+                                                                </div>
+                                                                </div>
+                            </div>
+                            <br>
+                       
                     <h4 class="subheading">Specialities</h4>
                         
                     
