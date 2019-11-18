@@ -53,7 +53,7 @@
                                     <a href="https://youtu.be/W53tk0yTJCo" target="_blank" class="btn btn-primary">Watch Video</a>
                                     </div>
                                     <div class="card-footer text-muted">
-                                       October 12, 2019 
+                                       October 12th, 2019 
                                       </div>
                         </div>
                       <div class="card" style="width: 21rem;">
@@ -71,7 +71,7 @@
                                   <a href="https://youtu.be/W53tk0yTJCo" target="_blank" class="btn btn-primary">Watch Video</a>
                                   </div>
                                   <div class="card-footer text-muted">
-                                      October 20, 2019 
+                                      October 20th, 2019 
                                     </div>
                       </div>
                       <div class="card" style="width: 21rem;">
@@ -89,7 +89,7 @@
                                   <a href="https://youtu.be/W53tk0yTJCo" target="_blank" class="btn btn-primary">Watch Video</a>
                                   </div>
                                   <div class="card-footer text-muted">
-                                      October 20, 2019 
+                                      December 17th, 2019 
                                     </div>
                       </div>
                 

@@ -35,7 +35,7 @@
                             <li><a href="#a">and/or statements</a></li>
                         </ul>
                     <h4 class="subheading">Video:</h4>  
-                    <p class="paragraph">Not avaliable</p>              
+                    <i><p class="paragraph">Not avaliable yet</p></i>              
                         <br>
 
 
