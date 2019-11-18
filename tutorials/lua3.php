@@ -81,6 +81,7 @@
                             <p class="paragraph">Also, you can do checks on variables like this:</p>
                             <img src="https://i.driedsponge.net/images/png/xLhvy.png" alt="checks on variables" />
                             <p class="paragraph">Now that you have an understnading of if/then statements, lets move on to and/or statements.</p>
+                            <h5><span class="badge badge-primary">Keep in mind: if/then statments work outside of hooks.</span></h5>
                             <br>
                             <h4 class="subheading" id="a">and/or statements</h4>
                             <p class="paragraph">And/or statements make it really easy to perform multiple if then statement checks. Instead of having multiple if/then statements, you can have one if/the statement that uses and/or statements. For example, if the player said hello <strong>and</strong>  has 100 health at the same time, then kill them (<a href="https://wiki.garrysmod.com/page/Entity/Health" target="_blank">Health function</a>). Your syntax should look like this:</p>
