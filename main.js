@@ -19,7 +19,11 @@ tippy('.badge-success', {
     animateFill: false,
   })
 
+  tippy('img', {
 
+    theme: 'primary',
+    animateFill: false,
+  })
 
 
 

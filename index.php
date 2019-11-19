@@ -47,41 +47,42 @@ include("navbar.php")
                         <h4 class="subheading" style="text-align: center;">Languages I know</h4>
                         <br>
                             <div class="row justify-content-center">
-                                <div class="card" style="width: 18rem; text-align:center;">
+                                <div class="card card-border" style="width: 18rem; text-align:center;">
                                 <div class="card-body">
-                                <img src="img/html.png" alt="html5logo" height="100px" style="padding: none; margin: none;"/>
+                                <img data-tippy-content="HTML" src="img/html.png" alt="html5logo" height="100px" style="padding: none; margin: none;"/>
                                     <p class="card-text"><i class="fas fa-star fa-1x"></i><i class="fas fa-star fa-1x"></i><i class="fas fa-star fa-1x"></i><i class="fas fa-star fa-1x"></i><i class="fas fa-star fa-1x"></i></p>
                                     
                                 </div>
                                 </div>
-                                <div class="card" style="width: 18rem; text-align:center;">
+                                <div class="card card-border" style="width: 18rem; text-align:center;">
                                         <div class="card-body">
-                                        <img src="img/lua.png" alt="lualogo" height="100px" style="padding: none; margin: none;"/>
+                                        <img data-tippy-content="Lua" src="img/lua.png" alt="lualogo" height="100px" style="padding: none; margin: none;"/>
                                             <p class="card-text"><i class="fas fa-star fa-1x"></i><i class="fas fa-star fa-1x"></i><i class="fas fa-star fa-1x"></i><i class="fas fa-star-half-alt fa-1x"></i><i class="far fa-star fa-1x"></i></p>
                                             
                                         </div>
                                         </div>
-                                        <div class="card" style="width: 18rem; text-align:center;">
+                                        <div class="card card-border" style="width: 18rem; text-align:center;">
                                                 <div class="card-body">
-                                                <img src="img/php.png" alt="phplogo" height="100px" style="padding: none; margin: none;"/>
+                                                <img data-tippy-content="PHP" src="img/php.png" alt="phplogo" height="100px" style="padding: none; margin: none;"/>
                                                     <p class="card-text"><i class="fas fa-star fa-1x"></i><i class="fas fa-star fa-1x"></i><i class="far fa-star fa-1x"></i><i class="far fa-star fa-1x"></i><i class="far fa-star fa-1x"></i></p>
                                                     
                                                 </div>
                                                 </div>
-                                                <div class="card" style="width: 18rem; text-align:center;">
-                                                        <div class="card-body">
-                                                        <img src="img/css.png" alt="csslogo" height="100px" style="padding: none; margin: none;"/>
+                                                <div class="card card-border" style="width: 18rem; text-align:center;">
+                                                    
+                                                    <div class="card-body">
+                                                        <img  data-tippy-content="CSS" src="img/css.png" alt="csslogo" height="100px" style="padding: none; margin: none;"/>
                                                             <p class="card-text"><i class="fas fa-star fa-1x"></i><i class="fas fa-star fa-1x"></i><i class="fas fa-star fa-1x"></i><i class="fas fa-star fa-1x"></i><i class="far fa-star fa-1x"></i></p>
                                                             
                                                         </div>
                                                         </div>
-                                                        <div class="card" style="width: 18rem; text-align:center;">
+                                                        <div class="card card-border" style="width: 18rem; text-align:center;">
                                                                 <div class="card-body">
-                                                                <img src="img/js.png" alt="csslogo" height="100px" style="padding: none; margin: none;"/>
+                                                                <img data-tippy-content="JavaScript" src="img/js.png" alt="csslogo" height="100px" style="padding: none; margin: none;"/>
                                                                     <p class="card-text"><i class="fas fa-star fa-1x"></i><i class="fas fa-star fa-1x"></i><i class="far fa-star fa-1x"></i><i class="far fa-star fa-1x"></i><i class="far fa-star fa-1x"></i></p>
                                                                     
-                                                                </div>
-                                                                </div>
+                                                                 </div>
+                                                        </div>
                             </div>
                             <br>
                        
