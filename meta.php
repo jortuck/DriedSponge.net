@@ -7,10 +7,11 @@
 
 <?php
 
-if ( date("m") == "10" ){
+if ( date("m") == "11" ){
     $theme = "https://driedsponge.net/css/spook.css";
     $themefav = "https://cdn.driedsponge.net/img/favicon-spook.ico";
     $themecol = "#E4541C";
+    $decoration = "https://driedsponge.net/js/bats.js";
 } else {
     $theme = "https://driedsponge.net/css/textclass.css";
     $themefav = "https://cdn.driedsponge.net/img/zfavicon.ico";

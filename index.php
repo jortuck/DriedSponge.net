@@ -40,7 +40,8 @@ include("navbar.php")
                     
                     <br>
                 </hgroup>
-                    <p class="paragraph"><strong>About Me<br> </strong>My name is Jordan and I live in WA, United States. I've been coding Lua (<i>Specifically for GMOD</i>) for about one and a half years now. I've been working on improving my skills in other coding languages though too. I also do other things than just code. I play bass guitar and trombone, both very epic instruments! Ich bin Arbeiten auf mein Deustch Fertigkeit. On this site I made, you can find info on <i>99.9%</i> of my projects, whether they are big or small, you can find information about them here!</p>
+                <h5 class="subsubhead">About Me</h5>
+                    <p class="paragraph">My name is Jordan and I live in WA, United States. I've been coding Lua (<i>Specifically for GMOD</i>) for about one and a half years now. I've been working on improving my skills in other coding languages though too. I also do other things than just code. I play bass guitar and trombone, both very epic instruments! Ich bin Arbeiten auf mein Deustch Fertigkeit. On this site I made, you can find info on <i>99.9%</i> of my projects, whether they are big or small, you can find information about them here!</p>
                     
                     
 
@@ -78,7 +79,7 @@ include("navbar.php")
                                                         </div>
                                                         <div class="card card-border" style="width: 18rem; text-align:center;">
                                                                 <div class="card-body">
-                                                                <img data-tippy-content="JavaScript" src="img/js.png" alt="csslogo" height="100px" style="padding: none; margin: none;"/>
+                                                                <img data-tippy-content="JavaScript" src="img/js.png" alt="jslogo" height="100px" style="padding: none; margin: none;"/>
                                                                     <p class="card-text"><i class="fas fa-star fa-1x"></i><i class="fas fa-star fa-1x"></i><i class="far fa-star fa-1x"></i><i class="far fa-star fa-1x"></i><i class="far fa-star fa-1x"></i></p>
                                                                     
                                                                  </div>
@@ -87,15 +88,19 @@ include("navbar.php")
                             <br>
                        
                     <h4 class="subheading">Specialities</h4>
-                        
-                    
-                        <p class="paragraph"><strong>General Computer Stuff<br></strong> I know my way around a Windows 10 machine pretty well. I also am very familiar with hosting dedicated Garry's Mod and Minecraft servers from Windows 10. I'm also familiar with other pieces of software such as Adobe Photoshop, Sony Vegas, Reaper, Wireshark, Virtual box, and ShareX!
+                        <br>
+                        <h5 class="subsubhead">General Computer Stuff</h5>
+                        <p class="paragraph"> I know my way around a Windows 10 machine pretty well. I also am very familiar with hosting dedicated Garry's Mod and Minecraft servers from Windows 10. I'm also familiar with other pieces of software such as Adobe Photoshop, Sony Vegas, Reaper, Wireshark, Virtual box, and ShareX!
                         </p>
-                        <p class="paragraph"><strong>Lua and glua<br></strong> In terms of lua and glua, I am very good with interfaces and vgui. I can also do scoreboards and lots of backend server management sutff that I have used on my own servers. I also like to make server utilities and addons that are just used for fun (<i>See WUPHF! For GMOD</i>). I also like to modify others code to make it work better for me. I'm also very good at integrating various api's with lua and GMOD. <i>Note: I am in no way familiar with vehicles/entities/sweps/tool gun tools :(.</i>
+                        <br>
+                        <h5 class="subsubhead">Lua and glua</h5>
+                        <p class="paragraph">In terms of lua and glua, I am very good with interfaces and vgui. I can also do scoreboards and lots of backend server management sutff that I have used on my own servers. I also like to make server utilities and addons that are just used for fun (<i>See WUPHF! For GMOD</i>). I also like to modify others code to make it work better for me. I'm also very good at integrating various api's with lua and GMOD. <i>Note: I am in no way familiar with vehicles/entities/sweps/tool gun tools :(.</i>
                         </p>
-                        <p class="paragraph"><strong>Web Development<br></strong> My web development skills really only involve HTML, CSS, Java Script, and PHP (<i>Full stack web development</i>). I really enojoy back-end web development. One of my first back end projects was my <a href="steam.php">SteamID tool</a>. My front end web devlopment skills are decent considering I've only been doing CSS and HTML since around the beginning of September 2019. I also ran a wiki for a mobile game called <cite>Rumble Stars</cite>. This was before I knew and web dev stuff and the wiki was created using wordpress (<i>I have now since deleted it considering the only visitors were spam bots</i>). 
+                        <br>
+                        <h5 class="subsubhead">Web Development</h5>
+                        <p class="paragraph">My web development skills really only involve HTML, CSS, Java Script, and PHP (<i>Full stack web development</i>). I really enojoy back-end web development. One of my first back end projects was my <a href="steam.php">SteamID tool</a>. My front end web devlopment skills are decent considering I've only been doing CSS and HTML since around the beginning of September 2019. I also ran a wiki for a mobile game called <cite>Rumble Stars</cite>. This was before I knew and web dev stuff and the wiki was created using wordpress (<i>I have now since deleted it considering the only visitors were spam bots</i>). 
                     </p>
-                    
+                    <br>
                 
 
 

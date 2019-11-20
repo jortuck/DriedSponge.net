@@ -13,12 +13,7 @@ hgroup h2{
 .socials{
     color: white;
 }
-a{
-    color: #E4541C;
-}
-a:hover{
-    color: rgb(182, 52, 0);
-}
+
 .jumbotron{
     background-color:#E4541C;
     color:white;
@@ -90,9 +85,10 @@ a:hover{
     color: white;
 }
 .subheading{
-    color: white;
+    color: #E4541C;
     font-size: 1.6em;
     font-style: italic;
+    text-align: center;
 }
 .card{
     margin-bottom: 8px;
@@ -144,4 +140,32 @@ font-weight: 900;
 .tippy-tooltip.deprecated-theme{
     background-color: #DC3545;
     color: white;
+}
+.tippy-tooltip.primary-theme{
+    background-color: #E4541C;
+    color: white;
+}
+a{
+    color: #E4541C;
+}
+a:hover{
+    color: rgb(182, 52, 0);
+}
+code{
+    color: rgb(0, 190, 0);
+}
+
+.card-border{
+    border: 1px solid white;
+    border-radius: 10px;
+    margin: 10px 10px 10px 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+}
+
+.subsubhead{
+    color: white;
+    font-weight: bolder;
+    font-size: 1.4em;
+    text-align: center;
 }

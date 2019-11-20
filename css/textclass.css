@@ -85,6 +85,7 @@ blockquote{
     color: #007BFF;
     font-size: 1.6em;
     font-style: italic;
+    text-align: center;
 }
 .card{
     margin-bottom: 8px;
@@ -151,4 +152,10 @@ code{
     margin: 10px 10px 10px 10px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 
+}
+
+.subsubhead{
+    font-weight: bolder;
+    font-size: 1.4em;
+    text-align: center;
 }
