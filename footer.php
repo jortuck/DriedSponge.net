@@ -6,6 +6,13 @@ if ( date("m") == "10" ){
   $themetxt = "Default";
   
 }
+if ( date("m") == "12" ){
+  $themetxt = "Winter";
+  
+} else {
+  $themetxt = "Default";
+  
+}
 ?>
 
 <footer>
