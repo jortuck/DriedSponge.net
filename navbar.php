@@ -2,7 +2,7 @@
         <div class="page-header">
         
             <nav class="navbar navbar-expand-lg navbar-dark nbth fixed-top" >
-                    <a class="navbar-brand" href="#"><strong>driedsponge.net</strong></a>
+                    <a class="navbar-brand" href="https://driedsponge.net"><strong>driedsponge.net</strong></a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarmain" aria-controls="navbarmain" aria-expanded="false" aria-label="Toggle navigation">
                             <span class="navbar-toggler-icon"></span>
                           </button>

@@ -5,14 +5,29 @@ img{
     margin-top: 5px;
 }
 
+/*Start Navbar stuff*/
+    .nbth{
+        background-color: white;
+        color: #007BFF;
+    }
 
-.nbth{
-    background-color: #007BFF;
-    color: #007BFF;
-}
-.socials{
-    color: white;
-}
+    .navbar-brand strong{
+        color: #007BFF;
+    }
+
+    .nav-tabs {
+        margin-bottom: 0;
+    }
+    .navbar{
+        background-color: white;
+        color: #007BFF;
+    }
+    .nav-link{
+      color: #007BFF !important;
+    }
+/*End Navbar stuff*/
+
+
 .jumbotron{
     background-color:#007BFF;
     color:white;
@@ -22,6 +37,7 @@ img{
     border-radius: 10px;
     margin-top: 10px;
 }
+
 .list{
     color: white;
     font-size: 1.3em;
@@ -29,9 +45,7 @@ img{
 hgroup h2{
     color: white;
 }
-.navbar-brand{
-    color: white;
-}
+
 /* Adds borders for tabs */
 .tab-content {
     border-left: 1px solid #ddd;
@@ -39,44 +53,43 @@ hgroup h2{
     border-bottom: 1px solid #ddd;
     padding: 10px;
 }
-.nav-tabs {
-    margin-bottom: 0;
-}
+
 .page-header {
     text-align: center;
 }
-.btn-success {
-    text-align: center;
-    border-radius: 15px;
-}
-.page-footer {
-    padding-bottom: 10px;
-    padding-top: 5px;
-    text-align: center; 
-    background-color:#007BFF;
-}
 
-.page-footer cite{
-    color: white;
-}
-.navbar{
-    background-color: #007BFF;
-    color: #007BFF;
-}
 .whitehyperlink{
     text-decoration: underline;
     text-decoration-color: white;
     color: white;
 }
-.btn-success{
-    background-color: white;
-    color: #007BFF;
-    border: 0px;
-}
-.btn-success:hover{
-    background-color: rgb(201, 201, 201);
-    color: #007BFF;
-}
+/* Footer stuff */
+    .btn-success{
+        background-color: #007BFF;
+        color: white;
+        border: 0px;
+        text-align: center;
+        border-radius: 15px;
+    }
+    .btn-success:hover{
+        background-color: #007BFF;
+        color: rgb(201, 201, 201);
+    }
+    .socials{
+        color: white;
+    }
+    .page-footer {
+        padding-bottom: 10px;
+        padding-top: 5px;
+        text-align: center; 
+        background-color:white;
+    }
+
+    .page-footer cite{
+        color: #007BFF;
+    }
+/* End Footer stuff */
+
 .paragraph{
     font-size: 1.3em;
     color: white;
@@ -98,7 +111,7 @@ blockquote{
     
 }
 body {
-    background-color: rgb(121, 121, 121);
+    background-color: #007BFF;
     display: flex;
     min-height: 100vh;
     flex-direction: column;
@@ -121,13 +134,14 @@ font-weight: 900;
     .carousel slide{
         color: #007BFF;
     }
+    /* Tippy */
 .tippy-tooltip.active-theme{
     background-color: #28A745;
     color: white;
 }
 .tippy-tooltip.footer-theme{
-    background-color: white;
-    color: #007BFF;
+    background-color: #007BFF;
+    color: white;
 }
 .tippy-tooltip.idle-theme{
     background-color: #FFC107;
@@ -142,8 +156,9 @@ font-weight: 900;
     background-color: #007BFF;
     color: white;
 }
+/* end tippy*/
 a{
-    color: #007BFF;
+    color: rgb(0, 255, 13);
 }
 
 code{
