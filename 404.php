@@ -15,24 +15,8 @@
             include("meta.php"); 
             ?>
         
-        <title>Error</title>
+        <title>Error 404</title>
         <script src="https://kit.fontawesome.com/0add82e87e.js" crossorigin="anonymous"></script>
-        <style>
-        hgroup h1{
-            text-align: center;
-            font-size: 60px; 
-            color: white;
-        }
-        .ep{
-            text-align: center;
-            font-size: 30px; 
-            color: white;
-            
-        }
-        .btntext{
-            font-size: 30px; 
-        }
-    </style>
     </head>
  <body>
  <?php

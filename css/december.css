@@ -27,24 +27,45 @@ img{
     }
 /*End Navbar stuff*/
 
+/* Jumbotron */
+    .jumbotron{
+        background-color:white;
+        color:#007BFF;
+        width: 100%;
+        border: 2px solid black;
+        -moz-border-radius: 10px;
+        border-radius: 10px;
+        margin-top: 10px;
+    }
+    .jumbotronparagraph{
+        font-size: 1.3em;
+        color: #007BFF;
+    }
+    .jumbotron hgroup h1 strong{
+        text-align: center;
+        font-size: 60px; 
+        color: #007BFF;
+    }
+    .ep{
+        text-align: center;
+        font-size: 30px; 
+        color: #007BFF;
+        
+    }
+    .btntext{
+        font-size: 30px; 
+    }
+    .jumbotron hgroup{
+        text-align: center;
+    }
+/* End Jumbotron */
 
-.jumbotron{
-    background-color:#007BFF;
-    color:white;
-    width: 100%;
-    border: 2px solid black;
-    -moz-border-radius: 10px;
-    border-radius: 10px;
-    margin-top: 10px;
-}
 
 .list{
     color: white;
     font-size: 1.3em;
 }
-hgroup h2{
-    color: white;
-}
+
 
 /* Adds borders for tabs */
 .tab-content {
@@ -60,8 +81,8 @@ hgroup h2{
 
 .whitehyperlink{
     text-decoration: underline;
-    text-decoration-color: white;
-    color: white;
+    text-decoration-color: #007BFF;
+    color: #007BFF;
 }
 /* Footer stuff */
     .btn-success{
@@ -94,9 +115,7 @@ hgroup h2{
     font-size: 1.3em;
     color: white;
 }
-blockquote{
-    background: #007BFF;
-}
+
 .subheading{
     color: white;
     font-size: 1.6em;
@@ -157,25 +176,50 @@ font-weight: 900;
     color: white;
 }
 /* end tippy*/
-a{
-    color: rgb(0, 255, 13);
-}
 
-code{
-    color: rgb(0, 190, 0);
-}
-
-.card-border{
-    border: 1px solid black;
-    border-radius: 10px;
-    margin: 10px 10px 10px 10px;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-
-}
-
-.subsubhead{
-    font-weight: bolder;
-    font-size: 1.4em;
-    text-align: center;
+/* Text Formatting */
+hgroup h2 strong{
     color: white;
 }
+    a{
+        color: rgb(0, 255, 13);
+    }
+    a:hover{
+        color: rgb(0, 177, 9);
+    }
+    .subsubhead{
+        font-weight: bolder;
+        font-size: 1.4em;
+        text-align: center;
+        color: white;
+    }
+    code{
+        color: rgb(0, 190, 0);
+    }
+/* End Text Formatting */
+
+/* Buttons and detailings */
+.badge-primary{
+    color: #007BFF;
+    background-color: white;
+}
+    .btn-primary{
+        color: #007BFF;
+        background-color: white;
+    }
+    .btn-primary:hover{
+        color: #007BFF;
+        background-color: rgb(224, 224, 224);
+    }
+    .card-border{
+        border: 1px solid black;
+        border-radius: 10px;
+        margin: 10px 10px 10px 10px;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    
+    }
+
+/*End Buttons */
+
+
+

@@ -16,22 +16,7 @@
         
         <title>Error</title>
         <script src="https://kit.fontawesome.com/0add82e87e.js" crossorigin="anonymous"></script>
-        <style>
-        hgroup h1{
-            text-align: center;
-            font-size: 60px; 
-            color: white;
-        }
-        .ep{
-            text-align: center;
-            font-size: 30px; 
-            color: white;
-            
-        }
-        .btntext{
-            font-size: 30px; 
-        }
-    </style>
+
     </head>
  <body>
 
@@ -49,7 +34,7 @@ include("navbar.php")
             <hgroup>
                         <h2><strong>Steam ID Tool</strong></h2>
                         <br>
-                    </hgroup>
+                </hgroup>
                     <?php
                         include("search.php");
                      ?>

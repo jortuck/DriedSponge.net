@@ -17,22 +17,7 @@
         
         <title>Access Denied</title>
         <script src="https://kit.fontawesome.com/0add82e87e.js" crossorigin="anonymous"></script>
-        <style>
-        hgroup h1{
-            text-align: center;
-            font-size: 60px; 
-            color: white;
-        }
-        .ep{
-            text-align: center;
-            font-size: 30px; 
-            color: white;
-            
-        }
-        .btntext{
-            font-size: 30px; 
-        }
-    </style>
+
     </head>
  <body>
  <?php
@@ -47,7 +32,7 @@ include("navbar.php")
         
             <div class="container">
                 <div class="jumbotron">
-                <hgroup >
+                <hgroup>
                         <h1><i class="fas fa-user-shield"></i></h1>
                     <h1><strong>Error: 403</strong></h1>
 

@@ -154,13 +154,13 @@ if ($name == null || $img == null ){
                     <div class="jumbotron" style="text-align: center;">
                     <h2><img src="<?php echo $img; ?>"/></h2>
                     <h1>Results for: <?php echo $name; ?></h1>
-                    <p class="paragraph"><strong>SteamID64:</strong> <?php echo $id64; ?> <button  value="<?php echo $id64; ?>" onclick="copything(this.value)" class="btn btn-success"><i class="far fa-copy"></i></button></p>
-                    <p class="paragraph"><strong>SteamID:</strong> <?php echo $idn; ?> <button  value="<?php echo $idn; ?>" onclick="copything(this.value)" class="btn btn-success"><i class="far fa-copy"></i></button></p>
-                    <p class="paragraph"><strong>SteamID3:</strong> <?php echo $id3; ?> <button value="<?php echo $id3; ?>" onclick="copything(this.value)" class="btn btn-success"><i class="far fa-copy"></i></button></p>
-                    <p class="paragraph"><strong>Profile URL:</strong> <a class="url" target="_blank" href="<?php echo $url; ?>"><?php echo $url; ?></a> <button value="<?php echo $url; ?>" onclick="copything(this.value)" class="btn btn-success"><i class="far fa-copy"></i></button></p>
-                    <h4 class="subheading" style="color: white;">Personal Info (This may not be accurate)</h4><br>
-                    <p class="paragraph"><strong>Real Name:</strong> <?php echo $realname; ?> <button value="<?php echo $realname; ?>" onclick="copything(this.value)" class="btn btn-success"><i class="far fa-copy"></i></button></p>
-                    <p class="paragraph"><strong>Country</strong>: <?php echo $country; ?> <button value="<?php echo $country; ?>" onclick="copything(this.value)" class="btn btn-success"><i class="far fa-copy"></i></button> </p>
+                    <p class="jumbotronparagraph"><strong>SteamID64:</strong> <?php echo $id64; ?> <button  value="<?php echo $id64; ?>" onclick="copything(this.value)" class="btn btn-success"><i class="far fa-copy"></i></button></p>
+                    <p class="jumbotronparagraph"><strong>SteamID:</strong> <?php echo $idn; ?> <button  value="<?php echo $idn; ?>" onclick="copything(this.value)" class="btn btn-success"><i class="far fa-copy"></i></button></p>
+                    <p class="jumbotronparagraph"><strong>SteamID3:</strong> <?php echo $id3; ?> <button value="<?php echo $id3; ?>" onclick="copything(this.value)" class="btn btn-success"><i class="far fa-copy"></i></button></p>
+                    <p class="jumbotronparagraph"><strong>Profile URL:</strong> <a target="_blank" href="<?php echo $url; ?>"><?php echo $url; ?></a> <button value="<?php echo $url; ?>" onclick="copything(this.value)" class="btn btn-success"><i class="far fa-copy"></i></button></p>
+                    <h4 class="jumbotronparagraph">Personal Info (This may not be accurate)</h4><br>
+                    <p class="jumbotronparagraph"><strong>Real Name:</strong> <?php echo $realname; ?> <button value="<?php echo $realname; ?>" onclick="copything(this.value)" class="btn btn-success"><i class="far fa-copy"></i></button></p>
+                    <p class="jumbotronparagraph"><strong>Country</strong>: <?php echo $country; ?> <button value="<?php echo $country; ?>" onclick="copything(this.value)" class="btn btn-success"><i class="far fa-copy"></i></button> </p>
                     
                     </div>
                     
