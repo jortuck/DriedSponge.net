@@ -1,7 +1,59 @@
 <?php
 
 include("SteamID.php");
-
+$states = array(
+    'AL'=>'Alabama',
+    'AK'=>'Alaska',
+    'AZ'=>'Arizona',
+    'AR'=>'Arkansas',
+    'CA'=>'California',
+    'CO'=>'Colorado',
+    'CT'=>'Connecticut',
+    'DE'=>'Delaware',
+    'DC'=>'District of Columbia',
+    'FL'=>'Florida',
+    'GA'=>'Georgia',
+    'HI'=>'Hawaii',
+    'ID'=>'Idaho',
+    'IL'=>'Illinois',
+    'IN'=>'Indiana',
+    'IA'=>'Iowa',
+    'KS'=>'Kansas',
+    'KY'=>'Kentucky',
+    'LA'=>'Louisiana',
+    'ME'=>'Maine',
+    'MD'=>'Maryland',
+    'MA'=>'Massachusetts',
+    'MI'=>'Michigan',
+    'MN'=>'Minnesota',
+    'MS'=>'Mississippi',
+    'MO'=>'Missouri',
+    'MT'=>'Montana',
+    'NE'=>'Nebraska',
+    'NV'=>'Nevada',
+    'NH'=>'New Hampshire',
+    'NJ'=>'New Jersey',
+    'NM'=>'New Mexico',
+    'NY'=>'New York',
+    'NC'=>'North Carolina',
+    'ND'=>'North Dakota',
+    'OH'=>'Ohio',
+    'OK'=>'Oklahoma',
+    'OR'=>'Oregon',
+    'PA'=>'Pennsylvania',
+    'RI'=>'Rhode Island',
+    'SC'=>'South Carolina',
+    'SD'=>'South Dakota',
+    'TN'=>'Tennessee',
+    'TX'=>'Texas',
+    'UT'=>'Utah',
+    'VT'=>'Vermont',
+    'VA'=>'Virginia',
+    'WA'=>'Washington',
+    'WV'=>'West Virginia',
+    'WI'=>'Wisconsin',
+    'WY'=>'Wyoming',
+);
 $APIKEY = "0EBBACAEBC6039B06DF1066807D55D4C";
 $WHO = $_GET["id"];
 
@@ -83,6 +135,12 @@ if (isset($apidata->response->players[0]->loccountrycode) == false ){
 } else{
     $country = $apidata->response->players[0]->loccountrycode;
 }
+if (isset($apidata->response->players[0]->locstatecode) == false ){
+    $state = "N/A";
+} else{
+    $statecode = $apidata->response->players[0]->locstatecode;
+    
+}
 $url = $apidata->response->players[0]->profileurl;
 if ($name == null || $img == null ){
     header("Location: steamerror.php");
@@ -151,7 +209,8 @@ if ($name == null || $img == null ){
                     <h4 class="jumboh4">Personal Info (This may not be accurate)</h4><br>
                     <p class="jumbotronparagraph"><strong>Real Name:</strong> <?php echo $realname; ?> <button value="<?php echo $realname; ?>" onclick="copything(this.value)" class="btn btn-success"><i class="far fa-copy"></i></button></p>
                     <p class="jumbotronparagraph"><strong>Country</strong>: <?php echo $country; ?> <button value="<?php echo $country; ?>" onclick="copything(this.value)" class="btn btn-success"><i class="far fa-copy"></i></button> </p>
-                    
+                    <p class="jumbotronparagraph"><strong>State/Province</strong>: <?php echo $state; ?> <button value="<?php echo $state; ?>" onclick="copything(this.value)" class="btn btn-success"><i class="far fa-copy"></i></button> </p>
+
                     </div>
                     
                        
