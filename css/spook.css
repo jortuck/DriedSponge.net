@@ -27,6 +27,19 @@ hgroup h2{
     font-size: 1.3em;
     color: white;
 }
+.jumboh4{
+    color: white;
+    font-size: 1.7em;
+    font-style: italic;
+}
+.jumbaurl{
+    color: white; 
+    text-decoration: underline;
+}
+.jumbaurl:hover{
+    color: rgb(221, 221, 221); 
+    text-decoration: underline;
+}
 /* Adds borders for tabs */
 .tab-content {
     border-left: 1px solid #ddd;

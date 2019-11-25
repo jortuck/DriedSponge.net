@@ -12,36 +12,49 @@ img{
     color: white;
 }
 /* Jumbotron stuff */
-.jumbotron{
-    background-color:#007BFF;
-    color:white;
-    width: 100%;
-    border: 2px solid black;
-    -moz-border-radius: 10px;
-    border-radius: 10px;
-    margin-top: 10px;
-}
-.jumbotronparagraph{
-    font-size: 1.3em;
-    color: white;
-}
-.jumbotron hgroup h1 strong{
-    text-align: center;
-    font-size: 60px; 
-    color: white;
-}
-.ep{
-    text-align: center;
-    font-size: 30px; 
-    color: white;
-    
-}
-.btntext{
-    font-size: 30px; 
-}
-.jumbotron hgroup{
-    text-align: center;
-}
+    .jumbotron{
+        background-color:#007BFF;
+        color:white;
+        width: 100%;
+        border: 2px solid black;
+        -moz-border-radius: 10px;
+        border-radius: 10px;
+        margin-top: 10px;
+    }
+    .jumboh4{
+        color: white;
+        font-size: 1.7em;
+        font-style: italic;
+    }
+    .jumbaurl{
+        color: white; 
+        text-decoration: underline;
+    }
+    .jumbaurl:hover{
+        color: rgb(228, 228, 228); 
+        text-decoration: underline;
+    }
+    .jumbotronparagraph{
+        font-size: 1.3em;
+        color: white;
+    }
+    .jumbotron hgroup h1 strong{
+        text-align: center;
+        font-size: 60px; 
+        color: white;
+    }
+    .ep{
+        text-align: center;
+        font-size: 30px; 
+        color: white;
+        
+    }
+    .btntext{
+        font-size: 30px; 
+    }
+    .jumbotron hgroup{
+        text-align: center;
+    }
 /* end jumbotron stuff */
 .list{
     color: black;

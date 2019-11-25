@@ -41,6 +41,19 @@ img{
         font-size: 1.3em;
         color: #007BFF;
     }
+    .jumboh4{
+        color: #007BFF;
+        font-size: 1.7em;
+        font-style: italic;
+    }
+    .jumbaurl{
+        color: #007BFF; 
+        text-decoration: underline;
+    }
+    .jumbaurl:hover{
+        color: rgb(0, 93, 192); 
+        text-decoration: underline;
+    }
     .jumbotron hgroup h1 strong{
         text-align: center;
         font-size: 60px; 

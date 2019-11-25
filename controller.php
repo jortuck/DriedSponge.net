@@ -116,17 +116,7 @@ if ($name == null || $img == null ){
 
         <link rel="stylesheet" href = "//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" type="text/css" >
        
-        <style>
-            .url{
-                 color: white; 
-                 text-decoration: underline;
-            }
-            .url:hover{
-                 color: rgb(228, 228, 228); 
-                 text-decoration: underline;
-            }
-            
-        </style>
+
     </head>
     
  <body>
@@ -157,8 +147,8 @@ if ($name == null || $img == null ){
                     <p class="jumbotronparagraph"><strong>SteamID64:</strong> <?php echo $id64; ?> <button  value="<?php echo $id64; ?>" onclick="copything(this.value)" class="btn btn-success"><i class="far fa-copy"></i></button></p>
                     <p class="jumbotronparagraph"><strong>SteamID:</strong> <?php echo $idn; ?> <button  value="<?php echo $idn; ?>" onclick="copything(this.value)" class="btn btn-success"><i class="far fa-copy"></i></button></p>
                     <p class="jumbotronparagraph"><strong>SteamID3:</strong> <?php echo $id3; ?> <button value="<?php echo $id3; ?>" onclick="copything(this.value)" class="btn btn-success"><i class="far fa-copy"></i></button></p>
-                    <p class="jumbotronparagraph"><strong>Profile URL:</strong> <a target="_blank" href="<?php echo $url; ?>"><?php echo $url; ?></a> <button value="<?php echo $url; ?>" onclick="copything(this.value)" class="btn btn-success"><i class="far fa-copy"></i></button></p>
-                    <h4 class="jumbotronparagraph">Personal Info (This may not be accurate)</h4><br>
+                    <p class="jumbotronparagraph"><strong>Profile URL:</strong> <a class="jumbaurl" target="_blank" href="<?php echo $url; ?>"><?php echo $url; ?></a> <button value="<?php echo $url; ?>" onclick="copything(this.value)" class="btn btn-success"><i class="far fa-copy"></i></button></p>
+                    <h4 class="jumboh4">Personal Info (This may not be accurate)</h4><br>
                     <p class="jumbotronparagraph"><strong>Real Name:</strong> <?php echo $realname; ?> <button value="<?php echo $realname; ?>" onclick="copything(this.value)" class="btn btn-success"><i class="far fa-copy"></i></button></p>
                     <p class="jumbotronparagraph"><strong>Country</strong>: <?php echo $country; ?> <button value="<?php echo $country; ?>" onclick="copything(this.value)" class="btn btn-success"><i class="far fa-copy"></i></button> </p>
                     
