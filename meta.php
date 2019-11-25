@@ -18,9 +18,9 @@ if ( date("m") == "10" ){
     $themecol = "#007BFF";
 }
 
-if ( date("m") == "11" ){
+if ( date("m") == "12" ){
   $theme = "https://driedsponge.net/css/december.css";
-  $themefav = "https://cdn.driedsponge.net/img/favicon-spook.ico";
+  $themefav = "https://cdn.driedsponge.net/img/zfavicon.ico";
   $themecol = "#E4541C";
   $decoration = "https://driedsponge.net/js/snowstorm.js";
   $decorationbool = true;
