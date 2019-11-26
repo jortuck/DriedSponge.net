@@ -36,7 +36,7 @@ include("navbar.php")
             <div class="container">
                 <hgroup>
                         <!-- <img src="https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/18/18be38c2f230fea0fa667c8165e4da5cb1a787c0_full.jpg" alt="DriedSponge's Profile Picture"> -->
-                    <h2><strong>Privacy Policy</strong></h2>
+                        <h1 class="display-2"><strong>Privacy Policy</strong></h1>
                     
                     <br>
                 </hgroup>

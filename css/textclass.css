@@ -112,7 +112,9 @@ hgroup h2{
     color: #007BFF;
 }
 .paragraph{
-    font-size: 1.3em;
+    font-size: 1.4em;
+    line-height: 33px;
+    text-indent: 30px;
 }
 blockquote{
     background: #007BFF;
@@ -194,4 +196,8 @@ code{
     font-weight: bolder;
     font-size: 1.4em;
     text-align: center;
+}
+.display-2{
+    text-align: center;
+    color: black;
 }

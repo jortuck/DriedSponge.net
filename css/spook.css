@@ -97,8 +97,10 @@ hgroup h2{
     color: #E4541C;
 }
 .paragraph{
-    font-size: 1.3em;
+    font-size: 1.4em;
+    line-height: 33px;
     color: white;
+    text-indent: 30px;
 }
 .subheading{
     color: #E4541C;

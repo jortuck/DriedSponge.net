@@ -38,12 +38,12 @@ include("navbar.php")
                
                     <hgroup>
                             <!-- <img src="https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/18/18be38c2f230fea0fa667c8165e4da5cb1a787c0_full.jpg" alt="DriedSponge's Profile Picture"> -->
-                        <h2><strong>Web Projects</strong></h2>
+                            <h1 class="display-2"><strong>Web Projects</strong></h1>
                         <br>
                     </hgroup>
                     <p class="paragraph">Here you can find a list of all of my web projects and you may be able to view some of them. Some of these were made in my web design class, that's why they might be a bit dull. This list also contains other web things I have made for other people</p>
                     
-                    
+                    <br>
                           <div class="card">
                             <h5 class="card-header">Custom Image Viewer <span class="badge badge-success">Active</span></h5>
                             <div class="card-body">
@@ -52,6 +52,7 @@ include("navbar.php")
                               <a href="https://i.driedsponge.net/bIrPj" target="_blank"class="btn btn-primary">Visit Example</a>
                             </div>
                           </div>
+                          <br>
                           <div class="card">
                             <h5 class="card-header">DriedSponge.net (This site!) <span class="badge badge-success">Active (obviously)</span></h5>
                             <div class="card-body">
@@ -60,6 +61,7 @@ include("navbar.php")
                               <a href="https://driedsponge.net/" target="_blank"class="btn btn-primary">Visit site</a>
                             </div>
                           </div>
+                          <br>
                           <div class="card">
                               <h5 class="card-header">SteamID Finder <span class="badge badge-success">Active (obviously)</span></h5>
                               <div class="card-body">

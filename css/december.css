@@ -124,10 +124,7 @@ img{
     }
 /* End Footer stuff */
 
-.paragraph{
-    font-size: 1.3em;
-    color: white;
-}
+
 
 .subheading{
     color: white;
@@ -208,6 +205,12 @@ hgroup h2 strong{
     }
     code{
         color: rgb(0, 190, 0);
+    }
+    .paragraph{
+        font-size: 1.4em;
+        line-height: 33px;
+        color: white;
+        text-indent: 30px;
     }
 /* End Text Formatting */
 

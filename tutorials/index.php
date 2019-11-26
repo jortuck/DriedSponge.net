@@ -28,7 +28,7 @@
             <div class="container">
                
                     <hgroup>
-                        <h2><strong>Tutorials</strong></h2>
+                    <h1 class="display-2"><strong>Tutorials</strong></h1>
                         <br>
                     </hgroup>
                     <p class="paragraph">On my YouTube channel, I do various coding tutorials. Primarily with Lua but you might see some other languages on there too. For every tutorial I make, I create a web page for it. The web pages could include more information than the video so I recommend you always browse through them.</p>

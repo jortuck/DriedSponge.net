@@ -38,7 +38,7 @@ include("navbar.php")
                
                     <hgroup>
                             <!-- <img src="https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/18/18be38c2f230fea0fa667c8165e4da5cb1a787c0_full.jpg" alt="DriedSponge's Profile Picture"> -->
-                        <h2><strong>Steam ID Tool</strong></h2>
+                            <h1 class="display-2"><strong>SteamID Tool</strong></h1>
                         <br>
                     </hgroup>
                     <p class="paragraph">Need to look something up about a user on steam? Do it here! Use any SteamID or profile URL to look up information! For more info on the site visit my <a href="webdesign.php">Web Projects </a>page.</p>

@@ -38,7 +38,7 @@ include("navbar.php")
                
                     <hgroup>
                             <!-- <img src="https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/18/18be38c2f230fea0fa667c8165e4da5cb1a787c0_full.jpg" alt="DriedSponge's Profile Picture"> -->
-                        <h2><strong>Lua Projects</strong></h2>
+                            <h1 class="display-2"><strong>Lua Projects</strong></h1>
                         <br>
                     </hgroup>
                     <p class="paragraph">Here is a list of my Lua projects. Some of them are available  for download either from here or from the steam workshop. This list also shows items I've made for other people.</p>

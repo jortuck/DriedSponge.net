@@ -36,12 +36,13 @@ include("navbar.php")
             <div class="container">
                 <hgroup>
                         <!-- <img src="https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/18/18be38c2f230fea0fa667c8165e4da5cb1a787c0_full.jpg" alt="DriedSponge's Profile Picture"> -->
-                    <h2><strong>Welcome to my portfolio!</strong></h2>
+                    <h1 class="display-2"><strong>Welcome to my website!</strong></h1>
                     
                     <br>
+                    <br>
                 </hgroup>
-                <h5 class="subsubhead">About Me</h5>
-                    <p class="paragraph">My name is Jordan and I live in WA, United States. I've been coding Lua (<i>Specifically for GMOD</i>) for about one and a half years now. I've been working on improving my skills in other coding languages though too. I also do other things than just code. I play bass guitar and trombone, both very epic instruments! Ich bin Arbeiten auf mein Deustch Fertigkeit. On this site I made, you can find info on <i>99.9%</i> of my projects, whether they are big or small, you can find information about them here!</p>
+                <h4 class="subheading">About Me</h5>
+                    <p class="paragraph" >My name is Jordan and I live in WA, United States. I've been coding Lua (<i>Specifically for GMOD</i>) for about one and a half years now. I've been working on improving my skills in other coding languages though too. I also do other things than just code. I play bass guitar and trombone, both very epic instruments! Ich bin Arbeiten auf mein Deustch Fertigkeit. On this site I made, you can find info on <i>99.9%</i> of my projects, whether they are big or small, you can find information about them here!</p>
                     
                     
 
