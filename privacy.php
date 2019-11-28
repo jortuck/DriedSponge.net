@@ -36,9 +36,15 @@ include("navbar.php")
                     <p class="paragraph">Our website address is <a href="https://driedsponge.net">https://driedsponge.net</a>.</p>
                     <br>
                     <h4 class="subheading">What personal data we collect and why we collect it</h4> 
-                    <p class="paragraph"><strong>Media:</strong><br>If you upload images to the website, you should avoid uploading images with embedded location data (EXIF GPS) included. Visitors to the website can download and extract any location data from images on the website.</p>
-                    <p class="paragraph"><strong>Embedded content from other websites:</strong><br>Articles on this site may include embedded content (e.g. videos, images, articles, etc.). Embedded content from other websites behaves in the exact same way as if the visitor has visited the other website. These websites may collect data about you, use cookies, embed additional third-party tracking, and monitor your interaction with that embedded content, including tracking your interaction with the embedded content if you have an account and are logged in to that website.</p>
-                    <p class="paragraph"><strong>Analytics:</strong><br>We use Google Analytics to collect anonymous data about users on our site. We use this data for making improvements to our site. Please refer to the appropriate <a href="https://support.google.com/analytics/answer/6004245" target="_blank">Google Analytics documentation</a> for the specific type of data it collects.</p>
+                    <br>
+                    <h5 class="subsubhead">Media:</h5>
+                    <p class="paragraph">If you upload images to the website, you should avoid uploading images with embedded location data (EXIF GPS) included. Visitors to the website can download and extract any location data from images on the website.</p>
+                    <br>
+                    <h5 class="subsubhead">Embedded content from other websites:</h5>
+                    <p class="paragraph">Articles on this site may include embedded content (e.g. videos, images, articles, etc.). Embedded content from other websites behaves in the exact same way as if the visitor has visited the other website. These websites may collect data about you, use cookies, embed additional third-party tracking, and monitor your interaction with that embedded content, including tracking your interaction with the embedded content if you have an account and are logged in to that website.</p>
+                    <br>
+                    <h5 class="subsubhead">Analytics:</h5>
+                    <p class="paragraph">We use Google Analytics to collect anonymous data about users on our site. We use this data for making improvements to our site. Please refer to the appropriate <a href="https://support.google.com/analytics/answer/6004245" target="_blank">Google Analytics documentation</a> for the specific type of data it collects.</p>
                     <br>
                     <p class="paragraph"><cite>Last updated: 10/27/2019</cite></p>
                     

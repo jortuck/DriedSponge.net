@@ -18,7 +18,36 @@
         <title>Web Projects</title>
         <script src="https://kit.fontawesome.com/0add82e87e.js" crossorigin="anonymous"></script>
     </head>
-
+    <style>
+      .showcase-text{
+        margin-top: auto;
+        margin-bottom: auto;
+        margin-right: 10px;
+        margin-left: 10px;
+        
+      }
+      .showcase{
+        background-color: #007BFF;
+      }
+      .showcase-img{
+        
+        width: 110%;
+        max-width: 550px;
+        max-height: 310px; 
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+      }
+      @keyframes greyscale {
+        from {box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);}
+        to { box-shadow: 0 6px 8px 0 rgba(0, 0, 0, 0.5), 0 6px 20px 0 rgba(0, 0, 0, 0.19);}
+      }
+      .showcase-img:hover{
+        animation-name: greyscale;
+        animation-fill-mode: forwards;
+        animation-duration: 0.5s;
+      
+      }
+      
+      </style>
  <body>
  <?php
 include("navbar.php")
@@ -44,8 +73,29 @@ include("navbar.php")
                     <p class="paragraph pintro">Here you can find a list of all of my web projects and you may be able to view some of them. Some of these were made in my web design class, that's why they might be a bit dull. This list also contains other web things I have made for other people.</p>
                     
                     <br>
+                    <div data-aos="fade-right" class="row">
+                      <div class="col-sm" style="text-align: left; margin: auto;">
+                    <h1>Custom Image Viewer</h1>
+                      <p class="paragraph" style="font-size: 1.2em;">For this project, I use a combination of <a target="_blank" href="https://getsharex.com/">ShareX</a>  and this thing called <a target="_blank" href="https://github.com/aerouk/imageserve">imageserver</a>. This works perfectly for when I want to upload and share my screen shots with my friends, the only issue was when you would open the image in chrome or any other browser, it would show the image but with very ugly html. So I decided to modify the viewer file to make the html and css way better. I also added some Javascript to add some additional functionality to the site.</p>
+                      <p class="paragraph"><span class="badge badge-success">Active</span></p>
+                      <a href="https://steamcommunity.com/sharedfiles/filedetails/?id=1805078462" class="btn btn-primary">Steam Workshop</a>
+                              <a target="_blank"href="https://gitlab.com/DriedSponge/wuphf" class="btn btn-primary">Git Lab</a>
+                    </div>
+                    <div class="col-sm">
+                    
+                        <img src="https://i.driedsponge.net/images/png/ugpqD.png" class="img-fluid showcase-img" alt="Wuphg Notifications" >
+                    
+                    </div>
+                  </div>
+                  <br>
+                  <br>
+                  <br>
+                  <br>
+                  <br>
+                  <br>
+                  <br>
                           <div class="card" data-aos="fade-up">
-                            <h5 class="card-header">Custom Image Viewer <span class="badge badge-success">Active</span></h5>
+                            <h5 class="card-header"> <span class="badge badge-success">Active</span></h5>
                             <div class="card-body">
                               <h5 class="card-title">About</h5>
                               <p class="card-text">I did not create the custom image uploader, I use a combination of <a target="_blank" href="https://getsharex.com/">ShareX</a>  and this thing called <a target="_blank" href="https://github.com/aerouk/imageserve">imageserver</a>. This works perfectly for when I want to upload and share my screen shots with my friends, the only issue was when you would open the image in chrome or any other browser, it would show the image but with very ugly html. So I decided to modify the viewer file to make the html and css way better. I also added some Javascript to add some additional functionality to the site.</p>
