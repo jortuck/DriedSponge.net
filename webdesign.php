@@ -18,7 +18,7 @@
         <title>Web Projects</title>
         <script src="https://kit.fontawesome.com/0add82e87e.js" crossorigin="anonymous"></script>
     </head>
-    
+
  <body>
  <?php
 include("navbar.php")
@@ -41,10 +41,10 @@ include("navbar.php")
                             <h1 class="display-2"><strong>Web Projects</strong></h1>
                         <br>
                     </hgroup>
-                    <p class="paragraph">Here you can find a list of all of my web projects and you may be able to view some of them. Some of these were made in my web design class, that's why they might be a bit dull. This list also contains other web things I have made for other people</p>
+                    <p class="paragraph pintro">Here you can find a list of all of my web projects and you may be able to view some of them. Some of these were made in my web design class, that's why they might be a bit dull. This list also contains other web things I have made for other people.</p>
                     
                     <br>
-                          <div class="card">
+                          <div class="card" data-aos="fade-up">
                             <h5 class="card-header">Custom Image Viewer <span class="badge badge-success">Active</span></h5>
                             <div class="card-body">
                               <h5 class="card-title">About</h5>
@@ -53,7 +53,7 @@ include("navbar.php")
                             </div>
                           </div>
                           <br>
-                          <div class="card">
+                          <div class="card" data-aos="fade-up">
                             <h5 class="card-header">DriedSponge.net (This site!) <span class="badge badge-success">Active (obviously)</span></h5>
                             <div class="card-body">
                               <h5 class="card-title">About</h5>
@@ -62,7 +62,7 @@ include("navbar.php")
                             </div>
                           </div>
                           <br>
-                          <div class="card">
+                          <div class="card" data-aos="fade-up">
                               <h5 class="card-header">SteamID Finder <span class="badge badge-success">Active (obviously)</span></h5>
                               <div class="card-body">
                                 <h5 class="card-title">About</h5>
@@ -78,6 +78,7 @@ include("navbar.php")
                         </div>
 </div>
 </div> 
+<br>
 <!-- End of "app" -->
 <?php 
     include("footer.php"); // we include footer.php here. you can use .html extension, too.
@@ -98,6 +99,9 @@ include("navbar.php")
             navitem = document.getElementById('web').classList.add('active')
             //navitem.class = "nav-item active"
         </script>    
+        <script>
+          AOS.init();
+      </script>
  </body>
 
 

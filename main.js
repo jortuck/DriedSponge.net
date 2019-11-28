@@ -19,11 +19,11 @@ tippy('.badge-success', {
     animateFill: false,
   })
 
-  tippy('img', {
+/*   tippy('#lang', {
 
     theme: 'primary',
     animateFill: false,
-  })
+  }) */
 
 
 

@@ -17,7 +17,12 @@
         
         <title>DriedSponge.net</title>
         <script src="https://kit.fontawesome.com/0add82e87e.js" crossorigin="anonymous"></script>
-    </head>
+        
+        
+        
+       
+        </head>
+
  <body>
 <?php
 include("navbar.php")
@@ -25,13 +30,7 @@ include("navbar.php")
 
     <div class="app">
     <div class="container-fluid-lg" style="padding-top: 80px;">
-        
 
-        
-        
-
-                            
-   
         
             <div class="container">
                 <hgroup>
@@ -42,66 +41,58 @@ include("navbar.php")
                     <br>
                 </hgroup>
                 <h4 class="subheading">About Me</h5>
-                    <p class="paragraph" >My name is Jordan and I live in WA, United States. I've been coding Lua (<i>Specifically for GMOD</i>) for about one and a half years now. I've been working on improving my skills in other coding languages though too. I also do other things than just code. I play bass guitar and trombone, both very epic instruments! Ich bin Arbeiten auf mein Deustch Fertigkeit. On this site I made, you can find info on <i>99.9%</i> of my projects, whether they are big or small, you can find information about them here!</p>
+                    <p class="paragraph" style="text-align: center;" >I do coding for the languages that are listed below. I also play tombone and bass guitar :). I also play a fair ammout of video games. On this site you can find out information on projects I've done. There is also a very epic <a href="steam.php">SteamID tool</a> that I made so go check that out.</p>
+                    <br>
                     
                     
 
-                        <h4 class="subheading" style="text-align: center;">Languages I know</h4>
+                        <h4 class="subheading" style="text-align: center;">What I do...</h4>
                         <br>
                             <div class="row justify-content-center">
-                                <div class="card card-border" style="width: 18rem; text-align:center;">
+                                <div  class="card card-border"  data-aos="fade-up" style="width: 18rem; text-align:center;">
                                 <div class="card-body">
-                                <img data-tippy-content="HTML" src="img/html.png" alt="html5logo" height="100px" style="padding: none; margin: none;"/>
+                                <img  src="img/html.png" alt="html5logo" height="100px" style="padding: none; margin: none;"/>
                                     <p class="card-text"><i class="fas fa-star fa-1x"></i><i class="fas fa-star fa-1x"></i><i class="fas fa-star fa-1x"></i><i class="fas fa-star fa-1x"></i><i class="fas fa-star fa-1x"></i></p>
                                     
                                 </div>
                                 </div>
-                                <div class="card card-border" style="width: 18rem; text-align:center;">
+                                <div data-aos="fade-up" class="card card-border" style="width: 18rem; text-align:center;">
                                         <div class="card-body">
-                                        <img data-tippy-content="Lua" src="img/lua.png" alt="lualogo" height="100px" style="padding: none; margin: none;"/>
+                                        <img  src="img/lua.png" alt="lualogo" height="100px" style="padding: none; margin: none;"/>
                                             <p class="card-text"><i class="fas fa-star fa-1x"></i><i class="fas fa-star fa-1x"></i><i class="fas fa-star fa-1x"></i><i class="fas fa-star-half-alt fa-1x"></i><i class="far fa-star fa-1x"></i></p>
                                             
                                         </div>
                                         </div>
-                                        <div class="card card-border" style="width: 18rem; text-align:center;">
+                                 <div data-aos="fade-up" class="card card-border" style="width: 18rem; text-align:center;">
                                                 <div class="card-body">
-                                                <img data-tippy-content="PHP" src="img/php.png" alt="phplogo" height="100px" style="padding: none; margin: none;"/>
+                                                <img  src="img/php.png" alt="phplogo" height="100px" style="padding: none; margin: none;"/>
                                                     <p class="card-text"><i class="fas fa-star fa-1x"></i><i class="fas fa-star fa-1x"></i><i class="far fa-star fa-1x"></i><i class="far fa-star fa-1x"></i><i class="far fa-star fa-1x"></i></p>
                                                     
+                                                </div>       
                                                 </div>
-                                                </div>
-                                                <div class="card card-border" style="width: 18rem; text-align:center;">
+                                  <div  data-aos="fade-up" class="card card-border" style="width: 18rem; text-align:center;">
                                                     
                                                     <div class="card-body">
-                                                        <img  data-tippy-content="CSS" src="img/css.png" alt="csslogo" height="100px" style="padding: none; margin: none;"/>
+                                                        <img   src="img/css.png" alt="csslogo" height="100px" style="padding: none; margin: none;"/>
                                                             <p class="card-text"><i class="fas fa-star fa-1x"></i><i class="fas fa-star fa-1x"></i><i class="fas fa-star fa-1x"></i><i class="fas fa-star fa-1x"></i><i class="far fa-star fa-1x"></i></p>
                                                             
                                                         </div>
-                                                        </div>
-                                                        <div class="card card-border" style="width: 18rem; text-align:center;">
+                                                        </div>              
+                                  <div data-aos="fade-up" class="card card-border" style="width: 18rem; text-align:center;">
                                                                 <div class="card-body">
-                                                                <img data-tippy-content="JavaScript" src="img/js.png" alt="jslogo" height="100px" style="padding: none; margin: none;"/>
+                                                                <img  src="img/js.png" alt="jslogo" height="100px" style="padding: none; margin: none;"/>
                                                                     <p class="card-text"><i class="fas fa-star fa-1x"></i><i class="fas fa-star fa-1x"></i><i class="far fa-star fa-1x"></i><i class="far fa-star fa-1x"></i><i class="far fa-star fa-1x"></i></p>
                                                                     
                                                                  </div>
-                                                        </div>
+                                                        </div>                      
                             </div>
                             <br>
                        
-                    <h4 class="subheading">Specialities</h4>
-                        <br>
-                        <h5 class="subsubhead">General Computer Stuff</h5>
-                        <p class="paragraph"> I know my way around a Windows 10 machine pretty well. I also am very familiar with hosting dedicated Garry's Mod and Minecraft servers from Windows 10. I'm also familiar with other pieces of software such as Adobe Photoshop, Sony Vegas, Reaper, Wireshark, Virtual box, and ShareX!
-                        </p>
-                        <br>
-                        <h5 class="subsubhead">Lua and glua</h5>
-                        <p class="paragraph">In terms of lua and glua, I am very good with interfaces and vgui. I can also do scoreboards and lots of backend server management sutff that I have used on my own servers. I also like to make server utilities and addons that are just used for fun (<i>See WUPHF! For GMOD</i>). I also like to modify others code to make it work better for me. I'm also very good at integrating various api's with lua and GMOD. <i>Note: I am in no way familiar with vehicles/entities/sweps/tool gun tools :(.</i>
-                        </p>
-                        <br>
-                        <h5 class="subsubhead">Web Development</h5>
-                        <p class="paragraph">My web development skills really only involve HTML, CSS, Java Script, and PHP (<i>Full stack web development</i>). I really enojoy back-end web development. One of my first back end projects was my <a href="steam.php">SteamID tool</a>. My front end web devlopment skills are decent considering I've only been doing CSS and HTML since around the beginning of September 2019. I also ran a wiki for a mobile game called <cite>Rumble Stars</cite>. This was before I knew and web dev stuff and the wiki was created using wordpress (<i>I have now since deleted it considering the only visitors were spam bots</i>). 
-                    </p>
+                    
+                            
+                        </div>
                     <br>
+
                 
 
 
@@ -125,7 +116,9 @@ include("navbar.php")
                     navitem = document.getElementById('homelink').classList.add('active')
                     
                 </script>
-     
+     <script>
+            AOS.init();
+        </script>
  </body>
 
 

@@ -102,6 +102,11 @@ hgroup h2{
     text-decoration-color: white;
     color: white;
 }
+.whitehyperlink:hover{
+    text-decoration: underline;
+    text-decoration-color: rgb(221, 221, 221);
+    color: rgb(221, 221, 221);
+}
 .btn-success{
     background-color: white;
     color: #007BFF;
@@ -114,7 +119,12 @@ hgroup h2{
 .paragraph{
     font-size: 1.4em;
     line-height: 33px;
-    text-indent: 30px;
+   
+}
+.pintro{
+    text-align: center; 
+    font: 1.7em; 
+    line-height: 40px;
 }
 blockquote{
     background: #007BFF;
@@ -122,7 +132,7 @@ blockquote{
 .subheading{
     color: #007BFF;
     font-size: 2em;
-    font-style: italic;
+    
     text-align: center;
 }
 .card{
@@ -143,10 +153,9 @@ body {
     flex: 1 0 auto;
 }
 .card h4{
-color: white;
+color: #007BFF;
 font-weight: 900;
--webkit-text-stroke-color: black; 
--webkit-text-stroke-width: 2px;
+
 }
 .card h5{
     color: #007BFF;

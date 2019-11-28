@@ -18,7 +18,36 @@
         <title>Lua Projects</title>
         <script src="https://kit.fontawesome.com/0add82e87e.js" crossorigin="anonymous"></script>
     </head>
+<style>
+.showcase-text{
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-right: 10px;
+  margin-left: 10px;
+  
+}
+.showcase{
+  background-color: #007BFF;
+}
+.showcase-img{
+  
+  width: 110%;
+  max-width: 550px;
+  max-height: 310px; 
+  box-shadow: 0 0px 0px 0 rgba(0, 0, 0, 0.0), 0 6px 20px 0 rgba(0, 0, 0, 0.0);
+}
+@keyframes greyscale {
+  from {box-shadow: 0 0px 0px 0 rgba(0, 0, 0, 0.0), 0 6px 20px 0 rgba(0, 0, 0, 0.0);}
+  to { box-shadow: 0 9px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);}
+}
+.showcase-img:hover{
+  animation-name: greyscale;
+  animation-fill-mode: forwards;
+  animation-duration: 0.5s;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
 
+</style>
  <body>
         
  <?php
@@ -26,14 +55,7 @@ include("navbar.php")
 ?>
     <div class="app">
     <div class="container-fluid-lg" style="padding-top: 80px;">
-        
 
-        
-        
-
-                            
-   
-        
             <div class="container">
                
                     <hgroup>
@@ -41,124 +63,58 @@ include("navbar.php")
                             <h1 class="display-2"><strong>Lua Projects</strong></h1>
                         <br>
                     </hgroup>
-                    <p class="paragraph">Here is a list of my Lua projects. Some of them are available  for download either from here or from the steam workshop. This list also shows items I've made for other people.</p>
+                    <p class="paragraph pintro">Here is a list of my Lua projects. Some of them are available  for download either from here or from the steam workshop. This list also shows items I've made for other people.</p>
                     <h4 class="subheading">Addons</h4>                                    
                     <br>
-                    <div class="row" style="justify-content: center;">
                     
-                            <div class="card" style="width: 21rem;">
-                                    <div class="bd-example">
-                                            <div id="wuphfcarousel" class="carousel slide" data-interval="false">
-                                              <div class="carousel-inner">
-                                                <div class="carousel-item active">
-                                                  <img width="200" height="200"src="https://i.driedsponge.net/images/png/ugpqD.png" class="d-block w-100" alt="Wuphg Notifications">
-                                                  <div class="carousel-caption d-none d-md-block">
-                                                    <h4>Notifications</h4>
-                                                  </div>
-                                                </div>
-                                                <div class="carousel-item">
-                                                  <img width="200" height="200" src="https://i.driedsponge.net/images/png/MLJFY.png" class="d-block w-100" alt="...">
-                                                  <div class="carousel-caption d-none d-md-block">
-                                                    <h4>Settings</h4>
-                                                  </div>
-                                                </div>
-                                                <div class="carousel-item">
-                                                  <img  width="200" height="200" src="https://i.driedsponge.net/images/png/3uqRV.png" class="d-block w-100" alt="Wuphf UlX Integration">
-                                                  <div class="carousel-caption d-none d-md-block">
-                                                    <h4>ULX Integration</h4>
-                                                  </div>
-                                                </div>
-                                                <div class="carousel-item">
-                                                  <img  width="200" height="200" src="https://i.driedsponge.net/images/png/KHxhx.png" class="d-block w-100" alt="Wuphf UlX Integration">
-                                                  <div class="carousel-caption d-none d-md-block">
-                                                    <h4>Discord Message</h4>
-                                                  </div>
-                                                </div>
-
-                                              </div>
-                                              <a class="carousel-control-prev" href="#wuphfcarousel" role="button" data-slide="prev">
-                                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                                <span class="sr-only">Previous</span>
-                                              </a>
-                                              <a class="carousel-control-next" href="#wuphfcarousel" role="button" data-slide="next">
-                                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                                <span class="sr-only">Next</span>
-                                              </a>
-                                            </div>
-                                          </div>
-                                
-                                    <div class="card-body">
-                                    <h5 class="card-title">WUPHF: For GMOD  <br><span class="badge badge-success">Active</span>
-                                      </h5>
-                                    <p class="card-text">WUPHF was created as a reference to the tv show the office. It notifies all the players on the server of a message you send</p>
-                                    <a href="https://steamcommunity.com/sharedfiles/filedetails/?id=1805078462" class="btn btn-primary">Steam Workshop</a>
+                      <div data-aos="fade-right" class="row">
+                            <div class="col-sm" style="text-align: left; margin: auto;">
+                          <h1>WUPHF! For Gmod</h1>
+                            <p class="paragraph">WUPHF was created as a reference to the tv show the office. It notifies all the players on the server of a message you send</p>
+                            <p class="paragraph"><span class="badge badge-success">Active</span></p>
+                            <a href="https://steamcommunity.com/sharedfiles/filedetails/?id=1805078462" class="btn btn-primary">Steam Workshop</a>
                                     <a target="_blank"href="https://gitlab.com/DriedSponge/wuphf" class="btn btn-primary">Git Lab</a>
-                                    </div>
-                                </div>
-                                <div class="card" style="width: 21rem;">
-                                    <div class="bd-example">
-                                            <div id="MurderSB" class="carousel slide" data-interval="false">
-                                              <div class="carousel-inner">
-                                                <div class="carousel-item active">
-                                                  <img width="200" height="200"src="https://i.driedsponge.net/images/png/iCqBW.png" class="d-block w-100" alt="Wuphg Notifications">
-                                                  <div class="carousel-caption d-none d-md-block">
-                                                    <h4>Scoreboard</h4>
-                                                  </div>
-                                                </div>
-                                                <div class="carousel-item">
-                                                  <img width="200" height="200" src="https://i.driedsponge.net/images/png/WGuYi.png" class="d-block w-100" alt="...">
-                                                  <div class="carousel-caption d-none d-md-block">
-                                                    <h4>Commands</h4>
-                                                  </div>
-                                                </div>
-                                                <div class="carousel-item">
-                                                  <img  width="200" height="200" src="https://i.driedsponge.net/images/png/CljBa.png" class="d-block w-100" alt="Wuphf UlX Integration">
-                                                  <div class="carousel-caption d-none d-md-block">
-                                                    <h4>Permissions</h4>
-                                                  </div>
-                                                </div>
-
-                                              </div>
-                                              <a class="carousel-control-prev" href="#MurderSB" role="button" data-slide="prev">
-                                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                                <span class="sr-only">Previous</span>
-                                              </a>
-                                              <a class="carousel-control-next" href="#MurderSB" role="button" data-slide="next">
-                                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                                <span class="sr-only">Next</span>
-                                              </a>
-                                            </div>
-                                          </div>
-                                
-                                    <div class="card-body">
-                                    <h5 class="card-title">Murder Scoreboard <br><span class="badge badge-warning">In progress</span></h5>
-                                    <p class="card-text">This is a simple scoreboard I made for my murder server and hpefully gmodstore soon. It features xAdmin command and permission integration and a nice user interface!</p> 
-                                    <a target="_blank"href="https://gitlab.com/DriedSponge/murder-scoreboard" class="btn btn-primary">Git Lab</a>
-                                    </div>
-                                </div>
-                                <div class="card" style="width: 21rem;">
-                                        <div class="bd-example">
-                                                <div id="darkrpsweps" class="carousel slide"  data-interval="false">
-                                                  <div class="carousel-inner">
-                                                    <div class="carousel-item active">
-                                                      <iframe width="200" height="200" src="https://www.youtube.com/embed/oGgD1RwcD5o" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" class="d-block w-100" allowfullscreen></iframe>
-                                                      <div class="carousel-caption d-none d-md-block">
-                                                        
-                                                      </div>
-                                                    </div>
-                                                  </div>
-                                                </div>
-                                              </div>
-                                    
-                                        <div class="card-body">
-                                        <h5 class="card-title">DriedSponges DarkRP SWEPs <br><span class="badge badge-danger">Deprecated</span></h5>
-                                        <p class="card-text">This is the first addon I published to the workshop. It contains sweps you can use to want/warrant players in the DarkRP gamemode.</p>
-                                        <a target="_blank" href="https://steamcommunity.com/sharedfiles/filedetails/?id=1618322107" class="btn btn-primary">Steam Workshop</a>
-                                        
-                                        </div>
-                                    </div>
-    
+                          </div>
+                          <div class="col-sm">
+                          
+                              <img src="https://i.driedsponge.net/images/png/ugpqD.png" class="img-fluid showcase-img" alt="Wuphg Notifications" >
+                          
+                          </div>
                         </div>
+                        <br>
+                        <br>
+                        <div data-aos="fade-left" class="row">
+                          <div  class="col-sm">
+                          
+                              <img src="https://i.driedsponge.net/images/png/WGuYi.png" class="img-fluid showcase-img" alt="Wuphg Notifications" >
+                          
+                          </div>
+                          <div  class="col-sm showcase-text" style="text-align: left;">
+                              <h1>Murder Scoreboard</h1>
+                                <p class="paragraph">This is a simple scoreboard I made for my murder server and hpefully gmodstore soon. It features xAdmin command and permission integration and a nice user interface!</p>
+                                <p class="paragraph"><span class="badge badge-warning">In progress</span></p>
+                                
+                                <a target="_blank"href="https://gitlab.com/DriedSponge/murder-scoreboard" class="btn btn-primary">Git Lab</a>
+                              </div>
+                        </div>
+                        <br>
+                        <br>
+                        <div data-aos="fade-right" class="row">
+                            <div class="col-sm" style="text-align: left; margin: auto;">
+                          <h1>DriedSponges DarkRP SWEPs</h1>
+                            <p class="paragraph">This is the first addon I published to the workshop. It contains sweps you can use to want/warrant players in the DarkRP gamemode.</p>
+                            <p class="paragraph"><span class="badge badge-danger">Deprecated</span></p>
+                            
+                            <a target="_blank" href="https://steamcommunity.com/sharedfiles/filedetails/?id=1618322107" class="btn btn-primary">Steam Workshop</a>
+                          </div>
+                          <div class="col-sm">
+                          
+                              <iframe style="width: 550px; height: 310px;" class="showcase-img" src="https://www.youtube.com/embed/oGgD1RwcD5o" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"  allowfullscreen></iframe>
+                          
+                          </div>
+                        </div>
+
+                        
                         
 
 
@@ -169,6 +125,7 @@ include("navbar.php")
 </div>
 </div>
 </div> 
+<br>
 <!-- end of app -->
 <?php 
     include("footer.php"); // we include footer.php here. you can use .html extension, too.
@@ -186,6 +143,9 @@ include("navbar.php")
                     navitem = document.getElementById('lua').classList.add('active')
                     
                 </script>
+        <script>
+        AOS.init();
+        </script>
  </body>
 
 

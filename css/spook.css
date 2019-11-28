@@ -100,12 +100,17 @@ hgroup h2{
     font-size: 1.4em;
     line-height: 33px;
     color: white;
-    text-indent: 30px;
+    
+}
+.pintro{
+    text-align: center; 
+    font: 1.7em; 
+    line-height: 40px;
 }
 .subheading{
     color: #E4541C;
     font-size: 2em;
-    font-style: italic;
+    
     text-align: center;
 }
 .card{

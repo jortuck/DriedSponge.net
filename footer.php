@@ -17,7 +17,7 @@ if ( date("m") == "12" ){
 
 <footer>
     <div class="page-footer">
-            <h4><em class="socials">Socials</em></h4>
+            <h4 class="socials">Socials</h4>
                     
                         <a href="https://steamcommunity.com/id/driedsponge" target="_blank"><button  data-tippy-content="Steam" type="button" class="btn btn-success"><i class="fab fa-steam fa-2x"></i></button></a>
                         <a href="https://twitter.com/Dried_Sponge" target="_blank"><button type="button" data-tippy-content="Twitter" class="btn btn-success"><i class="fab fa-twitter fa-2x"></i></button></a>
@@ -45,7 +45,7 @@ if ( date("m") == "12" ){
                           </div>
                         </div>
                         
-                        <p><cite>Copyright © 2019 DriedSponge.net &bull; Current theme: <?php echo $themetxt; ?> &bull; Please report any bugs on the site in my <a href="https://driedsponge.net/discord" class="whitehyperlink" target="_blank">discord server</a></cite></p>
+                        <p><cite>Copyright © 2019 DriedSponge.net &bull; Current theme: <?php echo $themetxt; ?></p>
                             
         </div>
       </footer>
