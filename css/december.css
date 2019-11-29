@@ -1,10 +1,4 @@
 
-
-img{
-    margin-bottom: 5px;
-    margin-top: 5px;
-}
-
 /*Start Navbar stuff*/
     .nbth{
         background-color: white;
@@ -15,9 +9,6 @@ img{
         color: #007BFF;
     }
 
-    .nav-tabs {
-        margin-bottom: 0;
-    }
     .navbar{
         background-color: white;
         color: #007BFF;
@@ -31,69 +22,43 @@ img{
     .jumbotron{
         background-color:white;
         color:#007BFF;
-        width: 100%;
-        border: 2px solid black;
-        -moz-border-radius: 10px;
-        border-radius: 10px;
-        margin-top: 10px;
     }
     .jumbotronparagraph{
-        font-size: 1.3em;
         color: #007BFF;
     }
     .jumboh4{
         color: #007BFF;
-        font-size: 1.7em;
-        font-style: italic;
     }
     .jumbaurl{
         color: #007BFF; 
-        text-decoration: underline;
+
     }
     .jumbaurl:hover{
         color: rgb(0, 93, 192); 
-        text-decoration: underline;
+
     }
     .jumbotron hgroup h1 strong{
-        text-align: center;
-        font-size: 60px; 
         color: #007BFF;
     }
     .ep{
-        text-align: center;
-        font-size: 30px; 
         color: #007BFF;
         
     }
-    .btntext{
-        font-size: 30px; 
-    }
-    .jumbotron hgroup{
-        text-align: center;
-    }
+
 /* End Jumbotron */
 
 
 .list{
     color: white;
-    font-size: 1.3em;
 }
 
 
 /* Adds borders for tabs */
-.tab-content {
-    border-left: 1px solid #ddd;
-    border-right: 1px solid #ddd;
-    border-bottom: 1px solid #ddd;
-    padding: 10px;
-}
 
-.page-header {
-    text-align: center;
-}
+
+
 
 .whitehyperlink{
-    text-decoration: underline;
     text-decoration-color: #007BFF;
     color: #007BFF;
 }
@@ -101,9 +66,7 @@ img{
     .btn-success{
         background-color: #007BFF;
         color: white;
-        border: 0px;
         text-align: center;
-        border-radius: 15px;
     }
     .btn-success:hover{
         background-color: #007BFF;
@@ -113,9 +76,7 @@ img{
         color: white;
     }
     .page-footer {
-        padding-bottom: 10px;
-        padding-top: 5px;
-        text-align: center; 
+
         background-color:white;
     }
 
@@ -128,34 +89,11 @@ img{
 
 .subheading{
     color: white;
-    font-size: 2em;
-    
-    text-align: center;
+
 }
-.card{
-    margin-bottom: 8px;
-    margin-right: 3px;
-    margin-left: 3px;
-    
-    
-}
-body {
-    background-color: #007BFF;
-    display: flex;
-    min-height: 100vh;
-    flex-direction: column;
-    word-wrap: break-word;
-    overflow-wrap: break-word;
-}
-.app {
-    flex: 1 0 auto;
-}
-.card h4{
-color: white;
-font-weight: 900;
--webkit-text-stroke-color: black; 
--webkit-text-stroke-width: 2px;
-}
+
+
+
 .card h5{
     color: #007BFF;
         
@@ -198,25 +136,16 @@ hgroup h2 strong{
         color: rgb(0, 177, 9);
     }
     .subsubhead{
-        font-weight: bolder;
-        font-size: 1.4em;
-        text-align: center;
         color: white;
     }
     code{
         color: rgb(0, 190, 0);
     }
     .paragraph{
-        font-size: 1.4em;
-        line-height: 33px;
         color: white;
         
     }
-    .pintro{
-        text-align: center; 
-        font: 1.7em; 
-        line-height: 40px;
-    }
+
 /* End Text Formatting */
 
 /* Buttons and detailings */
@@ -234,9 +163,7 @@ hgroup h2 strong{
     }
     .card-border{
         border: 1px solid black;
-        border-radius: 10px;
-        margin: 10px 10px 10px 10px;
-        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
     
     }
 

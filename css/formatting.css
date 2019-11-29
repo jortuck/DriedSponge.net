@@ -1,0 +1,140 @@
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+.app {
+    flex: 1 0 auto;
+}
+/* Text Formatting */
+.display-2{
+    text-align: center;
+}
+.list{
+    font-size: 1.3em;
+}
+.page-header {
+    text-align: center;
+}
+.btn-success {
+    text-align: center;
+    border-radius: 15px;
+    border: 0px;
+}
+.page-footer{
+    padding-bottom: 10px;
+    padding-top: 5px;
+    text-align: center; 
+}
+.whitehyperlink{
+    text-decoration: underline;
+}
+.whitehyperlink:hover{
+    text-decoration: underline;
+}
+.paragraph{
+    font-size: 1.4em;
+    line-height: 33px;
+}
+.pintro{
+    text-align: center; 
+    font: 1.7em; 
+    line-height: 40px;
+}
+.subheading{
+    font-size: 2em;
+    text-align: center;
+}
+.subsubhead{
+    font-weight: bolder;
+    font-size: 1.4em;
+    text-align: center;
+}
+/* END TEXT FORMATTING */
+
+/* JumboTron */
+.jumbotron{
+    width: 100%;
+    border: 2px solid black;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    margin-top: 10px;
+}
+.jumboh4{
+    font-size: 1.7em;
+    font-style: italic;
+}
+.jumbaurl{
+    text-decoration: underline;
+}
+.jumbaurl:hover{
+    text-decoration: underline;
+}
+.jumbotronparagraph{
+    font-size: 1.3em;
+}
+.jumbotron hgroup h1 strong{
+    text-align: center;
+    font-size: 60px; 
+}
+.ep{
+    text-align: center;
+    font-size: 30px; 
+}
+.btntext{
+    font-size: 30px; 
+}
+.jumbotron hgroup{
+    text-align: center;
+}
+
+/*End jubotron */
+
+/*Content */
+.card{
+    margin-bottom: 8px;
+    margin-right: 3px;
+    margin-left: 3px; 
+}
+.card h4{
+    font-weight: 900;
+}
+.card-border{
+    border-radius: 10px;
+    margin: 10px 10px 10px 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+}
+/*End content*/
+
+/* Showcases */
+.showcase-text{
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-right: 10px;
+    margin-left: 10px;
+    
+  }
+  .showcase{
+    background-color: #007BFF;
+  }
+  .showcase-img{
+    
+    width: 110%;
+    max-width: 550px;
+    max-height: 320px; 
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+  @keyframes greyscale {
+    from {box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);}
+    to { box-shadow: 0 6px 8px 0 rgba(0, 0, 0, 0.5), 0 6px 20px 0 rgba(0, 0, 0, 0.19);}
+  }
+  .showcase-img:hover{
+    animation-name: greyscale;
+    animation-fill-mode: forwards;
+    animation-duration: 0.5s;
+  
+  }
+  /*End Showcases*/

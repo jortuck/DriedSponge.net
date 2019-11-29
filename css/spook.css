@@ -4,7 +4,6 @@
 }
 .list{
     color: white;
-    font-size: 1.3em;
 }
 hgroup h2{
     color: white;
@@ -17,51 +16,26 @@ hgroup h2{
 .jumbotron{
     background-color:#E4541C;
     color:white;
-    width: 100%;
-    border: 2px solid black;
-    -moz-border-radius: 10px;
-    border-radius: 10px;
-    margin-top: 10px;
 }
 .jumbotronparagraph{
-    font-size: 1.3em;
     color: white;
 }
 .jumboh4{
     color: white;
-    font-size: 1.7em;
-    font-style: italic;
 }
 .jumbaurl{
     color: white; 
-    text-decoration: underline;
 }
 .jumbaurl:hover{
     color: rgb(221, 221, 221); 
-    text-decoration: underline;
 }
 /* Adds borders for tabs */
-.tab-content {
-    border-left: 1px solid #ddd;
-    border-right: 1px solid #ddd;
-    border-bottom: 1px solid #ddd;
-    padding: 10px;
-}
 
-.nav-tabs {
-    margin-bottom: 0;
-}
-.page-header {
-    text-align: center;
-}
-.btn-success {
-    text-align: center;
-    border-radius: 15px;
-}
+
+
+
+
 .page-footer {
-    padding-bottom: 10px;
-    padding-top: 5px;
-    text-align: center; 
     background-color:#E4541C;
 }
 
@@ -70,22 +44,18 @@ hgroup h2{
 }
 .btn-primary{
     background-color: #E4541C;
-    border: 0px;
 
 }
 .btn-primary:hover{
     background-color: rgb(189, 71, 25);
-    border: 0px;
 
 }
 .whitehyperlink{
-    text-decoration: underline;
     text-decoration-color: whitesmoke;
     color: whitesmoke;
 }
 .btn-success{
     background-color: white;
-    border: 0px;  
     color: #E4541C;
 }
 .btn-success:hover{
@@ -97,49 +67,23 @@ hgroup h2{
     color: #E4541C;
 }
 .paragraph{
-    font-size: 1.4em;
-    line-height: 33px;
     color: white;
     
 }
-.pintro{
-    text-align: center; 
-    font: 1.7em; 
-    line-height: 40px;
-}
+
 .subheading{
     color: #E4541C;
-    font-size: 2em;
-    
-    text-align: center;
 }
 .card{
-    margin-bottom: 8px;
-    margin-right: 3px;
-    margin-left: 3px;
+
     background-color: #444343;
     
 }
 .card-text{
     color: white;
 }
-body {
-    display: flex;
-    background-color: #303030;
-    min-height: 100vh;
-    flex-direction: column;
-    word-wrap: break-word;
-    overflow-wrap: break-word;
-}
-.app {
-    flex: 1 0 auto;
-}
-.card h4{
-color: #E4541C;
-font-weight: 900;
--webkit-text-stroke-color: black; 
--webkit-text-stroke-width: 2px;
-}
+
+
 .card h5{
     color: white;
         
@@ -180,15 +124,9 @@ code{
 
 .card-border{
     border: 1px solid white;
-    border-radius: 10px;
-    margin: 10px 10px 10px 10px;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 
 }
 
 .subsubhead{
     color: white;
-    font-weight: bolder;
-    font-size: 1.4em;
-    text-align: center;
 }

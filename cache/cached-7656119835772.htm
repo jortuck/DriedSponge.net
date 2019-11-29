@@ -120,9 +120,11 @@
 <button onclick="go()" type="submit" class="btn btn-primary">Submit</button>                    
                     <br>
                     </hgroup>
+                    <div data-aos="fade-up">
                     <div class="jumbotron" style="text-align: center;">
                     <h2><img src="https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/18/18be38c2f230fea0fa667c8165e4da5cb1a787c0_full.jpg"/></h2>
                     <h1>Results for: DriedSponge.net</h1>
+                    
                     <p class="jumbotronparagraph"><strong>SteamID64:</strong> 76561198357728256
  <button  value="76561198357728256
 " onclick="copything(this.value)" class="btn btn-success"><i class="far fa-copy"></i></button></p>
@@ -135,13 +137,8 @@
                     <p class="jumbotronparagraph"><strong>Profile URL:</strong> <a class="jumbaurl" target="_blank" href="https://steamcommunity.com/id/driedsponge/">https://steamcommunity.com/id/driedsponge/</a> <button value="https://steamcommunity.com/id/driedsponge/" onclick="copything(this.value)" class="btn btn-success"><i class="far fa-copy"></i></button></p>
                     <h4 class="jumboh4">Personal Info (This may not be accurate)</h4><br>
                     <p class="jumbotronparagraph"><strong>Real Name:</strong> Jordan <button value="Jordan" onclick="copything(this.value)" class="btn btn-success"><i class="far fa-copy"></i></button></p>
-                    <p class="jumbotronparagraph"><strong>Country</strong>: US <button value="US" onclick="copything(this.value)" class="btn btn-success"><i class="far fa-copy"></i></button> </p>
-                    <p class="jumbotronparagraph"><strong>State/Province</strong>: <br />
-<b>Notice</b>:  Undefined variable: state in <b>C:\xampp\htdocs\info\controller.php</b> on line <b>212</b><br />
- <button value="<br />
-<b>Notice</b>:  Undefined variable: state in <b>C:\xampp\htdocs\info\controller.php</b> on line <b>212</b><br />
-" onclick="copything(this.value)" class="btn btn-success"><i class="far fa-copy"></i></button> </p>
-
+                    <p  class="jumbotronparagraph"><strong>Country</strong>: US <button value="US" onclick="copything(this.value)" class="btn btn-success"><i class="far fa-copy"></i></button> </p>
+                    </div>
                     </div>
                     
                        
@@ -201,7 +198,9 @@
         <script src="https://unpkg.com/popper.js@1"></script>
         <script src="https://unpkg.com/tippy.js@4"></script>
         <script src="main.js"></script>
-        
+        <script>
+            AOS.init();
+        </script>
 
         <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
         <script>

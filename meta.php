@@ -36,6 +36,7 @@ if ( date("m") == "12" ){
 ?>
 
 <meta name="theme-color" content="<?php echo $themecol; ?>">
+<link rel="stylesheet" href = "https://driedsponge.net/css/formatting.css" >
  <link id="styless" rel="stylesheet" href = "<?php echo $theme; ?>" >
 
  <link id="favicon" rel="icon" href = "<?php echo $themefav; ?>" type="image/x-icon">

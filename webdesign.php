@@ -18,36 +18,7 @@
         <title>Web Projects</title>
         <script src="https://kit.fontawesome.com/0add82e87e.js" crossorigin="anonymous"></script>
     </head>
-    <style>
-      .showcase-text{
-        margin-top: auto;
-        margin-bottom: auto;
-        margin-right: 10px;
-        margin-left: 10px;
-        
-      }
-      .showcase{
-        background-color: #007BFF;
-      }
-      .showcase-img{
-        
-        width: 110%;
-        max-width: 550px;
-        max-height: 310px; 
-        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-      }
-      @keyframes greyscale {
-        from {box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);}
-        to { box-shadow: 0 6px 8px 0 rgba(0, 0, 0, 0.5), 0 6px 20px 0 rgba(0, 0, 0, 0.19);}
-      }
-      .showcase-img:hover{
-        animation-name: greyscale;
-        animation-fill-mode: forwards;
-        animation-duration: 0.5s;
-      
-      }
-      
-      </style>
+
  <body>
  <?php
 include("navbar.php")
@@ -75,51 +46,51 @@ include("navbar.php")
                     <br>
                     <div data-aos="fade-right" class="row">
                       <div class="col-sm" style="text-align: left; margin: auto;">
-                    <h1>Custom Image Viewer</h1>
-                      <p class="paragraph" style="font-size: 1.2em;">For this project, I use a combination of <a target="_blank" href="https://getsharex.com/">ShareX</a>  and this thing called <a target="_blank" href="https://github.com/aerouk/imageserve">imageserver</a>. This works perfectly for when I want to upload and share my screen shots with my friends, the only issue was when you would open the image in chrome or any other browser, it would show the image but with very ugly html. So I decided to modify the viewer file to make the html and css way better. I also added some Javascript to add some additional functionality to the site.</p>
+                    <h2>Custom Image Viewer</h2>
+                      <p class="paragraph">For this project, I wanted to add more "style" to my image server so I used some css and html to just make it look better in general. I also used java script to add buttons to copy the image url, and download the image.</p>
                       <p class="paragraph"><span class="badge badge-success">Active</span></p>
-                      <a href="https://steamcommunity.com/sharedfiles/filedetails/?id=1805078462" class="btn btn-primary">Steam Workshop</a>
-                              <a target="_blank"href="https://gitlab.com/DriedSponge/wuphf" class="btn btn-primary">Git Lab</a>
+                      <p class="paragraph">
+                      
+                      <a href="https://i.driedsponge.net/bIrPj" target="_blank"class="btn btn-primary">Visit Example</a></p>
                     </div>
                     <div class="col-sm">
                     
-                        <img src="https://i.driedsponge.net/images/png/ugpqD.png" class="img-fluid showcase-img" alt="Wuphg Notifications" >
+                        <img src="https://i.driedsponge.net/images/png/UbV0j.png" class="img-fluid showcase-img" alt="Example" >
                     
                     </div>
                   </div>
                   <br>
                   <br>
+                  <div data-aos="fade-left" class="row">
+                    <div  class="col-sm">
+                    
+                        <img src="https://i.driedsponge.net/images/png/BtceH.png" class="img-fluid showcase-img" alt="Wuphg Notifications" >
+                    
+                    </div>
+                    <div  class="col-sm showcase-text" style="text-align: left;">
+                        <h2>DriedSponge.net (This site!)</h2>
+                          <p class="paragraph">This site was created to show all the coding projects I've made. I also use it to practice my HTML, CSS, PHP, and js.</p>
+                          <p class="paragraph"><span class="badge badge-success">Active (obviously)</span></p>
+                          
+                          <a target="_blank"href="https://driedsponge.net/" class="btn btn-primary">Visit Site</a>
+                        </div>
+                  </div>
                   <br>
                   <br>
+                  <div data-aos="fade-right" class="row">
+                    <div class="col-sm" style="text-align: left; margin: auto;">
+                  <h2>SteamID Finder</h2>
+                    <p class="paragraph">I created this SteamID finder to practice my php skills. It uses the steam api and <a target="_blank" href="https://github.com/xPaw/SteamID.php">this SteamID converter</a> to looke up info about any steam user.</p>
+                    <p class="paragraph"><span class="badge badge-success">Active</span></p>
+                    <p class="paragraph">
+                    
+                      <a href="https://driedsponge.net/steam.php" target="_blank"class="btn btn-primary">Visit Site</a></p>
+                  </div>
+                  <div class="col-sm">
+                      <img src="https://i.driedsponge.net/images/png/4a3fo.png" class="img-fluid showcase-img" alt="Example" >
+                  </div>
+                </div>
                   <br>
-                  <br>
-                  <br>
-                          <div class="card" data-aos="fade-up">
-                            <h5 class="card-header"> <span class="badge badge-success">Active</span></h5>
-                            <div class="card-body">
-                              <h5 class="card-title">About</h5>
-                              <p class="card-text">I did not create the custom image uploader, I use a combination of <a target="_blank" href="https://getsharex.com/">ShareX</a>  and this thing called <a target="_blank" href="https://github.com/aerouk/imageserve">imageserver</a>. This works perfectly for when I want to upload and share my screen shots with my friends, the only issue was when you would open the image in chrome or any other browser, it would show the image but with very ugly html. So I decided to modify the viewer file to make the html and css way better. I also added some Javascript to add some additional functionality to the site.</p>
-                              <a href="https://i.driedsponge.net/bIrPj" target="_blank"class="btn btn-primary">Visit Example</a>
-                            </div>
-                          </div>
-                          <br>
-                          <div class="card" data-aos="fade-up">
-                            <h5 class="card-header">DriedSponge.net (This site!) <span class="badge badge-success">Active (obviously)</span></h5>
-                            <div class="card-body">
-                              <h5 class="card-title">About</h5>
-                              <p class="card-text">This site was created to show all the coding projects I've made. I also use it to practice my HTML, CSS, PHP, and js. I try to use all of my skills on this site. Most of the content is html and css, but I also use php and js for some other small things.</p>
-                              <a href="https://driedsponge.net/" target="_blank"class="btn btn-primary">Visit site</a>
-                            </div>
-                          </div>
-                          <br>
-                          <div class="card" data-aos="fade-up">
-                              <h5 class="card-header">SteamID Finder <span class="badge badge-success">Active (obviously)</span></h5>
-                              <div class="card-body">
-                                <h5 class="card-title">About</h5>
-                                <p class="card-text">I created this SteamID finder to practice my php skills. It uses the steam api and <a target="_blank" href="https://github.com/xPaw/SteamID.php">this SteamID converter</a> to looke up info about any steam user. It was a lot of fun to make and it can actually be pretty useful.</p>
-                                <a href="https://driedsponge.net/steam.php" target="_blank"class="btn btn-primary">Visit site</a>
-                              </div>
-                            </div>
 
 
 

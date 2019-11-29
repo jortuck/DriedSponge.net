@@ -33,7 +33,7 @@
   
   width: 110%;
   max-width: 550px;
-  max-height: 310px; 
+  max-height: 320px; 
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 @keyframes greyscale {
@@ -69,7 +69,7 @@ include("navbar.php")
                     
                       <div data-aos="fade-right" class="row">
                             <div class="col-sm" style="text-align: left; margin: auto;">
-                          <h1>WUPHF! For Gmod</h1>
+                          <h2>WUPHF! For Gmod</h2>
                             <p class="paragraph">WUPHF was created as a reference to the tv show the office. It notifies all the players on the server of a message you send</p>
                             <p class="paragraph"><span class="badge badge-success">Active</span></p>
                             <a href="https://steamcommunity.com/sharedfiles/filedetails/?id=1805078462" class="btn btn-primary">Steam Workshop</a>
@@ -90,7 +90,7 @@ include("navbar.php")
                           
                           </div>
                           <div  class="col-sm showcase-text" style="text-align: left;">
-                              <h1>Murder Scoreboard</h1>
+                              <h2>Murder Scoreboard</h2>
                                 <p class="paragraph">This is a simple scoreboard I made for my murder server and hpefully gmodstore soon. It features xAdmin command and permission integration and a nice user interface!</p>
                                 <p class="paragraph"><span class="badge badge-warning">In progress</span></p>
                                 
@@ -101,7 +101,7 @@ include("navbar.php")
                         <br>
                         <div data-aos="fade-right" class="row">
                             <div class="col-sm" style="text-align: left; margin: auto;">
-                          <h1>DriedSponges DarkRP SWEPs</h1>
+                          <h2>DriedSponges DarkRP SWEPs</h2>
                             <p class="paragraph">This is the first addon I published to the workshop. It contains sweps you can use to want/warrant players in the DarkRP gamemode.</p>
                             <p class="paragraph"><span class="badge badge-danger">Deprecated</span></p>
                             
