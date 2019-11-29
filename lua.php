@@ -18,36 +18,6 @@
         <title>Lua Projects</title>
         <script src="https://kit.fontawesome.com/0add82e87e.js" crossorigin="anonymous"></script>
     </head>
-<style>
-.showcase-text{
-  margin-top: auto;
-  margin-bottom: auto;
-  margin-right: 10px;
-  margin-left: 10px;
-  
-}
-.showcase{
-  background-color: #007BFF;
-}
-.showcase-img{
-  
-  width: 110%;
-  max-width: 550px;
-  max-height: 320px; 
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-}
-@keyframes greyscale {
-  from {box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);}
-  to { box-shadow: 0 6px 8px 0 rgba(0, 0, 0, 0.5), 0 6px 20px 0 rgba(0, 0, 0, 0.19);}
-}
-.showcase-img:hover{
-  animation-name: greyscale;
-  animation-fill-mode: forwards;
-  animation-duration: 0.5s;
-
-}
-
-</style>
  <body>
         
  <?php
@@ -68,7 +38,7 @@ include("navbar.php")
                     <br>
                     
                       <div data-aos="fade-right" class="row">
-                            <div class="col-sm">
+                            <div class="col-lg">
                                 <div class="showcase-text">
                                   <h2>WUPHF! For Gmod</h2>
                                     <p class="paragraph">WUPHF was created as a reference to the tv show the office. It notifies all the players on the server of a message you send</p>
@@ -77,24 +47,25 @@ include("navbar.php")
                                   <a target="_blank"href="https://gitlab.com/DriedSponge/wuphf" class="btn btn-primary">Git Lab</a>
                           </div>
                         </div>
-                          <div class="col-sm">
-                            
+                          <div class="col-lg">
+                            <div class="showcase-img-margin">
                                 <img src="https://i.driedsponge.net/images/png/ugpqD.png" class="img-fluid showcase-img" alt="Wuphg Notifications" >
-                            
+                            </div>
                           </div>
                         </div>
                         <br>
                         <br>
                         <div data-aos="fade-left" class="row">
-                          <div  class="col-sm">
+                          <div  class="col-lg">
+                            
                                 <img src="https://i.driedsponge.net/images/png/WGuYi.png" class="img-fluid showcase-img" alt="Wuphg Notifications" >
-                          </div>
-                          <div  class="col-sm">
+                          
+                        </div>
+                          <div  class="col-lg">
                             <div class="showcase-text">
                               <h2>Murder Scoreboard</h2>
                                 <p class="paragraph">This is a simple scoreboard I made for my murder server and hpefully gmodstore soon. It features xAdmin command and permission integration and a nice user interface!</p>
                                 <p class="paragraph"><span class="badge badge-warning">In progress</span></p>
-                                
                                 <a target="_blank"href="https://gitlab.com/DriedSponge/murder-scoreboard" class="btn btn-primary">Git Lab</a>
                               </div>
                             </div>
@@ -102,7 +73,7 @@ include("navbar.php")
                         <br>
                         <br>
                         <div data-aos="fade-right" class="row">
-                            <div class="col-sm">
+                            <div class="col-lg">
                                 <div class="showcase-text">
                                 <h2>DriedSponges DarkRP SWEPs</h2>
                                   <p class="paragraph">This is the first addon I published to the workshop. It contains sweps you can use to want/warrant players in the DarkRP gamemode.</p>
@@ -111,7 +82,7 @@ include("navbar.php")
 
                             </div>
                           </div>
-                          <div class="col-sm">
+                          <div class="col-lg">
                            
                               <iframe style="width: 550px; height: 310px;" class="showcase-img" src="https://www.youtube.com/embed/oGgD1RwcD5o" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"  allowfullscreen></iframe>
                           

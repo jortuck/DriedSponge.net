@@ -45,7 +45,7 @@ include("navbar.php")
                     
                     <br>
                     <div data-aos="fade-right" class="row">
-                      <div class="col-sm">
+                      <div class="col-lg">
                         <div class="showcase-text">
                           <h2>Custom Image Viewer</h2>
                           <p class="paragraph">For this project, I wanted to add more "style" to my image server so I used some css and html to just make it look better in general. I also used java script to add buttons to copy the image url, and download the image.</p>
@@ -54,17 +54,17 @@ include("navbar.php")
                           <a href="https://i.driedsponge.net/bIrPj" target="_blank"class="btn btn-primary">Visit Example</a></p>
                     </div>
                   </div>
-                    <div class="col-sm">
+                    <div class="col-lg">
                         <img src="https://i.driedsponge.net/images/png/UbV0j.png" class="img-fluid showcase-img" alt="Example" >
                     </div>
                   </div>
                   <br>
                   <br>
                   <div data-aos="fade-left" class="row">
-                    <div  class="col-sm">
+                    <div  class="col-lg">
                         <img src="https://i.driedsponge.net/images/png/BtceH.png" class="img-fluid showcase-img">
                     </div>
-                    <div  class="col-sm">
+                    <div  class="col-lg">
                       <div class="showcase-text">
                         <h2>DriedSponge.net (This site!)</h2>
                           <p class="paragraph">This site was created to show all the coding projects I've made. I also use it to practice my HTML, CSS, PHP, and js.</p>
@@ -77,7 +77,7 @@ include("navbar.php")
                   <br>
                   <br>
                   <div data-aos="fade-right" class="row">
-                    <div class="col-sm">
+                    <div class="col-lg">
                         <div class="showcase-text">
                           <h2>SteamID Finder</h2>
                             <p class="paragraph">I created this SteamID finder to practice my php skills. It uses the steam api and <a target="_blank" href="https://github.com/xPaw/SteamID.php">this SteamID converter</a> to looke up info about any steam user.</p>
@@ -86,7 +86,7 @@ include("navbar.php")
                             <a href="https://driedsponge.net/steam.php" target="_blank"class="btn btn-primary">Visit Site</a></p>
                     </div>
                   </div>
-                  <div class="col-sm">
+                  <div class="col-lg">
 
                       <img src="https://i.driedsponge.net/images/png/4a3fo.png" class="img-fluid showcase-img" alt="Example" >
 
