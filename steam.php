@@ -41,7 +41,7 @@ include("navbar.php")
                             <h1 class="display-2"><strong>SteamID Tool</strong></h1>
                         <br>
                     </hgroup>
-                    <p class="paragraph">Need to look something up about a user on steam? Do it here! Use any SteamID or profile URL to look up information! For more info on the site visit my <a href="webdesign.php">Web Projects </a>page.</p>
+                    <p class="paragraph pintro">Need to look something up about a user on steam? Do it here! Use any SteamID or profile URL to look up information! For more info on the site visit my <a href="webdesign.php">Web Projects </a>page.</p>
                     <br>
                     
                     <?php

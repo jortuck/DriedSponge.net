@@ -89,7 +89,7 @@
                                   <a href="https://youtu.be/W53tk0yTJCo" target="_blank" class="btn btn-primary">Watch Video</a>
                                   </div>
                                   <div class="card-footer text-muted">
-                                      December 17th, 2019 
+                                      November 17th, 2019 
                                     </div>
                       </div>
                 
