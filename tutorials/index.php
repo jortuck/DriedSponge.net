@@ -31,7 +31,7 @@
                     <h1 class="display-2"><strong>Tutorials</strong></h1>
                         <br>
                     </hgroup>
-                    <p class="paragraph">On my YouTube channel, I do various coding tutorials. Primarily with Lua but you might see some other languages on there too. For every tutorial I make, I create a web page for it. The web pages could include more information than the video so I recommend you always browse through them.</p>
+                    <p class="paragraph pintro">On my YouTube channel, I do various coding tutorials. Primarily with Lua but you might see some other languages on there too. For every tutorial I make, I create a web page for it. The web pages could include more information than the video so I recommend you always browse through them.</p>
                     <h4 class="subheading">Lua Tutorials</h4>    
                     <a href="luaresources.php" class="btn btn-primary">Resources</a>
                     <br>
