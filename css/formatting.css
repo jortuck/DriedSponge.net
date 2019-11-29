@@ -111,18 +111,15 @@ body {
 
 /* Showcases */
 .showcase-text{
-    margin-top: auto;
-    margin-bottom: auto;
-    margin-right: 10px;
-    margin-left: 10px;
+    margin: auto;
+    text-align: left;
     
   }
   .showcase{
     background-color: #007BFF;
   }
   .showcase-img{
-    
-    width: 110%;
+    margin: auto;
     max-width: 550px;
     max-height: 320px; 
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
