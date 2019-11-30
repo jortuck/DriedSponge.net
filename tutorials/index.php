@@ -20,7 +20,11 @@
     </head>
 <style>
   .card{
-    margin-bottom: 10px;
+    margin-bottom: 20px;
+
+  }
+  .row{
+    justify-content: center;
   }
   </style>
  <body>
@@ -59,6 +63,7 @@
                                     <div class="card-footer text-muted">
                                        October 12th, 2019 
                                       </div>
+                                      
                         </div>
                       <div class="card" style="width: 21rem;">
                                   <h5 class="card-header">
@@ -78,6 +83,7 @@
                                       October 20th, 2019 
                                     </div>
                       </div>
+                      
                       <div class="card" style="width: 21rem;">
                                   <h5 class="card-header">
                                           Lua Tutorial 3 - if/then/and/or
