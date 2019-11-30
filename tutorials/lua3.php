@@ -35,7 +35,7 @@
                             <li><a href="#a">and/or statements</a></li>
                         </ul>
                     <h4 class="subheading">Video:</h4>  
-                    <i><p class="paragraph">Not avaliable yet</p></i>              
+                    <i><p class="paragraph" style="text-align: center;">Not avaliable yet</p></i>              
                         <br>
 
 
@@ -61,7 +61,7 @@
                         <p class="paragraph">There are multiple operators you can use in if then statement:</p>
                         <ul class="paragraph">
                             <li><code>==</code> - This is equal to. For example: <code>poo == poo</code>. This would return true because poo does equal poo!</li>
-                            <li><code>~=</code> - This is not equal to. For example: <code>poo ~= poo</code>. This would return false because poo is equal to poo. If it was <code>poo ~= pee</code> then it would be true because poo is in fact not equal to pee.</li>
+                            <li><code>~=</code> or <code>!=</code> - This is not equal to. For example: <code>poo ~= poo</code>. This would return false because poo is equal to poo. If it was <code>poo ~= pee</code> then it would be true because poo is in fact not equal to pee.</li>
                             <li><code>&gt;</code> - This is greater than. If you took any basic math class in the course of your life you should know what this means. The syntax is <code>12 &gt; 11</code>. This would return true because 12 is greater than 11.</li>
                             <li><code>&lt;</code> - This is less than. The syntax is <code>11 &lt; 12</code>. This would return true because 11 is less than 12.</li>
                             <li>There is also <code>&gt;=</code> and <code>&lt;=</code>. I'm going to assume you know what these mean because it's pretty self explanatory.</li>

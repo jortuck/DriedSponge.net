@@ -35,8 +35,10 @@
                             <li><a href="#dt">Data Types</a></li>
                         </ul>
                     <p class="paragraph">The reason this tutorial is so short is because it contains essential information you will use forever.</p>
-                    <h4 class="subheading">Video:</h4>  
-                    <iframe width="560" height="315" src="https://www.youtube.com/embed/W53tk0yTJCo" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <h4 class="subheading">Video:</h4> 
+                    
+                       <p style="text-align: center;"><iframe width="560" height="315" src="https://www.youtube.com/embed/W53tk0yTJCo" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></p> 
+                    
                     <br>
                     <h4 class="subheading" id="bct">Basic coding tools</h4>
                         <p class="paragraph">In order to even start coding, you need syntax editor. This allows you to see your code properly and it makes it way easier to modify. Here is a list of the ones I recommend:</p>

@@ -18,7 +18,11 @@
         <title>Tutorials</title>
         <script src="https://kit.fontawesome.com/0add82e87e.js" crossorigin="anonymous"></script>
     </head>
-
+<style>
+  .card{
+    margin-bottom: 10px;
+  }
+  </style>
  <body>
         
 <?php include("navbar.php") ;?>

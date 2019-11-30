@@ -34,7 +34,7 @@
                             <li><a href="#v">Variables</a></li>
                         </ul>
                     <h4 class="subheading">Video:</h4>  
-                    <iframe width="560" height="315" src="https://www.youtube.com/embed/h2qyMIxIA2o" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <p style="text-align: center;"><iframe width="560" height="315" src="https://www.youtube.com/embed/h2qyMIxIA2o" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></p>
                     <br>
 
 
