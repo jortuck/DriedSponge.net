@@ -1,4 +1,6 @@
-
+body{
+    background-color: #007BFF;
+}
 /*Start Navbar stuff*/
     .nbth{
         background-color: white;
@@ -145,7 +147,9 @@ hgroup h2 strong{
         color: white;
         
     }
-
+    .display-2{
+        color: white;
+    }
 /* End Text Formatting */
 
 /* Buttons and detailings */
