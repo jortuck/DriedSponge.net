@@ -96,7 +96,7 @@
                                   <li><a href="lua.php?page=3#a">and/or statements</a></li>
                                   </ul>
                                   <a href="lua.php?page=3" class="btn btn-primary">View Tutorial</a>
-                                  <a href="https://youtu.be/W53tk0yTJCo" target="_blank" class="btn btn-primary">Watch Video</a>
+                                  <a href="https://youtu.be/nVYZvn-vanw" target="_blank" class="btn btn-primary">Watch Video</a>
                                   </div>
                                   <div class="card-footer text-muted">
                                       November 17th, 2019 

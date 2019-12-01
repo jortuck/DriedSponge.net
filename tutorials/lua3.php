@@ -35,7 +35,7 @@
                             <li><a href="#a">and/or statements</a></li>
                         </ul>
                     <h4 class="subheading">Video:</h4>  
-                    <i><p class="paragraph" style="text-align: center;">Not avaliable yet</p></i>              
+                    <p class="paragraph" style="text-align: center;"><iframe width="560" height="315" src="https://www.youtube.com/embed/nVYZvn-vanw" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></p>           
                         <br>
 
 
