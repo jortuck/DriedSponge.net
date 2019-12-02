@@ -9,6 +9,12 @@ body {
     flex: 1 0 auto;
 }
 /* Text Formatting */
+label{
+ font-size: 1.5em !important;
+}
+.articleh1{
+    text-align: center;
+}
 .display-2{
     text-align: center;
 }

@@ -128,6 +128,12 @@ body{
 /* end tippy*/
 
 /* Text Formatting */
+label{
+    color:white;
+}
+.articleh1{
+color: white;
+}
 hgroup h2 strong{
     color: white;
 }
