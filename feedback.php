@@ -6,10 +6,10 @@
 <!--         Site created: 9/19/19
         Author: DriedSponge(Jordan Tucker) -->
 
-        <meta name="description" content="On this page you can see a list of everyone who has contributed to this site.">
-        <meta name="keywords" content="contributors, driedsponge.net contributors">
+        <meta name="description" content="Sumbit feedback about my site">
+        <meta name="keywords" content="feedback, driedsponge.net feedback">
         <meta name="author" content="Jordan Tucker">
-        <meta property="og:site_name" content="DriedSponge.net | Contributors" />
+        <meta property="og:site_name" content="DriedSponge.net | Feedback" />
        
         <?php 
             include("meta.php"); 
