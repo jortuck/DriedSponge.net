@@ -38,41 +38,33 @@ $success = $captchares->success;
     if (!isset($_POST['email'], $_POST['say'])) {
         return;
     }
-    $request = json_encode([
-        "embeds" => [
-            
-            [
-                    "author" => [
-                    "name" => "test",
-                    "url" => "https://driedsponge.net",
-                    "icon_url" => "https://i.driedsponge.net/images/png/TQSzu.png",
-                        ],
-                    "footer" => [
-                    "text" => "Powered by WUPHF! For GMOD",
-                    "url" => "https://steamcommunity.com/sharedfiles/filedetails/?id=1805078462",
-                        ],
-                "title" => "test",
-                "type" => "rich",
-                "description" => "test",
-                "timestamp" => date("c"),
-                "tts" => true,
-                "url" => "https://steamcommunity.com/sharedfiles/filedetails/?id=1805078462",
-                "image"=> [
-                 "url"=> "https://i.driedsponge.net/images/png/TQSzu.png"
-                ],
+        $request = json_encode([
+            "content" => "",
+            "embeds" => [
+                [
+                    "author"=> [
+                        "name"=> $_POST['email'],
+                        "url"=> "https://driedsponge.net/feedback.php",
+                        "icon_url"=> "https://i.driedsponge.net/images/png/9VkdW.png"
+                    ],
+                    "title" => "DriedSponge.net - Feedback",
+                    "type" => "rich",
+                    "description" =>  $_POST['say'],
+                    "timestamp" => date("c"),
+                ]
             ]
-            
-        ]
-    ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
-    
-    $ch = curl_init("https://discordapp.com/api/webhooks/650866821095882762/Y-Sf_yCTGDKSh_hm8nSkvAphQQyl8KtPxISx6NSQ1t3daUVhobXKX1EW-E-wqseC7ndf");
-    
-    curl_setopt_array($ch, [
-        CURLOPT_POST => 1,
-        CURLOPT_FOLLOWLOCATION => 1,
-        CURLOPT_POSTFIELDS => $request,
-        CURLOPT_RETURNTRANSFER => 1
-    ]);
+        ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
+        
+        $ch = curl_init("https://discordapp.com/api/webhooks/650866821095882762/Y-Sf_yCTGDKSh_hm8nSkvAphQQyl8KtPxISx6NSQ1t3daUVhobXKX1EW-E-wqseC7ndf");
+        
+        curl_setopt_array($ch, [
+            CURLOPT_POST => 1,
+            CURLOPT_FOLLOWLOCATION => 1,
+            CURLOPT_HTTPHEADER => array("Content-type: application/json"),
+            CURLOPT_POSTFIELDS => $request,
+            CURLOPT_RETURNTRANSFER => 1
+        ]);
+        
     
     curl_exec($ch);
  }else{
