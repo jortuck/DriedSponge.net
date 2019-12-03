@@ -143,7 +143,7 @@ $success = $captchares->success;
                       ?>  
                     <h1 class="articleh1">Please login to submit feedback</h1>
                     <br>
-                    <p style="text-align: center;"><a href='?login'><img src='https://steamcommunity-a.akamaihd.net/public/images/signinthroughsteam/sits_02.png'></a></p>
+                    <p class="text-center"><a href='?login'><img src='https://steamcommunity-a.akamaihd.net/public/images/signinthroughsteam/sits_02.png'></a></p>
                         <?php     
                             }
                           ?>
