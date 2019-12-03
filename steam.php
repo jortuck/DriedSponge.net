@@ -18,6 +18,8 @@
             
         <title>Steam ID Tool</title>
         <script src="https://kit.fontawesome.com/0add82e87e.js" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href = "//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" type="text/css" >
+
     </head>
     
  <body>
@@ -26,13 +28,7 @@ include("navbar.php")
 ?>
      <div class="app">
     <div class="container-fluid-lg" style="padding-top: 80px;">
-        
 
-        
-        
-
-                            
-   
         
             <div class="container">
                
@@ -48,7 +44,108 @@ include("navbar.php")
                     
                     include("search.php");
                         ?>
+                    <?php
+                    if(isset($_SESSION['steamid'])) {
+                        include("SteamID.php");
+
+                        $APIKEY = "0EBBACAEBC6039B06DF1066807D55D4C";
+                        $WHO = $_SESSION['steamid'];
+
+                            $s = SteamID::SetFromURL( $WHO, function( $URL, $Type ) use ( $APIKEY )
+                            {
+                                $Parameters =
+                                [
+                                    'format' => 'json',
+                                    'key' => $APIKEY,
+                                    'vanityurl' => $URL,
+                                    'url_type' => $Type
+                                ];
+                                
+                                $c = curl_init( );
+                                
+                                curl_setopt_array( $c, [
+                                    CURLOPT_USERAGENT      => 'Steam Vanity URL Lookup',
+                                    CURLOPT_ENCODING       => 'gzip',
+                                    CURLOPT_RETURNTRANSFER => true,
+                                    CURLOPT_URL            => 'https://api.steampowered.com/ISteamUser/ResolveVanityURL/v1/?' . http_build_query( $Parameters ),
+                                    CURLOPT_CONNECTTIMEOUT => 5,
+                                    CURLOPT_TIMEOUT        => 5
+                                ] );
+                                
+                                $Response = curl_exec( $c );
+                                
+                                curl_close( $c );
+                                
+                                $Response = json_decode( $Response, true );
+                                
+                                if( isset( $Response[ 'response' ][ 'success' ] ) )
+                                {
+                                    switch( (int)$Response[ 'response' ][ 'success' ] )
+                                    {
+                                        case 1: return $Response[ 'response' ][ 'steamid' ];
+                                        case 42: header("Location: steamerror.php");
+                                        
+                                    }
+                                }
+                                
+                                throw new Exception( 'Failed to perform API request' );
+                                
+                            } );
+                         
+                        
+                        $id3 = $s->RenderSteam3() . PHP_EOL;
+                        $idn = $s->RenderSteam2() . PHP_EOL;
+                        $id64 = $s->ConvertToUInt64() . PHP_EOL;
+                        
+                        $json = file_get_contents("http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=".$APIKEY."&steamids=$id64");
+                        $apidata = json_decode($json);
+                        $name = $apidata->response->players[0]->personaname;
+                        $img = $apidata->response->players[0]->avatarfull;
+                        if (isset($apidata->response->players[0]->realname) == false ){
+                            $realname = "N/A";
+                        } else{
+                            $realname = $apidata->response->players[0]->realname;
+                        }
+                        
+                        if (isset($apidata->response->players[0]->loccountrycode) == false ){
+                            $country = "N/A";
+                        } else{
+                            $country = $apidata->response->players[0]->loccountrycode;
+                        }
+                        
+                        $url = $apidata->response->players[0]->profileurl;
+                        if ($name == null || $img == null ){
+                            header("Location: steamerror.php");
+                        }
+                        ?>
+  
+                    <div class="jumbotron" style="text-align: center;">
+                    <h2><img src="<?php echo $img; ?>"/></h2>
+                    <h1>Your data:  <?php echo $name; ?></h1>
                     
+                    <p class="jumbotronparagraph"><strong>Username:</strong> <?php echo $name; ?> <button  value="<?php echo $name; ?>" onclick="copything(this.value)" class="btn btn-success"><i class="far fa-copy"></i></button></p>
+                    <p class="jumbotronparagraph"><strong>SteamID64:</strong> <?php echo $id64; ?> <button  value="<?php echo $id64; ?>" onclick="copything(this.value)" class="btn btn-success"><i class="far fa-copy"></i></button></p>
+                    <p class="jumbotronparagraph"><strong>SteamID:</strong> <?php echo $idn; ?> <button  value="<?php echo $idn; ?>" onclick="copything(this.value)" class="btn btn-success"><i class="far fa-copy"></i></button></p>
+                    <p class="jumbotronparagraph"><strong>SteamID3:</strong> <?php echo $id3; ?> <button value="<?php echo $id3; ?>" onclick="copything(this.value)" class="btn btn-success"><i class="far fa-copy"></i></button></p>
+                    <p class="jumbotronparagraph"><strong>Profile URL:</strong> <a class="jumbaurl" target="_blank" href="<?php echo $url; ?>"><?php echo $url; ?></a> <button value="<?php echo $url; ?>" onclick="copything(this.value)" class="btn btn-success"><i class="far fa-copy"></i></button></p>
+                    <h4 class="jumboh4">Personal Info (This may not be accurate)</h4><br>
+                    <p class="jumbotronparagraph"><strong>Real Name:</strong> <?php echo $realname; ?> <button value="<?php echo $realname; ?>" onclick="copything(this.value)" class="btn btn-success"><i class="far fa-copy"></i></button></p>
+                    <p  class="jumbotronparagraph"><strong>Country</strong>: <?php echo $country; ?> <button value="<?php echo $country; ?>" onclick="copything(this.value)" class="btn btn-success"><i class="far fa-copy"></i></button> </p>
+                    </div>
+
+                        <?php
+                    }else{
+                        ?>
+                        <h1 class="articleh1">Login to see your owns stats</h1>
+                    <br>
+                    <p style="text-align: center;"><a href='?login'><img src='https://steamcommunity-a.akamaihd.net/public/images/signinthroughsteam/sits_02.png'></a></p>
+                            <?php
+                    }
+                    
+
+
+
+                    ?>
                     
 
                         </div>
@@ -72,10 +169,41 @@ include("navbar.php")
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> 
         <script src="main.js"></script> 
         <script src="search.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
         <script>
                     navitem = document.getElementById('steam').classList.add('active')
                     
                 </script>
+                <script>
+                        function  copything(value){
+                          
+              
+                          navigator.clipboard.writeText(value)
+                          
+                         toastr["success"](value + " was successfully copied to clipboard", "Congradulations!")
+              
+                         toastr.options = {
+                              "closeButton": true,
+                              "debug": false,
+                              "newestOnTop": false,
+                              "progressBar": true,
+                              "positionClass": "toast-top-right",
+                              "preventDuplicates": true,
+                              "onclick": null,
+                              "showDuration": "300",
+                              "hideDuration": "1000",
+                              "timeOut": "5000",
+                              "extendedTimeOut": "1000",
+                              "showEasing": "swing",
+                              "hideEasing": "linear",
+                              "showMethod": "fadeIn",
+                              "hideMethod": "fadeOut"
+                              }
+                        }
+              
+              
+                      </script>
  </body>
 
 
