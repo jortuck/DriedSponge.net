@@ -1,3 +1,7 @@
+<?php
+                        require 'steamauth/steamauth.php';
+                            
+                        ?>
 <div class="container-fluid-lg" >
     
         <div class="page-header">
@@ -5,7 +9,7 @@
             <nav class="navbar navbar-expand-lg navbar-dark nbth fixed-top">
                     <a class="navbar-brand" href="https://driedsponge.net"><strong>driedsponge.net</strong></a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarmain" aria-controls="navbarmain" aria-expanded="false" aria-label="Toggle navigation">
-                            <span class="navbar-toggler-icon"></span>
+                    <i class="fas fa-bars" style="color: black;"></i>
                           </button>
                     <div class="collapse navbar-collapse" id="navbarmain">
                             
@@ -32,8 +36,29 @@
                                 <a class="dropdown-item" href="privacy.php">Privacy Policy</a>
                                 </div>
                             </li>
-                        </ul>  
+                        </ul>
+                        
+                        <?php 
+                                if(!isset($_SESSION['steamid'])) {
+
+                                loginbutton("rectangle"); //login button
+
+                                }  else {
+                                include ('steamauth/userInfo.php'); //To access the $steamprofile array
+                                ?>
+                                <li class="nav-item dropdown" style="list-style-type:none;">
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <?php echo $steamprofile['personaname']; ?>
+                                    </a>
+                                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                    <a class="dropdown-item" href="?logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                                </div>
+                            </li>
                         </div>
+                                <?php 
+                                    } ?>
+                        
+                        
                   </nav>
 
         </div>

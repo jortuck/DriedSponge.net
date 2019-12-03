@@ -24,17 +24,26 @@
 include("navbar.php")
 ?>
 <?php
+
+
+if(isset($_SESSION['steamid'])){
+    $PLogin = false; 
+    $Done = false;
+
+
+
 $FailedCaptch = false;
 $DisplayForm = true;
 if(isset($_POST['submit'])){
     $DisplayForm = false;
+    $Done = true;
  $captcha = $_POST['g-recaptcha-response'];
  $json = file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret=6Ld9SaQUAAAAACIaPxcErESw-6RvtljAMd3IYsQL&response=$captcha");
 $captchares = json_decode($json);
 $success = $captchares->success;
  if($success == true){
         
-    if (!isset($_POST['email'], $_POST['say'])) {
+    if (!isset($_POST['name'], $_POST['say'])) {
         return;
     }
         $request = json_encode([
@@ -42,9 +51,9 @@ $success = $captchares->success;
             "embeds" => [
                 [
                     "author"=> [
-                        "name"=> $_POST['email'],
-                        "url"=> "https://driedsponge.net/feedback.php",
-                        "icon_url"=> "https://i.driedsponge.net/images/png/9VkdW.png"
+                        "name"=> $_POST['name']." (".$steamprofile['steamid'].")",
+                        "url"=> $steamprofile['profileurl'],
+                        "icon_url"=> $steamprofile['avatarmedium']
                     ],
                     "title" => "DriedSponge.net - Feedback",
                     "type" => "rich",
@@ -71,7 +80,12 @@ $success = $captchares->success;
     $FailedCaptch = true;
  }
 }
-
+}else{
+   $DisplayForm = false;
+    $FailedCaptch = false;
+    $PLogin = true; 
+    $Done = false;
+}
 ?>
 
     <div class="app">
@@ -91,6 +105,10 @@ $success = $captchares->success;
                 <?php 
                     }
                 ?>
+                <?php 
+                
+                ?>
+                    
 
                     <?php
                     if ($DisplayForm){
@@ -100,8 +118,8 @@ $success = $captchares->success;
                         <br>                        
                         <form action="feedback.php" method="post">
                         <div class="form-group">
-                            <label for="email">Email</label>
-                                <input id="email" name="email" type="text" class="form-control" placeholder="Your email address" required>
+                            <label for="name">Name</label>
+                                <input id="name" name="name" type="text" class="form-control" value="<?php echo $steamprofile['personaname'];?>" placeholder="<?php echo $steamprofile['personaname'];?>"  readonly>
                                  <br>
                                  <label for="say">What are your thoughts on the site?</label>
                                 <textarea id="say"class="form-control" name="say" rows="3" placeholder="Type here I guess..."  required></textarea>
@@ -112,20 +130,20 @@ $success = $captchares->success;
                         </div>
                     </form>
                     <?php
-                    }else{
+                    }
+                    if($Done == true){
                         ?>
                     <h1 class="articleh1">Thank you for submitting your response!</h1>
-                    
-
-
-
                     <?php
                     }
-                    
-                    ?>
-                    
-                
-
+                    if($PLogin == true){
+                      ?>  
+                    <h1 class="articleh1">Please login to submit feedback</h1>
+                    <br>
+                    <p style="text-align: center;"><a href='?login'><img src='https://steamcommunity-a.akamaihd.net/public/images/signinthroughsteam/sits_02.png'></a></p>
+                        <?php     
+                            }
+                          ?>
 
 
                     </div>
