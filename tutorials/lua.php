@@ -1,3 +1,6 @@
+<?php
+require('../steamauth/steamauth.php');  
+?>
 <?php 
 $page = $_GET["page"];
 

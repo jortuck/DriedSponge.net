@@ -1,6 +1,4 @@
-<?php
-                        require 'steamauth/steamauth.php';
-                        ?>
+
 <div class="container-fluid-lg" >
     
         <div class="page-header">
@@ -38,8 +36,8 @@
                         </ul>
                         
                         <?php 
+                         
                                 if(!isset($_SESSION['steamid'])) {
-
                                 loginbutton("rectangle"); //login button
 
                                 }  else {

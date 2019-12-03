@@ -1,5 +1,6 @@
 <?php
 
+require('steamauth/steamauth.php');  
 include("SteamID.php");
 
 $APIKEY = "0EBBACAEBC6039B06DF1066807D55D4C";

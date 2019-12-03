@@ -1,7 +1,4 @@
-<?php
-                        require '../steamauth/steamauth.php';
-                            
-                        ?>
+
 <div class="container-fluid-lg">
         <div class="page-header">
         
