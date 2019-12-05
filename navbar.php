@@ -49,6 +49,13 @@
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                     <a class="dropdown-item" href="?logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                                    <?php
+                                     if($_SESSION['steamid'] == "76561198357728256"){
+                                    ?>
+                                        <a class="dropdown-item" href="manage.php"><i class="fas fa-cog"></i></i> Management</a>                                  
+                                    <?php
+                                    }
+                                    ?>
                                 </div>
                             </li>
                         </div>

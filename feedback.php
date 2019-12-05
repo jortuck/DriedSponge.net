@@ -1,5 +1,6 @@
 <?php
 require('steamauth/steamauth.php');  
+include("databases/connect.php");
 ?>
 <!DOCTYPE html>
 
@@ -34,9 +35,27 @@ if(isset($_SESSION['steamid'])){
     $Done = false;
 
 
-
 $FailedCaptch = false;
-$DisplayForm = true;
+$blocked = false;
+$row = null;
+$chekid = $_SESSION['steamid'];
+$sqlblockexist = "SELECT id64 FROM blocked WHERE id64='$chekid'";
+$sqlblockexistquery = $conn->query($sqlblockexist);
+
+if ($sqlblockexistquery->rowCount() == 1){
+    $DisplayForm = false;
+    $blocked = true;
+    $sql = "SELECT id64, rsn, stamp FROM blocked WHERE id64='$chekid'";
+    $result = $conn->query($sql);
+    $row = $result->fetch();
+}else{
+    $DisplayForm = true;
+}
+    
+
+
+
+
 if(isset($_POST['submit'])){
     $DisplayForm = false;
     $Done = true;
@@ -101,7 +120,10 @@ $success = $captchares->success;
                     
                     <br>
                 </hgroup>
+                <?php if($blocked == true){?>
+                 <h1 class="articleh1">Uh oh, looks like you have been blacklisted from submitting form data. <br> Reason: <?php echo $row["rsn"];?></h1>
                 <?php 
+            }
                 if ($FailedCaptch){
                 ?>
                 <h1 class="articleh1" style="color: red;">Uh oh! Looks like you failed the captcha! Try again but this time try acting less like a robot.</h1>
