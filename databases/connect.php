@@ -11,7 +11,7 @@ try {
     }
 catch(PDOException $e)
     {
-    echo "Connection failed: " . $e->getMessage();
+        die("Cant connect do database, please contact me on discord DriedSponge#0001");
     }
 
 
