@@ -103,16 +103,16 @@ if ($name == null || $img == null ){
             include("meta.php"); 
             ?>
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="description"  content="Name: <?php echo $name; ?>,SteamID64: <?php echo $id64; ?>, SteamID: <?php echo $idn; ?>, SteamID3: <?php echo $id3; ?>, URL: <?php echo $url; ?>" />
-        <meta name="keywords" content="<?php echo $name; ?>, <?php echo $id64; ?>, <?php echo $idn; ?>, <?php echo $id3; ?>" />
+        <meta name="description"  content="Name: <?=htmlspecialchars($name);?>,SteamID64: <?=htmlspecialchars($id64);?>, SteamID: <?=htmlspecialchars($idn);?>, SteamID3: <?=htmlspecialchars($id3);?>, URL: <?=htmlspecialchars($url);?>" />
+        <meta name="keywords" content="<?=htmlspecialchars($name);?>, <?=htmlspecialchars($id64);?>, <?=htmlspecialchars($idn);?>, <?=htmlspecialchars($id3);?>" />
         <meta property="og:site_name" content="DriedSponge.net | SteamID Finder" /> <!-- Replace with your name or whatever you want-->
-        <meta property="og:title" content="Info on <?php echo $name; ?>" />
-        <meta property="og:image" content="<?php echo $img;?>" />
+        <meta property="og:title" content="Info on <?=htmlspecialchars($name);?>" />
+        <meta property="og:image" content="<?=htmlspecialchars($img);?>" />
         <meta property="og:image:type" content="image/png" />
         <meta name="author" content="Jordan Tucker">
-        <meta property="og:description"  content="SteamID64: <?php echo $id64; ?> SteamID: <?php echo $idn; ?> SteamID3: <?php echo $id3; ?> URL: <?php echo $url; ?>" />
-        <meta property="og:site_name" content="<?php echo $name; ?> - driedsponge.net" />
-        <title><?php echo $name; ?> - driedsponge.net</title>
+        <meta property="og:description"  content="SteamID64: <?=htmlspecialchars($id64);?> SteamID: <?=htmlspecialchars($idn);?> SteamID3: <?=htmlspecialchars($id3);?> URL: <?=htmlspecialchars($url);?>" />
+        <meta property="og:site_name" content="<?=htmlspecialchars($name);?> - driedsponge.net" />
+        <title><?=htmlspecialchars($name);?> - driedsponge.net</title>
 
         <script src="https://kit.fontawesome.com/0add82e87e.js" crossorigin="anonymous"></script>
 
@@ -145,16 +145,17 @@ if ($name == null || $img == null ){
                     </hgroup>
                     <div data-aos="fade-up">
                     <div class="jumbotron" style="text-align: center;">
-                    <h2><img src="<?php echo $img; ?>"/></h2>
-                    <h1>Results for: <?php echo $name; ?></h1>
+                    <h2><img src="<?=htmlspecialchars($img);?>"/></h2>
+                    <h1>Results for: <?=htmlspecialchars($name);?></h1>
                     
-                    <p class="jumbotronparagraph"><strong>SteamID64:</strong> <?php echo $id64; ?> <button  value="<?php echo $id64; ?>" onclick="copything(this.value)" class="btn btn-success"><i class="far fa-copy"></i></button></p>
-                    <p class="jumbotronparagraph"><strong>SteamID:</strong> <?php echo $idn; ?> <button  value="<?php echo $idn; ?>" onclick="copything(this.value)" class="btn btn-success"><i class="far fa-copy"></i></button></p>
-                    <p class="jumbotronparagraph"><strong>SteamID3:</strong> <?php echo $id3; ?> <button value="<?php echo $id3; ?>" onclick="copything(this.value)" class="btn btn-success"><i class="far fa-copy"></i></button></p>
-                    <p class="jumbotronparagraph"><strong>Profile URL:</strong> <a class="jumbaurl" target="_blank" href="<?php echo $url; ?>"><?php echo $url; ?></a> <button value="<?php echo $url; ?>" onclick="copything(this.value)" class="btn btn-success"><i class="far fa-copy"></i></button></p>
+                    <p class="jumbotronparagraph"><strong>Username: </strong><?=htmlspecialchars($name);?> <button  value="<?=htmlspecialchars($name);?>" onclick="copything(this.value)" class="btn btn-success"><i class="far fa-copy"></i></button></p>
+                    <p class="jumbotronparagraph"><strong>SteamID64:</strong> <?=htmlspecialchars($id64);?> <button  value="<?=htmlspecialchars($id64);?>" onclick="copything(this.value)" class="btn btn-success"><i class="far fa-copy"></i></button></p>
+                    <p class="jumbotronparagraph"><strong>SteamID:</strong> <?=htmlspecialchars($idn);?> <button  value="<?=htmlspecialchars($idn);?>" onclick="copything(this.value)" class="btn btn-success"><i class="far fa-copy"></i></button></p>
+                    <p class="jumbotronparagraph"><strong>SteamID3:</strong> <?=htmlspecialchars($id3);?> <button value="<?=htmlspecialchars($id3);?>" onclick="copything(this.value)" class="btn btn-success"><i class="far fa-copy"></i></button></p>
+                    <p class="jumbotronparagraph"><strong>Profile URL:</strong> <a class="jumbaurl" target="_blank" href="<?=htmlspecialchars($url);?>"><?=htmlspecialchars($url);?></a> <button value="<?=htmlspecialchars($url);?>" onclick="copything(this.value)" class="btn btn-success"><i class="far fa-copy"></i></button></p>
                     <h4 class="jumboh4">Personal Info (This may not be accurate)</h4><br>
-                    <p class="jumbotronparagraph"><strong>Real Name:</strong> <?php echo $realname; ?> <button value="<?php echo $realname; ?>" onclick="copything(this.value)" class="btn btn-success"><i class="far fa-copy"></i></button></p>
-                    <p  class="jumbotronparagraph"><strong>Country</strong>: <?php echo $country; ?> <button value="<?php echo $country; ?>" onclick="copything(this.value)" class="btn btn-success"><i class="far fa-copy"></i></button> </p>
+                    <p class="jumbotronparagraph"><strong>Real Name:</strong> <?=htmlspecialchars($realname);?> <button value="<?=htmlspecialchars($realname);?>" onclick="copything(this.value)" class="btn btn-success"><i class="far fa-copy"></i></button></p>
+                    <p  class="jumbotronparagraph"><strong>Country</strong>: <?=htmlspecialchars($country);?> <button value="<?=htmlspecialchars($country);?>" onclick="copything(this.value)" class="btn btn-success"><i class="far fa-copy"></i></button> </p>
                     </div>
                     </div>
                     

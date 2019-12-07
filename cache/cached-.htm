@@ -5,7 +5,8 @@
 <!--         Site created: 9/19/19
         Author: DriedSponge(Jordan Tucker) -->
            
-        <meta charset="UTF-8">
+        
+<meta charset="UTF-8">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <link rel="stylesheet" type="text/css" href="https://driedsponge.net/css/aos.css"/>
@@ -16,11 +17,12 @@
 
 
 <meta name="theme-color" content="#007BFF">
+<link rel="stylesheet" href = "https://driedsponge.net/css/formatting.css" >
  <link id="styless" rel="stylesheet" href = "https://driedsponge.net/css/textclass.css" >
 
  <link id="favicon" rel="icon" href = "https://cdn.driedsponge.net/img/zfavicon.ico" type="image/x-icon">
  <script type="text/javascript"  src="<br />
-<b>Notice</b>:  Undefined variable: decoration in <b>C:\xampp\htdocs\info\meta.php</b> on line <b>42</b><br />
+<b>Notice</b>:  Undefined variable: decoration in <b>C:\xampp\htdocs\info\meta.php</b> on line <b>44</b><br />
 "></script>
  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-140402227-3"></script>
 <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -35,25 +37,25 @@
   gtag('config', 'UA-140402227-3');
 </script>
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="description"  content="Name: chub,SteamID64: 76561197970447021
-, SteamID: STEAM_1:1:5090646
-, SteamID3: [U:1:10181293]
-, URL: https://steamcommunity.com/id/chub/" />
-        <meta name="keywords" content="chub, 76561197970447021
-, STEAM_1:1:5090646
-, [U:1:10181293]
+        <meta name="description"  content="Name: Lektro,SteamID64: 76561197985926567
+, SteamID: STEAM_1:1:12830419
+, SteamID3: [U:1:25660839]
+, URL: https://steamcommunity.com/id/coal/" />
+        <meta name="keywords" content="Lektro, 76561197985926567
+, STEAM_1:1:12830419
+, [U:1:25660839]
 " />
         <meta property="og:site_name" content="DriedSponge.net | SteamID Finder" /> <!-- Replace with your name or whatever you want-->
-        <meta property="og:title" content="Info on chub" />
-        <meta property="og:image" content="https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/98/98b92c1f5c0003f8298121553582e8f15ad409d6_full.jpg" />
+        <meta property="og:title" content="Info on Lektro" />
+        <meta property="og:image" content="https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/f1/f17cb8609a81c3ac658e06efbb78a6144d06c4a3_full.jpg" />
         <meta property="og:image:type" content="image/png" />
         <meta name="author" content="Jordan Tucker">
-        <meta property="og:description"  content="SteamID64: 76561197970447021
- SteamID: STEAM_1:1:5090646
- SteamID3: [U:1:10181293]
- URL: https://steamcommunity.com/id/chub/" />
-        <meta property="og:site_name" content="chub - driedsponge.net" />
-        <title>chub - driedsponge.net</title>
+        <meta property="og:description"  content="SteamID64: 76561197985926567
+ SteamID: STEAM_1:1:12830419
+ SteamID3: [U:1:25660839]
+ URL: https://steamcommunity.com/id/coal/" />
+        <meta property="og:site_name" content="Lektro - driedsponge.net" />
+        <title>Lektro - driedsponge.net</title>
 
         <script src="https://kit.fontawesome.com/0add82e87e.js" crossorigin="anonymous"></script>
 
@@ -65,14 +67,15 @@
  <body>
 
      <div class="app">
-        <div class="container-fluid-lg" >
+        
+<div class="container-fluid-lg" >
     
         <div class="page-header">
          
             <nav class="navbar navbar-expand-lg navbar-dark nbth fixed-top">
                     <a class="navbar-brand" href="https://driedsponge.net"><strong>driedsponge.net</strong></a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarmain" aria-controls="navbarmain" aria-expanded="false" aria-label="Toggle navigation">
-                            <span class="navbar-toggler-icon"></span>
+                    <i class="fas fa-bars" style="color: black;"></i>
                           </button>
                     <div class="collapse navbar-collapse" id="navbarmain">
                             
@@ -94,12 +97,25 @@
                                 Other
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <a class="dropdown-item" href="feedback.php">Feedback</a>
                                 <a class="dropdown-item" href="contributors.php">Contributors</a>
                                 <a class="dropdown-item" href="privacy.php">Privacy Policy</a>
                                 </div>
                             </li>
-                        </ul>  
+                        </ul>
+                        
+                            
+                                <li class="nav-item dropdown" style="list-style-type:none;">
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" style="color: white;" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    DriedSponge.net                                    </a>
+                                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                    <a class="dropdown-item" href="?logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                                                                            <a class="dropdown-item" href="manage.php"><i class="fas fa-cog"></i></i> Management</a>                                  
+                                                                    </div>
+                            </li>
                         </div>
+                                                        
+                        
                   </nav>
 
         </div>
@@ -115,28 +131,31 @@
                         
                      <div class="form-group">
                         
-     <input id="id64" type="text" class="form-control"  aria-describedby="emailHelp" placeholder="Enter a SteamID/SteamID64/SteamID3/Profile URL/Custom Profile URL">
+     <input id="id64" type="text" class="form-control"  aria-describedby="emailHelp" placeholder="Enter a SteamID/SteamID64/SteamID3/Profile URL/Custom Profile URL" required>
     </div>
 <button onclick="go()" type="submit" class="btn btn-primary">Submit</button>                    
                     <br>
                     </hgroup>
+                    <div data-aos="fade-up">
                     <div class="jumbotron" style="text-align: center;">
-                    <h2><img src="https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/98/98b92c1f5c0003f8298121553582e8f15ad409d6_full.jpg"/></h2>
-                    <h1>Results for: chub</h1>
-                    <p  data-aos="fade-up" data-aos-offset="100" class="jumbotronparagraph"><strong>SteamID64:</strong> 76561197970447021
- <button  value="76561197970447021
+                    <h2><img src="https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/f1/f17cb8609a81c3ac658e06efbb78a6144d06c4a3_full.jpg"/></h2>
+                    <h1>Results for: Lektro</h1>
+                    
+                    <p class="jumbotronparagraph"><strong>Username: </strong>Lektro <button  value="Lektro" onclick="copything(this.value)" class="btn btn-success"><i class="far fa-copy"></i></button></p>
+                    <p class="jumbotronparagraph"><strong>SteamID64:</strong> 76561197985926567
+ <button  value="76561197985926567
 " onclick="copything(this.value)" class="btn btn-success"><i class="far fa-copy"></i></button></p>
-                    <p  data-aos="fade-up" data-aos-offset="200" class="jumbotronparagraph"><strong>SteamID:</strong> STEAM_1:1:5090646
- <button  value="STEAM_1:1:5090646
+                    <p class="jumbotronparagraph"><strong>SteamID:</strong> STEAM_1:1:12830419
+ <button  value="STEAM_1:1:12830419
 " onclick="copything(this.value)" class="btn btn-success"><i class="far fa-copy"></i></button></p>
-                    <p  data-aos="fade-up" data-aos-offset="300" class="jumbotronparagraph"><strong>SteamID3:</strong> [U:1:10181293]
- <button value="[U:1:10181293]
+                    <p class="jumbotronparagraph"><strong>SteamID3:</strong> [U:1:25660839]
+ <button value="[U:1:25660839]
 " onclick="copything(this.value)" class="btn btn-success"><i class="far fa-copy"></i></button></p>
-                    <p  data-aos="fade-up" data-aos-offset="400" class="jumbotronparagraph"><strong>Profile URL:</strong> <a class="jumbaurl" target="_blank" href="https://steamcommunity.com/id/chub/">https://steamcommunity.com/id/chub/</a> <button value="https://steamcommunity.com/id/chub/" onclick="copything(this.value)" class="btn btn-success"><i class="far fa-copy"></i></button></p>
-                    <h4  data-aos="fade-up" data-aos-offset="500" class="jumboh4">Personal Info (This may not be accurate)</h4><br>
-                    <p  data-aos="fade-up" data-aos-offset="600" class="jumbotronparagraph"><strong>Real Name:</strong> N/A <button value="N/A" onclick="copything(this.value)" class="btn btn-success"><i class="far fa-copy"></i></button></p>
-                    <p  data-aos="fade-up" data-aos-offset="700" class="jumbotronparagraph"><strong>Country</strong>: US <button value="US" onclick="copything(this.value)" class="btn btn-success"><i class="far fa-copy"></i></button> </p>
-
+                    <p class="jumbotronparagraph"><strong>Profile URL:</strong> <a class="jumbaurl" target="_blank" href="https://steamcommunity.com/id/coal/">https://steamcommunity.com/id/coal/</a> <button value="https://steamcommunity.com/id/coal/" onclick="copything(this.value)" class="btn btn-success"><i class="far fa-copy"></i></button></p>
+                    <h4 class="jumboh4">Personal Info (This may not be accurate)</h4><br>
+                    <p class="jumbotronparagraph"><strong>Real Name:</strong> N/A <button value="N/A" onclick="copything(this.value)" class="btn btn-success"><i class="far fa-copy"></i></button></p>
+                    <p  class="jumbotronparagraph"><strong>Country</strong>: SE <button value="SE" onclick="copything(this.value)" class="btn btn-success"><i class="far fa-copy"></i></button> </p>
+                    </div>
                     </div>
                     
                        
@@ -183,10 +202,13 @@
                           </div>
                         </div>
                         
-                        <p><cite>Copyright © 2019 DriedSponge.net &bull; Current theme: Default</p>
+                        <p><cite>Copyright © 2019 DriedSponge.net &bull; Current theme: Winter</p>
                             
         </div>
       </footer>
+      <script>
+      document.getElementById('logout').innerHTML = "Logout DriedSponge.net";
+      </script>
 
 
 
@@ -202,7 +224,7 @@
 
         <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
         <script>
-        document.getElementById("id64").value = "chub";
+        document.getElementById("id64").value = "coal";
 
         </script>
         <script>

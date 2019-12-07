@@ -42,7 +42,7 @@ $chekid = $_SESSION['steamid'];
 $sqlblockexist = "SELECT id64 FROM blocked WHERE id64='$chekid'";
 $sqlblockexistquery = $conn->query($sqlblockexist);
 
-if ($sqlblockexistquery->rowCount() == 1){
+if (!empty($row)){
     $DisplayForm = false;
     $blocked = true;
     $sql = "SELECT id64, rsn, stamp FROM blocked WHERE id64='$chekid'";
