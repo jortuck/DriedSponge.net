@@ -40,8 +40,9 @@ $blocked = false;
 $row = null;
 $chekid = $_SESSION['steamid'];
 
-$sqlblockexist = "SELECT id64, rsn, stamp FROM blocked WHERE id64='$chekid'";
-$sqlblockexistquery = $conn->query($sqlblockexist);
+$sqlblockexistquery = $conn->prepare("SELECT id64, rsn, stamp FROM blocked WHERE id64 = :id");
+$sqlblockexistquery->execute([':id' => $chekid]);
+
 $row = $sqlblockexistquery->fetch();
 if (!empty($row)){
     $DisplayForm = false;

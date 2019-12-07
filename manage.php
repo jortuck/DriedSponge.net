@@ -54,25 +54,23 @@ include("navbar.php");
                     $blockid = $_POST['id64'];
                     $blockrsn =$_POST['rsn'];
                     $blockstamp = date("r");
-                    $sqlblockexist = "SELECT id64 FROM blocked WHERE id64='$blockid'";
-                    $sqlblockexistquery = $conn->query($sqlblockexist);
-                            if ($sqlblockexistquery->rowCount() == 1) {
+                    $sqlblockexistquery = $conn->prepare("SELECT id64 FROM blocked WHERE id64= :id");
+                    $sqlblockexistquery->execute([':id' => $blockid]);
+                    $blockrows = $sqlblockexistquery->fetch();
+                            if (!empty($blockrows)){
                                 $useralreadyexist = true;
                                 
                             } else{
-                                $sqlblock = "INSERT INTO blocked (id64, rsn, stamp)
-                                VALUES ('$blockid', '$blockrsn','$blockstamp')";
+                                $sqlblock = $conn->prepare("INSERT INTO blocked (id64, rsn, stamp)
+                                VALUES (?,?,?)")->execute([$blockid,  $blockrsn,$blockstamp]);
 
-                                if ($conn->query($sqlblock) === TRUE) {
-                                    echo "New record created successfully";
-                                } 
                             }
                 }
                 if(isset($_POST['submit-unblock'])){
                     $unblockid = $_POST['submit-unblock'];
-                    
-                    $sqlunblock= "DELETE FROM blocked WHERE id64='$unblockid'";
-                    $conn->query($sqlunblock);   
+                    $sqlunblock = $conn->prepare("DELETE FROM blocked WHERE id64= :id");
+                    $sqlunblock->execute([':id' => $unblockid]);
+                     
                 }
 
                 ?>
@@ -87,6 +85,12 @@ include("navbar.php");
                 <h3>
                   <a data-toggle="collapse" class="dropdown-head-link" href="#userblacklist" role="button" aria-expanded="false" aria-controls="userblacklist">User blacklist</a> 
               </h3>
+              <?php if($useralreadyexist == true){ ?>
+                        <p class="paragraph" style="color:red;">Error: The user is already in the database!</p>
+                        
+                      <?php 
+                      } 
+                      ?>
                 </div>
                 <div class="collapse" id="userblacklist">
                   
@@ -110,12 +114,7 @@ include("navbar.php");
                                                 </div>
                                             </form>
                                             
-                      <?php if($useralreadyexist == true){ ?>
-                        <p class="paragraph" style="color:red;">Error: The user is already in the database!</p>
-                        
-                      <?php 
-                      } 
-                      ?>
+                      
                       <br>
                       <p class="subsubhead" style="color: black; text-align: left;">Current Users</p>
                         <table class="table paragraph pintro" style="color: black;">
