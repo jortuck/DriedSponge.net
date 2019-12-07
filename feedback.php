@@ -73,7 +73,7 @@ $success = $captchares->success;
             "embeds" => [
                 [
                     "author"=> [
-                        "name"=> $_POST['name']." (".$steamprofile['steamid'].")",
+                        "name"=> $steamprofile['personaname']." (".$steamprofile['steamid'].")",
                         "url"=> $steamprofile['profileurl'],
                         "icon_url"=> $steamprofile['avatarmedium']
                     ],
