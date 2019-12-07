@@ -50,7 +50,7 @@
                             </ul> 
                             <p class="paragraph">One thing you need to know how to do is commenting. Commenting basically omits that part of the code, causing it not to be ran.</p>
                             
-                            <img src="https://i.driedsponge.net/images/png/2kcbY.png" alt="comment example"></img>
+                            <img class="img-fluid" src="https://i.driedsponge.net/images/png/2kcbY.png" alt="comment example"></img>
                             <p class="paragraph">As you can see, the commented code is green, meaning that it will not be run. You can use the comments to tell yourself what certain functions do. You can also use it to credit yourself in your work. In lua you use two dashes to comment (--).</p>
                             <p class="paragraph">The final important thing you need to know about is the <a href="https://wiki.garrysmod.com" target="_blank">GMOD wiki</a>. You will visit this site various times to look up functions and hooks in the game so I recommend keeping it bookmarked in your browser.</p>
                     <br>
@@ -67,7 +67,7 @@
                     <br>
                     <h4 class="subheading" id="dt">Data Types</h4>
                     <p class="paragraph">In Lua (<i>and the majority of other coding languages</i>), there are three data types: string, boolean, and number. A string can store any alphanumeric character and most other symbols (<i>ex: !@#$%</i>). Strings are defined using quotes (<i>""</i>). A boolean or bool for short, is a <strong>true</strong> or <strong>false</strong> value. A number is any number obviously (<i>Decimals and negatives are supported!</i>). Below is an example screenshot:</p>
-                    <img src="https://i.driedsponge.net/images/png/Sa8iQ.png" alt="datatype example"/>
+                    <img class="img-fluid" src="https://i.driedsponge.net/images/png/Sa8iQ.png" alt="datatype example"/>
                     <br>
                     <p class="paragraph">This is the end of the first tutorial. This information will help you a lot in the future. If anybody needs help the best way to talk to me is in <a href="https://driedsponge.net/discord" target="_blank">my discord server</a>. Have a good day/evening!</p>
 

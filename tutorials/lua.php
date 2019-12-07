@@ -24,7 +24,12 @@ include("../footer.php");
 
 
 ?>
+<style>
+img{
+    max-width: 650px;
+}
 
+</style>
         <script>
             tippy('footer button', {
 

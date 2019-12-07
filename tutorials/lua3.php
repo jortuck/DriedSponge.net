@@ -44,17 +44,17 @@
                         <p class="paragraph">OK, the first thing you need to know about hooks is that they are epic! They allow you to run a function when something else happens. In this tutorial, I'm gonna be using the <a href="https://wiki.garrysmod.com/page/GM/PlayerSay" target="_blank">PlayerSay</a> hook.</p>
                         <p class="paragraph">First we need to set up the hook, so go back and open up the server.lua file we created in <a href="lua.php?page=2#as">tutorial 2</a>. We want to put this hook in the server file because according to the <a target="_blank" href="https://wiki.garrysmod.com/">wiki</a>, it's a server side hook (<i>which means it only works server side</i>).</p>
                         <p class="paragraph">To add the hook, you need to use the <a href="https://wiki.garrysmod.com/page/hook/Add">hook.Add</a> function. This is how you would add it into your code:</p>
-                        <img src="https://i.driedsponge.net/images/png/I3VFD.png" alt="hook.add example"/>
+                        <img class="img-fluid" src="https://i.driedsponge.net/images/png/I3VFD.png" alt="hook.add example"/>
                         <p class="paragraph">Now you have your hook. Any function you put inside the hook will be ran when the player says something in chat because the hook is <a href="https://wiki.garrysmod.com/page/GM/PlayerSay" target="_blank">PlayerSay</a>. In the hook function, <i>ply</i> is the entity that chatted, <i>text</i> is what the entity said (string), and <i>team</i> is whether they said it in team chat or not (boolean). Remember: The functions you put in the hook have to be server side because the hook is server side. The client side version of this hook is <a href="https://wiki.garrysmod.com/page/GM/OnPlayerChat" target="_blank">OnPlayerChat</a>.</p>
                         <p class="paragraph">Ok now let's make this hook do something. I want it to log the players SteamID64 and what they said to the server console so I'm gonna add my print function.</p>
-                        <img src="https://i.driedsponge.net/images/png/AluHb.png" alt="hook with print example"/>
+                        <img class="img-fluid" src="https://i.driedsponge.net/images/png/AluHb.png" alt="hook with print example"/>
                         <p class="paragraph">Here is what everything does:</p>
                         <ul class="paragraph">
                             <li><code>ply:Get:<a href="https://wiki.garrysmod.com/page/Player/SteamID64" target="_blank">SteamID64()</a></code> will return the SteamID64 of the entity, in this case it's the player that chatted. If the entity is a bot it will return 90071996842377216.</li>
                             <li><code>text</code> is the string of whatever the player said.</li>
                         </ul>
                         <p class="paragraph">To test your code, start your game and say something in chat. It should return the following:</p>
-                        <img src="https://i.driedsponge.net/images/png/TRWBN.png" alt="hook return" />
+                        <img class="img-fluid" src="https://i.driedsponge.net/images/png/TRWBN.png" alt="hook return" />
                         <p class="paragraph">Hooks can be very useful when trying to create a variety of things. We're now gonna make are hook more complex by adding if/then statements. In the future, I will talk about more advanced hooks and creating your own hooks!</p>
                         <br>
                         <h4 class="subheading" id="i">if/then statements</h4>
@@ -74,22 +74,22 @@
                             - <a href="https://www.lua.org/pil/3.2.html" target="_blank">lua.org 3.2 – Relational Operators</a>
                             </cite></p>
                             <p class="paragraph">Alright, now let's talk about actually forming our if then statement. I want to check to see if the player said Hello. It should look like this.</p>
-                            <img src="https://i.driedsponge.net/images/png/MSAwv.png" alt="if then statement" />
+                            <img class="img-fluid" src="https://i.driedsponge.net/images/png/MSAwv.png" alt="if then statement" />
                             <p class="paragraph">Alright, now enter your game and say something in chat. It should return the following values:</p>
-                            <img src="https://i.driedsponge.net/images/png/6IAGz.png" alt="if then statement RETURN" />
+                            <img class="img-fluid" src="https://i.driedsponge.net/images/png/6IAGz.png" alt="if then statement RETURN" />
                             <p class="paragraph">Now, I want to punish the player for saying hello, so I will change <code><a href="https://wiki.garrysmod.com/page/Global/print" target="_blank">print</a>("Server: "..ply:<a href="https://wiki.garrysmod.com/page/Player/SteamID64" target="_blank">SteamID64()</a>.." said "..text)</code> to <code>ply:<a href="https://wiki.garrysmod.com/page/Player/Kill" target="_blank">Kill()</a></code>. This will tell the server to kill me or any other user when they send "hello" in chat.</p>
                             <p class="paragraph">You should notice that if you say hello in chat, you will die, and if you say something else it will print "The player did not say hi" to the server console.</p>
                             <p class="paragraph">Also, you can do checks on variables like this:</p>
-                            <img src="https://i.driedsponge.net/images/png/xLhvy.png" alt="checks on variables" />
+                            <img class="img-fluid" src="https://i.driedsponge.net/images/png/xLhvy.png" alt="checks on variables" />
                             <p class="paragraph">Now that you have an understnading of if/then statements, lets move on to and/or statements.</p>
                             <h5><span class="badge badge-primary">Keep in mind: if/then statments work outside of hooks.</span></h5>
                             <br>
                             <h4 class="subheading" id="a">and/or statements</h4>
                             <p class="paragraph">And/or statements make it really easy to perform multiple if then statement checks. Instead of having multiple if/then statements, you can have one if/the statement that uses and/or statements. For example, if the player said hello <strong>and</strong>  has 100 health at the same time, then kill them (<a href="https://wiki.garrysmod.com/page/Entity/Health" target="_blank">Health function</a>). Your syntax should look like this:</p>
-                            <img src="https://i.driedsponge.net/images/png/VPcRw.png" alt="and example" />
+                            <img class="img-fluid" src="https://i.driedsponge.net/images/png/VPcRw.png" alt="and example" />
                             <p class="paragraph">If you have 100 health <strong>and</strong> you said "hello" in chat then you will die, otherwise it will print "The player did not say hi" because of the else statement.</p>
                             <p class="paragraph">Or statements are very similar to and statements. As we stated earlier, and statements only run the function if the player as both checks, or statements only require one of the checks to be passed.</p>
-                            <img src="https://i.driedsponge.net/images/png/hPG7U.png" alt="or example" />
+                            <img class="img-fluid" src="https://i.driedsponge.net/images/png/hPG7U.png" alt="or example" />
                             <p class="paragraph">Because this is an or statements, you might notice you'll die when you say something other than "hello". This is because you have 100 health. It does not care about what you said in chat, if you have 100 health you will die. If you don't want to die, switch the <strong>or</strong> to an <strong>and</strong>. Then you will only die if you say "hello" <strong>and</strong> you have 100 health.</p>
                             <p class="paragraph">Another thing to keep in mind is that you can use and/or statements consecutively, like this:</p>
                             <ul class="paragraph">
@@ -97,7 +97,7 @@
                                 <li><code>if ply:<a href="https://wiki.garrysmod.com/page/Player/SteamID64" target="_blank">SteamID64()</a> == "76561198357728256" or ply:<a href="https://wiki.garrysmod.com/page/Player/Name" target="_blank">Name()</a> == "DriedSponge" or ply:<a href="https://wiki.garrysmod.com/page/Entity/Health" target="_blank">Health()</a> == 100 then ...</code> - some like this means if this, this, or this applies to you then you pass the check.</li>
                             </ul>
                             <p class="paragraph">The last cool thing you can do with and/or statements is combine them like this:</p>
-                            <img src="https://i.driedsponge.net/images/png/AzaPb.png" alt="combined and or" />
+                            <img class="img-fluid" src="https://i.driedsponge.net/images/png/AzaPb.png" alt="combined and or" />
                             <p class="paragraph">The last important thing I need to note about and/or statements is that you can combine them in any way you want. The samples I showed you were just examples.</p>
                             <br>
                             <p class="paragraph">This marks the end of my third  tutorial. If something in it doesn't make sense to you please let know in <a href="https://driedsponge.net/discord" target="_blank">my discord server</a>. Have a good day/evening!</p>
