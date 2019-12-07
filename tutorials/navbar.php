@@ -43,7 +43,7 @@
                                 include ('../steamauth/userInfo.php'); //To access the $steamprofile array
                                 ?>
                                 <li class="nav-item dropdown" style="list-style-type:none;">
-                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <a class="nav-link dropdown-toggle" style="color: white;" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <?php echo $steamprofile['personaname']; ?>
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
