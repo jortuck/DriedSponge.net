@@ -136,11 +136,11 @@ include("navbar.php");
                             
                             <tr><td>
                             <form action="manage.php" method="post" />
-                             <button type="submit" value="<?php echo $row["id64"];?>" name="submit-unblock" class="btn btn-primary" >
+                             <button type="submit" value="<?=htmlspecialchars($row["id64"]);?>" name="submit-unblock" class="btn btn-primary" >
                                 Remove User
                             </button>
                         </form>
-                    </td><td><?php echo $row["id64"];?></td><td><?php echo $row["rsn"];?></td><td><?php echo $row["stamp"];?></td></tr> 
+                    </td><td><?=htmlspecialchars($row["id64"]);?></td><td><?=htmlspecialchars($row["rsn"]);?></td><td><?=htmlspecialchars($row["stamp"]);?></td></tr> 
                             
                             <?php
                         }
