@@ -39,15 +39,13 @@ $FailedCaptch = false;
 $blocked = false;
 $row = null;
 $chekid = $_SESSION['steamid'];
-$sqlblockexist = "SELECT id64 FROM blocked WHERE id64='$chekid'";
-$sqlblockexistquery = $conn->query($sqlblockexist);
 
+$sqlblockexist = "SELECT id64, rsn, stamp FROM blocked WHERE id64='$chekid'";
+$sqlblockexistquery = $conn->query($sqlblockexist);
+$row = $sqlblockexistquery->fetch();
 if (!empty($row)){
     $DisplayForm = false;
     $blocked = true;
-    $sql = "SELECT id64, rsn, stamp FROM blocked WHERE id64='$chekid'";
-    $result = $conn->query($sql);
-    $row = $result->fetch();
 }else{
     $DisplayForm = true;
 }
