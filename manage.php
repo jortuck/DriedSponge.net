@@ -22,6 +22,8 @@ include("databases/connect.php");
         <title>Manage</title>
         <script src="https://kit.fontawesome.com/0add82e87e.js" crossorigin="anonymous"></script>
         <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+        <link rel="stylesheet" href = "//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" type="text/css" >
+        
     </head>
  <body>
 
@@ -48,30 +50,34 @@ include("navbar.php");
             <div class="container">
             <?php 
             $useralreadyexist = false;
+            $blocksuccess = false;
+            $unblocksuccess = false;
             if (isset($_SESSION['steamid'])){ 
             if ($_SESSION['steamid'] == "76561198357728256"){ 
-                if(isset($_POST['submit-block'])){
-                    $blockid = $_POST['id64'];
-                    $blockrsn =$_POST['rsn'];
-                    $blockstamp = date("r");
-                    $sqlblockexistquery = $conn->prepare("SELECT id64 FROM blocked WHERE id64= :id");
-                    $sqlblockexistquery->execute([':id' => $blockid]);
-                    $blockrows = $sqlblockexistquery->fetch();
-                            if (!empty($blockrows)){
-                                $useralreadyexist = true;
-                                
-                            } else{
-                                $sqlblock = $conn->prepare("INSERT INTO blocked (id64, rsn, stamp)
-                                VALUES (?,?,?)")->execute([$blockid,  $blockrsn,$blockstamp]);
+                    if(isset($_POST['submit-block'])){
+                        $blockid = $_POST['id64'];
+                        $blockrsn =$_POST['rsn'];
+                        $blockstamp = date("r");
+                        $sqlblockexistquery = $conn->prepare("SELECT id64 FROM blocked WHERE id64= :id");
+                        $sqlblockexistquery->execute([':id' => $blockid]);
+                        $blockrows = $sqlblockexistquery->fetch();
+                                if (!empty($blockrows)){
+                                    $useralreadyexist = true;
+                                    $blocksuccess = false;
+                                } else{
+                                    $sqlblock = $conn->prepare("INSERT INTO blocked (id64, rsn, stamp)
+                                    VALUES (?,?,?)")->execute([$blockid,  $blockrsn,$blockstamp]);
+                                    $blocksuccess = true;
 
-                            }
-                }
-                if(isset($_POST['submit-unblock'])){
-                    $unblockid = $_POST['submit-unblock'];
-                    $sqlunblock = $conn->prepare("DELETE FROM blocked WHERE id64= :id");
-                    $sqlunblock->execute([':id' => $unblockid]);
-                     
-                }
+                                }
+                    }
+                    if(isset($_POST['submit-unblock'])){
+                        $unblockid = $_POST['submit-unblock'];
+                        $sqlunblock = $conn->prepare("DELETE FROM blocked WHERE id64= :id");
+                        $sqlunblock->execute([':id' => $unblockid]);
+                        $unblocksuccess = true;
+                        
+                    }
 
                 ?>
                 <hgroup>
@@ -85,12 +91,7 @@ include("navbar.php");
                 <h3>
                   <a data-toggle="collapse" class="dropdown-head-link" href="#userblacklist" role="button" aria-expanded="false" aria-controls="userblacklist">User blacklist</a> 
               </h3>
-              <?php if($useralreadyexist == true){ ?>
-                        <p class="paragraph" style="color:red;">Error: The user is already in the database!</p>
-                        
-                      <?php 
-                      } 
-                      ?>
+              
                 </div>
                 <div class="collapse" id="userblacklist">
                   
@@ -114,7 +115,6 @@ include("navbar.php");
                                                 </div>
                                             </form>
                                             
-                      
                       <br>
                       <p class="subsubhead" style="color: black; text-align: left;">Current Users</p>
                         <table class="table paragraph pintro" style="color: black;">
@@ -150,10 +150,6 @@ include("navbar.php");
                       </div>
                     </div>
                         <br> 
-                      
-                        
-                    
-
                 <?php }else{ ?>
                     <hgroup>
                         <!-- <img src="https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/18/18be38c2f230fea0fa667c8165e4da5cb1a787c0_full.jpg" alt="DriedSponge's Profile Picture"> -->
@@ -181,19 +177,35 @@ include("navbar.php");
             <?php 
             include("footer.php"); // we include footer.php here. you can use .html extension, too.
             ?>
-                
-                <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
                 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
                 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
                 <script src="https://unpkg.com/popper.js@1"></script>
                 <script src="https://unpkg.com/tippy.js@4"></script>
                 <script src="main.js"></script>
-              
+                <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+                <?php if($useralreadyexist == true){ ?>
+                <script type="text/JavaScript">  
+                toastr["error"]("<?=htmlspecialchars($blockid);?> is already in the databse!", "Error:")     
+                </script>
+                      <?php 
+                      } 
+                      ?>
+                      <?php if($blocksuccess == true){ ?>
+                <script type="text/JavaScript">  
+                toastr["success"]("<?=htmlspecialchars($blockid);?> has be blocked! Reason: <?=htmlspecialchars($blockrsn);?> ", "Congradulations!")     
+                </script>
+                      <?php 
+                      } 
+                      ?>
+                      <?php if($unblocksuccess == true){ ?>
+                <script type="text/JavaScript">  
+                toastr["success"]("<?=htmlspecialchars($unblockid);?> has be unblocked!", "Congradulations!")     
+                </script>
+                      <?php 
+                      } 
+                      ?>
+
  </body>
-
-
-
-
-
 
 </html>
