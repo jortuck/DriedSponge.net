@@ -97,6 +97,7 @@ $success = $captchares->success;
         
     
     curl_exec($ch);
+    
  }else{
     $DisplayForm = true;
     $FailedCaptch = true;

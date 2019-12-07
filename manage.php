@@ -10,10 +10,10 @@ include("databases/connect.php");
 <!--         Site created: 9/19/19
         Author: DriedSponge(Jordan Tucker) -->
 
-        <meta name="description" content="Sumbit feedback about my site">
-        <meta name="keywords" content="feedback, driedsponge.net feedback">
+        <meta name="description" content="Admins only guys">
+        <meta name="keywords" content="driedsponge.net mange">
         <meta name="author" content="Jordan Tucker">
-        <meta property="og:site_name" content="DriedSponge.net | Feedback" />
+        <meta property="og:site_name" content="DriedSponge.net | Mangement" />
        
         <?php 
             include("meta.php"); 
@@ -24,11 +24,23 @@ include("databases/connect.php");
         <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     </head>
  <body>
+
 <?php
 include("navbar.php");
 
 ?>
+<style>
+.dropdown-head-link{
+  color: black;
+  text-decoration: none;
 
+}
+.dropdown-head-link:hover{
+  color: black;
+  text-decoration: underline;
+
+}
+</style>
 
     <div class="app">
     <div class="container-fluid-lg" style="padding-top: 80px;">
@@ -70,16 +82,43 @@ include("navbar.php");
                     
                     <br>
                 </hgroup>
-                <p class="paragraph"><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#deleteform">
-                        Add user to blacklist
-                      </button></p>
+                <div class="card card-accordion">
+                <div class="card-header manage-card-header">
+                <h3>
+                  <a data-toggle="collapse" class="dropdown-head-link" href="#userblacklist" role="button" aria-expanded="false" aria-controls="userblacklist">User blacklist</a> 
+              </h3>
+                </div>
+                <div class="collapse" id="userblacklist">
+                  
+                    <div class="card-body">
+                      <p class="subsubhead" style="color: black; text-align: left;">Add user</p>
+                    <form action="manage.php" method="post">
+                                             <div class="form-row">
+                                               <div class="form-group col-md-6">
+                                                  <label for="id64" style="color: black;">SteamID64</label>
+                                                     <input id="id64" name="id64" type="text" class="form-control"  placeholder="Enter SteamID64"  required>
+                                                    </div>
+                                                     <br>
+                                                     <div class="form-group col-md-6">
+                                                        <label for="rsn" style="color: black;">Reason</label>
+                                                       <input id="rsn" name="rsn" type="text" class="form-control" placeholder="Enter reason" required>
+                                                      </div>
+                                                     <br>
+                                                     <div class="form-group col-md-6">
+                                                    <button name="submit-block" type="submit" class="btn btn-primary">Submit</button>
+                                                  </div>
+                                                </div>
+                                            </form>
+                                            
                       <?php if($useralreadyexist == true){ ?>
-                        <p class="paragraph">Error: The user is already in the database!</p>
+                        <p class="paragraph" style="color:red;">Error: The user is already in the database!</p>
                         
                       <?php 
                       } 
                       ?>
-                        <table class="table paragraph pintro">
+                      <br>
+                      <p class="subsubhead" style="color: black; text-align: left;">Current Users</p>
+                        <table class="table paragraph pintro" style="color: black;">
                         <thead>
                         <tr>
                         <th scope="col">Buttons!</th>
@@ -88,6 +127,7 @@ include("navbar.php");
                             <th scope="col">Timestamp</th>
                         </tr>
                         </thead>
+                        <tbody>
                       <?php
                       $sql = "SELECT id64, rsn, stamp FROM blocked";
                       $result = $conn->query($sql);
@@ -100,41 +140,18 @@ include("navbar.php");
                                 Remove User
                             </button>
                         </form>
-                    </td><td><?php echo $row["id64"];?></td><td><?php echo $row["rsn"];?></td><td><?php echo $row["stamp"];?></td></tr>"; 
+                    </td><td><?php echo $row["id64"];?></td><td><?php echo $row["rsn"];?></td><td><?php echo $row["stamp"];?></td></tr> 
                             
                             <?php
                         }
                       ?>
+                      </tbody>
                         </table>
+                      </div>
+                      </div>
+                    </div>
                         <br> 
-                        <div class="modal" tabindex="-1" id="deleteform" role="dialog">
-                                <div class="modal-dialog" role="document">
-                                  <div class="modal-content">
-                                    <div class="modal-header">
-                                      <h5 class="modal-title" style="color: black;">Add user to form blacklist</h5>
-                                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                      </button>
-                                    </div>
-                                    <div class="modal-body">
-                                            <form action="manage.php" method="post">
-                                             <div class="form-group">
-                                                  <label for="id64" style="color: black;">SteamID64</label>
-                                                     <input id="id64" name="id64" type="text" class="form-control"  placeholder="Enter SteamID64"  required>
-                                                     <br>
-                                                        <label for="rsn" style="color: black;">Reason</label>
-                                                       <input id="rsn" name="rsn" type="text" class="form-control" placeholder="Enter reason" required>
-                                                     <br>
-                                                    <button name="submit-block" type="submit" class="btn btn-primary">Submit</button>
-                                                </div>
-                                            </form>
-                                    </div>
-                                    <div class="modal-footer">
-                                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>                  
+                      
                         
                     
 
