@@ -36,19 +36,25 @@
                         </ul>
                         <?php 
                                 if(!isset($_SESSION['steamid'])) {
-
-                                loginbutton("rectangle"); //login button
-
-                                }  else {
-                                include ('../steamauth/userInfo.php'); //To access the $steamprofile array
-                                ?>
-                                <li class="nav-item dropdown" style="list-style-type:none;">
-                                    <a class="nav-link dropdown-toggle" style="color: white;" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <?php echo $steamprofile['personaname']; ?>
-                                    </a>
-                                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                    <a class="dropdown-item" href="?logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
-                                </div>
+                                    loginbutton("rectangle"); //login button
+    
+                                    }  else {
+                                    include ('../steamauth/userInfo.php'); //To access the $steamprofile array
+                                    ?>
+                                    <li class="nav-item dropdown" style="list-style-type:none;">
+                                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" style="color: white;" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <?=htmlspecialchars($steamprofile['personaname']);?>
+                                        </a>
+                                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                        <a class="dropdown-item" href="?logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                                        <?php
+                                         if($_SESSION['steamid'] == "76561198357728256"){
+                                        ?>
+                                            <a class="dropdown-item" href="../manage.php"><i class="fas fa-cog"></i></i> Management</a>                                  
+                                        <?php
+                                        }
+                                        ?>
+                                    </div>
                             </li>
                         </div>
                                 <?php 

@@ -145,7 +145,7 @@ $success = $captchares->success;
                         <form action="feedback.php" method="post">
                         <div class="form-group">
                             <label for="name">Name</label>
-                                <input id="name" name="name" type="text" class="form-control" value="<?php echo $steamprofile['personaname'];?>" placeholder="<?php echo $steamprofile['personaname'];?>"  readonly>
+                                <input id="name" name="name" type="text" class="form-control" value="<?=htmlspecialchars($steamprofile['personaname']);?>" placeholder="<?=htmlspecialchars($steamprofile['personaname']);?>"  readonly>
                                  <br>
                                  <label for="say">What are your thoughts on the site?</label>
                                 <textarea id="say"class="form-control" name="say" rows="3" placeholder="Type here I guess..."  required></textarea>

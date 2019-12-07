@@ -36,12 +36,11 @@ if ( date("m") == "10" ){
 
 ?>
 
-<meta name="theme-color" content="<?php echo $themecol; ?>">
+<meta name="theme-color" content="<?=htmlspecialchars($themecol);?>">
 <link rel="stylesheet" href = "https://driedsponge.net/css/formatting.css" >
- <link id="styless" rel="stylesheet" href = "<?php echo $theme; ?>" >
+ <link id="styless" rel="stylesheet" href = "<?=htmlspecialchars($theme);?>" >
 
- <link id="favicon" rel="icon" href = "<?php echo $themefav; ?>" type="image/x-icon">
- <script type="text/javascript"  src="<?php echo $decoration; ?>"></script>
+ <link id="favicon" rel="icon" href = "<?=htmlspecialchars($themefav);?>" type="image/x-icon">
  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-140402227-3"></script>
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-140402227-3"></script>
