@@ -200,7 +200,7 @@ include("navbar.php");
                       ?>
                       <?php if($unblocksuccess == true){ ?>
                 <script type="text/JavaScript">  
-                toastr["success"]("<?=htmlspecialchars($unblockid);?> has be unblocked!", "Congradulations!")     
+                toastr["success"]("<?=htmlspecialchars($unblockid);?> has been unblocked!", "Congradulations!")     
                 </script>
                       <?php 
                       } 
