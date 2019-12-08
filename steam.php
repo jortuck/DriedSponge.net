@@ -138,7 +138,7 @@ include("navbar.php")
                         <?php
                     }else{
                         ?>
-                        <h1 class="articleh1">Login to see your owns stats</h1>
+                        <h1 class="articleh1">Login to see your own info</h1>
                     <br>
                     <p style="text-align: center;"><a href='?login'><img src='https://steamcommunity-a.akamaihd.net/public/images/signinthroughsteam/sits_02.png'></a></p>
                             <?php
