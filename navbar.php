@@ -52,7 +52,7 @@
                                     <?php
                                      if($_SESSION['steamid'] == "76561198357728256"){
                                     ?>
-                                        <a class="dropdown-item" href="manage.php"><i class="fas fa-cog"></i></i> Management</a>                                  
+                                        <a class="dropdown-item" href="manage/index.php"><i class="fas fa-cog"></i></i> Management</a>                                  
                                     <?php
                                     }
                                     ?>

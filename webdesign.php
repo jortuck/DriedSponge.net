@@ -29,13 +29,7 @@ include("navbar.php")
      <div class="app">
    
     <div class="container-fluid-lg" style="padding-top: 80px;">
-        
 
-        
-        
-
-                            
-   
         
             <div class="container">
                

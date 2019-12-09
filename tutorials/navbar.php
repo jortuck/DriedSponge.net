@@ -12,7 +12,7 @@
                         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                             <li class="nav-item" id="homelink"><a class="nav-link" href="../index.php">Home</a></li>
                             
-                            <li class="nav-item" id="tut"><a class="nav-link" href="index.php">Coding Tutorials</a></li>
+                            <li class="nav-item" id="tut"><a class="nav-link" href="../tutorials/index.php">Coding Tutorials</a></li>
                             <li class="nav-item" id="steam"><a class="nav-link" href="../steam.php">Steam Tool</a></li>
                             <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle" href="#" id="MyProjects" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -33,6 +33,7 @@
                                 <a class="dropdown-item" href="../privacy.php">Privacy Policy</a>
                                 </div>
                             </li>
+                            
                         </ul>
                         <?php 
                                 if(!isset($_SESSION['steamid'])) {
@@ -50,7 +51,7 @@
                                         <?php
                                          if($_SESSION['steamid'] == "76561198357728256"){
                                         ?>
-                                            <a class="dropdown-item" href="../manage.php"><i class="fas fa-cog"></i></i> Management</a>                                  
+                                            <a class="dropdown-item" href="../manage/index.php"><i class="fas fa-cog"></i></i> Management</a>                                  
                                         <?php
                                         }
                                         ?>

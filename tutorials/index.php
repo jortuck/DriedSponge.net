@@ -1,5 +1,7 @@
 <?php
-require ('../steamauth/steamauth.php');  
+require ('../steamauth/steamauth.php'); 
+
+
 ?>
 <!DOCTYPE html>
 

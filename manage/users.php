@@ -1,6 +1,6 @@
 <?php
-require('steamauth/steamauth.php'); 
-include("databases/connect.php");
+require('../steamauth/steamauth.php'); 
+include("../databases/connect.php");
 ?>
 <!DOCTYPE html>
 
@@ -16,10 +16,10 @@ include("databases/connect.php");
         <meta property="og:site_name" content="DriedSponge.net | Mangement" />
        
         <?php 
-            include("meta.php"); 
+            include("../meta.php"); 
             ?>
         
-        <title>Manage</title>
+        <title>Manage - Users</title>
         <script src="https://kit.fontawesome.com/0add82e87e.js" crossorigin="anonymous"></script>
         <script src="https://www.google.com/recaptcha/api.js" async defer></script>
         <link rel="stylesheet" href = "//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" type="text/css" >
@@ -28,7 +28,7 @@ include("databases/connect.php");
  <body>
 
 <?php
-include("navbar.php");
+include("../tutorials/navbar.php");
 
 ?>
 <style>
@@ -48,6 +48,7 @@ include("navbar.php");
     <div class="container-fluid-lg" style="padding-top: 80px;">
         
             <div class="container">
+            
             <?php 
             $useralreadyexist = false;
             $blocksuccess = false;
@@ -80,24 +81,29 @@ include("navbar.php");
                     }
 
                 ?>
+                <ul class="nav nav-tabs">
+              <li class="nav-item">
+                <a class="nav-link nav-tab" href="index.php">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link  nav-tab active" href="users.php">Users</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link nav-tab" href="#">Content Mangement</a>
+              </li>
+            </ul>
+            <br>
                 <hgroup>
-                        <!-- <img src="https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/18/18be38c2f230fea0fa667c8165e4da5cb1a787c0_full.jpg" alt="DriedSponge's Profile Picture"> -->
-                        <h1 class="display-2"><strong>Management</strong></h1>
-                    
-                    <br>
+                        <h1 class="display-4"><strong>User Management</strong></h1>
                 </hgroup>
-                <div class="card card-accordion">
-                <div class="card-header manage-card-header">
-                <h3>
-                  <a data-toggle="collapse" class="dropdown-head-link" href="#userblacklist" role="button" aria-expanded="false" aria-controls="userblacklist">User blacklist</a> 
-              </h3>
-              
-                </div>
-                <div class="collapse" id="userblacklist">
-                  
-                    <div class="card-body">
-                      <p class="subsubhead" style="color: black; text-align: left;">Add user</p>
-                    <form action="manage.php" method="post">
+                <br>
+                <div class="card">
+                  <div class="card-header">
+                    <h3>User Blacklist</h3>
+                  </div>
+                <div class="card-body">
+
+                    <form action="users.php" method="post">
                                              <div class="form-row">
                                                <div class="form-group col-md-6">
                                                   <label for="id64" style="color: black;">SteamID64</label>
@@ -110,7 +116,7 @@ include("navbar.php");
                                                       </div>
                                                      <br>
                                                      <div class="form-group col-md-6">
-                                                    <button name="submit-block" type="submit" class="btn btn-primary">Submit</button>
+                                                    <button name="submit-block" type="submit" class="btn btn-primary">Add User</button>
                                                   </div>
                                                 </div>
                                             </form>
@@ -134,7 +140,7 @@ include("navbar.php");
                             ?>
                             
                             <tr><td>
-                            <form action="manage.php" method="post" />
+                            <form action="users.php" method="post" />
                              <button type="submit" value="<?=htmlspecialchars($row["id64"]);?>" name="submit-unblock" class="btn btn-primary" >
                                 Remove User
                             </button>
@@ -147,12 +153,23 @@ include("navbar.php");
                       </tbody>
                         </table>
                       </div>
-                      </div>
                     </div>
+                    <br>
+                    <div class="card">
+                        <div class="card-header">
+                          <h3>Admins</h3>
+                        </div>
+                      <div class="card-body">
+      
+                            </div>
+                          </div>
                         <br> 
+
+
+
+
                 <?php }else{ ?>
                     <hgroup>
-                        <!-- <img src="https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/18/18be38c2f230fea0fa667c8165e4da5cb1a787c0_full.jpg" alt="DriedSponge's Profile Picture"> -->
                         <h1 class="display-2"><strong>You are not management, get out!</strong></h1>
                     
                     <br>
@@ -175,7 +192,7 @@ include("navbar.php");
             </div>
             <!-- end of app -->
             <?php 
-            include("footer.php"); // we include footer.php here. you can use .html extension, too.
+            include("../footer.php"); // we include footer.php here. you can use .html extension, too.
             ?>
                 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
                 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>

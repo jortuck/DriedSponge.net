@@ -1,6 +1,9 @@
 <?php
 require('steamauth/steamauth.php');  
 include("databases/connect.php");
+
+
+                                    
 ?>
 <!DOCTYPE html>
 
@@ -60,6 +63,7 @@ include("navbar.php")
                                     
                                 </div>
                                 </div>
+                                
                                 <div data-aos="fade-up" class="card card-border" style="width: 18rem; text-align:center;">
                                         <div class="card-body">
                                         <img  src="img/lua.png" alt="lualogo" height="100px" style="padding: none; margin: none;"/>
