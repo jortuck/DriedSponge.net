@@ -176,6 +176,7 @@ include("../tutorials/navbar.php");
                       $sql = "SELECT id64, rsn, stamp FROM blocked";
                       $result = $conn->query($sql);
                         while($row = $result->fetch()){   
+                           $blackurl = "https://steamcommunity.com/profiles/".$row['id64']."/";
                             ?>
                             
                             <tr><td>
@@ -184,7 +185,7 @@ include("../tutorials/navbar.php");
                                 Remove User
                             </button>
                         </form>
-                    </td><td><?=htmlspecialchars($row["id64"]);?></td><td><?=htmlspecialchars($row["rsn"]);?></td><td><?=htmlspecialchars($row["stamp"]);?></td></tr> 
+                    </td><td><a target="_blank" href="<?=htmlspecialchars($blackurl);?>"><?=htmlspecialchars($row["id64"]);?></a></td><td><?=htmlspecialchars($row["rsn"]);?></td><td><?=htmlspecialchars($row["stamp"]);?></td></tr> 
                             
                             <?php
                         }
@@ -222,7 +223,8 @@ include("../tutorials/navbar.php");
                                       <?php
                                       $sql2 = "SELECT id64, stamp FROM staff";
                                       $result2 = $conn->query($sql2);
-                                        while($row2 = $result2->fetch()){   
+                                        while($row2 = $result2->fetch()){ 
+                                          $admurl = "https://steamcommunity.com/profiles/".$row2['id64']."/";  
                                             ?>
                                             
                                             <tr><td>
@@ -231,7 +233,7 @@ include("../tutorials/navbar.php");
                                                 Fire!
                                             </button>
                                         </form>
-                                    </td><td><?=htmlspecialchars($row2["id64"]);?></td><td><?=htmlspecialchars($row2["stamp"]);?></td></tr> 
+                                    </td><td><a href="<?=htmlspecialchars($admurl)?>" target="_blank"><?=htmlspecialchars($row2["id64"]);?></a></td><td><?=htmlspecialchars($row2["stamp"]);?></td></tr> 
                                             
                                             <?php
                                         }
