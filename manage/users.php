@@ -53,6 +53,9 @@ include("../tutorials/navbar.php");
             $useralreadyexist = false;
             $blocksuccess = false;
             $unblocksuccess = false;
+            $hiresuccess = false;
+            $firesuccess = false;
+            $fireuseralreadyexist = false;
             if (isset($_SESSION['steamid'])){ 
             if ($_SESSION['steamid'] == "76561198357728256"){ 
                     if(isset($_POST['submit-block'])){
@@ -79,6 +82,31 @@ include("../tutorials/navbar.php");
                         $unblocksuccess = true;
                         
                     }
+                    if(isset($_POST['submit-fire'])){
+                      $fireid = $_POST['submit-fire'];
+                      $sqlfire = $conn->prepare("DELETE FROM staff WHERE id64= :id");
+                      $sqlfire->execute([':id' => $fireid]);
+                      $firesuccess = true;
+                      
+                  }
+                  if(isset($_POST['submit-hire'])){
+                    $hireid = $_POST['id64'];
+                    $hirestamp = date("r");
+                    $sqlhireexistquery = $conn->prepare("SELECT id64 FROM staff WHERE id64= :id");
+                    $sqlhireexistquery->execute([':id' => $hireid]);
+                    $hirerows = $sqlhireexistquery->fetch();
+                            if (!empty($hirerows)){
+                              echo "testiktgjmndrkgljdhgkjghdfkgjhgkjlthgdgjtdfkghftkjfgfjktf";
+                                
+                                $hiresuccess = false;
+                                $alreadystaff = true;
+                            } else{
+                                $adminhire = $conn->prepare("INSERT INTO staff (id64, stamp)
+                                VALUES (?,?)")->execute([$hireid, $hirestamp]);
+                                $hiresuccess = true;
+
+                            }
+                }
 
                 ?>
                 <ul class="nav nav-tabs">
@@ -140,8 +168,8 @@ include("../tutorials/navbar.php");
                             ?>
                             
                             <tr><td>
-                            <form action="users.php" method="post" />
-                             <button type="submit" value="<?=htmlspecialchars($row["id64"]);?>" name="submit-unblock" class="btn btn-primary" >
+                            <form action="users.php" method="post" >
+                             <button type="submit" value="<?=htmlspecialchars($row["id64"]);?>" name="submit-unblock" class="btn btn-danger" >
                                 Remove User
                             </button>
                         </form>
@@ -160,14 +188,48 @@ include("../tutorials/navbar.php");
                           <h3>Admins</h3>
                         </div>
                       <div class="card-body">
-      
+                        <!-- Admin manager -->
+                                    <form action="users.php" method="post">
+                                                                  <label for="id642" style="color: black;">SteamID64</label>
+                                                                    <input id="id642" name="id64" type="text" class="form-control"  placeholder="Enter SteamID64"  required>
+                                                                    <br>
+                                                                    
+                                                                    <button name="submit-hire" type="submit" class="btn btn-primary">Add User</button>
+                                                                  
+                                                            </form>                   
+                                      <br>
+                                      <p class="subsubhead" style="color: black; text-align: left;">Current Admins</p>
+                                        <table class="table paragraph pintro" style="color: black;">
+                                        <thead>
+                                        <tr>
+                                        <th scope="col">Buttons!</th>
+                                            <th scope="col">ID64</th>
+                                            <th scope="col">Timestamp</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                      <?php
+                                      $sql2 = "SELECT id64, stamp FROM staff";
+                                      $result2 = $conn->query($sql2);
+                                        while($row2 = $result2->fetch()){   
+                                            ?>
+                                            
+                                            <tr><td>
+                                            <form action="users.php" method="post" >
+                                            <button type="submit" value="<?=htmlspecialchars($row2["id64"]);?>" name="submit-fire" class="btn btn-danger" >
+                                                Fire!
+                                            </button>
+                                        </form>
+                                    </td><td><?=htmlspecialchars($row2["id64"]);?></td><td><?=htmlspecialchars($row2["stamp"]);?></td></tr> 
+                                            
+                                            <?php
+                                        }
+                                      ?>
+                                      </tbody>
+                                        </table>
                             </div>
                           </div>
                         <br> 
-
-
-
-
                 <?php }else{ ?>
                     <hgroup>
                         <h1 class="display-2"><strong>You are not management, get out!</strong></h1>
@@ -207,18 +269,39 @@ include("../tutorials/navbar.php");
                 </script>
                       <?php 
                       } 
+                      if($alreadystaff == true){
                       ?>
-                      <?php if($blocksuccess == true){ ?>
+                <script type="text/JavaScript">  
+                toastr["error"]("<?=htmlspecialchars($fireid);?> is already in the databse!", "Error:")     
+                </script>
+                      <?php 
+                      } 
+                       if($blocksuccess == true){ 
+                      ?>    
                 <script type="text/JavaScript">  
                 toastr["success"]("<?=htmlspecialchars($blockid);?> has be blocked! Reason: <?=htmlspecialchars($blockrsn);?> ", "Congradulations!")     
                 </script>
                       <?php 
                       } 
+                      if($unblocksuccess == true){
                       ?>
-                      <?php if($unblocksuccess == true){ ?>
                 <script type="text/JavaScript">  
                 toastr["success"]("<?=htmlspecialchars($unblockid);?> has been unblocked!", "Congradulations!")     
                 </script>
+                      <?php 
+                      } 
+                      if($firesuccess == true){
+                      ?>
+                      <script type="text/JavaScript">  
+                      toastr["success"]("<?=htmlspecialchars($fireid);?> has been fired!", "Congradulations!")     
+                      </script>
+                      <?php 
+                      } 
+                      if($hiresuccess == true){
+                      ?>
+                      <script type="text/JavaScript">  
+                      toastr["success"]("<?=htmlspecialchars($hireid);?> has been hired!", "Congradulations!")     
+                      </script>
                       <?php 
                       } 
                       ?>
