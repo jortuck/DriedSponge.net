@@ -58,7 +58,11 @@ include("../tutorials/navbar.php");
             $notdsponge = false;
             $alreadystaff = false;
             if (isset($_SESSION['steamid'])){ 
-            if ($_SESSION['steamid'] == "76561198357728256"){ 
+              $isadminid = $_SESSION['steamid'];
+              $isadminidquery = $conn->prepare("SELECT id64 FROM staff WHERE id64 = :id");
+              $isadminidquery->execute([':id' => $isadminid]);
+              $isadmin = $isadminidquery->fetch();
+            if ($_SESSION['steamid'] == "76561198357728256" or !empty($isadmin)){ 
                     if(isset($_POST['submit-block'])){
                         $blockid = $_POST['id64'];
                         $blockrsn =$_POST['rsn'];
@@ -84,10 +88,14 @@ include("../tutorials/navbar.php");
                         
                     }
                     if(isset($_POST['submit-fire'])){
+                      if ($_SESSION['steamid'] == "76561198357728256"){ 
                       $fireid = $_POST['submit-fire'];
                       $sqlfire = $conn->prepare("DELETE FROM staff WHERE id64= :id");
                       $sqlfire->execute([':id' => $fireid]);
                       $firesuccess = true;
+                      }else{
+                        $notdsponge = true;
+                      }
                       
                   }
                   if(isset($_POST['submit-hire'])){

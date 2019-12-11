@@ -52,7 +52,11 @@ include("../tutorials/navbar.php");
             
             <?php 
             if (isset($_SESSION['steamid'])){ 
-            if ($_SESSION['steamid'] == "76561198357728256"){ 
+                $isadminid = $_SESSION['steamid'];
+                $isadminidquery = $conn->prepare("SELECT id64 FROM staff WHERE id64 = :id");
+                $isadminidquery->execute([':id' => $isadminid]);
+                $isadmin = $isadminidquery->fetch();
+              if ($_SESSION['steamid'] == "76561198357728256" or !empty($isadmin)){ 
 
 
                 ?>
