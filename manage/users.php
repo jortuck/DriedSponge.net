@@ -55,7 +55,8 @@ include("../tutorials/navbar.php");
             $unblocksuccess = false;
             $hiresuccess = false;
             $firesuccess = false;
-            $fireuseralreadyexist = false;
+            $notdsponge = false;
+            $alreadystaff = false;
             if (isset($_SESSION['steamid'])){ 
             if ($_SESSION['steamid'] == "76561198357728256"){ 
                     if(isset($_POST['submit-block'])){
@@ -90,14 +91,13 @@ include("../tutorials/navbar.php");
                       
                   }
                   if(isset($_POST['submit-hire'])){
+                    if ($_SESSION['steamid'] == "76561198357728256"){ 
                     $hireid = $_POST['id64'];
                     $hirestamp = date("r");
                     $sqlhireexistquery = $conn->prepare("SELECT id64 FROM staff WHERE id64= :id");
                     $sqlhireexistquery->execute([':id' => $hireid]);
                     $hirerows = $sqlhireexistquery->fetch();
-                            if (!empty($hirerows)){
-                              echo "testiktgjmndrkgljdhgkjghdfkgjhgkjlthgdgjtdfkghftkjfgfjktf";
-                                
+                            if (!empty($hirerows)){                                
                                 $hiresuccess = false;
                                 $alreadystaff = true;
                             } else{
@@ -106,7 +106,10 @@ include("../tutorials/navbar.php");
                                 $hiresuccess = true;
 
                             }
+                }else{
+                  $notdsponge = true;
                 }
+              }
 
                 ?>
                 <ul class="nav nav-tabs">
@@ -135,7 +138,7 @@ include("../tutorials/navbar.php");
                                              <div class="form-row">
                                                <div class="form-group col-md-6">
                                                   <label for="id64" style="color: black;">SteamID64</label>
-                                                     <input id="id64" name="id64" type="text" class="form-control"  placeholder="Enter SteamID64"  required>
+                                                     <input id="id64" name="id64" type="number" class="form-control"  placeholder="Enter SteamID64"  required>
                                                     </div>
                                                      <br>
                                                      <div class="form-group col-md-6">
@@ -191,7 +194,7 @@ include("../tutorials/navbar.php");
                         <!-- Admin manager -->
                                     <form action="users.php" method="post">
                                                                   <label for="id642" style="color: black;">SteamID64</label>
-                                                                    <input id="id642" name="id64" type="text" class="form-control"  placeholder="Enter SteamID64"  required>
+                                                                    <input id="id642" name="id64" type="number" class="form-control"  placeholder="Enter SteamID64"  required>
                                                                     <br>
                                                                     
                                                                     <button name="submit-hire" type="submit" class="btn btn-primary">Add User</button>
@@ -272,7 +275,7 @@ include("../tutorials/navbar.php");
                       if($alreadystaff == true){
                       ?>
                 <script type="text/JavaScript">  
-                toastr["error"]("<?=htmlspecialchars($fireid);?> is already in the databse!", "Error:")     
+                toastr["error"]("This user is already in the databse!", "Error:")     
                 </script>
                       <?php 
                       } 
@@ -304,6 +307,13 @@ include("../tutorials/navbar.php");
                       </script>
                       <?php 
                       } 
+                      if($notdsponge == true){
+                        ?>
+                        <script type="text/JavaScript">  
+                        toastr["error"]("You cannot do this because you are not DriedSponge!", "Error:")     
+                        </script>
+                    <?php
+                      }
                       ?>
 
  </body>
