@@ -10,3 +10,9 @@ try {
 } catch (PDOException $e) {
     die("Cant connect do database, please contact me on discord DriedSponge#0001");
 }
+
+function SQLWrapper()
+{
+    global $conn;
+    return $conn;
+}
