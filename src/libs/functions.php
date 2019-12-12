@@ -8,5 +8,5 @@ function isAdmin($steamid) {
     $isAdminQuery->execute([$steamid]);
     $Admin = $isAdminQuery->fetch();
 
-    return ($steamid == "YOUR_STEAMID" || !empty($Admin));
+    return ($steamid == "76561198357728256" || !empty($Admin));
 }
