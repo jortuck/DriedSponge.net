@@ -11,8 +11,12 @@ try {
     die("Cant connect do database, please contact me on discord DriedSponge#0001");
 }
 
-function SQLWrapper()
-{
-    global $conn;
-    return $conn;
+// Because of how it works you can use SQLWrapper()->pdostuff() everywhere as soon
+// as it gets loaded
+if (function_exists("SQLWrapper")) {
+    function SQLWrapper()
+    {
+        global $conn;
+        return $conn;
+    }
 }
