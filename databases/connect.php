@@ -13,7 +13,7 @@ try {
 
 // Because of how it works you can use SQLWrapper()->pdostuff() everywhere as soon
 // as it gets loaded
-if (function_exists("SQLWrapper")) {
+if (!function_exists("SQLWrapper")) {
     function SQLWrapper()
     {
         global $conn;
