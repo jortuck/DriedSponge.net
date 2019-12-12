@@ -7,10 +7,6 @@ try {
     $conn = new PDO("mysql:host=$servername;dbname=driedspo_net", $username, $password);
     // set the PDO error mode to exception
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    
-    }
-catch(PDOException $e)
-    {
-        die("Cant connect do database, please contact me on discord DriedSponge#0001");
-    }
-
+} catch (PDOException $e) {
+    die("Cant connect do database, please contact me on discord DriedSponge#0001");
+}
