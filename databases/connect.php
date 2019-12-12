@@ -14,5 +14,3 @@ catch(PDOException $e)
         die("Cant connect do database, please contact me on discord DriedSponge#0001");
     }
 
-
-?>
