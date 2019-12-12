@@ -40,7 +40,7 @@ $blocked = false;
 $row = null;
 $chekid = $_SESSION['steamid'];
 
-$sqlblockexistquery = $conn->prepare("SELECT id64, rsn, stamp FROM blocked WHERE id64 = :id");
+$sqlblockexistquery = SQLWrapper()->prepare("SELECT id64, rsn, stamp FROM blocked WHERE id64 = :id");
 $sqlblockexistquery->execute([':id' => $chekid]);
 
 $row = $sqlblockexistquery->fetch();
