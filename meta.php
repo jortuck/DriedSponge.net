@@ -1,8 +1,7 @@
-
 <meta charset="UTF-8">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-<link rel="stylesheet" type="text/css" href="https://driedsponge.net/css/aos.css"/>
+<link rel="stylesheet" type="text/css" href="https://driedsponge.net/css/aos.css" />
 <script src="https://driedsponge.net/js/aos.js"></script>
 <meta name="viewport" content="width = device-width, initial-scale = 1">
 <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -10,15 +9,15 @@
 
 <?php
 
-if ( date("m") == "10" ){
-    $theme = "https://driedsponge.net/css/spook.css";
-    $themefav = "https://cdn.driedsponge.net/img/favicon-spook.ico";
-    $themecol = "#E4541C";
-    // $decoration = "https://driedsponge.net/js/bats.js";
+if (date("m") == "10") {
+  $theme = "https://driedsponge.net/css/spook.css";
+  $themefav = "https://cdn.driedsponge.net/img/favicon-spook.ico";
+  $themecol = "#E4541C";
+  // $decoration = "https://driedsponge.net/js/bats.js";
 } else {
-    $theme = "https://driedsponge.net/css/textclass.css";
-    $themefav = "https://cdn.driedsponge.net/img/zfavicon.ico";
-    $themecol = "#007BFF";
+  $theme = "https://driedsponge.net/css/textclass.css";
+  $themefav = "https://cdn.driedsponge.net/img/zfavicon.ico";
+  $themecol = "#007BFF";
 }
 
 /* if ( date("m") == "12" ){
@@ -36,19 +35,22 @@ if ( date("m") == "10" ){
 
 ?>
 
-<meta name="theme-color" content="<?=htmlspecialchars($themecol);?>">
-<link rel="stylesheet" href = "https://driedsponge.net/css/formatting.css" >
- <link id="styless" rel="stylesheet" href = "<?=htmlspecialchars($theme);?>" >
+<meta name="theme-color" content="<?= htmlspecialchars($themecol); ?>">
+<link rel="stylesheet" href="https://driedsponge.net/css/formatting.css">
+<link id="styless" rel="stylesheet" href="<?= htmlspecialchars($theme); ?>">
 
- <link id="favicon" rel="icon" href = "<?=htmlspecialchars($themefav);?>" type="image/x-icon">
- <script async src="https://www.googletagmanager.com/gtag/js?id=UA-140402227-3"></script>
+<link id="favicon" rel="icon" href="<?= htmlspecialchars($themefav); ?>" type="image/x-icon">
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-140402227-3"></script>
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-140402227-3"></script>
 
-        
+
 <script>
   window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
+
+  function gtag() {
+    dataLayer.push(arguments);
+  }
   gtag('js', new Date());
 
   gtag('config', 'UA-140402227-3');

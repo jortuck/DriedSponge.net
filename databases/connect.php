@@ -7,12 +7,16 @@ try {
     $conn = new PDO("mysql:host=$servername;dbname=driedspo_net", $username, $password);
     // set the PDO error mode to exception
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    
-    }
-catch(PDOException $e)
+} catch (PDOException $e) {
+    die("Cant connect do database, please contact me on discord DriedSponge#0001");
+}
+
+// Because of how it works you can use SQLWrapper()->pdostuff() everywhere as soon
+// as it gets loaded
+if (!function_exists("SQLWrapper")) {
+    function SQLWrapper()
     {
-        die("Cant connect do database, please contact me on discord DriedSponge#0001");
+        global $conn;
+        return $conn;
     }
-
-
-?>
+}
