@@ -1,6 +1,7 @@
 <?php
 require('../steamauth/steamauth.php'); 
 include("../databases/connect.php");
+
 ?>
 <!DOCTYPE html>
 
@@ -58,23 +59,20 @@ include("../tutorials/navbar.php");
             $notdsponge = false;
             $alreadystaff = false;
             if (isset($_SESSION['steamid'])){ 
-              $isadminid = $_SESSION['steamid'];
-              $isadminidquery = $conn->prepare("SELECT id64 FROM staff WHERE id64 = :id");
-              $isadminidquery->execute([':id' => $isadminid]);
-              $isadmin = $isadminidquery->fetch();
-            if ($_SESSION['steamid'] == "76561198357728256" or !empty($isadmin)){ 
+            
+          if (isAdmin($_SESSION['steamid'])){  
                     if(isset($_POST['submit-block'])){
                         $blockid = $_POST['id64'];
                         $blockrsn =$_POST['rsn'];
                         $blockstamp = date("r");
-                        $sqlblockexistquery = $conn->prepare("SELECT id64 FROM blocked WHERE id64= :id");
+                        $sqlblockexistquery = SQLWrapper()->prepare("SELECT id64 FROM blocked WHERE id64= :id");
                         $sqlblockexistquery->execute([':id' => $blockid]);
                         $blockrows = $sqlblockexistquery->fetch();
                                 if (!empty($blockrows)){
                                     $useralreadyexist = true;
                                     $blocksuccess = false;
                                 } else{
-                                    $sqlblock = $conn->prepare("INSERT INTO blocked (id64, rsn, stamp)
+                                    $sqlblock = SQLWrapper()->prepare("INSERT INTO blocked (id64, rsn, stamp)
                                     VALUES (?,?,?)")->execute([$blockid,  $blockrsn,$blockstamp]);
                                     $blocksuccess = true;
 
@@ -82,15 +80,15 @@ include("../tutorials/navbar.php");
                     }
                     if(isset($_POST['submit-unblock'])){
                         $unblockid = $_POST['submit-unblock'];
-                        $sqlunblock = $conn->prepare("DELETE FROM blocked WHERE id64= :id");
+                        $sqlunblock = SQLWrapper()->prepare("DELETE FROM blocked WHERE id64= :id");
                         $sqlunblock->execute([':id' => $unblockid]);
                         $unblocksuccess = true;
                         
                     }
                     if(isset($_POST['submit-fire'])){
-                      if ($_SESSION['steamid'] == "76561198357728256"){ 
+                      if (isMasterAdmin($_SESSION['steamid'])){ 
                       $fireid = $_POST['submit-fire'];
-                      $sqlfire = $conn->prepare("DELETE FROM staff WHERE id64= :id");
+                      $sqlfire = SQLWrapper()->prepare("DELETE FROM staff WHERE id64= :id");
                       $sqlfire->execute([':id' => $fireid]);
                       $firesuccess = true;
                       }else{
@@ -99,17 +97,17 @@ include("../tutorials/navbar.php");
                       
                   }
                   if(isset($_POST['submit-hire'])){
-                    if ($_SESSION['steamid'] == "76561198357728256"){ 
+                    if (isMasterAdmin($_SESSION['steamid'])){ 
                     $hireid = $_POST['id64'];
                     $hirestamp = date("r");
-                    $sqlhireexistquery = $conn->prepare("SELECT id64 FROM staff WHERE id64= :id");
+                    $sqlhireexistquery = SQLWrapper()->prepare("SELECT id64 FROM staff WHERE id64= :id");
                     $sqlhireexistquery->execute([':id' => $hireid]);
                     $hirerows = $sqlhireexistquery->fetch();
                             if (!empty($hirerows)){                                
                                 $hiresuccess = false;
                                 $alreadystaff = true;
                             } else{
-                                $adminhire = $conn->prepare("INSERT INTO staff (id64, stamp)
+                                $adminhire = SQLWrapper()->prepare("INSERT INTO staff (id64, stamp)
                                 VALUES (?,?)")->execute([$hireid, $hirestamp]);
                                 $hiresuccess = true;
 
@@ -174,7 +172,7 @@ include("../tutorials/navbar.php");
                         <tbody>
                       <?php
                       $sql = "SELECT id64, rsn, stamp FROM blocked";
-                      $result = $conn->query($sql);
+                      $result = SQLWrapper()->query($sql);
                         while($row = $result->fetch()){   
                            $blackurl = "https://steamcommunity.com/profiles/".$row['id64']."/";
                             ?>
@@ -222,7 +220,7 @@ include("../tutorials/navbar.php");
                                         <tbody>
                                       <?php
                                       $sql2 = "SELECT id64, stamp FROM staff";
-                                      $result2 = $conn->query($sql2);
+                                      $result2 = SQLWrapper()->query($sql2);
                                         while($row2 = $result2->fetch()){ 
                                           $admurl = "https://steamcommunity.com/profiles/".$row2['id64']."/";  
                                             ?>
