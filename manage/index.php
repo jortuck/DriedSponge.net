@@ -76,6 +76,9 @@ include("../tutorials/navbar.php");
                 <?php }else{ ?>
                     <hgroup>
                         <h1 class="display-2"><strong>You are not management, get out!</strong></h1>
+                        <?php
+                        header("Location: ../index.php");
+                        ?>
                     
                     <br>
                 </hgroup>
