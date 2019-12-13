@@ -126,8 +126,8 @@ include("../tutorials/navbar.php");
                 <a class="nav-link  nav-tab active" href="users.php">Users</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link nav-tab" href="#">Content Mangement</a>
-              </li>
+                    <a class="nav-link nav-tab" href="content.php">Content Mangement</a>
+                </li>
             </ul>
             <br>
                 <hgroup>

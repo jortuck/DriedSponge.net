@@ -19,7 +19,7 @@ include("../databases/connect.php");
             include("../meta.php"); 
             ?>
         
-        <title>Manage - Users</title>
+        <title>Manage - Content Management</title>
         <script src="https://kit.fontawesome.com/0add82e87e.js" crossorigin="anonymous"></script>
         <script src="https://www.google.com/recaptcha/api.js" async defer></script>
         <link rel="stylesheet" href = "//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" type="text/css" >
@@ -51,28 +51,56 @@ include("../tutorials/navbar.php");
             <div class="container">
             
             <?php 
+            $notadmin = false;
+            $cachecleared = false;
             if (isset($_SESSION['steamid'])){ 
-              if (isAdmin($_SESSION['steamid'])){ 
+              if (isAdmin($_SESSION['steamid'])){
+                
+                $cachedfiles = scandir("../cache");
+                $ignored = array('.', '..', '.svn', '.htaccess','.gitignore','.gitkeep'); 
+                $totalcached = count($cachedfiles) - 3;
+                    if(isset($_POST['clear-cache']) and isMasterAdmin($_SESSION['steamid'])){
+                       $cachecleared = true;
+                       foreach ($cachedfiles as $deletefile){
+                        if (in_array($deletefile, $ignored)) continue;
+                        $filename = '../cache/'.$deletefile;
+                        unlink ($filename);
 
-
+                       }
+                    }elseif(isset($_POST['clear-cache'])){
+                        $notadmin = true;
+                    }
                 ?>
                     <ul class="nav nav-tabs">
                 <li class="nav-item">
-                    <a class="nav-link nav-tab active" href="index.php">Home</a>
+                    <a class="nav-link nav-tab" href="index.php">Home</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link nav-tab" href="users.php">Users</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link nav-tab" href="content.php">Content Mangement</a>
+                    <a class="nav-link nav-tab active" href="content.php">Content Mangement</a>
                 </li>
                 </ul>
                 <br>
                 <hgroup>
-                        <h1 class="display-4"><strong>Management Home</strong></h1>
+                        <h1 class="display-4"><strong>Content Mangement</strong></h1>
                 </hgroup>
                 <br>
-
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Cache</h3>
+                        </div>
+                            <div class="card-body text-center">
+                                <p class="paragraph">Current ammout of items in cache: <strong><?=htmlentities($totalcached);?></strong></p>
+                                <br>
+                                <form action="content.php" method="post" >
+                                        <button type="submit" name="clear-cache" class="btn btn-danger paragraph" >
+                                        Clear Cache
+                                    </button>
+                                </form>
+                            </div>
+                    </div>
                 <?php }else{ ?>
                     <hgroup>
                         <h1 class="display-2"><strong>You are not management, get out!</strong></h1>
@@ -109,8 +137,23 @@ include("../tutorials/navbar.php");
                 <script src="https://unpkg.com/tippy.js@4"></script>
                 <script src="main.js"></script>
                 <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-                
-
+                <?php                    
+                      if($notadmin == true){
+                        ?>
+                        <script type="text/JavaScript">  
+                        toastr["error"]("You cannot do this because you are not DriedSponge!", "Error:")     
+                        </script>
+                    <?php
+                      }
+ 
+                      if($cachecleared == true){
+                      ?>
+                      <script type="text/JavaScript">  
+                      toastr["success"]("The cache has been cleared!", "Congradulations!")     
+                      </script>
+                      <?php 
+                      } 
+                        ?>
  </body>
 
 </html>
