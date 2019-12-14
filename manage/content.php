@@ -82,17 +82,19 @@ include("../tutorials/navbar.php");
                     if(isset($_POST['submit-new-motd'])){
                         $motdcontent = $_POST['motd-content'];
                         $motdthing = "motd";
+                        $motdstamp = time();
+                        $motdcreatedby = $_SESSION['steamid'];
                         $motdexist = SQLWrapper()->prepare("SELECT thing, content FROM content WHERE thing = :thing");
                         $motdexist->execute([':thing' => $motdthing]);
                         $motdrow = $motdexist->fetch();
                         if (!empty($motdrow)) {
                             header("Refresh:0");
-                            SQLWrapper()->prepare("UPDATE content SET content= :content WHERE thing = 'motd'")->execute([':content' => $motdcontent]);
+                            SQLWrapper()->prepare("UPDATE content SET content= :content, stamp = :stamp, created = :created WHERE thing = 'motd'")->execute([':content' => $motdcontent, ':created' => $motdcreatedby,':stamp' => $motdstamp]);
                             $motdchanged = true;
                             
                         } else {
-                            SQLWrapper()->prepare("INSERT INTO content (thing, content)
-                            VALUES (?,?)")->execute(["motd",  $motdcontent]);
+                            SQLWrapper()->prepare("INSERT INTO content (thing, content, stamp, created)
+                            VALUES (?,?,?,?)")->execute(["motd",  $motdcontent, $motdstamp, $motdcreatedby]);
                             header("Refresh:0");
                              $motdchanged = true;                            
                         }

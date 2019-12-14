@@ -33,10 +33,12 @@ include("databases/connect.php");
  <body>
 <?php
 include("navbar.php");
-$motdq = SQLWrapper()->prepare("SELECT thing, content FROM content WHERE thing = :thing");
+$motdq = SQLWrapper()->prepare("SELECT thing, content, stamp, created FROM content WHERE thing = :thing");
 $motdq->execute([':thing' => "motd"]);
 $content = $motdq->fetch();
-
+$mlastupdated = date("m/d/Y g:i a", $content["stamp"]);
+$mcreatedby = $content["created"];
+$mcreatedbyurl = "https://steamcommunity.com/profiles/".$mcreatedby."/";
 ?>
 
     <div class="app">
@@ -58,6 +60,9 @@ $content = $motdq->fetch();
                         </div>
                             <div class="card-body">
                                 <?=htmlspecialchars_decode($content["content"])?>
+                            </div>
+                            <div class="card-footer text-muted">
+                                Last updated: <?=htmlspecialchars($mlastupdated)?> | Updated by: <a href="<?=htmlspecialchars($mcreatedbyurl)?>" target="_blank"><?=htmlspecialchars($mcreatedby)?></a>
                             </div>
                     </div>
                 <br>
