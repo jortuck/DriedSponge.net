@@ -53,18 +53,7 @@ $mcreatedbyurl = "https://steamcommunity.com/profiles/".$mcreatedby."/";
                     <br>
                     <br>
                 </hgroup>
-                <br>
-                <div class="card">
-                        <div class="card-header">
-                            <h3>Message of the day!</h3>
-                        </div>
-                            <div class="card-body">
-                                <?=htmlspecialchars_decode($content["content"])?>
-                            </div>
-                            <div class="card-footer text-muted">
-                                Last updated: <?=htmlspecialchars($mlastupdated)?> | Updated by: <a href="<?=htmlspecialchars($mcreatedbyurl)?>" target="_blank"><?=htmlspecialchars($mcreatedby)?></a>
-                            </div>
-                    </div>
+                
                 <br>
                 <h4 class="subheading">About Me</h5>
                     <p class="paragraph" style="text-align: center;" >I do coding for the languages that are listed below. I also play tombone and bass guitar :). I also play a fair ammout of video games. On this site you can find out information on projects I've done. There is also a very epic <a href="steam.php">SteamID tool</a> that I made so go check that out.</p>
@@ -114,7 +103,18 @@ $mcreatedbyurl = "https://steamcommunity.com/profiles/".$mcreatedby."/";
                                                         </div>                      
                             </div>
                             <br>
-                       
+                            <br>
+                            <div class="card">
+                                    <div class="card-header">
+                                        <h3>Message of the day!</h3>
+                                    </div>
+                                        <div class="card-body">
+                                            <?=htmlspecialchars_decode($content["content"])?>
+                                        </div>
+                                        <div class="card-footer text-muted">
+                                            Last updated: <?=htmlspecialchars($mlastupdated)?> | Updated by: <a href="<?=htmlspecialchars($mcreatedbyurl)?>" target="_blank"><?=htmlspecialchars($mcreatedby)?></a>
+                                        </div>
+                                </div>
                     
                             
                         </div>
