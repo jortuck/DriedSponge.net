@@ -188,7 +188,7 @@ include("../tutorials/navbar.php");
                 <script src="main.js"></script>
                 <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
                 <script src="https://cdn.tiny.cloud/1/dom10ctinmaceofbm524vgsfebgy22lsh2ooomg0oqs8wu28/tinymce/5/tinymce.min.js"></script>
-                <script>tinymce.init({selector:'textarea', branding: false});</script>
+                <script>tinymce.init({selector:'textarea', branding: false, plugins: "link",default_link_target: "_blank"});</script>
                 <?php                    
                       if($notadmin == true){
                         ?>
