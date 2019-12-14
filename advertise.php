@@ -20,7 +20,7 @@ include("databases/connect.php");
     include("meta.php");
     ?>
 
-    <title>Feedback</title>
+    <title>Advertise</title>
     <script src="https://kit.fontawesome.com/0add82e87e.js" crossorigin="anonymous"></script>
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
@@ -120,7 +120,7 @@ include("databases/connect.php");
             <div class="container">
                 <hgroup>
                     <!-- <img src="https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/18/18be38c2f230fea0fa667c8165e4da5cb1a787c0_full.jpg" alt="DriedSponge's Profile Picture"> -->
-                    <h1 class="display-2"><strong>Feedback</strong></h1>
+                    <h1 class="display-2"><strong>Advertise</strong></h1>
 
                     <br>
                 </hgroup>
@@ -143,7 +143,7 @@ include("databases/connect.php");
                 if ($DisplayForm) {
                     ?>
 
-                    <p class="paragraph pintro">Tell me what you think about the site and what could be changed. Both positive and negative feedback are accepted!</p>
+                    <p class="paragraph pintro">Yes you have a server or organization you would like to </p>
                     <br>
                     <form action="feedback.php" method="post">
                         <div class="form-group">
@@ -167,7 +167,7 @@ include("databases/connect.php");
                 }
                 if ($PLogin == true) {
                     ?>
-                    <h1 class="articleh1">Please login to submit feedback</h1>
+                    <h1 class="articleh1">Please login to advertise in my discord</h1>
                     <br>
                     <p class="text-center"><a href='?login'><img src='https://steamcommunity-a.akamaihd.net/public/images/signinthroughsteam/sits_02.png'></a></p>
                 <?php
