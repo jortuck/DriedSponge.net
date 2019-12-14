@@ -67,12 +67,13 @@ include("../tutorials/navbar.php");
                 $ignored = array('.', '..', '.svn', '.htaccess','.gitignore','.gitkeep'); 
                 $totalcached = count($cachedfiles) - 3;
                     if(isset($_POST['clear-cache']) and isMasterAdmin($_SESSION['steamid'])){
-                       $cachecleared = true;
+                       
                        foreach ($cachedfiles as $deletefile){
                         if (in_array($deletefile, $ignored)) continue;
                         $filename = '../cache/'.$deletefile;
                         unlink ($filename);
                         header("Refresh:0");
+                        header("Location: content.php?cache-cleared"); 
 
                        }
                     }elseif(isset($_POST['clear-cache'])){
@@ -88,15 +89,14 @@ include("../tutorials/navbar.php");
                         $motdexist->execute([':thing' => $motdthing]);
                         $motdrow = $motdexist->fetch();
                         if (!empty($motdrow)) {
-                            header("Refresh:0");
+                            
                             SQLWrapper()->prepare("UPDATE content SET content= :content, stamp = :stamp, created = :created WHERE thing = 'motd'")->execute([':content' => $motdcontent, ':created' => $motdcreatedby,':stamp' => $motdstamp]);
                             $motdchanged = true;
-                            
+                            header("Location: content.php?motd-success");
                         } else {
                             SQLWrapper()->prepare("INSERT INTO content (thing, content, stamp, created)
                             VALUES (?,?,?,?)")->execute(["motd",  $motdcontent, $motdstamp, $motdcreatedby]);
-                            header("Refresh:0");
-                             $motdchanged = true;                            
+                             header("Location: content.php?motd-success");                          
                         }
                 
 
@@ -198,14 +198,14 @@ include("../tutorials/navbar.php");
                     <?php
                       }
  
-                      if($cachecleared == true){
+                      if(isset($_GET['cache-cleared'])){
                       ?>
                       <script type="text/JavaScript">  
                       toastr["success"]("The cache has been cleared!", "Congratulations!")     
                       </script>
                       <?php 
                       } 
-                      if($motdchanged == true){
+                      if(isset($_GET['motd-success'])){
                         ?>
                         <script type="text/JavaScript">  
                       toastr["success"]("The motd has been changed!", "Congratulations!")     
