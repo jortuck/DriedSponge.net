@@ -23,6 +23,8 @@ include("databases/connect.php");
     <title>Feedback</title>
     <script src="https://kit.fontawesome.com/0add82e87e.js" crossorigin="anonymous"></script>
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <link rel="stylesheet" href = "//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" type="text/css" >
+
 </head>
 
 <body>
@@ -60,7 +62,6 @@ include("databases/connect.php");
         if (isset($_POST['submit'])) {
             
             $DisplayForm = false;
-            $Done = true;
             $captcha = $_POST['g-recaptcha-response'];
             $json = file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret=6Ld9SaQUAAAAACIaPxcErESw-6RvtljAMd3IYsQL&response=$captcha");
             $captchares = json_decode($json);
@@ -99,17 +100,18 @@ include("databases/connect.php");
 
 
                 curl_exec($ch);
+                header("Location: feedback.php?submit-success");
                 
             } else {
                 $DisplayForm = true;
-                $FailedCaptch = true;
+                header("Location: feedback.php?failed-captcha");
+                
             }
         }
     } else {
         $DisplayForm = false;
-        $FailedCaptch = false;
         $PLogin = true;
-        $Done = false;
+        
         
     }
     ?>
@@ -128,15 +130,8 @@ include("databases/connect.php");
                     <h1 class="articleh1">Uh oh, looks like you have been blacklisted from submitting form data. <br> Reason: <?php echo $row["rsn"]; ?></h1>
                 <?php
                 }
-                if ($FailedCaptch) {
                     ?>
-                    <h1 class="articleh1" style="color: red;">Uh oh! Looks like you failed the captcha! Try again but this time try acting less like a robot.</h1>
-                <?php
-                }
-                ?>
-                <?php
-
-                ?>
+                
 
 
                 <?php
@@ -160,11 +155,7 @@ include("databases/connect.php");
                     </form>
                 <?php
                 }
-                if ($Done == true) {
-                    ?>
-                    <h1 class="articleh1">Thank you for submitting your response!</h1>
-                <?php
-                }
+                              
                 if ($PLogin == true) {
                     ?>
                     <h1 class="articleh1">Please login to submit feedback</h1>
@@ -184,12 +175,29 @@ include("databases/connect.php");
     include("footer.php"); // we include footer.php here. you can use .html extension, too.
     ?>
 
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>   
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <script src="https://unpkg.com/popper.js@1"></script>
     <script src="https://unpkg.com/tippy.js@4"></script>
     <script src="main.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <?php
+    if(isset($_GET['submit-success'])){
+                        ?>
+                        <script type="text/JavaScript">  
+                      toastr["success"]("Thank you! Your feedback has been submitted!", "Congratulations!")     
+                      </script>
+                        <?php
+                        }
+                        if (isset($_GET['failed-captcha'])) {
+                        ?>
+                        <script type="text/JavaScript">  
+                        toastr["error"]("Uh oh! Looks like you failed the captcha! Try again but this time try acting less like a robot.", "Error!")     
+                        </script>
+                        <?php
+                        }
+                        ?>
 
 </body>
 
