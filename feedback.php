@@ -58,6 +58,7 @@ include("databases/connect.php");
 
 
         if (isset($_POST['submit'])) {
+            
             $DisplayForm = false;
             $Done = true;
             $captcha = $_POST['g-recaptcha-response'];
@@ -98,6 +99,7 @@ include("databases/connect.php");
 
 
                 curl_exec($ch);
+                
             } else {
                 $DisplayForm = true;
                 $FailedCaptch = true;
@@ -108,6 +110,7 @@ include("databases/connect.php");
         $FailedCaptch = false;
         $PLogin = true;
         $Done = false;
+        
     }
     ?>
 

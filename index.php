@@ -32,7 +32,11 @@ include("databases/connect.php");
 
  <body>
 <?php
-include("navbar.php")
+include("navbar.php");
+$motdq = SQLWrapper()->prepare("SELECT thing, content FROM content WHERE thing = :thing");
+$motdq->execute([':thing' => "motd"]);
+$content = $motdq->fetch();
+
 ?>
 
     <div class="app">
@@ -47,6 +51,16 @@ include("navbar.php")
                     <br>
                     <br>
                 </hgroup>
+                <br>
+                <div class="card">
+                        <div class="card-header">
+                            <h3>Message of the day!</h3>
+                        </div>
+                            <div class="card-body">
+                                <?=htmlspecialchars_decode($content["content"])?>
+                            </div>
+                    </div>
+                <br>
                 <h4 class="subheading">About Me</h5>
                     <p class="paragraph" style="text-align: center;" >I do coding for the languages that are listed below. I also play tombone and bass guitar :). I also play a fair ammout of video games. On this site you can find out information on projects I've done. There is also a very epic <a href="steam.php">SteamID tool</a> that I made so go check that out.</p>
                     <br>

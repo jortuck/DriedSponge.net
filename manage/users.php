@@ -103,9 +103,10 @@ include("../tutorials/navbar.php");
                     $sqlhireexistquery = SQLWrapper()->prepare("SELECT id64 FROM staff WHERE id64= :id");
                     $sqlhireexistquery->execute([':id' => $hireid]);
                     $hirerows = $sqlhireexistquery->fetch();
-                            if (!empty($hirerows)){                                
+                            if (!empty($hirerows)){   
                                 $hiresuccess = false;
                                 $alreadystaff = true;
+                                
                             } else{
                                 $adminhire = SQLWrapper()->prepare("INSERT INTO staff (id64, stamp)
                                 VALUES (?,?)")->execute([$hireid, $hirestamp]);

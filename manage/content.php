@@ -53,9 +53,16 @@ include("../tutorials/navbar.php");
             <?php 
             $notadmin = false;
             $cachecleared = false;
+            $motdchanged = false;
             if (isset($_SESSION['steamid'])){ 
               if (isAdmin($_SESSION['steamid'])){
-                
+
+
+                $motdq = SQLWrapper()->prepare("SELECT thing, content FROM content WHERE thing = :thing");
+                $motdq->execute([':thing' => "motd"]);
+                $motdcurrent = $motdq->fetch();
+
+
                 $cachedfiles = scandir("../cache");
                 $ignored = array('.', '..', '.svn', '.htaccess','.gitignore','.gitkeep'); 
                 $totalcached = count($cachedfiles) - 3;
@@ -65,11 +72,32 @@ include("../tutorials/navbar.php");
                         if (in_array($deletefile, $ignored)) continue;
                         $filename = '../cache/'.$deletefile;
                         unlink ($filename);
+                        header("Refresh:0");
 
                        }
                     }elseif(isset($_POST['clear-cache'])){
                         $notadmin = true;
                     }
+
+                    if(isset($_POST['submit-new-motd'])){
+                        $motdcontent = $_POST['motd-content'];
+                        $motdthing = "motd";
+                        $motdexist = SQLWrapper()->prepare("SELECT thing, content FROM content WHERE thing = :thing");
+                        $motdexist->execute([':thing' => $motdthing]);
+                        $motdrow = $motdexist->fetch();
+                        if (!empty($motdrow)) {
+                            SQLWrapper()->prepare("UPDATE content SET content= :content WHERE thing = 'motd'")->execute([':content' => $motdcontent]);
+                            $motdchanged = true;
+                            
+                        } else {
+                            SQLWrapper()->prepare("INSERT INTO content (thing, content)
+                            VALUES (?,?)")->execute(["motd",  $motdcontent]);
+                             $motdchanged = true;                            
+                        }
+                
+
+
+                     } 
                 ?>
                     <ul class="nav nav-tabs">
                 <li class="nav-item">
@@ -87,6 +115,7 @@ include("../tutorials/navbar.php");
                         <h1 class="display-4"><strong>Content Mangement</strong></h1>
                 </hgroup>
                 <br>
+                    
                     <div class="card">
                         <div class="card-header">
                             <h3>Cache</h3>
@@ -99,6 +128,23 @@ include("../tutorials/navbar.php");
                                         Clear Cache
                                     </button>
                                 </form>
+                            </div>
+                    </div>
+                    <br>
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>MOTD</h3>
+                        </div>
+                            <div class="card-body">                                
+                                <form action="content.php" method="post">
+                                <div class="form-group">
+                                    <label for="motd-content" style="color: black;">Edit the MOTD that is displayed on the index</label>
+                                    <textarea id="motd-content" name="motd-content"  rows="10" class="form-control"><?=htmlspecialchars_decode($motdcurrent["content"]);?></textarea>
+                                    <br>                                         
+                                    <button name="submit-new-motd" type="submit" class="btn btn-primary">Change MOTD</button>
+                                    </div>                                
+                                </form> 
+                                
                             </div>
                     </div>
                 <?php }else{ ?>
@@ -137,6 +183,8 @@ include("../tutorials/navbar.php");
                 <script src="https://unpkg.com/tippy.js@4"></script>
                 <script src="main.js"></script>
                 <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+                <script src="https://cdn.tiny.cloud/1/dom10ctinmaceofbm524vgsfebgy22lsh2ooomg0oqs8wu28/tinymce/5/tinymce.min.js"></script>
+                <script>tinymce.init({selector:'textarea', branding: false});</script>
                 <?php                    
                       if($notadmin == true){
                         ?>
@@ -149,10 +197,17 @@ include("../tutorials/navbar.php");
                       if($cachecleared == true){
                       ?>
                       <script type="text/JavaScript">  
-                      toastr["success"]("The cache has been cleared!", "Congradulations!")     
+                      toastr["success"]("The cache has been cleared!", "Congratulations!")     
                       </script>
                       <?php 
                       } 
+                      if($motdchanged == true){
+                        ?>
+                        <script type="text/JavaScript">  
+                      toastr["success"]("The motd has been changed!", "Congratulations!")     
+                      </script>
+                        <?php
+                        }
                         ?>
  </body>
 
