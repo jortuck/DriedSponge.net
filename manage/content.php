@@ -86,12 +86,14 @@ include("../tutorials/navbar.php");
                         $motdexist->execute([':thing' => $motdthing]);
                         $motdrow = $motdexist->fetch();
                         if (!empty($motdrow)) {
+                            header("Refresh:0");
                             SQLWrapper()->prepare("UPDATE content SET content= :content WHERE thing = 'motd'")->execute([':content' => $motdcontent]);
                             $motdchanged = true;
                             
                         } else {
                             SQLWrapper()->prepare("INSERT INTO content (thing, content)
                             VALUES (?,?)")->execute(["motd",  $motdcontent]);
+                            header("Refresh:0");
                              $motdchanged = true;                            
                         }
                 
