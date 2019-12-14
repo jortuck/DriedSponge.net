@@ -64,7 +64,7 @@ include("../tutorials/navbar.php");
                     if(isset($_POST['submit-block'])){
                         $blockid = $_POST['id64'];
                         $blockrsn =$_POST['rsn'];
-                        $blockstamp = date("r");
+                        $blockstamp = time();
                         $sqlblockexistquery = SQLWrapper()->prepare("SELECT id64 FROM blocked WHERE id64= :id");
                         $sqlblockexistquery->execute([':id' => $blockid]);
                         $blockrows = $sqlblockexistquery->fetch();
@@ -99,7 +99,7 @@ include("../tutorials/navbar.php");
                   if(isset($_POST['submit-hire'])){
                     if (isMasterAdmin($_SESSION['steamid'])){ 
                     $hireid = $_POST['id64'];
-                    $hirestamp = date("r");
+                    $hirestamp = time();
                     $sqlhireexistquery = SQLWrapper()->prepare("SELECT id64 FROM staff WHERE id64= :id");
                     $sqlhireexistquery->execute([':id' => $hireid]);
                     $hirerows = $sqlhireexistquery->fetch();
@@ -176,6 +176,7 @@ include("../tutorials/navbar.php");
                       $result = SQLWrapper()->query($sql);
                         while($row = $result->fetch()){   
                            $blackurl = "https://steamcommunity.com/profiles/".$row['id64']."/";
+                           $blocknormalstamp =  date("m/d/Y g:i a", $row["stamp"]);
                             ?>
                             
                             <tr><td>
@@ -184,7 +185,7 @@ include("../tutorials/navbar.php");
                                 Remove User
                             </button>
                         </form>
-                    </td><td><a target="_blank" href="<?=htmlspecialchars($blackurl);?>"><?=htmlspecialchars($row["id64"]);?></a></td><td><?=htmlspecialchars($row["rsn"]);?></td><td><?=htmlspecialchars($row["stamp"]);?></td></tr> 
+                    </td><td><a target="_blank" href="<?=htmlspecialchars($blackurl);?>"><?=htmlspecialchars($row["id64"]);?></a></td><td><?=htmlspecialchars($row["rsn"]);?></td><td><?=htmlspecialchars($blocknormalstamp);?></td></tr> 
                             
                             <?php
                         }
@@ -223,7 +224,8 @@ include("../tutorials/navbar.php");
                                       $sql2 = "SELECT id64, stamp FROM staff";
                                       $result2 = SQLWrapper()->query($sql2);
                                         while($row2 = $result2->fetch()){ 
-                                          $admurl = "https://steamcommunity.com/profiles/".$row2['id64']."/";  
+                                          $admurl = "https://steamcommunity.com/profiles/".$row2['id64']."/"; 
+                                          $admnormalstamp =  date("m/d/Y g:i a", $row2["stamp"]); 
                                             ?>
                                             
                                             <tr><td>
@@ -232,7 +234,7 @@ include("../tutorials/navbar.php");
                                                 Fire!
                                             </button>
                                         </form>
-                                    </td><td><a href="<?=htmlspecialchars($admurl)?>" target="_blank"><?=htmlspecialchars($row2["id64"]);?></a></td><td><?=htmlspecialchars($row2["stamp"]);?></td></tr> 
+                                    </td><td><a href="<?=htmlspecialchars($admurl)?>" target="_blank"><?=htmlspecialchars($row2["id64"]);?></a></td><td><?=htmlspecialchars($admnormalstamp);?></td></tr> 
                                             
                                             <?php
                                         }
