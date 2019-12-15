@@ -161,7 +161,7 @@ include("databases/connect.php");
                               
                 if ($PLogin == true) {
                     ?>
-                    <h1 class="articleh1">Please login to submit feedback</h1>
+                    <h1 class="articleh1">Please login to advertise in my discord</h1>
                     <br>
                     <p class="text-center"><a href='?login'><img src='https://steamcommunity-a.akamaihd.net/public/images/signinthroughsteam/sits_02.png'></a></p>
                 <?php
