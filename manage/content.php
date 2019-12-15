@@ -62,8 +62,7 @@ include("../tutorials/navbar.php");
                 $motdq->execute([':thing' => "motd"]);
                 $motdcurrent = $motdq->fetch();
 
-
-                $cachedfiles = scandir("../cache");
+             $cachedfiles = scandir("../cache");
                 $ignored = array('.', '..', '.svn', '.htaccess','.gitignore','.gitkeep'); 
                 $totalcached = count($cachedfiles) - 3;
                     if(isset($_POST['clear-cache']) and isMasterAdmin($_SESSION['steamid'])){

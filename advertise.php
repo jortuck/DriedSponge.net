@@ -36,11 +36,9 @@ include("databases/connect.php");
 
     if (isset($_SESSION['steamid'])) {
         $PLogin = false;
-        $Done = false;
-
-
-        $FailedCaptch = false;
+        $oneday = false;
         $blocked = false;
+        $DisplayForm = true;
         $row = null;
         $chekid = $_SESSION['steamid'];
 
@@ -52,63 +50,92 @@ include("databases/connect.php");
             $DisplayForm = false;
             $blocked = true;
         } else {
-            $DisplayForm = true;
-        }
-
-
-
-
-
-        if (isset($_POST['submit'])) {
-            
-            $DisplayForm = false;
-            $captcha = $_POST['g-recaptcha-response'];
-            $json = file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret=6Ld9SaQUAAAAACIaPxcErESw-6RvtljAMd3IYsQL&response=$captcha");
-            $captchares = json_decode($json);
-            $success = $captchares->success;
-            if ($success == true) {
-
-                if (!isset($_POST['name'], $_POST['say'])) {
-                    return;
-                }
-                $request = json_encode([
-                    "content" => "",
-                    "embeds" => [
-                        [
-                            "author" => [
-                                "name" => "Ad sent from ".$steamprofile['personaname'] . " (" . $steamprofile['steamid'] . ")",
-                                "url" => $steamprofile['profileurl'],
-                                "icon_url" => $steamprofile['avatarmedium']
-                            ],
-                            "title" => $_POST['adname'],
-                            "type" => "rich",
-                            "description" =>  $_POST['say'],
-                            "timestamp" => date("c"),
-                        ]
-                    ]
-                ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
-
-                $ch = curl_init("https://discordapp.com/api/webhooks/655554251702927390/-dICp0ReXpC63SW3DNpJqc1zE5hzhJD_HmyBrt5f0Xoh8y-YiErccuXLiRWQj5jrCG3U");
-
-                curl_setopt_array($ch, [
-                    CURLOPT_POST => 1,
-                    CURLOPT_FOLLOWLOCATION => 1,
-                    CURLOPT_HTTPHEADER => array("Content-type: application/json"),
-                    CURLOPT_POSTFIELDS => $request,
-                    CURLOPT_RETURNTRANSFER => 1
-                ]);
-
-
-                curl_exec($ch);
-                header("Location: advertise.php?submit-success");
-                
-            } else {
+    
+        $aduser =  $steamprofile['steamid'];
+                             
+        $adstamp = time();
+        $adexist = SQLWrapper()->prepare("SELECT user, stamp FROM ads WHERE user = :id");
+        $adexist->execute([':id' => $aduser]);
+        $adrow = $adexist->fetch();
+        $numDays = abs($adrow['stamp'] - $adstamp)/60/60/24;
+        $timeleft = secondsToTime(86400 - abs($adrow['stamp'] - $adstamp));
+        if($numDays >= 1){
+            $oneday = false;
+         
+            if (isset($_POST['submit'])) {
+                $adname = $_POST['adname'];
+                $adcontent = $_POST['say'];  
                 $DisplayForm = true;
-                header("Location: advertise.php?failed-captcha");
-                
+                $DisplayForm = false;
+                $captcha = $_POST['g-recaptcha-response'];
+                $json = file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret=6Ld9SaQUAAAAACIaPxcErESw-6RvtljAMd3IYsQL&response=$captcha");
+                $captchares = json_decode($json);
+                $success = $captchares->success;
+                if ($success == true) {
+    
+                    if (!isset($_POST['name'], $_POST['say'])) {
+                        return;
+                    }
+                    $request = json_encode([
+                        "content" => "",
+                        "embeds" => [
+                            [
+                                "author" => [
+                                    "name" => "Ad sent from ".$steamprofile['personaname'] . " (" . $steamprofile['steamid'] . ")",
+                                    "url" => $steamprofile['profileurl'],
+                                    "icon_url" => $steamprofile['avatarmedium']
+                                ],
+                                "title" => str_replace("@"," ",$_POST['adname']),
+                                "type" => "rich",
+                                "description" =>  str_replace("@"," ",$_POST['say']),
+                                "timestamp" => date("c"),
+                            ]
+                        ]
+                    ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
+    
+                    $ch = curl_init("https://discordapp.com/api/webhooks/655554251702927390/-dICp0ReXpC63SW3DNpJqc1zE5hzhJD_HmyBrt5f0Xoh8y-YiErccuXLiRWQj5jrCG3U");
+    
+                    curl_setopt_array($ch, [
+                        CURLOPT_POST => 1,
+                        CURLOPT_FOLLOWLOCATION => 1,
+                        CURLOPT_HTTPHEADER => array("Content-type: application/json"),
+                        CURLOPT_POSTFIELDS => $request,
+                        CURLOPT_RETURNTRANSFER => 1
+                    ]);
+    
+    
+                    curl_exec($ch);                   
+                        
+                        
+                        
+                            if (!empty($adrow)) {                          
+                                SQLWrapper()->prepare("UPDATE ads SET user= :id, adname = :adname, content = :content,stamp = :stamp WHERE user = :curuser")->execute([':id' => $aduser, ':adname' => $adname,':content' => $adcontent,':stamp' => $adstamp,':curuser' => $aduser]);                          
+                                header("Location: advertise.php?submit-success");
+                            } else {
+                                SQLWrapper()->prepare("INSERT INTO ads (user, adname, content, stamp)
+                                VALUES (?,?,?,?)")->execute([$aduser,  $adname, $adcontent, $adstamp]);
+                                header("Location: advertise.php?submit-success");                      
+                            }
+                       
+                } else {
+                    $DisplayForm = true;
+                    header("Location: advertise.php?failed-captcha");
+                    
+                }
             }
+        }else{
+            $DisplayForm = false;
+            $oneday = true;
         }
-    } else {
+
+        } //end block check
+
+
+
+
+
+
+    } else { //Plese login
         $DisplayForm = false;
         $PLogin = true;
         
@@ -130,15 +157,20 @@ include("databases/connect.php");
                     <h1 class="articleh1">Uh oh, looks like you have been blacklisted from submitting form data. <br> Reason: <?php echo $row["rsn"]; ?></h1>
                 <?php
                 }
+                    if ($oneday == true) { ?>
+                    <h1 class="articleh1">Please wait before advertising again</h1>
+                    <br>
+                    <h2 style="text-align: center;">Time left: <?=htmlspecialchars($timeleft)?></h2>
+                <?php
+                }
                     ?>
-                
 
 
                 <?php
                 if ($DisplayForm) {
                     ?>
 
-                    <p class="paragraph pintro">Send an advertisement of anything to my discord server advertisement channel</p>
+                    <p class="paragraph pintro">Send an advertisement of anything to my discord server advertisement channel. If you abuse this system, your account may be blocked from future advertising. You can advertise every 24hrs.</p>
                     <br>
                     <form action="advertise.php" method="post">
                         <div class="form-group">
