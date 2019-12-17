@@ -82,7 +82,7 @@ $mcreatedbyurl = "https://steamcommunity.com/profiles/".$mcreatedby."/";
                                  <div data-aos="fade-up" class="card card-border" style="width: 18rem; text-align:center;">
                                                 <div class="card-body">
                                                 <img  src="img/php.png" alt="phplogo" height="100px" style="padding: none; margin: none;"/>
-                                                    <p class="card-text"><i class="fas fa-star fa-1x"></i><i class="fas fa-star fa-1x"></i><i class="far fa-star fa-1x"></i><i class="far fa-star fa-1x"></i><i class="far fa-star fa-1x"></i></p>
+                                                    <p class="card-text"><i class="fas fa-star fa-1x"></i><i class="fas fa-star fa-1x"></i><i class="fas fa-star fa-1x"></i><i class="far fa-star fa-1x"></i><i class="far fa-star fa-1x"></i></p>
                                                     
                                                 </div>       
                                                 </div>
@@ -97,7 +97,7 @@ $mcreatedbyurl = "https://steamcommunity.com/profiles/".$mcreatedby."/";
                                   <div data-aos="fade-up" class="card card-border" style="width: 18rem; text-align:center;">
                                                                 <div class="card-body">
                                                                 <img  src="img/js.png" alt="jslogo" height="100px" style="padding: none; margin: none;"/>
-                                                                    <p class="card-text"><i class="fas fa-star fa-1x"></i><i class="fas fa-star fa-1x"></i><i class="far fa-star fa-1x"></i><i class="far fa-star fa-1x"></i><i class="far fa-star fa-1x"></i></p>
+                                                                    <p class="card-text"><i class="fas fa-star fa-1x"></i><i class="fas fa-star fa-1x"></i><i class="fas fa-star fa-1x"></i><i class="far fa-star fa-1x"></i><i class="far fa-star fa-1x"></i></p>
                                                                     
                                                                  </div>
                                                         </div>                      

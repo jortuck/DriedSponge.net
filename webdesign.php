@@ -64,7 +64,7 @@ include("navbar.php")
                     <div  class="col-lg">
                       <div class="showcase-text">
                         <h2>DriedSponge.net (This site!)</h2>
-                          <p class="paragraph">This site was created to show all the coding projects I've made. I also use it to practice my HTML, CSS, PHP, and js.</p>
+                          <p class="paragraph">This site was created to show all the coding projects I've made. I also use it to practice my HTML, CSS, PHP, and js. I also created a nice backend so it's easier for me to update content and blacklist users.</p>
                           <p class="paragraph"><span class="badge badge-success">Active (obviously)</span></p>
                           
                           <a target="_blank"href="https://driedsponge.net/" class="btn btn-primary">Visit Site</a>
@@ -89,8 +89,38 @@ include("navbar.php")
 
                 </div>
                 </div>
+                <br>
                   <br>
+                  <div data-aos="fade-left" class="row">
+                    <div  class="col-lg">
+                        <img src="https://i.driedsponge.net/images/png/8tNZM.png" class="img-fluid showcase-img">
+                    </div>
+                    <div  class="col-lg">
+                      <div class="showcase-text">
+                        <h2>Advertise Thing</h2>
+                          <p class="paragraph">I created this to regulate ads on my discord server. Every day you can submit an ad, the ad will be sent to my discord server via a webhook. Then I do other stuff to preven you from advertising twice in 24hrs!</p>
+                          <p class="paragraph"><span class="badge badge-success">Active</span></p>
+                          
+                          <a target="_blank"href="https://driedsponge.net/advertise.php" class="btn btn-primary">Visit Site</a>
+                        </div>
+                      </div>
+                  </div>
+                  <br>
+                  <br>
+                  <div data-aos="fade-right" class="row">
+                    <div class="col-lg">
+                        <div class="showcase-text">
+                          <h2>DriedSponge.net Bot</h2>
+                            <p class="paragraph">This is a discord bot that I'm working on for <a href="https://driedsponge.net/discord" target="_blank">my discord server</a>. I use to work on my java script and to learn more about linux servers. Right now I use <a href="https://m.do.co/c/bdc37dd1f345" target="_blank">DigitalOcean</a> to host it.</p>
+                            <p class="paragraph"><span class="badge badge-success">Active</span></p>
+                    </div>
+                  </div>
+                  <div class="col-lg">
 
+                      <img src="https://i.driedsponge.net/images/gif/tZfna.gif" class="img-fluid showcase-img" alt="Example" >
+
+                </div>
+                </div>
 
 
                     
