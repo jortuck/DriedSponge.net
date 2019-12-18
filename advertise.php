@@ -38,6 +38,7 @@ include("databases/connect.php");
         $PLogin = false;
         $oneday = false;
         $blocked = false;
+        $ReRun = false;
         $DisplayForm = true;
         $row = null;
         $chekid = $_SESSION['steamid'];
@@ -54,14 +55,51 @@ include("databases/connect.php");
         $aduser =  $steamprofile['steamid'];
                              
         $adstamp = time();
-        $adexist = SQLWrapper()->prepare("SELECT user, stamp FROM ads WHERE user = :id");
+        $adexist = SQLWrapper()->prepare("SELECT user, stamp, content, adname FROM ads WHERE user = :id");
         $adexist->execute([':id' => $aduser]);
         $adrow = $adexist->fetch();
         $numDays = abs($adrow['stamp'] - $adstamp)/60/60/24;
         $timeleft = secondsToTime(86400 - abs($adrow['stamp'] - $adstamp));
         if($numDays >= 1){
-            $oneday = false;
-         
+        $oneday = false;
+            if(!empty($adrow['content'])){
+                $ReRun = true;
+                
+            }
+            if(isset($_POST['last-ad'])){
+                SQLWrapper()->prepare("UPDATE ads SET stamp = :stamp WHERE user = :curuser")->execute([':stamp' => $adstamp,':curuser' => $aduser]);    
+                                                    
+                $request = json_encode([
+                    "content" => "",
+                    "embeds" => [
+                        [
+                            "author" => [
+                                "name" => "Ad sent from ".$steamprofile['personaname'] . " (" . $steamprofile['steamid'] . ")",
+                                "url" => $steamprofile['profileurl'],
+                                "icon_url" => $steamprofile['avatarmedium']
+                            ],
+                            "title" => str_replace("@"," ",$adrow['adname']),
+                            "type" => "rich",
+                            "description" =>  str_replace("@"," ",$adrow['content']),
+                            "timestamp" => date("c"),
+                        ]
+                    ]
+                ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
+
+                $ch = curl_init("https://discordapp.com/api/webhooks/655554251702927390/-dICp0ReXpC63SW3DNpJqc1zE5hzhJD_HmyBrt5f0Xoh8y-YiErccuXLiRWQj5jrCG3U");
+
+                curl_setopt_array($ch, [
+                    CURLOPT_POST => 1,
+                    CURLOPT_FOLLOWLOCATION => 1,
+                    CURLOPT_HTTPHEADER => array("Content-type: application/json"),
+                    CURLOPT_POSTFIELDS => $request,
+                    CURLOPT_RETURNTRANSFER => 1
+                ]);
+
+
+                curl_exec($ch);
+                header("Location: advertise.php?submit-success");
+            }
             if (isset($_POST['submit'])) {
                 $adname = $_POST['adname'];
                 $adcontent = $_POST['say'];  
@@ -163,15 +201,25 @@ include("databases/connect.php");
                     <h2 style="text-align: center;">Time left: <?=htmlspecialchars($timeleft)?></h2>
                 <?php
                 }
-                    ?>
-
-
-                <?php
+                    
                 if ($DisplayForm) {
+                    
                     ?>
 
                     <p class="paragraph pintro">Send an advertisement of anything to my discord server advertisement channel. If you abuse this system, your account may be blocked from future advertising. You can advertise every 24hrs.</p>
                     <br>
+                    <?php
+                    if($ReRun){
+                        ?>
+                        <div class="text-center">
+                        <form action="advertise.php" method="post">
+                            <button type="submit" name="last-ad" class="btn btn-primary paragraph" >
+                                    Repeat Last Ad
+                            </button>
+                        </form>
+                        </div>
+                        <br>
+                        <?php } ?>
                     <form action="advertise.php" method="post">
                         <div class="form-group">
                             <label for="name">Name</label>
