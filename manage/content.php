@@ -100,7 +100,19 @@ include("../tutorials/navbar.php");
                 
 
 
-                     } 
+                     }
+                     if(isset($_POST['unlock-ad'])){
+                        if (isMasterAdmin($_SESSION['steamid'])){ 
+                        $unlockid = $_POST['unlock-ad'];
+                        $newstamp = time() - 86400;
+                        $unlocadq = SQLWrapper()->prepare("UPDATE ads SET stamp = :stamp WHERE user= :id");
+                        $unlocadq->execute([':id' => $unlockid,':stamp' => $newstamp]);
+                        header("Location: content.php?unlock-success"); 
+                        }else{
+                            header("Location: content.php?not-sponge"); 
+                        }
+                        
+                    }
                 ?>
                     <ul class="nav nav-tabs">
                 <li class="nav-item">
@@ -150,6 +162,49 @@ include("../tutorials/navbar.php");
                                 
                             </div>
                     </div>
+                    <br>
+                    <div class="card">
+                        <div class="card-header">
+                          <h3>Currently running ads</h3>
+                        </div>
+                      <div class="card-body">   
+                                      <p class="subsubhead" style="color: black; text-align: left;">Current Ads</p>
+                                        <table class="table paragraph pintro" style="color: black;">
+                                        <thead>
+                                        <tr>
+                                        <th scope="col">Buttons!</th>
+                                            <th scope="col">Submitor</th>
+                                            <th scope="col">Timestamp</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                      <?php
+                                      $sql2 = "SELECT user, stamp FROM ads";
+                                      $result2 = SQLWrapper()->query($sql2);
+                                        while($row2 = $result2->fetch()){ 
+                                          $aduurl = "https://steamcommunity.com/profiles/".$row2['user']."/"; 
+                                          $admnormalstamp =  date("m/d/Y g:i a", $row2["stamp"]); 
+                                          $numDays = abs($row2["stamp"] - time())/60/60/24;
+                                          if($numDays <= 1){
+                                            ?>
+                                            
+                                            <tr><td>
+                                            <form action="content.php" method="post" >
+                                            <button type="submit" value="<?=htmlspecialchars($row2["user"]);?>" name="unlock-ad" class="btn btn-primary" >
+                                                Unlock
+                                            </button>
+                                        </form>
+                                    </td><td><a href="<?=htmlspecialchars($aduurl)?>" target="_blank"><?=htmlspecialchars($row2["user"]);?></a></td><td><?=htmlspecialchars($admnormalstamp);?></td></tr> 
+                                            
+                                            <?php
+                                        }
+                                    }
+                                      ?>
+                                      </tbody>
+                                        </table>
+                            </div>
+                          </div>
+                        <br>
                 <?php }else{ ?>
                     <hgroup>
                         <h1 class="display-2"><strong>You are not management, get out!</strong></h1>
@@ -209,6 +264,20 @@ include("../tutorials/navbar.php");
                         <script type="text/JavaScript">  
                       toastr["success"]("The motd has been changed!", "Congratulations!")     
                       </script>
+                        <?php
+                        }
+                        if(isset($_GET['not-sponge'])){
+                        ?>
+                        <script type="text/JavaScript">  
+                      toastr["error"]("You are not DriedSponge", "Error")     
+                      </script>
+                        <?php
+                        }
+                        if(isset($_GET['unlock-success'])){
+                        ?>
+                                <script type="text/JavaScript">  
+                                ["success"]("This user can advertise again!", "Congratulations!")     
+                                </script>
                         <?php
                         }
                         ?>

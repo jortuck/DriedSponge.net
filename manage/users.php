@@ -244,6 +244,8 @@ include("../tutorials/navbar.php");
                             </div>
                           </div>
                         <br>
+
+                        
                 <?php }else{ ?>
                     <hgroup>
                         <h1 class="display-2"><strong>You are not management, get out!</strong></h1>
