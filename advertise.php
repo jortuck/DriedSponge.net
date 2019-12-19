@@ -203,7 +203,9 @@ include("databases/connect.php");
                     if ($oneday == true) { ?>
                     <h1 class="articleh1">Please wait before advertising again</h1>
                     <br>
-                    <h2 style="text-align: center;">Time left: <?=htmlspecialchars($timeleft)?></h2>
+                    <h2 style="text-align: center;">Time left: <strong><?=htmlspecialchars($timeleft)?></strong></h2>
+                    <br>
+                    <h2 style="text-align: center;">If you believe there was an error in porcessing your ad, please contact me in my discord and I will remove your countdown if the situation warrants it.</h2>
                 <?php
                 }
                     
@@ -274,7 +276,7 @@ include("databases/connect.php");
     if(isset($_GET['submit-success'])){
                         ?>
                         <script type="text/JavaScript">  
-                      toastr["success"]("Your ad has been posted in my discord sever. If an error occured and you do not see your ad. Please let me or my mods know so we can get things sorted and allow you to post another ad.", "Congratulations!")     
+                      toastr["success"]("Your ad has been posted in my discord sever.", "Congratulations!")     
                       </script>
                         <?php
                         }
