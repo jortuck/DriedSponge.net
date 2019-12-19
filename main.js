@@ -19,11 +19,11 @@ tippy('.badge-success', {
     animateFill: false,
   })
 
-/*   tippy('#lang', {
+   tippy('#repeat-last-ad', {
 
     theme: 'primary',
     animateFill: false,
-  }) */
+  }) 
 
 
 

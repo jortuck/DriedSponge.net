@@ -64,7 +64,12 @@ include("databases/connect.php");
         $oneday = false;
             if(!empty($adrow['content'])){
                 $ReRun = true;
-                
+                $LastRan = date("m/d/Y g:i a", $adrow["stamp"]);
+                $DefaultAdName =  $adrow["adname"];
+                $DefaultAdDesc =  $adrow["content"];
+            }else{
+                $DefaultAdName = "Server Name/Product Name/Community Name/etc";
+                $DefaultAdDesc = "Type details here...";
             }
             if(isset($_POST['last-ad'])){
                 SQLWrapper()->prepare("UPDATE ads SET stamp = :stamp WHERE user = :curuser")->execute([':stamp' => $adstamp,':curuser' => $aduser]);    
@@ -213,7 +218,7 @@ include("databases/connect.php");
                         ?>
                         <div class="text-center">
                         <form action="advertise.php" method="post">
-                            <button type="submit" name="last-ad" class="btn btn-primary paragraph" >
+                            <button type="submit" id="repeat-last-ad" data-tippy-content="Resend the same ad you sent on: <?=htmlspecialchars($LastRan);?>" name="last-ad" class="btn btn-primary paragraph" >
                                     Repeat Last Ad
                             </button>
                         </form>
@@ -226,10 +231,10 @@ include("databases/connect.php");
                             <input id="name" name="name" type="text" class="form-control" value="<?= htmlspecialchars($steamprofile['personaname']); ?>" placeholder="<?= htmlspecialchars($steamprofile['personaname']); ?>" readonly>
                             <br>
                             <label for="adname">Name of your ad</label>
-                            <input id="adname" name="adname" type="text" maxlength="25" class="form-control"  placeholder="Server Name/Product Name/Community Name/etc" required>
+                            <input id="adname" name="adname" type="text" maxlength="25" class="form-control"  placeholder="<?=htmlspecialchars($DefaultAdName);?>" required>
                             <br>           
                             <label for="say">Tell users about what your advertising. Think of it as just typing a normal message into discord. URLs are allowed (<a href="https://support.discordapp.com/hc/en-us/articles/210298617-Markdown-Text-101-Chat-Formatting-Bold-Italic-Underline-" target="_blank">Discord Markdown</a> is supported)</label>
-                            <textarea id="say" class="form-control" name="say" maxlength="1500" rows="10" placeholder="Type here I guess..." required></textarea>
+                            <textarea id="say" class="form-control" name="say" maxlength="1500" rows="10" placeholder="<?=htmlspecialchars($DefaultAdDesc);?>" required></textarea>
                             <br>
                             <div class="g-recaptcha" data-sitekey="6Ld9SaQUAAAAAG81x31GrfZeiJEd1gtd59CRMbC7" required></div>
                             <br>
