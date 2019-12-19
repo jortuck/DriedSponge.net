@@ -168,7 +168,7 @@ include("../tutorials/navbar.php");
                           <h3>Currently running ads</h3>
                         </div>
                       <div class="card-body">   
-                                      <p class="subsubhead" style="color: black; text-align: left;">Current Ads</p>
+                                      <p class="subsubhead" style="color: black; text-align: left;">Current ads in the last 24 hours</p>
                                         <table class="table paragraph pintro" style="color: black;">
                                         <thead>
                                         <tr>
@@ -276,7 +276,7 @@ include("../tutorials/navbar.php");
                         if(isset($_GET['unlock-success'])){
                         ?>
                                 <script type="text/JavaScript">  
-                                ["success"]("This user can advertise again!", "Congratulations!")     
+                                toastr["success"]("This user can now advertise again", "Congratulations!")     
                                 </script>
                         <?php
                         }
