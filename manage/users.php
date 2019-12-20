@@ -51,13 +51,6 @@ include("../tutorials/navbar.php");
             <div class="container">
             
             <?php 
-            $useralreadyexist = false;
-            $blocksuccess = false;
-            $unblocksuccess = false;
-            $hiresuccess = false;
-            $firesuccess = false;
-            $notdsponge = false;
-            $alreadystaff = false;
             if (isset($_SESSION['steamid'])){ 
             
           if (isAdmin($_SESSION['steamid'])){  
@@ -69,12 +62,12 @@ include("../tutorials/navbar.php");
                         $sqlblockexistquery->execute([':id' => $blockid]);
                         $blockrows = $sqlblockexistquery->fetch();
                                 if (!empty($blockrows)){
-                                    $useralreadyexist = true;
-                                    $blocksuccess = false;
+                                  header("Location: users.php?user-already-exist"); 
+                                    
                                 } else{
                                     $sqlblock = SQLWrapper()->prepare("INSERT INTO blocked (id64, rsn, stamp)
                                     VALUES (?,?,?)")->execute([$blockid,  $blockrsn,$blockstamp]);
-                                    $blocksuccess = true;
+                                    header("Location: users.php?blocked=$blockid"); 
 
                                 }
                     }
@@ -82,7 +75,7 @@ include("../tutorials/navbar.php");
                         $unblockid = $_POST['submit-unblock'];
                         $sqlunblock = SQLWrapper()->prepare("DELETE FROM blocked WHERE id64= :id");
                         $sqlunblock->execute([':id' => $unblockid]);
-                        $unblocksuccess = true;
+                        header("Location: users.php?unblocked=$unblockid"); 
                         
                     }
                     if(isset($_POST['submit-fire'])){
@@ -90,9 +83,9 @@ include("../tutorials/navbar.php");
                       $fireid = $_POST['submit-fire'];
                       $sqlfire = SQLWrapper()->prepare("DELETE FROM staff WHERE id64= :id");
                       $sqlfire->execute([':id' => $fireid]);
-                      $firesuccess = true;
+                      header("Location: users.php?fired=$fireid"); 
                       }else{
-                        $notdsponge = true;
+                        header("Location: users.php?not-sponge"); 
                       }
                       
                   }
@@ -104,17 +97,16 @@ include("../tutorials/navbar.php");
                     $sqlhireexistquery->execute([':id' => $hireid]);
                     $hirerows = $sqlhireexistquery->fetch();
                             if (!empty($hirerows)){   
-                                $hiresuccess = false;
-                                $alreadystaff = true;
+                                header("Location: users.php?already-staff"); 
                                 
                             } else{
                                 $adminhire = SQLWrapper()->prepare("INSERT INTO staff (id64, stamp)
                                 VALUES (?,?)")->execute([$hireid, $hirestamp]);
-                                $hiresuccess = true;
+                               header("Location: users.php?hired=$hireid"); 
 
                             }
                 }else{
-                  $notdsponge = true;
+                  header("Location: users.php?not-sponge"); 
                 }
               }
 
@@ -287,42 +279,42 @@ include("../tutorials/navbar.php");
                 </script>
                       <?php 
                       } 
-                      if($alreadystaff == true){
+                      if(isset($_GET['already-staff'])){
                       ?>
                 <script type="text/JavaScript">  
                 toastr["error"]("This user is already in the databse!", "Error:")     
                 </script>
                       <?php 
                       } 
-                       if($blocksuccess == true){ 
+                       if(isset($_GET['blocked'])){ 
                       ?>    
                 <script type="text/JavaScript">  
-                toastr["success"]("<?=htmlspecialchars($blockid);?> has be blocked! Reason: <?=htmlspecialchars($blockrsn);?> ", "Congradulations!")     
+                toastr["success"]("<?=htmlspecialchars($_GET['blocked']);?> has be blocked!", "Congradulations!")     
                 </script>
                       <?php 
                       } 
-                      if($unblocksuccess == true){
+                      if(isset($_GET['unblocked'])){
                       ?>
                 <script type="text/JavaScript">  
-                toastr["success"]("<?=htmlspecialchars($unblockid);?> has been unblocked!", "Congradulations!")     
+                toastr["success"]("<?=htmlspecialchars($_GET['unblocked']);?> has been unblocked!", "Congradulations!")     
                 </script>
                       <?php 
                       } 
-                      if($firesuccess == true){
+                      if(isset($_GET['fired'])){
                       ?>
                       <script type="text/JavaScript">  
-                      toastr["success"]("<?=htmlspecialchars($fireid);?> has been fired!", "Congradulations!")     
+                      toastr["success"]("<?=htmlspecialchars($_GET['fired']);?> has been fired!", "Congradulations!")     
                       </script>
                       <?php 
                       } 
-                      if($hiresuccess == true){
+                      if(isset($_GET['hired'])){
                       ?>
                       <script type="text/JavaScript">  
-                      toastr["success"]("<?=htmlspecialchars($hireid);?> has been hired!", "Congradulations!")     
+                      toastr["success"]("<?=htmlspecialchars($_GET['hired']);?> has been hired!", "Congradulations!")     
                       </script>
                       <?php 
                       } 
-                      if($notdsponge == true){
+                      if(isset($_GET['not-sponge'])){
                         ?>
                         <script type="text/JavaScript">  
                         toastr["error"]("You cannot do this because you are not DriedSponge!", "Error:")     
