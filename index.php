@@ -56,7 +56,7 @@ $mcreatedbyurl = "https://steamcommunity.com/profiles/".$mcreatedby."/";
                 
                 <br>
                 <h4 class="subheading">About Me</h5>
-                    <p class="paragraph" style="text-align: center;" >I do coding for the languages that are listed below. I also play tombone and bass guitar :). I also play a fair ammout of video games. On this site you can find out information on projects I've done. There is also a very epic <a href="steam.php">SteamID tool</a> that I made so go check that out.</p>
+                    <p class="paragraph" style="text-align: center;" >I am a developer that primarily focuses on full stack web development. I also develop discord bots and Garry's Mod addons.</p>
                     <br>
                     
                     
@@ -67,7 +67,6 @@ $mcreatedbyurl = "https://steamcommunity.com/profiles/".$mcreatedby."/";
                                 <div  class="card card-border"  data-aos="fade-up" style="width: 18rem; text-align:center;">
                                 <div class="card-body">
                                 <img  src="img/html.png" alt="html5logo" height="100px" style="padding: none; margin: none;"/>
-                                    <p class="card-text"><i class="fas fa-star fa-1x"></i><i class="fas fa-star fa-1x"></i><i class="fas fa-star fa-1x"></i><i class="fas fa-star fa-1x"></i><i class="fas fa-star fa-1x"></i></p>
                                     
                                 </div>
                                 </div>
@@ -75,14 +74,12 @@ $mcreatedbyurl = "https://steamcommunity.com/profiles/".$mcreatedby."/";
                                 <div data-aos="fade-up" class="card card-border" style="width: 18rem; text-align:center;">
                                         <div class="card-body">
                                         <img  src="img/lua.png" alt="lualogo" height="100px" style="padding: none; margin: none;"/>
-                                            <p class="card-text"><i class="fas fa-star fa-1x"></i><i class="fas fa-star fa-1x"></i><i class="fas fa-star fa-1x"></i><i class="fas fa-star-half-alt fa-1x"></i><i class="far fa-star fa-1x"></i></p>
                                             
                                         </div>
                                         </div>
                                  <div data-aos="fade-up" class="card card-border" style="width: 18rem; text-align:center;">
                                                 <div class="card-body">
                                                 <img  src="img/php.png" alt="phplogo" height="100px" style="padding: none; margin: none;"/>
-                                                    <p class="card-text"><i class="fas fa-star fa-1x"></i><i class="fas fa-star fa-1x"></i><i class="fas fa-star fa-1x"></i><i class="far fa-star fa-1x"></i><i class="far fa-star fa-1x"></i></p>
                                                     
                                                 </div>       
                                                 </div>
@@ -90,14 +87,12 @@ $mcreatedbyurl = "https://steamcommunity.com/profiles/".$mcreatedby."/";
                                                     
                                                     <div class="card-body">
                                                         <img   src="img/css.png" alt="csslogo" height="100px" style="padding: none; margin: none;"/>
-                                                            <p class="card-text"><i class="fas fa-star fa-1x"></i><i class="fas fa-star fa-1x"></i><i class="fas fa-star fa-1x"></i><i class="fas fa-star fa-1x"></i><i class="far fa-star fa-1x"></i></p>
                                                             
                                                         </div>
                                                         </div>              
                                   <div data-aos="fade-up" class="card card-border" style="width: 18rem; text-align:center;">
                                                                 <div class="card-body">
                                                                 <img  src="img/js.png" alt="jslogo" height="100px" style="padding: none; margin: none;"/>
-                                                                    <p class="card-text"><i class="fas fa-star fa-1x"></i><i class="fas fa-star fa-1x"></i><i class="fas fa-star fa-1x"></i><i class="far fa-star fa-1x"></i><i class="far fa-star fa-1x"></i></p>
                                                                     
                                                                  </div>
                                                         </div>                      
