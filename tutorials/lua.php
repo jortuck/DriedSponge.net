@@ -1,4 +1,5 @@
 <?php
+header("Location: ../index.php");
 require('../steamauth/steamauth.php');  
 ?>
 <?php 
