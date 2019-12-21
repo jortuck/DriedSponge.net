@@ -11,7 +11,6 @@
                             
                         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                             <li class="nav-item" id="homelink"><a class="nav-link" href="index.php">Home</a></li>
-                            <li class="nav-item" id="tut"><a class="nav-link" href="tutorials/index.php">Coding Tutorials</a></li>
                             <li class="nav-item" id="steam"><a class="nav-link" href="steam.php">Steam Tool</a></li>
                             <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle" href="#" id="MyProjects" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
