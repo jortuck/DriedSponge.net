@@ -78,17 +78,22 @@ $Done = false;
             $success = $captchares->success;
             if ($success == true) {
                 if(is_numeric($verifyid)){
-                    $validateid = SQLWrapper()->prepare("SELECT discordid FROM discord WHERE verifyid = :vid");
+                    $validateid = SQLWrapper()->prepare("SELECT discordid, UNIX_TIMESTAMP(codecreated) AS codecreated FROM discord WHERE verifyid = :vid ");
                     $validateid->execute([':vid' => $verifyid]);
                     $validaterow = $validateid->fetch();
                     if (!empty($validaterow)) {
                         $discordid = $validaterow['discordid'];
                         $steamid = $steamprofile['steamid'];
                         $time = time();
+                        $codecreatedat = $validaterow["codecreated"];
+                        if($codecreatedat > time() -300){
                         $updatevalid = SQLWrapper()->prepare("UPDATE discord SET steamid = :id64, stamp = :stamp, verifyid = :verified WHERE discordid = :vid");
                         $updatevalid->execute([':vid' =>  $discordid,':id64' =>  $steamid,':stamp' =>  $time,':verified' =>  "VERIFIED"]);
-
+     
                         header("Location: ?success");
+                    }else{
+                        header("Location: ?code-expired"); //IF the code is expiered
+                    }
                     } else {
                         header("Location: ?invalid-id"); //If the id is not in DB
                     }
@@ -97,7 +102,7 @@ $Done = false;
                 }
             } else {
                 $DisplayForm = true;
-                header("Location: feedback.php?failed-captcha");
+                header("Location: ?failed-captcha");
                 
             }
         }
@@ -202,6 +207,13 @@ $Done = false;
                         <script type="text/JavaScript">  
                             toastr["success"]("You have been verified as <?=htmlspecialchars($discordusername)?>!", "Congratulations!")     
                         </script>
+                        <?php
+                        }
+                        if(isset($_GET['code-expired'])){ 
+                        ?>
+                        <script type="text/JavaScript">  
+                             toastr["error"]("The Code you entered is expired!", "Error!")     
+                             </script>
                         <?php
                         }
                         ?>
