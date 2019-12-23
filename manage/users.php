@@ -54,23 +54,44 @@ include("../tutorials/navbar.php");
             if (isset($_SESSION['steamid'])){ 
             
           if (isAdmin($_SESSION['steamid'])){  
-                    if(isset($_POST['submit-block'])){
-                        $blockid = $_POST['id64'];
-                        $blockrsn =$_POST['rsn'];
-                        $blockstamp = time();
-                        $sqlblockexistquery = SQLWrapper()->prepare("SELECT id64 FROM blocked WHERE id64= :id");
-                        $sqlblockexistquery->execute([':id' => $blockid]);
-                        $blockrows = $sqlblockexistquery->fetch();
-                                if (!empty($blockrows)){
+
+                    if(isset($_POST['submit-manverify'])){
+                        $verifysteamid = $_POST['id643'];
+                        $verifydiscordid =$_POST['discordid'];
+                        $discordtag = $_POST['discordtag'];
+                        $verifyid = "VERIFIED";
+                        $verifytime = time();
+                        $alreadyverified = SQLWrapper()->prepare("SELECT steamid FROM discord WHERE steamid= :id");
+                        $alreadyverified->execute([':id' => $verifysteamid]);
+                        $alreadyverifiedrows = $alreadyverified->fetch();
+                                if (!empty($alreadyverifiedrows)){
                                   header("Location: users.php?user-already-exist"); 
                                     
                                 } else{
-                                    $sqlblock = SQLWrapper()->prepare("INSERT INTO blocked (id64, rsn, stamp)
-                                    VALUES (?,?,?)")->execute([$blockid,  $blockrsn,$blockstamp]);
-                                    header("Location: users.php?blocked=$blockid"); 
+                                    $sqlblock = SQLWrapper()->prepare("INSERT INTO discord (discordid,steamid, stamp, verifyid,discorduser,givenrole)
+                                    VALUES (?,?,?,?,?,?)")->execute([$verifydiscordid,$verifysteamid,$verifytime,$verifyid,$discordtag,"NO"]);
+                                    header("Location: users.php?verified=$discordtag"); 
 
                                 }
                     }
+
+                    if(isset($_POST['submit-block'])){
+                      $blockid = $_POST['id64'];
+                      $blockrsn =$_POST['rsn'];
+                      $blockstamp = time();
+                      $sqlblockexistquery = SQLWrapper()->prepare("SELECT id64 FROM blocked WHERE id64= :id");
+                      $sqlblockexistquery->execute([':id' => $blockid]);
+                      $blockrows = $sqlblockexistquery->fetch();
+                              if (!empty($blockrows)){
+                                header("Location: users.php?user-already-exist"); 
+                                  
+                              } else{
+                                  $sqlblock = SQLWrapper()->prepare("INSERT INTO blocked (id64, rsn, stamp)
+                                  VALUES (?,?,?)")->execute([$blockid,  $blockrsn,$blockstamp]);
+                                  header("Location: users.php?blocked=$blockid"); 
+
+                              }
+                  }
                     if(isset($_POST['submit-unblock'])){
                         $unblockid = $_POST['submit-unblock'];
                         $sqlunblock = SQLWrapper()->prepare("DELETE FROM blocked WHERE id64= :id");
@@ -89,6 +110,15 @@ include("../tutorials/navbar.php");
                       }
                       
                   }
+                  if(isset($_POST['submit-unverify'])){
+                    
+                    $unverifyid = $_POST['submit-unverify'];
+                    $sqlfire = SQLWrapper()->prepare("DELETE FROM discord WHERE discordid= :id");
+                    $sqlfire->execute([':id' => $unverifyid]);
+                    header("Location: users.php?unverified=$unverifyid"); 
+                    
+                    
+                }
                   if(isset($_POST['submit-hire'])){
                     if (isMasterAdmin($_SESSION['steamid'])){ 
                     $hireid = $_POST['id64'];
@@ -156,7 +186,7 @@ include("../tutorials/navbar.php");
                         <table class="table paragraph pintro" style="color: black;">
                         <thead>
                         <tr>
-                        <th scope="col">Buttons!</th>
+                        <th scope="col"></th>
                             <th scope="col">ID64</th>
                             <th scope="col">Reason</th>
                             <th scope="col">Timestamp</th>
@@ -206,7 +236,7 @@ include("../tutorials/navbar.php");
                                         <table class="table paragraph pintro" style="color: black;">
                                         <thead>
                                         <tr>
-                                        <th scope="col">Buttons!</th>
+                                        <th scope="col"></th>
                                             <th scope="col">ID64</th>
                                             <th scope="col">Timestamp</th>
                                         </tr>
@@ -236,7 +266,71 @@ include("../tutorials/navbar.php");
                             </div>
                           </div>
                         <br>
-
+                        <div class="card">
+                          <div class="card-header">
+                            <h3>Verified Discord Users</h3>
+                          </div>
+                        <div class="card-body">
+                          <!-- Discord manager -->
+                          <form action="users.php" method="post">
+                                             <div class="form-row">
+                                               <div class="form-group col-md-6">
+                                                  <label for="id643" style="color: black;">SteamID64</label>
+                                                     <input id="id643" name="id643" type="number" class="form-control"  placeholder="Enter SteamID64"  required>
+                                                    </div>
+                                                     <br>
+                                                     <div class="form-group col-md-6">
+                                                        <label for="discordtag" style="color: black;">Discord Name and Tag</label>
+                                                       <input id="discordtag" name="discordtag" type="text" class="form-control" placeholder="ex: DriedSponge#0001" required>
+                                                      </div>
+                                                     <br>
+                                                    </div>
+                                                        <label for="discordid" style="color: black;">Discord ID</label>
+                                                       <input id="discordid" name="discordid" type="text" class="form-control" placeholder="Enter their discord ID" required>
+                                                      <br>
+                                                    <button name="submit-manverify" type="submit" class="btn btn-primary">Manually Verify</button>
+                                                  
+                                               
+                                            </form>                  
+                                        <br>
+                                        <p class="subsubhead" style="color: black; text-align: left;">Current Admins</p>
+                                          <table class="table paragraph pintro" style="color: black;">
+                                          <thead>
+                                          <tr>
+                                          <th scope="col"></th>
+                                              <th scope="col">ID64</th>
+                                              <th scope="col">Timestamp</th>
+                                              <th scope="col">Discord Name</th>
+                                              <th scope="col">Given Roles?</th>
+                                          </tr>
+                                          </thead>
+                                          <tbody>
+                                        <?php
+                                        $discordusers = "SELECT discordid,steamid,stamp,discorduser,givenrole FROM discord";
+                                        $discordusersr = SQLWrapper()->query($discordusers);
+                                          while($row3 = $discordusersr->fetch()){ 
+                                            if($row3['steamid'] !== null){
+                                            $discordsteamurl = "https://steamcommunity.com/profiles/".$row3['steamid']."/"; 
+                                            $discordstamp =  date("m/d/Y g:i a", $row3["stamp"]); 
+                                              ?>
+                                              
+                                              <tr><td>
+                                              <form action="users.php" method="post" >
+                                              <button type="submit" value="<?=htmlspecialchars($row3["discordid"]);?>" name="submit-unverify" class="btn btn-danger" >
+                                                  Unverify
+                                              </button>
+                                          </form>
+                                      </td><td><a href="<?=htmlspecialchars($discordsteamurl)?>" target="_blank"><?=htmlspecialchars($row3["steamid"]);?></a></td><td><?=htmlspecialchars($discordstamp);?></td><td><?=htmlspecialchars($row3["discorduser"]);?><br>(<?=htmlspecialchars($row3["discordid"]);?>)</td><td><?=htmlspecialchars($row3["givenrole"]);?></td></tr> 
+                                              
+                                              <?php
+                                          }
+                                        }
+                                        ?>
+                                        </tbody>
+                                          </table>
+                              </div>
+                            </div>
+                          <br>
                         
                 <?php }else{ ?>
                     <hgroup>
@@ -273,12 +367,9 @@ include("../tutorials/navbar.php");
                 <script src="https://unpkg.com/tippy.js@4"></script>
                 <script src="main.js"></script>
                 <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-                <?php if($useralreadyexist == true){ ?>
-                <script type="text/JavaScript">  
-                toastr["error"]("<?=htmlspecialchars($blockid);?> is already in the databse!", "Error:")     
-                </script>
+                
                       <?php 
-                      } 
+                      
                       if(isset($_GET['already-staff'])){
                       ?>
                 <script type="text/JavaScript">  
@@ -320,6 +411,27 @@ include("../tutorials/navbar.php");
                         toastr["error"]("You cannot do this because you are not DriedSponge!", "Error:")     
                         </script>
                     <?php
+                      }
+                      if(isset($_GET['unverified'])){
+                      ?>
+                      <script type="text/JavaScript">  
+                      toastr["success"]("<?=htmlspecialchars($_GET['unverified']);?> has been unverified!", "Congratulations!")     
+                      </script>
+                      <?php
+                      }
+                      if(isset($_GET['verified'])){
+                      ?>
+                      <script type="text/JavaScript">  
+                        toastr["success"]("<?=htmlspecialchars($_GET['verified']);?> has been verified!", "Congratulations!")     
+                      </script>
+                      <?php
+                      }
+                      if(isset($_GET['user-already-exist'])){
+                        ?>
+                        <script type="text/JavaScript">  
+                        toastr["error"]("This user is already in the DB!", "Error:")     
+                        </script>
+                        <?php
                       }
                       ?>
 

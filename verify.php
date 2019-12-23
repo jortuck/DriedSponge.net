@@ -11,16 +11,16 @@ include("databases/connect.php");
     <!--         Site created: 9/19/19
         Author: DriedSponge(Jordan Tucker) -->
 
-    <meta name="description" content="Sumbit feedback about my site">
-    <meta name="keywords" content="feedback, driedsponge.net feedback">
+    <meta name="description" content="verify your discord account">
+    <meta name="keywords" content="verify, driedsponge.net verify">
     <meta name="author" content="Jordan Tucker">
-    <meta property="og:site_name" content="DriedSponge.net | Feedback" />
+    <meta property="og:site_name" content="DriedSponge.net | Verify" />
 
     <?php
     include("meta.php");
     ?>
 
-    <title>Feedback</title>
+    <title>Verify</title>
     <script src="https://kit.fontawesome.com/0add82e87e.js" crossorigin="anonymous"></script>
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     <link rel="stylesheet" href = "//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" type="text/css" >
