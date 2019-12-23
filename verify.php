@@ -33,13 +33,14 @@ include("databases/connect.php");
     ?>
     <?php
 
-$Done = false;
+        $Done = false;
+        $roles = false;
         $blocked = false;
     if (isset($_SESSION['steamid'])) {
         $PLogin = false;
         $Done = false;
         $blocked = false;
-        $checkifdone = SQLWrapper()->prepare("SELECT discordid,stamp,discorduser FROM discord WHERE steamid = :id");
+        $checkifdone = SQLWrapper()->prepare("SELECT discordid,stamp,discorduser,givenrole FROM discord WHERE steamid = :id");
         $checkifdone->execute([':id' =>  $steamprofile['steamid']]);
         $checkdonerow = $checkifdone->fetch();
         if (!empty($checkdonerow)) {
@@ -48,6 +49,12 @@ $Done = false;
             $discordusername = $checkdonerow['discorduser'];
             $discordid = $checkdonerow['discordid'];
             $verifiedon = date("m/d/Y g:i a", $checkdonerow['stamp']);
+            if($checkdonerow['givenrole']=="NO"){
+                $roles = true;
+            }else{
+                $roles = false;
+            }
+
         } else {
         $DisplayForm = true;
         $FailedCaptch = false;
@@ -131,13 +138,17 @@ $Done = false;
                 }
                     ?>
                 <?php if ($Done){ ?>
-                    <h1 class="articleh1">You have been verified as:<br><?=htmlspecialchars($discordusername)?>(ID: <?=htmlspecialchars($discordid)?>)<br>Verified on: <?=htmlspecialchars($verifiedon);?></h1>
+                    <h1 class="articleh1" style="color:green;">You have been verified as:<br><?=htmlspecialchars($discordusername)?>(ID: <?=htmlspecialchars($discordid)?>)<br>Verified on: <?=htmlspecialchars($verifiedon);?></h1>
                     <br>
                     <h2 style="text-align: center;">If this IS NOT your discord account please let me or one of my moderators know immdiatley. If you need to change your account let me or one of my mods know so we can help you.</h2>
                 <?php
                 }
+                if ($roles){
                     ?>
-
+                      <h2 style="text-align: center;">It looks like you haven't been assinged your roles, do <strong style="color:green;">!verify</strong> in chat to get your roles assigned.</h2>
+                    <?php
+                }
+                    ?>
 
                 <?php
                 if ($DisplayForm) {
