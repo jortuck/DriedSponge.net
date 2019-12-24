@@ -127,7 +127,7 @@ include("databases/connect.php");
                 <?php if ($blocked){ ?>
                     <h1 class="articleh1">Uh oh, looks like you have been blacklisted from submitting form data. <br> Reason: <?php echo $row["rsn"]; ?></h1>
                 <?php
-                }$roles=true;if ($roles){
+                }if ($roles){
                     ?>
                       <h1 class="display-3" style="text-align: center;">Your roles will be assgned within five minutes of verification</h1>
                     <?php
