@@ -62,6 +62,10 @@ include("../tutorials/navbar.php");
                 $motdq->execute([':thing' => "motd"]);
                 $motdcurrent = $motdq->fetch();
 
+                $privacyq = SQLWrapper()->prepare("SELECT thing, content FROM content WHERE thing = :thing");
+                $privacyq->execute([':thing' => "privacy"]);
+                $privacycurrent = $privacyq->fetch();
+
              $cachedfiles = scandir("../cache");
                 $ignored = array('.', '..', '.svn', '.htaccess','.gitignore','.gitkeep'); 
                 $totalcached = count($cachedfiles) - 3;
@@ -97,10 +101,33 @@ include("../tutorials/navbar.php");
                             VALUES (?,?,?,?)")->execute(["motd",  $motdcontent, $motdstamp, $motdcreatedby]);
                              header("Location: content.php?motd-success");                          
                         }
-                
+                        }
 
 
-                     }
+                        if(isset($_POST['submit-privacy'])){
+                            if(isMasterAdmin($_SESSION['steamid'])){
+                            $privacycontent = $_POST['privacy-content'];
+                            $privacything = "privacy";
+                            $privacystamp = time();
+                            $privacycreatedby = $_SESSION['steamid'];
+                            $privacyexist = SQLWrapper()->prepare("SELECT thing, content FROM content WHERE thing = :thing");
+                            $privacyexist->execute([':thing' => $privacything]);
+                            $privacyrow = $privacyexist->fetch();
+                            if (!empty($privacyrow)) {
+                                
+                                SQLWrapper()->prepare("UPDATE content SET content= :content, stamp = :stamp, created = :created WHERE thing = 'privacy'")->execute([':content' => $privacycontent, ':created' => $privacycreatedby,':stamp' => $privacystamp]);
+                                $privacychanged = true;
+                                header("Location: content.php?privacy-success");
+                            } else {
+                                SQLWrapper()->prepare("INSERT INTO content (thing, content, stamp, created)
+                                VALUES (?,?,?,?)")->execute(["privacy",  $privacycontent, $privacystamp, $privacycreatedby]);
+                                 header("Location: content.php?privacy-success");                          
+                            }
+                            }else{
+                                header("Location: ?not-sponge");
+                        }
+                        }
+
                      if(isset($_POST['unlock-ad'])){
                         if (isMasterAdmin($_SESSION['steamid'])){ 
                         $unlockid = $_POST['unlock-ad'];
@@ -157,6 +184,23 @@ include("../tutorials/navbar.php");
                                     <textarea id="motd-content" name="motd-content"  rows="10" class="form-control"><?=htmlspecialchars_decode($motdcurrent["content"]);?></textarea>
                                     <br>                                         
                                     <button name="submit-new-motd" type="submit" class="btn btn-primary">Change MOTD</button>
+                                    </div>                                
+                                </form> 
+                                
+                            </div>
+                    </div>
+                    <br>
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Privacy Policy</h3>
+                        </div>
+                            <div class="card-body">                                
+                                <form action="content.php" method="post">
+                                <div class="form-group">
+                                    <label for="privacy-content" style="color: black;">Edit the privacy policy</label>
+                                    <textarea id="privacy-content" name="privacy-content"  rows="11" class="form-control"><?=htmlspecialchars_decode($privacycurrent["content"]);?></textarea>
+                                    <br>                                         
+                                    <button name="submit-privacy" type="submit" class="btn btn-primary">Change Privacy Policy</button>
                                     </div>                                
                                 </form> 
                                 
@@ -279,6 +323,13 @@ include("../tutorials/navbar.php");
                                 toastr["success"]("This user can now advertise again", "Congratulations!")     
                                 </script>
                         <?php
+                        }
+                        if(isset($_GET['privacy-success'])){
+                            ?>
+                            <script type="text/JavaScript">  
+                            toastr["success"]("The privacy policy has been changed!", "Congratulations!")     
+                            </script>
+                            <?php
                         }
                         ?>
  </body>
