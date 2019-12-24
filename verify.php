@@ -79,11 +79,7 @@ include("databases/connect.php");
 
         if (isset($_POST['verify-submit'])) {
             $verifyid = $_POST['verifycode'];
-            $captcha = $_POST['g-recaptcha-response'];
-            $json = file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret=6Ld9SaQUAAAAACIaPxcErESw-6RvtljAMd3IYsQL&response=$captcha");
-            $captchares = json_decode($json);
-            $success = $captchares->success;
-            if ($success == true) {
+         
                 if(is_numeric($verifyid)){
                     $validateid = SQLWrapper()->prepare("SELECT discordid, UNIX_TIMESTAMP(codecreated) AS codecreated FROM discord WHERE verifyid = :vid ");
                     $validateid->execute([':vid' => $verifyid]);
@@ -107,11 +103,7 @@ include("databases/connect.php");
                 }else{
                     header("Location: ?invalid-id"); //If the ID is not a number
                 }
-            } else {
-                $DisplayForm = true;
-                header("Location: ?failed-captcha");
-                
-            }
+            
         }
     }
     } else {
@@ -161,9 +153,7 @@ include("databases/connect.php");
                             <br>
                             <label for="verifycode">Enter the code the bot sent you.</label>
                             <input id="verifycode" class="form-control" name="verifycode" type="number" placeholder="Type here I guess..." required></input>
-                            <br>
-                            <div class="g-recaptcha" data-sitekey="6Ld9SaQUAAAAAG81x31GrfZeiJEd1gtd59CRMbC7" required></div>
-                            <br>
+                            
                             <button name="verify-submit" type="submit" class="btn btn-primary">Submit</button>
                         </div>
                     </form>
