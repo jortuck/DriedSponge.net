@@ -187,15 +187,9 @@ include("databases/connect.php");
     <script src="main.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
    
+                       
                         <?php
                         
-                        if (isset($_GET['failed-captcha'])) {
-                        ?>
-                        <script type="text/JavaScript">  
-                        toastr["error"]("Uh oh! Looks like you failed the captcha! Try again but this time try acting less like a robot.", "Error!")     
-                        </script>
-                        <?php
-                        }
                         if (isset($_GET['invalid-id'])) {
                         ?>
                             <script type="text/JavaScript">  
