@@ -153,7 +153,7 @@ include("databases/connect.php");
                             <br>
                             <label for="verifycode">Enter the code the bot sent you.</label>
                             <input id="verifycode" class="form-control" name="verifycode" type="number" placeholder="Type here I guess..." required></input>
-                            
+                            <br>
                             <button name="verify-submit" type="submit" class="btn btn-primary">Submit</button>
                         </div>
                     </form>
