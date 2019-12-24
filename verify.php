@@ -135,6 +135,10 @@ include("databases/connect.php");
                 <?php if ($blocked){ ?>
                     <h1 class="articleh1">Uh oh, looks like you have been blacklisted from submitting form data. <br> Reason: <?php echo $row["rsn"]; ?></h1>
                 <?php
+                }$roles=true;if ($roles){
+                    ?>
+                      <h1 class="display-3" style="text-align: center;">Your roles will be assgned within five minutes of verification</h1>
+                    <?php
                 }
                     ?>
                 <?php if ($Done){ ?>
@@ -143,11 +147,7 @@ include("databases/connect.php");
                     <h2 style="text-align: center;">If this IS NOT your discord account please let me or one of my moderators know immdiatley. If you need to change your account let me or one of my mods know so we can help you.</h2>
                 <?php
                 }
-                if ($roles){
-                    ?>
-                      <h2 style="text-align: center;">It looks like you haven't been assinged your roles, do <strong style="color:green;">!verify</strong> in chat to get your roles assigned.</h2>
-                    <?php
-                }
+                
                     ?>
 
                 <?php
