@@ -1,5 +1,6 @@
 <?php
 require('steamauth/steamauth.php');  
+include("databases/connect.php");
 ?>
 <!DOCTYPE html>
 
