@@ -30,88 +30,76 @@ include("databases/connect.php");
 <body>
     <?php
     include("navbar.php")
+    
     ?>
     <?php
 
         $Done = false;
         $roles = false;
         $blocked = false;
-    if (isset($_SESSION['steamid'])) {
         $PLogin = false;
-        $Done = false;
-        $blocked = false;
-        $checkifdone = SQLWrapper()->prepare("SELECT discordid,stamp,discorduser,givenrole FROM discord WHERE steamid = :id");
-        $checkifdone->execute([':id' =>  $steamprofile['steamid']]);
-        $checkdonerow = $checkifdone->fetch();
-        if (!empty($checkdonerow)) {
-            $DisplayForm = false;
-            $Done = true;
-            $discordusername = $checkdonerow['discorduser'];
-            $discordid = $checkdonerow['discordid'];
-            $verifiedon = date("m/d/Y g:i a", $checkdonerow['stamp']);
-            if($checkdonerow['givenrole']=="NO"){
-                $roles = true;
-            }else{
-                $roles = false;
+        $InvalidCode = false;
+        $ExpiredCode = false;
+           if(isset($_GET["verify"])) { 
+               $_SESSION["verify_code"] = $_GET["verify"]; 
             }
+                    if (isset($_SESSION['steamid'])) {
+                        $checkifdone = SQLWrapper()->prepare("SELECT discordid,stamp,discorduser,givenrole FROM discord WHERE steamid = :id");
+                        $checkifdone->execute([':id' =>  $steamprofile['steamid']]);
+                        $checkdonerow = $checkifdone->fetch();
+                        if (!empty($checkdonerow)) {
+                            $DisplayForm = false;
+                            $Done = true;
+                            $InvalidCode = false;
+                            $ExpiredCode = false;
+                            $discordusername = $checkdonerow['discorduser'];
+                            $discordid = $checkdonerow['discordid'];
+                            $verifiedon = date("m/d/Y g:i a", $checkdonerow['stamp']);
+                            if($checkdonerow['givenrole']=="NO"){
+                                $roles = true;
+                            }else{
+                                $roles = false;
+                            }
+                        }
+                        
+                       
+                        if(!$Done){
+                            $verifyid = $_SESSION["verify_code"];
+                        if(is_numeric($verifyid) ){
+                            $validateid = SQLWrapper()->prepare("SELECT discordid, UNIX_TIMESTAMP(codecreated) AS codecreated FROM discord WHERE verifyid = :vid ");
+                            $validateid->execute([':vid' => $verifyid]);
+                            $validaterow = $validateid->fetch();
+                            if (!empty($validaterow)) {
+                                $time = time();
+                                $codecreatedat = $validaterow["codecreated"];
+                                if($codecreatedat > time() -300){
+                                $discordid = $validaterow['discordid'];
+                                $steamid = $steamprofile['steamid'];
+                                $updatevalid = SQLWrapper()->prepare("UPDATE discord SET steamid = :id64, stamp = :stamp, verifyid = :verified WHERE discordid = :vid");
+                                $updatevalid->execute([':vid' =>  $discordid,':id64' =>  $steamid,':stamp' =>  $time,':verified' =>  "VERIFIED"]);
+                                header("Location: ?success");
 
-        } else {
-        $DisplayForm = true;
-        $FailedCaptch = false;
-        $blocked = false;
-        $row = null;
-        $chekid = $_SESSION['steamid'];
-
-        $sqlblockexistquery = SQLWrapper()->prepare("SELECT id64, rsn, stamp FROM blocked WHERE id64 = :id");
-        $sqlblockexistquery->execute([':id' => $chekid]);
-
-        $row = $sqlblockexistquery->fetch();
-        if (!empty($row)) {
-            $DisplayForm = false;
-            $blocked = true;
-        } else {
-            $DisplayForm = true;
-        }
-
-
-
-
-
-        if (isset($_POST['verify-submit'])) {
-            $verifyid = $_POST['verifycode'];
-         
-                if(is_numeric($verifyid)){
-                    $validateid = SQLWrapper()->prepare("SELECT discordid, UNIX_TIMESTAMP(codecreated) AS codecreated FROM discord WHERE verifyid = :vid ");
-                    $validateid->execute([':vid' => $verifyid]);
-                    $validaterow = $validateid->fetch();
-                    if (!empty($validaterow)) {
-                        $discordid = $validaterow['discordid'];
-                        $steamid = $steamprofile['steamid'];
-                        $time = time();
-                        $codecreatedat = $validaterow["codecreated"];
-                        if($codecreatedat > time() -300){
-                        $updatevalid = SQLWrapper()->prepare("UPDATE discord SET steamid = :id64, stamp = :stamp, verifyid = :verified WHERE discordid = :vid");
-                        $updatevalid->execute([':vid' =>  $discordid,':id64' =>  $steamid,':stamp' =>  $time,':verified' =>  "VERIFIED"]);
-     
-                        header("Location: ?success");
                     }else{
-                        header("Location: ?code-expired"); //IF the code is expiered
+                        
+                        $ExpiredCode = true;//IF the code is expiered
                     }
-                    } else {
-                        header("Location: ?invalid-id"); //If the id is not in DB
-                    }
-                }else{
-                    header("Location: ?invalid-id"); //If the ID is not a number
-                }
-            
+
+                
+            }else{
+                
+                $InvalidCode = true;
+            }
+            } else {
+                
+                $InvalidCode = true;
+            }
         }
-    }
-    } else {
-        $DisplayForm = false;
-        $PLogin = true;
-        
-        
-    }
+
+ 
+
+}else{
+    $PLogin = true;
+}
     ?>
 
     <div class="app">
@@ -139,26 +127,21 @@ include("databases/connect.php");
                     <h2 style="text-align: center;">If this IS NOT your discord account please let me or one of my moderators know immdiatley. If you need to change your account let me or one of my mods know so we can help you.</h2>
                 <?php
                 }
-                
+                if($InvalidCode){
+                    ?>
+                    <h2 style="text-align: center; color:red;"><strong>Invalid Code</strong><br> If you are trying to view the current status of your member ship, click on the log button in the top right</h2>
+                    <?php
+                }
+                if($ExpiredCode){
+                    ?>
+                      <h2 style="text-align: center; color:red;"><strong>Error: Expired Code</strong><br> If you are trying to view the current status of your member ship, click on the log button in the top right</h2>  
+                    <?php
+                }
                     ?>
 
+                
                 <?php
-                if ($DisplayForm) {
-                    ?>
-                    <br>
-                    <form action="verify.php" method="post">
-                        <div class="form-group">
-                            <label for="id64">SteamID64</label>
-                            <input id="id64" name="id64" type="text" class="form-control" value="<?= htmlspecialchars($steamprofile['steamid']); ?>" placeholder="<?= htmlspecialchars($steamprofile['personaname']); ?>" readonly>
-                            <br>
-                            <label for="verifycode">Enter the code the bot sent you.</label>
-                            <input id="verifycode" class="form-control" name="verifycode" type="number" placeholder="Type here I guess..." required></input>
-                            <br>
-                            <button name="verify-submit" type="submit" class="btn btn-primary">Submit</button>
-                        </div>
-                    </form>
-                <?php
-                }
+                
                               
                 if ($PLogin == true) {
                     ?>
