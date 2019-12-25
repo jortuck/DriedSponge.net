@@ -111,10 +111,9 @@ include("../tutorials/navbar.php");
                       
                   }
                   if(isset($_POST['submit-unverify'])){
-                    
                     $unverifyid = $_POST['submit-unverify'];
-                    $sqlfire = SQLWrapper()->prepare("DELETE FROM discord WHERE discordid= :id");
-                    $sqlfire->execute([':id' => $unverifyid]);
+                    $sqlfire = SQLWrapper()->prepare("UPDATE discord SET verifyid = :vid WHERE discordid= :id");
+                    $sqlfire->execute([':id' => $unverifyid, ':vid' => "UNVERIFIED"]);
                     header("Location: users.php?unverified=$unverifyid"); 
                     
                     
