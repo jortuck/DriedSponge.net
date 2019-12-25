@@ -46,7 +46,7 @@
                                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" style="color: white;" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <?=htmlspecialchars($steamprofile['personaname']);?>
                                     </a>
-                                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
                                     <a class="dropdown-item" href="?logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
                                     <?php
                                      include("databases/connect.php");
