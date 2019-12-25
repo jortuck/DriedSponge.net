@@ -182,7 +182,7 @@ include("../tutorials/navbar.php");
                                             
                       <br>
                       <p class="subsubhead" style="color: black; text-align: left;">Current Users</p>
-                        <table class="table paragraph pintro" style="color: black;">
+                        <table class="table paragraph " style="color: black;">
                         <thead>
                         <tr>
                         <th scope="col"></th>
@@ -216,6 +216,8 @@ include("../tutorials/navbar.php");
                       </div>
                     </div>
                     <br>
+                    <?php if(isMasterAdmin($steamprofile['steamid'])){
+                      ?>               
                     <div class="card">
                         <div class="card-header">
                           <h3>Admins</h3>
@@ -232,7 +234,7 @@ include("../tutorials/navbar.php");
                                                             </form>                   
                                       <br>
                                       <p class="subsubhead" style="color: black; text-align: left;">Current Admins</p>
-                                        <table class="table paragraph pintro" style="color: black;">
+                                        <table class="table paragraph" style="color: black;">
                                         <thead>
                                         <tr>
                                         <th scope="col"></th>
@@ -263,8 +265,9 @@ include("../tutorials/navbar.php");
                                       </tbody>
                                         </table>
                             </div>
-                          </div>
+                          </div>   
                         <br>
+                        <?php }?>
                         <div class="card">
                           <div class="card-header">
                             <h3>Verified Discord Users</h3>
@@ -293,7 +296,7 @@ include("../tutorials/navbar.php");
                                             </form>                  
                                         <br>
                                         <p class="subsubhead" style="color: black; text-align: left;">Current Admins</p>
-                                          <table class="table paragraph pintro" style="color: black;">
+                                          <table class="table paragraph" style="color: black;">
                                           <thead>
                                           <tr>
                                           <th scope="col"></th>

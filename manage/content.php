@@ -157,7 +157,8 @@ include("../tutorials/navbar.php");
                         <h1 class="display-4"><strong>Content Mangement</strong></h1>
                 </hgroup>
                 <br>
-                    
+                <?php if(isMasterAdmin($steamprofile['steamid'])){
+                      ?> 
                     <div class="card">
                         <div class="card-header">
                             <h3>Cache</h3>
@@ -190,6 +191,7 @@ include("../tutorials/navbar.php");
                             </div>
                     </div>
                     <br>
+                    
                     <div class="card">
                         <div class="card-header">
                             <h3>Privacy Policy</h3>
@@ -207,16 +209,17 @@ include("../tutorials/navbar.php");
                             </div>
                     </div>
                     <br>
+                    <?php }?>
                     <div class="card">
                         <div class="card-header">
                           <h3>Currently running ads</h3>
                         </div>
                       <div class="card-body">   
                                       <p class="subsubhead" style="color: black; text-align: left;">Current ads in the last 24 hours</p>
-                                        <table class="table paragraph pintro" style="color: black;">
+                                        <table class="table paragraph " style="color: black;">
                                         <thead>
                                         <tr>
-                                        <th scope="col">Buttons!</th>
+                                        <th scope="col"></th>
                                             <th scope="col">Submitor</th>
                                             <th scope="col">Timestamp</th>
                                             </tr>
