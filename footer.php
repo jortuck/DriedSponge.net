@@ -20,7 +20,6 @@ if ( date("m") == "12" ){
             <h4 class="socials">Socials</h4>
                     
                         <a href="https://steamcommunity.com/id/driedsponge" target="_blank"><button  data-tippy-content="Steam" type="button" class="btn btn-success"><i class="fab fa-steam fa-2x"></i></button></a>
-                        <a href="https://twitter.com/Dried_Sponge" target="_blank"><button type="button" data-tippy-content="Twitter" class="btn btn-success"><i class="fab fa-twitter fa-2x"></i></button></a>
                         <a href="https://www.reddit.com/user/DriedSponge78" target="_blank"><button data-tippy-content="Reddit" type="button" class="btn btn-success"><i class="fab fa-reddit fa-2x"></i></button></a>
                         <a href="https://www.youtube.com/channel/UCuGIXCXxUJNaq8NjFsYM21A" target="_blank"><button data-tippy-content="YouTube" type="button" class="btn btn-success"><i class="fab fa-youtube fa-2x"></i></button></a>
                         <a href="https://gitlab.com/DriedSponge" target="_blank"><button  data-tippy-content="Git Lab" type="button" class="btn btn-success"><i class="fab fa-gitlab fa-2x"></i></button></a>
