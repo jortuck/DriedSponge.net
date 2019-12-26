@@ -58,11 +58,11 @@ include("../tutorials/navbar.php");
               if (isAdmin($_SESSION['steamid'])){
 
 
-                $motdq = SQLWrapper()->prepare("SELECT thing, content FROM content WHERE thing = :thing");
+                $motdq = SQLWrapper()->prepare("SELECT content FROM content WHERE thing = :thing");
                 $motdq->execute([':thing' => "motd"]);
                 $motdcurrent = $motdq->fetch();
 
-                $privacyq = SQLWrapper()->prepare("SELECT thing, content FROM content WHERE thing = :thing");
+                $privacyq = SQLWrapper()->prepare("SELECT content FROM content WHERE thing = :thing");
                 $privacyq->execute([':thing' => "privacy"]);
                 $privacycurrent = $privacyq->fetch();
 
@@ -86,19 +86,18 @@ include("../tutorials/navbar.php");
                     if(isset($_POST['submit-new-motd'])){
                         $motdcontent = $_POST['motd-content'];
                         $motdthing = "motd";
-                        $motdstamp = time();
                         $motdcreatedby = $_SESSION['steamid'];
-                        $motdexist = SQLWrapper()->prepare("SELECT thing, content FROM content WHERE thing = :thing");
+                        $motdexist = SQLWrapper()->prepare("SELECT content FROM content WHERE thing = :thing");
                         $motdexist->execute([':thing' => $motdthing]);
                         $motdrow = $motdexist->fetch();
                         if (!empty($motdrow)) {
                             
-                            SQLWrapper()->prepare("UPDATE content SET content= :content, stamp = :stamp, created = :created WHERE thing = 'motd'")->execute([':content' => $motdcontent, ':created' => $motdcreatedby,':stamp' => $motdstamp]);
+                            SQLWrapper()->prepare("UPDATE content SET content= :content,  created = :created WHERE thing = 'motd'")->execute([':content' => $motdcontent, ':created' => $motdcreatedby]);
                             $motdchanged = true;
                             header("Location: content.php?motd-success");
                         } else {
-                            SQLWrapper()->prepare("INSERT INTO content (thing, content, stamp, created)
-                            VALUES (?,?,?,?)")->execute(["motd",  $motdcontent, $motdstamp, $motdcreatedby]);
+                            SQLWrapper()->prepare("INSERT INTO content (thing, content,created)
+                            VALUES (?,?,?)")->execute(["motd",  $motdcontent,$motdcreatedby]);
                              header("Location: content.php?motd-success");                          
                         }
                         }
@@ -108,19 +107,18 @@ include("../tutorials/navbar.php");
                             if(isMasterAdmin($_SESSION['steamid'])){
                             $privacycontent = $_POST['privacy-content'];
                             $privacything = "privacy";
-                            $privacystamp = time();
                             $privacycreatedby = $_SESSION['steamid'];
                             $privacyexist = SQLWrapper()->prepare("SELECT thing, content FROM content WHERE thing = :thing");
                             $privacyexist->execute([':thing' => $privacything]);
                             $privacyrow = $privacyexist->fetch();
                             if (!empty($privacyrow)) {
                                 
-                                SQLWrapper()->prepare("UPDATE content SET content= :content, stamp = :stamp, created = :created WHERE thing = 'privacy'")->execute([':content' => $privacycontent, ':created' => $privacycreatedby,':stamp' => $privacystamp]);
+                                SQLWrapper()->prepare("UPDATE content SET content= :content,created = :created WHERE thing = 'privacy'")->execute([':content' => $privacycontent, ':created' => $privacycreatedby]);
                                 $privacychanged = true;
                                 header("Location: content.php?privacy-success");
                             } else {
-                                SQLWrapper()->prepare("INSERT INTO content (thing, content, stamp, created)
-                                VALUES (?,?,?,?)")->execute(["privacy",  $privacycontent, $privacystamp, $privacycreatedby]);
+                                SQLWrapper()->prepare("INSERT INTO content (thing, content, created)
+                                VALUES (?,?,?)")->execute(["privacy", $privacycontent,$privacycreatedby]);
                                  header("Location: content.php?privacy-success");                          
                             }
                             }else{

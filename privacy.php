@@ -25,12 +25,10 @@ include("databases/connect.php");
  <body>
 <?php
 include("navbar.php");
-$privacypolicyquery = SQLWrapper()->prepare("SELECT * FROM content WHERE thing = :thing");
+$privacypolicyquery = SQLWrapper()->prepare("SELECT content,UNIX_TIMESTAMP(stamp) AS stamp FROM content WHERE thing = :thing");
 $privacypolicyquery->execute([':thing' => "privacy"]);
 $content = $privacypolicyquery->fetch();
 $plastupdated = date("m/d/Y g:i a", $content["stamp"]);
-$pcreatedby = $content["created"];
-$pcreatedbyurl = "https://steamcommunity.com/profiles/".$pcreatedby."/";
 ?>
 
     <div class="app">
