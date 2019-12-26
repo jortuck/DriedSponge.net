@@ -149,10 +149,10 @@ include("../tutorials/navbar.php");
                                         <tr>
                                         <td>
                                         <div class="dropdown">
-                                        <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <button class="btn btn-primary dropdown-toggle" type="button" id="options" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                             Options
                                         </button>
-                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                        <div class="dropdown-menu" aria-labelledby="options">
                                         <a class="dropdown-item" href="<?=htmlspecialchars($href)?>" target="_blank">Edit</a>
                                             <a class="dropdown-item" href="#">Restrict</a>
                                             <a class="dropdown-item" href="#">Delete</a>
