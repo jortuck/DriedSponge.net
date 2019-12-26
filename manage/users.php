@@ -129,8 +129,8 @@ include("../tutorials/navbar.php");
                                 header("Location: users.php?already-staff"); 
                                 
                             } else{
-                                $adminhire = SQLWrapper()->prepare("INSERT INTO staff (id64, stamp)
-                                VALUES (?,?)")->execute([$hireid, $hirestamp]);
+                                $adminhire = SQLWrapper()->prepare("INSERT INTO staff (id64)
+                                VALUES (?)")->execute([$hireid]);
                                header("Location: users.php?hired=$hireid"); 
 
                             }
@@ -225,13 +225,13 @@ include("../tutorials/navbar.php");
                       <div class="card-body">
                         <!-- Admin manager -->
                                     <form action="users.php" method="post">
-                                                                  <label for="id642" style="color: black;">SteamID64</label>
-                                                                    <input id="id642" name="id64" type="number" class="form-control"  placeholder="Enter SteamID64"  required>
-                                                                    <br>
+                                        <label for="id642" style="color: black;">SteamID64</label>
+                                        <input id="id642" name="id64" type="number" class="form-control"  placeholder="Enter SteamID64"  required>
+                                        <br>
                                                                     
-                                                                    <button name="submit-hire" type="submit" class="btn btn-primary">Add User</button>
+                                        <button name="submit-hire" type="submit" class="btn btn-primary">Add User</button>
                                                                   
-                                                            </form>                   
+                                       </form>                   
                                       <br>
                                       <p class="subsubhead" style="color: black; text-align: left;">Current Admins</p>
                                         <table class="table paragraph" style="color: black;">
@@ -244,7 +244,7 @@ include("../tutorials/navbar.php");
                                         </thead>
                                         <tbody>
                                       <?php
-                                      $sql2 = "SELECT id64, stamp FROM staff";
+                                      $sql2 = "SELECT id64, UNIX_TIMESTAMP(stamp) AS stamp FROM staff";
                                       $result2 = SQLWrapper()->query($sql2);
                                         while($row2 = $result2->fetch()){ 
                                           $admurl = "https://steamcommunity.com/profiles/".$row2['id64']."/"; 
