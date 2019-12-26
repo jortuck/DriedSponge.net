@@ -33,7 +33,7 @@ include("databases/connect.php");
  <body>
 <?php
 include("navbar.php");
-$motdq = SQLWrapper()->prepare("SELECT thing, content, stamp, created FROM content WHERE thing = :thing");
+$motdq = SQLWrapper()->prepare("SELECT content, UNIX_TIMESTAMP(stamp) AS stamp, created FROM content WHERE thing = :thing");
 $motdq->execute([':thing' => "motd"]);
 $content = $motdq->fetch();
 $mlastupdated = date("m/d/Y g:i a", $content["stamp"]);
