@@ -147,7 +147,18 @@ include("../tutorials/navbar.php");
 
                                     ?>
                                         <tr>
-                                        <th><a class="btn btn-primary" style="color:white" href="<?=htmlspecialchars($href)?>" target="_blank">Edit</a></th>
+                                        <td>
+                                        <div class="dropdown">
+                                        <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            Options
+                                        </button>
+                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                        <a class="dropdown-item" href="<?=htmlspecialchars($href)?>" target="_blank">Edit</a>
+                                            <a class="dropdown-item" href="#">Restrict</a>
+                                            <a class="dropdown-item" href="#">Delete</a>
+                                        </div>
+                                        </div>
+                                        </td>
                                         <td><?=htmlspecialchars($row["title"]);?></td>
                                         <td><?=htmlspecialchars(date("m/d/Y g:i a", $row["stamp"]));?></td>
                                         <td><a href="<?=htmlspecialchars($createdurl)?>" target="_blank"><?=htmlspecialchars($row["created"]);?></a></td>
