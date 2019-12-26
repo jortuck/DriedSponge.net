@@ -58,14 +58,6 @@ include("../tutorials/navbar.php");
               if (isAdmin($_SESSION['steamid'])){
 
 
-                $motdq = SQLWrapper()->prepare("SELECT content FROM content WHERE thing = :thing");
-                $motdq->execute([':thing' => "motd"]);
-                $motdcurrent = $motdq->fetch();
-
-                $privacyq = SQLWrapper()->prepare("SELECT content FROM content WHERE thing = :thing");
-                $privacyq->execute([':thing' => "privacy"]);
-                $privacycurrent = $privacyq->fetch();
-
              $cachedfiles = scandir("../cache");
                 $ignored = array('.', '..', '.svn', '.htaccess','.gitignore','.gitkeep'); 
                 $totalcached = count($cachedfiles) - 3;
@@ -83,48 +75,7 @@ include("../tutorials/navbar.php");
                         $notadmin = true;
                     }
 
-                    if(isset($_POST['submit-new-motd'])){
-                        $motdcontent = $_POST['motd-content'];
-                        $motdthing = "motd";
-                        $motdcreatedby = $_SESSION['steamid'];
-                        $motdexist = SQLWrapper()->prepare("SELECT content FROM content WHERE thing = :thing");
-                        $motdexist->execute([':thing' => $motdthing]);
-                        $motdrow = $motdexist->fetch();
-                        if (!empty($motdrow)) {
-                            
-                            SQLWrapper()->prepare("UPDATE content SET content= :content,  created = :created WHERE thing = 'motd'")->execute([':content' => $motdcontent, ':created' => $motdcreatedby]);
-                            $motdchanged = true;
-                            header("Location: content.php?motd-success");
-                        } else {
-                            SQLWrapper()->prepare("INSERT INTO content (thing, content,created)
-                            VALUES (?,?,?)")->execute(["motd",  $motdcontent,$motdcreatedby]);
-                             header("Location: content.php?motd-success");                          
-                        }
-                        }
-
-
-                        if(isset($_POST['submit-privacy'])){
-                            if(isMasterAdmin($_SESSION['steamid'])){
-                            $privacycontent = $_POST['privacy-content'];
-                            $privacything = "privacy";
-                            $privacycreatedby = $_SESSION['steamid'];
-                            $privacyexist = SQLWrapper()->prepare("SELECT thing, content FROM content WHERE thing = :thing");
-                            $privacyexist->execute([':thing' => $privacything]);
-                            $privacyrow = $privacyexist->fetch();
-                            if (!empty($privacyrow)) {
-                                
-                                SQLWrapper()->prepare("UPDATE content SET content= :content,created = :created WHERE thing = 'privacy'")->execute([':content' => $privacycontent, ':created' => $privacycreatedby]);
-                                $privacychanged = true;
-                                header("Location: content.php?privacy-success");
-                            } else {
-                                SQLWrapper()->prepare("INSERT INTO content (thing, content, created)
-                                VALUES (?,?,?)")->execute(["privacy", $privacycontent,$privacycreatedby]);
-                                 header("Location: content.php?privacy-success");                          
-                            }
-                            }else{
-                                header("Location: ?not-sponge");
-                        }
-                        }
+                    
 
                      if(isset($_POST['unlock-ad'])){
                         if (isMasterAdmin($_SESSION['steamid'])){ 
@@ -174,39 +125,40 @@ include("../tutorials/navbar.php");
                     <br>
                     <div class="card">
                         <div class="card-header">
-                            <h3>MOTD</h3>
+                            <h3>Editor</h3>
                         </div>
                             <div class="card-body">                                
-                                <form action="content.php" method="post">
-                                <div class="form-group">
-                                    <label for="motd-content" style="color: black;">Edit the MOTD that is displayed on the index</label>
-                                    <textarea id="motd-content" name="motd-content"  rows="10" class="form-control"><?=htmlspecialchars_decode($motdcurrent["content"]);?></textarea>
-                                    <br>                                         
-                                    <button name="submit-new-motd" type="submit" class="btn btn-primary">Change MOTD</button>
-                                    </div>                                
-                                </form> 
-                                
+                                <table class="table paragraph">
+                                    <thead>
+                                        <tr>
+                                        <th scope="col"></th>
+                                        <th scope="col">Page Name</th>
+                                        <th scope="col">Last Modified</th>
+                                        <th scope="col">Last Editor</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    <?php
+                                        $pagesq = SQLWrapper()->prepare("SELECT thing,UNIX_TIMESTAMP(stamp) AS stamp,created,title FROM content");
+                                        $pagesq->execute();
+                                        while($row = $pagesq->fetch()){ 
+                                            $createdurl = "https://steamcommunity.com/profiles/".$row['created']."/"; 
+                                            $href = "editor.php?id=".$row['thing'];
+
+                                    ?>
+                                        <tr>
+                                        <th><a class="btn btn-primary" style="color:white" href="<?=htmlspecialchars($href)?>" target="_blank">Edit</a></th>
+                                        <td><?=htmlspecialchars($row["title"]);?></td>
+                                        <td><?=htmlspecialchars(date("m/d/Y g:i a", $row["stamp"]));?></td>
+                                        <td><a href="<?=htmlspecialchars($createdurl)?>" target="_blank"><?=htmlspecialchars($row["created"]);?></a></td>
+                                        </tr>
+                                        <?php }?>
+                                    </tbody>
+                                </table>
                             </div>
                     </div>
                     <br>
                     
-                    <div class="card">
-                        <div class="card-header">
-                            <h3>Privacy Policy</h3>
-                        </div>
-                            <div class="card-body">                                
-                                <form action="content.php" method="post">
-                                <div class="form-group">
-                                    <label for="privacy-content" style="color: black;">Edit the privacy policy</label>
-                                    <textarea id="privacy-content" name="privacy-content"  rows="11" class="form-control"><?=htmlspecialchars_decode($privacycurrent["content"]);?></textarea>
-                                    <br>                                         
-                                    <button name="submit-privacy" type="submit" class="btn btn-primary">Change Privacy Policy</button>
-                                    </div>                                
-                                </form> 
-                                
-                            </div>
-                    </div>
-                    <br>
                     <?php }?>
                     <div class="card">
                         <div class="card-header">
@@ -289,6 +241,11 @@ include("../tutorials/navbar.php");
                 <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
                 <script src="https://cdn.tiny.cloud/1/dom10ctinmaceofbm524vgsfebgy22lsh2ooomg0oqs8wu28/tinymce/5/tinymce.min.js"></script>
                 <script>tinymce.init({selector:'textarea', branding: false, plugins: "link",default_link_target: "_blank"});</script>
+                <script>
+                	function basicPopup() {
+                        popupWindow = window.open(document.getElementById("privacy").value,'popUpWindow','height=500,width=500,left=100,top=100,resizable=yes,scrollbars=yes,toolbar=yes,menubar=no,location=no,directories=no, status=yes');
+                            }
+                </script>
                 <?php                    
                       if($notadmin == true){
                         ?>
@@ -305,13 +262,7 @@ include("../tutorials/navbar.php");
                       </script>
                       <?php 
                       } 
-                      if(isset($_GET['motd-success'])){
-                        ?>
-                        <script type="text/JavaScript">  
-                      toastr["success"]("The motd has been changed!", "Congratulations!")     
-                      </script>
-                        <?php
-                        }
+                      
                         if(isset($_GET['not-sponge'])){
                         ?>
                         <script type="text/JavaScript">  
