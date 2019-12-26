@@ -128,7 +128,7 @@ include("../tutorials/navbar.php");
                             <h3>Editor</h3>
                         </div>
                             <div class="card-body">                                
-                                <table class="table paragraph">
+                                <table class="table paragraph text-center">
                                     <thead>
                                         <tr>
                                         <th scope="col"></th>
