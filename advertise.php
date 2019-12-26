@@ -152,7 +152,7 @@ include("databases/connect.php");
                         
                         
                             if (!empty($adrow)) {                          
-                                SQLWrapper()->prepare("UPDATE ads SET user= :id, adname = :adname, content = :content WHERE user = :curuser")->execute([':id' => $aduser, ':adname' => $adname,':content' => $adcontent,':curuser' => $aduser]);                          
+                                SQLWrapper()->prepare("UPDATE ads SET user= :id, adname = :adname, content = :content, overide = :overide WHERE user = :curuser")->execute([':id' => $aduser, ':adname' => $adname,':content' => $adcontent,':curuser' => $aduser, ':overide' => 0]);                          
                                 header("Location: advertise.php?submit-success");
                             } else {
                                 SQLWrapper()->prepare("INSERT INTO ads (user, adname, content)
