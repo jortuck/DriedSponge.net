@@ -13,11 +13,32 @@ function isAdmin($steamid) {
 
     return !empty($Admin);
 }
+
 function isMasterAdmin($steamid) {
     if ($steamid == "76561198357728256") {
         return true;
     }
 }
+
+function isVerified($steamid) {
+
+    $isverified = SQLWrapper()->prepare("SELECT verifyid FROM discord WHERE steamid = ?"); // because its a single var we can use ?
+    $isverified->execute([$steamid]);
+    $verified = $isverified->fetch();
+     if(!empty($verified)){
+        if($verified['verifyid'] === "VERIFIED"){
+            return true;
+        }else{
+            return false;
+        }
+     }else{
+         return false;
+     }
+}
+
+
+
+
 function secondsToTime($seconds) {
     $dtF = new \DateTime('@0');
     $dtT = new \DateTime("@$seconds");

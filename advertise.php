@@ -39,21 +39,19 @@ include("databases/connect.php");
         $oneday = false;
         $blocked = false;
         $ReRun = false;
+        $notverified = false;
         $DisplayForm = true;
         $row = null;
         $chekid = $_SESSION['steamid'];
-
         $sqlblockexistquery = SQLWrapper()->prepare("SELECT id64, rsn, stamp FROM blocked WHERE id64 = :id");
         $sqlblockexistquery->execute([':id' => $chekid]);
-
         $row = $sqlblockexistquery->fetch();
         if (!empty($row)) {
             $DisplayForm = false;
             $blocked = true;
         } else {
-    
-        $aduser =  $steamprofile['steamid'];
-                             
+            if(isVerified($_SESSION['steamid'])){
+        $aduser =  $steamprofile['steamid'];                   
         $adstamp = time();
         $adexist = SQLWrapper()->prepare("SELECT user,adname,overide,content,UNIX_TIMESTAMP(stamp) AS stamp  FROM ads WHERE user = :id");
         $adexist->execute([':id' => $aduser]);
@@ -171,8 +169,14 @@ include("databases/connect.php");
             $oneday = true;
         }
 
-        } //end block check
+    }else{
+        $notverified = true;
+        $DisplayForm = false;
+    }
 
+
+        } //end block check
+    
 
 
 
@@ -208,7 +212,12 @@ include("databases/connect.php");
                     <h2 style="text-align: center;">If you believe there was an error in porcessing your ad, please contact me in my discord and I will remove your countdown if the situation warrants it.</h2>
                 <?php
                 }
-                    
+                if($notverified){
+                    ?>
+                    <h1 class="articleh1">Not Verified</h1>
+                    <h2 style="text-align: center;">It appears that you are not verified in my discord server, therefore we cannot be sure you are actually in the discord server. If you are not in it, you can click <a href="https://discordapp.com/invite/YS4WZWG" target="_blank">here</a> to join. If you are in the discord, head into the bot commands channel and do <strong>!verify</strong> to get started.</h2>
+                   <?php 
+                }
                 if ($DisplayForm) {
                     
                     ?>
