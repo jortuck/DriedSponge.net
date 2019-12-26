@@ -131,9 +131,9 @@ include("../tutorials/navbar.php");
                      if(isset($_POST['unlock-ad'])){
                         if (isMasterAdmin($_SESSION['steamid'])){ 
                         $unlockid = $_POST['unlock-ad'];
-                        $newstamp = time() - 86400;
-                        $unlocadq = SQLWrapper()->prepare("UPDATE ads SET stamp = :stamp WHERE user= :id");
-                        $unlocadq->execute([':id' => $unlockid,':stamp' => $newstamp]);
+                        
+                        $unlocadq = SQLWrapper()->prepare("UPDATE ads SET overide = :overide WHERE user= :id");
+                        $unlocadq->execute([':id' => $unlockid,':overide' => "1"]);
                         header("Location: content.php?unlock-success"); 
                         }else{
                             header("Location: content.php?not-sponge"); 
@@ -226,13 +226,14 @@ include("../tutorials/navbar.php");
                                         </thead>
                                         <tbody>
                                       <?php
-                                      $sql2 = "SELECT user, stamp FROM ads";
+                                      $sql2 = "SELECT user,overide, UNIX_TIMESTAMP(stamp) AS stamp FROM ads";
                                       $result2 = SQLWrapper()->query($sql2);
                                         while($row2 = $result2->fetch()){ 
                                           $aduurl = "https://steamcommunity.com/profiles/".$row2['user']."/"; 
                                           $admnormalstamp =  date("m/d/Y g:i a", $row2["stamp"]); 
                                           $numDays = abs($row2["stamp"] - time())/60/60/24;
-                                          if($numDays <= 1){
+                                          if($numDays <= 1 and !$row2['overide']){
+                                            
                                             ?>
                                             
                                             <tr><td>

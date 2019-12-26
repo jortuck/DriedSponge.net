@@ -55,12 +55,12 @@ include("databases/connect.php");
         $aduser =  $steamprofile['steamid'];
                              
         $adstamp = time();
-        $adexist = SQLWrapper()->prepare("SELECT user, stamp, content, adname FROM ads WHERE user = :id");
+        $adexist = SQLWrapper()->prepare("SELECT user,adname,overide,content,UNIX_TIMESTAMP(stamp) AS stamp  FROM ads WHERE user = :id");
         $adexist->execute([':id' => $aduser]);
         $adrow = $adexist->fetch();
         $numDays = abs($adrow['stamp'] - $adstamp)/60/60/24;
         $timeleft = secondsToTime(86400 - abs($adrow['stamp'] - $adstamp));
-        if($numDays >= 1){
+        if($numDays >= 1 or $adrow['overide']){
         $oneday = false;
             if(!empty($adrow['content'])){
                 $ReRun = true;
@@ -72,7 +72,7 @@ include("databases/connect.php");
                 $DefaultAdDesc = "Type details here...";
             }
             if(isset($_POST['last-ad'])){
-                SQLWrapper()->prepare("UPDATE ads SET stamp = :stamp WHERE user = :curuser")->execute([':stamp' => $adstamp,':curuser' => $aduser]);    
+                SQLWrapper()->prepare("UPDATE ads SET overide = :overide WHERE user = :curuser")->execute([':curuser' => $aduser,':overide' => 0]);    
                                                     
                 $request = json_encode([
                     "content" => "",
@@ -152,11 +152,11 @@ include("databases/connect.php");
                         
                         
                             if (!empty($adrow)) {                          
-                                SQLWrapper()->prepare("UPDATE ads SET user= :id, adname = :adname, content = :content,stamp = :stamp WHERE user = :curuser")->execute([':id' => $aduser, ':adname' => $adname,':content' => $adcontent,':stamp' => $adstamp,':curuser' => $aduser]);                          
+                                SQLWrapper()->prepare("UPDATE ads SET user= :id, adname = :adname, content = :content WHERE user = :curuser")->execute([':id' => $aduser, ':adname' => $adname,':content' => $adcontent,':curuser' => $aduser]);                          
                                 header("Location: advertise.php?submit-success");
                             } else {
-                                SQLWrapper()->prepare("INSERT INTO ads (user, adname, content, stamp)
-                                VALUES (?,?,?,?)")->execute([$aduser,  $adname, $adcontent, $adstamp]);
+                                SQLWrapper()->prepare("INSERT INTO ads (user, adname, content)
+                                VALUES (?,?,?)")->execute([$aduser,  $adname, $adcontent]);
                                 header("Location: advertise.php?submit-success");                      
                             }
                        
