@@ -89,10 +89,14 @@ include("../src/libs/functions.php");
                 <br>
                 <form  action="editor.php" method="post">
                         <div class="form-group">
-                            <label for="content" style="color: black;">Edit the privacy policy</label>
-                                <textarea id="content" name="content" rows="40" class="form-control"><?=htmlspecialchars_decode($current["content"]);?></textarea>
-                                    <br>                                         
-                                <button name="submit-changes" type="submit" class="btn btn-primary">Save</button>
+                        
+                            <label for="submit" style="color: black;">Edit the privacy policy</label>
+                            <br>
+                            <button id="submit"name="submit-changes" type="submit" class="btn btn-primary">Save</button>
+                            <br>
+                            <br>
+                                <textarea id="content" name="content" rows="40" class="form-control"><?=htmlspecialchars_decode($current["content"]);?></textarea>                                      
+                                
                                 </div>                                
                      </form> 
                 <?php 
@@ -138,7 +142,15 @@ include("../src/libs/functions.php");
                 <script src="main.js"></script>
                 <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
                 <script src="https://cdn.tiny.cloud/1/dom10ctinmaceofbm524vgsfebgy22lsh2ooomg0oqs8wu28/tinymce/5/tinymce.min.js"></script>
-                <script>tinymce.init({selector:'textarea', branding: false, plugins: "link",default_link_target: "_blank"});</script>
+                <script>
+                tinymce.init({
+                    selector:'textarea', 
+                    branding: false, 
+                    plugins: "link,anchor,autoresize,autosave,image,wordcount,searchreplace,fullscreen,code",
+                    menubar: "file edit insert view format table tools help ",
+                    toolbar: "undo redo | styleselect | bold italic underline strikethrough format code | align left center right justify | link image anchor | wordcount",
+                    default_link_target: "_blank",
+                    });</script>
                 <?php
                         if(isset($_GET['saved'])){
                             ?>

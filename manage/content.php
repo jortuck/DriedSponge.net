@@ -125,16 +125,17 @@ include("../tutorials/navbar.php");
                     <br>
                     <div class="card">
                         <div class="card-header">
-                            <h3>Editor</h3>
+                            <h3>Pages</h3>
                         </div>
                             <div class="card-body">                                
                                 <table class="table paragraph text-center">
                                     <thead>
                                         <tr>
-                                        <th scope="col"></th>
+                                        
                                         <th scope="col">Page Name</th>
                                         <th scope="col">Last Modified</th>
                                         <th scope="col">Last Editor</th>
+                                        <th scope="col"></th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -147,6 +148,10 @@ include("../tutorials/navbar.php");
 
                                     ?>
                                         <tr>
+                                       
+                                        <td><?=htmlspecialchars($row["title"]);?></td>
+                                        <td><?=htmlspecialchars(date("m/d/Y g:i a", $row["stamp"]));?></td>
+                                        <td><a href="<?=htmlspecialchars($createdurl)?>" target="_blank"><?=htmlspecialchars($row["created"]);?></a></td>
                                         <td>
                                         <div class="dropdown">
                                         <button class="btn btn-primary dropdown-toggle" type="button" id="options" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -159,9 +164,6 @@ include("../tutorials/navbar.php");
                                         </div>
                                         </div>
                                         </td>
-                                        <td><?=htmlspecialchars($row["title"]);?></td>
-                                        <td><?=htmlspecialchars(date("m/d/Y g:i a", $row["stamp"]));?></td>
-                                        <td><a href="<?=htmlspecialchars($createdurl)?>" target="_blank"><?=htmlspecialchars($row["created"]);?></a></td>
                                         </tr>
                                         <?php }?>
                                     </tbody>
