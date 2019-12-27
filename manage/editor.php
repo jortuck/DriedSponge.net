@@ -11,15 +11,15 @@ include("../databases/connect.php");
         Author: DriedSponge(Jordan Tucker) -->
 
         <meta name="description" content="Admins only guys">
-        <meta name="keywords" content="driedsponge.net mange">
+        <meta name="keywords" content="driedsponge.net editor">
         <meta name="author" content="Jordan Tucker">
-        <meta property="og:site_name" content="DriedSponge.net | Mangement" />
+        <meta property="og:site_name" content="DriedSponge.net | Editor" />
        
         <?php 
             include("../meta.php"); 
             ?>
         
-        <title>Manage - Users</title>
+        <title>Editor</title>
         <script src="https://kit.fontawesome.com/0add82e87e.js" crossorigin="anonymous"></script>
         <script src="https://www.google.com/recaptcha/api.js" async defer></script>
         <link rel="stylesheet" href = "//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" type="text/css" >
@@ -54,14 +54,15 @@ include("../src/libs/functions.php");
             $ivalidid = false;
             if (isset($_SESSION['steamid'])){ 
                 include ('../steamauth/userInfo.php');
-              if (isAdmin($_SESSION['steamid'])){ 
+              if (isMasterAdmin($_SESSION['steamid'])){ 
                 if(isset($_GET['id'])){
                     $_SESSION['editid'] =$_GET['id'];
                 }
                 $editing = $_SESSION['editid'];
-                $currentq = SQLWrapper()->prepare("SELECT content FROM content WHERE thing = :thing");
+                $currentq = SQLWrapper()->prepare("SELECT content,title FROM content WHERE thing = :thing");
                 $currentq->execute([':thing' => $editing]);
                 $current = $currentq->fetch();
+                $editname =$current['title'];
                 if(!empty($current)){
                 
                 if(isset($_POST['submit-changes'])){
@@ -90,7 +91,7 @@ include("../src/libs/functions.php");
                 <form  action="editor.php" method="post">
                         <div class="form-group">
                         
-                            <label for="submit" style="color: black;">Edit the privacy policy</label>
+                            <label for="submit" style="color: black;">Edit the <?=htmlspecialchars($editname);?></label>
                             <br>
                             <button id="submit"name="submit-changes" type="submit" class="btn btn-primary">Save</button>
                             <br>
@@ -148,7 +149,7 @@ include("../src/libs/functions.php");
                     branding: false, 
                     plugins: "link,anchor,autoresize,autosave,image,wordcount,searchreplace,fullscreen,code",
                     menubar: "file edit insert view format table tools help ",
-                    toolbar: "undo redo | styleselect | bold italic underline strikethrough format code | align left center right justify | link image anchor | wordcount",
+                    toolbar: "undo redo | styleselect | bold italic underline strikethrough format code | align left center right justify | link image anchor | wordcount ",
                     default_link_target: "_blank",
                     });</script>
                 <?php
