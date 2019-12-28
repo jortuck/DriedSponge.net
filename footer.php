@@ -19,11 +19,11 @@ if ( date("m") == "12" ){
     <div class="page-footer">
             <h4 class="socials">Socials</h4>
                     
-                        <a href="https://steamcommunity.com/id/driedsponge" target="_blank"><button  data-tippy-content="Steam" type="button" class="btn btn-success"><i class="fab fa-steam fa-2x"></i></button></a>
-                        <a href="https://www.reddit.com/user/DriedSponge78" target="_blank"><button data-tippy-content="Reddit" type="button" class="btn btn-success"><i class="fab fa-reddit fa-2x"></i></button></a>
-                        <a href="https://www.youtube.com/channel/UCuGIXCXxUJNaq8NjFsYM21A" target="_blank"><button data-tippy-content="YouTube" type="button" class="btn btn-success"><i class="fab fa-youtube fa-2x"></i></button></a>
-                        <a href="https://gitlab.com/DriedSponge" target="_blank"><button  data-tippy-content="Git Lab" type="button" class="btn btn-success"><i class="fab fa-gitlab fa-2x"></i></button></a>
-                       <button type="button" class="btn btn-success" data-toggle="modal" data-tippy-content="Discord" data-target="#keymodal"><i class="fab fa-discord fa-2x"></i></button>
+                        <a href="https://steamcommunity.com/id/driedsponge" target="_blank"><button style="color: black"  type="button" class="btn btn-success"><i class="fab fa-steam fa-2x"></i></button></a>
+                        <a href="https://www.reddit.com/user/DriedSponge78" target="_blank"><button style="color: rgb(255, 69, 0)"  type="button" class="btn btn-success"><i class="fab fa-reddit fa-2x"></i></button></a>
+                        <a href="https://www.youtube.com/channel/UCuGIXCXxUJNaq8NjFsYM21A" target="_blank"><button style="color: red" type="button" class="btn btn-success"><i class="fab fa-youtube fa-2x"></i></button></a>
+                        <a href="https://gitlab.com/DriedSponge" target="_blank"><button style="color: orangered"  type="button" class="btn btn-success"><i class="fab fa-gitlab fa-2x"></i></button></a>
+                       <button type="button" class="btn btn-success" style="color: #7289DA" data-toggle="modal"  data-target="#keymodal"><i class="fab fa-discord fa-2x"></i></button>
                         <!-- Modal -->
                         <div class="modal fade" id="keymodal" tabindex="-1" role="dialog" aria-labelledby="keytitle" aria-hidden="true">
                           <div class="modal-dialog" role="document">

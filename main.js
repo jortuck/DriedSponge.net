@@ -13,11 +13,11 @@ tippy('.badge-success', {
     theme: 'deprecated',
     animateFill: false,
   })
-  tippy('footer button', {
+  //tippy('footer button', {
 
-    theme: 'footer',
-    animateFill: false,
-  })
+  //  theme: 'footer',
+  //  animateFill: false,
+ // })
 
    tippy('#repeat-last-ad', {
 
