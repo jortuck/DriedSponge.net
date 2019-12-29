@@ -85,17 +85,17 @@ $mcreatedbyurl = "https://steamcommunity.com/profiles/".$mcreatedby."/";
                                                 </div>
                                   <div  data-aos="fade-up" class="card card-border" style="width: 20%; text-align:center;">
                                                     
-                                                    <div class="card-body">
-                                                        <img   src="img/css.png" alt="csslogo" height="100px" style="padding: none; margin: none;"/>
-                                                            
-                                                        </div>
-                                                        </div>              
+                                            <div class="card-body">
+                                            <img   src="img/css.png" alt="csslogo" height="100px" style="padding: none; margin: none;"/>
+                                                 
+                                            </div>
+                                        </div>              
                                   <div data-aos="fade-up" class="card card-border" style="width: 20%; text-align:center;">
-                                                                <div class="card-body">
-                                                                <img  src="img/js.png" alt="jslogo" height="100px" style="padding: none; margin: none;"/>
+                                                    <div class="card-body">
+                                                <img  src="img/js.png" alt="jslogo" height="100px" style="padding: none; margin: none;"/>
                                                                     
-                                                                 </div>
-                                                        </div>                      
+                                                </div>
+                                            </div>                      
                             </div>
                             <br>
                             <br>

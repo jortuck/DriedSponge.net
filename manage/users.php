@@ -295,7 +295,7 @@ include("../tutorials/navbar.php");
                                                
                                             </form>                  
                                         <br>
-                                        <p class="subsubhead" style="color: black; text-align: left;">Current Admins</p>
+                                        <p class="subsubhead" style="color: black; text-align: left;">Currently Verified Users</p>
                                           <table class="table paragraph" style="color: black;">
                                           <thead>
                                           <tr>
