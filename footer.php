@@ -17,9 +17,8 @@ if ( date("m") == "12" ){
 
 <footer>
     <div class="page-footer">
-            <h4 class="socials">Socials</h4>
-                    
-                        <a href="https://steamcommunity.com/id/driedsponge" target="_blank"><button style="color: black"  type="button" class="btn btn-success"><i class="fab fa-steam fa-2x"></i></button></a>
+            <h2 class="text-center" style="color:white;">Contact</h2>
+                        <a href="https://steamcommunity.com/id/driedsponge" target="_blank"><button  type="button" class="btn btn-success"><i style="color: black" class="fab fa-steam fa-2x"></i></button></a>
                         <a href="https://www.reddit.com/user/DriedSponge78" target="_blank"><button style="color: rgb(255, 69, 0)"  type="button" class="btn btn-success"><i class="fab fa-reddit fa-2x"></i></button></a>
                         <a href="https://www.youtube.com/channel/UCuGIXCXxUJNaq8NjFsYM21A" target="_blank"><button style="color: red" type="button" class="btn btn-success"><i class="fab fa-youtube fa-2x"></i></button></a>
                         <a href="https://gitlab.com/DriedSponge" target="_blank"><button style="color: orangered"  type="button" class="btn btn-success"><i class="fab fa-gitlab fa-2x"></i></button></a>
@@ -43,7 +42,7 @@ if ( date("m") == "12" ){
                             </div>
                           </div>
                         </div>
-                        
+                        <br>
                         <p><cite>Copyright © 2019 DriedSponge.net &bull; Current theme: <?php echo $themetxt; ?></p>
                             
         </div>

@@ -64,33 +64,33 @@ $mcreatedbyurl = "https://steamcommunity.com/profiles/".$mcreatedby."/";
                         <h4 class="subheading" style="text-align: center;">What I do...</h4>
                         <br>
                             <div class="row justify-content-center">
-                                <div  class="card card-border"  data-aos="fade-up" style="width: 18rem; text-align:center;">
+                                <div  class="card card-border"  data-aos="fade-up" style="width: 20%; text-align:center;">
                                 <div class="card-body">
                                 <img  src="img/html.png" alt="html5logo" height="100px" style="padding: none; margin: none;"/>
-                                    
+                                <br>
                                 </div>
                                 </div>
                                 
-                                <div data-aos="fade-up" class="card card-border" style="width: 18rem; text-align:center;">
+                                <div data-aos="fade-up" class="card card-border" style="width: 20%; text-align:center;">
                                         <div class="card-body">
                                         <img  src="img/lua.png" alt="lualogo" height="100px" style="padding: none; margin: none;"/>
                                             
                                         </div>
                                         </div>
-                                 <div data-aos="fade-up" class="card card-border" style="width: 18rem; text-align:center;">
+                                 <div data-aos="fade-up" class="card card-border" style="width: 20%; text-align:center;">
                                                 <div class="card-body">
                                                 <img  src="img/php.png" alt="phplogo" height="100px" style="padding: none; margin: none;"/>
                                                     
                                                 </div>       
                                                 </div>
-                                  <div  data-aos="fade-up" class="card card-border" style="width: 18rem; text-align:center;">
+                                  <div  data-aos="fade-up" class="card card-border" style="width: 20%; text-align:center;">
                                                     
                                                     <div class="card-body">
                                                         <img   src="img/css.png" alt="csslogo" height="100px" style="padding: none; margin: none;"/>
                                                             
                                                         </div>
                                                         </div>              
-                                  <div data-aos="fade-up" class="card card-border" style="width: 18rem; text-align:center;">
+                                  <div data-aos="fade-up" class="card card-border" style="width: 20%; text-align:center;">
                                                                 <div class="card-body">
                                                                 <img  src="img/js.png" alt="jslogo" height="100px" style="padding: none; margin: none;"/>
                                                                     

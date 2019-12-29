@@ -148,4 +148,16 @@ label{
     animation-duration: 0.5s;
   
   }
+  @keyframes grey-to-col {
+    from {filter: grayscale(100%);}
+    to {filter: grayscale(0%);}
+  }
+  .grey-to-color{
+    filter: grayscale(100%);
+    }
+  .grey-to-color:hover{
+    animation-name: grey-to-col;
+    animation-fill-mode: forwards;
+    animation-duration: 0.5s;
+  }
   /*End Showcases*/
