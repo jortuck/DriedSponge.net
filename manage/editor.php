@@ -59,23 +59,26 @@ include("../src/libs/functions.php");
                     $_SESSION['editid'] =$_GET['id'];
                 }
                 $editing = $_SESSION['editid'];
-                $currentq = SQLWrapper()->prepare("SELECT content,title FROM content WHERE thing = :thing");
+                $currentq = SQLWrapper()->prepare("SELECT content,title,privacy FROM content WHERE thing = :thing");
                 $currentq->execute([':thing' => $editing]);
                 $current = $currentq->fetch();
                 $editname =$current['title'];
+                $cp = $current['privacy'];
                 if(!empty($current)){
                 
                 if(isset($_POST['submit-changes'])){
                     $changedcontent = $_POST['content'];
+                    $changedprivacy = $_POST['privacysettings'];
                     $changedthing = $editing;
+                    $newtitle = $_POST['title'];
                     $changedby = $_SESSION['steamid'];
                     $changedexist = SQLWrapper()->prepare("SELECT content FROM content WHERE thing = :thing");
                     $changedexist->execute([':thing' => $changedthing]);
                     $changedexistrow = $changedexist->fetch();
                     if (!empty($changedexistrow)) {
-                        SQLWrapper()->prepare("UPDATE content SET content= :content,  created = :created WHERE thing = :thing")->execute([':content' => $changedcontent, ':created' => $changedby, ':thing' => $changedthing]);
+                        SQLWrapper()->prepare("UPDATE content SET content= :content,  created = :created, privacy = :privacy,title = :title WHERE thing = :thing")->execute([':content' => $changedcontent, ':created' => $changedby, ':thing' => $changedthing, ':privacy' => $changedprivacy, ':title' => $newtitle]);
                         $motdchanged = true;
-                        header("Location: editor.php?id=".$changedthing."&saved");
+                        header("Location: editor.php?id=".$changedthing."&saved");   
                     } else {
                         SQLWrapper()->prepare("INSERT INTO content (thing,content,created)
                         VALUES (?,?,?)")->execute([$changedthing, $motdcontent,$motdcreatedby]);
@@ -89,16 +92,30 @@ include("../src/libs/functions.php");
                 </hgroup>
                 <br>
                 <form  action="editor.php" method="post">
-                        <div class="form-group">
-                        
-                            <label for="submit" style="color: black;">Edit the <?=htmlspecialchars($editname);?></label>
-                            <br>
-                            <button id="submit"name="submit-changes" type="submit" class="btn btn-primary">Save</button>
-                            <br>
-                            <br>
+                <div class="form-group">
+                                <button id="submit"name="submit-changes" type="submit" class="btn btn-primary">Save</button>
+                                </div> 
+                                <div class="form-row">
+                                    <div class="col">
+                                            <label for="privacysettings">Privacy</label>
+                                            <select    class="form-control" id="privacysettings" name="privacysettings">
+                                            <option <?php if($cp==="0"){echo"selected";}?> value="0">Public</option>
+                                            <option <?php if($cp==="1"){echo"selected";}?> value="1">Must be logged in</option>
+                                            <option <?php if($cp==="2"){echo"selected";}?> value="2">Must be verified in discord</option>
+                                            <option <?php if($cp==="3"){echo"selected";}?> value="3">Must be admin</option>
+                                            <option <?php if($cp==="4"){echo"selected";}?> value="4">Must be master admin</option>
+                                            </select>
+                                    </div>
+                                    <div class="col">
+                                            <label for="title">Page Title</label>
+                                            <input class="form-control" placeholder="Enter Title" value="<?=htmlspecialchars($editname);?>" name="title" id="title"></input>
+                                    </div>
+                                    </div> 
+                                <div class="form-group">
+                           <label for="content" style="color: black;">Edit the contents</label>
+                           <br>
                                 <textarea id="content" name="content" rows="40" class="form-control"><?=htmlspecialchars_decode($current["content"]);?></textarea>                                      
-                                
-                                </div>                                
+                        </div>                                
                      </form> 
                 <?php 
                 }else{

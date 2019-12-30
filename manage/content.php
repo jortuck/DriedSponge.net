@@ -158,9 +158,7 @@ include("../tutorials/navbar.php");
                                             Options
                                         </button>
                                         <div class="dropdown-menu" aria-labelledby="options">
-                                        <a class="dropdown-item" href="<?=htmlspecialchars($href)?>" target="_blank">Edit</a>
-                                            <a class="dropdown-item" href="#">Restrict</a>
-                                            <a class="dropdown-item" href="#">Delete</a>
+                                        <a class="dropdown-item" href="<?=htmlspecialchars($href)?>" target="_blank">Settings</a>
                                         </div>
                                         </div>
                                         </td>
