@@ -89,6 +89,23 @@ include("../tutorials/navbar.php");
                         }
                         
                     }
+
+                    if(isset($_POST['newpage'])){
+                        if (isMasterAdmin($_SESSION['steamid'])){ 
+                        $pagename = $_POST['pagename'];
+                        $pageid = $_POST['pageid'];
+                        $newpq = SQLWrapper()->prepare("INSERT INTO content (thing,title,created)VALUES (?,?,?)")->execute([$pageid, $pagename,$_SESSION['steamid']]);
+                        $newpage = fopen('../'.$pageid.'.php', 'w');
+                        $temp = file_get_contents("template.php");
+                        $txt = str_replace("BIGCHUNGUS","'".$pageid."'",$temp);
+                        fwrite($newpage, $txt);
+                        fclose($pagename);
+                        header("Location: content.php?page-created"); 
+                        }else{
+                            header("Location: content.php?not-sponge"); 
+                        }
+                        
+                    }
                 ?>
                     <ul class="nav nav-tabs">
                 <li class="nav-item">
@@ -127,7 +144,25 @@ include("../tutorials/navbar.php");
                         <div class="card-header">
                             <h3>Pages</h3>
                         </div>
-                            <div class="card-body">                                
+                        <div class="card-body">  
+                            <form  action="content.php" method="post" >
+                                <div class="form-row">
+                                    <div class="form-group col">
+                                        <label for="pagename">Page Name</label>
+                                        <input type="text" class="form-control" name="pagename" id="pagename" placeholder="Enter the name of the page" required>
+                                    </div>
+                                    <div class="form-group col">
+                                        <label for="pageid">Page Name</label>
+                                        <input type="text" class="form-control" name="pageid" id="pageid" placeholder="Enter a unquie ID for the page" required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-primary" name="newpage">Create New Page</button>
+                                </div>
+                            </form>
+
+                        <br>
+                                                          
                                 <table class="table paragraph text-center">
                                     <thead>
                                         <tr>

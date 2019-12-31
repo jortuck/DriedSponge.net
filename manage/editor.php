@@ -59,16 +59,18 @@ include("../src/libs/functions.php");
                     $_SESSION['editid'] =$_GET['id'];
                 }
                 $editing = $_SESSION['editid'];
-                $currentq = SQLWrapper()->prepare("SELECT content,title,privacy FROM content WHERE thing = :thing");
+                $currentq = SQLWrapper()->prepare("SELECT content,title,privacy,description FROM content WHERE thing = :thing");
                 $currentq->execute([':thing' => $editing]);
                 $current = $currentq->fetch();
                 $editname =$current['title'];
+                $currentdes = $current['description'];
                 $cp = $current['privacy'];
                 if(!empty($current)){
                 
                 if(isset($_POST['submit-changes'])){
                     $changedcontent = $_POST['content'];
                     $changedprivacy = $_POST['privacysettings'];
+                    $newdes = $_POST['des'];
                     $changedthing = $editing;
                     $newtitle = $_POST['title'];
                     $changedby = $_SESSION['steamid'];
@@ -76,7 +78,7 @@ include("../src/libs/functions.php");
                     $changedexist->execute([':thing' => $changedthing]);
                     $changedexistrow = $changedexist->fetch();
                     if (!empty($changedexistrow)) {
-                        SQLWrapper()->prepare("UPDATE content SET content= :content,  created = :created, privacy = :privacy,title = :title WHERE thing = :thing")->execute([':content' => $changedcontent, ':created' => $changedby, ':thing' => $changedthing, ':privacy' => $changedprivacy, ':title' => $newtitle]);
+                        SQLWrapper()->prepare("UPDATE content SET content= :content,  created = :created, privacy = :privacy,title = :title,description = :description WHERE thing = :thing")->execute([':content' => $changedcontent, ':created' => $changedby, ':thing' => $changedthing, ':privacy' => $changedprivacy, ':title' => $newtitle, 'description' => $newdes]);
                         $motdchanged = true;
                         header("Location: editor.php?id=".$changedthing."&saved");   
                     } else {
@@ -110,7 +112,11 @@ include("../src/libs/functions.php");
                                             <label for="title">Page Title</label>
                                             <input class="form-control" placeholder="Enter Title" value="<?=htmlspecialchars($editname);?>" name="title" id="title"></input>
                                     </div>
-                                    </div> 
+                                    </div>  
+                                    <div class="form-group">
+                                        <label for="des">Page Description</label>
+                                        <input maxlength="160" class="form-control" placeholder="Enter Meta Description" value="<?=htmlspecialchars($currentdes);?>" name="des" id="des"></input>
+                                    </div>
                                 <div class="form-group">
                            <label for="content" style="color: black;">Edit the contents</label>
                            <br>

@@ -39,7 +39,7 @@ if (date("m") == "10") {
 <link rel="stylesheet" href="https://driedsponge.net/css/formatting.css">
 <link id="styless" rel="stylesheet" href="<?= htmlspecialchars($theme); ?>">
 
-<link id="favicon" rel="icon" href="<?= htmlspecialchars($themefav); ?>" type="image/x-icon">
+<link rel="icon" href="<?= htmlspecialchars($themefav); ?>" type="image/x-icon">
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-140402227-3"></script>
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-140402227-3"></script>

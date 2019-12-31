@@ -5,7 +5,7 @@ include("databases/connect.php");
 
 include("navbar.php");
 $privacypolicyquery = SQLWrapper()->prepare("SELECT content,title,privacy,description,UNIX_TIMESTAMP(stamp) AS stamp FROM content WHERE thing = :thing");
-$privacypolicyquery->execute([':thing' => "privacy"]);
+$privacypolicyquery->execute([':thing' => 'tos']);
 $content = $privacypolicyquery->fetch();
 $plastupdated = date("m/d/Y g:i a", $content["stamp"]);
 $privacy = $content['privacy'];
@@ -96,7 +96,7 @@ if($privacy === "0"){//Public
                 <br>
                    <?=htmlspecialchars_decode($content['content']);?>
                     <br>
-                    <p class="paragraph"><cite>Last Updated: <?=htmlspecialchars_decode($plastupdated);?></cite></p>
+                    
                     <?php
                     }
                     if ($notloggedin) {
