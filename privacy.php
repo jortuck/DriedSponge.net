@@ -10,9 +10,11 @@ $plastupdated = date("m/d/Y g:i a", $content["stamp"]);
 $privacy = $content['privacy'];
 $title = $content['title'];
 $notloggedin = false;
-if($privacy === "0"){
+$notdiscord = false;
+$noperms = false;
+if($privacy === "0"){//Public
     $showpage = true;
-}elseif($privacy === "1"){
+}elseif($privacy === "1"){//MUst be Loggedin
 
         if(isset($_SESSION['steamid'])){ 
             $showpage = true; 
@@ -20,23 +22,44 @@ if($privacy === "0"){
             $showpage = false;
             $notloggedin = true;
         }
-}elseif($privacy === "2"){
-
-    if(isset($_SESSION['steamid'])){ 
-        $showpage = true; 
-
-
-
-
-        
+}elseif($privacy === "2"){// Must be Diwscord
+    if(isset($_SESSION['steamid'])){    
+        if(isVerified($_SESSION['steamid'])){
+            $showpage = true;    
+        }else{
+            $showpage = false;
+            $notdiscord = true;
+        } 
+    }else{
+        $showpage = false;
+        $notloggedin = true;
+    }
+    
+}elseif($privacy === "3"){  //Must be admin
+    if(isset($_SESSION['steamid'])){    
+        if(isAdmin($_SESSION['steamid'])){
+            $showpage = true;    
+        }else{
+            $showpage = false;
+            $noperms  = true;
+        } 
+    }else{
+        $showpage = false;
+        $notloggedin = true;
+    }
+}elseif($privacy === "4"){  //Must be admin
+    if(isset($_SESSION['steamid'])){    
+        if(isMasterAdmin($_SESSION['steamid'])){
+            $showpage = true;    
+        }else{
+            $showpage = false;
+            $noperms  = true;
+        } 
     }else{
         $showpage = false;
         $notloggedin = true;
     }
 }
-
-
-
 ?>
 <!DOCTYPE html>
 
@@ -62,11 +85,11 @@ if($privacy === "0"){
 
 
     <div class="app">
-    <div class="container-fluid-lg" style="padding-top: 80px;">
+    <div class="container-fluid-lg" style="padding-top: 70px;">
+        <div class="container">
         <?php
         if($showpage){
         ?>
-            <div class="container">
                 <hgroup>
                         <!-- <img src="https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/18/18be38c2f230fea0fa667c8165e4da5cb1a787c0_full.jpg" alt="DriedSponge's Profile Picture"> -->
                         <h1 class="display-2"><strong><?=htmlspecialchars($title);?></strong></h1>   
@@ -77,15 +100,25 @@ if($privacy === "0"){
                     <p class="paragraph"><cite>Last Updated: <?=htmlspecialchars_decode($plastupdated);?></cite></p>
                     <?php
                     }
-               
                     if ($notloggedin) {
                     ?>
                     <h1 class="articleh1">Please login to view this page</h1>
                     <br>
                     <p class="text-center"><a href='?login'><img src='https://steamcommunity-a.akamaihd.net/public/images/signinthroughsteam/sits_02.png'></a></p>
-                <?php
-                }
-                ?>
+                    <?php
+                    }
+                    if ($notdiscord) {
+                    ?>
+                    <h1 class="articleh1">You must be in the discord and verified to view this page. If you are not in it, you can click <a href="https://discordapp.com/invite/YS4WZWG" target="_blank">here</a> to join. If you are in the discord, head into the bot commands channel and do <strong>!verify</strong> to get started.</h1>
+                    <?php
+                    }
+                    if($noperms){
+                        ?>
+                        <h1 class="articleh1">You do not have the proper perms to access this page.</h1>
+                        <?php
+                    }
+                    ?>
+                
             </div>
                 
                 </div>

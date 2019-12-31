@@ -103,7 +103,7 @@ include("../src/libs/functions.php");
                                             <option <?php if($cp==="1"){echo"selected";}?> value="1">Must be logged in</option>
                                             <option <?php if($cp==="2"){echo"selected";}?> value="2">Must be verified in discord</option>
                                             <option <?php if($cp==="3"){echo"selected";}?> value="3">Must be admin</option>
-                                            <option <?php if($cp==="4"){echo"selected";}?> value="4">Must be master admin</option>
+                                            <option <?php if($cp==="4"){echo"selected";}?> value="4">Must be owner</option>
                                             </select>
                                     </div>
                                     <div class="col">
