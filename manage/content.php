@@ -89,7 +89,18 @@ include("../tutorials/navbar.php");
                         }
                         
                     }
-
+                    if(isset($_POST['delete-page'])){
+                        if (isMasterAdmin($_SESSION['steamid'])){ 
+                        $deleteid = $_POST['delete-page'];
+                        $deletepageq = SQLWrapper()->prepare("DELETE FROM content WHERE thing= :thing");
+                        $deletepageq->execute([':thing' => $deleteid]);
+                        unlink("../".$deleteid.".php");
+                        header("Location: content.php?delete-page"); 
+                        }else{
+                            header("Location: content.php?not-sponge"); 
+                        }
+                        
+                    }
                     if(isset($_POST['newpage'])){
                         if (isMasterAdmin($_SESSION['steamid'])){ 
                         $pagename = $_POST['pagename'];
@@ -106,6 +117,7 @@ include("../tutorials/navbar.php");
                         }
                         
                     }
+
                 ?>
                     <ul class="nav nav-tabs">
                 <li class="nav-item">
@@ -180,11 +192,12 @@ include("../tutorials/navbar.php");
                                         while($row = $pagesq->fetch()){ 
                                             $createdurl = "https://steamcommunity.com/profiles/".$row['created']."/"; 
                                             $href = "editor.php?id=".$row['thing'];
+                                            $title = $row["title"];
 
                                     ?>
                                         <tr>
                                        
-                                        <td><?=htmlspecialchars($row["title"]);?></td>
+                                        <td><?=htmlspecialchars($title);?></td>
                                         <td><?=htmlspecialchars(date("m/d/Y g:i a", $row["stamp"]));?></td>
                                         <td><a href="<?=htmlspecialchars($createdurl)?>" target="_blank"><?=htmlspecialchars($row["created"]);?></a></td>
                                         <td>
@@ -193,9 +206,32 @@ include("../tutorials/navbar.php");
                                             Options
                                         </button>
                                         <div class="dropdown-menu" aria-labelledby="options">
-                                        <a class="dropdown-item" href="<?=htmlspecialchars($href)?>" target="_blank">Settings</a>
+                                        <a class="dropdown-item text-primary" href="<?=htmlspecialchars($href)?>" target="_blank">Settings</a>
+                                        <div class="dropdown-divider"></div>
+                                        <button  data-toggle="modal" data-target="#delete-<?=htmlspecialchars($row["thing"]);?>" class="dropdown-item text-danger" target="_blank">Delete</button >
                                         </div>
                                         </div>
+                                        <div class="modal fade" id="delete-<?=htmlspecialchars($row["thing"]);?>" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title text-danger" id="deleteModalLabel">Delete the <?=htmlspecialchars($row["title"]);?></h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body text-left">
+                                                    Are you sure you want to delete the <?=htmlspecialchars($row["title"]);?>? Doing this will erase all of it's contents and data.
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                <form action="content.php" method="POST">
+                                                    <button type="submit" name="delete-page" value="<?=htmlspecialchars($row["thing"]);?>" class="btn btn-danger">Delete</button>
+                                                </form>
+                                                </div>
+                                                </div>
+                                            </div>
+                                            </div>
                                         </td>
                                         </tr>
                                         <?php }?>
@@ -327,6 +363,13 @@ include("../tutorials/navbar.php");
                             ?>
                             <script type="text/JavaScript">  
                             toastr["success"]("The privacy policy has been changed!", "Congratulations!")     
+                            </script>
+                            <?php
+                        }
+                        if(isset($_GET['page-created'])){
+                            ?>
+                            <script type="text/JavaScript">  
+                            toastr["success"]("The new page was successfully created!", "Congratulations!")     
                             </script>
                             <?php
                         }
