@@ -1,5 +1,5 @@
 <?php
-    include('top.php');  
+require('steamauth/steamauth.php'); 
 ?>
 <!DOCTYPE html>
 
