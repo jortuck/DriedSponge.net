@@ -4,9 +4,9 @@ require('steamauth/steamauth.php');
 include("databases/connect.php");
 
 include("navbar.php");
-$privacypolicyquery = SQLWrapper()->prepare("SELECT content,title,privacy,description,UNIX_TIMESTAMP(stamp) AS stamp FROM content WHERE thing = :thing");
-$privacypolicyquery->execute([':thing' => BIGCHUNGUS]);
-$content = $privacypolicyquery->fetch();
+$contentquery = SQLWrapper()->prepare("SELECT content,title,privacy,description,UNIX_TIMESTAMP(stamp) AS stamp FROM content WHERE thing = :thing");
+$contentquery->execute([':thing' => BIGCHUNGUS]);
+$content = $contentquery->fetch();
 $plastupdated = date("m/d/Y g:i a", $content["stamp"]);
 $privacy = $content['privacy'];
 $title = $content['title'];
