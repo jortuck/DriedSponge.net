@@ -164,7 +164,7 @@ include("../tutorials/navbar.php");
                                         <input type="text" class="form-control" name="pagename" id="pagename" placeholder="Enter the name of the page" required>
                                     </div>
                                     <div class="form-group col">
-                                        <label for="pageid">Page Name</label>
+                                        <label for="pageid">Page ID</label>
                                         <input type="text" class="form-control" name="pageid" id="pageid" placeholder="Enter a unquie ID for the page" required>
                                     </div>
                                 </div>
@@ -206,9 +206,9 @@ include("../tutorials/navbar.php");
                                             Options
                                         </button>
                                         <div class="dropdown-menu" aria-labelledby="options">
-                                        <a class="dropdown-item text-primary" href="<?=htmlspecialchars($href)?>" target="_blank">Settings</a>
+                                        <a class="dropdown-item" href="<?=htmlspecialchars($href)?>" target="_blank"><i class="fas fa-cog"></i> Settings</a>
                                         <div class="dropdown-divider"></div>
-                                        <button  data-toggle="modal" data-target="#delete-<?=htmlspecialchars($row["thing"]);?>" class="dropdown-item text-danger" target="_blank">Delete</button >
+                                        <button  data-toggle="modal" data-target="#delete-<?=htmlspecialchars($row["thing"]);?>" class="dropdown-item text-danger" target="_blank"><i class="fas fa-trash-alt"></i> Delete</button >
                                         </div>
                                         </div>
                                         <div class="modal fade" id="delete-<?=htmlspecialchars($row["thing"]);?>" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
