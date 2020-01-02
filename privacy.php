@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <?php
 require('steamauth/steamauth.php');  
 include("databases/connect.php");
@@ -14,6 +13,7 @@ $description = $content['description'];
 $notloggedin = false;
 $notdiscord = false;
 $noperms = false;
+
 if($privacy === "0"){//Public
     $showpage = true;
 }elseif($privacy === "1"){//MUst be Loggedin
