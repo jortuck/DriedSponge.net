@@ -7,21 +7,21 @@ $APIKEY = "0EBBACAEBC6039B06DF1066807D55D4C";
 $WHO = $_GET["id"];
 
 
-$url = $_SERVER["SCRIPT_NAME"];
-$break = Explode('/', $url);
-$file = $WHO;
-$str = str_replace(":","+",$WHO);
-$str2 = str_replace("/","-",$str);
-$cachefile = 'cache/cached-'.substr_replace($str2 ,"",-4).'.htm';
-$cachetime = 300;
+//$url = $_SERVER["SCRIPT_NAME"];
+//$break = Explode('/', $url);
+//$file = $WHO;
+//$str = str_replace(":","+",$WHO);
+//$str2 = str_replace("/","-",$str);
+//$cachefile = 'cache/cached-'.substr_replace($str2 ,"",-4).'.htm';
+//$cachetime = 300;
 
 // Serve from the cache if it is younger than $cachetime
-if (file_exists($cachefile) && time() - $cachetime < filemtime($cachefile)) {
-    echo "<!-- Cached copy, generated ".date('H:i', filemtime($cachefile))." -->\n";
-    readfile($cachefile);
-    exit;
-}else{
-ob_start(); // Start the output buffer
+//if (file_exists($cachefile) && time() - $cachetime < filemtime($cachefile)) {
+ //   echo "<!-- Cached copy, generated ".date('H:i', filemtime($cachefile))." -->\n";
+ //   readfile($cachefile);
+ //   exit;
+//}else{
+//ob_start(); // Start the output buffer
 
     $s = SteamID::SetFromURL( $WHO, function( $URL, $Type ) use ( $APIKEY )
     {
@@ -233,9 +233,9 @@ include("hex.php");
 </html>
 <?php
 
-$cached = fopen($cachefile, 'w');
-fwrite($cached, ob_get_contents());
-fclose($cached);
-ob_end_flush();
-}
+// $cached = fopen($cachefile, 'w');
+// fwrite($cached, ob_get_contents());
+// fclose($cached);
+// ob_end_flush();
+// }
 ?>
