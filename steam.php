@@ -170,7 +170,6 @@ include("navbar.php")
         <script src="https://unpkg.com/tippy.js@4"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> 
         <script src="main.js"></script> 
-        <script src="search.js"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
         <script>

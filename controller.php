@@ -223,7 +223,6 @@ include("hex.php");
 
 
         </script>
-        <script src="search.js"></script>
  </body>
 
 
