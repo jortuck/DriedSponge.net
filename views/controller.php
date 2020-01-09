@@ -1,10 +1,10 @@
 <?php
 
 require('steamauth/steamauth.php');  
-include("SteamID.php");
+include("views/includes/SteamID.php");
 
 $APIKEY = "0EBBACAEBC6039B06DF1066807D55D4C";
-$WHO = $_GET["id"];
+$WHO = $id;
 
 
 //$url = $_SERVER["SCRIPT_NAME"];
@@ -87,7 +87,7 @@ if (isset($apidata->response->players[0]->loccountrycode) == false ){
 
 $url = $apidata->response->players[0]->profileurl;
 if ($name == null || $img == null ){
-    header("Location: steamerror.php");
+    header("Location: views/includes/steamerror.php");
 }
 // Cache the contents to a cache file
 
@@ -100,7 +100,7 @@ if ($name == null || $img == null ){
         Author: DriedSponge(Jordan Tucker) -->
            
         <?php 
-            include("meta.php"); 
+            include("views/includes/meta.php"); 
             ?>
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="description"  content="Name: <?=htmlspecialchars($name);?>,SteamID64: <?=htmlspecialchars($id64);?>, SteamID: <?=htmlspecialchars($idn);?>, SteamID3: <?=htmlspecialchars($id3);?>, URL: <?=htmlspecialchars($url);?>" />
@@ -125,7 +125,7 @@ if ($name == null || $img == null ){
 
      <div class="app">
         <?php
-        include("navbar.php")
+        include("views/includes/navbar.php")
         ?>
     <div class="container-fluid-lg" style="padding-top: 80px;">
         
@@ -138,7 +138,7 @@ if ($name == null || $img == null ){
                         <br>
                         
                      <?php
-                        include("search.php");
+                        include("views/includes/search.php");
                      ?>
                     
                     <br>
@@ -172,8 +172,8 @@ if ($name == null || $img == null ){
 <!-- End of "app" -->
 
 <?php 
-include("hex.php");
-    include("footer.php"); // we include footer.php here. you can use .html extension, too.
+include("views/includes/hex.php");
+    include("views/includes/footer.php"); // we include footer.php here. you can use .html extension, too.
     ?>
 
 

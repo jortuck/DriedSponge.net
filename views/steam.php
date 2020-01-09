@@ -15,7 +15,7 @@ require('steamauth/steamauth.php');
         
         <meta property="og:site_name" content="DriedSponge.net | Steam ID Tool" />
         <?php 
-            include("meta.php"); 
+            include("views/includes/meta.php"); 
             ?>
             
         <title>Steam ID Tool</title>
@@ -26,7 +26,7 @@ require('steamauth/steamauth.php');
     
  <body>
  <?php
-include("navbar.php")
+include("views/includes/navbar.php")
 ?>
      <div class="app">
     <div class="container-fluid-lg" style="padding-top: 80px;">
@@ -44,11 +44,11 @@ include("navbar.php")
                     
                     <?php
                     
-                    include("search.php");
+                    include("views/includes/search.php");
                         ?>
                     <?php
                     if(isset($_SESSION['steamid'])) {
-                        include("SteamID.php");
+                        include("views/includes/SteamID.php");
 
                         $APIKEY = "0EBBACAEBC6039B06DF1066807D55D4C";
                         $WHO = $_SESSION['steamid'];
@@ -155,8 +155,8 @@ include("navbar.php")
 </div> 
 <!-- End of "app" -->
 <?php 
-    include("hex.php");
-    include("footer.php"); // we include footer.php here. you can use .html extension, too.
+    include("views/includes/hex.php");
+    include("views/includes/footer.php"); // we include footer.php here. you can use .html extension, too.
     ?>
 
 

@@ -15,7 +15,7 @@ require('steamauth/steamauth.php');
         <meta property="og:site_name" content="DriedSponge.net | 404" />
        
         <?php 
-            include("meta.php"); 
+            include("views/includes/meta.php"); 
             ?>
         
         <title>Error 404</title>
@@ -23,7 +23,7 @@ require('steamauth/steamauth.php');
     </head>
  <body>
  <?php
-include("navbar.php")
+include("views/includes/navbar.php")
 ?>
     
 
@@ -51,7 +51,7 @@ include("navbar.php")
     </div>
             <!-- end of app -->
             <?php 
-            include("footer.php"); // we include footer.php here. you can use .html extension, too.
+            include("views/includes/footer.php"); // we include footer.php here. you can use .html extension, too.
             ?>
                 
                 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

@@ -1,4 +1,4 @@
-<form method="GET" action="controller.php">
+<form method="POST" action="/lookup">
     <div class="form-group">
         <input id="id64" name="id" type="text" class="form-control"  aria-describedby="emailHelp" placeholder="Enter a SteamID/SteamID64/SteamID3/Profile URL/Custom Profile URL" required>
     </div>
