@@ -12,13 +12,14 @@
                         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                             <li class="nav-item" id="homelink"><a class="nav-link" href="/home">Home</a></li>
                             <li class="nav-item" id="steam"><a class="nav-link" href="/steam">Steam Tool</a></li>
+                            <li class="nav-item" id="ad"><a class="nav-link" href="/advertise">Advertise</a></li>
                             <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle" href="#" id="MyProjects" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                             My Projects
                                             </a>
                                             <div class="dropdown-menu" aria-labelledby="MyProjects">
-                                             <a class="dropdown-item" href="/web">Web Projects</a>
-                                            <a  class="dropdown-item" href="/lua">Lua Projects</a>
+                                             <a class="dropdown-item" href="/projects/web">Web Projects</a>
+                                            <a  class="dropdown-item" href="/projects/lua">Lua Projects</a>
                                             </div>
                                         </li>
                                 <li class="nav-item dropdown">
@@ -27,7 +28,6 @@
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                 <a class="dropdown-item" href="/feedback">Feedback</a>
-                                <a class="dropdown-item" href="/advertise">Advertise</a>
                                 <a class="dropdown-item" href="/contributors">Contributors</a>
                                 <a class="dropdown-item" href="/legal/privacy">Privacy Policy</a>
                                 </div>

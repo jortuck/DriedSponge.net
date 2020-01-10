@@ -15,7 +15,7 @@ require('steamauth/steamauth.php');
         <meta property="og:site_name" content="DriedSponge.net | Lua Projects" />
       
         <?php 
-            include("meta.php"); 
+            include("views/includes/meta.php"); 
             ?>
         
         <title>Lua Projects</title>
@@ -24,7 +24,7 @@ require('steamauth/steamauth.php');
  <body>
         
  <?php
-include("navbar.php")
+include("views/includes/navbar.php")
 ?>
     <div class="app">
     <div class="container-fluid-lg" style="padding-top: 80px;">
@@ -106,7 +106,7 @@ include("navbar.php")
 <br>
 <!-- end of app -->
 <?php 
-    include("footer.php"); // we include footer.php here. you can use .html extension, too.
+    include("views/includes/footer.php"); // we include footer.php here. you can use .html extension, too.
     ?>
 
 

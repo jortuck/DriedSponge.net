@@ -15,7 +15,7 @@ require('steamauth/steamauth.php');
         
         <meta property="og:site_name" content="DriedSponge.net | Web Projects" />
         <?php 
-            include("meta.php"); 
+            include("views/includes/meta.php"); 
             ?>
             
         <title>Web Projects</title>
@@ -24,7 +24,7 @@ require('steamauth/steamauth.php');
 
  <body>
  <?php
-include("navbar.php")
+include("views/includes/navbar.php")
 ?>
      <div class="app">
    
@@ -131,7 +131,7 @@ include("navbar.php")
 <br>
 <!-- End of "app" -->
 <?php 
-    include("footer.php"); // we include footer.php here. you can use .html extension, too.
+    include("views/includes/footer.php"); // we include footer.php here. you can use .html extension, too.
     ?>
 
 

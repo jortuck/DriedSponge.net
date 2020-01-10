@@ -220,7 +220,7 @@ class SteamID
 		}
 		else
 		{
-			header("Location: steamerror.php");
+			header("Location: /steam/error");
 			throw new InvalidArgumentException( 'Provided SteamID is invalid.' );
 			
 		}
@@ -427,7 +427,7 @@ class SteamID
 			
 			if( $Length < 2 || $Length > 32 )
 			{
-				header("Location: steamerror.php");
+				header("Location: /steam/error");
 				throw new InvalidArgumentException( 'Provided vanity url has bad length.' );
 			}
 			

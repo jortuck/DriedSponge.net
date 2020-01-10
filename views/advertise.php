@@ -1,6 +1,5 @@
 <?php
 require('steamauth/steamauth.php');
-include("databases/connect.php");
 ?>
 <!DOCTYPE html>
 
@@ -17,7 +16,7 @@ include("databases/connect.php");
     <meta property="og:site_name" content="DriedSponge.net | Advertise" />
 
     <?php
-    include("meta.php");
+    include("views/includes/meta.php");
     ?>
 
     <title>Advertise</title>
@@ -29,7 +28,7 @@ include("databases/connect.php");
 
 <body>
     <?php
-    include("navbar.php")
+    include("views/includes/navbar.php")
     ?>
     <?php
 
@@ -101,18 +100,15 @@ include("databases/connect.php");
 
 
                 curl_exec($ch);
-                header("Location: advertise.php?submit-success");
+                header("Location: /advertise/success");
             }
             if (isset($_POST['submit'])) {
                 $adname = $_POST['adname'];
                 $adcontent = $_POST['say'];  
                 $DisplayForm = true;
                 $DisplayForm = false;
-                $captcha = $_POST['g-recaptcha-response'];
-                $json = file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret=6Ld9SaQUAAAAACIaPxcErESw-6RvtljAMd3IYsQL&response=$captcha");
-                $captchares = json_decode($json);
-                $success = $captchares->success;
-                if ($success == true) {
+                
+                
     
                     if (!isset($_POST['name'], $_POST['say'])) {
                         return;
@@ -151,18 +147,14 @@ include("databases/connect.php");
                         
                             if (!empty($adrow)) {                          
                                 SQLWrapper()->prepare("UPDATE ads SET user= :id, adname = :adname, content = :content, overide = :overide WHERE user = :curuser")->execute([':id' => $aduser, ':adname' => $adname,':content' => $adcontent,':curuser' => $aduser, ':overide' => 0]);                          
-                                header("Location: advertise.php?submit-success");
+                                header("Location: /advertise/success");
                             } else {
                                 SQLWrapper()->prepare("INSERT INTO ads (user, adname, content)
                                 VALUES (?,?,?)")->execute([$aduser,  $adname, $adcontent]);
-                                header("Location: advertise.php?submit-success");                      
+                                header("Location: /advertise/success");                      
                             }
                        
-                } else {
-                    $DisplayForm = true;
-                    header("Location: advertise.php?failed-captcha");
-                    
-                }
+                
             }
         }else{
             $DisplayForm = false;
@@ -228,7 +220,7 @@ include("databases/connect.php");
                     if($ReRun){
                         ?>
                         <div class="text-center">
-                        <form action="advertise.php" method="post">
+                        <form action="advertise" method="post">
                             <button type="submit" id="repeat-last-ad" data-tippy-content="Resend the same ad you sent on: <?=htmlspecialchars($LastRan);?>" name="last-ad" class="btn btn-primary paragraph" >
                                     Repeat Last Ad
                             </button>
@@ -236,7 +228,7 @@ include("databases/connect.php");
                         </div>
                         <br>
                         <?php } ?>
-                    <form action="advertise.php" method="post">
+                    <form action="/advertise" method="post">
                         <div class="form-group">
                             <label for="name">Name</label>
                             <input id="name" name="name" type="text" class="form-control" value="<?= htmlspecialchars($steamprofile['personaname']); ?>" placeholder="<?= htmlspecialchars($steamprofile['personaname']); ?>" readonly>
@@ -247,8 +239,7 @@ include("databases/connect.php");
                             <label for="say">Tell users about what your advertising. Think of it as just typing a normal message into discord. URLs are allowed (<a href="https://support.discordapp.com/hc/en-us/articles/210298617-Markdown-Text-101-Chat-Formatting-Bold-Italic-Underline-" target="_blank">Discord Markdown</a> is supported)</label>
                             <textarea id="say" class="form-control" name="say" maxlength="1500" rows="10" placeholder="<?=htmlspecialchars($DefaultAdDesc);?>" required></textarea>
                             <br>
-                            <div class="g-recaptcha" data-sitekey="6Ld9SaQUAAAAAG81x31GrfZeiJEd1gtd59CRMbC7" required></div>
-                            <br>
+                            
                             <button name="submit" type="submit" class="btn btn-primary">Submit</button>
                         </div>
                     </form>
@@ -271,7 +262,7 @@ include("databases/connect.php");
     </div>
     <!-- end of app -->
     <?php
-    include("footer.php"); // we include footer.php here. you can use .html extension, too.
+    include("views/includes/footer.php"); // we include footer.php here. you can use .html extension, too.
     ?>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>   
@@ -282,14 +273,14 @@ include("databases/connect.php");
     <script src="main.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <?php
-    if(isset($_GET['submit-success'])){
+    if(isset($action) && $action === "success"){
                         ?>
                         <script type="text/JavaScript">  
                       toastr["success"]("Your ad has been posted in my discord sever.", "Congratulations!")     
                       </script>
                         <?php
                         }
-                        if (isset($_GET['failed-captcha'])) {
+                        if (isset($action) && $action === "failed-captcha") {
                         ?>
                         <script type="text/JavaScript">  
                         toastr["error"]("Uh oh! Looks like you failed the captcha! Try again but this time try acting less like a robot.", "Error!")     

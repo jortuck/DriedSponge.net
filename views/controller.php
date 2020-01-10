@@ -55,7 +55,7 @@ $WHO = $id;
             switch( (int)$Response[ 'response' ][ 'success' ] )
             {
                 case 1: return $Response[ 'response' ][ 'steamid' ];
-                case 42: header("Location: steamerror.php");
+                case 42: header("Location: /steam/error");
                 
             }
         }
@@ -87,7 +87,7 @@ if (isset($apidata->response->players[0]->loccountrycode) == false ){
 
 $url = $apidata->response->players[0]->profileurl;
 if ($name == null || $img == null ){
-    header("Location: views/includes/steamerror.php");
+    header("Location: /steam/error");
 }
 // Cache the contents to a cache file
 

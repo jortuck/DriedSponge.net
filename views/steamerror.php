@@ -14,7 +14,7 @@ require('steamauth/steamauth.php');
         <meta property="og:site_name" content="DriedSponge.net | Steam Error" />
        
         <?php 
-            include("meta.php"); 
+            include("views/includes/meta.php"); 
             ?>
         
         <title>Error</title>
@@ -24,7 +24,7 @@ require('steamauth/steamauth.php');
  <body>
 
  <?php
-include("navbar.php")
+include("views/includes/navbar.php")
 ?>
     
     <div class="app">
@@ -39,7 +39,7 @@ include("navbar.php")
                         <br>
                 </hgroup>
                     <?php
-                        include("search.php");
+                        include("views/includes/search.php");
                      ?>
                 <div class="jumbotron">
                 <hgroup >
@@ -61,8 +61,8 @@ include("navbar.php")
 </div>
             <!-- end of app -->
             <?php 
-            include("hex.php");
-            include("footer.php"); // we include footer.php here. you can use .html extension, too.
+            include("views/includes/hex.php");
+            include("views/includes/footer.php"); // we include footer.php here. you can use .html extension, too.
             ?>
                 
                 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
