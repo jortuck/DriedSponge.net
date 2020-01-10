@@ -1,8 +1,8 @@
 <?php
 require('steamauth/steamauth.php');  
-include("databases/connect.php");
 
-include("navbar.php");
+
+include("views/includes/navbar.php");
 $privacypolicyquery = SQLWrapper()->prepare("SELECT content,title,privacy,description,UNIX_TIMESTAMP(stamp) AS stamp FROM content WHERE thing = :thing");
 $privacypolicyquery->execute([':thing' => "privacy"]);
 $content = $privacypolicyquery->fetch();
@@ -74,7 +74,7 @@ if($privacy === "0"){//Public
         <meta property="og:site_name" content="DriedSponge.net | <?=htmlspecialchars($title);?>" />
        
         <?php 
-            include("meta.php"); 
+            include("views/includes/meta.php"); 
             ?>
         
         <title><?=htmlspecialchars($title);?></title>
@@ -126,7 +126,7 @@ if($privacy === "0"){//Public
             
             <!-- end of app -->
             <?php 
-            include("footer.php"); // we include footer.php here. you can use .html extension, too.
+            include("views/includes/footer.php"); // we include footer.php here. you can use .html extension, too.
             ?>
                 
                 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

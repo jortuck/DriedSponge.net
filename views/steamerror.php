@@ -86,7 +86,8 @@ include("views/includes/navbar.php")
                     navitem = document.getElementById('steam').classList.add('active')
                     
                 </script>
-                <script src="search.js"></script>
+
+
  </body>
 
 

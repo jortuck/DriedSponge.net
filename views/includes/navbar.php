@@ -10,9 +10,9 @@
                     <div class="collapse navbar-collapse" id="navbarmain">
                             
                         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-                            <li class="nav-item" id="homelink"><a class="nav-link" href="/home">Home</a></li>
-                            <li class="nav-item" id="steam"><a class="nav-link" href="/steam">Steam Tool</a></li>
-                            <li class="nav-item" id="ad"><a class="nav-link" href="/advertise">Advertise</a></li>
+                            <li class="nav-item" id="homelink"><a class="nav-link" href="/home/">Home</a></li>
+                            <li class="nav-item" id="steam"><a class="nav-link" href="/steam/">Steam Tool</a></li>
+                            <li class="nav-item" id="ad"><a class="nav-link" href="/advertise/">Advertise</a></li>
                             <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle" href="#" id="MyProjects" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                             My Projects
@@ -27,8 +27,8 @@
                                 Other
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                <a class="dropdown-item" href="/feedback">Feedback</a>
-                                <a class="dropdown-item" href="/contributors">Contributors</a>
+                                <a class="dropdown-item" href="/feedback/">Feedback</a>
+                                <a class="dropdown-item" href="/contributors/">Contributors</a>
                                 <a class="dropdown-item" href="/legal/privacy">Privacy Policy</a>
                                 </div>
                             </li>
@@ -53,7 +53,7 @@
                                      include ("src/libs/functions.php");
                                     if (isAdmin($_SESSION['steamid'])){ 
                                     ?>
-                                        <a class="dropdown-item" href="manage/index.php"><i class="fas fa-cog"></i></i> Management</a>                                  
+                                        <a class="dropdown-item" href="/manage/"><i class="fas fa-cog"></i></i> Management</a>                                  
                                     <?php
                                     }
                                     ?>

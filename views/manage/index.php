@@ -1,6 +1,6 @@
 <?php
-require('../steamauth/steamauth.php'); 
-include("../databases/connect.php");
+require('steamauth/steamauth.php'); 
+
 ?>
 <!DOCTYPE html>
 
@@ -16,7 +16,7 @@ include("../databases/connect.php");
         <meta property="og:site_name" content="DriedSponge.net | Mangement" />
        
         <?php 
-            include("../meta.php"); 
+            include("views/includes/meta.php"); 
             ?>
         
         <title>Manage - Users</title>
@@ -28,7 +28,7 @@ include("../databases/connect.php");
  <body>
 
 <?php
-include("../tutorials/navbar.php");
+include("views/includes/navbar.php");
 
 ?>
 <style>
@@ -56,17 +56,9 @@ include("../tutorials/navbar.php");
 
 
                 ?>
-                    <ul class="nav nav-tabs">
-                <li class="nav-item">
-                    <a class="nav-link nav-tab active" href="index.php">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link nav-tab" href="users.php">Users</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link nav-tab" href="content.php">Content Mangement</a>
-                </li>
-                </ul>
+                 <?php
+                    include("views/includes/manage/navtab.php");
+                ?>  
                 <br>
                 <hgroup>
                         <h1 class="display-4"><strong>Management Home</strong></h1>
@@ -77,7 +69,7 @@ include("../tutorials/navbar.php");
                     <hgroup>
                         <h1 class="display-2"><strong>You are not management, get out!</strong></h1>
                         <?php
-                        header("Location: ../index.php");
+                        header("Location: /home/");
                         ?>
                     
                     <br>
@@ -100,7 +92,7 @@ include("../tutorials/navbar.php");
             </div>
             <!-- end of app -->
             <?php 
-            include("../footer.php"); // we include footer.php here. you can use .html extension, too.
+            include("views/includes/footer.php"); // we include footer.php here. you can use .html extension, too.
             ?>
                 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
                 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
@@ -109,7 +101,10 @@ include("../tutorials/navbar.php");
                 <script src="https://unpkg.com/tippy.js@4"></script>
                 <script src="main.js"></script>
                 <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-                
+                <script>
+                    navitem = document.getElementById('hometab').classList.add('active')
+                    
+                </script>   
 
  </body>
 

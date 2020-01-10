@@ -288,7 +288,9 @@ require('steamauth/steamauth.php');
                         <?php
                         }
                         ?>
-
+                    <script>
+                        navitem = document.getElementById('ad').classList.add('active')
+                    </script>
 </body>
 
 

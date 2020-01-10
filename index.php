@@ -43,6 +43,16 @@ $router->all('/advertise', function () {
 $router->get('/advertise/{action}', function ($action) {
     include('views/advertise.php');
 });
+$router->all('/feedback', function () {
+    include('views/feedback.php');
+});
+$router->get('/feedback/{action}', function ($action) {
+    include('views/feedback.php');
+});
+//Controlled pages( pages that can be modified from backend)
+$router->all('/legal/privacy', function () {
+    include('views/privacy.php');
+});
 //Steam routes
 $router->all('/lookup/{id}', function ($id) {
     include('views/controller.php');
@@ -56,6 +66,20 @@ $router->get('/steam', function () {
  $router->all('/steam/error', function () {
     include('views/steamerror.php');
 });
+//Management pages
+$router->all('/manage', function () {
+    include('views/manage/index.php');
+});
+$router->all('/manage/home', function () {
+    include('views/manage/index.php');
+});
+$router->all('/manage/index.php', function () {
+    include('views/manage/index.php');
+});
+$router->all('/manage/users', function () {
+    include('views/manage/users.php');
+});
+
 
 // Run it!
 $router->run();

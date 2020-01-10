@@ -1,6 +1,6 @@
 <?php
 require('steamauth/steamauth.php');
-include("databases/connect.php");
+
 ?>
 <!DOCTYPE html>
 
@@ -17,7 +17,7 @@ include("databases/connect.php");
     <meta property="og:site_name" content="DriedSponge.net | Feedback" />
 
     <?php
-    include("meta.php");
+    include("views/includes/meta.php");
     ?>
 
     <title>Feedback</title>
@@ -29,7 +29,7 @@ include("databases/connect.php");
 
 <body>
     <?php
-    include("navbar.php")
+    include("views/includes/navbar.php")
     ?>
     <?php
 
@@ -172,7 +172,7 @@ include("databases/connect.php");
     </div>
     <!-- end of app -->
     <?php
-    include("footer.php"); // we include footer.php here. you can use .html extension, too.
+    include("views/includes/footer.php"); // we include footer.php here. you can use .html extension, too.
     ?>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>   

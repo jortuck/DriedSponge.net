@@ -223,6 +223,9 @@ include("views/includes/hex.php");
 
 
         </script>
+        <script>
+          navitem = document.getElementById('steam').classList.add('active')          
+        </script>
  </body>
 
 
