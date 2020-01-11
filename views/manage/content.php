@@ -361,7 +361,7 @@ include("views/includes/navbar.php");
 					}
 						?>
 						<script>
-                    		navitem = document.getElementById('content').classList.add('active')
+                    		navitem = document.getElementById('contenttab').classList.add('active')
                 		</script> 
  </body>
 
