@@ -76,10 +76,24 @@ $router->all('/manage/home', function () {
 $router->all('/manage/index.php', function () {
     include('views/manage/index.php');
 });
-$router->all('/manage/users', function () {
+$router->all('/manage/users', function () { //Users Manage
     include('views/manage/users.php');
 });
-
+$router->get('/manage/users/{action}', function ($action) { //Users Manage Action
+    include('views/manage/users.php');
+});
+$router->all('/manage/content', function () { //Cotnent Manage
+    include('views/manage/content.php');
+});
+$router->get('/manage/content/{action}', function ($action) { //Content Manage Actions
+    include('views/manage/content.php');
+});
+$router->get('/manage/edit/{pageid}/{action}', function ($pageid,$action) { //Editor Manage Actions
+    include('views/manage/editor.php');
+});
+$router->all('/manage/edit/{pageid}', function ($pageid) { //Editor Manage
+    include('views/manage/editor.php');
+});
 
 // Run it!
 $router->run();

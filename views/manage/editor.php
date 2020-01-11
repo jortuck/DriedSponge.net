@@ -1,6 +1,6 @@
 <?php
-require('../steamauth/steamauth.php'); 
-include("../databases/connect.php");
+require('steamauth/steamauth.php'); 
+
 ?>
 <!DOCTYPE html>
 
@@ -16,7 +16,7 @@ include("../databases/connect.php");
         <meta property="og:site_name" content="DriedSponge.net | Editor" />
        
         <?php 
-            include("../meta.php"); 
+            include("views/includes/meta.php"); 
             ?>
         
         <title>Editor</title>
@@ -28,8 +28,8 @@ include("../databases/connect.php");
  <body>
 
 <?php
-include("../databases/connect.php");
-include("../src/libs/functions.php");
+
+include("src/libs/functions.php");
 ?>
 <style>
 .dropdown-head-link{
@@ -53,10 +53,10 @@ include("../src/libs/functions.php");
             <?php 
             $ivalidid = false;
             if (isset($_SESSION['steamid'])){ 
-                include ('../steamauth/userInfo.php');
+                include ('steamauth/userInfo.php');
               if (isMasterAdmin($_SESSION['steamid'])){ 
-                if(isset($_GET['id'])){
-                    $_SESSION['editid'] =$_GET['id'];
+                if(isset($pageid)){
+                    $_SESSION['editid'] =$pageid;
                 }
                 $editing = $_SESSION['editid'];
                 $currentq = SQLWrapper()->prepare("SELECT content,title,privacy,description FROM content WHERE thing = :thing");
@@ -80,11 +80,11 @@ include("../src/libs/functions.php");
                     if (!empty($changedexistrow)) {
                         SQLWrapper()->prepare("UPDATE content SET content= :content,  created = :created, privacy = :privacy,title = :title,description = :description WHERE thing = :thing")->execute([':content' => $changedcontent, ':created' => $changedby, ':thing' => $changedthing, ':privacy' => $changedprivacy, ':title' => $newtitle, 'description' => $newdes]);
                         $motdchanged = true;
-                        header("Location: editor.php?id=".$changedthing."&saved");   
+                        header("Location: /manage/edit/".$changedthing."/saved");   
                     } else {
                         SQLWrapper()->prepare("INSERT INTO content (thing,content,created)
                         VALUES (?,?,?)")->execute([$changedthing, $motdcontent,$motdcreatedby]);
-                         header("Location: editor.php?id=".$changedthing."&saved");                          
+                         header("Location: /manage/edit/".$changedthing."/saved");                          
                     }
                     }
 
@@ -93,7 +93,7 @@ include("../src/libs/functions.php");
                         <h1 class="display-4"><strong>DriedSponge.net Editor</strong></h1>
                 </hgroup>
                 <br>
-                <form  action="editor.php" method="post">
+                <form  action="/manage/edit/<?=htmlspecialchars($editing);?>" method="post">
                 <div class="form-group">
                                 <button id="submit"name="submit-changes" type="submit" class="btn btn-primary">Save</button>
                                 </div> 
@@ -135,7 +135,7 @@ include("../src/libs/functions.php");
                     <hgroup>
                         <h1 class="display-2"><strong>You are not management, get out!</strong></h1>
                         <?php
-                        header("Location: ../index.php");
+                        header("Location: /home/");
                         ?>
                     
                     <br>
@@ -176,13 +176,15 @@ include("../src/libs/functions.php");
                     default_link_target: "_blank",
                     });</script>
                 <?php
-                        if(isset($_GET['saved'])){
+                        if(isset($action)){
+                            if($action === "saved"){
                             ?>
                             <script type="text/JavaScript">  
                             toastr["success"]("Your changes have been saved! You can exit the editor or keep editing.", "Congratulations!")     
                             </script>
                             <?php
                         }
+                    }
                         ?>
  </body>
 
