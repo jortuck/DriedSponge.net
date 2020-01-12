@@ -27,10 +27,7 @@ require('steamauth/steamauth.php');
     </head>
  <body>
 
-<?php
 
-include("src/libs/functions.php");
-?>
 <style>
 .dropdown-head-link{
   color: black;
@@ -59,18 +56,20 @@ include("src/libs/functions.php");
                     $_SESSION['editid'] =$pageid;
                 }
                 $editing = $_SESSION['editid'];
-                $currentq = SQLWrapper()->prepare("SELECT content,title,privacy,description FROM content WHERE thing = :thing");
+                $currentq = SQLWrapper()->prepare("SELECT content,title,privacy,slug,description FROM content WHERE thing = :thing");
                 $currentq->execute([':thing' => $editing]);
                 $current = $currentq->fetch();
                 $editname =$current['title'];
                 $currentdes = $current['description'];
                 $cp = $current['privacy'];
+                $cs = $current['slug'];
                 if(!empty($current)){
                 
                 if(isset($_POST['submit-changes'])){
                     $changedcontent = $_POST['content'];
                     $changedprivacy = $_POST['privacysettings'];
                     $newdes = $_POST['des'];
+                    $newslug = $_POST['slug'];
                     $changedthing = $editing;
                     $newtitle = $_POST['title'];
                     $changedby = $_SESSION['steamid'];
@@ -78,7 +77,7 @@ include("src/libs/functions.php");
                     $changedexist->execute([':thing' => $changedthing]);
                     $changedexistrow = $changedexist->fetch();
                     if (!empty($changedexistrow)) {
-                        SQLWrapper()->prepare("UPDATE content SET content= :content,  created = :created, privacy = :privacy,title = :title,description = :description WHERE thing = :thing")->execute([':content' => $changedcontent, ':created' => $changedby, ':thing' => $changedthing, ':privacy' => $changedprivacy, ':title' => $newtitle, 'description' => $newdes]);
+                        SQLWrapper()->prepare("UPDATE content SET content= :content,  created = :created, privacy = :privacy,title = :title,slug = :slug,description = :description WHERE thing = :thing")->execute([':content' => $changedcontent, ':created' => $changedby, ':thing' => $changedthing, ':privacy' => $changedprivacy, ':title' => $newtitle, 'description' => $newdes,'slug' =>$newslug]);
                         $motdchanged = true;
                         header("Location: /manage/edit/".$changedthing."/saved");   
                     } else {
@@ -98,24 +97,30 @@ include("src/libs/functions.php");
                                 <button id="submit"name="submit-changes" type="submit" class="btn btn-primary">Save</button>
                                 </div> 
                                 <div class="form-row">
-                                    <div class="col">
-                                            <label for="privacysettings">Privacy</label>
-                                            <select    class="form-control" id="privacysettings" name="privacysettings">
-                                            <option <?php if($cp==="0"){echo"selected";}?> value="0">Public</option>
-                                            <option <?php if($cp==="1"){echo"selected";}?> value="1">Must be logged in</option>
-                                            <option <?php if($cp==="2"){echo"selected";}?> value="2">Must be verified in discord</option>
-                                            <option <?php if($cp==="3"){echo"selected";}?> value="3">Must be admin</option>
-                                            <option <?php if($cp==="4"){echo"selected";}?> value="4">Must be owner</option>
-                                            </select>
-                                    </div>
-                                    <div class="col">
+                                <div class="col">
                                             <label for="title">Page Title</label>
                                             <input class="form-control" placeholder="Enter Title" value="<?=htmlspecialchars($editname);?>" name="title" id="title"></input>
                                     </div>
+                                    <div class="col">
+                                            <label for="privacysettings">Privacy</label>
+                                            <select class="form-control" id="privacysettings" name="privacysettings">
+                                            <option value="0">Public</option>
+                                            <option value="1">Must be logged in</option>
+                                            <option value="2">Must be verified in discord</option>
+                                            <option value="3">Must be admin</option>
+                                            <option value="4">Must be owner</option>
+                                            </select>
+                                    </div>                                                 
                                     </div>  
-                                    <div class="form-group">
-                                        <label for="des">Page Description</label>
-                                        <input maxlength="160" class="form-control" placeholder="Enter Meta Description" value="<?=htmlspecialchars($currentdes);?>" name="des" id="des"></input>
+                                    <div class="form-row">
+                                        <div class="col">
+                                            <label for="des">Page Description</label>
+                                            <input maxlength="160" class="form-control" placeholder="Enter Meta Description" value="<?=htmlspecialchars($currentdes);?>" name="des" id="des"></input>
+                                        </div>
+                                        <div class="col">
+                                            <label for="slug">Slug</label>
+                                            <input id="slug" name="slug" class="form-control" placeholder="https://driedsponge.net/{slug}" value="<?=htmlspecialchars($cs);?>" type="text" maxlength="20">
+                                    </div>  
                                     </div>
                                 <div class="form-group">
                            <label for="content" style="color: black;">Edit the contents</label>
@@ -123,6 +128,7 @@ include("src/libs/functions.php");
                                 <textarea id="content" name="content" rows="40" class="form-control"><?=htmlspecialchars_decode($current["content"]);?></textarea>                                      
                         </div>                                
                      </form> 
+                     
                 <?php 
                 }else{
                    ?>
@@ -163,9 +169,15 @@ include("src/libs/functions.php");
                 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
                 <script src="https://unpkg.com/popper.js@1"></script>
                 <script src="https://unpkg.com/tippy.js@4"></script>
-                <script src="main.js"></script>
+                
                 <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+                
                 <script src="https://cdn.tiny.cloud/1/dom10ctinmaceofbm524vgsfebgy22lsh2ooomg0oqs8wu28/tinymce/5/tinymce.min.js"></script>
+                <script>
+                    $(function() {
+                        $("#privacysettings").val('<?php echo $cp;?>');
+                    });
+                </script>
                 <script>
                 tinymce.init({
                     selector:'textarea', 

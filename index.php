@@ -1,6 +1,7 @@
 <?php
 require "Bramus/Router/Router.php";
 include ("databases/connect.php");
+include ("src/libs/functions.php");
 $router = new \Bramus\Router\Router();
 
 $router->get('pattern', function() { /* ... */ });
@@ -18,7 +19,6 @@ $router->set404(function () {
 });
 //Indexs
 $router->all('/', function () {
-    
     include('views/index.php');
 });
 $router->all('/index.php', function () {
@@ -48,10 +48,6 @@ $router->all('/feedback', function () {
 });
 $router->get('/feedback/{action}', function ($action) {
     include('views/feedback.php');
-});
-//Controlled pages( pages that can be modified from backend)
-$router->all('/legal/privacy', function () {
-    include('views/privacy.php');
 });
 //Steam routes
 $router->all('/lookup/{id}', function ($id) {
@@ -94,7 +90,16 @@ $router->get('/manage/edit/{pageid}/{action}', function ($pageid,$action) { //Ed
 $router->all('/manage/edit/{pageid}', function ($pageid) { //Editor Manage
     include('views/manage/editor.php');
 });
-
+$pagesq = SQLWrapper()->prepare("SELECT thing,UNIX_TIMESTAMP(stamp) AS stamp,created,title FROM content");
+$pagesq->execute();
+while($row = $pagesq->fetch()){ 
+    $title = $row["title"];
+    $slug = "test";
+    $router->all('/{'.$slug.'}/', function ($slug) { //Editor Manage
+        //include('views/manage/editor.php');
+        include('views/page.php');
+    });
+}
 // Run it!
 $router->run();
 ?>

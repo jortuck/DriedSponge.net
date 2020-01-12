@@ -363,8 +363,8 @@ include("views/includes/navbar.php");
                 <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
                 
                       <?php 
-                      
-                      if(isset($_GET['already-staff'])){
+                      if(isset($action)){
+                      if($action === "already-staff"){
                       ?>
                 <script type="text/JavaScript">  
                 toastr["error"]("This user is already in the databse!", "Error:")     
@@ -427,6 +427,7 @@ include("views/includes/navbar.php");
                         </script>
                         <?php
                       }
+                    }
                       ?>
                 <script>
                     navitem = document.getElementById('userstab').classList.add('active')

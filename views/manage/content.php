@@ -82,9 +82,9 @@ include("views/includes/navbar.php");
 						
 						$unlocadq = SQLWrapper()->prepare("UPDATE ads SET overide = :overide WHERE user= :id");
 						$unlocadq->execute([':id' => $unlockid,':overide' => "1"]);
-						header("Location: content.php?unlock-success"); 
+						header("Location: /manage/content/unlock-success"); 
 						}else{
-							header("Location: content.php?not-sponge"); 
+							header("Location: /manage/content/not-sponge"); 
 						}
 						
 					}
@@ -93,10 +93,9 @@ include("views/includes/navbar.php");
 						$deleteid = $_POST['delete-page'];
 						$deletepageq = SQLWrapper()->prepare("DELETE FROM content WHERE thing= :thing");
 						$deletepageq->execute([':thing' => $deleteid]);
-						unlink("../".$deleteid.".php");
-						header("Location: content.php?delete-page"); 
+						header("Location: /manage/content/delete-page"); 
 						}else{
-							header("Location: content.php?not-sponge"); 
+							header("Location: /manage/content/not-sponge"); 
 						}
 						
 					}
@@ -105,14 +104,9 @@ include("views/includes/navbar.php");
 						$pagename = $_POST['pagename'];
 						$pageid = $_POST['pageid'];
 						$newpq = SQLWrapper()->prepare("INSERT INTO content (thing,title,created)VALUES (?,?,?)")->execute([$pageid, $pagename,$_SESSION['steamid']]);
-						$newpage = fopen('../'.$pageid.'.php', 'w');
-						$temp = file_get_contents("template.php");
-						$txt = str_replace("BIGCHUNGUS","'".$pageid."'",$temp);
-						fwrite($newpage, $txt);
-						fclose($pagename);
-						header("Location: content.php?page-created"); 
+						header("Location: /manage/content/page-created"); 
 						}else{
-							header("Location: content.php?not-sponge"); 
+							header("Location: /manage/content/not-sponge"); 
 						}
 						
 					}
@@ -147,7 +141,7 @@ include("views/includes/navbar.php");
 							<h3>Pages</h3>
 						</div>
 						<div class="card-body">  
-							<form  action="content.php" method="post" >
+							<form  action="/manage/content/" method="post" >
 								<div class="form-row">
 									<div class="form-group col">
 										<label for="pagename">Page Name</label>
@@ -215,7 +209,7 @@ include("views/includes/navbar.php");
 												</div>
 												<div class="modal-footer">
 													<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-												<form action="content.php" method="POST">
+												<form action="/manage/content/" method="POST">
 													<button type="submit" name="delete-page" value="<?=htmlspecialchars($row["thing"]);?>" class="btn btn-danger">Delete</button>
 												</form>
 												</div>
@@ -279,7 +273,7 @@ include("views/includes/navbar.php");
 					<hgroup>
 						<h1 class="display-2"><strong>You are not management, get out!</strong></h1>
 						<?php
-						header("Location: ../index.php");
+						header("Location: /home/");
 						?>
 					
 					<br>
@@ -330,28 +324,28 @@ include("views/includes/navbar.php");
 					  <?php 
 					  } 
 					  
-						if(isset($_GET['not-sponge'])){
+						if($action === "not-sponge"){
 						?>
 						<script type="text/JavaScript">  
 					  toastr["error"]("You are not DriedSponge", "Error")     
 					  </script>
 						<?php
 						}
-						if(isset($_GET['unlock-success'])){
+						if($action === "unlock-success"){
 						?>
 								<script type="text/JavaScript">  
 								toastr["success"]("This user can now advertise again", "Congratulations!")     
 								</script>
 						<?php
 						}
-						if(isset($_GET['privacy-success'])){
+						if($action === "privacy-success"){
 							?>
 							<script type="text/JavaScript">  
 							toastr["success"]("The privacy policy has been changed!", "Congratulations!")     
 							</script>
 							<?php
 						}
-						if(isset($_GET['page-created'])){
+						if($action === "page-created"){
 							?>
 							<script type="text/JavaScript">  
 							toastr["success"]("The new page was successfully created!", "Congratulations!")     

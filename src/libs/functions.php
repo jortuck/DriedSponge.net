@@ -44,3 +44,6 @@ function secondsToTime($seconds) {
     $dtT = new \DateTime("@$seconds");
     return $dtF->diff($dtT)->format('%a days, %h hours, %i minutes and %s seconds');
 }
+function Error404() {
+    include "views/404.php";
+}

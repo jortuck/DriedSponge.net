@@ -50,7 +50,6 @@
                                     <a class="dropdown-item" href="?logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
                                     <?php
                                      
-                                     include ("src/libs/functions.php");
                                     if (isAdmin($_SESSION['steamid'])){ 
                                     ?>
                                         <a class="dropdown-item" href="/manage/"><i class="fas fa-cog"></i></i> Management</a>                                  
