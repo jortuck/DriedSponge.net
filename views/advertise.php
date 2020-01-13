@@ -217,7 +217,7 @@ require('steamauth/steamauth.php');
                     if($ReRun){
                         ?>
                         <div class="text-center">
-                        <form action="advertise" method="post">
+                        <form action="/advertise/" method="post">
                             <button type="submit" id="repeat-last-ad" data-tippy-content="Resend the same ad you sent on: <?=htmlspecialchars($LastRan);?>" name="last-ad" class="btn btn-primary paragraph" >
                                     Repeat Last Ad
                             </button>
@@ -225,7 +225,7 @@ require('steamauth/steamauth.php');
                         </div>
                         <br>
                         <?php } ?>
-                    <form action="/advertise" method="post">
+                    <form action="/advertise/" method="post">
                         <div class="form-group">
                             <label for="name">Name</label>
                             <input id="name" name="name" type="text" class="form-control" value="<?= htmlspecialchars($steamprofile['personaname']); ?>" placeholder="<?= htmlspecialchars($steamprofile['personaname']); ?>" readonly>
