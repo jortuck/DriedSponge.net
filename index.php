@@ -90,16 +90,12 @@ $router->get('/manage/edit/{pageid}/{action}', function ($pageid,$action) { //Ed
 $router->all('/manage/edit/{pageid}', function ($pageid) { //Editor Manage
     include('views/manage/editor.php');
 });
-$pagesq = SQLWrapper()->prepare("SELECT thing,UNIX_TIMESTAMP(stamp) AS stamp,created,title FROM content");
-$pagesq->execute();
-while($row = $pagesq->fetch()){ 
-    $title = $row["title"];
-    $slug = "test";
-    $router->all('/{'.$slug.'}/', function ($slug) { //Editor Manage
-        //include('views/manage/editor.php');
-        include('views/page.php');
-    });
-}
+
+$router->all('/{slug}/', function ($slug) { //Editor Manage
+    //include('views/manage/editor.php');
+include('views/page.php');
+});
+
 // Run it!
 $router->run();
 ?>

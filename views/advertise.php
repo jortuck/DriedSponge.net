@@ -57,7 +57,7 @@ require('steamauth/steamauth.php');
         $adrow = $adexist->fetch();
         $numDays = abs($adrow['stamp'] - $adstamp)/60/60/24;
         $timeleft = secondsToTime(86400 - abs($adrow['stamp'] - $adstamp));
-        if($numDays >= 1 or $adrow['overide']){
+        if($numDays >= 1 or $adrow['overide'] == "1"){
         $oneday = false;
             if(!empty($adrow['content'])){
                 $ReRun = true;
@@ -107,9 +107,6 @@ require('steamauth/steamauth.php');
                 $adcontent = $_POST['say'];  
                 $DisplayForm = true;
                 $DisplayForm = false;
-                
-                
-    
                     if (!isset($_POST['name'], $_POST['say'])) {
                         return;
                     }

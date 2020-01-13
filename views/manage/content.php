@@ -102,7 +102,7 @@ include("views/includes/navbar.php");
 					if(isset($_POST['newpage'])){
 						if (isMasterAdmin($_SESSION['steamid'])){ 
 						$pagename = $_POST['pagename'];
-						$pageid = $_POST['pageid'];
+						$pageid = str_replace(" ","",$_POST['pageid']);
 						$newpq = SQLWrapper()->prepare("INSERT INTO content (thing,title,created)VALUES (?,?,?)")->execute([$pageid, $pagename,$_SESSION['steamid']]);
 						header("Location: /manage/content/page-created"); 
 						}else{
@@ -171,17 +171,18 @@ include("views/includes/navbar.php");
 									</thead>
 									<tbody>
 									<?php
-										$pagesq = SQLWrapper()->prepare("SELECT thing,UNIX_TIMESTAMP(stamp) AS stamp,created,title FROM content");
+										$pagesq = SQLWrapper()->prepare("SELECT thing,slug,UNIX_TIMESTAMP(stamp) AS stamp,created,title FROM content");
 										$pagesq->execute();
 										while($row = $pagesq->fetch()){ 
 											$createdurl = "https://steamcommunity.com/profiles/".$row['created']."/"; 
 											$href = "/manage/edit/".$row['thing'];
+											$href2 = "/".$row['slug']."/";
 											$title = $row["title"];
 
 									?>
 										<tr>
 									   
-										<td><?=htmlspecialchars($title);?></td>
+										<td><a href="<?=htmlspecialchars($href2)?>" target="_blank"><?=htmlspecialchars($title);?></a></td>
 										<td><?=htmlspecialchars(date("m/d/Y g:i a", $row["stamp"]));?></td>
 										<td><a href="<?=htmlspecialchars($createdurl)?>" target="_blank"><?=htmlspecialchars($row["created"]);?></a></td>
 										<td>
