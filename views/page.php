@@ -1,15 +1,16 @@
-<!DOCTYPE html>
 <?php
-
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 $contentquery = SQLWrapper()->prepare("SELECT content,title,privacy,description,UNIX_TIMESTAMP(stamp) AS stamp FROM content WHERE slug = :slug");
 $contentquery->execute([':slug' => $slug]);
 $content = $contentquery->fetch();
 if(empty($content)){
     Error404();
 }else{
-    require('steamauth/steamauth.php');  
 
-   
+
+  
 
 $plastupdated = date("m/d/Y g:i a", $content["stamp"]);
 $privacy = $content['privacy'];
@@ -67,8 +68,7 @@ if($privacy === "0"){//Public
     }
 }
 ?>
-
-
+<!DOCTYPE html>
 
 <html>
     <head>

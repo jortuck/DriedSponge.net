@@ -121,9 +121,10 @@ $router->all('/manage/edit/{pageid}', function ($pageid) { //Editor Manage
 });
 
 $router->all('/{slug}/', function ($slug) { //Editor Manage
-    //include('views/manage/editor.php');
     $header = "/".$slug."/";
-include('views/page.php');
+    require('steamauth/steamauth.php');  
+   
+    include('views/page.php');
 });
 
 // Run it!

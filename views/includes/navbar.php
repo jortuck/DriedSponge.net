@@ -27,8 +27,8 @@
                                 Other
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                <a class="dropdown-item" href="/feedback/">Feedback</a>
-                                <a class="dropdown-item" href="/contributors/">Contributors</a>
+                                <a class="dropdown-item" href="/feedback">Feedback</a>
+                                <a class="dropdown-item" href="/contributors">Contributors</a>
                                 <a class="dropdown-item" href="/legal/privacy">Privacy Policy</a>
                                 </div>
                             </li>
