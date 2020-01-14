@@ -69,7 +69,7 @@ require('steamauth/steamauth.php');
                     $changedcontent = $_POST['content'];
                     $changedprivacy = $_POST['privacysettings'];
                     $newdes = $_POST['des'];
-                    $newslug = $_POST['slug'];
+                    $newslug = str_replace(" ","",$_POST['slug']);
                     $changedthing = $editing;
                     $newtitle = $_POST['title'];
                     $changedby = $_SESSION['steamid'];
