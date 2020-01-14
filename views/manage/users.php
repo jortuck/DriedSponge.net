@@ -1,8 +1,3 @@
-<?php
-require('steamauth/steamauth.php'); 
-
-
-?>
 <!DOCTYPE html>
 
 

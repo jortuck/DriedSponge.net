@@ -2,7 +2,7 @@
 require "Bramus/Router/Router.php";
 include ("databases/connect.php");
 include ("src/libs/functions.php");
-
+require('steamauth/steamauth.php');  
 $router = new \Bramus\Router\Router();
 
 $router->get('pattern', function() { /* ... */ });
@@ -122,8 +122,6 @@ $router->all('/manage/edit/{pageid}', function ($pageid) { //Editor Manage
 
 $router->all('/{slug}/', function ($slug) { //Editor Manage
     $header = "/".$slug."/";
-    require('steamauth/steamauth.php');  
-   
     include('views/page.php');
 });
 

@@ -1,5 +1,5 @@
 <?php
-require('steamauth/steamauth.php');  
+
 
 
 include("views/includes/navbar.php");

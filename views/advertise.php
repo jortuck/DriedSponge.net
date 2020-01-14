@@ -1,6 +1,3 @@
-<?php
-require('steamauth/steamauth.php');
-?>
 <!DOCTYPE html>
 
 
@@ -32,13 +29,12 @@ require('steamauth/steamauth.php');
     ?>
     <?php
 
-
-    if (isset($_SESSION['steamid'])) {
-        $PLogin = false;
         $oneday = false;
-        $blocked = false;
-        $ReRun = false;
         $notverified = false;
+        $blocked = false;
+    if (isset($steamprofile['steamid'])) {
+        $PLogin = false;
+        $ReRun = false;
         $DisplayForm = true;
         $row = null;
         $chekid = $_SESSION['steamid'];
@@ -190,11 +186,11 @@ require('steamauth/steamauth.php');
 
                     <br>
                 </hgroup>
-                <?php if ($blocked == true) { ?>
+                <?php if ($blocked) { ?>
                     <h1 class="articleh1">Uh oh, looks like you have been blacklisted from submitting form data. <br> Reason: <?php echo $row["rsn"]; ?></h1>
                 <?php
                 }
-                    if ($oneday == true) { ?>
+                    if ($oneday) { ?>
                     <h1 class="articleh1">Please wait before advertising again</h1>
                     <br>
                     <h2 style="text-align: center;">Time left: <strong><?=htmlspecialchars($timeleft)?></strong></h2>
