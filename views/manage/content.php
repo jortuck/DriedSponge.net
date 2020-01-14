@@ -103,7 +103,8 @@ include("views/includes/navbar.php");
 						if (isMasterAdmin($_SESSION['steamid'])){ 
 						$pagename = $_POST['pagename'];
 						$pageid = str_replace(" ","",$_POST['pageid']);
-						$newpq = SQLWrapper()->prepare("INSERT INTO content (thing,title,created)VALUES (?,?,?)")->execute([$pageid, $pagename,$_SESSION['steamid']]);
+						$pageslug = $pageid;
+						$newpq = SQLWrapper()->prepare("INSERT INTO content (thing,title,created,slug)VALUES (?,?,?,?)")->execute([$pageid, $pagename,$_SESSION['steamid'],$pageslug]);
 						header("Location: /manage/content/page-created"); 
 						}else{
 							header("Location: /manage/content/not-sponge"); 
