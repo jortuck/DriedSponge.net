@@ -20,40 +20,48 @@ $router->set404(function () {
 });
 //Indexs
 $router->all('/', function () {
+    $header = "/";
     include('views/index.php');
 });
 $router->all('/index.php', function () {
-    
+    $header = "/index.php";
     include('views/index.php');
 });
 $router->all('/home', function () {
-    
+    $header = "/home/";
     include('views/index.php');
 });
 //Static pages
 $router->all('/projects/web', function () {
+    $header = "/web/";
     include('views/webdesign.php');
 });
 $router->all('/projects/lua', function () {
+    $header = "/lua/";
     include('views/lua.php');
 });
 //User pages(pages where user can interacts)
 $router->all('/advertise', function () {
+    $header = "/advertise/";
     include('views/advertise.php');
 });
 $router->get('/advertise/{action}', function ($action) {
+    $header = "/advertise/".$action;
     include('views/advertise.php');
 });
 $router->all('/feedback', function () {
+    $header = "/feedback/";
     include('views/feedback.php');
 });
 $router->get('/feedback/{action}', function ($action) {
     include('views/feedback.php');
 });
 $router->all('/verify', function () {
+    $header = "/verify/";
     include('views/verify.php');
 });
 $router->get('/verify/{id}', function ($verify) {
+    $header = "/advertise/".$verify;
     include('views/verify.php');
 });
 //Steam routes
