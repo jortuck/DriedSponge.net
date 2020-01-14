@@ -54,6 +54,7 @@ $router->all('/feedback', function () {
     include('views/feedback.php');
 });
 $router->get('/feedback/{action}', function ($action) {
+    $header = "/feedback/";
     include('views/feedback.php');
 });
 $router->all('/verify', function () {
@@ -61,53 +62,67 @@ $router->all('/verify', function () {
     include('views/verify.php');
 });
 $router->get('/verify/{id}', function ($verify) {
-    $header = "/advertise/".$verify;
+    $header = "/verify/".$verify;
     include('views/verify.php');
 });
 //Steam routes
 $router->all('/lookup/{id}', function ($id) {
+    $header = "/lookup/$id";
     include('views/controller.php');
 });
 $router->get('/steam', function () {
+    $header = "/steam/";
     include('views/steam.php');
  });
  $router->post('/lookup/', function () {
+    $header = "/lookup/".$_POST['id'];
     header("Location: /lookup/".$_POST['id']);
  });
  $router->all('/steam/error', function () {
+    $header = "/steam/error";
     include('views/steamerror.php');
 });
 //Management pages
 $router->all('/manage', function () {
+    $header = "/manage/home";
     include('views/manage/index.php');
 });
 $router->all('/manage/home', function () {
+    $header = "/manage/home";
     include('views/manage/index.php');
 });
 $router->all('/manage/index.php', function () {
+    $header = "/manage/home";
     include('views/manage/index.php');
 });
 $router->all('/manage/users', function () { //Users Manage
+    $header = "/manage/users/";
     include('views/manage/users.php');
 });
 $router->get('/manage/users/{action}', function ($action) { //Users Manage Action
+    $header = "/manage/users/";
     include('views/manage/users.php');
 });
 $router->all('/manage/content', function () { //Cotnent Manage
+    $header = "/manage/content/";
     include('views/manage/content.php');
 });
 $router->get('/manage/content/{action}', function ($action) { //Content Manage Actions
+    $header = "/manage/content/";
     include('views/manage/content.php');
 });
 $router->get('/manage/edit/{pageid}/{action}', function ($pageid,$action) { //Editor Manage Actions
+    $header = "/manage/edit/".$pageid;
     include('views/manage/editor.php');
 });
 $router->all('/manage/edit/{pageid}', function ($pageid) { //Editor Manage
+    $header = "/manage/edit/".$pageid;
     include('views/manage/editor.php');
 });
 
 $router->all('/{slug}/', function ($slug) { //Editor Manage
     //include('views/manage/editor.php');
+    $header = "/".$slug."/";
 include('views/page.php');
 });
 
