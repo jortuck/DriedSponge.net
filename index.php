@@ -2,6 +2,7 @@
 require "Bramus/Router/Router.php";
 include ("databases/connect.php");
 include ("src/libs/functions.php");
+
 $router = new \Bramus\Router\Router();
 
 $router->get('pattern', function() { /* ... */ });
@@ -48,6 +49,12 @@ $router->all('/feedback', function () {
 });
 $router->get('/feedback/{action}', function ($action) {
     include('views/feedback.php');
+});
+$router->all('/verify', function () {
+    include('views/verify.php');
+});
+$router->get('/verify/{id}', function ($verify) {
+    include('views/verify.php');
 });
 //Steam routes
 $router->all('/lookup/{id}', function ($id) {

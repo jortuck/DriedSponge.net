@@ -96,7 +96,7 @@ include("views/includes/navbar.php");
                         $unblockid = $_POST['submit-unblock'];
                         $sqlunblock = SQLWrapper()->prepare("DELETE FROM blocked WHERE id64= :id");
                         $sqlunblock->execute([':id' => $unblockid]);
-                        header("Location: users.php?unblocked=$unblockid"); 
+                        header("Location: ?unblocked=$unblockid"); 
                         
                     }
                     if(isset($_POST['submit-fire'])){
@@ -104,9 +104,9 @@ include("views/includes/navbar.php");
                       $fireid = $_POST['submit-fire'];
                       $sqlfire = SQLWrapper()->prepare("DELETE FROM staff WHERE id64= :id");
                       $sqlfire->execute([':id' => $fireid]);
-                      header("Location: users.php?fired=$fireid"); 
+                      header("Location: ?fired=$fireid"); 
                       }else{
-                        header("Location: users.php?not-sponge"); 
+                        header("Location: ?not-sponge"); 
                       }
                       
                   }
@@ -114,7 +114,7 @@ include("views/includes/navbar.php");
                     $unverifyid = $_POST['submit-unverify'];
                     $sqlfire = SQLWrapper()->prepare("UPDATE discord SET verifyid = :vid WHERE discordid= :id");
                     $sqlfire->execute([':id' => $unverifyid, ':vid' => "UNVERIFIED"]);
-                    header("Location: users.php?unverified=$unverifyid"); 
+                    header("Location: ?unverified=$unverifyid"); 
                     
                     
                 }
@@ -126,7 +126,7 @@ include("views/includes/navbar.php");
                     $sqlhireexistquery->execute([':id' => $hireid]);
                     $hirerows = $sqlhireexistquery->fetch();
                             if (!empty($hirerows)){   
-                                header("Location: users.php?already-staff"); 
+                                header("Location: ?already-staff"); 
                                 
                             } else{
                                 $adminhire = SQLWrapper()->prepare("INSERT INTO staff (id64)
@@ -266,7 +266,7 @@ include("views/includes/navbar.php");
                           </div>
                         <div class="card-body">
                           <!-- Discord manager -->
-                          <form action="users.php" method="post">
+                          <form action="/manage/users/" method="post">
                                              <div class="form-row">
                                                <div class="form-group col-md-6">
                                                   <label for="id643" style="color: black;">SteamID64</label>
@@ -309,7 +309,7 @@ include("views/includes/navbar.php");
                                               ?>
                                               
                                               <tr><td>
-                                              <form action="users.php" method="post" >
+                                              <form action="/manage/users/" method="post" >
                                               <button type="submit" value="<?=htmlspecialchars($row3["discordid"]);?>" name="submit-unverify" class="btn btn-danger" >
                                                   Unverify
                                               </button>
