@@ -178,9 +178,9 @@
                 tinymce.init({
                     selector:'textarea', 
                     branding: false, 
-                    plugins: "link,anchor,autoresize,autosave,image,wordcount,searchreplace,fullscreen,code",
+                    plugins: "link,anchor,autoresize,autosave,image,wordcount,searchreplace,fullscreen,code,lists",
                     menubar: "file edit insert view format table tools help ",
-                    toolbar: "undo redo | styleselect | bold italic underline strikethrough format code | align left center right justify | link image anchor | wordcount ",
+                    toolbar: "undo redo | styleselect | bold italic underline strikethrough format code | align left center right justify | link image anchor numlist bullist | wordcount ",
                     default_link_target: "_blank",
                     });</script>
                 <?php
