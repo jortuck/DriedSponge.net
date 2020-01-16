@@ -35,7 +35,7 @@ include("views/includes/navbar.php")
                             <h1 class="display-2"><strong>Web Projects</strong></h1>
                         <br>
                     </hgroup>
-                    <p class="paragraph pintro">Here you can find a list of all of my web projects and you may be able to view some of them. Some of these were made in my web design class, that's why they might be a bit dull. This list also contains other web things I have made for other people.</p>
+                    <p class="paragraph pintro">This is basically a list of most of my web projects.</p>
                     
                     <br>
                     <div data-aos="fade-right" class="row">
@@ -108,7 +108,7 @@ include("views/includes/navbar.php")
                     <div class="col-lg">
                         <div class="showcase-text">
                           <h2>DriedSponge.net Bot</h2>
-                            <p class="paragraph">This is a discord bot that I'm working on for <a href="https://driedsponge.net/discord" target="_blank">my discord server</a>. I use to work on my java script and to learn more about linux servers. Right now I use <a href="https://m.do.co/c/bdc37dd1f345" target="_blank">DigitalOcean</a> to host it.</p>
+                            <p class="paragraph">This is a discord bot that I'm working on for <a href="https://driedsponge.net/discord" target="_blank">my discord server</a>. I use to work on my java script and to learn more about linux servers. Currently for hosting, I am using my moms old laptop in which I installed ubuntu server on.</p>
                             <p class="paragraph"><span class="badge badge-success">Active</span></p>
                     </div>
                   </div>
