@@ -61,7 +61,7 @@ include("views/includes/navbar.php")
                     <div  class="col-lg">
                       <div class="showcase-text">
                         <h2>DriedSponge.net (This site!)</h2>
-                          <p class="paragraph">This site was created to show all the coding projects I've made. I also use it to practice my HTML, CSS, PHP, and js. I also created a nice backend so it's easier for me to update content and blacklist users.</p>
+                          <p class="paragraph">I use this site to practice most of my code on. Most people call it a CMS because of the backend features I have on it like page creation and user management.</p>
                           <p class="paragraph"><span class="badge badge-success">Active (obviously)</span></p>
                           
                           <a target="_blank"href="https://driedsponge.net/" class="btn btn-primary">Visit Site</a>
