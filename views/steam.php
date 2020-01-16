@@ -7,7 +7,7 @@
 <!--         Site created: 9/19/19
         Author: DriedSponge(Jordan Tucker) -->
         
-        <meta name="description" content="Need to look something up about a user on steam? Do it here! Use any SteamID or profile URL to look up information!" />
+        <meta name="description" content="Need to look something up about a user on steam? Do it here! Use any SteamID or profile URL to look up information! If the user you're searching for has a GmodStore profile, their GMS info will show up too!" />
         <meta name="keywords" content="driedsponge.net, SteamID finder, SteamID, SteamAPI, Steam users, SteamID search, steam convert, steamid converter, steamurl converter, steam converter, SteamID64, SteamID3, steam profile lookup" />
         <meta name="author" content="Jordan Tucker" />
         
@@ -37,7 +37,7 @@ include("views/includes/navbar.php")
                             <h1 class="display-2"><strong>SteamID Tool</strong></h1>
                         <br>
                     </hgroup>
-                    <p class="paragraph pintro">Need to look something up about a user on steam? Do it here! Use any SteamID or profile URL to look up information! For more info on the site visit my <a href="webdesign.php">Web Projects </a>page.</p>
+                    <p class="paragraph pintro">Need to look something up about a user on steam? Do it here! Use any SteamID or profile URL to look up information! If the user you're searching for has a GmodStore profile, their GMS info will show up too! For more info on the site visit my <a href="/projects/web">Web Projects </a>page.</p>
                     <br>
                     
                     <?php
@@ -60,10 +60,14 @@ include("views/includes/navbar.php")
                     <p class="jumbotronparagraph"><strong>Profile URL:</strong> <a class="jumbaurl" target="_blank" href="<?=htmlspecialchars($steaminfo['url']);?>"><?=htmlspecialchars($steaminfo['url']);?></a> <button value="<?=htmlspecialchars($steaminfo['url']);?>" onclick="copything(this.value)" class="btn btn-success"><i class="far fa-copy"></i></button></p>
                     <h4 class="jumboh4">Personal Info (This may not be accurate)</h4><br>
                     <p class="jumbotronparagraph"><strong>Real Name:</strong> <?=htmlspecialchars($steaminfo['realname']);?><button value="<?=htmlspecialchars($steaminfo['realname']);?>" onclick="copything(this.value)" class="btn btn-success"><i class="far fa-copy"></i></button></p>
-                    <p  class="jumbotronparagraph"><strong>Country</strong>: <?=htmlspecialchars($steaminfo['country']);?> <button value="<?=htmlspecialchars($steaminfo['country']);?>" onclick="copything(this.value)" class="btn btn-success"><i class="far fa-copy"></i></button> </p>
+                    <p  class="jumbotronparagraph"><strong>Country</strong>: <?=htmlspecialchars($steaminfo['country']);?> <button value="<?=htmlspecialchars($steaminfo['country']);?>" onclick="copything(this.value)" class="btn btn-success"><i class="far fa-copy"></i></button></p>
+                    <?php if(isset($steaminfo['gmsname'])){?>
+                    <h4 class="jumboh4">GmodStore Info</h4><br>
+                    <p class="jumbotronparagraph"><strong>GmodStore Name:</strong> <?=htmlspecialchars($steaminfo['gmsname']);?> <button value="<?=htmlspecialchars($steaminfo['gmsname']);?>" onclick="copything(this.value)" class="btn btn-success"><i class="far fa-copy"></i></button></p>
+                    <p class="jumbotronparagraph"><strong>GmodStore URL:</strong> <a class="jumbaurl" target="_blank" href="<?=htmlspecialchars($steaminfo['gmsurl']);?>"><?=htmlspecialchars($steaminfo['gmsurl']);?></a> <button value="<?=htmlspecialchars($steaminfo['gmsurl']);?>" onclick="copything(this.value)" class="btn btn-success"><i class="far fa-copy"></i></button></p>
                     </div>
-
                         <?php
+                        }
                     }else{
                         ?>
                         <h1 class="articleh1">Login to see your own info</h1>

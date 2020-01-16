@@ -68,7 +68,15 @@ $steaminfo = SteamInfo($id);
                     <h4 class="jumboh4">Personal Info (This may not be accurate)</h4><br>
                     <p class="jumbotronparagraph"><strong>Real Name:</strong> <?=htmlspecialchars($steaminfo['realname']);?><button value="<?=htmlspecialchars($steaminfo['realname']);?>" onclick="copything(this.value)" class="btn btn-success"><i class="far fa-copy"></i></button></p>
                     <p  class="jumbotronparagraph"><strong>Country</strong>: <?=htmlspecialchars($steaminfo['country']);?> <button value="<?=htmlspecialchars($steaminfo['country']);?>" onclick="copything(this.value)" class="btn btn-success"><i class="far fa-copy"></i></button> </p>
+                    <?php if(isset($steaminfo['gmsname'])){?>
+                    <h4 class="jumboh4">GmodStore Info</h4><br>
+                    <p class="jumbotronparagraph"><strong>GmodStore Name:</strong> <?=htmlspecialchars($steaminfo['gmsname']);?> <button value="<?=htmlspecialchars($steaminfo['gmsname']);?>" onclick="copything(this.value)" class="btn btn-success"><i class="far fa-copy"></i></button></p>
+                    <p class="jumbotronparagraph"><strong>GmodStore URL:</strong> <a class="jumbaurl" target="_blank" href="<?=htmlspecialchars($steaminfo['gmsurl']);?>"><?=htmlspecialchars($steaminfo['gmsurl']);?></a> <button value="<?=htmlspecialchars($steaminfo['gmsurl']);?>" onclick="copything(this.value)" class="btn btn-success"><i class="far fa-copy"></i></button></p>
                     </div>
+                        <?php
+                        }
+                        ?>
+                </div>
                     </div>
                     
                        

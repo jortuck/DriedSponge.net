@@ -10,13 +10,13 @@
 <?php
 
 if (date("m") == "10") {
-  $theme = "https://driedsponge.net/css/spook.css";
+  $theme = "css/spook.css";
   $themefav = "https://cdn.driedsponge.net/img/favicon-spook.ico";
   $themecol = "#E4541C";
   // $decoration = "https://driedsponge.net/js/bats.js";
 } else {
-  $theme = "https://driedsponge.net/css/textclass.css";
-  $themefav = "https://cdn.driedsponge.net/img/zfavicon.ico";
+  $theme = "../css/textclass.css";
+  $themefav = "../img/zfavicon.ico";
   $themecol = "#007BFF";
 }
 
@@ -36,7 +36,7 @@ if (date("m") == "10") {
 ?>
 
 <meta name="theme-color" content="<?= htmlspecialchars($themecol); ?>">
-<link rel="stylesheet" href="https://driedsponge.net/css/formatting.css">
+<link rel="stylesheet" href="../css/formatting.css">
 <link id="styless" rel="stylesheet" href="<?= htmlspecialchars($theme); ?>">
 
 <link rel="icon" href="<?= htmlspecialchars($themefav); ?>" type="image/x-icon">

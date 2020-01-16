@@ -83,8 +83,7 @@ function SteamInfo($identifier) {
 
     $id3 = $s->RenderSteam3() . PHP_EOL;
     $idn = $s->RenderSteam2() . PHP_EOL;
-    $id64 = $s->ConvertToUInt64() . PHP_EOL;
-
+    $id64 =trim($s->ConvertToUInt64() . PHP_EOL);
     $json = file_get_contents("http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=".$APIKEY."&steamids=$id64");
     $apidata = json_decode($json);
     $name = $apidata->response->players[0]->personaname;
@@ -105,8 +104,22 @@ function SteamInfo($identifier) {
     if ($name == null || $img == null ){
         header("Location: /steam/error");
     }
-    $steaminfo = array("name"=>$name, "idn"=>$idn, "id64"=>$id64,"id3"=>$id3,"realname"=>$realname,"country"=>$country,"img"=>$img,"url"=>$url);
+    
+        $gmsapi = "85206700db2835f105dc22a79e287f8599ec1b8b";
+        $gmjson = @file_get_contents("https://api.gmodstore.com/v2/users/$id64?api_key=$gmsapi");
+        $gmdata = json_decode($gmjson);
+        if(isset($gmdata->data->id)){
+            $gmsinfo = array("name"=>$gmdata->data->name, "slug"=>$gmdata->data->slug);
+            $steaminfo = array("name"=>$name, "idn"=>$idn,"id64"=>$id64,"id3"=>$id3,"realname"=>$realname,"country"=>$country,"img"=>$img,"url"=>$url,"gmsname"=>$gmdata->data->name,"gmsurl"=>"https://www.gmodstore.com/users/".$gmdata->data->slug);
+        }else{
+            $steaminfo = array("name"=>$name, "idn"=>$idn,"id64"=>$id64,"id3"=>$id3,"realname"=>$realname,"country"=>$country,"img"=>$img,"url"=>$url);
+        }
+    
+   
+    
+    
     return $steaminfo;
+
 
 }
 
