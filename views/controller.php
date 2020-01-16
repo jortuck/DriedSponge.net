@@ -58,7 +58,7 @@ $steaminfo = SteamInfo($id);
                     <div data-aos="fade-up">
                     <div class="jumbotron" style="text-align: center;">
                     <h2><img src="<?=htmlspecialchars($steaminfo['img']);?>"/></h2>
-                    <h1>Your data:</h1>
+                    <h1>Info on <?=htmlspecialchars($steaminfo['name']);?></h1>
                     
                     <p class="jumbotronparagraph"><strong>Username:</strong> <?=htmlspecialchars($steaminfo['name']);?> <button  value="<?=htmlspecialchars($steaminfo['name']);?>" onclick="copything(this.value)" class="btn btn-success"><i class="far fa-copy"></i></button></p>
                     <p class="jumbotronparagraph"><strong>SteamID64:</strong> <?=htmlspecialchars($steaminfo['id64']);?><button  value="<?=htmlspecialchars($steaminfo['id64']);?>" onclick="copything(this.value)" class="btn btn-success"><i class="far fa-copy"></i></button></p>
