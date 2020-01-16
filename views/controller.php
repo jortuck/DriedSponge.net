@@ -1,93 +1,6 @@
 <?php
 
-include("views/includes/SteamID.php");
-
-$APIKEY = "0EBBACAEBC6039B06DF1066807D55D4C";
-$WHO = $id;
-
-
-//$url = $_SERVER["SCRIPT_NAME"];
-//$break = Explode('/', $url);
-//$file = $WHO;
-//$str = str_replace(":","+",$WHO);
-//$str2 = str_replace("/","-",$str);
-//$cachefile = 'cache/cached-'.substr_replace($str2 ,"",-4).'.htm';
-//$cachetime = 300;
-
-// Serve from the cache if it is younger than $cachetime
-//if (file_exists($cachefile) && time() - $cachetime < filemtime($cachefile)) {
- //   echo "<!-- Cached copy, generated ".date('H:i', filemtime($cachefile))." -->\n";
- //   readfile($cachefile);
- //   exit;
-//}else{
-//ob_start(); // Start the output buffer
-
-    $s = SteamID::SetFromURL( $WHO, function( $URL, $Type ) use ( $APIKEY )
-    {
-        $Parameters =
-        [
-            'format' => 'json',
-            'key' => $APIKEY,
-            'vanityurl' => $URL,
-            'url_type' => $Type
-        ];
-        
-        $c = curl_init( );
-        
-        curl_setopt_array( $c, [
-            CURLOPT_USERAGENT      => 'Steam Vanity URL Lookup',
-            CURLOPT_ENCODING       => 'gzip',
-            CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_URL            => 'https://api.steampowered.com/ISteamUser/ResolveVanityURL/v1/?' . http_build_query( $Parameters ),
-            CURLOPT_CONNECTTIMEOUT => 5,
-            CURLOPT_TIMEOUT        => 5
-        ] );
-        
-        $Response = curl_exec( $c );
-        
-        curl_close( $c );
-        
-        $Response = json_decode( $Response, true );
-        
-        if( isset( $Response[ 'response' ][ 'success' ] ) )
-        {
-            switch( (int)$Response[ 'response' ][ 'success' ] )
-            {
-                case 1: return $Response[ 'response' ][ 'steamid' ];
-                case 42: header("Location: /steam/error");
-                
-            }
-        }
-        
-        throw new Exception( 'Failed to perform API request' );
-        
-    } );
- 
-
-$id3 = $s->RenderSteam3() . PHP_EOL;
-$idn = $s->RenderSteam2() . PHP_EOL;
-$id64 = $s->ConvertToUInt64() . PHP_EOL;
-
-$json = file_get_contents("http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=".$APIKEY."&steamids=$id64");
-$apidata = json_decode($json);
-$name = $apidata->response->players[0]->personaname;
-$img = $apidata->response->players[0]->avatarfull;
-if (isset($apidata->response->players[0]->realname) == false ){
-    $realname = "N/A";
-} else{
-    $realname = $apidata->response->players[0]->realname;
-}
-
-if (isset($apidata->response->players[0]->loccountrycode) == false ){
-    $country = "N/A";
-} else{
-    $country = $apidata->response->players[0]->loccountrycode;
-}
-
-$url = $apidata->response->players[0]->profileurl;
-if ($name == null || $img == null ){
-    header("Location: /steam/error");
-}
+$steaminfo = SteamInfo($id);
 // Cache the contents to a cache file
 
 ?>
@@ -102,16 +15,16 @@ if ($name == null || $img == null ){
             include("views/includes/meta.php"); 
             ?>
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="description"  content="Name: <?=htmlspecialchars($name);?>,SteamID64: <?=htmlspecialchars($id64);?>, SteamID: <?=htmlspecialchars($idn);?>, SteamID3: <?=htmlspecialchars($id3);?>, URL: <?=htmlspecialchars($url);?>" />
-        <meta name="keywords" content="<?=htmlspecialchars($name);?>, <?=htmlspecialchars($id64);?>, <?=htmlspecialchars($idn);?>, <?=htmlspecialchars($id3);?>" />
+        <meta name="description"  content="Name: <?=htmlspecialchars($steaminfo['name']);?>,SteamID64:<?=htmlspecialchars($steaminfo['id64']);?>, SteamID: <?=htmlspecialchars($steaminfo['idn']);?>, SteamID3: <?=htmlspecialchars($steaminfo['id3']);?>, URL:<?=htmlspecialchars($steaminfo['url']);?>" />
+        <meta name="keywords" content="<?=htmlspecialchars($steaminfo['name']);?>, <?=htmlspecialchars($steaminfo['id64']);?>, <?=htmlspecialchars($steaminfo['idn']);?>, <?=htmlspecialchars($steaminfo['id3']);?>" />
         <meta property="og:site_name" content="DriedSponge.net | SteamID Finder" /> <!-- Replace with your name or whatever you want-->
-        <meta property="og:title" content="Info on <?=htmlspecialchars($name);?>" />
-        <meta property="og:image" content="<?=htmlspecialchars($img);?>" />
+        <meta property="og:title" content="Info on <?=htmlspecialchars($steaminfo['name']);?>" />
+        <meta property="og:image" content="<?=htmlspecialchars($steaminfo['img']);?>" />
         <meta property="og:image:type" content="image/png" />
         <meta name="author" content="Jordan Tucker">
-        <meta property="og:description"  content="SteamID64: <?=htmlspecialchars($id64);?> SteamID: <?=htmlspecialchars($idn);?> SteamID3: <?=htmlspecialchars($id3);?> URL: <?=htmlspecialchars($url);?>" />
-        <meta property="og:site_name" content="<?=htmlspecialchars($name);?> - driedsponge.net" />
-        <title><?=htmlspecialchars($name);?> - driedsponge.net</title>
+        <meta property="og:description"  content="SteamID64: <?=htmlspecialchars($steaminfo['id64']);?> SteamID: <?=htmlspecialchars($steaminfo['idn']);?> SteamID3: <?=htmlspecialchars($steaminfo['id3']);?> URL: <?=htmlspecialchars($steaminfo['url']);?>" />
+        <meta property="og:site_name" content="<?=htmlspecialchars($steaminfo['name']);?> - driedsponge.net" />
+        <title><?=htmlspecialchars($steaminfo['name']);?> - driedsponge.net</title>
 
         <script src="https://kit.fontawesome.com/0add82e87e.js" crossorigin="anonymous"></script>
 
@@ -144,17 +57,17 @@ if ($name == null || $img == null ){
                     </hgroup>
                     <div data-aos="fade-up">
                     <div class="jumbotron" style="text-align: center;">
-                    <h2><img src="<?=htmlspecialchars($img);?>"/></h2>
-                    <h1>Results for: <?=htmlspecialchars($name);?></h1>
+                    <h2><img src="<?=htmlspecialchars($steaminfo['img']);?>"/></h2>
+                    <h1>Your data:</h1>
                     
-                    <p class="jumbotronparagraph"><strong>Username: </strong><?=htmlspecialchars($name);?> <button  value="<?=htmlspecialchars($name);?>" onclick="copything(this.value)" class="btn btn-success"><i class="far fa-copy"></i></button></p>
-                    <p class="jumbotronparagraph"><strong>SteamID64:</strong> <?=htmlspecialchars($id64);?> <button  value="<?=htmlspecialchars($id64);?>" onclick="copything(this.value)" class="btn btn-success"><i class="far fa-copy"></i></button></p>
-                    <p class="jumbotronparagraph"><strong>SteamID:</strong> <?=htmlspecialchars($idn);?> <button  value="<?=htmlspecialchars($idn);?>" onclick="copything(this.value)" class="btn btn-success"><i class="far fa-copy"></i></button></p>
-                    <p class="jumbotronparagraph"><strong>SteamID3:</strong> <?=htmlspecialchars($id3);?> <button value="<?=htmlspecialchars($id3);?>" onclick="copything(this.value)" class="btn btn-success"><i class="far fa-copy"></i></button></p>
-                    <p class="jumbotronparagraph"><strong>Profile URL:</strong> <a class="jumbaurl" target="_blank" href="<?=htmlspecialchars($url);?>"><?=htmlspecialchars($url);?></a> <button value="<?=htmlspecialchars($url);?>" onclick="copything(this.value)" class="btn btn-success"><i class="far fa-copy"></i></button></p>
+                    <p class="jumbotronparagraph"><strong>Username:</strong> <?=htmlspecialchars($steaminfo['name']);?> <button  value="<?=htmlspecialchars($steaminfo['name']);?>" onclick="copything(this.value)" class="btn btn-success"><i class="far fa-copy"></i></button></p>
+                    <p class="jumbotronparagraph"><strong>SteamID64:</strong> <?=htmlspecialchars($steaminfo['id64']);?><button  value="<?=htmlspecialchars($steaminfo['id64']);?>" onclick="copything(this.value)" class="btn btn-success"><i class="far fa-copy"></i></button></p>
+                    <p class="jumbotronparagraph"><strong>SteamID:</strong> <?=htmlspecialchars($steaminfo['idn']);?><button  value="<?=htmlspecialchars($steaminfo['idn']);?>" onclick="copything(this.value)" class="btn btn-success"><i class="far fa-copy"></i></button></p>
+                    <p class="jumbotronparagraph"><strong>SteamID3:</strong> <?=htmlspecialchars($steaminfo['id3']);?><button value="<?=htmlspecialchars($steaminfo['id3']);?>" onclick="copything(this.value)" class="btn btn-success"><i class="far fa-copy"></i></button></p>
+                    <p class="jumbotronparagraph"><strong>Profile URL:</strong> <a class="jumbaurl" target="_blank" href="<?=htmlspecialchars($steaminfo['url']);?>"><?=htmlspecialchars($steaminfo['url']);?></a> <button value="<?=htmlspecialchars($steaminfo['url']);?>" onclick="copything(this.value)" class="btn btn-success"><i class="far fa-copy"></i></button></p>
                     <h4 class="jumboh4">Personal Info (This may not be accurate)</h4><br>
-                    <p class="jumbotronparagraph"><strong>Real Name:</strong> <?=htmlspecialchars($realname);?> <button value="<?=htmlspecialchars($realname);?>" onclick="copything(this.value)" class="btn btn-success"><i class="far fa-copy"></i></button></p>
-                    <p  class="jumbotronparagraph"><strong>Country</strong>: <?=htmlspecialchars($country);?> <button value="<?=htmlspecialchars($country);?>" onclick="copything(this.value)" class="btn btn-success"><i class="far fa-copy"></i></button> </p>
+                    <p class="jumbotronparagraph"><strong>Real Name:</strong> <?=htmlspecialchars($steaminfo['realname']);?><button value="<?=htmlspecialchars($steaminfo['realname']);?>" onclick="copything(this.value)" class="btn btn-success"><i class="far fa-copy"></i></button></p>
+                    <p  class="jumbotronparagraph"><strong>Country</strong>: <?=htmlspecialchars($steaminfo['country']);?> <button value="<?=htmlspecialchars($steaminfo['country']);?>" onclick="copything(this.value)" class="btn btn-success"><i class="far fa-copy"></i></button> </p>
                     </div>
                     </div>
                     

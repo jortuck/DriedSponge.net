@@ -35,6 +35,80 @@ function isVerified($steamid) {
          return false;
      }
 }
+function SteamInfo($identifier) {
+    include("views/includes/SteamID.php");
+    $APIKEY = "0EBBACAEBC6039B06DF1066807D55D4C";
+    $WHO = $identifier;
+    $s = SteamID::SetFromURL( $WHO, function( $URL, $Type ) use ( $APIKEY )
+    {
+        $Parameters =
+        [
+            'format' => 'json',
+            'key' => $APIKEY,
+            'vanityurl' => $URL,
+            'url_type' => $Type
+        ];
+        
+        $c = curl_init( );
+        
+        curl_setopt_array( $c, [
+            CURLOPT_USERAGENT      => 'Steam Vanity URL Lookup',
+            CURLOPT_ENCODING       => 'gzip',
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_URL            => 'https://api.steampowered.com/ISteamUser/ResolveVanityURL/v1/?' . http_build_query( $Parameters ),
+            CURLOPT_CONNECTTIMEOUT => 5,
+            CURLOPT_TIMEOUT        => 5
+        ] );
+        
+        $Response = curl_exec( $c );
+        
+        curl_close( $c );
+        
+        $Response = json_decode( $Response, true );
+        
+        if( isset( $Response[ 'response' ][ 'success' ] ) )
+        {
+            switch( (int)$Response[ 'response' ][ 'success' ] )
+            {
+                case 1: return $Response[ 'response' ][ 'steamid' ];
+                case 42: header("Location: /steam/error");
+                
+            }
+        }
+        
+        throw new Exception( 'Failed to perform API request' );
+        
+    } );
+ 
+
+    $id3 = $s->RenderSteam3() . PHP_EOL;
+    $idn = $s->RenderSteam2() . PHP_EOL;
+    $id64 = $s->ConvertToUInt64() . PHP_EOL;
+
+    $json = file_get_contents("http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=".$APIKEY."&steamids=$id64");
+    $apidata = json_decode($json);
+    $name = $apidata->response->players[0]->personaname;
+    $img = $apidata->response->players[0]->avatarfull;
+    if (isset($apidata->response->players[0]->realname) == false ){
+        $realname = "N/A";
+    } else{
+        $realname = $apidata->response->players[0]->realname;
+    }
+
+    if (isset($apidata->response->players[0]->loccountrycode) == false ){
+        $country = "N/A";
+    } else{
+        $country = $apidata->response->players[0]->loccountrycode;
+    }
+
+    $url = $apidata->response->players[0]->profileurl;
+    if ($name == null || $img == null ){
+        header("Location: /steam/error");
+    }
+    $steaminfo = array("name"=>$name, "idn"=>$idn, "id64"=>$id64,"id3"=>$id3,"realname"=>$realname,"country"=>$country,"img"=>$img,"url"=>$url);
+    return $steaminfo;
+
+}
 
 
 
