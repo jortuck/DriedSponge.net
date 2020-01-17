@@ -1,7 +1,24 @@
 <?php
 
-$steaminfo = SteamInfo($id);
+
 // Cache the contents to a cache file
+$url = $_SERVER["SCRIPT_NAME"];
+$break = Explode('/', $url);
+$file = $id;
+$str = str_replace(":","+",$id);
+$str2 = str_replace("/","-",$str);
+$cachefile = 'cache/cached-'.$str2.'.htm';
+$cachetime = 300;
+
+
+// Serve from the cache if it is younger than $cachetime
+if (file_exists($cachefile) && time() - $cachetime < filemtime($cachefile)) {
+    echo "kglhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh";
+    readfile($cachefile);
+    exit;
+}else{
+    $steaminfo = SteamInfo($id);
+ob_start(); 
 
 ?>
 
@@ -61,12 +78,12 @@ $steaminfo = SteamInfo($id);
                     <h1>Info on <?=htmlspecialchars($steaminfo['name']);?></h1>
                     
                     <p class="jumbotronparagraph"><strong>Username:</strong> <?=htmlspecialchars($steaminfo['name']);?> <button  value="<?=htmlspecialchars($steaminfo['name']);?>" onclick="copything(this.value)" class="btn btn-success"><i class="far fa-copy"></i></button></p>
-                    <p class="jumbotronparagraph"><strong>SteamID64:</strong> <?=htmlspecialchars($steaminfo['id64']);?><button  value="<?=htmlspecialchars($steaminfo['id64']);?>" onclick="copything(this.value)" class="btn btn-success"><i class="far fa-copy"></i></button></p>
-                    <p class="jumbotronparagraph"><strong>SteamID:</strong> <?=htmlspecialchars($steaminfo['idn']);?><button  value="<?=htmlspecialchars($steaminfo['idn']);?>" onclick="copything(this.value)" class="btn btn-success"><i class="far fa-copy"></i></button></p>
-                    <p class="jumbotronparagraph"><strong>SteamID3:</strong> <?=htmlspecialchars($steaminfo['id3']);?><button value="<?=htmlspecialchars($steaminfo['id3']);?>" onclick="copything(this.value)" class="btn btn-success"><i class="far fa-copy"></i></button></p>
+                    <p class="jumbotronparagraph"><strong>SteamID64:</strong> <?=htmlspecialchars($steaminfo['id64']);?> <button  value="<?=htmlspecialchars($steaminfo['id64']);?>" onclick="copything(this.value)" class="btn btn-success"><i class="far fa-copy"></i></button></p>
+                    <p class="jumbotronparagraph"><strong>SteamID:</strong> <?=htmlspecialchars($steaminfo['idn']);?> <button  value="<?=htmlspecialchars($steaminfo['idn']);?>" onclick="copything(this.value)" class="btn btn-success"><i class="far fa-copy"></i></button></p>
+                    <p class="jumbotronparagraph"><strong>SteamID3:</strong> <?=htmlspecialchars($steaminfo['id3']);?> <button value="<?=htmlspecialchars($steaminfo['id3']);?>" onclick="copything(this.value)" class="btn btn-success"><i class="far fa-copy"></i></button></p>
                     <p class="jumbotronparagraph"><strong>Profile URL:</strong> <a class="jumbaurl" target="_blank" href="<?=htmlspecialchars($steaminfo['url']);?>"><?=htmlspecialchars($steaminfo['url']);?></a> <button value="<?=htmlspecialchars($steaminfo['url']);?>" onclick="copything(this.value)" class="btn btn-success"><i class="far fa-copy"></i></button></p>
                     <h4 class="jumboh4">Personal Info (This may not be accurate)</h4><br>
-                    <p class="jumbotronparagraph"><strong>Real Name:</strong> <?=htmlspecialchars($steaminfo['realname']);?><button value="<?=htmlspecialchars($steaminfo['realname']);?>" onclick="copything(this.value)" class="btn btn-success"><i class="far fa-copy"></i></button></p>
+                    <p class="jumbotronparagraph"><strong>Real Name:</strong> <?=htmlspecialchars($steaminfo['realname']);?> <button value="<?=htmlspecialchars($steaminfo['realname']);?>" onclick="copything(this.value)" class="btn btn-success"><i class="far fa-copy"></i></button></p>
                     <p  class="jumbotronparagraph"><strong>Country</strong>: <?=htmlspecialchars($steaminfo['country']);?> <button value="<?=htmlspecialchars($steaminfo['country']);?>" onclick="copything(this.value)" class="btn btn-success"><i class="far fa-copy"></i></button> </p>
                     <?php if(isset($steaminfo['gmsname'])){?>
                     <h4 class="jumboh4">GmodStore Info</h4><br>
@@ -156,9 +173,9 @@ include("views/includes/hex.php");
 </html>
 <?php
 
-// $cached = fopen($cachefile, 'w');
-// fwrite($cached, ob_get_contents());
-// fclose($cached);
-// ob_end_flush();
-// }
+$cached = fopen($cachefile, 'w');
+fwrite($cached, ob_get_contents());
+fclose($cached);
+ob_end_flush(); // Send the output to the browser
+}
 ?>
