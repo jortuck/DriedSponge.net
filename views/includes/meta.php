@@ -11,7 +11,7 @@
 
 
   $theme = "https://driedsponge.net/css/textclass.css";
-  $themefav = "https://driedsponge.net/img/zfavicon.ico/";
+  $themefav = "https://driedsponge.net/img/zfavicon.ico";
   $themecol = "#007BFF";
 
 
