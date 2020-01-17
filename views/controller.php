@@ -10,15 +10,15 @@ $str2 = str_replace("/","-",$str);
 $cachefile = 'cache/cached-'.$str2.'.htm';
 $cachetime = 300;
 
-$steaminfo = SteamInfo($id);
-// Serve from the cache if it is younger than $cachetime
-//if (file_exists($cachefile) && time() - $cachetime < filemtime($cachefile)) {
-//    echo "kglhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh";
-//    readfile($cachefile);
- //   exit;
-//}else{
- //   $steaminfo = SteamInfo($id);
-//ob_start(); 
+
+//Serve from the cache if it is younger than $cachetime
+if (file_exists($cachefile) && time() - $cachetime < filemtime($cachefile)) {
+    echo "<!-- Served From Cache -->";
+   readfile($cachefile);
+   exit;
+}else{
+   $steaminfo = SteamInfo($id);
+ob_start(); 
 
 ?>
 
@@ -173,9 +173,9 @@ include("views/includes/hex.php");
 </html>
 <?php
 
-//$cached = fopen($cachefile, 'w');
-//fwrite($cached, ob_get_contents());
-//fclose($cached);
-//ob_end_flush(); // Send the output to the browser
-//}
+$cached = fopen($cachefile, 'w');
+fwrite($cached, ob_get_contents());
+fclose($cached);
+ob_end_flush(); // Send the output to the browser
+}
 ?>

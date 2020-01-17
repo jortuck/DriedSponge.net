@@ -9,35 +9,17 @@
 
 <?php
 
-if (date("m") == "10") {
-  $theme = "css/spook.css";
-  $themefav = "https://cdn.driedsponge.net/img/favicon-spook.ico";
-  $themecol = "#E4541C";
-  // $decoration = "https://driedsponge.net/js/bats.js";
-} else {
-  $theme = "../css/textclass.css";
-  $themefav = "../img/zfavicon.ico";
-  $themecol = "#007BFF";
-}
 
-/* if ( date("m") == "12" ){
-  $theme = "https://driedsponge.net/css/december.css";
-  $themefav = "https://cdn.driedsponge.net/img/zfavicon.ico";
-  $themecol = "#000";
-  $decoration = "https://driedsponge.net/js/snowstorm.js";
-  $decorationbool = true;
-} else {
   $theme = "https://driedsponge.net/css/textclass.css";
-  $themefav = "https://cdn.driedsponge.net/img/zfavicon.ico";
+  $themefav = "https://driedsponge.net/img/zfavicon.ico/";
   $themecol = "#007BFF";
-  $decorationbool = false;
-} */
+
 
 ?>
 
 <meta name="theme-color" content="<?= htmlspecialchars($themecol); ?>">
-<link rel="stylesheet" href="../css/formatting.css">
-<link id="styless" rel="stylesheet" href="<?= htmlspecialchars($theme); ?>">
+<link type="text/css" rel="stylesheet" href="https://driedsponge.net/css/formatting.css">
+<link type="text/css" rel="stylesheet" href="<?= htmlspecialchars($theme); ?>">
 
 <link rel="icon" href="<?= htmlspecialchars($themefav); ?>" type="image/x-icon">
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-140402227-3"></script>
