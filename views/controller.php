@@ -8,7 +8,7 @@ $file = $id;
 $str = str_replace(":","+",$id);
 $str2 = str_replace("/","-",$str);
 $cachefile = 'cache/cached-'.$str2.'.htm';
-$cachetime = 300;
+$cachetime = 18000;
 
 
 //Serve from the cache if it is younger than $cachetime
