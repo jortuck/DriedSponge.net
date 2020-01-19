@@ -30,7 +30,7 @@
             console.log(say);
             $("#form-message").load("/pages/ajax/feedback-submit.php",{
                 say: say,
-                method: jQuery,
+                method: "jQuery",
                 submit: submit
             });
         });

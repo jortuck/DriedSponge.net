@@ -4,7 +4,8 @@ $errorLONG = false;
 $errorEMPTY = true;
 $SubmitSuccess = false;
 $SubmitFailed = false;
-if (isset($_POST['submit']) && isset($_POST['method']) && $_POST['method'] === "jQuery"){
+if (isset($_POST['submit']) and isset($_POST['method']) and $_POST['method'] === "jQuery"){
+    
     if(isset($steamprofile['steamid'])){
             $feedback = $_POST['say'];
             
@@ -43,6 +44,7 @@ if (isset($_POST['submit']) && isset($_POST['method']) && $_POST['method'] === "
                 curl_exec($ch);
                 $errorEMPTY = false;
                 $SubmitSuccess = true;
+                $SubmitFailed = false;
                 echo "<h1>GoodJob</h1>";
                // header("Location: feedback.php?submit-success");
                 
