@@ -46,6 +46,9 @@ $router->all('/projects/lua', function () {
     include('views/lua.php');
 });
 //User pages(pages where user can interacts)
+$router->all('/pages/ajax/{ajax}', function ($ajax) {
+    include('views/ajax/'.$ajax);
+});
 $router->all('/advertise', function () {
     $header = "/advertise/";
     require('steamauth/steamauth.php');  
@@ -108,6 +111,9 @@ $router->all('/manage/home', function () {
     $header = "/manage/home";
     require('steamauth/steamauth.php');  
     include('views/manage/index.php');
+});
+$router->all('/manage/ajax/{ajax}', function ($ajax) {
+    include('views/manage/ajax/'.$ajax);
 });
 $router->all('/manage/index.php', function () {
     $header = "/manage/home";

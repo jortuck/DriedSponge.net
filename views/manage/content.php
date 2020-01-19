@@ -252,7 +252,7 @@ include("views/includes/navbar.php");
 											?>
 											
 											<tr><td>
-											<form action="content.php" method="post" >
+											<form action="/manage/content/" method="post" >
 											<button type="submit" value="<?=htmlspecialchars($row2["user"]);?>" name="unlock-ad" class="btn btn-primary" >
 												Unlock
 											</button>

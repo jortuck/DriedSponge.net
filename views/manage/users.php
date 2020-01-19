@@ -19,7 +19,25 @@
         <script src="https://kit.fontawesome.com/0add82e87e.js" crossorigin="anonymous"></script>
         <script src="https://www.google.com/recaptcha/api.js" async defer></script>
         <link rel="stylesheet" href = "//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" type="text/css" >
-        
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script>
+          // var discordcount = 3;
+          //         setInterval(function(){
+          //           $('#discordusers').load('/manage/ajax/discord-users.php');
+          //         }, 2000)
+               
+                  var discordcount = 3;
+                 function loadmoredis(){
+                    discordcount = discordcount + 2;
+                    $('#discordusers').load('/manage/ajax/discord-users.php',{
+                      discordcount: discordcount
+                    });
+                  };
+                  function loadalldis(){
+                    discordcount = discordcount + 2;
+                    $('#discordusers').load('/manage/ajax/discord-users.php');
+                  };
+                </script>
     </head>
  <body>
 
@@ -283,7 +301,8 @@ include("views/includes/navbar.php");
                                             </form>                  
                                         <br>
                                         <p class="subsubhead" style="color: black; text-align: left;">Currently Verified Users</p>
-                                          <table class="table paragraph" style="color: black;">
+                                        <div id="discordusers">
+                                        <table class="table paragraph" style="color: black;">
                                           <thead>
                                           <tr>
                                           <th scope="col"></th>
@@ -295,7 +314,7 @@ include("views/includes/navbar.php");
                                           </thead>
                                           <tbody>
                                         <?php
-                                        $discordusers = "SELECT discordid,steamid,stamp,discorduser,givenrole FROM discord";
+                                        $discordusers = "SELECT discordid,steamid,stamp,discorduser,givenrole FROM discord LIMIT 3";
                                         $discordusersr = SQLWrapper()->query($discordusers);
                                           while($row3 = $discordusersr->fetch()){ 
                                             if($row3['steamid'] !== null){
@@ -317,6 +336,9 @@ include("views/includes/navbar.php");
                                         ?>
                                         </tbody>
                                           </table>
+                                  </div>
+                                  <button id="load-more-dis" onclick="loadmoredis()" class="btn btn-primary">Load more</button>
+                                  <button id="load-more-dis" onclick="loadalldis()" class="btn btn-warning">Load all</button>
                               </div>
                             </div>
                           <br>
@@ -349,13 +371,14 @@ include("views/includes/navbar.php");
             <?php 
             include("views/includes/footer.php"); // we include footer.php here. you can use .html extension, too.
             ?>
-                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+                
                 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
                 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
                 <script src="https://unpkg.com/popper.js@1"></script>
                 <script src="https://unpkg.com/tippy.js@4"></script>
                 <script src="main.js"></script>
                 <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+                
                 
                       <?php 
                       if(isset($action)){

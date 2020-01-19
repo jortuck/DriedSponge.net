@@ -20,7 +20,7 @@
     <script src="https://kit.fontawesome.com/0add82e87e.js" crossorigin="anonymous"></script>
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     <link rel="stylesheet" href = "//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" type="text/css" >
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>   
 </head>
 
 <body>
@@ -53,6 +53,7 @@
         $adrow = $adexist->fetch();
         $adcount = $adrow['adcount'];
         $numDays = abs($adrow['stamp'] - $adstamp)/60/60/24;
+        $submitted = $adrow['stamp'];
         $timeleft = secondsToTime(86400 - abs($adrow['stamp'] - $adstamp));
         if($numDays >= 1 or $adrow['overide'] == "1"){
         $oneday = false;
@@ -193,9 +194,29 @@
                     if ($oneday) { ?>
                     <h1 class="articleh1">Please wait before advertising again</h1>
                     <br>
-                    <h2 style="text-align: center;">Time left: <strong><?=htmlspecialchars($timeleft)?></strong></h2>
+                    <div id="time-left">
+                    <h2 style="text-align: center;">Time left: <strong id="timeleft"><?=htmlspecialchars($timeleft)?></strong></h2>
+                    </div>
                     <br>
                     <h2 style="text-align: center;">If you believe there was an error in porcessing your ad, please contact me in my discord and I will remove your countdown if the situation warrants it.</h2>
+                    <script>
+                    function SetTimeLeft(){ //86400 - abs($adrow['stamp'] - $adstamp)
+                        var currenttime = Math.round((new Date()).getTime() / 1000);
+                        var sseconds =  86400 - Math.abs(<?=htmlspecialchars($submitted);?> - currenttime);
+                        var seconds = parseInt(sseconds, 10);
+                        var days = Math.floor(seconds / (3600*24));
+                        seconds  -= days*3600*24;
+                        var hrs   = Math.floor(seconds / 3600);
+                         seconds  -= hrs*3600;
+                        var mnts = Math.floor(seconds / 60);
+                        seconds  -= mnts*60;
+                        console.log();
+                        document.getElementById("timeleft").innerHTML = days+" days, "+hrs+" hours, "+mnts+" minutes and "+seconds+" seconds";
+                    }
+                    setInterval(function(){
+                        SetTimeLeft();
+                    }, 1000) /* time in milliseconds (ie 2 seconds)*/
+                    </script>
                 <?php
                 }
                 if($notverified){
@@ -259,7 +280,7 @@
     include("views/includes/footer.php"); // we include footer.php here. you can use .html extension, too.
     ?>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>   
+    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <script src="https://unpkg.com/popper.js@1"></script>
