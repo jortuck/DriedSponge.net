@@ -3,7 +3,8 @@
 $errorLONG = false;
 $errorEMPTY = true;
 $SubmitSuccess = false;
-if (isset($_POST['submit'])) {
+$SubmitFailed = false;
+if (isset($_POST['submit']) && isset($_POST['method']) && $_POST['method'] === "jQuery"){
     if(isset($steamprofile['steamid'])){
             $feedback = $_POST['say'];
             
@@ -49,16 +50,19 @@ if (isset($_POST['submit'])) {
             $errorLONG = true;
         }
     }else{
-        header("Location: /home/");
+
+        $SubmitFailed = true;
     }
     }else{
-        header("Location: /home/");
+
+        $SubmitFailed = true;
     }
 ?>
 <script>
 var errorEMPTY = <?php echo $errorEMPTY ? 'true' : 'false';; ?>;
 var SubmitSuccess = <?php echo $SubmitSuccess ? 'true' : 'false';; ?>;
 var errorLONG = <?php echo $errorLONG ? 'true' : 'false';; ?>;
+var SubmitFailed = <?php echo $SubmitFailed ? 'true' : 'false';; ?>;
 if(errorEMPTY){
     $("#say").addClass("is-invalid");
     $("#say-feedback").addClass("invalid-feedback");
@@ -72,5 +76,9 @@ if(errorLONG){
 if(SubmitSuccess){
     $("#feedback-form").remove();
     document.getElementById("feedback-response").innerHTML = '<p class="text-success">Thank you for submitting feedback!<br><i class="fas fa-check"></i></p>';
+}
+if(SubmitFailed){
+    $("#feedback-form").remove();
+    document.getElementById("feedback-response").innerHTML = '<p class="text-danger">Something when wrong I guess</p>';
 }
 </script>
