@@ -21,11 +21,6 @@
         <link rel="stylesheet" href = "//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" type="text/css" >
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <script>
-          // var discordcount = 3;
-          //         setInterval(function(){
-          //           $('#discordusers').load('/manage/ajax/discord-users.php');
-          //         }, 2000)
-               
                   var discordcount = 3;
                  function loadmoredis(){
                     discordcount = discordcount + 2;
@@ -167,7 +162,7 @@ include("views/includes/navbar.php");
                   </div>
                 <div class="card-body">
 
-                    <form action="users.php" method="post">
+                    <form action="/manage/users/" method="post">
                                              <div class="form-row">
                                                <div class="form-group col-md-6">
                                                   <label for="id64" style="color: black;">SteamID64</label>
@@ -206,7 +201,7 @@ include("views/includes/navbar.php");
                             ?>
                             
                             <tr><td>
-                            <form action="users.php" method="post" >
+                            <form action="/manage/users/" method="post" >
                              <button type="submit" value="<?=htmlspecialchars($row["id64"]);?>" name="submit-unblock" class="btn btn-danger" >
                                 Remove User
                             </button>

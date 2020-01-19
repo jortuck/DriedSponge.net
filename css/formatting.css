@@ -64,8 +64,20 @@ label{
     font-size: 1.4em;
     text-align: center;
 }
+.text-alert{
+    font-size: 4em;
+    text-align: center;
+}
 /* END TEXT FORMATTING */
-
+/*Animated*/
+@keyframes fade-in{
+    from {opacity: 0%;}
+    to {opacity: 100%;}
+}
+.fade-in{
+    animation-name: fade-in;
+    animation-duration: 3s;
+}
 /* JumboTron */
 .jumbotron{
     width: 100%;
@@ -104,7 +116,11 @@ label{
 }
 
 /*End jubotron */
-
+/*Fomrs*/
+.invalid-feedback{
+    font-size: 1.1em;
+    font-weight: bold;
+}
 /*Content */
 .card{
     margin-bottom: 8px;

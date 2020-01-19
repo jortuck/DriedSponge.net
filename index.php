@@ -47,6 +47,8 @@ $router->all('/projects/lua', function () {
 });
 //User pages(pages where user can interacts)
 $router->all('/pages/ajax/{ajax}', function ($ajax) {
+    require('steamauth/steamauth.php');  
+    include ('steamauth/userInfo.php');
     include('views/ajax/'.$ajax);
 });
 $router->all('/advertise', function () {
@@ -60,11 +62,6 @@ $router->get('/advertise/{action}', function ($action) {
     include('views/advertise.php');
 });
 $router->all('/feedback', function () {
-    $header = "/feedback/";
-    require('steamauth/steamauth.php');  
-    include('views/feedback.php');
-});
-$router->get('/feedback/{action}', function ($action) {
     $header = "/feedback/";
     require('steamauth/steamauth.php');  
     include('views/feedback.php');

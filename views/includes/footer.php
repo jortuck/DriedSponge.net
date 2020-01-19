@@ -47,6 +47,4 @@ if ( date("m") == "12" ){
                             
         </div>
       </footer>
-      <script>
-      document.getElementById('logout').innerHTML = "Logout <?php echo $steamprofile['personaname']; ?>";
-      </script>
+

@@ -20,7 +20,21 @@
     <script src="https://kit.fontawesome.com/0add82e87e.js" crossorigin="anonymous"></script>
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     <link rel="stylesheet" href = "//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" type="text/css" >
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
+    <script>
+    $(document).ready(function(){
+        $("form").submit(function(event){
+            event.preventDefault();
+            var say = $("#say").val();
+            var submit = $("#submit").val();
+            console.log(say);
+            $("#form-message").load("/pages/ajax/feedback-submit.php",{
+                say: say,
+                submit: submit
+            });
+        });
+    });
+    </script>
 </head>
 
 <body>
@@ -28,8 +42,7 @@
     include("views/includes/navbar.php")
     ?>
     <?php
-
-
+    $blocked = false;
     if (isset($_SESSION['steamid'])) {
         $PLogin = false;
         $Done = false;
@@ -50,80 +63,21 @@
         } else {
             $DisplayForm = true;
         }
-
-
-
-
-
-        if (isset($_POST['submit'])) {
-            
-            $DisplayForm = false;
-            $captcha = $_POST['g-recaptcha-response'];
-            $json = file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret=6Ld9SaQUAAAAACIaPxcErESw-6RvtljAMd3IYsQL&response=$captcha");
-            $captchares = json_decode($json);
-            $success = $captchares->success;
-            if ($success == true) {
-
-                if (!isset($_POST['name'], $_POST['say'])) {
-                    return;
-                }
-                $request = json_encode([
-                    "content" => "",
-                    "embeds" => [
-                        [
-                            "author" => [
-                                "name" => $steamprofile['personaname'] . " (" . $steamprofile['steamid'] . ")",
-                                "url" => $steamprofile['profileurl'],
-                                "icon_url" => $steamprofile['avatarmedium']
-                            ],
-                            "title" => "DriedSponge.net - Feedback",
-                            "type" => "rich",
-                            "description" =>  $_POST['say'],
-                            "timestamp" => date("c"),
-                        ]
-                    ]
-                ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
-
-                $ch = curl_init("https://discordapp.com/api/webhooks/650866821095882762/Y-Sf_yCTGDKSh_hm8nSkvAphQQyl8KtPxISx6NSQ1t3daUVhobXKX1EW-E-wqseC7ndf");
-
-                curl_setopt_array($ch, [
-                    CURLOPT_POST => 1,
-                    CURLOPT_FOLLOWLOCATION => 1,
-                    CURLOPT_HTTPHEADER => array("Content-type: application/json"),
-                    CURLOPT_POSTFIELDS => $request,
-                    CURLOPT_RETURNTRANSFER => 1
-                ]);
-
-
-                curl_exec($ch);
-                header("Location: feedback.php?submit-success");
-                
-            } else {
-                $DisplayForm = true;
-                header("Location: feedback.php?failed-captcha");
-                
-            }
-        }
     } else {
         $DisplayForm = false;
-        $PLogin = true;
-        
-        
+        $PLogin = true; 
     }
     ?>
-
     <div class="app">
         <div class="container-fluid-lg" style="padding-top: 80px;">
 
             <div class="container">
                 <hgroup>
-                    <!-- <img src="https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/18/18be38c2f230fea0fa667c8165e4da5cb1a787c0_full.jpg" alt="DriedSponge's Profile Picture"> -->
                     <h1 class="display-2"><strong>Feedback</strong></h1>
-
-                    <br>
                 </hgroup>
+                <br>
                 <?php if ($blocked == true) { ?>
-                    <h1 class="articleh1">Uh oh, looks like you have been blacklisted from submitting form data. <br> Reason: <?php echo $row["rsn"]; ?></h1>
+                    <h1 class="text-alert text-danger">Error: Banned <br> Reason: <?=htmlspecialchars($row["rsn"]);?></h1>
                 <?php
                 }
                     ?>
@@ -136,17 +90,21 @@
 
                     <p class="paragraph pintro">Tell me what you think about the site and what could be changed. Both positive and negative feedback are accepted!</p>
                     <br>
-                    <form action="feedback.php" method="post">
+                    <div class="text-alert text-center" id="feedback-response"></div>
+                    <br>
+                    <form id="feedback-form" action="/pages/ajax/feedback-submit.php" method="POST">
                         <div class="form-group">
                             <label for="name">Name</label>
                             <input id="name" name="name" type="text" class="form-control" value="<?= htmlspecialchars($steamprofile['personaname']); ?>" placeholder="<?= htmlspecialchars($steamprofile['personaname']); ?>" readonly>
                             <br>
                             <label for="say">What are your thoughts on the site?</label>
-                            <textarea id="say" class="form-control" name="say" rows="3" placeholder="Type here I guess..." required></textarea>
+                            <div id="saydiv">
+                            <textarea id="say" maxlength="1000" class="form-control" name="say" rows="5" placeholder="Type here I guess..." ></textarea>
+                            <div id="say-feedback"></div>
+                            </div>
                             <br>
-                            <div class="g-recaptcha" data-sitekey="6Ld9SaQUAAAAAG81x31GrfZeiJEd1gtd59CRMbC7" required></div>
-                            <br>
-                            <button name="submit" type="submit" class="btn btn-primary">Submit</button>
+                            <div id="form-message"></div>
+                            <button name="submit" type="submit" id="submit" class="btn btn-primary">Submit</button>
                         </div>
                     </form>
                 <?php
@@ -171,29 +129,14 @@
     include("views/includes/footer.php"); // we include footer.php here. you can use .html extension, too.
     ?>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>   
+    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <script src="https://unpkg.com/popper.js@1"></script>
     <script src="https://unpkg.com/tippy.js@4"></script>
     <script src="main.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-    <?php
-    if(isset($_GET['submit-success'])){
-                        ?>
-                        <script type="text/JavaScript">  
-                      toastr["success"]("Thank you! Your feedback has been submitted!", "Congratulations!")     
-                      </script>
-                        <?php
-                        }
-                        if (isset($_GET['failed-captcha'])) {
-                        ?>
-                        <script type="text/JavaScript">  
-                        toastr["error"]("Uh oh! Looks like you failed the captcha! Try again but this time try acting less like a robot.", "Error!")     
-                        </script>
-                        <?php
-                        }
-                        ?>
+
 
 </body>
 
