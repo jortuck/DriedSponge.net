@@ -1,4 +1,6 @@
-
+<?php
+if(isset($_SESSION['steamid']) && isAdmin($_SESSION['steamid'])){
+?>
 <table class="table paragraph" style="color: black;">
                                           <thead>
                                           <tr>
@@ -42,3 +44,9 @@
                                         ?>
                                         </tbody>
                                           </table>
+<?php
+}else{
+    header("Location: /home/");
+}
+
+?>
