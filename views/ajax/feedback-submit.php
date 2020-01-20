@@ -9,7 +9,7 @@ $errorLONG = false;
 $errorEMPTY = true;
 $SubmitSuccess = false;
 $SubmitFailed = false;
-if (isset($_POST['submit']) and isset($_POST['method']) and $_POST['method'] === "jQuery"){
+if (isset($_POST['submit'])){
     
     if(isset($steamprofile['steamid'])){
             $feedback = $_POST['say'];
