@@ -64,6 +64,8 @@ if (isset($_POST['submit'])){
 
         $SubmitFailed = true;
     }
+
+    die(json_encode($Message));
 ?>
 <script>
 var errorEMPTY = <?php echo $errorEMPTY ? 'true' : 'false';; ?>;
