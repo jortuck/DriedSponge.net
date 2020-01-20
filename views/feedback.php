@@ -26,17 +26,21 @@
             $("form").submit(function(event) {
                 event.preventDefault();
                 var say = $("#say").val();
-                var submit = 1;
                 console.log(say);
                 //$("#form-message").load("/pages/ajax/feedback-submit.php",{
                 //    say: say,
                 //    submit: submit
                 //});
                 $.post("/pages/ajax/feedback-submit.php", {
-                        say: say
+                        say: say,
+                        submit: 1
                     })
                     .done(function(data) {
-                        console.log(data);
+                        if(data.success) {
+                            alert(data.message);
+                        } else {
+                            alert(data.message);
+                        }
                     });
             });
         });
