@@ -5,16 +5,16 @@ $Message = array(
     "message" => "Unkown error occoured"
 );
 
-if (isset($_POST['submit'])){
-    
-    if(isset($steamprofile['steamid'])){
-            $feedback = $_POST['say'];
-            
-            if(empty($feedback)){
-                $errorEMPTY = true;
-            }else if(strlen($feedback) < 1000){
+if (isset($_POST['submit'])) {
 
-                /*
+    if (isset($steamprofile['steamid'])) {
+        $feedback = $_POST['say'];
+
+        if (empty($feedback)) {
+            $errorEMPTY = true;
+        } else if (strlen($feedback) < 1000) {
+
+            /*
                 $request = json_encode([
                     "content" => "",
                     "embeds" => [
@@ -45,25 +45,25 @@ if (isset($_POST['submit'])){
 
                 curl_exec($ch);
                 */
-                $errorEMPTY = false;
-                $SubmitSuccess = true;
-                $SubmitFailed = false;
-                //echo "<h1>GoodJob</h1>";
-               // header("Location: feedback.php?submit-success");
-                
-        }else{
+            $errorEMPTY = false;
+            $SubmitSuccess = true;
+            $SubmitFailed = false;
+            //echo "<h1>GoodJob</h1>";
+            // header("Location: feedback.php?submit-success");
+
+        } else {
             $errorLONG = true;
         }
-    }else{
+    } else {
 
         $SubmitFailed = true;
     }
-    }else{
+} else {
 
-        $SubmitFailed = true;
-    }
+    $SubmitFailed = true;
+}
 
-    die(json_encode($Message));
+die(json_encode($Message));
 /*
 <script>
 var errorEMPTY = <?php echo $errorEMPTY ? 'true' : 'false';; ?>;
