@@ -5,10 +5,6 @@ $Message = array(
     "message" => "Unkown error occoured"
 );
 
-$errorLONG = false;
-$errorEMPTY = true;
-$SubmitSuccess = false;
-$SubmitFailed = false;
 if (isset($_POST['submit'])){
     
     if(isset($steamprofile['steamid'])){
@@ -17,7 +13,7 @@ if (isset($_POST['submit'])){
             if(empty($feedback)){
                 $errorEMPTY = true;
             }else if(strlen($feedback) < 1000){
-                echo "works";
+
                 $request = json_encode([
                     "content" => "",
                     "embeds" => [
@@ -50,7 +46,7 @@ if (isset($_POST['submit'])){
                 $errorEMPTY = false;
                 $SubmitSuccess = true;
                 $SubmitFailed = false;
-                echo "<h1>GoodJob</h1>";
+                //echo "<h1>GoodJob</h1>";
                // header("Location: feedback.php?submit-success");
                 
         }else{
@@ -66,7 +62,7 @@ if (isset($_POST['submit'])){
     }
 
     die(json_encode($Message));
-?>
+/*
 <script>
 var errorEMPTY = <?php echo $errorEMPTY ? 'true' : 'false';; ?>;
 var SubmitSuccess = <?php echo $SubmitSuccess ? 'true' : 'false';; ?>;
@@ -91,3 +87,4 @@ if(SubmitFailed){
     document.getElementById("feedback-response").innerHTML = '<p class="text-danger">Something when wrong I guess</p>';
 }
 </script>
+*/
