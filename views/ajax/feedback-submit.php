@@ -14,6 +14,7 @@ if (isset($_POST['submit'])){
                 $errorEMPTY = true;
             }else if(strlen($feedback) < 1000){
 
+                /*
                 $request = json_encode([
                     "content" => "",
                     "embeds" => [
@@ -43,6 +44,7 @@ if (isset($_POST['submit'])){
 
 
                 curl_exec($ch);
+                */
                 $errorEMPTY = false;
                 $SubmitSuccess = true;
                 $SubmitFailed = false;
