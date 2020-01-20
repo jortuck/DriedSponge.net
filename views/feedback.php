@@ -29,6 +29,7 @@
                 $("#wait-message").removeClass("d-none");
                 $("#error-message").addClass("d-none");
                 $("#success-message").addClass("d-none");
+                $("#feedback-form").hide();
 
                 console.log(say);
                 //$("#form-message").load("/pages/ajax/feedback-submit.php",{
@@ -45,10 +46,10 @@
                         if (data.success) {
                             $("#success-message").removeClass("d-none");
                             $("#success_message_text").html(data.message);
-                            alert(data.message);
                         } else {
                             $("#error-message").removeClass("d-none");
                             $("#error_message_text").html(data.message);
+                            $("#feedback-form").show();
                         }
                     });
             });
