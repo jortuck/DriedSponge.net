@@ -15,37 +15,37 @@ if (isset($_POST['submit'])) {
             $Message["message"] = "Feedback was empty!";
         } else if (strlen($feedback) < 1000) {
 
-            /*
-                $request = json_encode([
-                    "content" => "",
-                    "embeds" => [
-                        [
-                            "author" => [
-                                "name" => $steamprofile['personaname'] . " (" . $steamprofile['steamid'] . ")",
-                                "url" => $steamprofile['profileurl'],
-                                "icon_url" => $steamprofile['avatarmedium']
-                            ],
-                            "title" => "DriedSponge.net - Feedback",
-                            "type" => "rich",
-                            "description" =>  $_POST['say'],
-                            "timestamp" => date("c"),
-                        ]
+
+            $request = json_encode([
+                "content" => "",
+                "embeds" => [
+                    [
+                        "author" => [
+                            "name" => $steamprofile['personaname'] . " (" . $steamprofile['steamid'] . ")",
+                            "url" => $steamprofile['profileurl'],
+                            "icon_url" => $steamprofile['avatarmedium']
+                        ],
+                        "title" => "DriedSponge.net - Feedback",
+                        "type" => "rich",
+                        "description" =>  $_POST['say'],
+                        "timestamp" => date("c"),
                     ]
-                ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
+                ]
+            ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
 
-                $ch = curl_init("https://discordapp.com/api/webhooks/650866821095882762/Y-Sf_yCTGDKSh_hm8nSkvAphQQyl8KtPxISx6NSQ1t3daUVhobXKX1EW-E-wqseC7ndf");
+            $ch = curl_init("https://discordapp.com/api/webhooks/650866821095882762/Y-Sf_yCTGDKSh_hm8nSkvAphQQyl8KtPxISx6NSQ1t3daUVhobXKX1EW-E-wqseC7ndf");
 
-                curl_setopt_array($ch, [
-                    CURLOPT_POST => 1,
-                    CURLOPT_FOLLOWLOCATION => 1,
-                    CURLOPT_HTTPHEADER => array("Content-type: application/json"),
-                    CURLOPT_POSTFIELDS => $request,
-                    CURLOPT_RETURNTRANSFER => 1
-                ]);
+            curl_setopt_array($ch, [
+                CURLOPT_POST => 1,
+                CURLOPT_FOLLOWLOCATION => 1,
+                CURLOPT_HTTPHEADER => array("Content-type: application/json"),
+                CURLOPT_POSTFIELDS => $request,
+                CURLOPT_RETURNTRANSFER => 1
+            ]);
 
 
-                curl_exec($ch);
-                */
+            curl_exec($ch);
+
             //echo "<h1>GoodJob</h1>";
             // header("Location: feedback.php?submit-success");
 
