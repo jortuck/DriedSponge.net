@@ -6,8 +6,8 @@ if(isset($_SESSION['steamid'])){
     if(isAdmin($_SESSION['steamid'])){
     $unverifyid = $_POST['user'];
     $username = $_POST['username'];
-    //$sql = SQLWrapper()->prepare("UPDATE discord SET verifyid = :vid WHERE discordid= :id");
-    //$sql->execute([':id' => $unverifyid, ':vid' => "UNVERIFIED"]);
+    $sql = SQLWrapper()->prepare("UPDATE discord SET verifyid = :vid WHERE discordid= :id");
+    $sql->execute([':id' => $unverifyid, ':vid' => "UNVERIFIED"]);
     ?>
       <script>
         toastr["success"]("<?=htmlspecialchars($username);?> has been unverified!", "Congratulations!")   

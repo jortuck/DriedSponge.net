@@ -1,7 +1,7 @@
 <?php
 if(isset($_SESSION['steamid']) && isAdmin($_SESSION['steamid'])){
 ?>
-<table class="table paragraph" style="color: black;">
+<table id="discord-users" class="table paragraph" style="color: black;">
                                           <thead>
                                           <tr>
                                           <th scope="col"></th>
@@ -15,11 +15,11 @@ if(isset($_SESSION['steamid']) && isAdmin($_SESSION['steamid'])){
                                         <?php
                                         if(isset($_POST['discordcount'])){
                                             $nlimit = $_POST['discordcount'];
-                                            $discordusersr = SQLWrapper()->prepare("SELECT discordid,steamid,stamp,discorduser,givenrole FROM discord LIMIT ".$_POST['discordcount']);
+                                            $discordusersr = SQLWrapper()->prepare("SELECT discordid,steamid,stamp,discorduser,givenrole FROM discord WHERE verifyid = 'VERIFIED' LIMIT ".$_POST['discordcount']);
                                             $discordusersr->execute();
                                             
                                         }else{
-                                            $discordusers = "SELECT discordid,steamid,stamp,discorduser,givenrole FROM discord";
+                                            $discordusers = "SELECT discordid,steamid,stamp,discorduser,givenrole FROM discord WHERE verifyid = 'VERIFIED'";
                                             $discordusersr = SQLWrapper()->query($discordusers);
                                         }
                                 

@@ -292,10 +292,18 @@ include("views/includes/navbar.php");
                                             </form>                  
                                         <br>
                                         <p class="subsubhead" style="color: black; text-align: left;">Currently Verified Users</p>
+                                        
+                                        <div class="input-group">
+                                        <div class="input-group-prepend">
+                                          <div class="input-group-text"><i class="fas fa-search"></i></div>
+                                        </div>
+                                        <input id="search-discord" placeholder="ID64,Timestamp,Discord Name,Given Roles" class="form-control">
+                                      </div>
+                                        <br>
                                         <div id="discordusers">
-                                        <table class="table paragraph" style="color: black;">
+                                        <table id="discord-users" class="table paragraph" style="color: black;">
                                           <thead>
-                                          <tr>
+                                          <tr class="text-center">
                                           <th scope="col"></th>
                                               <th scope="col">ID64</th>
                                               <th scope="col">Timestamp</th>
@@ -305,7 +313,7 @@ include("views/includes/navbar.php");
                                           </thead>
                                           <tbody>
                                         <?php
-                                        $discordusers = "SELECT discordid,steamid,stamp,discorduser,givenrole FROM discord LIMIT 3";
+                                        $discordusers = "SELECT discordid,steamid,stamp,discorduser,givenrole FROM discord WHERE verifyid = 'VERIFIED' LIMIT 5";
                                         $discordusersr = SQLWrapper()->query($discordusers);
                                           while($row3 = $discordusersr->fetch()){ 
                                             if($row3['steamid'] !== null){
@@ -342,9 +350,22 @@ include("views/includes/navbar.php");
                                         ?>
                                         </tbody>
                                           </table>
+                                          <script>
+                                            $(document).ready(function(){
+                                              $("#search-discord").on("focus",function(){
+                                                loadalldis();
+                                              })
+                                                  $("#search-discord").on("keyup", function(){
+                                                    var value = $(this).val().toLowerCase();
+                                                    $("#discord-users tr").filter(function() {
+                                                      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                                                    });
+                                                  });
+                                                });
+                                        </script>
                                   </div>
-                                  <button id="load-more-dis" onclick="loadmoredis()" class="btn btn-primary">Load more</button>
-                                  <button id="load-more-dis" onclick="loadalldis()" class="btn btn-warning">Load all</button>
+                                  <button id="load-more-dis" onclick="loadalldis()" class="btn btn-primary">Browse All</button>
+
                               </div>
                             </div>
                           <br>
