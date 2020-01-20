@@ -311,7 +311,7 @@ include("views/includes/navbar.php");
                                               <th scope="col">Given Roles?</th>
                                           </tr>
                                           </thead>
-                                          <tbody>
+                                          <tbody class="text-center">
                                         <?php
                                         $discordusers = "SELECT discordid,steamid,stamp,discorduser,givenrole FROM discord WHERE verifyid = 'VERIFIED' LIMIT 5";
                                         $discordusersr = SQLWrapper()->query($discordusers);

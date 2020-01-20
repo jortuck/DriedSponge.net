@@ -3,7 +3,7 @@ if(isset($_SESSION['steamid']) && isAdmin($_SESSION['steamid'])){
 ?>
 <table id="discord-users" class="table paragraph" style="color: black;">
                                           <thead>
-                                          <tr>
+                                          <tr class="text-center">
                                           <th scope="col"></th>
                                               <th scope="col">ID64</th>
                                               <th scope="col">Timestamp</th>
@@ -11,7 +11,7 @@ if(isset($_SESSION['steamid']) && isAdmin($_SESSION['steamid'])){
                                               <th scope="col">Given Roles?</th>
                                           </tr>
                                           </thead>
-                                          <tbody>
+                                          <tbody class="text-center">
                                         <?php
                                         if(isset($_POST['discordcount'])){
                                             $nlimit = $_POST['discordcount'];
