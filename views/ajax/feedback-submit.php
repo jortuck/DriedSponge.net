@@ -1,4 +1,5 @@
 <?php
+header('Content-type: application/json');
 
 $Message = array(
     "success" => false, // "suck this" hehe
@@ -11,7 +12,7 @@ if (isset($_POST['submit'])) {
         $feedback = $_POST['say'];
 
         if (empty($feedback)) {
-            $errorEMPTY = true;
+            $Message["message"] = "Feedback was empty!";
         } else if (strlen($feedback) < 1000) {
 
             /*
@@ -45,22 +46,19 @@ if (isset($_POST['submit'])) {
 
                 curl_exec($ch);
                 */
-            $errorEMPTY = false;
-            $SubmitSuccess = true;
-            $SubmitFailed = false;
             //echo "<h1>GoodJob</h1>";
             // header("Location: feedback.php?submit-success");
 
+            $Message = array(
+                "success" => true, // "suck this" hehe
+                "message" => "Feedback has been sent!"
+            );
         } else {
-            $errorLONG = true;
+            $Message["message"] = "Feedback was too long!";
         }
     } else {
-
-        $SubmitFailed = true;
+        $Message["message"] = "You need to be logged in for this!";
     }
-} else {
-
-    $SubmitFailed = true;
 }
 
 die(json_encode($Message));
