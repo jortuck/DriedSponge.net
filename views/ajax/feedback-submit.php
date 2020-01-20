@@ -3,7 +3,7 @@ header('Content-type: application/json');
 
 $Message = array(
     "success" => false, // "suck this" hehe
-    "message" => "Unkown error occoured"
+    "message" => "Something when wrong I guess"
 );
 
 if (isset($_POST['submit'])) {
@@ -51,10 +51,10 @@ if (isset($_POST['submit'])) {
 
             $Message = array(
                 "success" => true, // "suck this" hehe
-                "message" => "Feedback has been sent!"
+                "message" => "Thank you for submitting feedback!<br><i class=\"fas fa-check\"></i>"
             );
         } else {
-            $Message["message"] = "Feedback was too long!";
+            $Message["message"] = "The text you entered is too long, please reduce the length to a maximum of 1000 characters.";
         }
     } else {
         $Message["message"] = "You need to be logged in for this!";
