@@ -121,6 +121,10 @@ label{
     font-size: 1.1em;
     font-weight: bold;
 }
+.valid-feedback{
+    font-size: 1.1em;
+    font-weight: bold;
+}
 /*Content */
 .card{
     margin-bottom: 8px;

@@ -110,6 +110,7 @@ $router->all('/manage/home', function () {
     include('views/manage/index.php');
 });
 $router->all('/manage/ajax/{ajax}', function ($ajax) {
+    $header = "/home/";
     require('steamauth/steamauth.php');  
     include ('steamauth/userInfo.php');
     include('views/manage/ajax/'.$ajax);

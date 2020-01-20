@@ -33,6 +33,7 @@
                     $('#discordusers').load('/manage/ajax/discord-users.php');
                   };
                 </script>
+                
     </head>
  <body>
 
@@ -63,25 +64,7 @@ include("views/includes/navbar.php");
             
           if (isAdmin($_SESSION['steamid'])){  
 
-                    if(isset($_POST['submit-manverify'])){
-                        $verifysteamid = $_POST['id643'];
-                        $verifydiscordid =$_POST['discordid'];
-                        $discordtag = $_POST['discordtag'];
-                        $verifyid = "VERIFIED";
-                        $verifytime = time();
-                        $alreadyverified = SQLWrapper()->prepare("SELECT steamid FROM discord WHERE steamid= :id");
-                        $alreadyverified->execute([':id' => $verifysteamid]);
-                        $alreadyverifiedrows = $alreadyverified->fetch();
-                                if (!empty($alreadyverifiedrows)){
-                                  header("Location: users.php?user-already-exist"); 
-                                    
-                                } else{
-                                    $sqlblock = SQLWrapper()->prepare("INSERT INTO discord (discordid,steamid, stamp, verifyid,discorduser,givenrole)
-                                    VALUES (?,?,?,?,?,?)")->execute([$verifydiscordid,$verifysteamid,$verifytime,$verifyid,$discordtag,"NO"]);
-                                    header("Location: users.php?verified=$discordtag"); 
-
-                                }
-                    }
+                    
 
                     if(isset($_POST['submit-block'])){
                       $blockid = $_POST['id64'];
@@ -274,25 +257,45 @@ include("views/includes/navbar.php");
                           </div>
                         <div class="card-body">
                           <!-- Discord manager -->
-                          <form action="/manage/users/" method="post">
+                          <script>
+                                $(document).ready(function(){
+                                  $("#verify-discord").submit(function(event){
+                                    event.preventDefault();
+                                    var id64 = $("#verify-id64").val();
+                                    var tag = $("#verify-discordtag").val();
+                                    var discordid = $("#verify-discordid").val();
+                                    var submit = $("#submit-verify").val();
+                                    $("#verify-form-message").load("/manage/ajax/submit-new-discord-user.php",{
+                                      id64: id64,
+                                      tag: tag,
+                                      discordid: discordid,
+                                      method: "jQuery",
+                                      submit: submit
+                                    });
+                                });
+                            });
+                        </script>
+                          <form id="verify-discord" action="/manage/ajax/submit-new-discord-user.php" method="post">
+                          <div id="verify-form-message"></div>
                                              <div class="form-row">
                                                <div class="form-group col-md-6">
-                                                  <label for="id643" style="color: black;">SteamID64</label>
-                                                     <input id="id643" name="id643" type="number" class="form-control"  placeholder="Enter SteamID64"  required>
+                                                  <label for="verify-id64" style="color: black;">SteamID64</label>
+                                                     <input id="verify-id64" name="verify-id64"  class="form-control"  placeholder="Enter SteamID64">
+                                                     <div id="verify-id64-feedback"></div>
                                                     </div>
                                                      <br>
                                                      <div class="form-group col-md-6">
-                                                        <label for="discordtag" style="color: black;">Discord Name and Tag</label>
-                                                       <input id="discordtag" name="discordtag" type="text" class="form-control" placeholder="ex: DriedSponge#0001" required>
+                                                        <label for="verify-discordtag" style="color: black;">Discord Name and Tag</label>
+                                                       <input id="verify-discordtag" name="verify-discordtag" type="text" class="form-control" placeholder="ex: DriedSponge#0001">
+                                                       <div id="verify-discordtag-feedback"></div>
                                                       </div>
                                                      <br>
                                                     </div>
-                                                        <label for="discordid" style="color: black;">Discord ID</label>
-                                                       <input id="discordid" name="discordid" type="text" class="form-control" placeholder="Enter their discord ID" required>
+                                                        <label for="verify-discordid" style="color: black;">Discord ID</label>
+                                                       <input id="verify-discordid" name="discordid" type="text" class="form-control" placeholder="Enter their discord ID">
+                                                       <div id="verify-discordid-feedback"></div>
                                                       <br>
-                                                    <button name="submit-manverify" type="submit" class="btn btn-primary">Manually Verify</button>
-                                                  
-                                               
+                                                    <button id="submit-verify" name="submit-verify" type="submit" class="btn btn-primary">Manually Verify</button>
                                             </form>                  
                                         <br>
                                         <p class="subsubhead" style="color: black; text-align: left;">Currently Verified Users</p>
