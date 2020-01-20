@@ -26,6 +26,10 @@
             $("form").submit(function(event) {
                 event.preventDefault();
                 var say = $("#say").val();
+                $("#wait-message").removeClass("d-none");
+                $("#error-message").addClass("d-none");
+                $("#success-message").addClass("d-none");
+
                 console.log(say);
                 //$("#form-message").load("/pages/ajax/feedback-submit.php",{
                 //    say: say,
@@ -36,10 +40,14 @@
                         submit: 1
                     })
                     .done(function(data) {
-                        if(data.success) {
+                        console.log(data);
+                        $("#wait-message").addClass("d-none");
+                        if (data.success) {
+                            $("#success-message").removeClass("d-none");
                             alert(data.message);
                         } else {
-                            alert(data.message);
+                            $("#error-message").removeClass("d-none");
+                            $("#error_message_text").html(data.message);
                         }
                     });
             });
@@ -100,9 +108,23 @@
 
                     <p class="paragraph pintro">Tell me what you think about the site and what could be changed. Both positive and negative feedback are accepted!</p>
                     <br>
-                    <div class="text-alert text-center" id="feedback-response"></div>
+                    <div class="text-center" id="feedback-response">
+                        <div id="error-message" class="d-none">
+                            <p>Error!</p>
+                            <p id="error_message_text"><i>insert error message here</i></p>
+                        </div>
+                        <div id="success-message" class="d-none">
+                            <p>Success!</p>
+                            <p id="success_message_text"><i>insert success message here</i></p>
+                        </div>
+                        <div id="wait-message" class="d-none">
+                            <p>Please wait...</p>
+                        </div>
+                    </div>
                     <br>
+
                     <form id="feedback-form" action="/pages/ajax/feedback-submit.php" method="POST">
+
                         <div class="form-group">
                             <label for="name">Name</label>
                             <input id="name" name="name" type="text" class="form-control" value="<?= htmlspecialchars($steamprofile['personaname']); ?>" placeholder="<?= htmlspecialchars($steamprofile['personaname']); ?>" readonly>
