@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <?php
 $errorLONG = false;
 $errorEMPTY = true;
