@@ -1,4 +1,10 @@
 <?php
+
+$Message = array(
+    "success" => false, // "suck this" hehe
+    "message" => "Unkown error occoured"
+);
+
 $errorLONG = false;
 $errorEMPTY = true;
 $SubmitSuccess = false;
