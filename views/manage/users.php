@@ -297,7 +297,7 @@ include("views/includes/navbar.php");
                                         <div class="input-group-prepend">
                                           <div class="input-group-text"><i class="fas fa-search"></i></div>
                                         </div>
-                                        <input id="search-discord" placeholder="ID64,Timestamp,Discord Name,Given Roles" class="form-control">
+                                        <input id="search-discord" placeholder="ID64, Timestamp, Discord Name, Given Roles" class="form-control">
                                       </div>
                                         <br>
                                         <div id="discordusers">
