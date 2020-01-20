@@ -1,5 +1,29 @@
 <?php
 if(isset($_SESSION['steamid'])){
+
+
+  if(isset($_POST['type']) && $_POST['type'] === "unverify" and isset($_POST['method']) and $_POST['method'] === "jQuery"){
+    if(isAdmin($_SESSION['steamid'])){
+    $unverifyid = $_POST['user'];
+    $username = $_POST['username'];
+    //$sql = SQLWrapper()->prepare("UPDATE discord SET verifyid = :vid WHERE discordid= :id");
+    //$sql->execute([':id' => $unverifyid, ':vid' => "UNVERIFIED"]);
+    ?>
+      <script>
+        toastr["success"]("<?=htmlspecialchars($username);?> has been unverified!", "Congratulations!")   
+        $("#row-<?=htmlspecialchars($unverifyid);?>").remove();
+      </script>
+    <?php
+    }else{
+      ?>
+      <script>
+        toastr["error"]("Not authorized", "Error:")   
+      </script>
+    <?php
+    }
+  }
+
+
 if(isset($_POST['submit']) and isset($_POST['method']) and $_POST['method'] === "jQuery"){
   if(isAdmin($_SESSION['steamid'])){
     $steamidgood = false;
@@ -38,10 +62,6 @@ if(isset($_POST['submit']) and isset($_POST['method']) and $_POST['method'] === 
             </script>
             <?php
           }
-         
-          
-
-
           if(empty($discordtag)){
             ?>
               <script>
@@ -70,7 +90,6 @@ if(isset($_POST['submit']) and isset($_POST['method']) and $_POST['method'] === 
               </script>
               <?php
             }
-          
             if(empty($discordid)){
               ?>
                 <script>
@@ -130,11 +149,13 @@ if(isset($_POST['submit']) and isset($_POST['method']) and $_POST['method'] === 
     }else  {
       ?>
       <script>
-        toastr["error"]("Not admin", "Error:")   
+        toastr["error"]("Not authorized", "Error:")   
       </script>
       <?php
     }
   }
+
+
 }else{
   ?>
   <script>

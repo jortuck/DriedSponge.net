@@ -30,12 +30,27 @@ if(isset($_SESSION['steamid']) && isAdmin($_SESSION['steamid'])){
                                             $discordstamp =  date("m/d/Y g:i a", $row3["stamp"]); 
                                               ?>
                                               
-                                              <tr><td>
-                                              <form action="/manage/users/" method="post" >
-                                              <button type="submit" value="<?=htmlspecialchars($row3["discordid"]);?>" name="submit-unverify" class="btn btn-danger" >
+                                              <tr id="row-<?=htmlspecialchars($row3["steamid"]);?>"><td>
+                                              <script>
+                                                      $(document).ready(function(){
+                                                        $("#unverify-discord-<?=htmlspecialchars($row3["discordid"]);?>").submit(function(event){
+                                                          event.preventDefault();
+                                                          var submit = $("#submit-unverify-<?=htmlspecialchars($row3["discordid"]);?>").val();
+                                                          $("#unverify-form-message-<?=htmlspecialchars($row3["discordid"]);?>").load("/manage/ajax/manage-discord-user.php",{
+                                                            method: "jQuery",
+                                                            type: "unverify",
+                                                            username: "<?=htmlspecialchars($row3["discorduser"]);?>",
+                                                            user: "<?=htmlspecialchars($row3["steamid"]);?>"
+                                                          });
+                                                      });
+                                                  });
+                                              </script>
+                                              <div id="unverify-form-message-<?=htmlspecialchars($row3["discordid"]);?>"></div>
+                                              <form id="unverify-discord-<?=htmlspecialchars($row3["discordid"]);?>" action="/manage/ajax/manage-discord-user.php" method="post" >
+                                                <button type="submit" id="submit-unverify-<?=htmlspecialchars($row3["discordid"]);?>" class="btn btn-danger" >
                                                   Unverify
-                                              </button>
-                                          </form>
+                                                </button>
+                                              </form>
                                       </td><td><a href="<?=htmlspecialchars($discordsteamurl)?>" target="_blank"><?=htmlspecialchars($row3["steamid"]);?></a></td><td><?=htmlspecialchars($discordstamp);?></td><td><?=htmlspecialchars($row3["discorduser"]);?><br>(<?=htmlspecialchars($row3["discordid"]);?>)</td><td><?=htmlspecialchars($row3["givenrole"]);?></td></tr> 
                                               
                                               <?php
