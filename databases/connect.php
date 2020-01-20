@@ -14,11 +14,6 @@ try {
 // Because of how it works you can use SQLWrapper()->pdostuff() everywhere as soon
 // as it gets loaded
 if (!function_exists("SQLWrapper")) {
-    /**
-     * PDO Wrapper for current connections
-     *
-     * @return \PDO
-     */
     function SQLWrapper()
     {
         global $conn;
