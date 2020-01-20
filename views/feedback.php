@@ -19,21 +19,27 @@
     <title>Feedback</title>
     <script src="https://kit.fontawesome.com/0add82e87e.js" crossorigin="anonymous"></script>
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-    <link rel="stylesheet" href = "//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" type="text/css" >
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" type="text/css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
     <script>
-    $(document).ready(function(){
-        $("form").submit(function(event){
-            event.preventDefault();
-            var say = $("#say").val();
-            var submit = $("#submit").val();
-            console.log(say);
-            $("#form-message").load("/pages/ajax/feedback-submit.php",{
-                say: say,
-                submit: submit
+        $(document).ready(function() {
+            $("form").submit(function(event) {
+                event.preventDefault();
+                var say = $("#say").val();
+                var submit = 1;
+                console.log(say);
+                //$("#form-message").load("/pages/ajax/feedback-submit.php",{
+                //    say: say,
+                //    submit: submit
+                //});
+                $.post("/pages/ajax/feedback-submit.php", {
+                        say: say
+                    })
+                    .done(function(data) {
+                        console.log(data);
+                    });
             });
         });
-    });
     </script>
 </head>
 
@@ -65,7 +71,7 @@
         }
     } else {
         $DisplayForm = false;
-        $PLogin = true; 
+        $PLogin = true;
     }
     ?>
     <div class="app">
@@ -77,16 +83,16 @@
                 </hgroup>
                 <br>
                 <?php if ($blocked == true) { ?>
-                    <h1 class="text-alert text-danger">Error: Banned <br> Reason: <?=htmlspecialchars($row["rsn"]);?></h1>
+                    <h1 class="text-alert text-danger">Error: Banned <br> Reason: <?= htmlspecialchars($row["rsn"]); ?></h1>
                 <?php
                 }
-                    ?>
-                
+                ?>
+
 
 
                 <?php
                 if ($DisplayForm) {
-                    ?>
+                ?>
 
                     <p class="paragraph pintro">Tell me what you think about the site and what could be changed. Both positive and negative feedback are accepted!</p>
                     <br>
@@ -99,8 +105,8 @@
                             <br>
                             <label for="say">What are your thoughts on the site?</label>
                             <div id="saydiv">
-                            <textarea id="say" maxlength="1000" class="form-control" name="say" rows="5" placeholder="Type here I guess..." ></textarea>
-                            <div id="say-feedback"></div>
+                                <textarea id="say" maxlength="1000" class="form-control" name="say" rows="5" placeholder="Type here I guess..."></textarea>
+                                <div id="say-feedback"></div>
                             </div>
                             <br>
                             <div id="form-message"></div>
@@ -109,9 +115,9 @@
                     </form>
                 <?php
                 }
-                              
+
                 if ($PLogin == true) {
-                    ?>
+                ?>
                     <h1 class="articleh1">Please login to submit feedback</h1>
                     <br>
                     <p class="text-center"><a href='?login'><img src='https://steamcommunity-a.akamaihd.net/public/images/signinthroughsteam/sits_02.png'></a></p>
@@ -129,7 +135,7 @@
     include("views/includes/footer.php"); // we include footer.php here. you can use .html extension, too.
     ?>
 
-    
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <script src="https://unpkg.com/popper.js@1"></script>
