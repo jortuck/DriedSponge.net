@@ -44,6 +44,7 @@
                         $("#wait-message").addClass("d-none");
                         if (data.success) {
                             $("#success-message").removeClass("d-none");
+                            $("#success_message_text").html(data.message);
                             alert(data.message);
                         } else {
                             $("#error-message").removeClass("d-none");
@@ -110,15 +111,19 @@
                     <br>
                     <div class="text-center" id="feedback-response">
                         <div id="error-message" class="d-none">
-                            <p>Error!</p>
-                            <p id="error_message_text"><i>insert error message here</i></p>
+                            <div class="alert alert-danger" role="alert">
+                                <span><b>Error:</b> <span id="error_message_text"><i>insert success message here</i></span></span>
+                            </div>
                         </div>
                         <div id="success-message" class="d-none">
-                            <p>Success!</p>
-                            <p id="success_message_text"><i>insert success message here</i></p>
+                            <div class="alert alert-success" role="alert">
+                                <span><b>Success:</b> <span id="success_message_text"><i>insert success message here</i></span></span>
+                            </div>
                         </div>
                         <div id="wait-message" class="d-none">
-                            <p>Please wait...</p>
+                            <div class="alert alert-secondary" role="alert">
+                                <span> please wait while im loading... </span>
+                            </div>
                         </div>
                     </div>
                     <br>
