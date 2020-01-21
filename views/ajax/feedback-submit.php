@@ -9,6 +9,7 @@ $Message = array(
 if (isset($_POST['submit'])) {
 
     if (isset($steamprofile['steamid'])) {
+        if(!isBlocked($_SESSION['steamid'])){
         $feedback = $_POST['say'];
 
         if (empty($feedback)) {
@@ -57,6 +58,9 @@ if (isset($_POST['submit'])) {
             $Message["message"] = "The text you entered is too long, please reduce the length to a maximum of 1000 characters.";
 
         }
+    }else{
+        $Message["message"] = "You are not allowed to do this!";
+    }
     } else {
         $Message["message"] = "You need to be logged in for this!";
     }
