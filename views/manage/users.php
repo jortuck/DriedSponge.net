@@ -321,7 +321,7 @@ include("views/includes/navbar.php");
                                             $discordstamp =  date("m/d/Y g:i a", $row3["stamp"]); 
                                               ?>
                                               
-                                              <tr id="row-<?=htmlspecialchars($row3["steamid"]);?>"><td>
+                                              <tr class="search-discorduser" id="row-<?=htmlspecialchars($row3["steamid"]);?>"><td>
                                               <script>
                                                       $(document).ready(function(){
                                                         $("#unverify-discord-<?=htmlspecialchars($row3["discordid"]);?>").submit(function(event){
@@ -331,7 +331,7 @@ include("views/includes/navbar.php");
                                                             method: "jQuery",
                                                             type: "unverify",
                                                             username: "<?=htmlspecialchars($row3["discorduser"]);?>",
-                                                            user: "<?=htmlspecialchars($row3["steamid"]);?>"
+                                                            user: "<?=htmlspecialchars($row3["discordid"]);?>"
                                                           });
                                                       });
                                                   });
@@ -357,7 +357,7 @@ include("views/includes/navbar.php");
                                               })
                                                   $("#search-discord").on("keyup", function(){
                                                     var value = $(this).val().toLowerCase();
-                                                    $("#discord-users tr").filter(function() {
+                                                    $("#discord-users .search-discorduser").filter(function() {
                                                       $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
                                                     });
                                                   });

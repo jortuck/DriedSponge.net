@@ -13,15 +13,10 @@ if(isset($_SESSION['steamid']) && isAdmin($_SESSION['steamid'])){
                                           </thead>
                                           <tbody class="text-center">
                                         <?php
-                                        if(isset($_POST['discordcount'])){
-                                            $nlimit = $_POST['discordcount'];
-                                            $discordusersr = SQLWrapper()->prepare("SELECT discordid,steamid,stamp,discorduser,givenrole FROM discord WHERE verifyid = 'VERIFIED' LIMIT ".$_POST['discordcount']);
-                                            $discordusersr->execute();
-                                            
-                                        }else{
+                                        
                                             $discordusers = "SELECT discordid,steamid,stamp,discorduser,givenrole FROM discord WHERE verifyid = 'VERIFIED'";
                                             $discordusersr = SQLWrapper()->query($discordusers);
-                                        }
+                                        
                                 
                                         
                                           while($row3 = $discordusersr->fetch()){ 
@@ -30,7 +25,7 @@ if(isset($_SESSION['steamid']) && isAdmin($_SESSION['steamid'])){
                                             $discordstamp =  date("m/d/Y g:i a", $row3["stamp"]); 
                                               ?>
                                               
-                                              <tr id="row-<?=htmlspecialchars($row3["steamid"]);?>"><td>
+                                              <tr class="search-discorduser"id="row-<?=htmlspecialchars($row3["steamid"]);?>"><td>
                                               <script>
                                                       $(document).ready(function(){
                                                         $("#unverify-discord-<?=htmlspecialchars($row3["discordid"]);?>").submit(function(event){
@@ -40,7 +35,7 @@ if(isset($_SESSION['steamid']) && isAdmin($_SESSION['steamid'])){
                                                             method: "jQuery",
                                                             type: "unverify",
                                                             username: "<?=htmlspecialchars($row3["discorduser"]);?>",
-                                                            user: "<?=htmlspecialchars($row3["steamid"]);?>"
+                                                            user: "<?=htmlspecialchars($row3["discordid"]);?>"
                                                           });
                                                       });
                                                   });
