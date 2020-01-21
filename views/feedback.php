@@ -101,9 +101,6 @@
                 <?php
                 }
                 ?>
-
-
-
                 <?php
                 if ($DisplayForm) {
                 ?>
@@ -128,7 +125,6 @@
                         </div>
                     </div>
                     <br>
-
                     <form id="feedback-form" action="/pages/ajax/feedback-submit.php" method="POST">
 
                         <div class="form-group">

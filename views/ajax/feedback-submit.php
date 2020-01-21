@@ -3,7 +3,7 @@ header('Content-type: application/json');
 
 $Message = array(
     "success" => false, // "suck this" hehe
-    "message" => "Something when wrong I guess"
+    "message" => "Something went wrong I guess"
 );
 
 if (isset($_POST['submit'])) {
@@ -62,29 +62,4 @@ if (isset($_POST['submit'])) {
 }
 
 die(json_encode($Message));
-/*
-<script>
-var errorEMPTY = <?php echo $errorEMPTY ? 'true' : 'false';; ?>;
-var SubmitSuccess = <?php echo $SubmitSuccess ? 'true' : 'false';; ?>;
-var errorLONG = <?php echo $errorLONG ? 'true' : 'false';; ?>;
-var SubmitFailed = <?php echo $SubmitFailed ? 'true' : 'false';; ?>;
-if(errorEMPTY){
-    $("#say").addClass("is-invalid");
-    $("#say-feedback").addClass("invalid-feedback");
-    document.getElementById("say-feedback").innerHTML = "Please enter some content";
-}
-if(errorLONG){
-    $("#say").addClass("is-invalid");
-    $("#say-feedback").addClass("invalid-feedback");
-    document.getElementById("say-feedback").innerHTML = "The response you entered is too long, please reduce the length to a maximum of 1000 characters.";
-}
-if(SubmitSuccess){
-    $("#feedback-form").remove();
-    document.getElementById("feedback-response").innerHTML = '<p class="text-success">Thank you for submitting feedback!<br><i class="fas fa-check"></i></p>';
-}
-if(SubmitFailed){
-    $("#feedback-form").remove();
-    document.getElementById("feedback-response").innerHTML = '<p class="text-danger">Something when wrong I guess</p>';
-}
-</script>
-*/
+
