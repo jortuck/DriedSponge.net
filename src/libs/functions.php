@@ -52,6 +52,22 @@ function isVerified($steamid) {
          return false;
      }
 }
+/**
+ * Check if the given SteamID64 is blocked
+ *
+ * @param string $steamid
+ * @return boolean
+ */
+function isBlocked($steamid) {
+    $blocked = SQLWrapper()->prepare("SELECT id64, rsn, stamp FROM blocked WHERE id64 = :id");
+    $blocked->execute([':id' => $steamid]);
+    $blockedresult = $blocked->fetch();
+     if(!empty($blockedresult)){
+         return true;
+     }else{
+         return false;
+     }
+}
 function SteamInfo($identifier) {
     include("views/includes/SteamID.php");
     $APIKEY = "0EBBACAEBC6039B06DF1066807D55D4C";
