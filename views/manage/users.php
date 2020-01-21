@@ -321,7 +321,7 @@ include("views/includes/navbar.php");
                                             $discordstamp =  date("m/d/Y g:i a", $row3["stamp"]); 
                                               ?>
                                               
-                                              <tr class="search-discorduser" id="row-<?=htmlspecialchars($row3["steamid"]);?>"><td>
+                                              <tr class="search-discorduser" id="row-<?=htmlspecialchars($row3["discordid"]);?>"><td>
                                               <script>
                                                       $(document).ready(function(){
                                                         $("#unverify-discord-<?=htmlspecialchars($row3["discordid"]);?>").submit(function(event){
