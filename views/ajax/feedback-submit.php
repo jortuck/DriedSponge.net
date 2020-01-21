@@ -55,6 +55,7 @@ if (isset($_POST['submit'])) {
             );
         } else {
             $Message["message"] = "The text you entered is too long, please reduce the length to a maximum of 1000 characters.";
+
         }
     } else {
         $Message["message"] = "You need to be logged in for this!";

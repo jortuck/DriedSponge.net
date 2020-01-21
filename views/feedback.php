@@ -48,6 +48,7 @@
                             $("#success_message_text").html(data.message);
                         } else {
                             $("#error-message").removeClass("d-none");
+                            $("#say").addClass("is-invalid");
                             $("#error_message_text").html(data.message);
                             $("#feedback-form").show();
                         }
@@ -133,7 +134,7 @@
                             <br>
                             <label for="say">What are your thoughts on the site?</label>
                             <div id="saydiv">
-                                <textarea id="say" maxlength="1000" class="form-control" name="say" rows="5" placeholder="Type here I guess..."></textarea>
+                                <textarea id="say" maxlength="1000" class="form-control" name="say" rows="8" placeholder="Type here I guess..."></textarea>
                                 <div id="say-feedback"></div>
                             </div>
                             <br>
