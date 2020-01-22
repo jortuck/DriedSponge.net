@@ -56,11 +56,7 @@ $router->all('/advertise', function () {
     require('steamauth/steamauth.php');  
     include('views/advertise.php');
 });
-$router->get('/advertise/{action}', function ($action) {
-    $header = "/advertise/".$action;
-    require('steamauth/steamauth.php');  
-    include('views/advertise.php');
-});
+
 $router->all('/feedback', function () {
     $header = "/feedback/";
     require('steamauth/steamauth.php');  

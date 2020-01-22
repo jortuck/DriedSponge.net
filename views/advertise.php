@@ -17,6 +17,7 @@
     ?>
 
     <title>Advertise</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
     <script src="https://kit.fontawesome.com/0add82e87e.js" crossorigin="anonymous"></script>
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     <link rel="stylesheet" href = "//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" type="text/css" >
@@ -66,91 +67,8 @@
                 $DefaultAdName = "Server Name/Product Name/Community Name/etc";
                 $DefaultAdDesc = "Type details here...";
             }
-            if(isset($_POST['last-ad'])){
-                SQLWrapper()->prepare("UPDATE ads SET overide = :overide,adcount =:adcount WHERE user = :curuser")->execute([':curuser' => $aduser,':adcount' => $adcount+1,':overide' => 0]);    
-                                                    
-                $request = json_encode([
-                    "content" => "",
-                    "embeds" => [
-                        [
-                            "author" => [
-                                "name" => "Ad sent from ".$steamprofile['personaname'] . " (" . $steamprofile['steamid'] . ")",
-                                "url" => $steamprofile['profileurl'],
-                                "icon_url" => $steamprofile['avatarmedium']
-                            ],
-                            "title" => str_replace("@"," ",$adrow['adname']),
-                            "type" => "rich",
-                            "description" =>  str_replace("@"," ",$adrow['content']),
-                            "timestamp" => date("c"),
-                        ]
-                    ]
-                ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
-
-                $ch = curl_init("https://discordapp.com/api/webhooks/655554251702927390/-dICp0ReXpC63SW3DNpJqc1zE5hzhJD_HmyBrt5f0Xoh8y-YiErccuXLiRWQj5jrCG3U");
-
-                curl_setopt_array($ch, [
-                    CURLOPT_POST => 1,
-                    CURLOPT_FOLLOWLOCATION => 1,
-                    CURLOPT_HTTPHEADER => array("Content-type: application/json"),
-                    CURLOPT_POSTFIELDS => $request,
-                    CURLOPT_RETURNTRANSFER => 1
-                ]);
-
-
-                curl_exec($ch);
-                header("Location: /advertise/success");
-            }
-            if (isset($_POST['submit'])) {
-                $adname = $_POST['adname'];
-                $adcontent = $_POST['say'];  
-                $DisplayForm = true;
-                $DisplayForm = false;
-                    if (!isset($_POST['name'], $_POST['say'])) {
-                        return;
-                    }
-                    $request = json_encode([
-                        "content" => "",
-                        "embeds" => [
-                            [
-                                "author" => [
-                                    "name" => "Ad sent from ".$steamprofile['personaname'] . " (" . $steamprofile['steamid'] . ")",
-                                    "url" => $steamprofile['profileurl'],
-                                    "icon_url" => $steamprofile['avatarmedium']
-                                ],
-                                "title" => str_replace("@"," ",$_POST['adname']),
-                                "type" => "rich",
-                                "description" =>  str_replace("@"," ",$_POST['say']),
-                                "timestamp" => date("c"),
-                            ]
-                        ]
-                    ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
-    
-                    $ch = curl_init("https://discordapp.com/api/webhooks/655554251702927390/-dICp0ReXpC63SW3DNpJqc1zE5hzhJD_HmyBrt5f0Xoh8y-YiErccuXLiRWQj5jrCG3U");
-    
-                    curl_setopt_array($ch, [
-                        CURLOPT_POST => 1,
-                        CURLOPT_FOLLOWLOCATION => 1,
-                        CURLOPT_HTTPHEADER => array("Content-type: application/json"),
-                        CURLOPT_POSTFIELDS => $request,
-                        CURLOPT_RETURNTRANSFER => 1
-                    ]);
-    
-    
-                    curl_exec($ch);                   
-                        
-                        
-                        
-                            if (!empty($adrow)) {                          
-                                SQLWrapper()->prepare("UPDATE ads SET user= :id, adname = :adname, content = :content, overide = :overide, adcount = :adcount WHERE user = :curuser")->execute([':id' => $aduser, ':adname' => $adname,':content' => $adcontent,':curuser' => $aduser,':adcount' => $adcount+1, ':overide' => 0]);                          
-                                header("Location: /advertise/success");
-                            } else {
-                                SQLWrapper()->prepare("INSERT INTO ads (user, adname, content)
-                                VALUES (?,?,?)")->execute([$aduser,  $adname, $adcontent]);
-                                header("Location: /advertise/success");                      
-                            }
-                       
-                
-            }
+            
+            
         }else{
             $DisplayForm = false;
             $oneday = true;
@@ -184,8 +102,8 @@
                 <hgroup>
                     <!-- <img src="https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/18/18be38c2f230fea0fa667c8165e4da5cb1a787c0_full.jpg" alt="DriedSponge's Profile Picture"> -->
                     <h1 class="display-2"><strong>Advertise</strong></h1>
-
                     <br>
+                    
                 </hgroup>
                 <?php if ($blocked) { ?>
                     <h1 class="articleh1">Uh oh, looks like you have been blacklisted from submitting form data. <br> Reason: <?php echo $row["rsn"]; ?></h1>
@@ -229,30 +147,142 @@
                     
                     ?>
 
-                    <p class="paragraph pintro">Send an advertisement of anything to my discord server advertisement channel. If you abuse this system, your account may be blocked from future advertising. You can advertise every 24hrs.</p>
+                    <p id="about-p" class="paragraph pintro">Send an advertisement of anything to my discord server advertisement channel. If you abuse this system, your account may be blocked from future advertising. You can advertise every 24hrs.</p>
+                    <div class="text-center" id="feedback-response">
+                        <div id="error-message" class="d-none">
+                            <div class="alert alert-danger" role="alert">
+                                <span><b>Error:</b> <span id="error_message_text"><i>insert success message here</i></span></span>
+                            </div>
+                        </div>
+                        <div id="success-message" class="d-none">
+                            <div class="alert alert-success" role="alert">
+                                <span><b>Success:</b> <span id="success_message_text"><i>insert success message here</i></span></span>
+                            </div>
+                        </div>
+                        <div id="wait-message" class="d-none">
+                            <div class="alert alert-secondary" role="alert">
+                                <span> please wait while im loading... </span>
+                            </div>
+                        </div>
+                    </div>
                     <br>
                     <?php
                     if($ReRun){
                         ?>
+                        <script>
+                        $(document).ready(function() {
+                            $("#repeat-last-ad").submit(function(event) {
+                                event.preventDefault();
+                                $("#wait-message").removeClass("d-none");
+                                $("#error-message").addClass("d-none");
+                                $("#success-message").addClass("d-none");
+                                $("#repeat-last-ad").hide();
+                                $("#submit-new-ad").hide();
+                                $("#about-p").hide()
+                                $.post("/pages/ajax/ad-submit.php", {
+                                        lastad: 1
+                                    })
+                                    .done(function(data) {
+                                        $("#wait-message").addClass("d-none");
+                                        if (data.success) {
+                                            $("#success-message").removeClass("d-none");
+                                                $("#success_message_text").html(data.message);
+                                                setInterval(function(){
+                                                    location.reload();
+                                                }, 5000) 
+                                        } else {
+                                            $("#error-message").removeClass("d-none");
+                                            $("#error_message_text").html(data.message);
+                                            $("#submit-new-ad").show();
+                                            $("#about-p").show()
+                                            $("#repeat-last-ad").show();
+                                        }
+                                    });
+                            });
+                        });
+                        </script>
                         <div class="text-center">
-                        <form action="/advertise/" method="post">
-                            <button type="submit" id="repeat-last-ad" data-tippy-content="Resend the same ad you sent on: <?=htmlspecialchars($LastRan);?>" name="last-ad" class="btn btn-primary paragraph" >
+                        <form id="repeat-last-ad" action="/pages/ajax/ad-submit.php" method="post">
+                            <button type="submit"  name="last-ad" class="btn btn-primary paragraph" >
                                     Repeat Last Ad
                             </button>
                         </form>
                         </div>
                         <br>
                         <?php } ?>
-                    <form action="/advertise/" method="post">
+                        <script>
+                                $(document).ready(function() {
+                                $("#submit-new-ad").submit(function(event) {
+                                    event.preventDefault();
+                                    var adname = $("#adname").val();
+                                    var adcontent = $("#newadcontent").val();
+                                    $("#wait-message").removeClass("d-none");
+                                    $("#error-message").addClass("d-none");
+                                    $("#success-message").addClass("d-none");
+                                    $("#submit-new-ad").hide();
+                                    $("#about-p").hide()
+                                    $("#repeat-last-ad").hide();
+                                    $.post("/pages/ajax/ad-submit.php", {
+                                            adname: adname,
+                                            adcontent: adcontent,
+                                            submit: 1
+                                        })
+                                        .done(function(data) {
+                                            $("#wait-message").addClass("d-none");
+                                            if (data.success) {
+                                                $("#success-message").removeClass("d-none");
+                                                $("#success_message_text").html(data.message);
+                                                setInterval(function(){
+                                                    location.reload();
+                                                }, 5000) 
+                                            } else {
+                                                if(!data.basics){
+                                                    $("#error-message").removeClass("d-none");
+                                                    $("#error_message_text").html(data.message);
+                                                }
+                                                if(data.basics){
+                                                if(data.errorNAME && data.errorNAMETXT != null){
+                                                    $("#adname").addClass("is-invalid");
+                                                    $("#ad-name-feedback").addClass("invalid-feedback");
+                                                    $("#ad-name-feedback").show();
+                                                    $("#ad-name-feedback").html(data.errorNAMETXT);
+                                                }else{
+                                                    $("#adname").removeClass("is-invalid");
+                                                    $("#adname").addClass("is-valid");
+                                                    $("#ad-name-feedback").hide();
+                                                }
+                                                if(data.errorCON && data.errorCONTXT != null){
+                                                    $("#newadcontent").addClass("is-invalid");
+                                                    $("#ad-con-feedback").addClass("invalid-feedback");
+                                                    $("#ad-con-feedback").show();
+                                                    $("#ad-con-feedback").html(data.errorCONTXT);
+                                                }else{
+                                                    $("#newadcontent").removeClass("is-invalid");
+                                                    $("#newadcontent").addClass("is-valid");
+                                                    $("#ad-con-feedback").hide();
+                                                }
+                                                }
+                                                $("#submit-new-ad").show();
+                                                $("#about-p").show()
+                                                $("#repeat-last-ad").show();
+                                            }
+                                        });
+                                });
+                            })
+                        </script>
+                        <div id="submit-ad-response"></div>
+                    <form id="submit-new-ad" action="/pages/ajax/ad-submit.php" method="post">
                         <div class="form-group">
                             <label for="name">Name</label>
                             <input id="name" name="name" type="text" class="form-control" value="<?= htmlspecialchars($steamprofile['personaname']); ?>" placeholder="<?= htmlspecialchars($steamprofile['personaname']); ?>" readonly>
                             <br>
                             <label for="adname">Name of your ad</label>
-                            <input id="adname" name="adname" type="text" maxlength="25" class="form-control"  placeholder="<?=htmlspecialchars($DefaultAdName);?>" required>
+                            <input id="adname" name="adname" type="text" maxlength="25" class="form-control"  placeholder="<?=htmlspecialchars($DefaultAdName);?>" >
+                            <div id="ad-name-feedback"></div>
                             <br>           
-                            <label for="say">Tell users about what your advertising. Think of it as just typing a normal message into discord. URLs are allowed (<a href="https://support.discordapp.com/hc/en-us/articles/210298617-Markdown-Text-101-Chat-Formatting-Bold-Italic-Underline-" target="_blank">Discord Markdown</a> is supported)</label>
-                            <textarea id="say" class="form-control" name="say" maxlength="1500" rows="10" placeholder="<?=htmlspecialchars($DefaultAdDesc);?>" required></textarea>
+                            <label for="newadcontent">Tell users about what your advertising. Think of it as just typing a normal message into discord. URLs are allowed (<a href="https://support.discordapp.com/hc/en-us/articles/210298617-Markdown-Text-101-Chat-Formatting-Bold-Italic-Underline-" target="_blank">Discord Markdown</a> is supported)</label>
+                            <textarea id="newadcontent" class="form-control" name="newadcontent" maxlength="1500" rows="10" placeholder="<?=htmlspecialchars($DefaultAdDesc);?>" ></textarea>
+                            <div id="ad-con-feedback"></div>
                             <br>
                             
                             <button name="submit" type="submit" class="btn btn-primary">Submit</button>
@@ -287,22 +317,8 @@
     <script src="https://unpkg.com/tippy.js@4"></script>
     <script src="main.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-    <?php
-    if(isset($action) && $action === "success"){
-                        ?>
-                        <script type="text/JavaScript">  
-                      toastr["success"]("Your ad has been posted in my discord sever.", "Congratulations!")     
-                      </script>
-                        <?php
-                        }
-                        if (isset($action) && $action === "failed-captcha") {
-                        ?>
-                        <script type="text/JavaScript">  
-                        toastr["error"]("Uh oh! Looks like you failed the captcha! Try again but this time try acting less like a robot.", "Error!")     
-                        </script>
-                        <?php
-                        }
-                        ?>
+   
+    
                     <script>
                         navitem = document.getElementById('ad').classList.add('active')
                     </script>
