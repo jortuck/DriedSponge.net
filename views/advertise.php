@@ -116,12 +116,15 @@
                     <h2 style="text-align: center;">Time left: <strong id="timeleft"><?=htmlspecialchars($timeleft)?></strong></h2>
                     </div>
                     <br>
-                    <h2 style="text-align: center;">If you believe there was an error in porcessing your ad, please contact me in my discord and I will remove your countdown if the situation warrants it.</h2>
+                    <h2 style="text-align: center;">If you believe there was an error in processing your ad, please contact me in my discord and I will remove your countdown if the situation warrants it.</h2>
                     <script>
                     function SetTimeLeft(){ //86400 - abs($adrow['stamp'] - $adstamp)
                         var currenttime = Math.round((new Date()).getTime() / 1000);
                         var sseconds =  86400 - Math.abs(<?=htmlspecialchars($submitted);?> - currenttime);
                         var seconds = parseInt(sseconds, 10);
+                        if(seconds === "0"){
+                            location.reload()
+                        }
                         var days = Math.floor(seconds / (3600*24));
                         seconds  -= days*3600*24;
                         var hrs   = Math.floor(seconds / 3600);
