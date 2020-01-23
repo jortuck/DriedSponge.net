@@ -19,7 +19,8 @@
 		<script src="https://kit.fontawesome.com/0add82e87e.js" crossorigin="anonymous"></script>
 		<script src="https://www.google.com/recaptcha/api.js" async defer></script>
 		<link rel="stylesheet" href = "//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" type="text/css" >
-		
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
+
 	</head>
  <body>
 
@@ -54,22 +55,10 @@ include("views/includes/navbar.php");
 			  if (isAdmin($_SESSION['steamid'])){
 
 
-			 $cachedfiles = scandir("cache");
+			 	$cachedfiles = scandir("cache");
 				$ignored = array('.', '..', '.svn', '.htaccess','.gitignore','.gitkeep'); 
-				$totalcached = count($cachedfiles) - 3;
-					if(isset($_POST['clear-cache']) && isMasterAdmin($_SESSION['steamid'])){
-					   
-					   foreach ($cachedfiles as $deletefile){
-						if (in_array($deletefile, $ignored)) continue;
-						$filename = 'cache/'.$deletefile;
-						unlink ($filename);
-						
-
-					   }
-					   header("Location: /manage/content/cache-cleared"); 
-					}elseif(isset($_POST['clear-cache'])){
-						$notadmin = true;
-					}
+				$totalcached = count($cachedfiles) - 4;
+					
 
 					
 
@@ -124,13 +113,56 @@ include("views/includes/navbar.php");
 							<h3>Cache</h3>
 						</div>
 							<div class="card-body text-center">
-								<p class="paragraph">Current ammout of items in cache: <strong><?=htmlentities($totalcached);?></strong></p>
+								<p class="paragraph">Current ammout of items in cache: <strong id="cache-items"><?=htmlentities($totalcached);?></strong></p>
 								<br>
-								<form action="/manage/content/" method="post" >
-										<button type="submit" name="clear-cache" class="btn btn-danger paragraph" >
+								<script>
+								        $(document).ready(function() {
+										$("#clear-cache-form").submit(function(event) {
+											event.preventDefault();
+											$.post("/manage/ajax/cache.php", {
+													cc: 1
+												})
+												.done(function(data) {
+													if (data.success) {
+														toastr["success"](data.message, "Congratulations!")   
+														$("#cache-items").html("0");
+													} else {
+														toastr["error"](data.message, "Error:")   
+													}
+												});
+										});
+									});
+									$(document).ready(function() {
+										$("#refresh-cache-form").submit(function(event) {
+											event.preventDefault();
+											$.post("/manage/ajax/cache.php", {
+												getcache: 1
+												})
+												.done(function(data) {
+													if (data.success) {
+														toastr["success"]("Cache number refreshed", "Congratulations!")   
+														$("#cache-items").html(data.message.toString());  
+														
+													} else {
+														toastr["error"](data.message, "Error:")   
+													}
+												});
+										});
+									});
+								</script>
+								<div class="row" style="justify-content: center">
+								<div id="clear-cache-form-message"></div>
+								<form style="margin-right:3px;" id="clear-cache-form" action="/manage/ajax/cache.php" method="post" >
+										<button type="submit" name="clear-cache" id="clear-cache" class="btn btn-danger paragraph" >
 										Clear Cache
 									</button>
 								</form>
+								<form style="margin-left:3px;" id="refresh-cache-form" action="/manage/ajax/cache.php" method="post" >
+										<button type="submit" name="refresh-cache" id="refresh-cache" class="btn btn-primary paragraph" >
+										Refresh
+									</button>
+								</form>
+								</div>
 							</div>
 					</div>
 					<br>
@@ -139,7 +171,7 @@ include("views/includes/navbar.php");
 							<h3>Pages</h3>
 						</div>
 						<div class="card-body">  
-							<form  action="/manage/content/" method="post" >
+							<form id="newpage" action="/manage/content/" method="post" >
 								<div class="form-row">
 									<div class="form-group col">
 										<label for="pagename">Page Name</label>
