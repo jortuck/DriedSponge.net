@@ -127,6 +127,16 @@ include("views/includes/navbar.php");
                               .done(function(data) {
                                   if (data.success) {
                                     toastr["success"](data.message, "Congratulations!")
+                                    $("#block-rsn-feedback").addClass("valid-feedback")
+                                        $("#block-rsn-feedback").removeClass("invalid-feedback")
+                                        $("#block-rsn").removeClass("is-invalid")
+                                        $("#block-rsn").addClass("is-valid")
+                                        $("#block-rsn-feedback").html("Looks good!");
+                                        $("#block-id64-feedback").addClass("valid-feedback")
+                                        $("#block-id64-feedback").removeClass("invalid-feedback")
+                                        $("#block-id64").removeClass("is-invalid")
+                                        $("#block-id64").addClass("is-valid")
+                                        $("#block-id64-feedback").html("Looks good!");
                                     $("#blocked-users").append(`
                                     <tr id="blocked-${id64}"><td>
                                     <button onclick="UnBlock('${id64}')" value="${id64}" name="submit-unblock" class="btn btn-danger" >
