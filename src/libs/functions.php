@@ -178,3 +178,9 @@ function secondsToTime($seconds) {
 function Error404() {
     include "views/404.php";
 }
+/**
+ * Check validity of SteamID64
+ *
+ * @param int $steamid
+ * @return boolean
+ */

@@ -32,6 +32,7 @@
                     discordcount = discordcount + 2;
                     $('#discordusers').load('/manage/ajax/discord-users.php');
                   };
+
                 </script>
                 
     </head>
@@ -65,31 +66,6 @@ include("views/includes/navbar.php");
           if (isAdmin($_SESSION['steamid'])){  
 
                     
-
-                    if(isset($_POST['submit-block'])){
-                      $blockid = $_POST['id64'];
-                      $blockrsn =$_POST['rsn'];
-                      $blockstamp = time();
-                      $sqlblockexistquery = SQLWrapper()->prepare("SELECT id64 FROM blocked WHERE id64= :id");
-                      $sqlblockexistquery->execute([':id' => $blockid]);
-                      $blockrows = $sqlblockexistquery->fetch();
-                              if (!empty($blockrows)){
-                                header("Location: users.php?user-already-exist"); 
-                                  
-                              } else{
-                                  $sqlblock = SQLWrapper()->prepare("INSERT INTO blocked (id64, rsn, stamp)
-                                  VALUES (?,?,?)")->execute([$blockid,  $blockrsn,$blockstamp]);
-                                  header("Location: users.php?blocked=$blockid"); 
-
-                              }
-                  }
-                    if(isset($_POST['submit-unblock'])){
-                        $unblockid = $_POST['submit-unblock'];
-                        $sqlunblock = SQLWrapper()->prepare("DELETE FROM blocked WHERE id64= :id");
-                        $sqlunblock->execute([':id' => $unblockid]);
-                        header("Location: ?unblocked=$unblockid"); 
-                        
-                    }
                     if(isset($_POST['submit-fire'])){
                       if (isMasterAdmin($_SESSION['steamid'])){ 
                       $fireid = $_POST['submit-fire'];
@@ -137,17 +113,76 @@ include("views/includes/navbar.php");
                     <h3>User Blacklist</h3>
                   </div>
                 <div class="card-body">
+                  <script>
+                  $(document).ready(function() {
+                      $("#block-user-form").submit(function(event) {
+                          event.preventDefault();
+                          var id64 = $("#block-id64").val();
+                          var rsn = $("#block-rsn").val();
+                          $.post("/manage/ajax/blocked-users.php", {
+                                  blockusr: 1,
+                                  id64: id64,
+                                  rsn: rsn
+                              })
+                              .done(function(data) {
+                                  if (data.success) {
+                                    toastr["success"](data.message, "Congratulations!")
+                                    $("#blocked-users").append(`
+                                    <tr id="blocked-${id64}"><td>
+                                    <button onclick="UnBlock('${id64}')" value="${id64}" name="submit-unblock" class="btn btn-danger" >
+                                      Remove User
+                                    </button>
 
-                    <form action="/manage/users/" method="post">
+                                  </td><td><a target="_blank" href="/sprofile/${id64}">${id64}</a></td><td>${rsn}</td><td>${data.blockdate}</td></tr> 
+                                    `);
+
+                                  } else { 
+
+
+                                    if(data.SysError){
+                                      toastr["error"](data.message, "Error:")
+                                    }else if(data.basics){
+                                      if(data.errorID64 && data.errorID64TXT !== null){
+                                        $("#block-id64").addClass("is-invalid")
+                                        $("#block-id64-feedback").addClass("invalid-feedback")
+                                        $("#block-id64-feedback").html(data.errorID64TXT);
+                                      }else{
+                                        $("#block-id64-feedback").addClass("valid-feedback")
+                                        $("#block-id64-feedback").removeClass("invalid-feedback")
+                                        $("#block-id64").removeClass("is-invalid")
+                                        $("#block-id64").addClass("is-valid")
+                                        $("#block-id64-feedback").html("Looks good!");
+                                      }
+                                      if(data.errorRSN && data.errorRSNTXT !== null){
+                                        $("#block-rsn").addClass("is-invalid")
+                                        $("#block-rsn-feedback").addClass("invalid-feedback")
+                                        $("#block-rsn-feedback").html(data.errorRSNTXT);
+                                      }else{
+                                        $("#block-rsn-feedback").addClass("valid-feedback")
+                                        $("#block-rsn-feedback").removeClass("invalid-feedback")
+                                        $("#block-rsn").removeClass("is-invalid")
+                                        $("#block-rsn").addClass("is-valid")
+                                        $("#block-rsn-feedback").html("Looks good!");
+                                      }
+
+                                    }
+                                  }
+                              });
+                      });
+                  });
+              </script>
+                    <form id="block-user-form" method="post">
                                              <div class="form-row">
                                                <div class="form-group col-md-6">
-                                                  <label for="id64" style="color: black;">SteamID64</label>
-                                                     <input id="id64" name="id64" type="number" class="form-control"  placeholder="Enter SteamID64"  required>
+                                                  <label for="block-id64" style="color: black;">SteamID64</label>
+                                                     <input id="block-id64" name="block-id64" class="form-control"  placeholder="Enter SteamID64" >
+                                                      <div id="block-id64-feedback"></div>
                                                     </div>
                                                      <br>
                                                      <div class="form-group col-md-6">
-                                                        <label for="rsn" style="color: black;">Reason</label>
-                                                       <input id="rsn" name="rsn" type="text" class="form-control" placeholder="Enter reason" required>
+                                                        <label for="block-rsn" style="color: black;">Reason</label>
+                                                       <input maxlength="100" id="block-rsn" name="block-rsn" type="text" class="form-control" placeholder="Enter reason" >
+                                                      <div id="block-rsn-feedback"></div>
                                                       </div>
                                                      <br>
                                                      <div class="form-group col-md-6">
@@ -158,7 +193,7 @@ include("views/includes/navbar.php");
                                             
                       <br>
                       <p class="subsubhead" style="color: black; text-align: left;">Current Users</p>
-                        <table class="table paragraph " style="color: black;">
+                        <table id="blocked-users" class="table paragraph text-center" style="color: black;">
                         <thead>
                         <tr>
                         <th scope="col"></th>
@@ -168,20 +203,37 @@ include("views/includes/navbar.php");
                         </tr>
                         </thead>
                         <tbody>
+                        <script>
+                    
+                              function UnBlock(steamid){
+                                console.log(steamid);
+                                $.post("/manage/ajax/blocked-users.php", {
+                                  unblockusr: 1,
+                                  id64: steamid
+                              })
+                              .done(function(data) {
+                                  if(data.success){
+                                    toastr["success"](data.message, "Congratulations!")
+                                    $(`#blocked-${steamid}`).remove()
+                                  }else{
+                                    toastr["error"](data.message, "Error:")
+                                  }
+                              });
+                              }
+                            </script>
                       <?php
                       $sql = "SELECT id64, rsn, stamp FROM blocked";
                       $result = SQLWrapper()->query($sql);
                         while($row = $result->fetch()){   
-                           $blackurl = "https://steamcommunity.com/profiles/".$row['id64']."/";
+                           $blackurl = "/sprofile/".$row['id64']."/";
                            $blocknormalstamp =  date("m/d/Y g:i a", $row["stamp"]);
                             ?>
                             
-                            <tr><td>
-                            <form action="/manage/users/" method="post" >
-                             <button type="submit" value="<?=htmlspecialchars($row["id64"]);?>" name="submit-unblock" class="btn btn-danger" >
+                            <tr id="blocked-<?=htmlspecialchars($row['id64']);?>"><td>
+                             <button onclick="UnBlock(`<?=htmlspecialchars($row['id64']);?>`)" value="<?=htmlspecialchars($row["id64"]);?>" name="submit-unblock" class="btn btn-danger" >
                                 Remove User
                             </button>
-                        </form>
+
                     </td><td><a target="_blank" href="<?=htmlspecialchars($blackurl);?>"><?=htmlspecialchars($row["id64"]);?></a></td><td><?=htmlspecialchars($row["rsn"]);?></td><td><?=htmlspecialchars($blocknormalstamp);?></td></tr> 
                             
                             <?php
@@ -223,7 +275,7 @@ include("views/includes/navbar.php");
                                       $sql2 = "SELECT id64, UNIX_TIMESTAMP(stamp) AS stamp FROM staff";
                                       $result2 = SQLWrapper()->query($sql2);
                                         while($row2 = $result2->fetch()){ 
-                                          $admurl = "https://steamcommunity.com/profiles/".$row2['id64']."/"; 
+                                          $admurl = "/sprofile/".$row2['id64']."/"; 
                                           $admnormalstamp =  date("m/d/Y g:i a", $row2["stamp"]); 
                                             ?>
                                             
@@ -317,7 +369,7 @@ include("views/includes/navbar.php");
                                         $discordusersr = SQLWrapper()->query($discordusers);
                                           while($row3 = $discordusersr->fetch()){ 
                                             if($row3['steamid'] !== null){
-                                            $discordsteamurl = "https://steamcommunity.com/profiles/".$row3['steamid']."/"; 
+                                            $discordsteamurl = "/sprofile/".$row3['steamid']."/"; 
                                             $discordstamp =  date("m/d/Y g:i a", $row3["stamp"]); 
                                               ?>
                                               
@@ -406,74 +458,7 @@ include("views/includes/navbar.php");
                 <script src="main.js"></script>
                 <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
                 
-                
-                      <?php 
-                      if(isset($action)){
-                      if($action === "already-staff"){
-                      ?>
-                <script type="text/JavaScript">  
-                toastr["error"]("This user is already in the databse!", "Error:")     
-                </script>
-                      <?php 
-                      } 
-                       if(isset($_GET['blocked'])){ 
-                      ?>    
-                <script type="text/JavaScript">  
-                toastr["success"]("<?=htmlspecialchars($_GET['blocked']);?> has be blocked!", "Congradulations!")     
-                </script>
-                      <?php 
-                      } 
-                      if(isset($_GET['unblocked'])){
-                      ?>
-                <script type="text/JavaScript">  
-                toastr["success"]("<?=htmlspecialchars($_GET['unblocked']);?> has been unblocked!", "Congradulations!")     
-                </script>
-                      <?php 
-                      } 
-                      if(isset($_GET['fired'])){
-                      ?>
-                      <script type="text/JavaScript">  
-                      toastr["success"]("<?=htmlspecialchars($_GET['fired']);?> has been fired!", "Congradulations!")     
-                      </script>
-                      <?php 
-                      } 
-                      if(isset($_GET['hired'])){
-                      ?>
-                      <script type="text/JavaScript">  
-                      toastr["success"]("<?=htmlspecialchars($_GET['hired']);?> has been hired!", "Congradulations!")     
-                      </script>
-                      <?php 
-                      } 
-                      if(isset($_GET['not-sponge'])){
-                        ?>
-                        <script type="text/JavaScript">  
-                        toastr["error"]("You cannot do this because you are not DriedSponge!", "Error:")     
-                        </script>
-                    <?php
-                      }
-                      if(isset($_GET['unverified'])){
-                      ?>
-                      <script type="text/JavaScript">  
-                      toastr["success"]("<?=htmlspecialchars($_GET['unverified']);?> has been unverified!", "Congratulations!")     
-                      </script>
-                      <?php
-                      }
-                      if(isset($_GET['verified'])){
-                      ?>
-                      <script type="text/JavaScript">  
-                        toastr["success"]("<?=htmlspecialchars($_GET['verified']);?> has been verified!", "Congratulations!")     
-                      </script>
-                      <?php
-                      }
-                      if(isset($_GET['user-already-exist'])){
-                        ?>
-                        <script type="text/JavaScript">  
-                        toastr["error"]("This user is already in the DB!", "Error:")     
-                        </script>
-                        <?php
-                      }
-                    }
-                      ?>
+               
                 <script>
                     navitem = document.getElementById('userstab').classList.add('active')
                 </script> 

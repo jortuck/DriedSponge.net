@@ -21,7 +21,7 @@ if(isset($_SESSION['steamid']) && isAdmin($_SESSION['steamid'])){
                                         
                                           while($row3 = $discordusersr->fetch()){ 
                                             if($row3['steamid'] !== null){
-                                            $discordsteamurl = "https://steamcommunity.com/profiles/".$row3['steamid']."/"; 
+                                            $discordsteamurl = "/sprofile/".$row3['steamid']."/"; 
                                             $discordstamp =  date("m/d/Y g:i a", $row3["stamp"]); 
                                               ?>
                                               
