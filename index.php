@@ -24,6 +24,7 @@ $router->all('/', function () {
     require('steamauth/steamauth.php');  
     include('views/index.php');
 });
+
 $router->all('/index.php', function () {
     $header = "/home";
     require('steamauth/steamauth.php');  
@@ -145,6 +146,10 @@ $router->all('/manage/edit/{pageid}', function ($pageid) { //Editor Manage
     $header = "/manage/edit/".$pageid;
     require('steamauth/steamauth.php');  
     include('views/manage/editor.php');
+});
+
+$router->all('/sprofile/{steamid64}/', function ($steamid64) {
+     header("Location: https://steamcommunity.com/profiles/$steamid64");
 });
 
 $router->all('/{slug}/', function ($slug) { //Editor Manage
