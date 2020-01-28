@@ -13,12 +13,7 @@ tippy('.badge-success', {
     theme: 'deprecated',
     animateFill: false,
   })
-  //tippy('footer button', {
-
-  //  theme: 'footer',
-  //  animateFill: false,
- // })
-
+ 
    tippy('#repeat-last-ad', {
 
     theme: 'primary',
@@ -26,15 +21,3 @@ tippy('.badge-success', {
   }) 
 
 
-
-/*   var date = new Date();
-if (date.getMonth() == 9)
-{
-  var spookfavicon = document.getElementById('favicon');
-  spookfavicon.href = "https://cdn.driedsponge.net/img/favicon-spook.ico"
-  var css = document.getElementById('styless');
-  css.href = "spook.css"
-  document.getElementById('themefoot').innerHTML = "Spooky";
-} else {
-  document.getElementById('themefoot').innerHTML = "Normal";
-} */

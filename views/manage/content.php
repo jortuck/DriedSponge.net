@@ -86,19 +86,18 @@
 							}
 						}
 
-						if(isset($_POST['newpage'])){
-							if (isMasterAdmin($_SESSION['steamid'])){ 
-							$pagename = $_POST['pagename'];
-							$pageid = str_replace(" ","",$_POST['pageid']);
-							$pageslug = $pageid;
-							$newpq = SQLWrapper()->prepare("INSERT INTO content (thing,title,created,slug)VALUES (?,?,?,?)")->execute([$pageid, $pagename,$_SESSION['steamid'],$pageslug]);
-							header("Location: /manage/content/page-created"); 
-							}else{
-								header("Location: /manage/content/not-sponge"); 
+						if (isset($_POST['newpage'])) {
+							if (isMasterAdmin($_SESSION['steamid'])) {
+								$pagename = $_POST['pagename'];
+								$pageid = str_replace(" ", "", $_POST['pageid']);
+								$pageslug = $pageid;
+								$newpq = SQLWrapper()->prepare("INSERT INTO content (thing,title,created,slug)VALUES (?,?,?,?)")->execute([$pageid, $pagename, $_SESSION['steamid'], $pageslug]);
+								header("Location: /manage/content/page-created");
+							} else {
+								header("Location: /manage/content/not-sponge");
 							}
-							
 						}
-	
+
 
 
 						include("views/includes/manage/navtab.php");
@@ -173,15 +172,58 @@
 									<h3>Pages</h3>
 								</div>
 								<div class="card-body">
-									<form id="newpage" action="/manage/content/" method="post">
+									<script>
+										$(document).ready(function() {
+											$("#newpage").submit(function(event) {
+												event.preventDefault();
+												var pagename = $("#page-name").val();
+												var pageid = $("#page-id").val();
+												$.post("/manage/ajax/page-manage.php", {
+														newpage: 1,
+														pagename: pagename,
+														pageid: pageid
+													})
+													.done(function(data) {
+														if (data.success) {
+															toastr["success"](data.message, "Congratulations!")
+															Validate("#page-name","#page-name-feedback");
+															Validate("#page-id","#page-id-feedback");
+
+														} else {
+
+
+															if (data.SysError) {
+																toastr["error"](data.message, "Error:")
+															} else if (data.basics) {
+																if (data.errorNAME && data.errorNAMETXT !== null) {
+																	InValidate("#page-name","#page-name-feedback",data.errorNAMETXT);
+
+																} else {
+																	Validate("#page-name","#page-name-feedback");
+																}
+																if (data.errorPAGEID && data.errorPAGEIDTXT !== null) {
+																	InValidate("#page-id","#page-id-feedback",data.errorPAGEIDTXT);
+																} else {
+																	Validate("#page-id","#page-id-feedback");
+																}
+
+															}
+														}
+													});
+											});
+										});
+									</script>
+									<form id="newpage"  method="post">
 										<div class="form-row">
 											<div class="form-group col">
 												<label for="pagename">Page Name</label>
-												<input type="text" class="form-control" name="pagename" id="pagename" placeholder="Enter the name of the page" required>
+												<input type="text" class="form-control"  id="page-name" placeholder="Enter the name of the page" >
+												<div id="page-name-feedback"></div>
 											</div>
 											<div class="form-group col">
 												<label for="pageid">Page ID</label>
-												<input type="text" class="form-control" name="pageid" id="pageid" placeholder="Enter a unquie ID for the page" required>
+												<input type="text" class="form-control" id="page-id" placeholder="Enter a unquie ID for the page" >
+												<div id="page-id-feedback"></div>
 											</div>
 										</div>
 										<div class="form-group">
@@ -203,33 +245,29 @@
 										</thead>
 										<tbody>
 											<script>
-												
-
-												
-												function delpage(pageid,pagename){
+												function delpage(pageid, pagename) {
 													$("#delete-page").modal('hide');
-													console.log(pageid,pagename)
 													$.post("/manage/ajax/page-manage.php", {
-													delpage: 1,
-													pagename: pagename,
-													pageid: pageid
-													})
-													.done(function(data) {
-														console.log(data)
-													if (data.success) {
-														toastr["success"](data.message, "Congratulations!")
-														$(`#page-${pageid}`).remove()
-													} else {
-														toastr["error"](data.message, "Error:")
-													}
-													});
-                                				}
-												function DeletePage(pageid){
+															delpage: 1,
+															pagename: pagename,
+															pageid: pageid
+														})
+														.done(function(data) {
+															if (data.success) {
+																toastr["success"](data.message, "Congratulations!")
+																$(`#page-${pageid}`).remove()
+															} else {
+																toastr["error"](data.message, "Error:")
+															}
+														});
+												}
+
+												function DeletePage(pageid) {
 
 													$("#del-modal").load("/manage/ajax/page-manage.php", {
-													deletepage: 1,
-													pageid: pageid
-													},function() {
+														deletepage: 1,
+														pageid: pageid
+													}, function() {
 														$("#delete-page").modal('show');
 													});
 												}
@@ -244,7 +282,7 @@
 												$title = $row["title"];
 
 											?>
-												<tr id="page-<?=htmlspecialchars($row['thing'])?>">
+												<tr id="page-<?= htmlspecialchars($row['thing']) ?>">
 
 													<td><a href="<?= htmlspecialchars($href2) ?>" target="_blank"><?= htmlspecialchars($title); ?></a></td>
 													<td><?= htmlspecialchars(date("m/d/Y g:i a", $row["stamp"])); ?></td>
@@ -257,15 +295,15 @@
 															<div class="dropdown-menu" aria-labelledby="options">
 																<a class="dropdown-item" href="<?= htmlspecialchars($href) ?>" target="_blank"><i class="fas fa-cog"></i> Settings</a>
 																<div class="dropdown-divider"></div>
-																<button class="dropdown-item text-danger" onclick="DeletePage(`<?=htmlspecialchars($row['thing']);?>`)"><i class="fas fa-trash-alt"></i> Delete</button>
+																<button class="dropdown-item text-danger" onclick="DeletePage(`<?= htmlspecialchars($row['thing']); ?>`)"><i class="fas fa-trash-alt"></i> Delete</button>
 															</div>
 														</div>
-														
+
 													</td>
 												</tr>
 											<?php } ?>
 											<div id="del-modal">
-												
+
 											</div>
 										</tbody>
 									</table>
@@ -355,6 +393,7 @@
 	<script src="https://unpkg.com/popper.js@1"></script>
 	<script src="https://unpkg.com/tippy.js@4"></script>
 	<script src="main.js"></script>
+	<script src="https://driedsponge.net/functions.js"></script>
 	<script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 	<script src="https://cdn.tiny.cloud/1/dom10ctinmaceofbm524vgsfebgy22lsh2ooomg0oqs8wu28/tinymce/5/tinymce.min.js"></script>
 	<script>
