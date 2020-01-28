@@ -1,26 +1,27 @@
 <?php
 if(isset($_SESSION['steamid'])){
 
+  
+  if(isset($_POST['unverify'])){
+    header('Content-type: application/json');
 
-  if(isset($_POST['type']) && $_POST['type'] === "unverify" and isset($_POST['method']) and $_POST['method'] === "jQuery"){
+    $Message = array(
+      "success" => false,
+      "message" => "Something went wrong"
+    );
     if(isAdmin($_SESSION['steamid'])){
-    $unverifyid = $_POST['user'];
+    $unverifyid = $_POST['discordid'];
     $username = $_POST['username'];
     $sql = SQLWrapper()->prepare("UPDATE discord SET verifyid = :vid WHERE discordid= :id");
     $sql->execute([':id' => $unverifyid, ':vid' => "UNVERIFIED"]);
-    ?>
-      <script>
-        toastr["success"]("<?=htmlspecialchars($username);?> has been unverified!", "Congratulations!")   
-        $("#row-<?=htmlspecialchars($unverifyid);?>").remove();
-      </script>
-    <?php
+    $Message = array(
+      "success" => true,
+      "message" => "$username has been unverified!"
+    );
     }else{
-      ?>
-      <script>
-        toastr["error"]("Not authorized", "Error:")   
-      </script>
-    <?php
+      $Message["message"] = "Not an admin";
     }
+die(json_encode($Message));
   }
 
 
