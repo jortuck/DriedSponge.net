@@ -217,12 +217,12 @@
 										<div class="form-row">
 											<div class="form-group col">
 												<label for="pagename">Page Name</label>
-												<input type="text" class="form-control"  id="page-name" placeholder="Enter the name of the page" >
+												<input type="text"  maxlength="50" class="form-control"  id="page-name" placeholder="Enter the name of the page" >
 												<div id="page-name-feedback"></div>
 											</div>
 											<div class="form-group col">
 												<label for="pageid">Page ID</label>
-												<input type="text" class="form-control" id="page-id" placeholder="Enter a unquie ID for the page" >
+												<input maxlength="50" type="text" class="form-control" id="page-id" placeholder="Enter a unquie ID for the page" >
 												<div id="page-id-feedback"></div>
 											</div>
 										</div>
