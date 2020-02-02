@@ -17,9 +17,9 @@ $description = $content['description'];
 $notloggedin = false;
 $notdiscord = false;
 $noperms = false;
-if($privacy === "0"){//Public
+if($privacy === "1"){//Public
     $showpage = true;
-}elseif($privacy === "1"){//MUst be Loggedin
+}elseif($privacy === "2"){//MUst be Loggedin
 
         if(isset($_SESSION['steamid'])){ 
             $showpage = true; 
@@ -27,7 +27,7 @@ if($privacy === "0"){//Public
             $showpage = false;
             $notloggedin = true;
         }
-}elseif($privacy === "2"){// Must be Diwscord
+}elseif($privacy === "3"){// Must be Diwscord
     if(isset($_SESSION['steamid'])){    
         if(isVerified($_SESSION['steamid'])){
             $showpage = true;    
@@ -40,7 +40,7 @@ if($privacy === "0"){//Public
         $notloggedin = true;
     }
     
-}elseif($privacy === "3"){  //Must be admin
+}elseif($privacy === "4"){  //Must be admin
     if(isset($_SESSION['steamid'])){    
         if(isAdmin($_SESSION['steamid'])){
             $showpage = true;    
@@ -52,7 +52,7 @@ if($privacy === "0"){//Public
         $showpage = false;
         $notloggedin = true;
     }
-}elseif($privacy === "4"){  //Must be admin
+}elseif($privacy === "5"){  //Must be admin
     if(isset($_SESSION['steamid'])){    
         if(isMasterAdmin($_SESSION['steamid'])){
             $showpage = true;    
