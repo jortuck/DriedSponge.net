@@ -22,6 +22,7 @@
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     <link rel="stylesheet" href = "//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" type="text/css" >
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>   
+    <script src="https://driedsponge.net/functions.js"></script>
 </head>
 
 <body>
@@ -162,11 +163,7 @@
                                 <span><b>Success:</b> <span id="success_message_text"><i>insert success message here</i></span></span>
                             </div>
                         </div>
-                        <div id="wait-message" class="d-none">
-                            <div class="alert alert-secondary" role="alert">
-                                <span> please wait while im loading... </span>
-                            </div>
-                        </div>
+                        <div id="loading"></div>
                     </div>
                     <br>
                     <?php
@@ -176,7 +173,7 @@
                         $(document).ready(function() {
                             $("#repeat-last-ad").submit(function(event) {
                                 event.preventDefault();
-                                $("#wait-message").removeClass("d-none");
+                                Loading(true,'#loading');
                                 $("#error-message").addClass("d-none");
                                 $("#success-message").addClass("d-none");
                                 $("#repeat-last-ad").hide();
@@ -186,7 +183,7 @@
                                         lastad: 1
                                     })
                                     .done(function(data) {
-                                        $("#wait-message").addClass("d-none");
+                                        Loading(false,'#loading');
                                         if (data.success) {
                                             $("#success-message").removeClass("d-none");
                                                 $("#success_message_text").html(data.message);
@@ -219,7 +216,7 @@
                                     event.preventDefault();
                                     var adname = $("#adname").val();
                                     var adcontent = $("#newadcontent").val();
-                                    $("#wait-message").removeClass("d-none");
+                                    Loading(true,'#loading');
                                     $("#error-message").addClass("d-none");
                                     $("#success-message").addClass("d-none");
                                     $("#submit-new-ad").hide();
@@ -231,7 +228,7 @@
                                             submit: 1
                                         })
                                         .done(function(data) {
-                                            $("#wait-message").addClass("d-none");
+                                            Loading(false,'#loading');
                                             if (data.success) {
                                                 $("#success-message").removeClass("d-none");
                                                 $("#success_message_text").html(data.message);
@@ -245,24 +242,14 @@
                                                 }
                                                 if(data.basics){
                                                 if(data.errorNAME && data.errorNAMETXT != null){
-                                                    $("#adname").addClass("is-invalid");
-                                                    $("#ad-name-feedback").addClass("invalid-feedback");
-                                                    $("#ad-name-feedback").show();
-                                                    $("#ad-name-feedback").html(data.errorNAMETXT);
+                                                    InValidate("#adname","#ad-name-feedback",data.errorNAMETXT)
                                                 }else{
-                                                    $("#adname").removeClass("is-invalid");
-                                                    $("#adname").addClass("is-valid");
-                                                    $("#ad-name-feedback").hide();
+                                                    Validate("#adname","#ad-name-feedback")
                                                 }
                                                 if(data.errorCON && data.errorCONTXT != null){
-                                                    $("#newadcontent").addClass("is-invalid");
-                                                    $("#ad-con-feedback").addClass("invalid-feedback");
-                                                    $("#ad-con-feedback").show();
-                                                    $("#ad-con-feedback").html(data.errorCONTXT);
+                                                    InValidate("#newadcontent","#ad-con-feedback",data.errorCONTXT)
                                                 }else{
-                                                    $("#newadcontent").removeClass("is-invalid");
-                                                    $("#newadcontent").addClass("is-valid");
-                                                    $("#ad-con-feedback").hide();
+                                                    Validate("#newadcontent","#ad-con-feedback")
                                                 }
                                                 }
                                                 $("#submit-new-ad").show();
