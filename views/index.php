@@ -41,7 +41,7 @@ $mcreatedbyurl = "https://steamcommunity.com/profiles/".$mcreatedby."/";
             <div class="container">
                 <hgroup>
                         <!-- <img src="https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/18/18be38c2f230fea0fa667c8165e4da5cb1a787c0_full.jpg" alt="DriedSponge's Profile Picture"> -->
-                    <h1 class="display-2"><strong>Welcome to my website!</strong></h1>
+                    <h1 class="display-2"><strong>Welcome</strong></h1>
                     
                     <br>
                     <br>
