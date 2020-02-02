@@ -120,6 +120,8 @@
                   $(document).ready(function() {
                     $("#block-user-form").submit(function(event) {
                       event.preventDefault();
+                      Loading(true,"#block-load");
+                      $("#block-user-form").hide()
                       var id64 = $("#block-id64").val();
                       var rsn = $("#block-rsn").val();
                       $.post("/manage/ajax/blocked-users.php", {
@@ -128,6 +130,8 @@
                           rsn: rsn
                         })
                         .done(function(data) {
+                          Loading(false,"#block-load");
+                          $("#block-user-form").show()
                           if (data.success) {
                             toastr["success"](data.message, "Congratulations!")
                             Validate("#block-id64","#block-id64-feedback");
@@ -164,6 +168,7 @@
                     });
                   });
                 </script>
+                <div id="block-load"></div>
                 <form id="block-user-form" method="post">
                   <div class="form-row">
                     <div class="form-group col-md-6">
