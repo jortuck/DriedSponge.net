@@ -21,12 +21,13 @@
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" type="text/css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
+    <script src="https://driedsponge.net/functions.js"></script>
     <script>
         $(document).ready(function() {
             $("form").submit(function(event) {
                 event.preventDefault();
                 var say = $("#say").val();
-                $("#wait-message").removeClass("d-none");
+                Loading(true,"#wait-message");
                 $("#error-message").addClass("d-none");
                 $("#success-message").addClass("d-none");
                 $("#feedback-form").hide();
@@ -42,7 +43,7 @@
                     })
                     .done(function(data) {
                         console.log(data);
-                        $("#wait-message").addClass("d-none");
+                        Loading(false,"#wait-message");
                         if (data.success) {
                             $("#success-message").removeClass("d-none");
                             $("#success_message_text").html(data.message);
@@ -119,10 +120,7 @@
                                 <span><b>Success:</b> <span id="success_message_text"><i>insert success message here</i></span></span>
                             </div>
                         </div>
-                        <div id="wait-message" class="d-none">
-                            <div class="alert alert-secondary" role="alert">
-                                <span> please wait while im loading... </span>
-                            </div>
+                        <div id="wait-message" >
                         </div>
                     </div>
                     <br>
