@@ -106,6 +106,9 @@
                                                     Validate("#des","#des-feedback")
                                                     Validate("#slug","#slug-feedback")
                                                     Validate("#content","#content-feedback")
+                                                    setInterval(function(){
+                                                        $("#success-message").addClass("d-none");
+                                                    }, 10000)
                                                 } else {
                                                     $("#editor-form").show()
                                                     if (data.SysError) {
