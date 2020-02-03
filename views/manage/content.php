@@ -75,28 +75,7 @@
 								header("Location: /manage/content/not-sponge");
 							}
 						}
-						if (isset($_POST['delete-page'])) {
-							if (isMasterAdmin($_SESSION['steamid'])) {
-								$deleteid = $_POST['delete-page'];
-								$deletepageq = SQLWrapper()->prepare("DELETE FROM content WHERE thing= :thing");
-								$deletepageq->execute([':thing' => $deleteid]);
-								header("Location: /manage/content/delete-page");
-							} else {
-								header("Location: /manage/content/not-sponge");
-							}
-						}
-
-						if (isset($_POST['newpage'])) {
-							if (isMasterAdmin($_SESSION['steamid'])) {
-								$pagename = $_POST['pagename'];
-								$pageid = str_replace(" ", "", $_POST['pageid']);
-								$pageslug = $pageid;
-								$newpq = SQLWrapper()->prepare("INSERT INTO content (thing,title,created,slug)VALUES (?,?,?,?)")->execute([$pageid, $pagename, $_SESSION['steamid'], $pageslug]);
-								header("Location: /manage/content/page-created");
-							} else {
-								header("Location: /manage/content/not-sponge");
-							}
-						}
+						
 
 
 
@@ -175,6 +154,8 @@
 									<script>
 										$(document).ready(function() {
 											$("#newpage").submit(function(event) {
+												$("#newpage").hide()
+												Loading(true,"#newpage-feedback")
 												event.preventDefault();
 												var pagename = $("#page-name").val();
 												var pageid = $("#page-id").val();
@@ -184,13 +165,15 @@
 														pageid: pageid
 													})
 													.done(function(data) {
+														Loading(false,"#newpage-feedback")
 														if (data.success) {
+															$("#newpage").show()
 															toastr["success"](data.message, "Congratulations!")
 															Validate("#page-name","#page-name-feedback");
 															Validate("#page-id","#page-id-feedback");
 
 														} else {
-
+															$("#newpage").show()
 
 															if (data.SysError) {
 																toastr["error"](data.message, "Error:")
@@ -213,6 +196,7 @@
 											});
 										});
 									</script>
+									<div id="newpage-feedback"></div>
 									<form id="newpage"  method="post">
 										<div class="form-row">
 											<div class="form-group col">

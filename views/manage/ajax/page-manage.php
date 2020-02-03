@@ -8,7 +8,7 @@ if (isset($_POST['newpage'])) {
         "errorNAME" => false,
         "errorNAMETXT" => null,
         "errorPAGEID" => false,
-        "errorPAGEIDTXT" => true,
+        "errorPAGEIDTXT" => null,
         "message" => "Something went wrong I guess"
     );
     if (isset($_SESSION['steamid'])) {

@@ -326,6 +326,7 @@
                     });
                   });
                 </script>
+                <div id="verify-discord-load"></div>
                 <form id="verify-discord" action="/manage/ajax/manage-discord-user.php" method="post">
                   <div id="verify-form-message"></div>
                   <div class="form-row">

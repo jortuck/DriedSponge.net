@@ -137,11 +137,7 @@ $router->get('/manage/content/{action}', function ($action) { //Content Manage A
     require('steamauth/steamauth.php');  
     include('views/manage/content.php');
 });
-$router->get('/manage/edit/{pageid}/{action}', function ($pageid,$action) { //Editor Manage Actions
-    $header = "/manage/edit/".$pageid;
-    require('steamauth/steamauth.php');  
-    include('views/manage/editor.php');
-});
+
 $router->all('/manage/edit/{pageid}', function ($pageid) { //Editor Manage
     $header = "/manage/edit/".$pageid;
     require('steamauth/steamauth.php');  
