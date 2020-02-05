@@ -35,7 +35,7 @@ if(isset($_POST['submit']) and isset($_POST['method']) and $_POST['method'] === 
         $discordid = $_POST['discordid'];
         $method = $_POST['method'];
 
-        if(empty($verifysteamid)){
+        if(IsEmpty($verifysteamid)){
           ?>
             <script>
               $("#verify-id64").addClass("is-invalid");
@@ -51,7 +51,7 @@ if(isset($_POST['submit']) and isset($_POST['method']) and $_POST['method'] === 
               document.getElementById("verify-id64-feedback").innerHTML = "SteamID64's are numbers only";
             </script>
             <?php
-          }else if(!empty($verifysteamid) && is_numeric($verifysteamid)){
+          }else if(!IsEmpty($verifysteamid) && is_numeric($verifysteamid)){
             $steamidgood = true;
             ?>
             <script>
@@ -63,7 +63,7 @@ if(isset($_POST['submit']) and isset($_POST['method']) and $_POST['method'] === 
             </script>
             <?php
           }
-          if(empty($discordtag)){
+          if(IsEmpty($discordtag)){
             ?>
               <script>
                 $("#verify-discordtag").addClass("is-invalid");
@@ -79,7 +79,7 @@ if(isset($_POST['submit']) and isset($_POST['method']) and $_POST['method'] === 
                 document.getElementById("verify-discordtag-feedback").innerHTML = "Your input does not match the format of a discord username and tag. ex: DriedSponge#0001";
               </script>
               <?php
-            }else if(!empty($discordtag) && preg_match("/.*#[0-9]{4}/",$discordtag)){
+            }else if(!IsEmpty($discordtag) && preg_match("/.*#[0-9]{4}/",$discordtag)){
               $discordtaggood = true;
               ?>
               <script>
@@ -91,7 +91,7 @@ if(isset($_POST['submit']) and isset($_POST['method']) and $_POST['method'] === 
               </script>
               <?php
             }
-            if(empty($discordid)){
+            if(IsEmpty($discordid)){
               ?>
                 <script>
                   $("#verify-discordid").addClass("is-invalid");
@@ -107,7 +107,7 @@ if(isset($_POST['submit']) and isset($_POST['method']) and $_POST['method'] === 
                   document.getElementById("verify-discordid-feedback").innerHTML = "The Discord ID has to be a number!";
                 </script>
                 <?php
-              }else if(!empty($discordid) && is_numeric($discordid)){
+              }else if(!IsEmpty($discordid) && is_numeric($discordid)){
                 $discordidgood = true;
                 ?>
                 <script>
@@ -126,7 +126,7 @@ if(isset($_POST['submit']) and isset($_POST['method']) and $_POST['method'] === 
                   $alreadyverified = SQLWrapper()->prepare("SELECT steamid FROM discord WHERE steamid= :id");
                   $alreadyverified->execute([':id' => $verifysteamid]);
                   $alreadyverifiedrows = $alreadyverified->fetch();
-                  if (!empty($alreadyverifiedrows)){
+                  if (!IsEmpty($alreadyverifiedrows)){
                     ?>
                     <script>
                     toastr["error"]("This user is already verified!", "Error:")   

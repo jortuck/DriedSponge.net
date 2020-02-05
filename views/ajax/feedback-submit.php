@@ -12,7 +12,7 @@ if (isset($_POST['submit'])) {
         if(!isBlocked($_SESSION['steamid'])){
         $feedback = $_POST['say'];
 
-        if (empty($feedback)) {
+        if (IsEmpty($feedback)) {
             $Message["message"] = "Feedback was empty!";
         } else if (strlen($feedback) < 1000) {
 

@@ -179,8 +179,15 @@ function Error404() {
     include "views/404.php";
 }
 /**
- * Check validity of SteamID64
+ * Check if string is completly blank
  *
- * @param int $steamid
+ * @param string $string
  * @return boolean
  */
+function IsEmpty($string){
+    if(empty($string) or ctype_space($string)){
+        return true;
+    }else{
+        return false;
+    }
+}

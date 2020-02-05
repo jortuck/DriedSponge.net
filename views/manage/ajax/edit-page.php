@@ -25,17 +25,17 @@ if (isset($_POST['savepage'])) {
             $changedby = $_SESSION['steamid'];
             $slug =  $_POST['slug'];
 
-            if(empty($title)){
+            if(IsEmpty($title)){
                 $Msg["errorNAMETXT"] = "Fill in a title!";
             }else if(strlen($title) > 50){
                 $Msg["errorNAMETXT"] = "The title has to be less than 50 characters!";
             }
 
-            if(empty($privacy)){
+            if(IsEmpty($privacy)){
                 $Msg["errorPRIVACYTXT"] = "Please select a privacy setting!";
             }
 
-            if(empty($des)){
+            if(IsEmpty($des)){
                 $Msg["errorDESTXT"] = "You must set a description for SEO purposes.";
             }else if(strlen($des) > 160){
                 $Msg["errorDESTXT"] = "The description must be under 160 characters!";
@@ -43,13 +43,13 @@ if (isset($_POST['savepage'])) {
 
              
             // ([a-zA-Z0-9]*)(\/)([a-zA-Z0-9]]*)
-            if(empty($slug)){
+            if(IsEmpty($slug)){
                 $Msg["errorSLGTXT"] = "The page must have a custom slug so users can navigate to it!";
             }else if(preg_match('/\s/',$slug)){
                 $Msg["errorSLGTXT"] = "The slug must not contain spaces!";
             }
 
-            if(empty($content)){
+            if(IsEmpty($content)){
                 $Msg["errorCONTXT"] = "The page has to have some content!";
             }
 

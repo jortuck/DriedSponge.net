@@ -83,24 +83,24 @@ if (isset($_POST['submit'])) {
                 $adname = $_POST['adname'];
                 
                 $adcontent = $_POST['adcontent']; 
-                if(empty($adname)){
+                if(IsEmpty($adname)){
                     $Message["errorNAME"] = true;
                     $Message["errorNAMETXT"] = "Please specify an ad name";  
                      
                 }else if(strlen($adname) > 25){
                     $Message["errorNAME"] = true;
                     $Message["errorNAMETXT"] = "Your ad name is too long";  
-                }else if(strlen($adname) < 25 && !empty($adname)){
+                }else if(strlen($adname) < 25 && !IsEmpty($adname)){
                     $Message["errorNAME"] = false; 
                 }
-                if(empty($adcontent)){
+                if(IsEmpty($adcontent)){
                     $Message["errorCON"] = true;
                     $Message["errorCONTXT"] = "Please ad some detail to your ad";  
                      
                 }else if(strlen($adcontent) > 1500){
                     $Message["errorCON"] = true;
                     $Message["errorCONTXT"] = "Your ad is too long! Try cutting it down a bit (below 1500 characters)";  
-                }else if(strlen($adcontent) < 1500 && !empty($adcontent)){
+                }else if(strlen($adcontent) < 1500 && !IsEmpty($adcontent)){
                     $Message["errorCON"] = false; 
                 }
             if(!$Message["errorNAME"] && !$Message["errorCON"] && $Message["basics"]){

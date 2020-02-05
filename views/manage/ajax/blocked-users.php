@@ -65,24 +65,24 @@ if(isset($_POST['blockusr'])){
         $blockid = $_POST['id64'];
         $blockrsn =$_POST['rsn'];
 
-        if(empty($blockid)){
+        if(IsEmpty($blockid)){
             $Message['errorID64'] = true;
             $Message['errorID64TXT'] = "You must specify which user to block!";
 
         }else if(!is_numeric($blockid)){
             $Message['errorID64'] = true;
             $Message['errorID64TXT'] = "SteamID64's are numbers only!";
-        }else if(is_numeric($blockid) && !empty($blockid)){
+        }else if(is_numeric($blockid) && !IsEmpty($blockid)){
             $Message['errorID64'] = false;
         }
-        if(empty($blockrsn)){
+        if(IsEmpty($blockrsn)){
             $Message['errorRSN'] = true;
             $Message['errorRSNTXT'] = "You must specify a valid reson!";
 
         }else if(strlen($blockrsn) > 100){
             $Message['errorRSN'] = true;
             $Message['errorRSNTXT'] = "The reason must be under 100 characters";
-        }else if(strlen($blockrsn) < 100 && !empty($blockrsn)){
+        }else if(strlen($blockrsn) < 100 && !IsEmpty($blockrsn)){
             $Message['errorRSN'] = false;
         }
         if($Message["basics"] && !$Message["errorRSN"] && !$Message['errorID64']){  
@@ -90,7 +90,7 @@ if(isset($_POST['blockusr'])){
         $sqlblockexistquery = SQLWrapper()->prepare("SELECT id64 FROM blocked WHERE id64= :id");
         $sqlblockexistquery->execute([':id' => $blockid]);
         $blockrows = $sqlblockexistquery->fetch();
-            if (!empty($blockrows)){
+            if (!IsEmpty($blockrows)){
                 $Message["SysError"] = true;
                 $Message['message'] = "This user is already blocked!";        
              } else{
