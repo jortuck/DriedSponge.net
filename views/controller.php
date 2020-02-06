@@ -1,24 +1,12 @@
 <?php
 
 
-// Cache the contents to a cache file
-$url = $_SERVER["SCRIPT_NAME"];
-$break = Explode('/', $url);
-$file = $id;
-$str = str_replace(":","+",$id);
-$str2 = str_replace("/","-",$str);
-$cachefile = 'cache/cached-'.$str2.'.htm';
-$cachetime = 18000;
 
 
-//Serve from the cache if it is younger than $cachetime
-if (file_exists($cachefile) && time() - $cachetime < filemtime($cachefile)) {
-    echo "<!-- Served From Cache -->";
-   readfile($cachefile);
-   exit;
-}else{
+
+
    $steaminfo = SteamInfo($id);
-ob_start(); 
+
 
 ?>
 
@@ -72,29 +60,69 @@ ob_start();
                     
                     <br>
                     </hgroup>
-                    <div data-aos="fade-up">
-                    <div class="jumbotron" style="text-align: center;">
-                    <h2><img src="<?=htmlspecialchars($steaminfo['img']);?>"/></h2>
-                    <h1>Info on <?=htmlspecialchars($steaminfo['name']);?></h1>
+                   
+                    <div class="text-center">
+                    <h2><img style="border-radius: 1em;box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.30), 0 8px 22px 0 rgba(0, 0, 0, 0.30);max-width: 150px;" src="<?=htmlspecialchars($steaminfo['img']);?>"/></h2>
+                    <br>
                     
-                    <p class="jumbotronparagraph"><strong>Username:</strong> <?=htmlspecialchars($steaminfo['name']);?> <button  value="<?=htmlspecialchars($steaminfo['name']);?>" onclick="copything(this.value)" class="btn btn-success"><i class="far fa-copy"></i></button></p>
-                    <p class="jumbotronparagraph"><strong>SteamID64:</strong> <?=htmlspecialchars($steaminfo['id64']);?> <button  value="<?=htmlspecialchars($steaminfo['id64']);?>" onclick="copything(this.value)" class="btn btn-success"><i class="far fa-copy"></i></button></p>
-                    <p class="jumbotronparagraph"><strong>SteamID:</strong> <?=htmlspecialchars($steaminfo['idn']);?> <button  value="<?=htmlspecialchars($steaminfo['idn']);?>" onclick="copything(this.value)" class="btn btn-success"><i class="far fa-copy"></i></button></p>
-                    <p class="jumbotronparagraph"><strong>SteamID3:</strong> <?=htmlspecialchars($steaminfo['id3']);?> <button value="<?=htmlspecialchars($steaminfo['id3']);?>" onclick="copything(this.value)" class="btn btn-success"><i class="far fa-copy"></i></button></p>
-                    <p class="jumbotronparagraph"><strong>Profile URL:</strong> <a class="jumbaurl" target="_blank" href="<?=htmlspecialchars($steaminfo['url']);?>"><?=htmlspecialchars($steaminfo['url']);?></a> <button value="<?=htmlspecialchars($steaminfo['url']);?>" onclick="copything(this.value)" class="btn btn-success"><i class="far fa-copy"></i></button></p>
-                    <h4 class="jumboh4">Personal Info (This may not be accurate)</h4><br>
-                    <p class="jumbotronparagraph"><strong>Real Name:</strong> <?=htmlspecialchars($steaminfo['realname']);?> <button value="<?=htmlspecialchars($steaminfo['realname']);?>" onclick="copything(this.value)" class="btn btn-success"><i class="far fa-copy"></i></button></p>
-                    <p  class="jumbotronparagraph"><strong>Country</strong>: <?=htmlspecialchars($steaminfo['country']);?> <button value="<?=htmlspecialchars($steaminfo['country']);?>" onclick="copything(this.value)" class="btn btn-success"><i class="far fa-copy"></i></button> </p>
-                    <?php if(isset($steaminfo['gmsname'])){?>
-                    <h4 class="jumboh4">GmodStore Info</h4><br>
-                    <p class="jumbotronparagraph"><strong>GmodStore Name:</strong> <?=htmlspecialchars($steaminfo['gmsname']);?> <button value="<?=htmlspecialchars($steaminfo['gmsname']);?>" onclick="copything(this.value)" class="btn btn-success"><i class="far fa-copy"></i></button></p>
-                    <p class="jumbotronparagraph"><strong>GmodStore URL:</strong> <a class="jumbaurl" target="_blank" href="<?=htmlspecialchars($steaminfo['gmsurl']);?>"><?=htmlspecialchars($steaminfo['gmsurl']);?></a> <button value="<?=htmlspecialchars($steaminfo['gmsurl']);?>" onclick="copything(this.value)" class="btn btn-success"><i class="far fa-copy"></i></button></p>
-                    </div>
-                        <?php
-                        }
+                    <h1>Info on <?=htmlspecialchars($steaminfo['name']);?></h1>
+                    <br>
+                    <table class="table paragraph text-center">
+                        <script>
+                            $(document).ready(function(){
+                                $("#userinfo").removeClass("d-none")
+                                $("#loading").hide()
+                            })
+                        </script>
+                        <div id="loading"><div class="text-center"><div class="spinner-border text-primary " role="status"><span class="sr-only">Loading...</span></div><br><p class="paragraph"><b>Loading...</b></p></div></div>
+                        <tbody id="userinfo" class="d-none">
+                        <?php 
+                          $info = array(
+                            array("Username",$steaminfo['name'],false),
+                            array("SteamID64",$steaminfo['id64'],false),
+                            array("SteamID",$steaminfo['idn'],false),
+                            array("SteamID3",$steaminfo['id3'],false),
+                            array("Profile URL",$steaminfo['url'],true),
+                            array("Name",$steaminfo['realname'],false),
+                            array("Country",$steaminfo['country'],false)
+                            
+                          );
+                          if(isset($steaminfo['gmsname'])){
+                            array_push($info,
+                                array("GmodStore Name",$steaminfo['gmsname'],false),
+                                array("GmodStore URL",$steaminfo['gmsurl'],true)
+                            );
+                          }
+                          foreach ($info as $value) {
+                           
+                          if(!$value[2]){
+
+                          
                         ?>
+                    
+                        <tr>
+                        <th scope="row"><?=htmlspecialchars($value[0]);?></th>
+                        <td><?=htmlspecialchars($value[1]);?></td>
+                        <td><button  onclick="copything('<?=htmlspecialchars($value[1]);?>')" class="btn btn-primary"><i class="far fa-copy"> Copy</i></button></td>
+                        </tr>
+                    <?php
+                    }else{
+                        ?>
+                        <tr>
+                        <th scope="row"><?=htmlspecialchars($value[0]);?></th>
+                        <td><a target="_blank" href="<?=htmlspecialchars($value[1]);?>"><?=htmlspecialchars($value[1]);?></a></td>
+                        <td><button  onclick="copything('<?=htmlspecialchars($value[1]);?>')" class="btn btn-primary"><i class="far fa-copy"> Copy</i></button></td>
+                        </tr>
+                        <?php
+                    }
+                        }
+                    ?>
+                    
+                    </tbody>
+                    </table>
+                    <br>
                 </div>
-                    </div>
+                    
                     
                        
             
@@ -109,7 +137,7 @@ ob_start();
 <!-- End of "app" -->
 
 <?php 
-include("views/includes/hex.php");
+//include("views/includes/hex.php");
     include("views/includes/footer.php"); // we include footer.php here. you can use .html extension, too.
     ?>
 
@@ -171,11 +199,3 @@ include("views/includes/hex.php");
 
 
 </html>
-<?php
-
-$cached = fopen($cachefile, 'w');
-fwrite($cached, ob_get_contents());
-fclose($cached);
-ob_end_flush(); // Send the output to the browser
-}
-?>

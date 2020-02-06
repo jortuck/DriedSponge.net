@@ -39,19 +39,18 @@ include("views/includes/navbar.php")
                     <?php
                         include("views/includes/search.php");
                      ?>
-                <div class="jumbotron">
-                <hgroup >
-                        <h1><i class="fas fa-user-times"></i></h1>
-                    <h1><strong>Error: Invalid data!</strong></h1>
+                <br>
+                    <div class="text-center">
+                    
+                    <h1><i class="fas fa-user-slash"></i></h1>
+                    <h1><strong>User not found</strong></h1>
+                    
+                    
+               
 
                     <br>
-                </hgroup>
-
-                <p class="ep">The data you entered in to the SteamID finder was invalid or the account no longer exist!</p>
-                <br>
-                <!-- <p style="text-align: center;"><button class="btn btn-success" onclick="goback()"><strong class="btntext">Go Back</strong></button></p>
-                <p style="text-align: center;"><a href="steam.php"><button class="btn btn-success"><strong class="btntext">Try Again</strong></button></a></p> -->
-                 </div>
+                    </div>
+                
 
             </div>
         </div>

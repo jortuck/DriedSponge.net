@@ -155,7 +155,15 @@ function SteamInfo($identifier) {
 
 
 }
-
+function GMSInfo($id64){
+    $gmsapi = "85206700db2835f105dc22a79e287f8599ec1b8b";
+    $gmjson = @file_get_contents("https://api.gmodstore.com/v2/users/$id64?api_key=$gmsapi");
+    $gmdata = json_decode($gmjson);
+    if(isset($gmdata->data->id)){
+            $gmsinfo = array("name"=>$gmdata->data->name, "slug"=>$gmdata->data->slug);
+            return $gmsinfo;
+    }
+}
 
 
 /**
