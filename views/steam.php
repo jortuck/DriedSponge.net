@@ -23,11 +23,9 @@
     </head>
     
  <body>
- <?php
-include("views/includes/navbar.php")
-?>
+
      <div class="app">
-    <div class="container-fluid-lg" style="padding-top: 80px;">
+    <div class="container-fluid-lg" style="padding-top:30px;">
 
         
             <div class="container">
@@ -37,7 +35,7 @@ include("views/includes/navbar.php")
                             <h1 class="display-2"><strong>SteamID Tool</strong></h1>
                         <br>
                     </hgroup>
-                    <p class="paragraph pintro">Need to look something up about a user on steam? Do it here! Use any SteamID or profile URL to look up information! If the user you're searching for has a GmodStore profile, their GMS info will show up too! For more info on the site visit my <a href="/projects/web">Web Projects </a>page.</p>
+                    <p class="paragraph pintro">Need to look something up about a user on steam? Do it here! Use any SteamID or profile URL to look up information! If the user you're searching for has a GmodStore profile, their GMS info will show up too!</p>
                     <br>
                     
                     <?php
@@ -46,6 +44,7 @@ include("views/includes/navbar.php")
                         ?>
                     <?php
                     if(isset($_SESSION['steamid'])) {
+                        include ('steamauth/userInfo.php');
                         ?>
   
                     <div class="text-center">
@@ -131,10 +130,7 @@ include("views/includes/navbar.php")
 </div>
 </div> 
 <!-- End of "app" -->
-<?php 
-    //include("views/includes/hex.php");
-    include("views/includes/footer.php"); // we include footer.php here. you can use .html extension, too.
-    ?>
+
 
 
 
@@ -159,7 +155,7 @@ include("views/includes/navbar.php")
               
                           navigator.clipboard.writeText(value)
                           
-                         toastr["success"](value + " was successfully copied to clipboard", "Congradulations!")
+                         toastr["success"](value + " was successfully copied to clipboard", "Congratulations!")
               
                          toastr.options = {
                               "closeButton": true,

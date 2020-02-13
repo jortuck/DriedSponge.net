@@ -41,17 +41,14 @@
  <body>
 
      <div class="app">
-        <?php
-        include("views/includes/navbar.php")
-        ?>
-    <div class="container-fluid-lg" style="padding-top: 80px;">
+    <div class="container-fluid-lg" style="padding-top: 30px;">
         
 
         
             <div class="container">
                
                     <hgroup>
-                        <h2><strong>Steam ID Tool</strong></h2>
+                    <h1 class="display-2"><strong>SteamID Tool</strong></h1>
                         <br>
                         
                      <?php
@@ -136,10 +133,7 @@
 </div> 
 <!-- End of "app" -->
 
-<?php 
-//include("views/includes/hex.php");
-    include("views/includes/footer.php"); // we include footer.php here. you can use .html extension, too.
-    ?>
+
 
 
 
