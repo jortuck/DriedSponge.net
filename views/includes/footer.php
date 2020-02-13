@@ -43,7 +43,7 @@ if ( date("m") == "12" ){
                           </div>
                         </div>
                         <br>
-                        <p><cite>Copyright © 2019 DriedSponge.net &bull; Current theme: <?php echo $themetxt; ?></p>
+                        <p><cite>Copyright © 2020 DriedSponge.net &bull; Current theme: <?php echo $themetxt; ?></p>
                             
         </div>
       </footer>

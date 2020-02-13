@@ -46,8 +46,9 @@
                     if(isset($_SESSION['steamid'])) {
                         include ('steamauth/userInfo.php');
                         ?>
-  
+
                     <div class="text-center">
+                    <p class="paragraph"><a href="?logout">Logout</a></p>
                     <h2><img style="border-radius: 1em;box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.30), 0 8px 22px 0 rgba(0, 0, 0, 0.30);max-width: 150px;" src="<?=htmlspecialchars($steamprofile['avatarfull']);?>"/></h2>
                     <br>
                     <h1>Your data</h1>
@@ -130,7 +131,14 @@
 </div>
 </div> 
 <!-- End of "app" -->
+<br>
+<footer class="text-center">
+        
 
+            <p style="font-size: 1.3em;"><b>Copyright © 2020 DriedSponge.net</b></p>
+
+  
+</footer>
 
 
 
