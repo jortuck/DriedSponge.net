@@ -23,6 +23,11 @@ if (isset($_SESSION['steamid']) && isAdmin($_SESSION['steamid'])) {
         if ($row3['steamid'] !== null) {
           $discordsteamurl = "/sprofile/" . $row3['steamid'] . "/";
           $discordstamp =  date("m/d/Y g:i a", $row3["stamp"]);
+          if($row3["givenrole"]){
+            $row3["givenrole"] = "Yes";
+          }else{
+            $row3["givenrole"] = "Pending";
+          }
       ?>
 
           <tr class="search-discorduser" id="discord-users-<?= htmlspecialchars($row3["discordid"]); ?>">

@@ -199,3 +199,19 @@ function IsEmpty($string){
         return false;
     }
 }
+
+/**
+ * Just a short version of htmlspecialchars
+ *
+ * @return string 
+ */
+function v($var){
+    return htmlspecialchars($var);
+}
+
+function url(){
+    $protocol = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != "off" ? "https" : "http";
+    $host = $_SERVER['SERVER_NAME'];
+    $dir = stripslashes("$protocol://$host" . dirname($_SERVER['PHP_SELF']) . "/");
+    return $dir;
+}

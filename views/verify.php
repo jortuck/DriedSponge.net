@@ -24,10 +24,7 @@
 </head>
 
 <body>
-    <?php
-    include("views/includes/navbar.php")
-    
-    ?>
+
     <?php
 
         $Done = false;
@@ -40,6 +37,7 @@
                $_SESSION["verify_code"] = $verify; 
             }
                     if (isset($_SESSION['steamid'])) {
+                        include ('steamauth/userInfo.php');
                         $checkifdone = SQLWrapper()->prepare("SELECT discordid,stamp,discorduser,givenrole FROM discord WHERE steamid = :id");
                         $checkifdone->execute([':id' =>  $steamprofile['steamid']]);
                         $checkdonerow = $checkifdone->fetch();
@@ -51,7 +49,7 @@
                             $discordusername = $checkdonerow['discorduser'];
                             $discordid = $checkdonerow['discordid'];
                             $verifiedon = date("m/d/Y g:i a", $checkdonerow['stamp']);
-                            if($checkdonerow['givenrole']=="NO"){
+                            if(!$checkdonerow['givenrole']){
                                 $roles = true;
                             }else{
                                 $roles = false;
@@ -121,6 +119,11 @@
                     <h1 class="articleh1" style="color:green;">You have been verified as:<br><?=htmlspecialchars($discordusername)?>(ID: <?=htmlspecialchars($discordid)?>)<br>Verified on: <?=htmlspecialchars($verifiedon);?></h1>
                     <br>
                     <h2 style="text-align: center;">If this IS NOT your discord account please let me or one of my moderators know immdiatley. If you need to change your account let me or one of my mods know so we can help you.</h2>
+                    <br>
+                    <div class="text-center">
+                    <a href="?logout" >Logout</a>
+
+                    </div>
                 <?php
                 }
                 if($InvalidCode){
@@ -154,9 +157,6 @@
 
     </div>
     <!-- end of app -->
-    <?php
-    include("views/includes/footer.php"); // we include footer.php here. you can use .html extension, too.
-    ?>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>   
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>

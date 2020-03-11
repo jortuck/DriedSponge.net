@@ -1,10 +1,10 @@
 <?php
-$servername = "db.hexaneweb.com";
-$username = "driedspo_netuser";
-$password = "U7MQioT0uiaoUzzdKnR3sXEOIts4Jt08";
+$servername = "73.59.72.29";
+$username = "networkuser";
+$password = "*#fj*2EhdFEmoUV^@zL0vTtfpsIF&U9ME&YCuKpF%NR2xjpcOVEJa61P2#rb9oJy!x3UxLL4Q7Lj";
 
 try {
-    $conn = new PDO("mysql:host=$servername;dbname=driedspo_net", $username, $password);
+    $conn = new PDO("mysql:host=$servername;dbname=network", $username, $password);
     // set the PDO error mode to exception
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 } catch (PDOException $e) {

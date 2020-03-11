@@ -19,7 +19,7 @@
         <title>Steam ID Tool</title>
         <script src="https://kit.fontawesome.com/0add82e87e.js" crossorigin="anonymous"></script>
         <link rel="stylesheet" href = "//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" type="text/css" >
-
+        <link rel="stylesheet" type="text/css" href="<?=v(url());?>css/steam.css" />
     </head>
     
  <body>
@@ -32,7 +32,7 @@
                
                     <hgroup>
                             <!-- <img src="https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/18/18be38c2f230fea0fa667c8165e4da5cb1a787c0_full.jpg" alt="DriedSponge's Profile Picture"> -->
-                            <h1 class="display-2"><strong>SteamID Tool</strong></h1>
+                            <h1 class="display-2">SteamID Tool</h1>
                         <br>
                     </hgroup>
                     <p class="paragraph pintro">Need to look something up about a user on steam? Do it here! Use any SteamID or profile URL to look up information! If the user you're searching for has a GmodStore profile, their GMS info will show up too!</p>
@@ -54,7 +54,7 @@
                     <h1>Your data</h1>
                     </div>
                     <br>
-                    <table class="table paragraph text-center">
+                    <table class="table paragraph table-dark text-center">
                         <script>
                             $(document).ready(function(){
                                 $("#userinfo").removeClass("d-none")

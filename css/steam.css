@@ -1,0 +1,31 @@
+body{
+    background-color: #1B2838;
+    color: white;
+}
+.display-2{
+    color: white;
+    font-size: 6em;
+    font-weight: 600;
+}
+
+.steam-search-input{
+    background-color: #316282;
+    font-style: italic;
+    color: #0E1C25;
+    border: none;
+    border-radius: 0em;
+    
+}
+.steam-search-input:focus{
+    background-color: #316282;
+    color: black;
+    font-style: normal;
+    border: none;
+    border-radius: 0em;
+}
+.input-group-prepend .input-group-text{
+    background-color: #316282;
+    color: black;
+    border: none;
+    border-radius: 0em;
+}

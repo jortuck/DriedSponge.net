@@ -135,7 +135,7 @@ if(isset($_POST['submit']) and isset($_POST['method']) and $_POST['method'] === 
                   } else{
 
                     $sqlblock = SQLWrapper()->prepare("INSERT INTO discord (discordid,steamid, stamp, verifyid,discorduser,givenrole)
-                    VALUES (?,?,?,?,?,?)")->execute([$discordid,$verifysteamid,$verifytime,$verifyid,$discordtag,"NO"]);
+                    VALUES (?,?,?,?,?,?)")->execute([$discordid,$verifysteamid,$verifytime,$verifyid,$discordtag,0]);
                     ?>
                         <script>
                           $("#verify-discord")[0].reset();

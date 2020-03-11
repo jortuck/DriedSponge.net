@@ -19,7 +19,6 @@
                                             </a>
                                             <div class="dropdown-menu" aria-labelledby="MyProjects">
                                              <a class="dropdown-item" href="/projects/web">Web Projects</a>
-                                            <a  class="dropdown-item" href="/projects/lua">Lua Projects</a>
                                             </div>
                                         </li>
                                 <li class="nav-item dropdown">
