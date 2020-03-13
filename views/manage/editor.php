@@ -259,7 +259,9 @@
             branding: false,
             plugins: "link,anchor,autoresize,autosave,image,wordcount,searchreplace,fullscreen,code,lists",
             menubar: "file edit insert view format table tools help ",
-            toolbar: "undo redo | styleselect | bold italic underline strikethrough format code | align left center right justify | link image anchor numlist bullist | wordcount ",
+            content_css: ['https://fonts.googleapis.com/css?family=Bangers'],
+            font_formats: 'Arial Black=arial black,avant garde;Indie Flower=Bangers, cursive;Times New Roman=times new roman,times;',
+            toolbar: "undo redo | styleselect | bold italic underline strikethrough format code | align left center right justify | link image anchor numlist bullist | fontsizeselect fontselect | wordcount ",
             default_link_target: "_blank",
         });
     </script>

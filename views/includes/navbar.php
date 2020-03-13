@@ -2,7 +2,7 @@
     
         <div class="page-header">
          
-            <nav class="navbar navbar-expand-lg navbar-dark nbth fixed-top">
+            <nav class="navbar navbar-expand-lg navbar-dark nbth ">
                     <a class="navbar-brand" href="/home"><strong>driedsponge.net</strong></a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarmain" aria-controls="navbarmain" aria-expanded="false" aria-label="Toggle navigation">
                     <i class="fas fa-bars" style="color: black;"></i>
@@ -41,6 +41,7 @@
                                 }  else {
                                 include ('steamauth/userInfo.php'); //To access the $steamprofile array
                                 ?>
+                                <ul class="navbar-nav  mt-2 mt-lg-0">
                                 <li class="nav-item dropdown" style="list-style-type:none;">
                                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" style="color: white;" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <?=htmlspecialchars($steamprofile['personaname']);?>
@@ -48,7 +49,6 @@
                                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
                                     <a class="dropdown-item" href="?logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
                                     <?php
-                                     
                                     if (isAdmin($_SESSION['steamid'])){ 
                                     ?>
                                         <a class="dropdown-item" href="/manage/"><i class="fas fa-cog"></i></i> Management</a>                                  
@@ -57,6 +57,7 @@
                                     ?>
                                 </div>
                             </li>
+                                </ul>
                         </div>
                                 <?php 
                                     } ?>

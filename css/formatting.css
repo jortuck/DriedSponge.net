@@ -4,6 +4,8 @@ body {
     flex-direction: column;
     word-wrap: break-word;
     overflow-wrap: break-word;
+    background-color: rgb(22, 108, 212);
+    color: white;
 }
 .app {
     flex: 1 0 auto;
@@ -17,6 +19,8 @@ label{
 }
 .display-2{
     text-align: center;
+    font-weight: 500;
+    font-size: 4em;
 }
 .nav-tab{
     font-size: 20px;
@@ -39,6 +43,19 @@ label{
     padding-bottom: 10px;
     padding-top: 5px;
     text-align: center; 
+}
+.copyright{
+    font-size: 0.7em;
+}
+.footer-text,.footer-text a{
+    font-size: 1.1em;
+    font-weight: bold;
+    color: rgba(255,255,255,.65);
+}
+.footer-text a:hover{
+    font-size: 1.1em;
+    font-weight: bold;
+    color: white;
 }
 .whitehyperlink{
     text-decoration: underline;
@@ -115,6 +132,30 @@ label{
     text-align: center;
 }
 
+.container-fluid .content-box{
+    width: 100%;
+    color: black;
+    background-color: white;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    padding:2em;
+    border-radius: 6px;
+    width: 100%;
+    margin: 5px 0px;
+}
+.content-box .subheading{
+    color: black;
+    font-weight: 900;
+    font-size: 3em;
+    font-family: 'Bangers';
+    letter-spacing: 5px;
+    margin-bottom: 0.5em;
+}
+.container-fluid{
+    max-width: 1200px;
+}
+.content-box .paragraph{
+    color: rgb(78, 78, 78);
+}
 /*End jubotron */
 /*Fomrs*/
 .invalid-feedback{
@@ -135,10 +176,25 @@ label{
     font-weight: 900;
 }
 .card-border{
-    border-radius: 10px;
     margin: 10px 10px 10px 10px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-
+    background-color: white;
+    text-align:center;
+    max-width: 1000px;
+}
+.row.display-flex {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .row.display-flex > .col {
+    display: flex;
+    flex-direction: column;
+  }
+  .card{
+      height: 100%;
+  }
+.card-border .paragraph{
+    font-size: 1.1em;
 }
 /*End content*/
 
