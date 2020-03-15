@@ -91,16 +91,12 @@ if (empty($content)) {
                 <?php
                 if ($showpage) {
                 ?>
-                    <div class="container-fluid">
+
                         <hgroup>
                             <h1 class="display-2"><strong><?= htmlspecialchars($title); ?></strong></h1>
                         </hgroup>
                         <br>
-                        <div class="content-box">
-                            <?= htmlspecialchars_decode($content['content']); ?>
-                        </div>
-                        <br>
-                    </div>
+                        <?= htmlspecialchars_decode($content['content']); ?>
 
                 <?php
                 }

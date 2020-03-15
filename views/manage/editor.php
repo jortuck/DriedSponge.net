@@ -44,7 +44,7 @@
     <div class="app">
         <div class="container-fluid-lg" style="padding-top: 30px;">
 
-            <div class="container">
+            <div class="container-fluid">
 
                 <?php
                 $ivalidid = false;
@@ -256,13 +256,49 @@
     <script>
         tinymce.init({
             selector: 'textarea',
-            branding: false,
-            plugins: "link,anchor,autoresize,autosave,image,wordcount,searchreplace,fullscreen,code,lists",
+            plugins: "link,anchor,autoresize,autosave,image,wordcount,searchreplace,fullscreen,code,lists,visualblocks",
             menubar: "file edit insert view format table tools help ",
-            content_css: ['https://fonts.googleapis.com/css?family=Bangers'],
+            content_css: ['https://fonts.googleapis.com/css?family=Bangers','https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css',"<?=v(url());?>css/argon.min.css",'<?=v(url());?>css/formatting.css'],
+            
             font_formats: 'Arial Black=arial black,avant garde;Indie Flower=Bangers, cursive;Times New Roman=times new roman,times;',
-            toolbar: "undo redo | styleselect | bold italic underline strikethrough format code | align left center right justify | link image anchor numlist bullist | fontsizeselect fontselect | wordcount ",
+            toolbar: "undo redo | styleselect | bold italic underline strikethrough format code | align left center right justify | link image anchor numlist bullist | wordcount ",
             default_link_target: "_blank",
+            style_formats: [
+                { title: 'Headers', items: [
+                { title: 'Content Box Heading', block: 'h1', classes: 'heading' },
+                { title: 'Content Box Subheading', block: 'h2', classes: 'subheading' }
+                ]},
+                { title: 'Text', items: [
+                { title: 'Paragraph', block: 'p', classes: 'paragraph' }
+                ]},
+                { title: 'Containers', items: [
+                { title: 'Fluid Container', block: 'div', wrapper: true, classes: 'container-fluid',merge_siblings: false },
+                { title: 'Content Box', block: 'div', wrapper: true, classes: 'content-box', exact: true,merge_siblings: false}
+                ] },
+                { title: 'Badges', items: [
+                    { title: 'Normal Badges', items: [
+                    { title: 'Primary', inline: 'span', classes: 'badge badge-primary' },
+                    { title: 'Secondary', block: 'div', wrapper: true, classes: 'content-box' }
+                    ] },
+                    { title: 'Pill Badges', items: [
+                    { title: 'Normal Badges', block: 'div', wrapper: true, classes: 'container-fluid', },
+                    { title: 'B', block: 'div', wrapper: true, classes: 'content-box', exact: true}
+                    ] }
+                ] },
+                { title: 'Layouts', items: [
+                    { title: 'Row', block: 'div', wrapper: true, classes: 'row display-flex', exact: true, merge_siblings: false },
+                    { title: 'Col', block: 'div', wrapper: true, classes: 'col indexcol',  exact: true, merge_siblings: false}
+                ] },
+                { title: 'Components', items: [
+                    { title: 'Cards', items: [
+                    { title: 'Card', block: 'div', wrapper: true, classes: 'card card-border', exact: true  },
+                    { title: 'Card Body', block: 'div', wrapper: true, classes: 'card-body', exact: true}
+                    ] }
+                ] },
+                
+            ],
+            end_container_on_empty_block: true,
+            preview_styles: false
         });
     </script>
 

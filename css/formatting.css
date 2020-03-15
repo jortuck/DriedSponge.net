@@ -72,10 +72,7 @@ label{
     font: 1.7em; 
     line-height: 40px;
 }
-.subheading{
-    font-size: 2em;
-    text-align: center;
-}
+
 .subsubhead{
     font-weight: bolder;
     font-size: 1.4em;
@@ -140,21 +137,31 @@ label{
     padding:2em;
     border-radius: 6px;
     width: 100%;
-    margin: 5px 0px;
+    margin: 7px 0px;
 }
-.content-box .subheading{
+.content-box .heading, .content-sub-head{
     color: black;
     font-weight: 900;
     font-size: 3em;
     font-family: 'Bangers';
     letter-spacing: 5px;
     margin-bottom: 0.5em;
+    text-align: center;
+}
+.content-box .subheading{
+    color: black;
+    font-weight: 600;
+    font-size: 2em;
+    margin-bottom: 0.5em;
+    text-align: center;
 }
 .container-fluid{
     max-width: 1200px;
 }
-.content-box .paragraph{
+.content-box .paragraph, .content-paragraph{
     color: rgb(78, 78, 78);
+    font-size: 1.4em;
+    line-height: 33px;
 }
 /*End jubotron */
 /*Fomrs*/
@@ -195,6 +202,12 @@ label{
   }
 .card-border .paragraph{
     font-size: 1.1em;
+}
+.card-border .card-body .heading{
+    font-size: 1.6em;
+    font-family: 'Bangers';
+    letter-spacing: 3px;
+    color: black;
 }
 /*End content*/
 

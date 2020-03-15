@@ -47,13 +47,13 @@
                 <br>
                 <br>
                 <div class="content-box" data-aos="zoom-in">
-                    <h4 class="subheading">About Me</h4>
+                    <h1 class="heading">About Me</h1>
                     <p class="paragraph" style="text-align: center;">I am a developer that primarily focuses on full
                         stack web development. I also develop discord bots and Garry's Mod addons.</p>
                 </div>
                 <br>
                 <div class="content-box" data-aos="zoom-in">
-                    <h4 class="subheading" style="text-align: center;">What I do...</h4>
+                    <h1 class="heading" style="text-align: center;">What I do...</h1>
                     <br>
                     <div class="container">
                         <div class="row display-flex">
