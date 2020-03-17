@@ -63,9 +63,6 @@
                         $LastRan = date("m/d/Y g:i a", $adrow["stamp"]);
                         $DefaultAdName =  $adrow["adname"];
                         $DefaultAdDesc =  $adrow["content"];
-                    } else {
-                        $DefaultAdName = "Server Name/Product Name/Community Name/etc";
-                        $DefaultAdDesc = "Type details here...";
                     }
                 } else {
                     $DisplayForm = false;
@@ -106,13 +103,17 @@
             <?php
             }
             if ($oneday) { ?>
-                <h1 class="articleh1">Please wait before advertising again</h1>
-                <br>
-                <div id="time-left">
-                    <h2 style="text-align: center;">Time left: <strong id="timeleft"><?= htmlspecialchars($timeleft) ?></strong></h2>
+                <div class="container-fluid">
+                    <div class="content-box">
+                        <h1>Please wait before advertising again</h1>
+                        <br>
+                        <div id="time-left">
+                            <h2 style="text-align: center;">Time left: <strong id="timeleft"><?= htmlspecialchars($timeleft) ?></strong></h2>
+                        </div>
+                        <br>
+                        <p class="text-center">If you believe there was an error in processing your ad, please contact me in my discord and I will remove your countdown if the situation warrants it.</p>
+                    </div>
                 </div>
-                <br>
-                <h2 style="text-align: center;">If you believe there was an error in processing your ad, please contact me in my discord and I will remove your countdown if the situation warrants it.</h2>
                 <script>
                     function SetTimeLeft() {
                         var currenttime = Math.round((new Date()).getTime() / 1000);
@@ -138,44 +139,113 @@
             }
             if ($notverified) {
             ?>
-                <h1 class="articleh1">Not Verified</h1>
-                <h2 style="text-align: center;">It appears that you are not verified in my discord server, therefore we cannot be sure you are actually in the discord server. If you are not in it, you can click <a href="https://discordapp.com/invite/YS4WZWG" target="_blank">here</a> to join. If you are in the discord, head into the bot commands channel and do <strong>!verify</strong> to get started.</h2>
+                <div class="container-fluid">
+                    <div class="content-box">
+                        <h1 class="articleh1">Error!</h1>
+                        <h2>Not Verified</h2>
+                        <p class="text-center">It appears that you are not verified in my discord server, therefore we cannot be sure you are actually in the discord server. If you are not in it, you can click <a href="https://discordapp.com/invite/YS4WZWG" target="_blank">here</a> to join. If you are in the discord, head into the bot commands channel and do <strong>!verify</strong> to get started.</p>
+                    </div>
+                </div>
             <?php
             }
             if ($DisplayForm) {
 
             ?>
                 <div class="container-fluid">
-                <p id="about-p" class="paragraph pintro">Send an advertisement of anything to my discord server advertisement channel. If you abuse this system, your account may be blocked from future advertising. You can advertise every 24hrs.</p>
-                <div class="text-center" id="feedback-response">
-                    <div id="error-message" class="d-none">
-                        <div class="alert alert-danger" role="alert">
-                            <span><b>Error:</b> <span id="error_message_text"><i>insert success message here</i></span></span>
-                        </div>
+                    <div class="content-box">
+                        <h1>About</h1>
+                        <p class="text-center">Send an advertisement of anything to my discord server advertisement channel. If you abuse this system, your account may be blocked from future advertising. You can advertise every 24hrs.</p>
                     </div>
-                    <div id="success-message" class="d-none">
-                        <div class="alert alert-success" role="alert">
-                            <span><b>Success:</b> <span id="success_message_text"><i>insert success message here</i></span></span>
+                    <div class="text-center" id="feedback-response">
+                        <div id="error-message" class="d-none">
+                            <div class="alert alert-danger" role="alert">
+                                <span><b>Error:</b> <span id="error_message_text"><i>insert success message here</i></span></span>
+                            </div>
                         </div>
+                        <div id="success-message" class="d-none">
+                            <div class="alert alert-success" role="alert">
+                                <span><b>Success:</b> <span id="success_message_text"><i>insert success message here</i></span></span>
+                            </div>
+                        </div>
+                        <div id="loading"></div>
                     </div>
-                    <div id="loading"></div>
-                </div>
-                <br>
-                <?php
-                if ($ReRun) {
-                ?>
+                    <br>
+                    <?php
+                    if ($ReRun) {
+                    ?>
+                        <script>
+                            $(document).ready(function() {
+                                $("#repeat-last-ad").submit(function(event) {
+                                    event.preventDefault();
+                                    Loading(true, '#loading');
+                                    $("#error-message").addClass("d-none");
+                                    $("#success-message").addClass("d-none");
+                                    $("#repeat-last-ad-box").hide();
+                                    $("#submit-new-ad-box").hide();
+                                    $("#about-p").hide()
+                                    $.post("/pages/ajax/ad-submit.php", {
+                                            lastad: 1
+                                        })
+                                        .done(function(data) {
+                                            Loading(false, '#loading');
+                                            if (data.success) {
+                                                $("#success-message").removeClass("d-none");
+                                                $("#success_message_text").html(data.message);
+                                                setInterval(function() {
+                                                    location.reload();
+                                                }, 5000)
+                                            } else {
+                                                $("#error-message").removeClass("d-none");
+                                                $("#error_message_text").html(data.message);
+                                                $("#submit-new-ad-box").show();
+                                                $("#about-p").show()
+                                                $("#repeat-last-ad-box").show();
+                                            }
+                                        });
+                                });
+                            });
+                        </script>
+                        <div class="content-box" id="repeat-last-ad-box">
+                            <h1>Repeat Last Ad</h1>
+                            <div class="container">
+                                <div class="row display-flex">
+                                    <div class="col indexcol">
+                                        <div class="card card-border">
+                                            <div class="card-body">
+                                                <h1 class="heading"><?=htmlspecialchars($DefaultAdName);?></h1>
+                                                <p class="paragraph" style="text-align: center;"><?=htmlspecialchars($DefaultAdDesc);?></p>
+                                                <br>
+                                                <p class="paragraph">Sent On: <?=htmlspecialchars($LastRan);?></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+                            <form id="repeat-last-ad" class="text-center">
+                                <button type="submit" name="last-ad" class="btn btn-success">
+                                    Confirm
+                                </button>
+                            </form>
+                        </div>
+                        <br>
+                    <?php } ?>
                     <script>
                         $(document).ready(function() {
-                            $("#repeat-last-ad").submit(function(event) {
+                            $("#submit-new-ad").submit(function(event) {
                                 event.preventDefault();
+                                var adname = $("#adname").val();
+                                var adcontent = $("#newadcontent").val();
                                 Loading(true, '#loading');
                                 $("#error-message").addClass("d-none");
                                 $("#success-message").addClass("d-none");
-                                $("#repeat-last-ad").hide();
-                                $("#submit-new-ad").hide();
+                                $("#submit-new-ad-box").hide();
                                 $("#about-p").hide()
+                                $("#repeat-last-ad-box").hide();
                                 $.post("/pages/ajax/ad-submit.php", {
-                                        lastad: 1
+                                        adname: adname,
+                                        adcontent: adcontent,
+                                        submit: 1
                                     })
                                     .done(function(data) {
                                         Loading(false, '#loading');
@@ -186,99 +256,54 @@
                                                 location.reload();
                                             }, 5000)
                                         } else {
-                                            $("#error-message").removeClass("d-none");
-                                            $("#error_message_text").html(data.message);
-                                            $("#submit-new-ad").show();
+                                            if (!data.basics) {
+                                                $("#error-message").removeClass("d-none");
+                                                $("#error_message_text").html(data.message);
+                                            }
+                                            if (data.basics) {
+                                                if (data.errorNAME && data.errorNAMETXT != null) {
+                                                    InValidate("#adname", "#ad-name-feedback", data.errorNAMETXT)
+                                                } else {
+                                                    Validate("#adname", "#ad-name-feedback")
+                                                }
+                                                if (data.errorCON && data.errorCONTXT != null) {
+                                                    InValidate("#newadcontent", "#ad-con-feedback", data.errorCONTXT)
+                                                } else {
+                                                    Validate("#newadcontent", "#ad-con-feedback")
+                                                }
+                                            }
+                                            $("#submit-new-ad-box").show();
                                             $("#about-p").show()
-                                            $("#repeat-last-ad").show();
+                                            $("#repeat-last-ad-box").show();
                                         }
                                     });
                             });
-                        });
+                        })
                     </script>
-                    <div class="text-center">
-                        <form id="repeat-last-ad">
-                            <button type="submit" name="last-ad" class="btn btn-primary paragraph">
-                                Repeat Last Ad
-                            </button>
+                    <div id="submit-ad-response"></div>
+                    <div class="content-box" id="submit-new-ad-box">
+                        <h1>Create A New Ad</h1>
+                        <form id="submit-new-ad">
+                            <div class="form-group">
+                                <label for="name">Name</label>
+                                <input id="name" name="name" type="text" class="form-control form-control-alternative" value="<?= htmlspecialchars($steamprofile['personaname']); ?>" placeholder="<?= htmlspecialchars($steamprofile['personaname']); ?>" readonly>
+                            </div>
+                            <br>
+                            <div class="form-group">
+                                <label for="adname">Name of your ad</label>
+                                <input id="adname" name="adname" type="text" maxlength="25" class="form-control form-control-alternative" placeholder="My cool server!">
+                                <div id="ad-name-feedback"></div>
+                            </div>
+                            <br>
+                            <div class="form-group">
+                                <label for="newadcontent">Tell users about what your advertising. Think of it as just typing a normal message into discord. URLs are allowed (<a href="https://support.discordapp.com/hc/en-us/articles/210298617-Markdown-Text-101-Chat-Formatting-Bold-Italic-Underline-" target="_blank">Discord Markdown</a> is supported)</label>
+                                <textarea id="newadcontent" class="form-control form-control-alternative" name="newadcontent" maxlength="1500" rows="8" placeholder="nvm we actually suck"></textarea>
+                                <div id="ad-con-feedback"></div>
+                            </div>
+                            <br>
+                            <button name="submit" type="submit" class="btn btn-success">Submit</button>
                         </form>
                     </div>
-                    <br>
-                <?php } ?>
-                <script>
-                    $(document).ready(function() {
-                        $("#submit-new-ad").submit(function(event) {
-                            event.preventDefault();
-                            var adname = $("#adname").val();
-                            var adcontent = $("#newadcontent").val();
-                            Loading(true, '#loading');
-                            $("#error-message").addClass("d-none");
-                            $("#success-message").addClass("d-none");
-                            $("#submit-new-ad").hide();
-                            $("#about-p").hide()
-                            $("#repeat-last-ad").hide();
-                            $.post("/pages/ajax/ad-submit.php", {
-                                    adname: adname,
-                                    adcontent: adcontent,
-                                    submit: 1
-                                })
-                                .done(function(data) {
-                                    Loading(false, '#loading');
-                                    if (data.success) {
-                                        $("#success-message").removeClass("d-none");
-                                        $("#success_message_text").html(data.message);
-                                        setInterval(function() {
-                                            location.reload();
-                                        }, 5000)
-                                    } else {
-                                        if (!data.basics) {
-                                            $("#error-message").removeClass("d-none");
-                                            $("#error_message_text").html(data.message);
-                                        }
-                                        if (data.basics) {
-                                            if (data.errorNAME && data.errorNAMETXT != null) {
-                                                InValidate("#adname", "#ad-name-feedback", data.errorNAMETXT)
-                                            } else {
-                                                Validate("#adname", "#ad-name-feedback")
-                                            }
-                                            if (data.errorCON && data.errorCONTXT != null) {
-                                                InValidate("#newadcontent", "#ad-con-feedback", data.errorCONTXT)
-                                            } else {
-                                                Validate("#newadcontent", "#ad-con-feedback")
-                                            }
-                                        }
-                                        $("#submit-new-ad").show();
-                                        $("#about-p").show()
-                                        $("#repeat-last-ad").show();
-                                    }
-                                });
-                        });
-                    })
-                </script>
-                <div id="submit-ad-response"></div>
-                <div class="content-box">
-                <h1 class="heading">Create A New Ad</h1>
-                <form id="submit-new-ad" >
-                        <div class="form-group">
-                        <label for="name">Name</label>
-                        <input id="name" name="name" type="text" class="form-control" value="<?= htmlspecialchars($steamprofile['personaname']); ?>" placeholder="<?= htmlspecialchars($steamprofile['personaname']); ?>" readonly>
-                        </div>
-                        <br>
-                        <div class="form-group">
-                        <label for="adname">Name of your ad</label>
-                        <input id="adname" name="adname" type="text" maxlength="25" class="form-control" placeholder="<?= htmlspecialchars($DefaultAdName); ?>">
-                        <div id="ad-name-feedback"></div>
-                        </div>
-                        <br>
-                        <div class="form-group">
-                        <label for="newadcontent">Tell users about what your advertising. Think of it as just typing a normal message into discord. URLs are allowed (<a href="https://support.discordapp.com/hc/en-us/articles/210298617-Markdown-Text-101-Chat-Formatting-Bold-Italic-Underline-" target="_blank">Discord Markdown</a> is supported)</label>
-                        <textarea id="newadcontent" class="form-control" name="newadcontent" maxlength="1500" rows="10" placeholder="<?= htmlspecialchars($DefaultAdDesc); ?>"></textarea>
-                        <div id="ad-con-feedback"></div>
-                        </div>
-                        <br>
-                        <button name="submit" type="submit" class="btn btn-primary">Submit</button>
-                </form>
-                </div>
                 </div>
             <?php
             }

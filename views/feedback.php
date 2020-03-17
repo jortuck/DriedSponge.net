@@ -21,42 +21,7 @@
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" type="text/css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
-    <script src="https://driedsponge.net/functions.js"></script>
-    <script>
-        $(document).ready(function() {
-            $("form").submit(function(event) {
-                event.preventDefault();
-                var say = $("#say").val();
-                Loading(true,"#wait-message");
-                $("#error-message").addClass("d-none");
-                $("#success-message").addClass("d-none");
-                $("#feedback-form").hide();
 
-                console.log(say);
-                //$("#form-message").load("/pages/ajax/feedback-submit.php",{
-                //    say: say,
-                //    submit: submit
-                //});
-                $.post("/pages/ajax/feedback-submit.php", {
-                        say: say,
-                        submit: 1
-                    })
-                    .done(function(data) {
-                        console.log(data);
-                        Loading(false,"#wait-message");
-                        if (data.success) {
-                            $("#success-message").removeClass("d-none");
-                            $("#success_message_text").html(data.message);
-                        } else {
-                            $("#error-message").removeClass("d-none");
-                            $("#say").addClass("is-invalid");
-                            $("#error_message_text").html(data.message);
-                            $("#feedback-form").show();
-                        }
-                    });
-            });
-        });
-    </script>
 </head>
 
 <body>
@@ -91,63 +56,105 @@
     }
     ?>
     <div class="app">
-        <div class="container-fluid-lg" style="padding-top: 80px;">
+        <div class="container-fluid-lg">
+            <hgroup>
+                <h1 class="display-2"><strong>Feedback</strong></h1>
+            </hgroup>
+            <br>
+            <div class="container-fluid">
 
-            <div class="container">
-                <hgroup>
-                    <h1 class="display-2"><strong>Feedback</strong></h1>
-                </hgroup>
-                <br>
                 <?php if ($blocked == true) { ?>
-                    <h1 class="text-alert text-danger">Error: Banned <br> Reason: <?= htmlspecialchars($row["rsn"]); ?></h1>
+                    <div data-aos="zoom-in" class="content-box">
+                        <h1 class="heading">Error!</h1>
+                        <p class="paragraph text-center">Uh oh, looks like you have been blacklisted from submitting form data. <br> Reason: <?= htmlspecialchars($row["rsn"]); ?></p>
+                    </div>
                 <?php
                 }
                 ?>
                 <?php
                 if ($DisplayForm) {
                 ?>
-
-                    <p class="paragraph pintro">Tell me what you think about the site and what could be changed. Both positive and negative feedback are accepted!</p>
-                    <br>
-                    <div class="text-center" id="feedback-response">
-                        <div id="error-message" class="d-none">
-                            <div class="alert alert-danger" role="alert">
-                                <span><b>Error:</b> <span id="error_message_text"><i>insert success message here</i></span></span>
+                    <div class="content-box">
+                        <h1>Submit Feedback</h1>
+                        <p class="text-center">Tell me what you think about the site and what could be changed. Both positive and negative feedback are accepted!</p>
+                        <br>
+                        <div class="text-center" id="feedback-response">
+                            <div id="error-message" class="d-none">
+                                <div class="alert alert-danger" role="alert">
+                                    <span><b>Error:</b> <span id="error_message_text"><i>insert success message here</i></span></span>
+                                </div>
+                            </div>
+                            <div id="success-message" class="d-none">
+                                <div class="alert alert-success" role="alert">
+                                    <span><b>Success:</b> <span id="success_message_text"><i>insert success message here</i></span></span>
+                                </div>
+                            </div>
+                            <div id="wait-message">
                             </div>
                         </div>
-                        <div id="success-message" class="d-none">
-                            <div class="alert alert-success" role="alert">
-                                <span><b>Success:</b> <span id="success_message_text"><i>insert success message here</i></span></span>
-                            </div>
-                        </div>
-                        <div id="wait-message" >
-                        </div>
-                    </div>
-                    <br>
-                    <form id="feedback-form" action="/pages/ajax/feedback-submit.php" method="POST">
+                        <br>
+                        <script>
+                            $(document).ready(function() {
+                                $("form").submit(function(event) {
+                                    event.preventDefault();
+                                    var say = $("#say").val();
+                                    Loading(true, "#wait-message");
+                                    $("#error-message").addClass("d-none");
+                                    $("#success-message").addClass("d-none");
+                                    $("#feedback-form").hide();
 
-                        <div class="form-group">
-                            <label for="name">Name</label>
-                            <input id="name" name="name" type="text" class="form-control" value="<?= htmlspecialchars($steamprofile['personaname']); ?>" placeholder="<?= htmlspecialchars($steamprofile['personaname']); ?>" readonly>
+                                    console.log(say);
+                                    //$("#form-message").load("/pages/ajax/feedback-submit.php",{
+                                    //    say: say,
+                                    //    submit: submit
+                                    //});
+                                    $.post("/pages/ajax/feedback-submit.php", {
+                                            say: say,
+                                            submit: 1
+                                        })
+                                        .done(function(data) {
+                                            console.log(data);
+                                            Loading(false, "#wait-message");
+                                            if (data.success) {
+                                                $("#success-message").removeClass("d-none");
+                                                $("#success_message_text").html(data.message);
+                                            } else {
+                                                $("#error-message").removeClass("d-none");
+                                                $("#say").addClass("is-invalid");
+                                                $("#error_message_text").html(data.message);
+                                                $("#feedback-form").show();
+                                            }
+                                        });
+                                });
+                            });
+                        </script>
+                        <form id="feedback-form">
+                            <div class="form-group">
+                                <label for="name">Name</label>
+                                <input id="name" name="name" type="text" class="form-control form-control-alternative" value="<?= htmlspecialchars($steamprofile['personaname']); ?>" placeholder="<?= htmlspecialchars($steamprofile['personaname']); ?>" readonly>
+                            </div>
                             <br>
-                            <label for="say">What are your thoughts on the site?</label>
-                            <div id="saydiv">
-                                <textarea id="say" maxlength="1000" class="form-control" name="say" rows="8" placeholder="Type here I guess..."></textarea>
+                            <div class="form-group">
+                                <label for="say">What are your thoughts on the site?</label>
+                                <textarea id="say" maxlength="1000" class="form-control form-control-alternative" name="say" rows="8" placeholder="Type here I guess..."></textarea>
                                 <div id="say-feedback"></div>
                             </div>
                             <br>
                             <div id="form-message"></div>
-                            <button name="submit" type="submit" id="submit" class="btn btn-primary">Submit</button>
-                        </div>
-                    </form>
+                            <button name="submit" type="submit" id="submit" class="btn btn-success">Submit</button>
+                        </form>
+                    </div>
                 <?php
                 }
 
                 if ($PLogin == true) {
                 ?>
-                    <h1 class="articleh1">Please login to submit feedback</h1>
-                    <br>
-                    <p class="text-center"><a href='?login'><img src='https://steamcommunity-a.akamaihd.net/public/images/signinthroughsteam/sits_02.png'></a></p>
+                    <div class="content-box" data-aos="zoom-in">
+                        <h1 class="heading">Please login to submit feedback</h1>
+                        <p class="text-center"><a href='?login'><img src='https://steamcommunity-a.akamaihd.net/public/images/signinthroughsteam/sits_02.png'></a></p>
+                        <br>
+                        <p class="paragraph text-center">This is required so we can prevent spam and know who's sending feedback.</p>
+                    </div>
                 <?php
                 }
                 ?>
@@ -169,7 +176,9 @@
     <script src="https://unpkg.com/tippy.js@4"></script>
     <script src="main.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-
+    <script>
+        AOS.init();
+    </script>
 
 </body>
 

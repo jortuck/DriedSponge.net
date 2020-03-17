@@ -63,24 +63,11 @@ hgroup h2{
 .navbar-dark .navbar-nav .active>.nav-link, .navbar-dark .navbar-nav .nav-link.active, .navbar-dark .navbar-nav .nav-link.show, .navbar-dark .navbar-nav .show>.nav-link {
 color: white;
 }
-.whitehyperlink{
-    text-decoration-color: white;
-    color: white;
+.navbar-brand{
+    font-family: 'Bangers';
+    font-size: 1.2em;
+    letter-spacing: 3px;
 }
-.whitehyperlink:hover{
-    text-decoration-color: rgb(221, 221, 221);
-    color: rgb(221, 221, 221);
-}
-.btn-success{
-    background-color: white;
-    color: #007BFF;
-    
-}
-.btn-success:hover{
-    background-color: rgb(201, 201, 201);
-    color: #007BFF;
-}
-
 blockquote{
     background: #007BFF;
 }

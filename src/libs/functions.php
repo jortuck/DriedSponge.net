@@ -215,3 +215,4 @@ function url(){
     $dir = stripslashes("$protocol://$host" . dirname($_SERVER['PHP_SELF']) . "/");
     return $dir;
 }
+

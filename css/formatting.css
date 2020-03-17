@@ -1,3 +1,4 @@
+
 body {
     display: flex;
     min-height: 100vh;
@@ -34,11 +35,7 @@ label{
 .page-header {
     text-align: center;
 }
-.btn-success {
-    text-align: center;
-    border-radius: 15px;
-    border: 0px;
-}
+
 .page-footer{
     padding-bottom: 10px;
     padding-top: 5px;
@@ -139,18 +136,19 @@ label{
     width: 100%;
     margin: 7px 0px;
 }
-.content-box .heading, .content-sub-head{
+.content-box .heading, .content-box h1{
     color: black;
     font-weight: 900;
-    font-size: 3em;
+    font-size: 3.5em;
     font-family: 'Bangers';
-    letter-spacing: 5px;
+    letter-spacing: 3px;
     margin-bottom: 0.5em;
     text-align: center;
+    text-transform: uppercase;
 }
-.content-box .subheading{
+.content-box .subheading,.content-box h2{
     color: black;
-    font-weight: 600;
+    font-weight: normal;
     font-size: 2em;
     margin-bottom: 0.5em;
     text-align: center;
@@ -158,10 +156,24 @@ label{
 .container-fluid{
     max-width: 1200px;
 }
-.content-box .paragraph, .content-paragraph{
+.content-box .paragraph, .content-paragraph,.content-box label,.content-box p{
     color: rgb(78, 78, 78);
     font-size: 1.4em;
     line-height: 33px;
+}
+.content-box .paragraph strong, .content-paragraph,.content-box label strong,.content-box p strong{
+    font-weight: 600;
+}
+.form-control.form-control-alternative{
+    color: black;
+    font-size: 1.3em;
+}
+.form-control.form-control-alternative:focus{
+    color: black;
+}
+.form-control.form-control-alternative::placeholder{
+  color: rgba(95, 95, 95, 0.699);
+  font-style: italic;
 }
 /*End jubotron */
 /*Fomrs*/

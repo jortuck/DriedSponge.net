@@ -28,22 +28,15 @@
 
 
     <div class="app">
-        <div class="container-fluid-lg" style="padding-top: 80px;">
+        <div class="container-fluid-lg">
 
 
 
-            <div class="container">
-                <hgroup class="text-center">
-                    <h1 class="display-2" style="font-weight: 700; font-size: 10em;">403</h1>
-
-
-                    <br>
-                </hgroup>
-
-                <p class="paragraph pintro" style="font-size: 2em;">Access Denied</p>
-                <br>
-                <p class="paragraph pintro" style="font-size: 2em;"><a href="#" id="back">Go Back</a></p>
-
+            <div class="container-fluid">
+                <div class="content-box">
+                    <h1>Error 403!</h1>
+                    <h2>Access Denied</h2>
+                </div>
             </div>
         </div>
     </div>

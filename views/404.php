@@ -24,27 +24,16 @@
     <?php
     include("views/includes/navbar.php")
     ?>
-
-
     <div class="app">
-        <div class="container-fluid-lg" style="padding-top: 80px;">
+        <div class="container-fluid-lg">
 
 
 
-            <div class="container">
-
-                <hgroup class="text-center">
-                    <h1 class="display-2" style="font-weight: 700; font-size: 10em;">404</h1>
-                    
-
-                    <br>
-                </hgroup>
-
-                <p class="paragraph pintro" style="font-size: 2em;">We could not find the page you're looking for!</p>
-                <br>
-                <p class="paragraph pintro" style="font-size: 2em;"><a href="#" id="back">Go Back</a></p>
-
-
+            <div class="container-fluid">
+                <div class="content-box">
+                    <h1>Error 404!</h1>
+                    <h2>The page you were looking for could not be found!</h2>
+                </div>
             </div>
         </div>
     </div>

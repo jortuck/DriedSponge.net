@@ -5,8 +5,9 @@
 <link rel="stylesheet" type="text/css" href="<?=v(url());?>css/aos.css" />
 <link href='https://fonts.googleapis.com/css?family=Bangers' rel='stylesheet'>
 
+
 <script src="<?=v(url());?>js/aos.js"></script>
-<script src="<?=v(url());?><?=v(url());?>js/argon.js"></script>
+<script src="<?=v(url());?>js/argon.js"></script>
 <meta name="viewport" content="width = device-width, initial-scale = 1">
 <!-- Global site tag (gtag.js) - Google Analytics -->
 
@@ -30,7 +31,12 @@
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-140402227-3"></script>
 <script src="<?=v(url());?>functions.js"></script>
-
+<style>
+  @font-face {
+    font-family: 'fortnite';
+    src: url(<?=v(url());?>fonts/burbank.otf);
+  }
+</style>
 
 <script>
   window.dataLayer = window.dataLayer || [];

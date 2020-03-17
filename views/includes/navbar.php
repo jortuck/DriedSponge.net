@@ -11,7 +11,6 @@
                             
                         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                             <li class="nav-item" id="homelink"><a class="nav-link" href="/home/">Home</a></li>
-                            <li class="nav-item" id="steam"><a class="nav-link" href="/steam/" target="_blank">Steam Tool</a></li>
                             <li class="nav-item" id="ad"><a class="nav-link" href="/advertise/">Advertise</a></li>
                             <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle" href="#" id="MyProjects" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
