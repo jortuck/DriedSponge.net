@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 
 
-<html>
+<html lang="en">
 
 <head>
     <!--         Site created: 9/19/19
@@ -71,7 +71,7 @@
                             <div class="col indexcol">
                                 <div class="card card-border">
                                     <div class="card-body">
-                                        <img src="../img/lua.png" alt="lualogo" height="100px" class="img-fluid"
+                                        <img src="../img/lua.png" alt="lualogo"  class="img-fluid"
                                             style="max-height:100px;" />
                                         <p class="paragraph" style="text-align: center;">Lua was the first language I
                                             started on. I used it to make crappy gmod addons. I have moved on from Lua
@@ -84,7 +84,7 @@
 
                                 <div class="card card-border">
                                     <div class="card-body">
-                                        <img src="../img/php.png" alt="phplogo" height="100px" class="img-fluid"
+                                        <img src="../img/php.png" alt="phplogo"  class="img-fluid"
                                             style="max-height:100px;" />
                                         <p class="paragraph" style="text-align: center;">PHP is my favorite language.
                                             This is becuase I am the most skilled in the backend department and it's
@@ -99,7 +99,7 @@
                             <div class="col indexcol">
                                 <div class="card card-border">
                                     <div class="card-body">
-                                        <img src="../img/css.png" alt="csslogo" height="100px" class="img-fluid"
+                                        <img src="../img/css.png" alt="csslogo"  class="img-fluid"
                                             style="max-height:100px;" />
                                         <p class="paragraph" style="text-align: center;">While my knowledge in CSS is
                                             acceptable, I lack skills in the creativity department.</p>
@@ -110,7 +110,7 @@
 
                                 <div class="card card-border">
                                     <div class="card-body">
-                                        <img src="../img/js.png" alt="jslogo" height="100px" class="img-fluid"
+                                        <img src="../img/js.png" alt="jslogo"  class="img-fluid"
                                             style="max-height:100px;" />
                                         <p class="paragraph" style="text-align: center;">I consider my Javascript to be
                                             adequate. I am very failiar with jQuery and NodeJS.</p>
@@ -122,7 +122,7 @@
                                 <div class="card card-border">
                                     <div class="card-body">
                                         <img src="https://i.driedsponge.net/images/png/6Awqx.png" alt="tux"
-                                            height="100px" class="img-fluid" style="max-height:100px;" />
+                                             class="img-fluid" style="max-height:100px;" />
                                         <p class="paragraph" style="text-align: center;">I'm very good with the linux
                                             operating system, specifcally Ubuntu Server. I'm currently hosting this
                                             website

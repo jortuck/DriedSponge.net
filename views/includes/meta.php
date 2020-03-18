@@ -37,7 +37,6 @@
     src: url(<?=v(url());?>fonts/burbank.otf);
   }
 </style>
-
 <script>
   window.dataLayer = window.dataLayer || [];
 
