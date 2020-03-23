@@ -56,16 +56,19 @@ function isVerified($steamid) {
  * Check if the given SteamID64 is blocked
  *
  * @param string $steamid
- * @return boolean
+ * @return array
  */
 function isBlocked($steamid) {
     $blocked = SQLWrapper()->prepare("SELECT id64, rsn, stamp FROM blocked WHERE id64 = :id");
     $blocked->execute([':id' => $steamid]);
     $blockedresult = $blocked->fetch();
      if(!empty($blockedresult)){
-         return true;
+         $array = array("banned"=>true,"reason"=>$blockedresult['rsn']);
+         return $array;
      }else{
-         return false;
+        $array = array("banned"=>false,"reason"=>null);
+        return $array;
+
      }
 }
 function SteamInfo($identifier) {
@@ -216,3 +219,72 @@ function url(){
     return $dir;
 }
 
+/**
+ * Get a users info from the SteamAPI
+ *
+ * @param string $identifier
+ * @return array
+ */
+function SInfo($identifier)
+{
+    include("views/includes/SteamID.php");
+    $APIKEY = "0EBBACAEBC6039B06DF1066807D55D4C";
+    $WHO = $identifier;
+    try {
+        $s = SteamID::SetFromURL($WHO, function ($URL, $Type) use ($APIKEY) {
+            $Parameters =
+                [
+                    'format' => 'json',
+                    'key' => $APIKEY,
+                    'vanityurl' => $URL,
+                    'url_type' => $Type
+                ];
+            $c = curl_init();
+            curl_setopt_array($c, [
+                CURLOPT_USERAGENT      => 'Steam Vanity URL Lookup',
+                CURLOPT_ENCODING       => 'gzip',
+                CURLOPT_RETURNTRANSFER => true,
+                CURLOPT_URL            => 'https://api.steampowered.com/ISteamUser/ResolveVanityURL/v1/?' . http_build_query($Parameters),
+                CURLOPT_CONNECTTIMEOUT => 5,
+                CURLOPT_TIMEOUT        => 5
+            ]);
+            $Response = curl_exec($c);
+            curl_close($c);
+            $Response = json_decode($Response, true);
+            if (isset($Response['response']['success'])) {
+                switch ((int) $Response['response']['success']) {
+                    case 1:
+                        return $Response['response']['steamid'];
+                    case 42:
+                        return;
+                }
+            }
+            throw new Exception('Failed to perform API request');
+        });
+        $id3 = $s->RenderSteam3() . PHP_EOL;
+        $idn = $s->RenderSteam2() . PHP_EOL;
+        $id64 = trim($s->ConvertToUInt64() . PHP_EOL);
+        $json = file_get_contents("http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=" . $APIKEY . "&steamids=$id64");
+        $apidata = json_decode($json);
+        $name = $apidata->response->players[0]->personaname;
+        $img = $apidata->response->players[0]->avatarfull;
+        if (isset($apidata->response->players[0]->realname) == false) {
+            $realname = "N/A";
+        } else {
+            $realname = $apidata->response->players[0]->realname;
+        }
+        if (isset($apidata->response->players[0]->loccountrycode) == false) {
+            $country = "N/A";
+        } else {
+            $country = $apidata->response->players[0]->loccountrycode;
+        }
+        $url = $apidata->response->players[0]->profileurl;
+        if ($name == null || $img == null) {
+            header("Location: /steam/error");
+        }
+        $steaminfo = array("success" => true, "name" => $name, "idn" => $idn, "id64" => $id64, "id3" => $id3, "realname" => $realname, "country" => $country, "img" => $img, "url" => $url);
+    } catch (InvalidArgumentException $e) {
+        $steaminfo = array("success" => false, "error" => "Invalid user!");
+    }
+    return $steaminfo;
+}
