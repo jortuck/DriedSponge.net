@@ -45,7 +45,7 @@ function AlertSuccess(msg){
 }
 
 function AlertError(msg){
-  toastr["error"](msg, "Congratulations!");
+  toastr["error"](msg, "Error!");
 }
 function Copy(string) {
   navigator.clipboard.writeText(string)
@@ -71,7 +71,6 @@ function getCookie(cname) {
 function AjaxPagination(pid,page,showload,col,order) {
   var table = `[pid=${pid}]`;
   var url = $(table).attr('url');
-  console.log(getCookie(`${pid}-page`));
   $(`#${pid}-b-${getCookie(`${pid}-page`)}`).removeClass("active");
 
   if (showload == null) {
@@ -82,6 +81,8 @@ function AjaxPagination(pid,page,showload,col,order) {
     Loading(true, loadthing);
     $(table).hide()
   }
+  $(`#${pid}-blist`).hide()
+
   if (col == null) {
     var col = getCookie(`${pid}-col`);
   }
@@ -102,10 +103,14 @@ function AjaxPagination(pid,page,showload,col,order) {
         Loading(false, loadthing);
         $(table).show()
       }
+      $(`#${pid}-blist`).show()
 
       $(`${table} tbody`).html(data);
       document.cookie = `${pid}-col=${col}`;
       document.cookie = `${pid}-order=${order}`;
       document.cookie = `${pid}-page=${page}`;
+        tippy('[data-tippy-content]', {
+            placement: "top",
+        });
     });
 }

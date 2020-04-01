@@ -1,5 +1,4 @@
 <?php
-sleep(5);
 if (isset($_POST['load'])) {
   if (!isset($_SESSION['steamid'])) {
 
@@ -33,7 +32,7 @@ if (isset($_POST['load'])) {
       $discordusers->bindParam(':end', $records_per_page, PDO::PARAM_INT);
 
       $discordusers->execute();
-      
+
 
       $users = $discordusers->fetchAll();
       foreach ($users as $row3) {
@@ -48,18 +47,20 @@ if (isset($_POST['load'])) {
       ?>
 
           <tr class="search-discorduser" id="discord-users-<?= htmlspecialchars($row3["discordid"]); ?>">
-            <td>
-              <button onclick="Unverify(`<?= htmlspecialchars($row3['discordid']); ?>`,`<?= htmlspecialchars($row3['discorduser']); ?>`)" class="btn btn-danger">
-                Unverify
-              </button>
-            </td>
+
             <td><a href="<?= htmlspecialchars($discordsteamurl) ?>" target="_blank"><?= htmlspecialchars($row3["steamid"]); ?></a></td>
             <td><?= htmlspecialchars($discordstamp); ?></td>
             <td><?= htmlspecialchars($row3["discorduser"]); ?><br>(<?= htmlspecialchars($row3["discordid"]); ?>)</td>
             <td><?= htmlspecialchars($row3["givenrole"]); ?></td>
+            <td class="td-actions text-center">
+              <button data-tippy-content="Unverify" onclick="Unverify(`<?= htmlspecialchars($row3['discordid']); ?>`,`<?= htmlspecialchars($row3['discorduser']); ?>`)" class="btn btn-danger btn-icon btn-sm">
+
+                <i class="fas fa-trash"></i>
+              </button>
+            </td>
           </tr>
 
-  <?php
+<?php
         }
       }
     }

@@ -153,10 +153,19 @@ label{
     margin-bottom: 0.5em;
     text-align: center;
 }
+.modal-title{
+    color: black;
+    font-weight: 900;
+    font-size: 2em;
+    font-family: 'Bangers';
+    letter-spacing: 3px;
+    text-align: center;
+    text-transform: uppercase;
+}
 .container-fluid{
     max-width: 1200px;
 }
-.content-box .paragraph, .content-paragraph,.content-box label,.content-box p{
+.content-box .paragraph, .content-paragraph,.content-box label,.content-box p,.form-group label{
     color: rgb(78, 78, 78);
     font-size: 1.4em;
     line-height: 33px;

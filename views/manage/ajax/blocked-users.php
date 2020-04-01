@@ -1,4 +1,64 @@
 <?php
+
+if (isset($_POST['edit'])) {
+    if (isset($_SESSION['steamid'])) {
+        if (isAdmin($_SESSION['steamid'])) {
+            $user = SQLWrapper()->prepare("SELECT * FROM blocked WHERE id64 = :id64");
+            $user->execute([":id64" => $_POST['steamid']]);
+            $data = $user->fetch();
+            $info =  json_decode($data['info'],true);
+?>
+            <script>    
+                $("#edit-block-modal").modal('show');
+            </script>
+            <div class="modal" tabindex="-1" id="edit-block-modal" role="dialog">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Edit <?=v($info['name']);?>'s Ban</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true" style="font-size: 30px">&times;</span>
+                            </button>
+                        </div>
+                        <form>
+                        <div class="modal-body">
+                            
+                                <div class="form-group">
+                                    <label>Reason</label>
+                                    <input class="form-control form-control-alternative" placeholder="Please add a reason, it's required." value="<?=v($data['rsn']);?>">
+                                </div>
+                            
+                        </div>
+                        <div class="modal-footer" style="justify-content: center">
+                            <button type="button" class="btn btn-success">Save changes</button>
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                        </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        <?php
+        } else {
+        ?>
+            <script>
+                AlertError("You're not an admin");
+            </script>
+        <?php
+        }
+    } else {
+        ?>
+        <script>
+            AlertError("Session Expired");
+        </script>
+        <?php
+    }
+    die();
+}
+
+
+
+
+
 if (isset($_POST['loadusr'])) {
     header('Content-type: application/json');
 
@@ -115,7 +175,7 @@ if (isset($_POST['blockusr'])) {
 if (isset($_POST['load'])) {
     if (isset($_SESSION['steamid'])) {
         if (isAdmin($_SESSION['steamid'])) {
-            
+
 
             $sql = "SELECT info, rsn, stamp FROM blocked";
             $result = SQLWrapper()->query($sql);
@@ -125,7 +185,7 @@ if (isset($_POST['load'])) {
                 $url = $info['url'];
                 $name = $info['name'];
                 $blocknormalstamp =  date("m/d/Y g:i a", $row["stamp"]);
-            ?>
+        ?>
 
                 <tr id="blocked-<?= htmlspecialchars($id64); ?>">
 
@@ -133,7 +193,10 @@ if (isset($_POST['load'])) {
                     <td><?= htmlspecialchars($row["rsn"]); ?></td>
                     <td><?= htmlspecialchars($blocknormalstamp); ?></td>
                     <td class="td-actions text-center">
-                        <button onclick="UnBlock(`<?= htmlspecialchars($id64); ?>`)" value="<?= htmlspecialchars($id64); ?>" name="submit-unblock" class="btn btn-danger btn-icon btn-sm">
+                        <button data-tippy-content="Edit Information" onclick="EditBlock(`<?= htmlspecialchars($id64); ?>`)" class="btn btn-success btn-icon btn-sm">
+                            <i class="fas fa-edit"></i>
+                        </button>
+                        <button data-tippy-content="Unblock" onclick="UnBlock(`<?= htmlspecialchars($id64); ?>`)" value="<?= htmlspecialchars($id64); ?>" name="submit-unblock" class="btn btn-danger btn-icon btn-sm">
                             <i class="fas fa-trash"></i>
                         </button>
 

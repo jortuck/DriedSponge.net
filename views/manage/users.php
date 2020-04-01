@@ -166,7 +166,6 @@
                   })
 
                   function UnBlock(steamid) {
-                    console.log(steamid);
                     $.post("/manage/ajax/blocked-users.php", {
                         unblockusr: 1,
                         id64: steamid
@@ -178,6 +177,15 @@
                         } else {
                           toastr["error"](data.message, "Error:")
                         }
+                      });
+                  }
+                  function EditBlock(steamid) {
+                    $.post("/manage/ajax/blocked-users.php", {
+                        edit: 1,
+                        steamid: steamid
+                      })
+                      .done(function(data) {
+                        $("#modal").html(data);
                       });
                   }
                 </script>
@@ -295,11 +303,12 @@
               <table id="discordusers" class="table paragraph text-center" style="color: black;" url="/manage/ajax/discord-users.php"  pid="du" >
                 <thead>
                   <tr class="text-center">
-                    <th scope="col"></th>
                     <th scope="col">ID64</th>
                     <th scope="col">Timestamp</th>
                     <th scope="col">Discord Name</th>
                     <th scope="col">Given Roles?</th>
+                    <th scope="col">Actions</th>
+
                   </tr>
                 </thead>
 
@@ -328,6 +337,7 @@
                         }
                       });
                   }
+                  
                 $(document).ready(function() {
 
                   $("#search-discord").on("keyup", function() {
@@ -339,9 +349,9 @@
                 });
               </script>
               <nav>
-                <ul class="pagination justify-content-center">
+                <ul id="du-blist" class="pagination justify-content-center">
                   <?php
-                  $records_per_page = 6;
+                  $records_per_page = 5;
 
                   $sql = SQLWrapper()->prepare("SELECT * FROM discord WHERE verifyid = 'VERIFIED'");
                   $sql->execute();
@@ -383,7 +393,7 @@
         ?>
       </div>
     </div>
-
+    <div id="modal"></div>
   </div>
   <!-- end of app -->
   <?php
@@ -394,7 +404,6 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
   <script src="https://unpkg.com/popper.js@1"></script>
   <script src="https://unpkg.com/tippy.js@4"></script>
-  <script src="main.js"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
 
