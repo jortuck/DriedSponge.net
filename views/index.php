@@ -48,8 +48,7 @@
                 <br>
                 <div class="content-box" data-aos="zoom-in">
                     <h1 class="heading">About Me</h1>
-                    <p class="paragraph" style="text-align: center;">I am a developer that primarily focuses on full
-                        stack web development. I also develop discord bots and Garry's Mod addons.</p>
+                    <p class="paragraph" style="text-align: center;">I am a developer that can do a lot of things (see stuff below). I started coding on gmod making addons. I then found out that once you know one langauge, it's easier to exapand to others, so that's exactly what I did.</p>
                 </div>
                 <br>
                 <div class="content-box" data-aos="zoom-in">
@@ -113,7 +112,7 @@
                                         <img src="../img/js.png" alt="jslogo"  class="img-fluid"
                                             style="max-height:100px;" />
                                         <p class="paragraph" style="text-align: center;">I consider my Javascript to be
-                                            adequate. I am very failiar with jQuery and NodeJS.</p>
+                                            adequate. I am very familiar with jQuery and NodeJS.</p>
                                     </div>
                                 </div>
                             </div>
@@ -127,6 +126,28 @@
                                             operating system, specifcally Ubuntu Server. I'm currently hosting this
                                             website
                                             on my own servers!</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                        <div class="row display-flex">
+                            <div class="col indexcol">
+                                <div class="card card-border">
+                                    <div class="card-body">
+                                        <img src="https://i.driedsponge.net/images/png/9ZaIe.png" alt="C Sharp Logo"  class="img-fluid"
+                                            style="max-height:100px;" />
+                                        <p class="paragraph" style="text-align: center;">My second favorite language. It's truly amazing what you can do with it. I mainly use it for <a href="https://unity.com/" target="_blank">Unity</a> and creating Windows apps.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col indexcol">
+
+                                <div class="card card-border">
+                                    <div class="card-body">
+                                        <img src="https://i.driedsponge.net/images/png/2RSZb.png" alt="Unity Logo "  class="img-fluid"
+                                            style="max-height:100px;" />
+                                        <p class="paragraph" style="text-align: center;">Recently, I've been using my C# skills to explore game development with the <a href="https://unity.com/" target="_blank">Unity Game Engine</a>. I haven't made anything worth showing/distributing, but I hope to some day!</p>
                                     </div>
                                 </div>
                             </div>
