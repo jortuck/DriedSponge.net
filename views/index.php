@@ -48,7 +48,7 @@
                 <br>
                 <div class="content-box" data-aos="zoom-in">
                     <h1 class="heading">About Me</h1>
-                    <p class="paragraph" style="text-align: center;">I am a developer that can do a lot of things (see stuff below). I started coding on gmod making addons. I then found out that once you know one langauge, it's easier to exapand to others, so that's exactly what I did.</p>
+                    <p class="paragraph" style="text-align: center;">I am a developer who first started coding on gmod making addons. I then found out that once you know one langauge, it's easier to exapand to others, so that's exactly what I did.</p>
                 </div>
                 <br>
                 <div class="content-box" data-aos="zoom-in">
