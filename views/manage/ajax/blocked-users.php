@@ -96,6 +96,14 @@ if (isset($_POST['unblockusr'])) {
             $sqlunblock->execute([':id' => $unblockid]);
             $Message['success'] = true;
             $Message['message'] = $unblockid . " has been unblocked!";
+            $adminname = $steamprofile['personaname'];
+
+            $logdata = array(
+                "User"=> SInfo($_SESSION['steamid']),
+                "Msg"=>"<a href='/sprofile/".$_SESSION['steamid']."/' target='_blank'>$adminname</a> unblocked <a href='/sprofile/".$unblockid."/' target='_blank'>".$unblockid."</a>"
+            );
+
+            ResourceLog("Action",$logdata,true);
         } else {
             $Message["message"] = "You're not an admin";
         }
@@ -159,6 +167,13 @@ if (isset($_POST['blockusr'])) {
                     $Message['blockdate'] =  date("m/d/Y g:i a", $blockstamp);
                     $Message["success"] = true;
                     $Message['message'] = $user['name'] . " has been blocked";
+                    $adminname = $steamprofile['personaname'];
+                    $logdata = array(
+                        "User"=> SInfo($_SESSION['steamid']),
+                        "Msg"=>"<a href='/sprofile/".$_SESSION['steamid']."/' target='_blank'>$adminname</a> blocked <a href='/sprofile/".$user['id64']."/' target='_blank'>".$user['name']."</a> for <strong>$blockrsn</strong>"
+                    );
+
+                    ResourceLog("Action",$logdata,true);
                 }
             }
         } else {

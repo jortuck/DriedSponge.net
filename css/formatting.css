@@ -50,10 +50,24 @@ label{
     color: rgba(255,255,255,.65);
 }
 .footer-text a:hover{
-    font-size: 1.1em;
-    font-weight: bold;
     color: white;
 }
+
+.sub-nav,.sub-nav a{
+    text-align: center;
+    font-size: 1.5em;
+    font-family: "Bangers";
+    letter-spacing: 3px;
+    font-style: normal;
+    color: rgba(255,255,255,.65);
+}
+.sub-nav,.sub-nav a.active{
+    color: white;
+}
+.sub-nav a:hover{
+    color: white;
+}
+
 .whitehyperlink{
     text-decoration: underline;
 }

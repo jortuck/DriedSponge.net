@@ -8,7 +8,7 @@ try {
     // set the PDO error mode to exception
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 } catch (PDOException $e) {
-    die("Cant connect do database, please contact me on discord DriedSponge#0001");
+    die("Cant connect do database, please contact me on discord DriedSponge#4730");
 }
 
 // Because of how it works you can use SQLWrapper()->pdostuff() everywhere as soon

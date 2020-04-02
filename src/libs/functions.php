@@ -72,7 +72,9 @@ function isBlocked($steamid) {
      }
 }
 function SteamInfo($identifier) {
-    include("views/includes/SteamID.php");
+    if(!class_exists("SteamID")){
+        include_once("views/includes/SteamID.php");
+    }
     $APIKEY = "0EBBACAEBC6039B06DF1066807D55D4C";
     $WHO = $identifier;
     $s = SteamID::SetFromURL( $WHO, function( $URL, $Type ) use ( $APIKEY )
@@ -227,7 +229,10 @@ function url(){
  */
 function SInfo($identifier)
 {
-    include("views/includes/SteamID.php");
+
+    if(!class_exists("SteamID")){
+        include_once("views/includes/SteamID.php");
+    }
     $APIKEY = "0EBBACAEBC6039B06DF1066807D55D4C";
     $WHO = $identifier;
     try {
@@ -287,4 +292,21 @@ function SInfo($identifier)
         $steaminfo = array("success" => false, "error" => "Invalid user!");
     }
     return $steaminfo;
+}
+/**
+ * Log something to the database
+ *
+ * @param string $action
+ * @param array $data
+ * @param bool $admin
+ * @return array
+ */
+function ResourceLog($type,$data,$admin){
+    if($admin){
+        $admin = 1;
+    }else{
+        $admin = 0;
+    }
+    $logdata = json_encode($data);
+    SQLWrapper()->prepare("INSERT INTO logs (Type, Data,Admin) VALUES (?,?,?)")->execute([$type,  $logdata,$admin]);
 }

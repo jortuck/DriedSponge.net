@@ -9,7 +9,7 @@ $Message = array(
 if (isset($_POST['submit'])) {
 
     if (isset($steamprofile['steamid'])) {
-        if(!isBlocked($_SESSION['steamid'])){
+        if(isBlocked($_SESSION['steamid'])['banned'] == false){
         $feedback = $_POST['say'];
 
         if (IsEmpty($feedback)) {
@@ -54,6 +54,12 @@ if (isset($_POST['submit'])) {
                 "success" => true, // "suck this" hehe
                 "message" => "Thank you for submitting feedback!<br><i class=\"fas fa-check\"></i>"
             );
+            $username = $steamprofile['personaname'];
+            $logdata = array(
+                "User"=> SInfo($_SESSION['steamid']),
+                "Msg"=>"<a href='/sprofile/".$_SESSION['steamid']."/' target='_blank'>$username</a> submited feedback"
+            );
+            ResourceLog("Action",$logdata,false);
         } else {
             $Message["message"] = "The text you entered is too long, please reduce the length to a maximum of 1000 characters.";
 
