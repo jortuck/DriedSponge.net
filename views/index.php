@@ -28,12 +28,6 @@
 <body>
     <?php
     include("views/includes/navbar.php");
-    $motdq = SQLWrapper()->prepare("SELECT content, UNIX_TIMESTAMP(stamp) AS stamp, created FROM content WHERE thing = :thing");
-    $motdq->execute([':thing' => "motd"]);
-    $content = $motdq->fetch();
-    $mlastupdated = date("m/d/Y g:i a", $content["stamp"]);
-    $mcreatedby = $content["created"];
-    $mcreatedbyurl = "https://steamcommunity.com/profiles/" . $mcreatedby . "/";
     ?>
 
     <div class="app">

@@ -8,7 +8,8 @@
  * @param string $steamid
  * @return boolean
  */
-function isAdmin($steamid) {
+function isAdmin($steamid)
+{
     if ($steamid == "76561198357728256") {
         return true;
     }
@@ -25,8 +26,9 @@ function isAdmin($steamid) {
  * @param string $steamid
  * @return boolean
  */
-function isMasterAdmin($steamid) {
-    if ($steamid == "76561198357728256") {
+function isMasterAdmin($steamid)
+{
+    if ($steamid == "765611983577282566") {
         return true;
     }
 }
@@ -37,20 +39,21 @@ function isMasterAdmin($steamid) {
  * @param string $steamid
  * @return boolean
  */
-function isVerified($steamid) {
+function isVerified($steamid)
+{
 
     $isverified = SQLWrapper()->prepare("SELECT verifyid FROM discord WHERE steamid = ?"); // because its a single var we can use ?
     $isverified->execute([$steamid]);
     $verified = $isverified->fetch();
-     if(!empty($verified)){
-        if($verified['verifyid'] === "VERIFIED"){
+    if (!empty($verified)) {
+        if ($verified['verifyid'] === "VERIFIED") {
             return true;
-        }else{
+        } else {
             return false;
         }
-     }else{
-         return false;
-     }
+    } else {
+        return false;
+    }
 }
 /**
  * Check if the given SteamID64 is blocked
@@ -58,115 +61,113 @@ function isVerified($steamid) {
  * @param string $steamid
  * @return array
  */
-function isBlocked($steamid) {
-    $blocked = SQLWrapper()->prepare("SELECT id64, rsn, stamp FROM blocked WHERE id64 = :id");
+function isBlocked($steamid)
+{
+    $blocked = SQLWrapper()->prepare("SELECT id64, rsn,info,stamp,AdminInfo FROM blocked WHERE id64 = :id");
     $blocked->execute([':id' => $steamid]);
     $blockedresult = $blocked->fetch();
-     if(!empty($blockedresult)){
-         $array = array("banned"=>true,"reason"=>$blockedresult['rsn']);
-         return $array;
-     }else{
-        $array = array("banned"=>false,"reason"=>null);
+    if (!empty($blockedresult)) {
+        
+        $array = array("banned" => true, "reason" => $blockedresult['rsn'],"admin"=>json_decode($blockedresult['AdminInfo'],true),"userinfo"=>json_decode($blockedresult['info'],true));
         return $array;
-
-     }
+    } else {
+        $array = array("banned" => false, "reason" => null,"admin"=>null,"userinfo"=>null);
+        return $array;
+    }
 }
-function SteamInfo($identifier) {
-    if(!class_exists("SteamID")){
+function SteamInfo($identifier)
+{
+    if (!class_exists("SteamID")) {
         include_once("views/includes/SteamID.php");
     }
     $APIKEY = "0EBBACAEBC6039B06DF1066807D55D4C";
     $WHO = $identifier;
-    $s = SteamID::SetFromURL( $WHO, function( $URL, $Type ) use ( $APIKEY )
-    {
+    $s = SteamID::SetFromURL($WHO, function ($URL, $Type) use ($APIKEY) {
         $Parameters =
-        [
-            'format' => 'json',
-            'key' => $APIKEY,
-            'vanityurl' => $URL,
-            'url_type' => $Type
-        ];
-        
-        $c = curl_init( );
-        
-        curl_setopt_array( $c, [
+            [
+                'format' => 'json',
+                'key' => $APIKEY,
+                'vanityurl' => $URL,
+                'url_type' => $Type
+            ];
+
+        $c = curl_init();
+
+        curl_setopt_array($c, [
             CURLOPT_USERAGENT      => 'Steam Vanity URL Lookup',
             CURLOPT_ENCODING       => 'gzip',
             CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_URL            => 'https://api.steampowered.com/ISteamUser/ResolveVanityURL/v1/?' . http_build_query( $Parameters ),
+            CURLOPT_URL            => 'https://api.steampowered.com/ISteamUser/ResolveVanityURL/v1/?' . http_build_query($Parameters),
             CURLOPT_CONNECTTIMEOUT => 5,
             CURLOPT_TIMEOUT        => 5
-        ] );
-        
-        $Response = curl_exec( $c );
-        
-        curl_close( $c );
-        
-        $Response = json_decode( $Response, true );
-        
-        if( isset( $Response[ 'response' ][ 'success' ] ) )
-        {
-            switch( (int)$Response[ 'response' ][ 'success' ] )
-            {
-                case 1: return $Response[ 'response' ][ 'steamid' ];
-                case 42: header("Location: /steam/error");
-                
+        ]);
+
+        $Response = curl_exec($c);
+
+        curl_close($c);
+
+        $Response = json_decode($Response, true);
+
+        if (isset($Response['response']['success'])) {
+            switch ((int) $Response['response']['success']) {
+                case 1:
+                    return $Response['response']['steamid'];
+                case 42:
+                    header("Location: /steam/error");
             }
         }
-        
-        throw new Exception( 'Failed to perform API request' );
-        
-    } );
- 
+
+        throw new Exception('Failed to perform API request');
+    });
+
 
     $id3 = $s->RenderSteam3() . PHP_EOL;
     $idn = $s->RenderSteam2() . PHP_EOL;
-    $id64 =trim($s->ConvertToUInt64() . PHP_EOL);
-    $json = file_get_contents("http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=".$APIKEY."&steamids=$id64");
+    $id64 = trim($s->ConvertToUInt64() . PHP_EOL);
+    $json = file_get_contents("http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=" . $APIKEY . "&steamids=$id64");
     $apidata = json_decode($json);
     $name = $apidata->response->players[0]->personaname;
     $img = $apidata->response->players[0]->avatarfull;
-    if (isset($apidata->response->players[0]->realname) == false ){
+    if (isset($apidata->response->players[0]->realname) == false) {
         $realname = "N/A";
-    } else{
+    } else {
         $realname = $apidata->response->players[0]->realname;
     }
 
-    if (isset($apidata->response->players[0]->loccountrycode) == false ){
+    if (isset($apidata->response->players[0]->loccountrycode) == false) {
         $country = "N/A";
-    } else{
+    } else {
         $country = $apidata->response->players[0]->loccountrycode;
     }
 
     $url = $apidata->response->players[0]->profileurl;
-    if ($name == null || $img == null ){
+    if ($name == null || $img == null) {
         header("Location: /steam/error");
     }
-    
-        $gmsapi = "85206700db2835f105dc22a79e287f8599ec1b8b";
-        $gmjson = @file_get_contents("https://api.gmodstore.com/v2/users/$id64?api_key=$gmsapi");
-        $gmdata = json_decode($gmjson);
-        if(isset($gmdata->data->id)){
-            $gmsinfo = array("name"=>$gmdata->data->name, "slug"=>$gmdata->data->slug);
-            $steaminfo = array("name"=>$name, "idn"=>$idn,"id64"=>$id64,"id3"=>$id3,"realname"=>$realname,"country"=>$country,"img"=>$img,"url"=>$url,"gmsname"=>$gmdata->data->name,"gmsurl"=>"https://www.gmodstore.com/users/".$gmdata->data->slug);
-        }else{
-            $steaminfo = array("name"=>$name, "idn"=>$idn,"id64"=>$id64,"id3"=>$id3,"realname"=>$realname,"country"=>$country,"img"=>$img,"url"=>$url);
-        }
-    
-   
-    
-    
-    return $steaminfo;
 
-
-}
-function GMSInfo($id64){
     $gmsapi = "85206700db2835f105dc22a79e287f8599ec1b8b";
     $gmjson = @file_get_contents("https://api.gmodstore.com/v2/users/$id64?api_key=$gmsapi");
     $gmdata = json_decode($gmjson);
-    if(isset($gmdata->data->id)){
-            $gmsinfo = array("name"=>$gmdata->data->name, "slug"=>$gmdata->data->slug);
-            return $gmsinfo;
+    if (isset($gmdata->data->id)) {
+        $gmsinfo = array("name" => $gmdata->data->name, "slug" => $gmdata->data->slug);
+        $steaminfo = array("name" => $name, "idn" => $idn, "id64" => $id64, "id3" => $id3, "realname" => $realname, "country" => $country, "img" => $img, "url" => $url, "gmsname" => $gmdata->data->name, "gmsurl" => "https://www.gmodstore.com/users/" . $gmdata->data->slug);
+    } else {
+        $steaminfo = array("name" => $name, "idn" => $idn, "id64" => $id64, "id3" => $id3, "realname" => $realname, "country" => $country, "img" => $img, "url" => $url);
+    }
+
+
+
+
+    return $steaminfo;
+}
+function GMSInfo($id64)
+{
+    $gmsapi = "85206700db2835f105dc22a79e287f8599ec1b8b";
+    $gmjson = @file_get_contents("https://api.gmodstore.com/v2/users/$id64?api_key=$gmsapi");
+    $gmdata = json_decode($gmjson);
+    if (isset($gmdata->data->id)) {
+        $gmsinfo = array("name" => $gmdata->data->name, "slug" => $gmdata->data->slug);
+        return $gmsinfo;
     }
 }
 
@@ -177,7 +178,8 @@ function GMSInfo($id64){
  * @param int $seconds
  * @return void
  */
-function secondsToTime($seconds) {
+function secondsToTime($seconds)
+{
     $dtF = new \DateTime('@0');
     $dtT = new \DateTime("@$seconds");
     return $dtF->diff($dtT)->format('%a days, %h hours, %i minutes and %s seconds');
@@ -188,7 +190,8 @@ function secondsToTime($seconds) {
  *
  * @return void
  */
-function Error404() {
+function Error404()
+{
     include "views/404.php";
 }
 /**
@@ -197,10 +200,11 @@ function Error404() {
  * @param string $string
  * @return boolean
  */
-function IsEmpty($string){
-    if(empty($string) or ctype_space($string)){
+function IsEmpty($string)
+{
+    if (empty($string) or ctype_space($string)) {
         return true;
-    }else{
+    } else {
         return false;
     }
 }
@@ -210,11 +214,13 @@ function IsEmpty($string){
  *
  * @return string 
  */
-function v($var){
+function v($var)
+{
     return htmlspecialchars($var);
 }
 
-function url(){
+function url()
+{
     $protocol = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != "off" ? "https" : "http";
     $host = $_SERVER['SERVER_NAME'];
     $dir = stripslashes("$protocol://$host" . dirname($_SERVER['PHP_SELF']) . "/");
@@ -230,7 +236,7 @@ function url(){
 function SInfo($identifier)
 {
 
-    if(!class_exists("SteamID")){
+    if (!class_exists("SteamID")) {
         include_once("views/includes/SteamID.php");
     }
     $APIKEY = "0EBBACAEBC6039B06DF1066807D55D4C";
@@ -261,9 +267,10 @@ function SInfo($identifier)
                     case 1:
                         return $Response['response']['steamid'];
                     case 42:
-                        return;
+                        return null;
                 }
             }
+
             throw new Exception('Failed to perform API request');
         });
         $id3 = $s->RenderSteam3() . PHP_EOL;
@@ -293,20 +300,44 @@ function SInfo($identifier)
     }
     return $steaminfo;
 }
-/**
- * Log something to the database
- *
- * @param string $action
- * @param array $data
- * @param bool $admin
- * @return array
- */
-function ResourceLog($type,$data,$admin){
-    if($admin){
-        $admin = 1;
-    }else{
-        $admin = 0;
+function SendError($type,$message){
+    $request = json_encode([
+        "content" => "",
+        "embeds" => [
+            [
+                "title" => "System Error -  $type",
+                "type" => "rich",
+                "color" => hexdec("FF0000"),
+                "description" =>  $message,
+                "timestamp" => date("c"),
+            ]
+        ]
+    ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
+
+    $ch = curl_init("https://discordapp.com/api/webhooks/695335752988491839/HOhaC8FXEmYr2URVEr1xKyCQMG7CTQ0PvhrQVuUie7tO_ahYO_4Hn6Gfs49ELhlC7HLC");
+
+    curl_setopt_array($ch, [
+        CURLOPT_POST => 1,
+        CURLOPT_FOLLOWLOCATION => 1,
+        CURLOPT_HTTPHEADER => array("Content-type: application/json"),
+        CURLOPT_POSTFIELDS => $request,
+        CURLOPT_RETURNTRANSFER => 1
+    ]);
+
+
+    curl_exec($ch);
+}
+
+function AdminLog($LogData)
+{
+    try {
+        $Usr = json_encode($LogData['User']);    
+        $id= uniqid("ALOG_",true);
+        SQLWrapper()->prepare("INSERT INTO Logs_Admin (User,Msg,ID) VALUES (?,?,?)")->execute([$Usr, $LogData['Msg'],$id]);
+        return true;
+    } catch (PDOException  $e) {
+        SendError("MySQL Error",$e->getMessage());
+        return false;
     }
-    $logdata = json_encode($data);
-    SQLWrapper()->prepare("INSERT INTO logs (Type, Data,Admin) VALUES (?,?,?)")->execute([$type,  $logdata,$admin]);
+    
 }

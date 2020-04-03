@@ -10,6 +10,32 @@ if (isset($_POST['edit'])) {
 ?>
             <script>    
                 $("#edit-block-modal").modal('show');
+                $("#edit-block-form").submit(function(event){
+                    event.preventDefault();
+                    var reason = $("#edit-reason-input").val()
+                    $.post("/manage/ajax/blocked-users.php", {
+                        saveedit: 1,
+                        reason: reason,
+                        steamid: '<?=v($info['id64']);?>'
+                      })
+                      .done(function(data) {
+                          if(data.success){
+                            Validate("#edit-reason","#edit-reason-feedback")
+                            $("#edit-block-modal").modal('hide');
+                            AlertSuccess(data.Msg)
+                            Load("#blocked-users");
+                          }else{
+                              if(data.SysErr){
+                                  AlertError(data.Msg);
+                              }
+                              if(data.ResonErr){
+                                InValidate("#edit-reason-input","#edit-reason-feedback",data.ResonErr);
+                              }else{
+                                Validate("#edit-reason-input","#edit-reason-feedback")
+                              }
+                          }
+                      })
+                })
             </script>
             <div class="modal" tabindex="-1" id="edit-block-modal" role="dialog">
                 <div class="modal-dialog" role="document">
@@ -20,17 +46,18 @@ if (isset($_POST['edit'])) {
                                 <span aria-hidden="true" style="font-size: 30px">&times;</span>
                             </button>
                         </div>
-                        <form>
+                        <form id="edit-block-form">
                         <div class="modal-body">
                             
                                 <div class="form-group">
                                     <label>Reason</label>
-                                    <input class="form-control form-control-alternative" placeholder="Please add a reason, it's required." value="<?=v($data['rsn']);?>">
+                                    <input id="edit-reason-input" class="form-control form-control-alternative" placeholder="Please add a reason, it's required." value="<?=v($data['rsn']);?>">
+                                    <div id="edit-reason-feedback"></div>
                                 </div>
                             
                         </div>
                         <div class="modal-footer" style="justify-content: center">
-                            <button type="button" class="btn btn-success">Save changes</button>
+                            <button type="submit" class="btn btn-success">Save changes</button>
                             <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                         </div>
                         </form>
@@ -100,10 +127,9 @@ if (isset($_POST['unblockusr'])) {
 
             $logdata = array(
                 "User"=> SInfo($_SESSION['steamid']),
-                "Msg"=>"<a href='/sprofile/".$_SESSION['steamid']."/' target='_blank'>$adminname</a> unblocked <a href='/sprofile/".$unblockid."/' target='_blank'>".$unblockid."</a>"
+                "Msg"=> "<a href='/sprofile/".$_SESSION['steamid']."/' target='_blank'>$adminname</a> unblocked <a href='/sprofile/".$unblockid."/' target='_blank'>".$unblockid."</a>"
             );
-
-            ResourceLog("Action",$logdata,true);
+            AdminLog($logdata);
         } else {
             $Message["message"] = "You're not an admin";
         }
@@ -162,18 +188,18 @@ if (isset($_POST['blockusr'])) {
                     $Message['message'] = "This user is already blocked!";
                 } else {
                     $info = json_encode($user);
-                    $sqlblock = SQLWrapper()->prepare("INSERT INTO blocked (id64, rsn, stamp,info)
-                 VALUES (?,?,?,?)")->execute([$user['id64'], $blockrsn, $blockstamp, $info]);
+                    $admininfo = SInfo($_SESSION['steamid']);
+                    $sqlblock = SQLWrapper()->prepare("INSERT INTO blocked (id64, rsn, stamp,info,AdminInfo)
+                 VALUES (?,?,?,?,?)")->execute([$user['id64'], $blockrsn, $blockstamp, $info,json_encode($admininfo)]);
                     $Message['blockdate'] =  date("m/d/Y g:i a", $blockstamp);
                     $Message["success"] = true;
                     $Message['message'] = $user['name'] . " has been blocked";
                     $adminname = $steamprofile['personaname'];
                     $logdata = array(
-                        "User"=> SInfo($_SESSION['steamid']),
+                        "User"=> $admininfo,
                         "Msg"=>"<a href='/sprofile/".$_SESSION['steamid']."/' target='_blank'>$adminname</a> blocked <a href='/sprofile/".$user['id64']."/' target='_blank'>".$user['name']."</a> for <strong>$blockrsn</strong>"
                     );
-
-                    ResourceLog("Action",$logdata,true);
+                    AdminLog($logdata);
                 }
             }
         } else {
@@ -236,4 +262,65 @@ if (isset($_POST['load'])) {
         </script>
 <?php
     }
+}
+
+if(isset($_POST['saveedit'])){
+    header('Content-type: application/json');
+    $Msg = array(
+        "success" => false,
+        "Msg"=> "Something went wrong!",
+        "SysErr"=>false
+    );
+    if(isset($_SESSION['steamid'])){
+        if(isAdmin($_SESSION['steamid'])){
+            $user = isBlocked($_POST['steamid']);
+            if($user['banned'] == true){
+                if($user['admin']['id64'] == $_SESSION['steamid'] or isMasterAdmin($_SESSION['steamid'])){
+                    if(IsEmpty($_POST['reason'])){
+                        $Msg['ResonErr'] = "You must specify a reason!";
+                    }else if(strlen($_POST['reason']) > 100){
+                        $Msg['ResonErr'] = "The reason you entered must be below 100 characters!";
+                    }
+                    if(!isset($Msg['ResonErr'])){
+                        $admininfo = SInfo($_SESSION['steamid']);
+                        $adminname = $steamprofile['personaname'];
+                        $logdata = array(
+                            "User"=> $admininfo,
+                            "Msg"=>"<a href='/sprofile/".$_SESSION['steamid']."/' target='_blank'>$adminname</a> changed <a href='/sprofile/".$user['userinfo']['id64']."/' target='_blank'>".$user['userinfo']['name']."'s</a> block reason from <strong>".$user['reason']."</strong> to <strong>".$_POST['reason']."</strong>"
+                        );
+                        if(AdminLog($logdata)){
+                            try{
+                                $query = SQLWrapper()->prepare("UPDATE blocked SET rsn = :rsn WHERE id64 = :user");
+                                $query->execute([":rsn"=>$_POST['reason'],":user"=>$_POST['steamid']]);
+                                $Msg['success'] = true;
+                                $Msg['Msg'] = $user['userinfo']['name']."'s ban has been updated!";
+                            }catch (PDOException $e){
+                                SendError("MySQL Error",$e->getMessage());
+                                $Msg["SysErr"] = true;
+                                $Msg["Msg"]= "There was an error saving the data! Try again later!";
+                            }
+                            
+                        }else{
+                            $Msg["SysErr"] = true;
+                            $Msg["Msg"]= "There was an error logging the action, so it will not be performed! Try later!";
+                        }
+                    }
+
+                }else{
+                    $Msg["SysErr"] = true;
+                    $Msg["Msg"]= "You must be the creator of the ban to edit it!";
+                }
+           }else{
+            $Msg["SysErr"] = true;
+            $Msg["Msg"]= "This user is not banned!";
+           }
+        }else{
+            $Msg["SysErr"] = true;
+            $Msg["Msg"]= "You're not an admin!";
+        }
+    }else{
+        $Msg["SysErr"] = true;
+        $Msg["Msg"]= "Session expired!";
+    }
+    die(json_encode($Msg));
 }

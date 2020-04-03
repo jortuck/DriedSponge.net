@@ -216,10 +216,13 @@ class SteamID
 		else if( self::IsNumeric( $Value ) )
 		{
 			$this->Data = gmp_init( $Value, 10 );
+			
 		}
 		else
 		{
+			header("Location: /steam/error");
 			throw new InvalidArgumentException( 'Provided SteamID is invalid.' );
+			
 		}
 	}
 	
@@ -405,7 +408,7 @@ class SteamID
 	 * Example implementation is provided in `VanityURLs.php` file.
 	 *
 	 * @param string $Value Input URL
-	 * @param callable $VanityCallback Callback which is called when a vanity lookup is required
+	 * @param string $VanityCallback Callback which is called when a vanity lookup is required
 	 * 
 	 * @return SteamID Fluent interface
 	 * 
@@ -424,6 +427,7 @@ class SteamID
 			
 			if( $Length < 2 || $Length > 32 )
 			{
+				
 				throw new InvalidArgumentException( 'Provided vanity url has bad length.' );
 			}
 			
@@ -455,8 +459,9 @@ class SteamID
 		else if( preg_match( '/^https?:\/\/(steamcommunity\.com\/user|s\.team\/p)\/([\w-]+)(?:\/|$)/', $Value, $Matches ) === 1 )
 		{
 			$Value = strtolower( $Matches[ 2 ] );
-			$Value = preg_replace( '/[^' . implode( '', self::$SteamInviteDictionary ) . ']/', '', $Value );
 			$Value = strtr( $Value, array_flip( self::$SteamInviteDictionary ) );
+			
+			// hexdec() will ignore any non-hexadecimal characters it encounters.
 			$Value = hexdec( $Value );
 			
 			$Value = '[U:1:' . $Value . ']';

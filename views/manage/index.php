@@ -68,13 +68,12 @@
                                 
                                 <tbody id="recent-logs">
                                     <?php
-                                    $query = SQLWrapper()->prepare("SELECT Type,Data,UNIX_TIMESTAMP(Time) AS Time FROM logs  ORDER BY Time DESC LIMIT 10");
+                                    $query = SQLWrapper()->prepare("SELECT User,Msg,UNIX_TIMESTAMP(Time) AS Time FROM Logs_Admin  ORDER BY Time DESC LIMIT 10");
                                     $query->execute();
                                     $data = $query->fetchAll();
                                     foreach($data as $log){
-                                        $logdata = json_decode($log['Data'],true);
-                                        $user = $logdata['User'];
-                                        $action = $logdata['Msg']
+                                        $user = json_decode($log['User'],true);
+                                        $action = $log['Msg']
                                     
                                     ?>
                                     <tr>
