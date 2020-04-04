@@ -252,17 +252,7 @@
                 $(document).ready(function() {
                   $("#verify-discord").submit(function(event) {
                     event.preventDefault();
-                    var id64 = $("#verify-id64").val();
-                    var tag = $("#verify-discordtag").val();
-                    var discordid = $("#verify-discordid").val();
-                    var submit = $("#submit-verify").val();
-                    $("#verify-form-message").load("/manage/ajax/manage-discord-user.php", {
-                      id64: id64,
-                      tag: tag,
-                      discordid: discordid,
-                      method: "jQuery",
-                      submit: submit
-                    });
+                    
                   });
                 });
               </script>
