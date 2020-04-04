@@ -28,7 +28,7 @@ function isAdmin($steamid)
  */
 function isMasterAdmin($steamid)
 {
-    if ($steamid == "765611983577282566") {
+    if ($steamid == "76561198357728256") {
         return true;
     }
 }
