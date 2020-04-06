@@ -103,8 +103,8 @@
                         $("#block-user-form").show()
                         if (data.success) {
                           toastr["success"](data.message, "Congratulations!")
-                          Validate("#block-id64", "#block-id64-feedback");
-                          Validate("#block-rsn", "#block-rsn-feedback");
+                          Validate("#block-id64");
+                          Validate("#block-rsn");
                           Load("#blocked-users");
 
                         } else {
@@ -112,14 +112,14 @@
                             toastr["error"](data.message, "Error:")
                           } else if (data.basics) {
                             if (data.errorID64 && data.errorID64TXT !== null) {
-                              InValidate("#block-id64", "#block-id64-feedback", data.errorID64TXT);
+                              InValidate("#block-id64", data.errorID64TXT);
                             } else {
-                              Validate("#block-id64", "#block-id64-feedback");
+                              Validate("#block-id64");
                             }
                             if (data.errorRSN && data.errorRSNTXT !== null) {
-                              InValidate("#block-rsn", "#block-rsn-feedback", data.errorRSNTXT);
+                              InValidate("#block-rsn", data.errorRSNTXT);
                             } else {
-                              Validate("#block-rsn", "#block-rsn-feedback");
+                              Validate("#block-rsn");
                             }
 
                           }
@@ -133,13 +133,13 @@
                 <div class="form-row">
                   <div class="form-group col-md-6">
                     <label for="block-id64" style="color: black;">User</label>
-                    <input id="block-id64" name="block-id64" class="form-control form-control-alternative" placeholder="Enter SteamID/Profile/etc">
+                    <input id="block-id64" feedback="#block-id64-feedback" name="block-id64" class="form-control form-control-alternative" placeholder="Enter SteamID64/SteamID/SteamID3/Community ID/Profile URL">
                     <div id="block-id64-feedback"></div>
                   </div>
                   <br>
                   <div class="form-group col-md-6">
                     <label for="block-rsn" style="color: black;">Reason</label>
-                    <input maxlength="100" id="block-rsn" name="block-rsn" type="text" class="form-control form-control-alternative" placeholder="Enter reason">
+                    <input maxlength="100" feedback="#block-rsn-feedback" id="block-rsn" name="block-rsn" type="text" class="form-control form-control-alternative" placeholder="Enter reason">
                     <div id="block-rsn-feedback"></div>
                   </div>
                   <br>
@@ -179,6 +179,7 @@
                         }
                       });
                   }
+
                   function EditBlock(steamid) {
                     $.post("/manage/ajax/blocked-users.php", {
                         edit: 1,
@@ -247,41 +248,71 @@
             <?php } ?>
             <div class="content-box">
               <h1>Verified Discord Users</h1>
-              <!-- Discord manager -->
               <script>
                 $(document).ready(function() {
                   $("#verify-discord").submit(function(event) {
-                    event.preventDefault();
-                    
+                    event.preventDefault();                    var steam = $("#verify-steam").val();
+                    var discordtag = $("#verify-discordtag").val();
+                    var discordid = $("#verify-discordid").val();
+                    $.post("/manage/ajax/manage-discord-user.php", {
+                        verify: 1,
+                        steam: steam,
+                        discordtag: discordtag,
+                        discordid: discordid
+                      })
+                      .done(function(data) {
+                        if (data.success) {
+                          AjaxPagination("du", 1, true);
+                          AlertSuccess(data.Msg);
+                        } else {
+                          if (data.SysErr) {
+                            AlertError(data.Msg);
+                          }
+                          if (data.SteamErr) {
+                            InValidate("#verify-steam", data.SteamErr)
+                          }else{
+                            Validate("#verify-steam")
+                          }
+                          if (data.TagErr) {
+                            InValidate("#verify-discordtag", data.TagErr)
+                          }else{
+                            Validate("#verify-discordtag")
+                          }
+                          if (data.IDErr) {
+                            InValidate("#verify-discordid", data.IDErr)
+                          }else{
+                            Validate("#verify-discordid")
+                          }
+                        }
+                      })
                   });
-                });
+                })
               </script>
               <div id="verify-discord-load"></div>
-              <form id="verify-discord" action="/manage/ajax/manage-discord-user.php" method="post">
+              <form id="verify-discord">
                 <div id="verify-form-message"></div>
                 <div class="form-row">
                   <div class="form-group col-md-6">
-                    <label for="verify-id64" style="color: black;">SteamID64</label>
-                    <input id="verify-id64" name="verify-id64" class="form-control form-control-alternative" placeholder="Enter SteamID64">
-                    <div id="verify-id64-feedback"></div>
+                    <label for="verify-steam" style="color: black;">Steam Profile</label>
+                    <input id="verify-steam" feedback="#verify-steam-feedback" name="verify-steam" class="form-control form-control-alternative" placeholder="Enter SteamID64/SteamID/SteamID3/Community ID/Profile URL">
+                    <div id="verify-steam-feedback"></div>
                   </div>
                   <br>
                   <div class="form-group col-md-6 ">
                     <label for="verify-discordtag" style="color: black;">Discord Name and Tag</label>
-                    <input id="verify-discordtag" name="verify-discordtag" type="text" class="form-control form-control-alternative" placeholder="ex: DriedSponge#0001">
+                    <input id="verify-discordtag" feedback="#verify-discordtag-feedback" name="verify-discordtag" type="text" class="form-control form-control-alternative" placeholder="ex: DriedSponge#0001">
                     <div id="verify-discordtag-feedback"></div>
                   </div>
                   <br>
                 </div>
                 <label for="verify-discordid" style="color: black;">Discord ID</label>
-                <input id="verify-discordid" name="discordid" type="text" class="form-control form-control-alternative" placeholder="Enter their discord ID">
+                <input id="verify-discordid" feedback="#verify-discordid-feedback" type="text" class="form-control form-control-alternative" placeholder="Enter their discord ID">
                 <div id="verify-discordid-feedback"></div>
                 <br>
-                <button id="submit-verify" name="submit-verify" type="submit" class="btn btn-success">Manually Verify</button>
+                <button id="submit-verify" type="submit" class="btn btn-success"><i class="fas fa-check"></i> Manually Verify</button>
               </form>
               <br>
               <h2>Currently Verified Users - Page <span id="du-num">1</span></h2>
-
               <div class="input-group input-group-alternative mb-4">
                 <div class="input-group-prepend">
                   <div class="input-group-text"><i class="fas fa-search"></i></div>
@@ -290,7 +321,7 @@
               </div>
               <br>
               <div id="du-loading"></div>
-              <table id="discordusers" class="table paragraph text-center" style="color: black;" url="/manage/ajax/discord-users.php"  pid="du" >
+              <table id="discordusers" class="table paragraph text-center" style="color: black;" url="/manage/ajax/discord-users.php" pid="du">
                 <thead>
                   <tr class="text-center">
                     <th scope="col">ID64</th>
@@ -307,27 +338,27 @@
                 </tbody>
                 <script>
                   $(document).ready(function() {
-                    AjaxPagination("du",1,true, "stamp", "DESC");
+                    AjaxPagination("du", 1, true, "stamp", "DESC");
                   })
                 </script>
               </table>
               <script>
                 function Unverify(discordid, username) {
-                    $.post("/manage/ajax/manage-discord-user.php", {
-                        unverify: 1,
-                        username: username,
-                        discordid: discordid
-                      })
-                      .done(function(data) {
-                        if (data.success) {
-                          toastr["success"](data.message, "Congratulations!")
-                          $(`#discord-users-${discordid}`).remove()
-                        } else {
-                          toastr["error"](data.message, "Error:")
-                        }
-                      });
-                  }
-                  
+                  $.post("/manage/ajax/manage-discord-user.php", {
+                      unverify: 1,
+                      username: username,
+                      discordid: discordid
+                    })
+                    .done(function(data) {
+                      if (data.success) {
+                        toastr["success"](data.message, "Congratulations!")
+                        $(`#discord-users-${discordid}`).remove()
+                      } else {
+                        toastr["error"](data.message, "Error:")
+                      }
+                    });
+                }
+
                 $(document).ready(function() {
 
                   $("#search-discord").on("keyup", function() {

@@ -20,7 +20,7 @@ if (isset($_POST['edit'])) {
                         })
                         .done(function(data) {
                             if (data.success) {
-                                Validate("#edit-reason", "#edit-reason-feedback")
+                                Validate("#edit-reason")
                                 $("#edit-block-modal").modal('hide');
                                 AlertSuccess(data.Msg)
                                 Load("#blocked-users");
@@ -29,9 +29,9 @@ if (isset($_POST['edit'])) {
                                     AlertError(data.Msg);
                                 }
                                 if (data.ResonErr) {
-                                    InValidate("#edit-reason-input", "#edit-reason-feedback", data.ResonErr);
+                                    InValidate("#edit-reason-input", data.ResonErr);
                                 } else {
-                                    Validate("#edit-reason-input", "#edit-reason-feedback")
+                                    Validate("#edit-reason-input")
                                 }
                             }
                         })
@@ -51,7 +51,7 @@ if (isset($_POST['edit'])) {
 
                                 <div class="form-group">
                                     <label>Reason</label>
-                                    <input id="edit-reason-input" class="form-control form-control-alternative" placeholder="Please add a reason, it's required." value="<?= v($data['rsn']); ?>">
+                                    <input id="edit-reason-input" feedback="#edit-reason-feedback" class="form-control form-control-alternative" placeholder="Please add a reason, it's required." value="<?= v($data['rsn']); ?>">
                                     <div id="edit-reason-feedback"></div>
                                 </div>
 

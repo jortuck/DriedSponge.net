@@ -102,12 +102,7 @@
                                     $("#error-message").addClass("d-none");
                                     $("#success-message").addClass("d-none");
                                     $("#feedback-form").hide();
-
                                     console.log(say);
-                                    //$("#form-message").load("/pages/ajax/feedback-submit.php",{
-                                    //    say: say,
-                                    //    submit: submit
-                                    //});
                                     $.post("/pages/ajax/feedback-submit.php", {
                                             say: say,
                                             submit: 1

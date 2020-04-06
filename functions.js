@@ -1,8 +1,9 @@
 
-function Validate(inputid, feedbackid,showmsg) {
+function Validate(inputid,showmsg) {
   if (showmsg == null) {
     showmsg = false;
   }
+  var feedbackid = $(inputid).attr("feedback");
     $(feedbackid).addClass("valid-feedback")
     $(feedbackid).removeClass("invalid-feedback")
     if(showmsg){
@@ -16,11 +17,11 @@ function Validate(inputid, feedbackid,showmsg) {
   $(inputid).addClass("is-valid")
 
 }
-    function InValidate(inputid,feedbackid,msg){
+    function InValidate(inputid,msg){
+        var feedbackid = $(inputid).attr("feedback");
         $(inputid).addClass("is-invalid")
         $(feedbackid).addClass("invalid-feedback")
-         $(feedbackid).html(msg);
-		
+        $(feedbackid).html(msg);
     }
   function Loading(show,id){
       if(show){

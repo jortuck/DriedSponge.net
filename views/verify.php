@@ -71,7 +71,7 @@
                         $steamid = $steamprofile['steamid'];
                         $updatevalid = SQLWrapper()->prepare("UPDATE discord SET steamid = :id64, stamp = :stamp, verifyid = :verified WHERE discordid = :vid");
                         $updatevalid->execute([':vid' =>  $discordid, ':id64' =>  $steamid, ':stamp' =>  $time, ':verified' =>  "VERIFIED"]);
-                        header("Location: ?success");
+                    
                     } else {
 
                         $ExpiredCode = true; //IF the code is expiered

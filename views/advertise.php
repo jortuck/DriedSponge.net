@@ -38,11 +38,8 @@
         $ReRun = false;
         $DisplayForm = true;
         $row = null;
-        $chekid = $_SESSION['steamid'];
-        $sqlblockexistquery = SQLWrapper()->prepare("SELECT id64, rsn, stamp FROM blocked WHERE id64 = :id");
-        $sqlblockexistquery->execute([':id' => $chekid]);
-        $row = $sqlblockexistquery->fetch();
-        if (!empty($row)) {
+        $blockinfo = isBlocked($_SESSION['steamid']);
+        if ($blockinfo['banned']==true) {
             $DisplayForm = false;
             $blocked = true;
         } else {
@@ -97,7 +94,8 @@
                 <div class="container-fluid">
                     <div data-aos="zoom-in" class="content-box">
                         <h1 class="heading">Error!</h1>
-                        <p class="paragraph text-center">Uh oh, looks like you have been blacklisted from submitting form data. <br> Reason: <?= htmlspecialchars($row["rsn"]); ?></p>
+                        <p class="paragraph text-center">Uh oh, looks like you have been blacklisted from submitting form data. <br> Reason: <?= htmlspecialchars($blockinfo['reason']); ?><br> Admin: <a href="/sprofile/<?= htmlspecialchars($blockinfo['admin']['id64']); ?>"
+                        target="_blank"><?= htmlspecialchars($blockinfo['admin']['name']); ?></a></p>
                     </div>
                 </div>
             <?php
@@ -262,14 +260,14 @@
                                             }
                                             if (data.basics) {
                                                 if (data.errorNAME && data.errorNAMETXT != null) {
-                                                    InValidate("#adname", "#ad-name-feedback", data.errorNAMETXT)
+                                                    InValidate("#adname", data.errorNAMETXT)
                                                 } else {
-                                                    Validate("#adname", "#ad-name-feedback")
+                                                    Validate("#adname")
                                                 }
                                                 if (data.errorCON && data.errorCONTXT != null) {
-                                                    InValidate("#newadcontent", "#ad-con-feedback", data.errorCONTXT)
+                                                    InValidate("#newadcontent", data.errorCONTXT)
                                                 } else {
-                                                    Validate("#newadcontent", "#ad-con-feedback")
+                                                    Validate("#newadcontent")
                                                 }
                                             }
                                             $("#submit-new-ad-box").show();
@@ -291,13 +289,13 @@
                             <br>
                             <div class="form-group">
                                 <label for="adname">Name of your ad</label>
-                                <input id="adname" name="adname" type="text" maxlength="25" class="form-control form-control-alternative" placeholder="My cool server!">
+                                <input id="adname" feedback="#ad-name-feedback" name="adname" type="text" maxlength="25" class="form-control form-control-alternative" placeholder="My cool server!">
                                 <div id="ad-name-feedback"></div>
                             </div>
                             <br>
                             <div class="form-group">
                                 <label for="newadcontent">Tell users about what your advertising. Think of it as just typing a normal message into discord. URLs are allowed (<a href="https://support.discordapp.com/hc/en-us/articles/210298617-Markdown-Text-101-Chat-Formatting-Bold-Italic-Underline-" target="_blank">Discord Markdown</a> is supported)</label>
-                                <textarea id="newadcontent" class="form-control form-control-alternative" name="newadcontent" maxlength="1500" rows="8" placeholder="nvm we actually suck"></textarea>
+                                <textarea id="newadcontent" feedback="#ad-con-feedback" class="form-control form-control-alternative" name="newadcontent" maxlength="1500" rows="8" placeholder="nvm we actually suck"></textarea>
                                 <div id="ad-con-feedback"></div>
                             </div>
                             <br>
