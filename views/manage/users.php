@@ -251,7 +251,8 @@
               <script>
                 $(document).ready(function() {
                   $("#verify-discord").submit(function(event) {
-                    event.preventDefault();                    var steam = $("#verify-steam").val();
+                    event.preventDefault();
+                    var steam = $("#verify-steam").val();
                     var discordtag = $("#verify-discordtag").val();
                     var discordid = $("#verify-discordid").val();
                     $.post("/manage/ajax/manage-discord-user.php", {
@@ -274,17 +275,17 @@
                           }
                           if (data.SteamErr) {
                             InValidate("#verify-steam", data.SteamErr)
-                          }else{
+                          } else {
                             Validate("#verify-steam")
                           }
                           if (data.TagErr) {
                             InValidate("#verify-discordtag", data.TagErr)
-                          }else{
+                          } else {
                             Validate("#verify-discordtag")
                           }
                           if (data.IDErr) {
                             InValidate("#verify-discordid", data.IDErr)
-                          }else{
+                          } else {
                             Validate("#verify-discordid")
                           }
                         }
@@ -410,9 +411,10 @@
           }
         } else {
           ?>
-          <h1 class="articleh1">Please login to manage.</h1>
-          <br>
-          <p class="text-center"><a href='?login'><img src='https://steamcommunity-a.akamaihd.net/public/images/signinthroughsteam/sits_02.png'></a></p>
+          <div class="content-box">
+            <h1>Please login to manage.</h1>
+            <p class="text-center"><a href='?login'><img src='https://steamcommunity-a.akamaihd.net/public/images/signinthroughsteam/sits_02.png'></a></p>
+          </div>
         <?php
         }
         ?>

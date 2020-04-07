@@ -100,9 +100,10 @@
                     }
                 } else {
                     ?>
-                    <h1 class="articleh1">Please login to manage.</h1>
-                    <br>
+                    <div class="content-box">
+                    <h1>Please login to manage.</h1>
                     <p class="text-center"><a href='?login'><img src='https://steamcommunity-a.akamaihd.net/public/images/signinthroughsteam/sits_02.png'></a></p>
+                    </div>
                 <?php
                 }
                 ?>
