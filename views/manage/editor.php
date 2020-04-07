@@ -21,7 +21,6 @@
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" type="text/css">
     
-    <script src="https://driedsponge.net/functions.js"></script>
 </head>
 
 <body>
@@ -101,11 +100,11 @@
                                                     $("#editor-form").show()
                                                     $("#success-message").removeClass("d-none");
                                                     $("#success_message_text").html(data.message)
-                                                    Validate("#title","#title-feedback")
-                                                    Validate("#privacy","#privacy-feedback")
-                                                    Validate("#des","#des-feedback")
-                                                    Validate("#slug","#slug-feedback")
-                                                    Validate("#content","#content-feedback")
+                                                    Validate("#title")
+                                                    Validate("#privacy")
+                                                    Validate("#des")
+                                                    Validate("#slug")
+                                                    Validate("#content")
                                                     setInterval(function(){
                                                         $("#success-message").addClass("d-none");
                                                     }, 10000)
@@ -120,29 +119,29 @@
                                                     }
                                                      if(data.basics){
                                                         if(data.errorNAMETXT != null){
-                                                            InValidate("#title","#title-feedback",data.errorNAMETXT)
+                                                            InValidate("#title",data.errorNAMETXT)
                                                         }else{
-                                                            Validate("#title","#title-feedback")
+                                                            Validate("#title")
                                                         }
                                                         if(data.errorPRIVACYTXT != null){
-                                                            InValidate("#privacy","#privacy-feedback",data.errorPRIVACYTXT)
+                                                            InValidate("#privacy",data.errorPRIVACYTXT)
                                                         }else{
-                                                            Validate("#privacy","#privacy-feedback")
+                                                            Validate("#privacy")
                                                         }
                                                         if(data.errorDESTXT != null){
-                                                            InValidate("#des","#des-feedback",data.errorDESTXT)
+                                                            InValidate("#des",data.errorDESTXT)
                                                         }else{
-                                                            Validate("#des","#des-feedback")
+                                                            Validate("#des")
                                                         }
                                                         if(data.errorSLGTXT != null){
-                                                            InValidate("#slug","#slug-feedback",data.errorSLGTXT)
+                                                            InValidate("#slug",data.errorSLGTXT)
                                                         }else{
-                                                            Validate("#slug","#slug-feedback")
+                                                            Validate("#slug")
                                                         }
                                                         if(data.errorCONTXT != null){
-                                                            InValidate("#content","#content-feedback",data.errorCONTXT)
+                                                            InValidate("#content",data.errorCONTXT)
                                                         }else{
-                                                            Validate("#content","#content-feedback")
+                                                            Validate("#content")
                                                         }
                                                     }
 
@@ -170,12 +169,12 @@
                                 <div class="form-row">
                                     <div class="col">
                                         <label for="title">Page Title</label>
-                                        <input class="form-control" placeholder="Enter Title" value="<?= htmlspecialchars($editname); ?>" name="title" id="title" maxlength="50"></input>
+                                        <input class="form-control" feedback="#title-feedback" placeholder="Enter Title" value="<?= htmlspecialchars($editname); ?>" name="title" id="title" maxlength="50"></input>
                                         <div id="title-feedback"></div>
                                     </div>
                                     <div class="col">
                                         <label for="privacy">Privacy</label>
-                                        <select class="form-control" id="privacy" name="privacy">
+                                        <select class="form-control" id="privacy" feedback="#privacy-feedback" name="privacy">
                                             <option value="1">Public</option>
                                             <option value="2">Must be logged in</option>
                                             <option value="3">Must be verified in discord</option>
@@ -188,19 +187,19 @@
                                 <div class="form-row">
                                     <div class="col">
                                         <label for="des">Page Description</label>
-                                        <input maxlength="160" class="form-control" placeholder="Enter Meta Description" value="<?= htmlspecialchars($currentdes); ?>" name="des" id="des"></input>
+                                        <input maxlength="160" feedback="#des-feedback" class="form-control" placeholder="Enter Meta Description" value="<?= htmlspecialchars($currentdes); ?>" name="des" id="des"></input>
                                         <div id="des-feedback"></div>
                                     </div>
                                     <div class="col">
                                         <label for="slug">Slug</label>
-                                        <input id="slug" name="slug" class="form-control" placeholder="https://driedsponge.net/{slug}" value="<?= htmlspecialchars($cs); ?>" type="text" maxlength="20">
+                                        <input id="slug" name="slug" feedback="#slug-feedback" class="form-control" placeholder="https://driedsponge.net/{slug}" value="<?= htmlspecialchars($cs); ?>" type="text" maxlength="20">
                                             <div id="slug-feedback"></div>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="content" style="color: black;">Edit the contents</label>
                                     <br>
-                                    <textarea id="content" name="content" rows="40" class="form-control"><?= htmlspecialchars_decode($current["content"]); ?></textarea>
+                                    <textarea id="content" name="content" feedback="#content-feedback" rows="40" class="form-control"><?= htmlspecialchars_decode($current["content"]); ?></textarea>
                                     <div id="content-feedback"></div>
                                 </div>
                             </form>

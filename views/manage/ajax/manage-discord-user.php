@@ -8,6 +8,8 @@ if (isset($_POST['unverify'])) {
   );
   if (isset($_SESSION['steamid'])) {
     if (isAdmin($_SESSION['steamid'])) {
+      if(isVerified($_SESSION['steamid'])){
+
       $unverifyid = $_POST['discordid'];
       $username = $_POST['username'];
       $admininfo = SInfo($_SESSION['steamid']);
@@ -30,6 +32,9 @@ if (isset($_POST['unverify'])) {
       } else {
         $Message["message"] = "There was an error logging the action, so it will not be performed! Try later!";
       }
+    }else{
+      $Message["message"] = "Ypu must be verified to unverify other users!";
+    }
     } else {
       $Message["message"] = "Not an admin";
     }
@@ -54,11 +59,13 @@ if (isset($_POST['verify'])) {
           $Msg["SteamErr"] = "The steam profile does not exist!";
         } else {
           $id64 = $user['id64'];
+
           if(isVerified($id64)){
             $Msg["SteamErr"] = "The user is already verified!";
             $Msg['SysErr'] = true;
             $Msg['Msg'] = "The user is already verified!";
           }
+
         }
         if (IsEmpty($_POST['discordtag'])) {
           $Msg["TagErr"] = "Please enter a discord user name and tag!";
@@ -71,8 +78,26 @@ if (isset($_POST['verify'])) {
           $Msg['IDErr'] = "Discord ID's are numbers only";
         }
         if (!isset($Msg['IDErr']) && !isset($Msg['TagErr']) && !isset($Msg['SteamErr'])) {
-          $Msg['success'] = true;
-          $Msg['Msg'] = "Big big $id64";
+          $admininfo = SInfo($_SESSION['steamid']);
+          $logdata = array(
+            "User" => $admininfo,
+            "Msg" => "<a href='/sprofile/" . $_SESSION['steamid'] . "/' target='_blank'>" . $steamprofile['personaname'] . "</a> verified <strong>".$user['name']."(".$_POST['discordtag'].")</strong>"
+          );
+          if (AdminLog($logdata)) {
+            try {
+              $sqlblock = SQLWrapper()->prepare("INSERT INTO discord (discordid,steamid, stamp, verifyid,discorduser,givenrole)
+              VALUES (?,?,?,?,?,?)")->execute([$_POST['discordid'],$id64,time(),"VERIFIED",$_POST['discordtag'],0]);
+              $Msg['success'] = true;
+              $Msg['Msg'] = $user['name']." has been verified as ".$_POST['discordtag'];
+            } catch (PDOException $e) {
+              SendError("MySQL Error", $e->getMessage());
+              $Message["Msg"] = "There was an error saving the data! Try again later!";
+              $Msg['SysErr'] = true;
+            }
+          } else {
+            $Msg['SysErr'] = true;
+            $Message["Msg"] = "There was an error logging the action, so it will not be performed! Try later!";
+          }
         }
       } else {
         $Msg['SysErr'] = true;

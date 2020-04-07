@@ -264,6 +264,10 @@
                         if (data.success) {
                           AjaxPagination("du", 1, true);
                           AlertSuccess(data.Msg);
+                          Validate("#verify-discordid")
+                          Validate("#verify-discordtag")
+                          Validate("#verify-steam")
+
                         } else {
                           if (data.SysErr) {
                             AlertError(data.Msg);
