@@ -9,7 +9,8 @@ header('Content-type: application/json');
             "message" => "Something went wrong I guess"
         );
         if(isset($_SESSION['steamid'])){
-            if(!isBlocked($_SESSION['steamid'])){
+            $blockinfo = isBlocked($_SESSION['steamid']);
+            if(!$blockinfo['banned']){
                 if(isVerified($_SESSION['steamid'])){
                 $adexist = SQLWrapper()->prepare("SELECT user,adname,overide,content,adcount,UNIX_TIMESTAMP(stamp) AS stamp  FROM ads WHERE user = :id");
                 $adexist->execute([':id' => $_SESSION['steamid']]);
@@ -75,7 +76,8 @@ if (isset($_POST['submit'])) {
         "message" => "Something went wrong I guess"
     );
     if(isset($_SESSION['steamid'])){
-        if(!isBlocked($_SESSION['steamid'])){
+        $blockinfo = isBlocked($_SESSION['steamid']);
+            if(!$blockinfo['banned']){
             if(isVerified($_SESSION['steamid'])){
                 $Message["message"] = null;
                 $Message["basics"] = true;
