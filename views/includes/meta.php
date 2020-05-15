@@ -12,7 +12,6 @@
 <?php
   $theme = url()."css/textclass.css";
   $themefav = url()."img/favicon.png";
-
 ?>
 <meta name="theme-color" content="#007BFF">
 <link type="text/css" rel="stylesheet" href="<?=v(url());?>css/formatting.css">
@@ -30,11 +29,9 @@
 </style>
 <script>
   window.dataLayer = window.dataLayer || [];
-
   function gtag() {
     dataLayer.push(arguments);
   }
   gtag('js', new Date());
-
   gtag('config', 'UA-140402227-3');
 </script>
