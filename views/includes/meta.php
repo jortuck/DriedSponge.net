@@ -5,26 +5,18 @@
 <link rel="stylesheet" type="text/css" href="<?=v(url());?>css/aos.css" />
 <link href='https://fonts.googleapis.com/css?family=Bangers' rel='stylesheet'>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
-
-
 <script src="<?=v(url());?>js/aos.js"></script>
 <script src="<?=v(url());?>js/argon.js"></script>
 <meta name="viewport" content="width = device-width, initial-scale = 1">
 <!-- Global site tag (gtag.js) - Google Analytics -->
-
-
 <?php
-
-
   $theme = url()."css/textclass.css";
   $themefav = url()."img/favicon.png";
 
 ?>
-
 <meta name="theme-color" content="#007BFF">
 <link type="text/css" rel="stylesheet" href="<?=v(url());?>css/formatting.css">
 <link type="text/css" rel="stylesheet" href="<?= htmlspecialchars($theme); ?>">
-
 <link rel="icon" href="<?= htmlspecialchars($themefav); ?>" type="image/x-icon">
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-140402227-3"></script>
 <!-- Global site tag (gtag.js) - Google Analytics -->
