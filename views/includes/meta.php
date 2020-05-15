@@ -18,12 +18,10 @@
 
   $theme = url()."css/textclass.css";
   $themefav = url()."img/favicon.png";
-  $themecol = "#007BFF";
-
 
 ?>
 
-<meta name="theme-color" content="<?= htmlspecialchars($themecol); ?>">
+<meta name="theme-color" content="#007BFF">
 <link type="text/css" rel="stylesheet" href="<?=v(url());?>css/formatting.css">
 <link type="text/css" rel="stylesheet" href="<?= htmlspecialchars($theme); ?>">
 
