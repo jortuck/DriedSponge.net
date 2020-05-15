@@ -2,6 +2,7 @@
 require "Bramus/Router/Router.php";
 include ("databases/connect.php");
 include ("src/libs/functions.php");
+date_default_timezone_set("America/Los_Angeles");
 
 $router = new \Bramus\Router\Router();
 

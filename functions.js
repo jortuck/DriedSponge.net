@@ -31,7 +31,10 @@ function Validate(inputid,showmsg) {
         $(id).addClass("d-none");
       }
   }
-function Load(thing){
+function Load(thing,tippy){
+  if(tippy==null){
+    var tippy = false
+  }
    url = $(thing).attr("url");
    $(thing).html("<div class='text-center'>Loading</div>");
    $.post(url, {
@@ -39,6 +42,9 @@ function Load(thing){
   })
   .done(function(data) {
    $(thing).html(data);
+    if(tippy){
+      tippy('[data-tippy-content]');
+    }
   });
 }
 function AlertSuccess(msg){
@@ -115,3 +121,4 @@ function AjaxPagination(pid,page,showload,col,order) {
         });
     });
 }
+

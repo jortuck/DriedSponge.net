@@ -4,6 +4,7 @@
 <link rel="stylesheet" href="<?=v(url());?>css/argon.min.css">
 <link rel="stylesheet" type="text/css" href="<?=v(url());?>css/aos.css" />
 <link href='https://fonts.googleapis.com/css?family=Bangers' rel='stylesheet'>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
 
 
 <script src="<?=v(url());?>js/aos.js"></script>
@@ -16,7 +17,7 @@
 
 
   $theme = url()."css/textclass.css";
-  $themefav = url()."img/zfavicon.ico";
+  $themefav = url()."img/favicon.png";
   $themecol = "#007BFF";
 
 

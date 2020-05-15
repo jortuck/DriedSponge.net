@@ -13,7 +13,7 @@ function isAdmin($steamid)
     if ($steamid == "76561198357728256") {
         return true;
     }
-    $isAdminQuery = SQLWrapper()->prepare("SELECT id64 FROM staff WHERE id64 = ?"); // because its a single var we can use ?
+    $isAdminQuery = SQLWrapper()->prepare("SELECT id64 FROM staff WHERE id64 = ?"); 
     $isAdminQuery->execute([$steamid]);
     $Admin = $isAdminQuery->fetch();
 
