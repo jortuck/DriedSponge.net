@@ -11,7 +11,6 @@ if (isset($_POST['submit'])) {
     if (isset($steamprofile['steamid'])) {
         if(isBlocked($_SESSION['steamid'])['banned'] == false){
         $feedback = $_POST['say'];
-
         if (IsEmpty($feedback)) {
             $Message["message"] = "Feedback was empty!";
         } else if (strlen($feedback) < 1000) {

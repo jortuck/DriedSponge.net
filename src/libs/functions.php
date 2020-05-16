@@ -346,3 +346,14 @@ function AdminLog($LogData)
     }
 
 }
+function CanAdvertise($steamid){
+    $adstamp = time();
+    $adexist = SQLWrapper()->prepare("SELECT overide,UNIX_TIMESTAMP(stamp) AS stamp  FROM ads WHERE user = :id");
+    $adexist->execute([':id' => $steamid]);
+    $adrow = $adexist->fetch();    $numDays = abs($adrow['stamp'] - $adstamp) / 60 / 60 / 24;
+    if ($numDays >= 1 or $adrow['overide'] == "1") {
+        return true;
+    }else{
+        return false;
+    }
+}

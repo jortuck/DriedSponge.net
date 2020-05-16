@@ -46,14 +46,14 @@
             if (isVerified($_SESSION['steamid'])) {
                 $aduser =  $steamprofile['steamid'];
                 $adstamp = time();
-                $adexist = SQLWrapper()->prepare("SELECT user,adname,overide,content,adcount,UNIX_TIMESTAMP(stamp) AS stamp  FROM ads WHERE user = :id");
+                $adexist = SQLWrapper()->prepare("SELECT user,adname,content,adcount,UNIX_TIMESTAMP(stamp) AS stamp  FROM ads WHERE user = :id");
                 $adexist->execute([':id' => $aduser]);
                 $adrow = $adexist->fetch();
                 $adcount = $adrow['adcount'];
                 $numDays = abs($adrow['stamp'] - $adstamp) / 60 / 60 / 24;
                 $submitted = $adrow['stamp'];
                 $timeleft = secondsToTime(86400 - abs($adrow['stamp'] - $adstamp));
-                if ($numDays >= 1 or $adrow['overide'] == "1") {
+                if (CanAdvertise($_SESSION['steamid'])) {
                     $oneday = false;
                     if (!empty($adrow['content'])) {
                         $ReRun = true;
@@ -84,12 +84,6 @@
 
     <div class="app">
         <div class="container-fluid-lg">
-
-            <hgroup>
-                <!-- <img src="https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/18/18be38c2f230fea0fa667c8165e4da5cb1a787c0_full.jpg" alt="DriedSponge's Profile Picture"> -->
-                <h1 class="display-2"><strong>Advertise</strong></h1>
-                <br>
-            </hgroup>
             <?php if ($blocked) { ?>
                 <div class="container-fluid">
                     <div data-aos="zoom-in" class="content-box">
@@ -151,7 +145,7 @@
             ?>
                 <div class="container-fluid">
                     <div class="content-box">
-                        <h1>About</h1>
+                        <h1>Advertise</h1>
                         <p class="text-center">Send an advertisement of anything to my discord server advertisement channel. If you abuse this system, your account may be blocked from future advertising. You can advertise every 24hrs.</p>
                     </div>
                     <div class="text-center" id="feedback-response">

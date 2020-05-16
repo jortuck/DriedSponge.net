@@ -6,7 +6,7 @@
 <link href='https://fonts.googleapis.com/css?family=Bangers' rel='stylesheet'>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
 <script src="<?=v(url());?>js/aos.js"></script>
-<script src="<?=v(url());?>js/argon.js"></script>
+<script src="<?=v(url());?>js/argon.min.js"></script>
 <meta name="viewport" content="width = device-width, initial-scale = 1">
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <?php

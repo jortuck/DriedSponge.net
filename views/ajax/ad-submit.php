@@ -1,8 +1,5 @@
 <?php
 header('Content-type: application/json');
-
-
-
     if(isset($_POST['lastad'])){
         $Message = array(
             "success" => false, // "suck this" hehe
@@ -12,6 +9,7 @@ header('Content-type: application/json');
             $blockinfo = isBlocked($_SESSION['steamid']);
             if(!$blockinfo['banned']){
                 if(isVerified($_SESSION['steamid'])){
+                    if(CanAdvertise($_SESSION['steamid'])){
                 $adexist = SQLWrapper()->prepare("SELECT user,adname,overide,content,adcount,UNIX_TIMESTAMP(stamp) AS stamp  FROM ads WHERE user = :id");
                 $adexist->execute([':id' => $_SESSION['steamid']]);
                 $adrow = $adexist->fetch();
@@ -49,6 +47,9 @@ header('Content-type: application/json');
                 curl_exec($ch);
                 $Message['message'] = "Thank you for advertising! You should see your ad appear in the server shortly.";
                 $Message['success'] = true;
+                    }else{
+                        $Message["message"] = "Please wait before advertising again.";
+                    }
                 }else{
                     $Message['message'] = "You need to be verified in my discord server to do this!";
                 }
@@ -79,6 +80,8 @@ if (isset($_POST['submit'])) {
         $blockinfo = isBlocked($_SESSION['steamid']);
             if(!$blockinfo['banned']){
             if(isVerified($_SESSION['steamid'])){
+                if(CanAdvertise($_SESSION['steamid'])){
+
                 $Message["message"] = null;
                 $Message["basics"] = true;
                 $aduser = $_SESSION['steamid'];
@@ -152,7 +155,12 @@ if (isset($_POST['submit'])) {
                     }
                     $Message["success"] = true;
                     $Message["message"] = "Thank you for advertising! You should see your ad appear in the server shortly.";
-               }
+                }
+               
+                }else{
+                    $Message["message"] = "Please wait before advertising again.";
+
+                }
                 }else{
                     $Message["message"] = "You need to be verified in my discord server to do this!";
                 }
