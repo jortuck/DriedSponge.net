@@ -344,5 +344,5 @@ function AdminLog($LogData)
         SendError("MySQL Error",$e->getMessage());
         return false;
     }
-    
+
 }

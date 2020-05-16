@@ -59,7 +59,6 @@ if (isset($_POST['submit'])) {
                 "User"=> SInfo($_SESSION['steamid']),
                 "Msg"=>"<a href='/sprofile/".$_SESSION['steamid']."/' target='_blank'>$username</a> submited feedback"
             );
-            ResourceLog("Action",$logdata,false);
         } else {
             $Message["message"] = "The text you entered is too long, please reduce the length to a maximum of 1000 characters.";
 
