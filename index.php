@@ -2,9 +2,12 @@
 require "Bramus/Router/Router.php";
 include ("databases/connect.php");
 include ("src/libs/functions.php");
+require __DIR__ . '/vendor/autoload.php';
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+    $dotenv->load();
 date_default_timezone_set("America/Los_Angeles");
-
 $router = new \Bramus\Router\Router();
+ 
 
 $router->get('pattern', function() { /* ... */ });
 $router->post('pattern', function() { /* ... */ });
@@ -145,6 +148,11 @@ $router->all('/manage/edit/{pageid}', function ($pageid) { //Editor Manage
     include('views/manage/editor.php');
 });
 
+
+$router->all('/webhook/{hook}', function ($hook) { 
+    
+    include('webhooks/'.$hook.'.php');
+});
 $router->all('/sprofile/{steamid64}/', function ($steamid64) {
      header("Location: https://steamcommunity.com/profiles/$steamid64");
 });
