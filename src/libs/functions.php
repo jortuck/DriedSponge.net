@@ -357,3 +357,8 @@ function CanAdvertise($steamid){
         return false;
     }
 }
+function FormatDate($stamp)
+{
+    $date = date("n/j/Y g:i A", $stamp);
+    return $date;
+}
