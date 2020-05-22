@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('title','Home')
-
+@section('description',"DriedSponge's Portfolio - Find out info about me and the stuff I make. It's epic guys.")
 @section('content')
 <div class="container-fluid-lg">
 
@@ -48,7 +48,7 @@
                                     style="max-height:100px;" />
                                 <p class="paragraph" style="text-align: center;">PHP is my favorite language.
                                     This is becuase I am the most skilled in the backend department and it's
-                                    pretty cool in general (although some might disagree).</p>
+                                    pretty cool in general (although some might disagree). I use the laravel framework for most of my projects.</p>
                             </div>
                         </div>
                     </div>

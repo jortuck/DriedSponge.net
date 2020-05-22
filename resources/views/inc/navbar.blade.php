@@ -12,14 +12,14 @@
                     <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                         <li class="nav-item" id="homelink"><a class="nav-link" href="/home/">Home</a></li>
                         <li class="nav-item" id="ad"><a class="nav-link" href="/advertise/">Advertise</a></li>
-                        <li class="nav-item dropdown">
+                        <li  id="projects" class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="MyProjects" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         My Projects
                                         </a>
                                         <div class="dropdown-menu" aria-labelledby="MyProjects">
-                                         <a class="dropdown-item" href="/projects/web">Web Projects</a>
+                                         <a class="dropdown-item" href="/web-projects">Web Projects</a>
                                         </div>
-                                    </li>
+                                </li>
                             <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Other

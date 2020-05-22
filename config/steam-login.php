@@ -41,7 +41,7 @@ return [
      * @var array
      */
     'routes'  => [
-        'login' => env('STEAM_LOGIN_ROUTE', env('STEAM_LOGIN_ROUTE_NAME', 'login.steam')),
+        'login' => env('STEAM_LOGIN_ROUTE', env('STEAM_LOGIN_ROUTE_NAME', 'login')),
         'auth'  => env('STEAM_LOGIN_AUTH_ROUTE', env('STEAM_AUTH_ROUTE_NAME', 'auth.steam')),
     ],
 ];
