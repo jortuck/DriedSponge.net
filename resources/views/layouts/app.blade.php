@@ -15,11 +15,16 @@
         <script src="{{ asset('argon') }}/vendor/jquery/dist/jquery.min.js"></script>
         <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
         <script src="https://kit.fontawesome.com/0add82e87e.js" crossorigin="anonymous"></script>
+        <script src="{{ asset('js/app.js') }}" ></script>
+        <script src="{{ asset('js/functions.js') }}" ></script>
         <link rel="icon" href="{{asset('images/favicon.png')}}" type="image/x-icon">
     </head>
     <body>
         <div class="app">
-        @include('inc.navbar')     
+        @include('inc.navbar')  
+        <div class="container">
+            @include('inc.messages')     
+        </div>   
         @yield('content')
     </div>
         @include('inc.footer')     

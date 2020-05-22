@@ -28,5 +28,7 @@ class User extends Authenticatable
     protected $hidden = [
          'remember_token'
     ];
-
+    public function bans(){
+        return $this->hasOne('App\Bans','user_id','steamid');
+    }
 }

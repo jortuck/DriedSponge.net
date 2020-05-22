@@ -59,7 +59,7 @@
   </div>
 
 <script>
-    navitem = document.getElementById('projects').classList.add('active')
+    navitem = document.getElementById('projectslink').classList.add('active')
     const observer = lozad(); // lazy loads elements with default selector as '.lozad'
     observer.observe();
 </script>
