@@ -51,22 +51,21 @@ hgroup h2{
 }
 .navbar-nav .nav-item .nav-link {
     font-size: 1.2em;
-    font-weight: bold;
+    font-weight: 600;
     color: rgba(255,255,255,.65);
 }
-
-.navbar-nav .nav-item .nav-link:hover{
-    font-weight: bold;
-    color: white;
-
+.navbar-nav .nav-item .nav-link:hover {
+  font-weight: 600;
+  color: white;
 }
 .navbar-dark .navbar-nav .active>.nav-link, .navbar-dark .navbar-nav .nav-link.active, .navbar-dark .navbar-nav .nav-link.show, .navbar-dark .navbar-nav .show>.nav-link {
 color: white;
 }
 .navbar-brand{
-    font-family: 'Bangers';
-    font-size: 1.2em;
-    letter-spacing: 3px;
+    font-family: 'Roboto';
+    font-size: 1.4em;
+    letter-spacing: 1px;
+    font-weight:900;
 }
 blockquote{
     background: #007BFF;

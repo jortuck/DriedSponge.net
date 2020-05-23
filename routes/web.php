@@ -22,6 +22,7 @@ Route::get('/', 'PagesController@index');
 Route::get('/home', 'PagesController@index');
 Route::get('/web-projects', 'PagesController@webprojects');
 
+//Feedback
 Route::get('/feedback', 'FeedBackController@create');
 Route::post('/feedback', 'FeedBackController@store');
 
@@ -29,6 +30,13 @@ Route::post('/feedback', 'FeedBackController@store');
 Route::get('/login', 'Auth\SteamLoginController@login')->name('login');
 Route::get('auth/steam', 'Auth\SteamLoginController@authenticate')->name('auth.steam');
 Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
+
+//Manage
+Route::group(['middleware' => ['can:manage']], function () {});
+Route::get('/manage', 'Manage\ManageController@index');
+Route::resource('/manage/roles', 'Manage\RolesController');
+
+
 
 
 

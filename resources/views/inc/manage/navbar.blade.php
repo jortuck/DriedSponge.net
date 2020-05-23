@@ -1,33 +1,29 @@
 <div class="container-fluid-lg" >
-    
     <div class="page-header">
-     
         <nav class="navbar navbar-expand-lg navbar-dark nbth ">
-                <a class="navbar-brand" href="/home">DriedSponge.net</a>
+                <a class="navbar-brand" href="/home">Management</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarmain" aria-controls="navbarmain" aria-expanded="false" aria-label="Toggle navigation">
                 <i class="fas fa-bars" style="color: black;"></i>
                       </button>
                 <div class="collapse navbar-collapse" id="navbarmain">
-                        
                     <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-                        <li class="nav-item" id="homelink"><a class="nav-link" href="/home/">Home</a></li>
-                        <li class="nav-item" id="ad"><a class="nav-link" href="/advertise/">Advertise</a></li>
-                        <li  id="projectslink" class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="MyProjects" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        My Projects
-                                        </a>
-                                        <div class="dropdown-menu" aria-labelledby="MyProjects">
-                                         <a class="dropdown-item" href="/web-projects">Web Projects</a>
-                                        </div>
-                                </li>
-                            <li id='otherlink' class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Other
+                        <li class="nav-item" id="dashlink"><a class="nav-link" href="/home/">Dashboard</a></li>
+                        <li  id="adminlink" class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="AdministrationDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Administration
                             </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item" href="/feedback">Feedback</a>
-                            <a class="dropdown-item" href="/contributors">Contributors</a>
-                            <a class="dropdown-item" href="/legal/privacy">Privacy Policy</a>
+                            <div class="dropdown-menu" aria-labelledby="UsersDropdown">
+                                 <a class="dropdown-item" href="/manage/roles">Roles</a>
+                                 <a class="dropdown-item" href="/manage/permissions">Permissions</a>
+                            </div>
+                        </li>
+                        <li  id="userlink" class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="UsersDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Users
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="UsersDropdown">
+                                 <a class="dropdown-item" href="/web-projects">Manage All Users</a>
+                                 <a class="dropdown-item" href="/web-projects">Bans</a>
                             </div>
                         </li>
                     </ul>

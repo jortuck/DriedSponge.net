@@ -293,12 +293,12 @@ hgroup h2 {
 
 .navbar-nav .nav-item .nav-link {
   font-size: 1.2em;
-  font-weight: bold;
+  font-weight: 600;
   color: rgba(255, 255, 255, 0.65);
 }
 
 .navbar-nav .nav-item .nav-link:hover {
-  font-weight: bold;
+  font-weight: 600;
   color: white;
 }
 
@@ -310,9 +310,10 @@ hgroup h2 {
 }
 
 .navbar-brand {
-  font-family: "Bangers";
-  font-size: 1.2em;
-  letter-spacing: 3px;
+  font-family: "Roboto";
+  font-size: 1.4em;
+  letter-spacing: 1px;
+  font-weight: 900;
 }
 
 blockquote {
@@ -447,7 +448,7 @@ label {
 .sub-nav a {
   text-align: center;
   font-size: 1.5em;
-  font-family: "Bangers";
+  font-family: "Roboto";
   letter-spacing: 3px;
   font-style: normal;
   color: rgba(255, 255, 255, 0.65);
@@ -583,11 +584,11 @@ label {
   color: black;
   font-weight: 900;
   font-size: 3.5em;
-  font-family: "Bangers";
+  font-family: "Roboto";
   letter-spacing: 3px;
   margin-bottom: 0.5em;
   text-align: center;
-  text-transform: uppercase;
+  text-transform: none;
 }
 
 .content-box .subheading,
@@ -719,7 +720,7 @@ label {
 
 .card-border .card-body .heading {
   font-size: 1.6em;
-  font-family: "Bangers";
+  font-family: "Roboto";
   letter-spacing: 3px;
   color: black;
 }
@@ -815,4 +816,16 @@ label {
 }
 
 /*End Showcases*/
+
+.table td,
+.table th {
+  font-size: 1em;
+  white-space: nowrap;
+  font-family: Roboto;
+}
+
+.table thead th {
+  font-size: 1.1em;
+  font-family: Roboto;
+}
 
