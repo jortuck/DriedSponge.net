@@ -39,7 +39,9 @@
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
                                 <a class="dropdown-item" href="/logout/"><i class="fas fa-sign-out-alt"></i> Logout</a>
-                            </div>
+                                <a class="dropdown-item" href="/manage/"><i class="fas fa-cog"></i> Management</a>
+
+                                </div>
                             </li>
                             </ul>
                         @endauth

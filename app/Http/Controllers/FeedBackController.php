@@ -29,11 +29,11 @@ class FeedBackController extends Controller
         if(Auth::guest()){
             return response()->json(['error' => 'Session expired']);
         }else{
-        $user = User::find(auth()->user()->id);
-        if(!$user->Bans){
+        $user = User::find(auth()->user()->steamid);
+        if(!$user->IsBanned()){
         $validator =  Validator::make($request->all(),[
-            "subject" => "required",
-            "message" => "required"
+            "subject" => "required|min:3|max:25",
+            "message" => "required|min:10|max:1000"
         ]);
         if ($validator->passes()) {
             $request = json_encode([

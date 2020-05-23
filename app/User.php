@@ -5,10 +5,11 @@ namespace App;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-
+use Spatie\Permission\Traits\HasRoles;
 class User extends Authenticatable
 {
     use Notifiable;
+    use HasRoles;
 
     /**
      * The attributes that are mass assignable.
@@ -28,7 +29,19 @@ class User extends Authenticatable
     protected $hidden = [
          'remember_token'
     ];
-    public function bans(){
-        return $this->hasOne('App\Bans','user_id','steamid');
+    public $primaryKey = 'steamid';
+
+    public function Bans(){
+        return $this->hasMany('App\Bans','user_id','steamid');
     }
+    public function IsBanned()
+    {
+        return $this->Bans()->Active()->first();
+    }
+    public function AllBans()
+    {
+        return $this->Bans()->History();
+    }
+
+
 }

@@ -7,7 +7,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use kanalumaddela\LaravelSteamLogin\Http\Controllers\AbstractSteamLoginController;
 use kanalumaddela\LaravelSteamLogin\SteamUser;
-use Illuminate\Support\Facades\Storage;
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
 class SteamLoginController extends AbstractSteamLoginController
 {
     /**
@@ -21,17 +22,14 @@ class SteamLoginController extends AbstractSteamLoginController
         // if the user doesn't exist, create them
         if (!$user) {
             $steamUser->getUserInfo(); 
-
-            //die($steamUser);
             $guarded = [];
             $user = User::create([
                 'username' => $steamUser->name, 
                 'steamid' => $steamUser->steamId,
                 'avatar' => $steamUser->avatarLarge 
-            ]);
-           
+            ]); 
+            $user->assignRole('User');
         }
-
         // login the user using the Auth facade
         Auth::login($user);
 

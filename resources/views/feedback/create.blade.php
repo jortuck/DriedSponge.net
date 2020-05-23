@@ -18,11 +18,11 @@
         </div>
         @endguest
         @auth
-        @if (Auth::user()->Bans)
+        @if (Auth::user()->IsBanned())
             <div class="content-box">
                 <h1>You Are Banned</h1>
                 <p class="text-center text-danger">You are banned and are not allowed to submit any data.</p>
-            <p class="text-center text-danger"><b>{{Auth::user()->Bans->reason}}</b></p>
+            <p class="text-center text-danger"><strong>{{Auth::user()->IsBanned()->reason}}</strong></p>
             </div>
         @else
         <div class="content-box">
@@ -37,12 +37,12 @@
             <form id="send-feedback">
                 <div class="form-group">
                     <label for='subject'>Subject</label>
-                    <input id='subject' feedback="#subject-f" class="form-control form-control-alternative" placeholder="Enter a subject">
+                    <input id='subject' feedback="#subject-f"  maxlength="25" class="form-control form-control-alternative" placeholder="Enter a subject">
                     <div id='subject-f'></div>
                 </div>
                 <div class="form-group">
                     <label for='Message'>Message</label>
-                    <textarea id='message' feedback="#message-f" rows='5' class="form-control form-control-alternative" placeholder="Enter a message. Max 100 characters."></textarea>
+                    <textarea id='message' feedback="#message-f" rows='5' class="form-control form-control-alternative" minlength="10" maxlength="1000" placeholder="Enter a message. Max 1000 characters."></textarea>
                     <div id='message-f'></div>
                 </div>
                 <button type="submit" class="btn btn-success">Send Feedback</button>
@@ -73,6 +73,8 @@
                                 if (response.data.error) {
                                     AlertError(response.data.error);
                                 }
+                                Validate('#subject')
+                                Validate('#message')
                                 $.each(response.data, function(key, value) {
                                     console.log(key, value)
                                     InValidate('#' + key, value)
