@@ -1,12 +1,12 @@
 @extends('layouts.manage')
-@section('title','Role Management')
-@section('description',"Roles")
+@section('title','Permission Management')
+@section('description',"Permissions")
 @section('content')
 <div class="container-fluid-lg">
     <div class="container-fluid">
         <div class="content-box">
-            <h1>Existing Roles</h1>
-            <a href="/manage/roles/create" class="btn btn-success">Create New Role</a>
+            <h1>All Permissions</h1>
+            <a href="/manage/permissions/create" class="btn btn-success">Create New Permission</a>
             <br>
             <br>
             <div class="table-responsive">
@@ -17,11 +17,11 @@
                         <th>Settings</th> 
                     </thead>
                     <tbody>
-                        @foreach ($roles as $role)
-                        <tr id="role-{{$role->id}}">
-                                <td>{{$role->name}}</td>
-                                <td>{{$role->created_at}}</td>
-                                <td><a href='/manage/roles/{{$role->id}}/edit' class="btn btn-sm btn-info">Edit</a><button onclick="DeleteRole('{{$role->id}}')" class="btn btn-sm btn-danger">Delete</button></td>
+                        @foreach ($perms as $perm)
+                        <tr id="perm-{{$perm->id}}">
+                                <td>{{$perm->name}}</td>
+                                <td>{{$perm->created_at}}</td>
+                                <td><button onclick="DeleteRole('{{$perm->id}}')" class="btn btn-sm btn-danger">Delete</button></td>
                             </tr>
                         @endforeach
                     </tbody>

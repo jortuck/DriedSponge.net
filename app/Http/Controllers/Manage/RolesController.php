@@ -5,8 +5,13 @@ namespace App\Http\Controllers\Manage;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use DB;
+use Validator;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB as FacadesDB;
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
 
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 class RolesController extends Controller
 {
     /**
@@ -16,8 +21,8 @@ class RolesController extends Controller
      */
     public function index()
     {
-        $roles  = DB::table('roles')->orderBy('created_at','desc')->get();
-        return view('manage.roles.index')->with('roles',$roles);
+        $roles  = DB::table('roles')->orderBy('created_at', 'desc')->get();
+        return view('manage.roles.index')->with('roles', $roles);
     }
 
     /**
@@ -27,7 +32,7 @@ class RolesController extends Controller
      */
     public function create()
     {
-        //
+        return view('manage.roles.create');
     }
 
     /**
@@ -38,18 +43,16 @@ class RolesController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
+                $validator =  Validator::make($request->all(), [
+                    "name" => "required|min:3|max:30|unique:roles,name"
+                ]);
+                if ($validator->passes()) {
+                    $role = Role::create(['name' => $request->name]);
+                    return response()->json(['success' => '<b>'.$request->name.'</b> role has been created! Redirecting you back to the roles page...']);
+                }
+                return response()->json($validator->errors());
+           
     }
 
     /**
@@ -60,7 +63,14 @@ class RolesController extends Controller
      */
     public function edit($id)
     {
-        //
+        try{
+            $role = Role::findOrFail($id);
+            $permissionsAll = Permission::all();
+            return view('manage.roles.edit')->with('role',$role)->with('permissionsAll',$permissionsAll);
+        }
+        catch(ModelNotFoundException $err){
+            return redirect('/manage/roles')->with('error','Role does not exist');
+        }
     }
 
     /**
@@ -83,6 +93,8 @@ class RolesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $role = Role::findByID($id);
+        $role->delete();
+        return response()->json(['success' => 'The role has successfully been deleted']);
     }
 }

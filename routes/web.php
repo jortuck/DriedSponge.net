@@ -35,6 +35,7 @@ Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
 Route::group(['middleware' => ['can:manage']], function () {});
 Route::get('/manage', 'Manage\ManageController@index');
 Route::resource('/manage/roles', 'Manage\RolesController');
+Route::resource('/manage/permissions', 'Manage\PermissionsController');
 
 
 

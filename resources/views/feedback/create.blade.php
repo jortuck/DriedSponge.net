@@ -28,12 +28,7 @@
         <div class="content-box">
             <h1>Send Feedback</h1>
             <p class="text-center">Send me feedback about this site or anything else in general</p>
-            <div class="alert alert-success d-none" id="success-message" role="alert">
-                Insert Success Message Here
-            </div>
-            <div id='loading' class="progress d-none">
-                <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 100%"></div>
-            </div>
+            @include('inc.FormMsg')
             <form id="send-feedback">
                 <div class="form-group">
                     <label for='subject'>Subject</label>
