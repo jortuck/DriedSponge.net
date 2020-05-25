@@ -82,7 +82,42 @@ class RolesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        if($request->perm){
+            try{
+                $role = Role::findOrFail($id);
+                try{
+                    $perm = Permission::findOrFail($request->pid);
+                    if($role->hasPermissionTo($perm->name)){
+                        $role->revokePermissionTo($perm->name);
+                        $txt = 'revoked from';
+                    }else{
+                        $role->givePermissionTo($perm->name);
+                        $txt='added to';
+                    }
+                    return response()->json(['success' => 'The <b>'.$perm->name.'</b> permission has been '.$txt.' the '.$role->name.' role']);
+                }
+                catch(ModelNotFoundException $err){
+                    return response()->json(['error' => 'The permission you are trying to add to the role does not exist.']);
+                }
+            }
+            catch(ModelNotFoundException $err){
+                return response()->json(['error' => 'The role you are trying to edit does not exist.']);
+            }
+        }else{
+
+
+
+        }
+    }
+     /**
+     * Update the specified perms for a role
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function SavePerm(Request $request)
+    {
+
     }
 
     /**
