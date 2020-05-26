@@ -21,21 +21,21 @@
                         <tr id="perm-{{$perm->id}}">
                                 <td>{{$perm->name}}</td>
                                 <td>{{$perm->created_at}}</td>
-                                <td><button onclick="DeleteRole('{{$perm->id}}')" class="btn btn-sm btn-danger">Delete</button></td>
+                                <td><button onclick="DeletePerm('{{$perm->id}}')" class="btn btn-sm btn-danger">Delete</button></td>
                             </tr>
                         @endforeach
                     </tbody>
                 </table>
                 <script>
-                    function DeleteRole(id){
+                    function DeletePerm(id){
                         axios({
                             method: 'DELETE',
-                            url: '/manage/roles/'+id,
+                            url: '/manage/permissions/'+id,
                         })
                         .then(function(response) {
                               if (response.data.success) {
                                 AlertSuccess(response.data.success);
-                                $("#role-"+id).remove();
+                                $("#perm-"+id).remove();
                             } else {
                                 AlertError(response.data.error); 
                             }

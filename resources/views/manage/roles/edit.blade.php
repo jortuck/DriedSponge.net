@@ -7,7 +7,7 @@
         <div class="content-box">
         <h1>Edit {{$role->name}}</h1>
             @include('inc.FormMsg')      
-            <form id="edit-role">
+            <form id="edit-name">
                 <div class="form-group">
                     <label for='name'>Role Name</label>
                     <input id='name' value="{{$role->name}}" feedback="#name-f" maxlength="30" minlength="3" class="form-control form-control-alternative" placeholder="Enter a name for this role">
@@ -19,13 +19,17 @@
             <label>Permissions</label>
             @foreach ($permissionsAll as $perm)
             <div class="custom-control custom-checkbox mb-3">
-                <input onclick="toggleperm('{{$perm->id}}')" class="custom-control-input" id="perm-{{$perm->id}}" type="checkbox" @if ($role->hasPermissionTo($perm->name)) checked @endif >
-                <label class="custom-control-label" name='{{$perm->name}}' value="{{$perm->name}}" for="perm-{{$perm->id}}">{{$perm->name}}</label>
+            <input data-group="{{explode('.',$perm->name)[0]}}" @if(isset(explode('.',$perm->name)[1])) data-second='{{explode('.',$perm->name)[1]}}' @else data-second='null'  @endif data-name="{{$perm->id}}" class="custom-control-input" id="perm-{{$perm->id}}" type="checkbox" @if ($role->hasPermissionTo($perm->name)) checked @endif >
+                <label class="custom-control-label"  for="perm-{{$perm->id}}">{{$perm->name}}</label>
             </div>
             @endforeach
             <script>
-                function toggleperm(name){
-                    $('#loading').removeClass('d-none');
+                $('input[type="checkbox"]').click(function(e){
+                    e.preventDefault()
+                    $('input[type="checkbox"]').prop('disabled', true);
+                    var name = $(this).data('name');
+                    var group = $(this).data('group');
+                    var second = $(this).data('second');
                     axios({
                             method: 'PUT',
                             url: '/manage/roles/{{$role->id}}',
@@ -35,15 +39,23 @@
                             }
                     })
                     .then(function(response) {
-                            $('#loading').addClass('d-none');
+                    $('input[type="checkbox"]').prop('disabled', false);
                             if (response.data.success) {
                                 AlertSuccess(response.data.success);
+                                if(second=="*"){
+                                    $(`input[data-group="${group}"]`).prop('checked', response.data.status);
+                                }else if(group=="*"){
+                                    $('input[type="checkbox"]').prop('checked',  response.data.status);
+                                }else{
+                                    $(`input[data-name="${name}"]`).prop('checked', response.data.status);
+                                }
                             } else {
                                 AlertError(response.data.error);
                             }
                         });
-                }
-                $('#create-role').submit(function(e){
+                })
+                $('#edit-name').submit(function(e){
+                    $('input[type="checkbox"]').prop('disabled', true);
                     e.preventDefault()
                     $(this).hide()
                     $('#loading').removeClass('d-none');
@@ -55,15 +67,14 @@
                             }
                         })
                         .then(function(response) {
+                    $('input[type="checkbox"]').prop('disabled', false);
+
                             $('#loading').addClass('d-none');
+                            $('#edit-name').show()
                             if (response.data.success) {
-                                $("#success-message").html(response.data.success);
-                                $("#success-message").removeClass('d-none');
-                                setInterval(function() {
-                                    location.href = '/manage/roles';
-                                }, 2500)
+                                Validate('#name')
+                                AlertSuccess(response.data.success)
                             } else {
-                                $('#create-role').show()
                                 if (response.data.error) {
                                     AlertError(response.data.error);
                                 }

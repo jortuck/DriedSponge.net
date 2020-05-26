@@ -32,11 +32,13 @@ Route::get('auth/steam', 'Auth\SteamLoginController@authenticate')->name('auth.s
 Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
 
 //Manage
-Route::group(['middleware' => ['can:manage']], function () {});
-Route::get('/manage', 'Manage\ManageController@index');
-Route::resource('/manage/roles', 'Manage\RolesController');
-Route::resource('/manage/permissions', 'Manage\PermissionsController');
+Route::group(['middleware' => ['can:Manage.See']], function () {
+    
+});
 
+Route::get('/manage', 'Manage\ManageController@index');
+    Route::resource('/manage/roles', 'Manage\RolesController');
+    Route::resource('/manage/permissions', 'Manage\PermissionsController');
 
 
 

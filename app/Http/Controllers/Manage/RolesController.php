@@ -65,7 +65,7 @@ class RolesController extends Controller
     {
         try{
             $role = Role::findOrFail($id);
-            $permissionsAll = Permission::all();
+            $permissionsAll = Permission::orderBy('name', 'asc')->get();
             return view('manage.roles.edit')->with('role',$role)->with('permissionsAll',$permissionsAll);
         }
         catch(ModelNotFoundException $err){
@@ -88,13 +88,24 @@ class RolesController extends Controller
                 try{
                     $perm = Permission::findOrFail($request->pid);
                     if($role->hasPermissionTo($perm->name)){
+                        $group = explode('.',$perm->name);
+                        if($group[0]=="*" or isset($group[1]) && $group[1] == "*" ){
+                            $fullperm = "*";
+                        }else{
+                            $fullperm=$group[0].".*";
+                        }
+                        if($fullperm !== $perm->name && $role->hasPermissionTo($fullperm)){
+                            return response()->json(['error' => 'In order to revoe this perm, you must disable <b>'.$fullperm.'</b>']);
+                        }
                         $role->revokePermissionTo($perm->name);
                         $txt = 'revoked from';
+                        $status=false;
                     }else{
                         $role->givePermissionTo($perm->name);
                         $txt='added to';
+                        $status=true;
                     }
-                    return response()->json(['success' => 'The <b>'.$perm->name.'</b> permission has been '.$txt.' the '.$role->name.' role']);
+                    return response()->json(['success' => 'The <b>'.$perm->name.'</b> permission has been '.$txt.' the '.$role->name.' role','status'=>$status]);
                 }
                 catch(ModelNotFoundException $err){
                     return response()->json(['error' => 'The permission you are trying to add to the role does not exist.']);
@@ -105,19 +116,18 @@ class RolesController extends Controller
             }
         }else{
 
-
+            $validator =  Validator::make($request->all(), [
+                "name" => "required|min:3|max:30|unique:roles,name"
+            ]);
+            if ($validator->passes()) {
+                $role = Role::findByID($id);
+                $role->name=$request->name;
+                $role->save();
+                return response()->json(['success' => 'The role has been updated!']);
+            }
+            return response()->json($validator->errors());
 
         }
-    }
-     /**
-     * Update the specified perms for a role
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function SavePerm(Request $request)
-    {
-
     }
 
     /**

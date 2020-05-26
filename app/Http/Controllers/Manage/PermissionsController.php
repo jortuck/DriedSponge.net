@@ -19,7 +19,7 @@ class PermissionsController extends Controller
      */
     public function index()
     {
-        $perms  = DB::table('permissions')->orderBy('created_at', 'desc')->get();
+        $perms  = DB::table('permissions')->orderBy('name', 'asc')->get();
         return view('manage.permissions.index')->with('perms', $perms);
     }
     /**
@@ -41,7 +41,7 @@ class PermissionsController extends Controller
     public function store(Request $request)
     {
         $validator =  Validator::make($request->all(), [
-            "name" => "required|min:3|max:30|unique:permissions,name"
+            "name" => "required|max:30|unique:permissions,name"
         ]);
         if ($validator->passes()) {
             $permission = Permission::create(['name' => $request->name]);
@@ -59,6 +59,8 @@ class PermissionsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $perm = Permission::findByID($id);
+        $perm->delete();
+        return response()->json(['success' => 'The permission has successfully been deleted']);
     }
 }

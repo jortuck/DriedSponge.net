@@ -10,7 +10,7 @@
             <form id="create-role">
                 <div class="form-group">
                     <label for='name'>Permission Name</label>
-                    <input id='name' feedback="#name-f" maxlength="30" minlength="3" class="form-control form-control-alternative" placeholder="Enter a name for this permission">
+                    <input id='name' feedback="#name-f" maxlength="30"  class="form-control form-control-alternative" placeholder="Enter a name for this permission">
                     <div id='name-f'></div>
                 </div>
                 <button class="btn btn-success" type="submit">Create Permission</button>
