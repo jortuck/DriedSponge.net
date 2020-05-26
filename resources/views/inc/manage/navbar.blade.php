@@ -1,13 +1,13 @@
 <div class="container-fluid-lg" >
     <div class="page-header">
         <nav class="navbar navbar-expand-lg navbar-dark nbth ">
-                <a class="navbar-brand" href="/home">Management</a>
+                <a class="navbar-brand" href="/manage/">Management</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarmain" aria-controls="navbarmain" aria-expanded="false" aria-label="Toggle navigation">
                 <i class="fas fa-bars" style="color: black;"></i>
                       </button>
                 <div class="collapse navbar-collapse" id="navbarmain">
                     <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-                        <li class="nav-item" id="dashlink"><a class="nav-link" href="/home/">Dashboard</a></li>
+                        <li class="nav-item" id="dashlink"><a class="nav-link" href="/manage/">Dashboard</a></li>
                         <li  id="adminlink" class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="AdministrationDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Administration
@@ -26,6 +26,7 @@
                                  <a class="dropdown-item" href="/web-projects">Bans</a>
                             </div>
                         </li>
+                        <li class="nav-item" id="homelink"><a class="nav-link" href="/home/">Exit Management</a></li>
                     </ul>
                         @auth
                             <ul class="navbar-nav  mt-2 mt-lg-0">
@@ -35,7 +36,7 @@
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
                                 <a class="dropdown-item" href="/logout/"><i class="fas fa-sign-out-alt"></i> Logout</a>
-                                <a class="dropdown-item" href="/manage/"><i class="fas fa-cog"></i> Management</a>
+                                <a class="dropdown-item" href="/home/"><i class="fas fa-home"></i> Exit Management</a>
 
                                 </div>
                             </li>
