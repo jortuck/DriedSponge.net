@@ -95,7 +95,7 @@ class RolesController extends Controller
                             $fullperm=$group[0].".*";
                         }
                         if($fullperm !== $perm->name && $role->hasPermissionTo($fullperm)){
-                            return response()->json(['error' => 'In order to revoe this perm, you must disable <b>'.$fullperm.'</b>']);
+                            return response()->json(['error' => 'In order to revoke this perm, you must disable <b>'.$fullperm.'</b>']);
                         }
                         $role->revokePermissionTo($perm->name);
                         $txt = 'revoked from';

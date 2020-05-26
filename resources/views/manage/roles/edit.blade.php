@@ -19,14 +19,19 @@
             <label>Permissions</label>
             @foreach ($permissionsAll as $perm)
             <div class="custom-control custom-checkbox mb-3">
-            <input data-group="{{explode('.',$perm->name)[0]}}" @if(isset(explode('.',$perm->name)[1])) data-second='{{explode('.',$perm->name)[1]}}' @else data-second='null'  @endif data-name="{{$perm->id}}" class="custom-control-input" id="perm-{{$perm->id}}" type="checkbox" @if ($role->hasPermissionTo($perm->name)) checked @endif >
-                <label class="custom-control-label"  for="perm-{{$perm->id}}">{{$perm->name}}</label>
+            <input 
+            @if ($role->hasPermissionTo("*") && $perm->name != "*" ) 
+            disabled
+            @elseif($role->hasPermissionTo(explode('.',$perm->name)[0].'.*') && $perm->name !== explode('.',$perm->name)[0].'.*' && $perm->name != "*") 
+            disabled 
+            @endif 
+            data-group="{{explode('.',$perm->name)[0]}}" @if(isset(explode('.',$perm->name)[1])) data-second='{{explode('.',$perm->name)[1]}}' @else data-second='null'  @endif data-name="{{$perm->id}}" class="custom-control-input" id="perm-{{$perm->id}}" type="checkbox" @if ($role->hasPermissionTo($perm->name)) checked @endif >
+            <label class="custom-control-label"  for="perm-{{$perm->id}}">{{$perm->name}}</label>
             </div>
             @endforeach
             <script>
                 $('input[type="checkbox"]').click(function(e){
                     e.preventDefault()
-                    $('input[type="checkbox"]').prop('disabled', true);
                     var name = $(this).data('name');
                     var group = $(this).data('group');
                     var second = $(this).data('second');
@@ -39,13 +44,24 @@
                             }
                     })
                     .then(function(response) {
-                    $('input[type="checkbox"]').prop('disabled', false);
                             if (response.data.success) {
                                 AlertSuccess(response.data.success);
                                 if(second=="*"){
                                     $(`input[data-group="${group}"]`).prop('checked', response.data.status);
-                                }else if(group=="*"){
+                                    if(response.data.status == true){
+                                        $(`input[data-group="${group}"]`).prop('disabled', true);
+                                        $(`input[data-group="${group}"][data-second='*']`).prop('disabled', false);
+                                    }else{
+                                        $(`input[data-group="${group}"]`).prop('disabled', false);
+                                    }
+                                    }else if(group=="*"){
                                     $('input[type="checkbox"]').prop('checked',  response.data.status);
+                                    if(response.data.status == true){
+                                        $('input[type="checkbox"]').prop('disabled', true);
+                                        $('input[data-group="*"]').prop('disabled', false);
+                                    }else{
+                                        $('input[type="checkbox"]').prop('disabled', false);
+                                    }
                                 }else{
                                     $(`input[data-name="${name}"]`).prop('checked', response.data.status);
                                 }
@@ -55,7 +71,6 @@
                         });
                 })
                 $('#edit-name').submit(function(e){
-                    $('input[type="checkbox"]').prop('disabled', true);
                     e.preventDefault()
                     $(this).hide()
                     $('#loading').removeClass('d-none');
@@ -67,7 +82,6 @@
                             }
                         })
                         .then(function(response) {
-                    $('input[type="checkbox"]').prop('disabled', false);
 
                             $('#loading').addClass('d-none');
                             $('#edit-name').show()
