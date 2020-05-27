@@ -1,54 +1,28 @@
-<div class="container-fluid-lg" >
-    <div class="page-header">
-        <nav class="navbar navbar-expand-lg navbar-dark nbth ">
-                <a class="navbar-brand" href="/manage/">Management</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarmain" aria-controls="navbarmain" aria-expanded="false" aria-label="Toggle navigation">
-                <i class="fas fa-bars" style="color: black;"></i>
-                      </button>
-                <div class="collapse navbar-collapse" id="navbarmain">
-                    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-                        <li class="nav-item" id="dashlink"><a class="nav-link" href="/manage/">Dashboard</a></li>
-                        <li  id="adminlink" class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="AdministrationDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Administration
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="UsersDropdown">
-                                 <a class="dropdown-item" href="/manage/roles">Roles</a>
-                                 <a class="dropdown-item" href="/manage/permissions">Permissions</a>
-                            </div>
-                        </li>
-                        <li  id="userlink" class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="UsersDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Users
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="UsersDropdown">
-                                 <a class="dropdown-item" href="/web-projects">Manage All Users</a>
-                                 <a class="dropdown-item" href="/web-projects">Bans</a>
-                            </div>
-                        </li>
-                        <li class="nav-item" id="homelink"><a class="nav-link" href="/home/">Exit Management</a></li>
-                    </ul>
-                        @auth
-                            <ul class="navbar-nav  mt-2 mt-lg-0">
-                            <li class="nav-item dropdown" style="list-style-type:none;">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" style="color: white;" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                {{Auth::user()->username}}
-                                </a>
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-                                <a class="dropdown-item" href="/logout/"><i class="fas fa-sign-out-alt"></i> Logout</a>
-                                <a class="dropdown-item" href="/home/"><i class="fas fa-home"></i> Exit Management</a>
-
-                                </div>
-                            </li>
-                            </ul>
-                        @endauth
-                        @guest
-                        <a href="/login/"><img src="https://steamcommunity-a.akamaihd.net/public/images/signinthroughsteam/sits_01.png"></a>
-                        @endguest
-                    </div>
-                    
-                    
-              </nav>
-
-    </div>
-</div>
+<a href="#" data-activates="left-nav" class="button-collapse" id="left-nav-btn"><i class="material-icons" style="color: black">menu</i></a>
+<header>
+  <ul id='left-nav' class="sidenav fixed" style="width: 250px; transform: translateX(0%);">
+      <li>
+          <div class="user-view shadowed">
+              <div class="background">
+                  
+              </div>
+              <img id="avatar" src="{{Auth::user()->avatar}}"><br>
+              <span id="name">{{Auth::user()->username}}</span>
+              <span>{{Auth::user()->steamid}}</span>
+          </div>
+      </li>
+      {{-- <li><a class="subheader">Subheader</a></li> --}}
+      <li><a class="waves-effect" href="/manage/"><i class="material-icons">dashboard</i>Dashboard</a></li>
+      <li> <div class="divider"></div></li>
+      <li><a class="subheader">Users</a></li>
+      <li><a class="waves-effect" href="/manage/users/"><i class="material-icons">people</i>Users</a></li>
+      <li><a class="waves-effect" href="/manage/bans"><i class="material-icons">block</i>Bans</a></li>
+      <li> <div class="divider"></div></li>
+      <li><a class="subheader">Administration</a></li>
+      <li id='roleslink'><a class="waves-effect" href="/manage/roles"><i class="material-icons">assignment_ind</i>Roles</a></li>
+      <li><a class="waves-effect" href="/manage/permissions"><i class="material-icons">security</i>Permissions</a></li>
+      <li> <div class="divider"></div></li>
+      <li><a href="/home/"><i class="material-icons">home</i>Return Home</a></li>
+      <li><a href="/logout0.7/"><i class="material-icons">exit_to_app</i>Logout</a></li>
+  </ul>
+</header>
