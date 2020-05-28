@@ -2,26 +2,17 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 @include('inc.head')
 
-<body>
+<body class="dark">
     @include('inc.manage.navbar')
     <div class="app">
         <div class="container">
             @include('inc.messages')
         </div>
-        <div id='pre-content'>
-            <div class="masthead indigo shadowed">
-                <div class="container">
-                    <h2>@yield('title')</h2>
-                </div>
-            </div>
-        </div>
         @yield('content')
     </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script>
-        $("#left-nav-btn").sideNav({
-            menuWidth: 250,
-            edge: "left"
-        });
+          M.AutoInit();
     </script>
 </body>
 

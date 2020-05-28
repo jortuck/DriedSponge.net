@@ -274,7 +274,7 @@ body {
   }
 }
 
-.side-nav.fixed {
+.sidenav.sidenav-fixed {
   left: 0;
   transform: translateX(0);
   position: fixed;
@@ -335,5 +335,13 @@ body {
 
 .ts {
   border-bottom: 1px dotted;
+}
+
+.btn {
+  margin-bottom: 5px;
+}
+
+.grey.darken-4-5 {
+  background-color: #302F2F !important;
 }
 

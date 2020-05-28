@@ -1,0 +1,54 @@
+:root {
+ --dark-bg: #212121;
+ --dark-priamy: #302F2F;
+}
+/* label color */
+.input-field.dark label {
+    color: white;
+  }
+  /* label focus color */
+  .input-field.dark input[type=text]:focus + label {
+    color: white;
+  }
+  /* label underline focus color */
+  .input-field.dark input[type=text]:focus {
+    border-bottom: 1px solid white;
+    box-shadow: 0 1px 0 0 white;
+  }
+  /* valid color */
+  .input-field.dark input[type=text].valid {
+    border-bottom: 1px solid #4CAF50;
+    box-shadow: 0 1px 0 0 #4CAF50;
+  }
+  /* invalid color */
+  .input-field.dark input[type=text].invalid {
+    border-bottom: 1px solid rgb(255, 0, 0);
+    box-shadow: 0 1px 0 0 rgb(255, 0, 0);
+  }
+  /* icon prefix focus color */
+  .input-field.dark .prefix.active.dark {
+    color: white;
+  }
+  .sidenav{
+    background-color: var(--dark-priamy) !important;
+  }
+  .sidenav>li>a{
+    color: white;
+  }
+  .sidenav>li>.subheader{
+    color: white;
+  }
+  .sidenav>li>a>i{
+    color: white !important;
+  }
+  .card{
+    color: white;
+    background-color: var(--dark-priamy);
+  }
+  body{
+    background-color: var(--dark-bg);
+    color: white;
+  }
+  body>#content{
+    color: white;
+  }

@@ -21,7 +21,7 @@ class RolesController extends Controller
      */
     public function index()
     {
-        $roles  = DB::table('roles')->orderBy('created_at', 'desc')->get();
+        $roles  = DB::table('roles')->orderBy('created_at', 'asc')->get();
         return view('manage.roles.index')->with('roles', $roles);
     }
 

@@ -3,16 +3,23 @@
 @section('description',"Create New Role")
 @section('content')
 <div class="container" id="#content">
+    <h2 class="white-text">Create Role</h2>
     <br>
-    <div class="row">
-        <form id='create-role' class="col s12">
+    <div class="card grey darken-4-5">  
+        <form  id='create-role' class="col s6">
+        <div class="card-content">
           <div class="row">
-            <div class="input-field col s12">
+            <div class="input-field dark col s12">
               <input id="role_name" type="text" class="validate">
-              <label for="role_name">Last Name</label>
+              <label  for="role_name">Role Name</label>
             </div>
           </div>
-          <button type="submit" class="btn green">Create Role</button>
+        </div>
+        <div class="card-action">
+            <button type="submit" class="btn green">Create Role</button>
+            &nbsp;
+            <a href="/manage/roles" class="btn red">Cancel</a>
+        </div>
         </form>
       </div>
     <script>
