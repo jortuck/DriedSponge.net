@@ -10,11 +10,11 @@ function Validate(inputid,showmsg) {
       }else{
         $(feedbackid).html("");
       }
-      
-    
+
+
     $(inputid).removeClass("is-invalid")
     $(inputid).addClass("is-valid")
-  
+
   }
       function InValidate(inputid,msg){
           var feedbackid = $(inputid).attr("feedback");
@@ -49,7 +49,7 @@ function Validate(inputid,showmsg) {
   function AlertSuccess(msg){
     toastr["success"](msg, "Congratulations!");
   }
-  
+
   function AlertError(msg){
     toastr["error"](msg, "Error!");
   }
@@ -57,7 +57,7 @@ function Validate(inputid,showmsg) {
     navigator.clipboard.writeText(string)
     toastr["success"](`<b>${string}</b> was successfully copied to clipboard`, "Congratulations!")
   }
-  
+
   function getCookie(cname) {
     var name = cname + "=";
     var decodedCookie = decodeURIComponent(document.cookie);
@@ -73,12 +73,12 @@ function Validate(inputid,showmsg) {
     }
     return "";
   }
-  
+
   function AjaxPagination(pid,page,showload,col,order) {
     var table = `[pid=${pid}]`;
     var url = $(table).attr('url');
     $(`#${pid}-b-${getCookie(`${pid}-page`)}`).removeClass("active");
-  
+
     if (showload == null) {
       var showload = false;
     }
@@ -88,11 +88,11 @@ function Validate(inputid,showmsg) {
       $(table).hide()
     }
     $(`#${pid}-blist`).hide()
-  
+
     if (col == null) {
       var col = getCookie(`${pid}-col`);
     }
-  
+
     if (order == null) {
       var order = getCookie(`${pid}-order`);
     }
@@ -110,7 +110,7 @@ function Validate(inputid,showmsg) {
           $(table).show()
         }
         $(`#${pid}-blist`).show()
-  
+
         $(`${table} tbody`).html(data);
         document.cookie = `${pid}-col=${col}`;
         document.cookie = `${pid}-order=${order}`;
@@ -120,5 +120,16 @@ function Validate(inputid,showmsg) {
           });
       });
   }
-  
-  
+  function MaterialInvalidate(id,msg) {
+      console.log(msg)
+      let helper = id+'-msg'
+      console.log(helper)
+      $(helper).attr('data-error',msg)
+      $(id).removeClass('valid')
+      $(id).addClass('invalid')
+  }
+function MaterialValidate(id) {
+    $(id).removeClass('invalid')
+    $(id).addClass('valid')
+}
+

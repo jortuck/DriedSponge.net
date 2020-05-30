@@ -42,7 +42,7 @@ body {
 .app{
     display: flex;
 	flex-direction: column;
-	padding-left: 250px;   
+	padding-left: 250px;
     height: 100%;
 }
 @media (max-width: 992px) {
@@ -91,4 +91,13 @@ body {
 }
 .grey.darken-4-5{
     background-color: #302F2F !important;
+}
+.d-none{
+    display: none;
+}
+.paragraph, .card .card-content p{
+    font-size: 18px;
+}
+.green{
+    color: white;
 }

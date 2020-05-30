@@ -19,7 +19,7 @@ use kanalumaddela\LaravelSteamLogin\Facades\SteamLogin;
 
 
 Route::get('/', 'PagesController@index');
-Route::get('/home', 'PagesController@index');
+Route::get('/home', 'PagesController@index')->name('pages.index');
 Route::get('/web-projects', 'PagesController@webprojects');
 
 //Feedback
@@ -33,12 +33,12 @@ Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
 
 //Manage
 Route::group(['middleware' => ['can:Manage.See']], function () {
-    
+
 });
 
-Route::get('/manage', 'Manage\ManageController@index');
-    Route::resource('/manage/roles', 'Manage\RolesController');
-    Route::resource('/manage/permissions', 'Manage\PermissionsController');
+Route::get('/manage', 'Manage\ManageController@index')->name('manage.index');
+Route::resource('/manage/roles', 'Manage\RolesController');
+Route::resource('/manage/permissions', 'Manage\PermissionsController');
 
 
 

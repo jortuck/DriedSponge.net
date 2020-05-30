@@ -3,22 +3,34 @@
 @section('description',"Create New Role")
 @section('content')
 <div class="container" id="#content">
-    <h2 class="white-text">Create Role</h2>
+    <h2>Create Role</h2>
     <br>
-    <div class="card grey darken-4-5">  
+    @include('inc.FormMsg')
+    <div class="d-none card" id="success-message">
+        <div class="card-content green">
+            <h4>Success!</h4>
+            <p id="succtext">aadadad adad adad </p>
+        </div>
+        <div class="card-action">
+            <a href="{{route('roles.create')}}">Create Another Role</a>
+            <a href="{{route('roles.index')}}">Return To Roles Page</a>
+        </div>
+    </div>
+    <div class="card">
         <form  id='create-role' class="col s6">
         <div class="card-content">
           <div class="row">
-            <div class="input-field dark col s12">
-              <input id="role_name" type="text" class="validate">
-              <label  for="role_name">Role Name</label>
+            <div class="input-field col s12">
+              <input data-error="test" id="role_name" type="text" class="validate">
+                <label  for="role_name">Role Name</label>
+                <span id="role_name-msg" class="helper-text" data-error="" data-success=""></span>
             </div>
           </div>
         </div>
         <div class="card-action">
             <button type="submit" class="btn green">Create Role</button>
             &nbsp;
-            <a href="/manage/roles" class="btn red">Cancel</a>
+            <a href="{{route('roles.index')}}" class="btn red">Cancel</a>
         </div>
         </form>
       </div>
@@ -29,19 +41,16 @@
             $('#loading').removeClass('d-none');
             axios({
                     method: 'post',
-                    url: '/manage/roles',
+                    url: '{{route('roles.store')}}',
                     data: {
-                        name: $("#role_name").val()
+                        role_name: $("#role_name").val()
                     }
                 })
                 .then(function(response) {
                     $('#loading').addClass('d-none');
                     if (response.data.success) {
-                        $("#success-message").html(response.data.success);
-                        $("#success-message").removeClass('d-none');
-                        setInterval(function() {
-                            location.href = '/manage/roles';
-                        }, 2500)
+                        $("#succtext").html(response.data.success);
+                        $('#success-message').removeClass('d-none')
                     } else {
                         $('#create-role').show()
                         if (response.data.error) {
@@ -49,8 +58,7 @@
                         }
                         Validate('#role_name')
                         $.each(response.data, function(key, value) {
-                            console.log(key, value)
-                            InValidate('#' + key, value)
+                            MaterialInvalidate('#' + key, value)
                         });
                     }
                 });
@@ -58,8 +66,7 @@
     </script>
 </div>
 <script>
-    //navitem = document.getElementById('adminlink').classList.add('active')
-    const observer = lozad(); // lazy loads elements with default selector as '.lozad'
+    const observer = lozad();
     observer.observe();
 </script>
 @endsection

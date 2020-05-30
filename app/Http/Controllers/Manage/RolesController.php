@@ -6,8 +6,6 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use DB;
 use Validator;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB as FacadesDB;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 
@@ -39,27 +37,26 @@ class RolesController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function store(Request $request)
     {
-
                 $validator =  Validator::make($request->all(), [
-                    "name" => "required|min:3|max:30|unique:roles,name"
+                    "role_name" => "required|min:3|max:30|unique:roles,name"
                 ]);
                 if ($validator->passes()) {
-                    $role = Role::create(['name' => $request->name]);
-                    return response()->json(['success' => '<b>'.$request->name.'</b> role has been created! Redirecting you back to the roles page...']);
+                    $role = Role::create(['name' => $request->role_name]);
+                    return response()->json(['success' => '<b>'.$request->role_name.'</b> role has been created!']);
                 }
                 return response()->json($validator->errors());
-           
+
     }
 
     /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function edit($id)
     {
@@ -78,7 +75,7 @@ class RolesController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function update(Request $request, $id)
     {
@@ -134,7 +131,7 @@ class RolesController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function destroy($id)
     {

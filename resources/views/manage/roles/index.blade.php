@@ -4,12 +4,11 @@
 @section('content')
     <div class="container" id="content">
             <h2>Roles</h2>
-            <a href="/manage/roles/create" data-position="right" data-tooltip="Create New Role" class="tooltipped btn waves-effect waves-light green"><i class="material-icons left">add</i> Create New Role</a>
+            <a href="{{route('roles.create')}}" data-position="right" data-tooltip="Create New Role" class="tooltipped btn waves-effect waves-light green"><i class="material-icons left">add</i> Create New Role</a>
             <br>
             <br>
-            <div >
                 @foreach ($roles as $role)
-            <div id='role-{{$role->id}}' >
+                <div id='role-{{$role->id}}' >
                   <div class="card">
                     <div class="card-content">
                       <span class="card-title"><strong>{{$role->name}}</strong></span>
@@ -25,7 +24,6 @@
                   </div>
                 </div>
                 @endforeach
-                </div>
                 <script>
                     function DeleteRole(id){
                         axios({
@@ -37,7 +35,7 @@
                                 M.toast({html:response.data.success,classes:'green'})
                                 $("#role-"+id).remove();
                             } else {
-                                AlertError(response.data.error); 
+                                AlertError(response.data.error);
                             }
                         });
                     }
@@ -47,6 +45,5 @@
     //navitem = document.getElementById('roleslink').classList.add('active')
     const observer = lozad(); // lazy loads elements with default selector as '.lozad'
     observer.observe();
-    
 </script>
 @endsection

@@ -3,31 +3,41 @@
  --dark-priamy: #302F2F;
 }
 /* label color */
-.input-field.dark label {
-    color: white;
+.input-field label {
+    color: white !important;
   }
   /* label focus color */
-  .input-field.dark input[type=text]:focus + label {
+  .input-field input[type=text]:focus + label.active {
+    color: white !important;
+  }
+    .input-field input[type=text]{
+        color: white !important;
+    }
+  /* label underline focus color */
+  .input-field input[type=text]:focus  {
+    border-bottom: 1px solid white !important;
+    box-shadow: 0 1px 0 0 white !important;
     color: white;
   }
-  /* label underline focus color */
-  .input-field.dark input[type=text]:focus {
-    border-bottom: 1px solid white;
-    box-shadow: 0 1px 0 0 white;
-  }
   /* valid color */
-  .input-field.dark input[type=text].valid {
+  .input-field input[type=text].valid {
     border-bottom: 1px solid #4CAF50;
     box-shadow: 0 1px 0 0 #4CAF50;
   }
+    .input-field input[type=text].valid + label{
+       color: #4CAF50 !important;
+    }
   /* invalid color */
-  .input-field.dark input[type=text].invalid {
+  .input-field input[type=text].invalid {
     border-bottom: 1px solid rgb(255, 0, 0);
     box-shadow: 0 1px 0 0 rgb(255, 0, 0);
   }
+.input-field input[type=text].invalid + label{
+    color: rgb(255, 0, 0) !important;
+}
   /* icon prefix focus color */
-  .input-field.dark .prefix.active.dark {
-    color: white;
+  .input-field .prefix.active {
+    color: white !important;
   }
   .sidenav{
     background-color: var(--dark-priamy) !important;
