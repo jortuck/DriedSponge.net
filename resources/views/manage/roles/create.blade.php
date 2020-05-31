@@ -9,7 +9,7 @@
     <div class="d-none card" id="success-message">
         <div class="card-content green">
             <h4>Success!</h4>
-            <p id="succtext">aadadad adad adad </p>
+            <p id="succtext"></p>
         </div>
         <div class="card-action">
             <a href="{{route('roles.create')}}">Create Another Role</a>
@@ -21,7 +21,7 @@
         <div class="card-content">
           <div class="row">
             <div class="input-field col s12">
-              <input data-error="test" id="role_name" type="text" class="validate">
+              <input  id="role_name" type="text" class="validate">
                 <label  for="role_name">Role Name</label>
                 <span id="role_name-msg" class="helper-text" data-error="" data-success=""></span>
             </div>

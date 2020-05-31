@@ -102,7 +102,7 @@ class RolesController extends Controller
                         $txt='added to';
                         $status=true;
                     }
-                    return response()->json(['success' => 'The <b>'.$perm->name.'</b> permission has been '.$txt.' the '.$role->name.' role','status'=>$status]);
+                    return response()->json(['success' => 'The '.$perm->name.' permission has been '.$txt.' the '.$role->name.' role','status'=>$status]);
                 }
                 catch(ModelNotFoundException $err){
                     return response()->json(['error' => 'The permission you are trying to add to the role does not exist.']);
@@ -114,11 +114,11 @@ class RolesController extends Controller
         }else{
 
             $validator =  Validator::make($request->all(), [
-                "name" => "required|min:3|max:30|unique:roles,name"
+                "role_name" => "required|min:3|max:30|unique:roles,name"
             ]);
             if ($validator->passes()) {
                 $role = Role::findByID($id);
-                $role->name=$request->name;
+                $role->name=$request->role_name;
                 $role->save();
                 return response()->json(['success' => 'The role has been updated!']);
             }

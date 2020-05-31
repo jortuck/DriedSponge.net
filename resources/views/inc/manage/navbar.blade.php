@@ -1,9 +1,10 @@
-  <header>
+<header>
   <ul id='left-nav' class="sidenav sidenav-fixed" style="width: 250px;">
       <li>
           <div class="user-view shadowed">
               <div class="background">
-                  <img id='user-bg-img' src="https://i.driedsponge.net/images/png/sb7Po.png" alt="Background image">
+
+                  <img id='user-bg-img' src="@if(Cookie::get('theme') == 'dark')  https://i.driedsponge.net/images/png/sb7Po.png @else https://i.driedsponge.net/images/png/SiB6Y.png @endif" alt="Background image">
               </div>
               @guest
                   <a href="{{route('login')}}"><img alt="sign in with steam" src="https://steamcommunity-a.akamaihd.net/public/images/signinthroughsteam/sits_01.png"></a>
@@ -35,16 +36,17 @@
   </ul>
   <script>
       function ToggleDarkTheme(){
-          let curtheme = $('#dark-theme-css').attr('href');
-          if(curtheme === "/css/dark.css"){
+          let curtheme = getCookie('theme');
+          if(curtheme === "dark"){
             $('#dark-theme-css').attr('href',' ')
-            $('#user-bg-img').attr('src',' ')
+            $('#user-bg-img').attr('src','https://i.driedsponge.net/images/png/SiB6Y.png')
+              document.cookie = 'theme=light';
           }else{
             $('#user-bg-img').attr('src','https://i.driedsponge.net/images/png/sb7Po.png')
             $('#dark-theme-css').attr('href','/css/dark.css')
+              document.cookie = 'theme=dark';
           }
       }
-
   </script>
   <a href="#" data-target="left-nav" class="sidenav-trigger" id="left-nav-btn"><i class="material-icons" style="color: white">menu</i></a>
 </header>

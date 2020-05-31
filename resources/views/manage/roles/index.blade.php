@@ -17,7 +17,7 @@
                       <p>ID: {{$role->id}}</p>
                     </div>
                     <div class="card-action">
-                        <a href='/manage/roles/{{$role->id}}/edit' class="btn waves-effect waves-light purple"><i class="material-icons left">mode_edit</i>Edit</a>
+                        <a href='/manage/roles/{{$role->id}}/edit' class="btn waves-effect waves-light blue"><i class="material-icons left">mode_edit</i>Edit</a>
                         &nbsp;
                         <button onclick="DeleteRole('{{$role->id}}')" class="waves-effect waves-light red btn"><i class="material-icons left">delete_sweep</i>Delete</button>
                     </div>

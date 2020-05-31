@@ -132,4 +132,9 @@ function MaterialValidate(id) {
     $(id).removeClass('invalid')
     $(id).addClass('valid')
 }
-
+function AlertMaterializeSuccess(msg) {
+    M.toast({html:msg,classes:'green'})
+}
+function AlertMaterializeError(msg) {
+    M.toast({html:msg,classes:'red'})
+}

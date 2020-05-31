@@ -2,7 +2,7 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 @include('inc.head')
 
-<body class="dark">
+<body>
     @include('inc.manage.navbar')
     <div class="app">
         <div class="container">
