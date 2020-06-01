@@ -1,14 +1,17 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    @include('inc.head')  
+    @include('inc.head')
     <body>
-        <div class="app">
-        @include('inc.navbar')  
+    @include('inc.navbar')
+    <div class="app">
         <div class="container">
-            @include('inc.messages')     
-        </div>   
+            @include('inc.messages')
+        </div>
         @yield('content')
     </div>
-        @include('inc.footer')     
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script>
+        M.AutoInit();
+    </script>
     </body>
 </html>
