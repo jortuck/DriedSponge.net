@@ -2,21 +2,38 @@
 @section('title','Create New Permission')
 @section('description',"Create New Permission")
 @section('content')
-<div class="container-fluid-lg">
-    <div class="container-fluid">
-        <div class="content-box">
-            <h1>Create New Permission</h1>
-            @include('inc.FormMsg')      
-            <form id="create-role">
-                <div class="form-group">
-                    <label for='name'>Permission Name</label>
-                    <input id='name' feedback="#name-f" maxlength="30"  class="form-control form-control-alternative" placeholder="Enter a name for this permission">
-                    <div id='name-f'></div>
+<div class="container" id="content">
+            <h2>Create New Permission</h2>
+            @include('inc.FormMsg')
+            <div class="d-none card" id="success-message">
+                <div class="card-content green">
+                    <h4>Success!</h4>
+                    <p id="succtext"></p>
                 </div>
-                <button class="btn btn-success" type="submit">Create Permission</button>
-            </form>
+                <div class="card-action">
+                    <a href="{{route('permissions.create')}}">Create Another Permission</a>
+                    <a href="{{route('permissions.index')}}">Return To Permissions Page</a>
+                </div>
+            </div>
+            <div class="card">
+                <form id="create-perm">
+                    <div class="card-content">
+                        <div class="input-field">
+                            <input class="validate" id='perm_name' maxlength="30"  type="text">
+                            <label for='perm_name'>Permission Name</label>
+                            <span data-error="" data-success="" class="helper-text" id='perm_name-msg'></span>
+                        </div>
+
+                    </div>
+                    <div class="card-action">
+                        <button class="btn green" type="submit">Create Permission</button>
+                        &nbsp;
+                        <a class="btn red" href="{{route('permissions.index')}}">Cancel</a>
+                    </div>
+                </form>
+            </div>
             <script>
-                $('#create-role').submit(function(e){
+                $('#create-perm').submit(function(e){
                     e.preventDefault()
                     $(this).hide()
                     $('#loading').removeClass('d-none');
@@ -24,36 +41,30 @@
                             method: 'post',
                             url: '/manage/permissions',
                             data: {
-                                name: $("#name").val()
+                                perm_name: $("#perm_name").val()
                             }
                         })
                         .then(function(response) {
                             $('#loading').addClass('d-none');
                             if (response.data.success) {
-                                $("#success-message").html(response.data.success);
+                                $("#succtext").html(response.data.success);
                                 $("#success-message").removeClass('d-none');
-                                setInterval(function() {
-                                    location.href = '/manage/permissions';
-                                }, 2500)
                             } else {
-                                $('#create-role').show()
+                                $('#create-perm').show()
                                 if (response.data.error) {
-                                    AlertError(response.data.error);
+                                    AlertMaterializeError(response.data.error);
                                 }
-                                Validate('#name')
+                                MaterialValidate('#name')
                                 $.each(response.data, function(key, value) {
                                     console.log(key, value)
-                                    InValidate('#' + key, value)
+                                    MaterialInvalidate('#' + key, value)
                                 });
                             }
                         });
                 })
             </script>
-        </div>
-    </div>
 </div>
 <script>
-    navitem = document.getElementById('adminlink').classList.add('active')
     const observer = lozad(); // lazy loads elements with default selector as '.lozad'
     observer.observe();
 </script>

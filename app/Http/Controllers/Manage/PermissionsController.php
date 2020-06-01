@@ -41,11 +41,11 @@ class PermissionsController extends Controller
     public function store(Request $request)
     {
         $validator =  Validator::make($request->all(), [
-            "name" => "required|max:30|unique:permissions,name"
+            "perm_name" => "required|max:30|unique:permissions,name"
         ]);
         if ($validator->passes()) {
-            $permission = Permission::create(['name' => $request->name]);
-            return response()->json(['success' => 'The <b>'.$request->name.'</b> permission has been created! Redirecting you back to the permissions page...']);
+            $permission = Permission::create(['name' => $request->perm_name]);
+            return response()->json(['success' => 'The <b>'.$request->perm_name.'</b> permission has been created!']);
         }
         return response()->json($validator->errors());
     }

@@ -32,21 +32,7 @@
       @auth
       <li><a href="{{route('logout')}}"><i class="material-icons">exit_to_app</i>Logout</a></li>
       @endauth
-      <li><a><button class="btn waves-effect waves-light " onclick="ToggleDarkTheme()">Toggle Dark Theme</button></a></li>
+      <li><a><button  class="btn waves-effect waves-light " id="theme-toggle">Toggle Dark Theme</button></a></li>
   </ul>
-  <script>
-      function ToggleDarkTheme(){
-          let curtheme = getCookie('theme');
-          if(curtheme === "dark"){
-            $('#dark-theme-css').attr('href',' ')
-            $('#user-bg-img').attr('src','https://i.driedsponge.net/images/png/SiB6Y.png')
-              document.cookie = 'theme=light';
-          }else{
-            $('#user-bg-img').attr('src','https://i.driedsponge.net/images/png/sb7Po.png')
-            $('#dark-theme-css').attr('href','/css/dark.css')
-              document.cookie = 'theme=dark';
-          }
-      }
-  </script>
-  <a href="#" data-target="left-nav" class="sidenav-trigger" id="left-nav-btn"><i class="material-icons" style="color: white">menu</i></a>
+  <a href="#"  data-target="left-nav" class="sidenav-trigger" id="left-nav-btn"><i class="material-icons" style="color: white">menu</i></a>
 </header>

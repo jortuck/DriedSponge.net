@@ -138,3 +138,9 @@ function AlertMaterializeSuccess(msg) {
 function AlertMaterializeError(msg) {
     M.toast({html:msg,classes:'red'})
 }
+function setCookie(name, value) {
+    var d = new Date();
+    d.setTime(d.getTime() + (365*24*60*60*1000));
+    var expires = "expires=" + d.toUTCString();
+    document.cookie = name + "=" + value + ";" + expires + ";path=/";
+}

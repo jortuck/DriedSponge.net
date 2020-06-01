@@ -18,6 +18,8 @@
         "laravel/tinker": "^2.0",
         "laravel/ui": "^2.0",
         "laravelcollective/html": "^6.1",
+        "sentry/sdk": "2.1.0",
+        "sentry/sentry-laravel": "^1.7",
         "spatie/laravel-permission": "^3.13",
         "xpaw/steamid": "dev-master"
     },

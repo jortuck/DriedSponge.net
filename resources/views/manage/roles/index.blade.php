@@ -42,7 +42,6 @@
                 </script>
 </div>
 <script>
-    //navitem = document.getElementById('roleslink').classList.add('active')
     const observer = lozad(); // lazy loads elements with default selector as '.lozad'
     observer.observe();
 </script>
