@@ -122,9 +122,7 @@ function Validate(inputid,showmsg) {
   }
   function MaterialInvalidate(id,msg) {
       console.log(msg)
-      let helper = id+'-msg'
-      console.log(helper)
-      $(helper).attr('data-error',msg)
+      $(`${id} + label + span`).attr('data-error',msg)
       $(id).removeClass('valid')
       $(id).addClass('invalid')
   }
