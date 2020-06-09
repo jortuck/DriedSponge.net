@@ -2,8 +2,9 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     @include('inc.head')
     <body>
-    @include('inc.navbar')
-    <div class="app">
+        @include('inc.navbar')
+        <br>
+    <div >
         <div class="container">
             @include('inc.messages')
         </div>

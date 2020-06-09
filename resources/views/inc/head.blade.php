@@ -14,7 +14,7 @@
     <meta name="theme-color" content="#007BFF">
     <link href='https://fonts.googleapis.com/css?family=Bangers' rel='stylesheet'>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
-    <script src="{{ asset('js/app.js') }}" ></script>
-    <script src="{{ asset('js/functions.js') }}" ></script>
+    <script src="{{ asset('js/app.js') }}"></script>
+    <script src="{{ asset('js/functions.js') }}"></script>
     <link rel="icon" href="{{asset('images/favicon.png')}}" type="image/x-icon">
 </head>
