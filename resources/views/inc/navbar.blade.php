@@ -31,7 +31,7 @@
                                 style="background-color: rgba(0,0,0,0); padding-right: 0;margin-right: 0; font-weight: normal; font-size: 1rem"
                                 class="chip">
                                 <img src="{{Auth::user()->avatar}}" alt="Your Avatar">
-                                <span style="color:black !important;"
+                                <span style="color:white !important;"
                                       class="text-black">{{Auth::user()->username}}</span>
                             </div>
                             <i class="material-icons right" style="padding-left: 0;margin-left: 0">arrow_drop_down</i>
