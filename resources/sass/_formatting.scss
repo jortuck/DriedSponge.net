@@ -93,22 +93,65 @@ body {
     font-size: 1.2rem;
 }
 nav {
-    background-color: #2A5989;
+    background-color: rgba(0,0,0,0);
+    box-shadow: none;
+    -webkit-box-shadow: none;
+
+
 }
-nav .brand-logo {
-    position: absolute;
+nav .brand-logo #navtxt{
     display: inline-block;
-    font-size: 2.1rem;
     margin-left:10px;
-    color:white;
-    font-family: Roboto;
+    font-family: 'Exo', sans-serif;
+    text-transform: uppercase;
+    width: 85px;
+    height: 42px;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 22px;
+    line-height: 95%;
+    color: #62A1EC;
+    display: inline-block;
+}
+@media only screen and (max-width: 992px){
+    nav .brand-logo #navtxt{
+        width: auto;
+        vertical-align: middle;
+        font-size: 30px;
+        margin: 0px;
+        line-height: 64px;
+    }
+
+}
+@media only screen and (max-width: 595px){
+    nav .brand-logo #navtxt{
+        line-height: 45px;
+    }
+
+}
+@media only screen and (max-width: 443px){
+    nav .brand-logo #navtxt{
+       width: 209px;
+    }
+}
+nav .brand-logo #img{
+    width: 51px;
+    height: 51px;
+    background-color: rgba(126, 0, 0, 0);
+    border-radius: 12px;
+    display: inline-block;
+
 }
 nav ul a {
     font-size: 1.1rem;
     color:white;
-    font-family: Roboto;
+    font-family: 'Exo', sans-serif;
+    text-transform: uppercase;
+    font-weight: 600;
+
 
 }
+
 h1, h2, h3, h4, h5, h6{
     font-family: Roboto;
     margin-top: 0;
@@ -129,4 +172,30 @@ h1, h2, h3, h4, h5, h6{
 }
 .card-panel{
     border-radius: 10px;
+}
+.header-thing{
+    margin: 60px 0px;
+}
+.landing-h1{
+    height: 66px;
+    font-family: Exo, sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 70px;
+    text-transform: uppercase;
+    color: #62A1EC;
+    position: relative;
+
+    text-shadow: 0px 25px 50px rgba(0, 0, 0, 0.25);
+}
+.landing-sub{
+    height: 17px;
+    position: relative;
+    font-family: Exo;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 24px;
+    line-height: 95%;
+    color: #DADCE0;
+    text-shadow: 0px 25px 50px rgba(0, 0, 0, 0.25);
 }

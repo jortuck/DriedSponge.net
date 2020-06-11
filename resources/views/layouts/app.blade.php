@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     @include('inc.head')
-    <body>
+    <body style="background: #0E1013;">
         @include('inc.navbar')
-        <br>
-    <div >
+    <div>
         <div class="container">
             @include('inc.messages')
         </div>

@@ -10,10 +10,8 @@
     <div class="nav-wrapper">
         <div class="container">
             <div>
-
-                <a href="{{route('pages.index')}}" class="brand-logo">DriedSponge.net</a>
-                <a href="#" data-target="mobilenav" class="sidenav-trigger text-white"><i
-                        class="material-icons">menu</i></a>
+                <a href="{{route('pages.index')}}" class="brand-logo"><div class="valign-wrapper" style="margin: 5px 0px"><img alt="logo" class="lozad hide-on-med-and-down" id="img" data-src="https://i.driedsponge.net/images/png/VYJ6Y.png"><span id="navtxt">Dried <span class="white-text">Sponge</span></span></div></a>
+                <a href="#" data-target="mobilenav" class="sidenav-trigger text-white"><i class="material-icons">menu</i></a>
             </div>
             <ul class="right hide-on-med-and-down">
                 <li><a href="{{route('pages.index')}}">Projects</a></li>
@@ -31,8 +29,7 @@
                                 style="background-color: rgba(0,0,0,0); padding-right: 0;margin-right: 0; font-weight: normal; font-size: 1rem"
                                 class="chip">
                                 <img src="{{Auth::user()->avatar}}" alt="Your Avatar">
-                                <span style="color:white !important;"
-                                      class="text-black">{{Auth::user()->username}}</span>
+                                <span style="color:white !important;"><b>{{Auth::user()->username}}</b></span>
                             </div>
                             <i class="material-icons right" style="padding-left: 0;margin-left: 0">arrow_drop_down</i>
                         </a>
