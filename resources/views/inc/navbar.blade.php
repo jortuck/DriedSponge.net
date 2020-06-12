@@ -7,7 +7,7 @@
     </ul>
 @endauth
 <nav>
-    <div class="nav-wrapper">
+    <div class="nav-wrapper" style="position: fixed;width: 100%;">
         <div class="container">
             <div>
                 <a href="{{route('pages.index')}}" class="brand-logo"><div class="valign-wrapper" style="margin: 5px 0px"><img alt="logo" class="lozad hide-on-med-and-down" id="img" data-src="https://i.driedsponge.net/images/png/VYJ6Y.png"><span id="navtxt">Dried <span class="white-text">Sponge</span></span></div></a>
@@ -25,9 +25,7 @@
                 @auth
                 <!-- Dropdown Trigger -->
                     <li><a class="dropdown-trigger" href="#!" data-target="dropdown1">
-                            <div
-                                style="background-color: rgba(0,0,0,0); padding-right: 0;margin-right: 0; font-weight: normal; font-size: 1rem"
-                                class="chip">
+                            <div class="chip chip-profile">
                                 <img src="{{Auth::user()->avatar}}" alt="Your Avatar">
                                 <span style="color:white !important;"><b>{{Auth::user()->username}}</b></span>
                             </div>

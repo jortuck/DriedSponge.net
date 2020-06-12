@@ -54,11 +54,11 @@
                     } else {
                         $('#create-role').show()
                         if (response.data.error) {
-                            AlertError(response.data.error);
+                            wiwndow.AlertError(response.data.error);
                         }
-                        Validate('#role_name')
+                        window.MaterialValidate('#role_name')
                         $.each(response.data, function(key, value) {
-                            MaterialInvalidate('#' + key, value)
+                            window.MaterialInvalidate('#' + key, value)
                         });
                     }
                 });
