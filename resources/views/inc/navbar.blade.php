@@ -7,10 +7,10 @@
     </ul>
 @endauth
 <nav>
-    <div class="nav-wrapper" style="position: fixed;width: 100%;">
+    <div class="nav-wrapper">
         <div class="container">
             <div>
-                <a href="{{route('pages.index')}}" class="brand-logo"><div class="valign-wrapper" style="margin: 5px 0px"><img alt="logo" class="lozad hide-on-med-and-down" id="img" data-src="https://i.driedsponge.net/images/png/VYJ6Y.png"><span id="navtxt">Dried <span class="white-text">Sponge</span></span></div></a>
+                <a href="{{route('pages.index')}}" class="brand-logo"><div class="valign-wrapper" style="margin: 5px 0px"><img alt="logo" class="lozad hide-on-med-and-down" id="img" data-src="https://cdn.driedsponge.net/img/logo/logo-square.webp"><span id="navtxt">Dried <span class="white-text">Sponge</span></span></div></a>
                 <a href="#" data-target="mobilenav" class="sidenav-trigger text-white"><i class="material-icons">menu</i></a>
             </div>
             <ul class="right hide-on-med-and-down">
@@ -19,7 +19,7 @@
                 @guest
                     <li><a href="{{route('login')}}"><img style="vertical-align:middle" class="lozad responsive-img"
                                                           alt="sign in with steam"
-                                                          data-src="https://steamcommunity-a.akamaihd.net/public/images/signinthroughsteam/sits_01.png"></a>
+                                                          data-src="https://cdn.driedsponge.net/img/login/steam_01.webp"></a>
                     </li>
                 @endguest
                 @auth
@@ -43,12 +43,13 @@
             <div class="background">
 
                 <img id='user-bg-img'
-                     src="@if(Cookie::get('theme') == 'dark')  https://i.driedsponge.net/images/png/sb7Po.png @else https://i.driedsponge.net/images/png/SiB6Y.png @endif"
+                     class="lozad"
+                     data-src="@if(Cookie::get('theme') == 'dark')  https://cdn.driedsponge.net/img/nav/dark_sidenav_bg.webp @else https://cdn.driedsponge.net/img/nav/light_sidenav_bg.webp @endif"
                      alt="Background image">
             </div>
             @guest
-                <a href="{{route('login')}}"><img alt="sign in with steam"
-                                                  src="https://steamcommunity-a.akamaihd.net/public/images/signinthroughsteam/sits_01.png"></a>
+                <a href="{{route('login')}}"><img class="lozad" alt="sign in with steam"
+                                                   data-src="https://cdn.driedsponge.net/img/login/steam_01.webp"></a>
             @endguest
             @auth
                 <img id="avatar" alt="Your avatar" src="{{Auth::user()->avatar}}">

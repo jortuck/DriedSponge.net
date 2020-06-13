@@ -9,7 +9,7 @@
         </div>
     </div>
     <br>
-    <div class="section" style="top: 125px; z-index: 900; position: relative">
+    <div class="section" style="z-index: 900; position: relative; top: 100px">
         <div class="container">
             <div class="row">
                 <div class="col s12 m6 l4">
@@ -32,14 +32,12 @@
                     <div class="card-panel center-align">
                         <h1>Web Design</h1>
                         <p class="flow-text">
-                            Using HTML, CSS, and JavaScript, I can transform your design into a beautiful webpage with a great user interface.
+                            Using HTML, CSS, and JavaScript, I can transform your design into a beautiful webpage with a great, responsive, user interface.
                         </p>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div style="width: 100%;height: 250px;background: #62A1EC;">
     </div>
     <script>
         const observer = lozad(); // lazy loads elements with default selector as '.lozad'

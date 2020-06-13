@@ -40,8 +40,12 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 //     forceTLS: true
 // });
 
+//Materialize
+
+window.M = require('materialize-css');
+
 //toastr
 window.toastr = require('toastr');
 
 //lozad
-const lozad = require('lozad')
+window.lozad = require('lozad')

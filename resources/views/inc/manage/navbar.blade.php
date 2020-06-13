@@ -5,12 +5,15 @@
                 <div class="background">
 
                     <img id='user-bg-img'
-                         src="@if(Cookie::get('theme') == 'dark')  https://i.driedsponge.net/images/png/sb7Po.png @else https://i.driedsponge.net/images/png/SiB6Y.png @endif"
+                         class="lozad"
+                         data-src="@if(Cookie::get('theme') == 'dark')  https://cdn.driedsponge.net/img/nav/dark_sidenav_bg.webp @else https://cdn.driedsponge.net/img/nav/light_sidenav_bg.webp @endif"
                          alt="Background image">
                 </div>
                 @guest
                     <a href="{{route('login')}}"><img alt="sign in with steam"
-                                                      src="https://steamcommunity-a.akamaihd.net/public/images/signinthroughsteam/sits_01.png"></a>
+                                                      class="lozad"
+
+                                                      data-src="https://cdn.driedsponge.net/img/login/steam_01.webp"></a>
                 @endguest
                 @auth
                     <img id="avatar" alt="Your avatar" src="{{Auth::user()->avatar}}">
