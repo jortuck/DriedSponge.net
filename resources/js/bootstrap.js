@@ -41,11 +41,14 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 // });
 
 //Materialize
-
 window.M = require('materialize-css');
 
 //toastr
 window.toastr = require('toastr');
 
+
 //lozad
 window.lozad = require('lozad')
+
+//AOS
+window.AOS = require('aos');

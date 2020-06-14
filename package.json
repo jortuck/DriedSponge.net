@@ -22,6 +22,7 @@
         "vue-template-compiler": "^2.6.11"
     },
     "dependencies": {
+        "aos": "^3.0.0-beta.6",
         "lozad": "^1.14.0",
         "materialize-css": "^1.0.0-rc.2",
         "toastr": "^2.1.4"

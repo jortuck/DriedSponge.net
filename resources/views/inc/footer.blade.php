@@ -1,4 +1,3 @@
-
 <footer>
     <div class="page-footer" style="color:white">
       <div class="footer-text">

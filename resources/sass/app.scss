@@ -8,10 +8,10 @@
 @import '~materialize-css';
 // Variables
 @import 'variables';
-
 //Toastr
 @import '~toastr/toastr';
-
+//AOS
+@import "~aos/src/sass/aos";
 // Bootstrap
 
 @mixin for-phone-only {
