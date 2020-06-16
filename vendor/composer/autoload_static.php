@@ -672,6 +672,7 @@ class ComposerStaticInitdcaf1edeb7a464470a05f1f1a161fb37
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
         'App\\Http\\Controllers\\FeedBackController' => __DIR__ . '/../..' . '/app/Http/Controllers/FeedBackController.php',
         'App\\Http\\Controllers\\HomeController' => __DIR__ . '/../..' . '/app/Http/Controllers/HomeController.php',
+        'App\\Http\\Controllers\\Manage\\ApiController' => __DIR__ . '/../..' . '/app/Http/Controllers/Manage/ApiController.php',
         'App\\Http\\Controllers\\Manage\\ManageController' => __DIR__ . '/../..' . '/app/Http/Controllers/Manage/ManageController.php',
         'App\\Http\\Controllers\\Manage\\PermissionsController' => __DIR__ . '/../..' . '/app/Http/Controllers/Manage/PermissionsController.php',
         'App\\Http\\Controllers\\Manage\\RolesController' => __DIR__ . '/../..' . '/app/Http/Controllers/Manage/RolesController.php',

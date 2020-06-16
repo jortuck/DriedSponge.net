@@ -156,7 +156,7 @@ window.AlertError = function AlertError(msg) {
 
 window.Copy = function Copy(string) {
   navigator.clipboard.writeText(string);
-  toastr["success"]("<b>".concat(string, "</b> was successfully copied to clipboard"), "Congratulations!");
+  AlertMaterializeSuccess('Copied!');
 };
 
 window.getCookie = function getCookie(cname) {
@@ -261,6 +261,22 @@ window.setCookie = function setCookie(name, value) {
   var expires = "expires=" + d.toUTCString();
   document.cookie = name + "=" + value + ";" + expires + ";path=/";
 };
+
+$(document).ready(function () {
+  $('.click-to-reveal').click(function () {
+    console.log($(this).data('revealed'));
+
+    if ($(this).attr('data-revealed') === 'false') {
+      $(this).text($(this).data('reveal-content'));
+      $(this).attr('data-revealed', 'true');
+      console.log('set true');
+    } else {
+      console.log('set false');
+      $(this).attr('data-revealed', false);
+      $(this).html('Click to reveal');
+    }
+  });
+});
 
 /***/ }),
 

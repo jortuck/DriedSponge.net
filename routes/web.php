@@ -38,6 +38,7 @@ Route::group(['middleware' => ['can:Manage.See']], function () {
 
 Route::get('/manage', 'Manage\ManageController@index')->name('manage.index');
 Route::resource('/manage/roles', 'Manage\RolesController');
+Route::resource('/manage/api', 'Manage\ApiKeysController');
 Route::resource('/manage/permissions', 'Manage\PermissionsController');
 
 

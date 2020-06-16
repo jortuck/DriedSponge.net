@@ -38,6 +38,7 @@
         <li id='roleslink'><a class="waves-effect" href="{{route('roles.index')}}"><i class="material-icons">assignment_ind</i>Roles</a>
         </li>
         <li><a class="waves-effect" href="{{route('permissions.index')}}"><i class="material-icons">security</i>Permissions</a>
+        <li><a class="waves-effect" href="{{route('api.index')}}"><i class="material-icons">vpn_key</i>Api Keys</a>
         </li>
         <li>
             <div class="divider"></div>
