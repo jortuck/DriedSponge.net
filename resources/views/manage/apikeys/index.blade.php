@@ -13,22 +13,23 @@
                     <th>Name</th>
                     <th>Key</th>
                     <th>Created At</th>
-                    <th>Settings</th>
+                    <th class="center-align">Settings</th>
                 </tr>
                 </thead>
                 <tbody>
                 @foreach ($apikeys as $key)
-                    <tr id="perm-{{$key->id}}">
+                    <tr id="key-{{$key->id}}">
                         <td>{{$key->name}}</td>
                         <td><span class="click-to-reveal badge white-text darken-4-5 pointer" data-revealed="false"
-                                  data-reveal-content="{{$key->key}}">Click to reveal</span> <span
-                                class="blue-text pointer" onclick="Copy('{{$key->key}}')">(Copy)</span></td>
+                                  data-reveal-content="{{$key->api_token}}">Click to reveal</span> <span
+                                class="blue-text pointer" onclick="Copy('{{$key->api_token}}')">(Copy)</span></td>
                         <td><span data-position="right"
                                   data-tooltip="{{ \Carbon\Carbon::parse($key->created_at)->format('n/j/Y g:i A')}}"
                                   class="ts tooltipped">{{\Carbon\Carbon::parse($key->created_at)->diffForHumans()}}</span>
                         </td>
-                        <td>
-                            <button onclick="DeletePerm('{{$key->id}}')" class="btn red"><i
+                        <td class="center-align">
+                            <a href='/manage/roles/{{$key->id}}/edit' class="btn-small waves-effect waves-light blue"><i class="material-icons center">mode_edit</i></a>
+                            <button onclick="RevokeKey('{{$key->id}}')" data-position="right"  data-tooltip="Revoke Key" class="btn-small red tooltipped"><i
                                     class="material-icons center">delete_sweep</i></button>
                         </td>
                     </tr>
@@ -37,15 +38,15 @@
             </table>
         </div>
         <script>
-            function DeletePerm(id) {
+            function RevokeKey(id) {
                 axios({
                     method: 'DELETE',
-                    url: '/manage/permissions/' + id,
+                    url: '/manage/api/'+id,
                 })
                     .then(function (response) {
                         if (response.data.success) {
                             AlertMaterializeSuccess(response.data.success);
-                            $("#perm-" + id).remove();
+                            $("#key-" + id).remove();
                         } else {
                             AlertMaterializeError(response.data.error);
                         }

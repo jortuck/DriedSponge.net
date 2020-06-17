@@ -7,8 +7,9 @@ use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Str;
 use Illuminate\View\View;
-use App\ApiKeys as ApiKeys;
+use App\ApiKey as ApiKey;
 use Spatie\Permission\Models\Role;
 use Validator;
 
@@ -21,7 +22,7 @@ class ApiKeysController extends Controller
      */
     public function index()
     {
-        $apikeys  = ApiKeys::All();
+        $apikeys  = ApiKey::All();
         return view('manage.apikeys.index')->with('apikeys',$apikeys);
     }
 
@@ -47,8 +48,11 @@ class ApiKeysController extends Controller
             "key_name" => "required|min:3|max:50|unique:api_keys,name"
         ]);
         if ($validator->passes()) {
-            $role = ApiKeys::create(['name' => $request->role_name]);
-            return response()->json(['success' => '<b>'.$request->role_name.'</b> role has been created!']);
+            $key = new ApiKey;
+            $key->name=$request->key_name;
+            $key->api_token=Str::uuid();
+            $key->save();
+            return response()->json(['success' => '<b>'.$request->key_name.'</b> role has been created!']);
         }
         return response()->json($validator->errors());
     }

@@ -21,6 +21,7 @@
         "sentry/sdk": "2.1.0",
         "sentry/sentry-laravel": "^1.7",
         "spatie/laravel-permission": "^3.13",
+        "xpaw/php-source-query-class": "^1.0",
         "xpaw/steamid": "dev-master"
     },
     "require-dev": {

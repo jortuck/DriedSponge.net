@@ -3,8 +3,9 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class ApiKeys extends Model
+class ApiKey extends Authenticatable
 {
     //Table Name
     protected $table = 'api_keys';
@@ -16,4 +17,5 @@ class ApiKeys extends Model
     protected $fillable = [
         'key', 'name','current_usage'
     ];
+
 }

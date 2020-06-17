@@ -40,6 +40,10 @@ class ComposerStaticInitdcaf1edeb7a464470a05f1f1a161fb37
     );
 
     public static $prefixLengthsPsr4 = array (
+        'x' => 
+        array (
+            'xPaw\\SourceQuery\\' => 17,
+        ),
         'v' => 
         array (
             'voku\\tests\\' => 11,
@@ -213,6 +217,10 @@ class ComposerStaticInitdcaf1edeb7a464470a05f1f1a161fb37
     );
 
     public static $prefixDirsPsr4 = array (
+        'xPaw\\SourceQuery\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/xpaw/php-source-query-class/SourceQuery',
+        ),
         'voku\\tests\\' => 
         array (
             0 => __DIR__ . '/..' . '/voku/portable-ascii/tests',
@@ -659,9 +667,12 @@ class ComposerStaticInitdcaf1edeb7a464470a05f1f1a161fb37
     );
 
     public static $classMap = array (
+        'App\\ApiKey' => __DIR__ . '/../..' . '/app/ApiKey.php',
         'App\\Bans' => __DIR__ . '/../..' . '/app/Bans.php',
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
+        'App\\Http\\Controllers\\ApiTest' => __DIR__ . '/../..' . '/app/Http/Controllers/ApiTest.php',
+        'App\\Http\\Controllers\\Api\\Test' => __DIR__ . '/../..' . '/app/Http/Controllers/Api/Test.php',
         'App\\Http\\Controllers\\Auth\\ConfirmPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ConfirmPasswordController.php',
         'App\\Http\\Controllers\\Auth\\ForgotPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ForgotPasswordController.php',
         'App\\Http\\Controllers\\Auth\\LoginController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/LoginController.php',
@@ -672,7 +683,7 @@ class ComposerStaticInitdcaf1edeb7a464470a05f1f1a161fb37
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
         'App\\Http\\Controllers\\FeedBackController' => __DIR__ . '/../..' . '/app/Http/Controllers/FeedBackController.php',
         'App\\Http\\Controllers\\HomeController' => __DIR__ . '/../..' . '/app/Http/Controllers/HomeController.php',
-        'App\\Http\\Controllers\\Manage\\ApiController' => __DIR__ . '/../..' . '/app/Http/Controllers/Manage/ApiController.php',
+        'App\\Http\\Controllers\\Manage\\ApiKeysController' => __DIR__ . '/../..' . '/app/Http/Controllers/Manage/ApiKeysController.php',
         'App\\Http\\Controllers\\Manage\\ManageController' => __DIR__ . '/../..' . '/app/Http/Controllers/Manage/ManageController.php',
         'App\\Http\\Controllers\\Manage\\PermissionsController' => __DIR__ . '/../..' . '/app/Http/Controllers/Manage/PermissionsController.php',
         'App\\Http\\Controllers\\Manage\\RolesController' => __DIR__ . '/../..' . '/app/Http/Controllers/Manage/RolesController.php',
@@ -680,6 +691,7 @@ class ComposerStaticInitdcaf1edeb7a464470a05f1f1a161fb37
         'App\\Http\\Controllers\\ProfileController' => __DIR__ . '/../..' . '/app/Http/Controllers/ProfileController.php',
         'App\\Http\\Controllers\\UserController' => __DIR__ . '/../..' . '/app/Http/Controllers/UserController.php',
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',
+        'App\\Http\\Middleware\\ApiTokenAuth' => __DIR__ . '/../..' . '/app/Http/Middleware/ApiTokenAuth.php',
         'App\\Http\\Middleware\\Authenticate' => __DIR__ . '/../..' . '/app/Http/Middleware/Authenticate.php',
         'App\\Http\\Middleware\\CheckForMaintenanceMode' => __DIR__ . '/../..' . '/app/Http/Middleware/CheckForMaintenanceMode.php',
         'App\\Http\\Middleware\\EncryptCookies' => __DIR__ . '/../..' . '/app/Http/Middleware/EncryptCookies.php',
@@ -5951,6 +5963,17 @@ class ComposerStaticInitdcaf1edeb7a464470a05f1f1a161fb37
         'phpDocumentor\\Reflection\\Types\\This' => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src/Types/This.php',
         'phpDocumentor\\Reflection\\Types\\Void_' => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src/Types/Void_.php',
         'voku\\helper\\ASCII' => __DIR__ . '/..' . '/voku/portable-ascii/src/voku/helper/ASCII.php',
+        'xPaw\\SourceQuery\\Buffer' => __DIR__ . '/..' . '/xpaw/php-source-query-class/SourceQuery/Buffer.php',
+        'xPaw\\SourceQuery\\Exception\\AuthenticationException' => __DIR__ . '/..' . '/xpaw/php-source-query-class/SourceQuery/Exception/AuthenticationException.php',
+        'xPaw\\SourceQuery\\Exception\\InvalidArgumentException' => __DIR__ . '/..' . '/xpaw/php-source-query-class/SourceQuery/Exception/InvalidArgumentException.php',
+        'xPaw\\SourceQuery\\Exception\\InvalidPacketException' => __DIR__ . '/..' . '/xpaw/php-source-query-class/SourceQuery/Exception/InvalidPacketException.php',
+        'xPaw\\SourceQuery\\Exception\\SocketException' => __DIR__ . '/..' . '/xpaw/php-source-query-class/SourceQuery/Exception/SocketException.php',
+        'xPaw\\SourceQuery\\Exception\\SourceQueryException' => __DIR__ . '/..' . '/xpaw/php-source-query-class/SourceQuery/Exception/SourceQueryException.php',
+        'xPaw\\SourceQuery\\Exception\\TimeoutException' => __DIR__ . '/..' . '/xpaw/php-source-query-class/SourceQuery/Exception/TimeoutException.php',
+        'xPaw\\SourceQuery\\GoldSourceRcon' => __DIR__ . '/..' . '/xpaw/php-source-query-class/SourceQuery/GoldSourceRcon.php',
+        'xPaw\\SourceQuery\\Socket' => __DIR__ . '/..' . '/xpaw/php-source-query-class/SourceQuery/Socket.php',
+        'xPaw\\SourceQuery\\SourceQuery' => __DIR__ . '/..' . '/xpaw/php-source-query-class/SourceQuery/SourceQuery.php',
+        'xPaw\\SourceQuery\\SourceRcon' => __DIR__ . '/..' . '/xpaw/php-source-query-class/SourceQuery/SourceRcon.php',
     );
 
     public static function getInitializer(ClassLoader $loader)
