@@ -4,9 +4,12 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Spatie\Permission\Traits\HasPermissions;
+use Str;
 
-class ApiKey extends Authenticatable
+class ApiKey extends Model
 {
+    use HasPermissions;
     //Table Name
     protected $table = 'api_keys';
     //Primary key
@@ -15,7 +18,16 @@ class ApiKey extends Authenticatable
     public $timestamps = true;
 
     protected $fillable = [
-        'key', 'name','current_usage'
+        'api_token', 'name','current_usage'
     ];
+    public function RegenToken(){
+        $this->api_token=Str::uuid();
+        $this->save();
+    }
+    public function UpdateUsage(){
+        $current = $this->current_usage + 1;
+        $this->current_usage = $current;
+        $this->save();
+    }
 
 }

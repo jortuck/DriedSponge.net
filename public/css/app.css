@@ -10879,3 +10879,7 @@ h6 {
           user-select: none;
 }
 
+.capfirst:first-letter {
+  text-transform: capitalize;
+}
+

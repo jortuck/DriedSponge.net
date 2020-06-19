@@ -17,6 +17,6 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
-Route::get('/source-query/get-info', 'Api\SourceQueryApi@GetAll')->middleware('ApiKey');
+Route::get('/source-query/get-all', 'Api\SourceQueryApi@GetAll')->middleware('ApiKey');
 
 

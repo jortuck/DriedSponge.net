@@ -19,7 +19,7 @@ class PermissionsController extends Controller
      */
     public function index()
     {
-        $perms  = DB::table('permissions')->orderBy('name', 'asc')->get();
+        $perms  = DB::table('permissions')->orderBy('created_at', 'desc')->get();
         return view('manage.permissions.index')->with('perms', $perms);
     }
     /**
@@ -36,15 +36,20 @@ class PermissionsController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function store(Request $request)
     {
         $validator =  Validator::make($request->all(), [
-            "perm_name" => "required|max:30|unique:permissions,name"
+            "perm_name" => "required|max:30|unique:permissions,name",
+            'api_perm'=>'nullable'
         ]);
         if ($validator->passes()) {
-            $permission = Permission::create(['name' => $request->perm_name]);
+            if(!$request->api_perm){
+                $permission = Permission::create(['name' => $request->perm_name]);
+            }else{
+                $permission = Permission::create(['name' => $request->perm_name,'guard_name' => 'api']);
+            }
             return response()->json(['success' => 'The <b>'.$request->perm_name.'</b> permission has been created!']);
         }
         return response()->json($validator->errors());
@@ -55,11 +60,11 @@ class PermissionsController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function destroy($id)
     {
-        $perm = Permission::findByID($id);
+        $perm = Permission::find($id);
         $perm->delete();
         return response()->json(['success' => 'The permission has successfully been deleted']);
     }

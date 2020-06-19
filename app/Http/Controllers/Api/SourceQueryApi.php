@@ -2,30 +2,40 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\ApiKey;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Validator;
 use xPaw\SourceQuery\SourceQuery;
+use Spatie\Permission\Models\Permission;
+
 class SourceQueryApi extends Controller
 {
-    public function GetAll(Request $request){
-        $validator =  Validator::make($request->all(), [
+    public function GetAll(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
             "server_ip" => "required",
             "server_port" => "required",
         ]);
-        if ($validator->passes()) {
-            $server_ip = $request->get('server_ip');
-            $Query = new SourceQuery();
-            try{
-                $Query->Connect( '208.1032424.169.42','27015', 300, SourceQuery::SOURCE);
-                return response()->json(['success' =>  $Query->GetInfo( )]);
+        $keys = ApiKey::where('api_token', $request->get('api_token'))->first();
+        $key = ApiKey::find($keys->id);
+        $key->UpdateUsage();
+        if ($key->hasPermissionTo('SourceQuery', 'api')) {
+            if ($validator->passes()) {
+                $server_ip = $request->get('server_ip');
+                $Query = new SourceQuery();
+                try {
+                    $Query->Connect($request->get('server_ip'), $request->get('server_port'), 300, SourceQuery::SOURCE);
+                    return response()->json(['success' => true, 'data' => ['server_info' => $Query->GetInfo(), 'server_players' => $Query->GetPlayers()]]);
+                } catch (\Exception $e) {
+                    return response()->json(['success' => false, 'errors' => 'Could not connect to server', 'message' => 'Could not connect to server']);
 
-            }catch(\Exception $e)
-            {
-                return response()->json(['errors'=>'Could not connect to server']);
-
+                }
             }
+            return response()->json(['success' => false, 'errors' => $validator->errors(), 'message' => 'Invalid request data']);
+        }else{
+            return response()->json(['success' => false, 'message' => 'Unauthorized'],403);
         }
-        return response()->json(['errors'=>$validator->errors()]);
     }
+
 }

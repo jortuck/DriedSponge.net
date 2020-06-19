@@ -28,7 +28,7 @@
                                   class="ts tooltipped">{{\Carbon\Carbon::parse($key->created_at)->diffForHumans()}}</span>
                         </td>
                         <td class="center-align">
-                            <a href='/manage/roles/{{$key->id}}/edit' class="btn-small waves-effect waves-light blue"><i class="material-icons center">mode_edit</i></a>
+                            <a href='/manage/api/{{$key->id}}/edit' class="btn-small waves-effect waves-light blue"><i class="material-icons center">mode_edit</i></a>
                             <button onclick="RevokeKey('{{$key->id}}')" data-position="right"  data-tooltip="Revoke Key" class="btn-small red tooltipped"><i
                                     class="material-icons center">delete_sweep</i></button>
                         </td>

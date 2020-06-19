@@ -23,7 +23,10 @@
                             <label for='perm_name'>Permission Name</label>
                             <span data-error="" data-success="" class="helper-text" id='perm_name-msg'></span>
                         </div>
-
+                        <label>
+                            <input type="checkbox" value="api_perm" class="filled-in" id="api_perm" />
+                            <span>Api Permission</span>
+                        </label>
                     </div>
                     <div class="card-action">
                         <button class="btn green" type="submit">Create Permission</button>
@@ -41,7 +44,8 @@
                             method: 'post',
                             url: '/manage/permissions',
                             data: {
-                                perm_name: $("#perm_name").val()
+                                perm_name: $("#perm_name").val(),
+                                api_perm: $('#api_perm').is(":checked")
                             }
                         })
                         .then(function(response) {

@@ -62,7 +62,7 @@ class RolesController extends Controller
     {
         try{
             $role = Role::findOrFail($id);
-            $permissionsAll = Permission::orderBy('name', 'asc')->get();
+            $permissionsAll = Permission::orderBy('name', 'asc')->where('guard_name','web')->get();
             return view('manage.roles.edit')->with('role',$role)->with('permissionsAll',$permissionsAll);
         }
         catch(ModelNotFoundException $err){
