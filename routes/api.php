@@ -18,5 +18,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 Route::get('/source-query/get-all', 'Api\SourceQueryApi@GetAll')->middleware('ApiKey');
+Route::get('/walrus/facts', 'Api\Walrus@Facts')->middleware('ApiKey');
 
 
