@@ -1,7 +1,7 @@
 @auth
     <ul id="dropdown1" class="dropdown-content">
         <li><a href="{{route('logout')}}"><i class="material-icons">exit_to_app</i> Logout</a></li>
-        @can('manage.see')
+        @can('Manage.See')
             <li><a href="{{route('manage.index')}}"><i class="material-icons">dashboard</i> Management</a></li>
         @endcan
     </ul>

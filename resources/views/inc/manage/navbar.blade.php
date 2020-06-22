@@ -34,15 +34,23 @@
         <li>
             <div class="divider"></div>
         </li>
+        @can('Manage.Administration')
         <li><a class="subheader">Administration</a></li>
+            @can('Roles.See')
         <li id='roleslink'><a class="waves-effect" href="{{route('roles.index')}}"><i class="material-icons">assignment_ind</i>Roles</a>
         </li>
+            @endcan
+            @can('Permissions.See')
         <li><a class="waves-effect" href="{{route('permissions.index')}}"><i class="material-icons">security</i>Permissions</a>
+            @endcan
+                @can('Api.See')
         <li><a class="waves-effect" href="{{route('api.index')}}"><i class="material-icons">vpn_key</i>Api Keys</a>
         </li>
+            @endcan
         <li>
             <div class="divider"></div>
         </li>
+        @endcan
         <li><a href="{{route('pages.index')}}"><i class="material-icons">home</i>Return Home</a></li>
         @auth
             <li><a href="{{route('logout')}}"><i class="material-icons">exit_to_app</i>Logout</a></li>
