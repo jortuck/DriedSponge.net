@@ -4,8 +4,10 @@
 @section('content')
     <div class="container" id="content">
         <h1>Permissions</h1>
+        @can('Permissions.Create')
         <a href="{{route('permissions.create')}}" class="btn green">Create New Permission</a>
         <br>
+        @endcan
         <br>
         <ul class="collapsible">
             <li>
@@ -17,7 +19,9 @@
                             <th>Name</th>
                             <th>Guard</th>
                             <th>Created At</th>
+                            @can('Permissions.Delete')
                             <th class="center-align">Settings</th>
+                            @endcan
                         </tr>
                         </thead>
                         <tbody>
@@ -30,10 +34,12 @@
                                               data-tooltip="{{ \Carbon\Carbon::parse($perm->created_at)->format('n/j/Y g:i A')}}"
                                               class="ts tooltipped">{{\Carbon\Carbon::parse($perm->created_at)->diffForHumans()}}</span>
                                     </td>
+                                    @can('Permissions.Delete')
                                     <td class="center-align">
                                         <button onclick="DeletePerm('{{$perm->id}}')" class="btn red"><i
                                                 class="material-icons center">delete_sweep</i></button>
                                     </td>
+                                    @endcan
                                 </tr>
                             @endif
                         @endforeach
@@ -50,7 +56,9 @@
                             <th>Name</th>
                             <th>Guard</th>
                             <th>Created At</th>
+                            @can('Permissions.Delete')
                             <th class="center-align">Settings</th>
+                            @endcan
                         </tr>
                         </thead>
                         <tbody>
@@ -63,10 +71,12 @@
                                               data-tooltip="{{ \Carbon\Carbon::parse($perm->created_at)->format('n/j/Y g:i A')}}"
                                               class="ts tooltipped">{{\Carbon\Carbon::parse($perm->created_at)->diffForHumans()}}</span>
                                     </td>
+                                    @can('Permissions.Delete')
                                     <td class="center-align">
                                         <button onclick="DeletePerm('{{$perm->id}}')" class="btn red"><i
                                                 class="material-icons center">delete_sweep</i></button>
                                     </td>
+                                    @endcan
                                 </tr>
                             @endif
                         @endforeach
@@ -75,6 +85,7 @@
                 </div>
             </li>
         </ul>
+        @can('Permissions.Delete')
         <script>
             function DeletePerm(id) {
                 axios({
@@ -91,6 +102,7 @@
                     });
             }
         </script>
+        @endcan
     </div>
     <script>
         const observer = lozad(); // lazy loads elements with default selector as '.lozad'
