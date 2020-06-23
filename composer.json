@@ -18,7 +18,6 @@
         "laravel/tinker": "^2.0",
         "laravel/ui": "^2.0",
         "laravelcollective/html": "^6.1",
-        "phpmailer/phpmailer": "^6.1",
         "sendgrid/sendgrid": "^7.6",
         "sentry/sdk": "2.1.0",
         "sentry/sentry-laravel": "^1.7",

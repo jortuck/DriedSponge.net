@@ -55,7 +55,7 @@ class ApiKeysController extends Controller
             $key->name=$request->key_name;
             $key->api_token=Str::uuid();
             $key->save();
-            return response()->json(['success' => '<b>'.$request->key_name.'</b> role has been created!']);
+            return response()->json(['success' => '<b>'.$request->key_name.'</b> key has been created!']);
         }
         return response()->json($validator->errors());
     }
@@ -104,11 +104,11 @@ class ApiKeysController extends Controller
                     return response()->json(['success' => 'The '.$perm->name.' permission has been '.$txt.' the '.$key->name.' role','status'=>$status]);
                 }
                 catch(ModelNotFoundException $err){
-                    return response()->json(['error' => 'The permission you are trying to add to the role does not exist.']);
+                    return response()->json(['error' => 'The permission you are trying to add to the api key does not exist.']);
                 }
             }
             catch(ModelNotFoundException $err){
-                return response()->json(['error' => 'The role you are trying to edit does not exist.']);
+                return response()->json(['error' => 'The api key you are trying to edit does not exist.']);
             }
         }else if($request->regen) {
             $key = ApiKey::find($id);

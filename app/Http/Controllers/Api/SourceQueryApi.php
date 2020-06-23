@@ -25,7 +25,7 @@ class SourceQueryApi extends Controller
                 $server_ip = $request->get('server_ip');
                 $Query = new SourceQuery();
                 try {
-                    $Query->Connect($request->get('server_ip'), $request->get('server_port'), 300, SourceQuery::SOURCE);
+                    $Query->Connect($request->get('server_ip'), $request->get('server_port'), 30, SourceQuery::SOURCE);
                     return response()->json(['success' => true, 'data' => ['server_info' => $Query->GetInfo(), 'server_players' => $Query->GetPlayers()]]);
                 } catch (\Exception $e) {
                     return response()->json(['success' => false, 'errors' => 'Could not connect to server', 'message' => 'Could not connect to server']);
