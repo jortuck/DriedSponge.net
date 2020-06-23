@@ -32,15 +32,17 @@ Route::get('auth/steam', 'Auth\SteamLoginController@authenticate')->name('auth.s
 Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
 
 //Manage
-//Route::group(['middleware' => ['can:Manage.See']], function () {
+Route::group(['middleware' => ['can:Manage.See']], function () {
     Route::group(['middleware' => ['can:Roles.See']], function () {
         Route::resource('/manage/roles', 'Manage\RolesController');
     });
 
-    Route::resource('/manage/api', 'Manage\ApiKeysController');
+    Route::group(['middleware' => ['can:Api.See']], function () {
+        Route::resource('/manage/api', 'Manage\ApiKeysController');
+    });
     Route::resource('/manage/permissions', 'Manage\PermissionsController');
     Route::get('/manage', 'Manage\ManageController@index')->name('manage.index');
-//});
+});
 
 
 

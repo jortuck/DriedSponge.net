@@ -54,7 +54,7 @@
                     } else {
                         $('#create-key').show()
                         if (response.data.error) {
-                            wiwndow.AlertError(response.data.error);
+                            window.AlertError(response.data.error);
                         }
                         window.MaterialValidate('#key_name')
                         $.each(response.data, function(key, value) {
