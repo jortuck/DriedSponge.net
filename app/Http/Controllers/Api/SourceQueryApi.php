@@ -23,13 +23,16 @@ class SourceQueryApi extends Controller
         if ($key->hasPermissionTo('SourceQuery', 'api')) {
             if ($validator->passes()) {
                 $server_ip = $request->get('server_ip');
-                $Query = new SourceQuery();
+                $query = new SourceQuery();
                 try {
-                    $Query->Connect($request->get('server_ip'), $request->get('server_port'), 30, SourceQuery::SOURCE);
-                    return response()->json(['success' => true, 'data' => ['server_info' => $Query->GetInfo(), 'server_players' => $Query->GetPlayers()]]);
+                    $query->Connect($request->get('server_ip'), $request->get('server_port'), 3, SourceQuery::SOURCE);
+                    $server_info = mb_convert_encoding($query->GetInfo(),'UTF-8', 'UTF-8');
+                    $server_players = $query->GetPlayers();
+                    return response()->json(['success' => true, 'data' => ['server_info' => $server_info, 'server_players' =>$server_players]]);
                 } catch (\Exception $e) {
-                    return response()->json(['success' => false, 'errors' => 'Could not connect to server', 'message' => 'Could not connect to server']);
-
+                    return response()->json(['success' => false, 'errors' => $e->getMessage(), 'message' => 'Could not connect to server']);
+                } finally {
+                    $query->disconnect();
                 }
             }
             return response()->json(['success' => false, 'errors' => $validator->errors(), 'message' => 'Invalid request data']);
