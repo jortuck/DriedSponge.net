@@ -4,6 +4,11 @@
 
 <body>
 @include('inc.manage.navbar')
+<style>
+    h1,h2,h3,h4,h5,h6{
+        font-family: Roboto;
+    }
+</style>
 <div class="app">
     <div class="container">
         @include('inc.messages')

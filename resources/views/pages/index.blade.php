@@ -13,7 +13,7 @@
         <div class="container">
             <div data-aos="fade-up" data-aos-delay="1000" class="row">
                 <div class="col s12 m6 l4">
-                    <div class="card-panel center-align">
+                    <div class="hoverable card-panel center-align">
                         <h1>Backend Development</h1>
                         <p class="flow-text">I have expierience with lots of backend development including
                             laravel, python and node js.
@@ -21,7 +21,7 @@
                     </div>
                 </div>
                 <div class="col s12 m6 l4">
-                    <div class="card-panel center-align">
+                    <div class="hoverable card-panel center-align">
                         <h1>Server Infrastructure</h1>
                         <p class="flow-text">Web services require servers and databases. Over the years I
                             have aquried the knowlege to manage these types of services.
@@ -29,7 +29,7 @@
                     </div>
                 </div>
                 <div class="col s12 m12 l4">
-                    <div class="card-panel center-align">
+                    <div class="hoverable card-panel center-align">
                         <h1>Web Design</h1>
                         <p class="flow-text">
                             Using HTML, CSS, and JavaScript, I can transform your design into a beautiful webpage with a great, responsive, user interface.

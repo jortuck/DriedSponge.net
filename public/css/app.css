@@ -10767,8 +10767,8 @@ h6 {
 }
 
 #landing-header {
-  padding-top: 175px;
-  padding-bottom: 50px;
+  padding-top: 100px;
+  padding-bottom: 0px;
 }
 
 .landing-h1 {
@@ -10832,7 +10832,7 @@ h6 {
   }
 
   #landing-header {
-    padding-top: 200px;
+    padding-top: 150px;
   }
 }
 
@@ -10881,5 +10881,14 @@ h6 {
 
 .capfirst:first-letter {
   text-transform: capitalize;
+}
+
+.breadcrumb {
+  color: black;
+  font-size: 2em;
+}
+
+.breadcrumb:before {
+  color: black !important;
 }
 

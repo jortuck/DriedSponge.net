@@ -4,7 +4,10 @@
 @section('content')
     <div class="container" id="'content">
         <h2>Edit {{$key->name}} Key</h2>
+        <a href="{{route('api.index')}}" class="btn">Go Back</a>
         @include('inc.FormMsg')
+        <br>
+        <br>
         <div class="card">
             <div class="card-content">
                 <form id="edit-name">
@@ -14,7 +17,7 @@
                         <label for='key_name'>Key Name</label>
                         <span id="key_name-msg" class="helper-text" data-error="" data-success=""></span>
                     </div>
-                    <button class="btn btn-success" type="submit">Save Name</button>
+                    <button class="btn green" type="submit">Save Name</button>
                 </form>
                 <h4>Permissions</h4>
                 @foreach ($permissionsAll as $perm)

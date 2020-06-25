@@ -148,8 +148,8 @@ h1, h2, h3, h4, h5, h6{
     margin: 60px 0px;
 }
 #landing-header{
-    padding-top: 175px;
-    padding-bottom: 50px;
+    padding-top: 100px;
+    padding-bottom: 0px;
 }
 .landing-h1{
     height: auto;
@@ -208,7 +208,7 @@ h1, h2, h3, h4, h5, h6{
         line-height: 45px;
     }
     #landing-header{
-        padding-top: 200px;
+        padding-top: 150px;
     }
 }
 @media only screen and (max-width: 443px){
@@ -246,4 +246,11 @@ h1, h2, h3, h4, h5, h6{
 }
 .capfirst:first-letter{
     text-transform: capitalize;
+}
+.breadcrumb{
+    color: black;
+    font-size:2em;
+}
+.breadcrumb:before {
+    color: black !important;
 }
