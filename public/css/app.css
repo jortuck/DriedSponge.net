@@ -10892,3 +10892,32 @@ h6 {
   color: black !important;
 }
 
+.banner-success {
+  text-align: center;
+  background-color: #4CAF50;
+  color: white;
+}
+
+.banner-danger {
+  text-align: center;
+  background-color: #F44336;
+  color: white;
+}
+
+.banner-warning {
+  text-align: center;
+  background-color: #FF9800;
+  color: white;
+}
+
+.banner-primary {
+  text-align: center;
+  background-color: #2196F3;
+  color: white;
+}
+
+.banner a {
+  color: white !important;
+  text-decoration: underline;
+}
+
