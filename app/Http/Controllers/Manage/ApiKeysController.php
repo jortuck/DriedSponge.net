@@ -162,4 +162,9 @@ class ApiKeysController extends Controller
             return response()->json(['error' => 'Unauthorized']);
         }
     }
+    public function show($id)
+    {
+        $key = ApiKey::find($id);
+        return view('manage.apikeys.show')->with('key',$key);
+    }
 }
