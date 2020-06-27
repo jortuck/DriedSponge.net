@@ -12,7 +12,7 @@
             <p id="succtext"></p>
         </div>
         <div class="card-action">
-            <a href="{{route('api.create')}}">Create Another Api Key</a>
+            <a href="#" onclick="CreateNewResponse('#create-key')">Create Another Api Key</a>
             <a href="{{route('api.index')}}">Return To Api Keys Page</a>
         </div>
     </div>

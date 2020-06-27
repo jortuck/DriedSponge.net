@@ -41,7 +41,7 @@
                         </td>
                         <td class="center-align">
                             @can('Api.Edit')
-                                <a href='/manage/api/{{$key->id}}' class="btn-small waves-effect waves-light blue"><i
+                                <a href='/manage/api/{{$key->id}}' class="btn-small waves-effect waves-light green"><i
                                         class="material-icons center">show_chart
                                     </i></a>
                                 <a href='/manage/api/{{$key->id}}/edit' class="btn-small waves-effect waves-light blue"><i
