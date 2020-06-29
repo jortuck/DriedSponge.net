@@ -28,7 +28,11 @@ class SourceQueryApi extends Controller
                     $query->Connect($request->get('server_ip'), $request->get('server_port'), 3, SourceQuery::SOURCE);
                     $server_info = mb_convert_encoding($query->GetInfo(),'UTF-8', 'UTF-8');
                     $server_players = $query->GetPlayers();
-                    return response()->json(['success' => true, 'data' => ['server_info' => $server_info, 'server_players' =>$server_players]]);
+                    if($server_info != ""){
+                        return response()->json(['success' => true, 'data' => ['server_info' => $server_info, 'server_players' =>$server_players]]);
+                    }else{
+                        return response()->json(['success' => false, 'message' => 'Could not connect to server']);
+                    }
                 } catch (\Exception $e) {
                     return response()->json(['success' => false, 'errors' => $e->getMessage(), 'message' => 'Could not connect to server']);
                 } finally {
@@ -56,7 +60,11 @@ class SourceQueryApi extends Controller
                 try {
                     $query->Connect($request->get('server_ip'), $request->get('server_port'), 3, SourceQuery::SOURCE);
                     $server_info = mb_convert_encoding($query->GetInfo(),'UTF-8', 'UTF-8');
-                    return response()->json(['success' => true, 'data' => ['server_info' => $server_info]]);
+                    if($server_info != ""){
+                        return response()->json(['success' => true, 'data' => ['server_info' => $server_info]]);
+                    }else{
+                        return response()->json(['success' => false, 'message' => 'Could not connect to server']);
+                    }
                 } catch (\Exception $e) {
                     return response()->json(['success' => false, 'errors' => $e->getMessage(), 'message' => 'Could not connect to server']);
                 } finally {
