@@ -164,16 +164,30 @@ h1, h2, h3, h4, h5, h6{
     // text-shadow: 0px 25px 50px rgba(0, 0, 0, 0.25);
 }
 .landing-sub{
-    height: 17px;
     position: relative;
     font-family: Exo;
     font-style: normal;
     font-weight: normal;
-    font-size: 24px;
+    font-size: 33px;
     line-height: 95%;
     display: block;
     color: #DADCE0;
     // text-shadow: 0px 25px 50px rgba(0, 0, 0, 0.25);
+}
+@keyframes icon-link-hovers {
+    from {color: white;}
+    to {color:  #62A1EC;}
+}
+.icon-link{
+    color: white;
+    letter-spacing: 15px;
+    line-height: 20px;
+}
+.icon-link:hover{
+    animation-name: icon-link-hovers;
+    animation-duration: .5s;
+    animation-fill-mode: forwards;
+
 }
 .card-panel{
     height: 275px;

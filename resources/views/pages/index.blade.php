@@ -11,9 +11,11 @@
             <h2 data-aos="fade-up" data-aos-delay="500" class="landing-sub center-align">Full Stack Web Developer</h2>
             <h2 data-aos="fade-up" data-aos-delay="500" class="center-align">
                 <a class="icon-link" target="_blank" href="mailto:jordan@driedsponge.net"><i class="fas fa-envelope"></i></a>
-                <a class="icon-link" target="_blank" href="mailto:jordan@driedsponge.net"><i class="fab fa-github"></i></a>
-                <a class="icon-link" target="_blank" href="mailto:jordan@driedsponge.net"><i class="fab fa-discord"></i></a>
-                <a class="icon-link" target="_blank" href="mailto:jordan@driedsponge.net"><i class="fab fa-steam"></i></a>
+                <a class="icon-link" target="_blank" href="https://github.com/DriedSponge"><i class="fab fa-github"></i></a>
+                <a class="icon-link" target="_blank" href="https://steamcommunity.com/id/driedsponge/"><i class="fab fa-steam"></i></a>
+                <a class="icon-link" target="_blank" href="https://twitter.com/dried_sponge"><i class="fab fa-twitter"></i></a>
+                <a class="icon-link" target="_blank" href="https://discord.gg/YS4WZWG"><i class="fab fa-discord"></i></a>
+
             </h2>
         </div>
     </div>
