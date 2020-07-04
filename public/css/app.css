@@ -10784,49 +10784,15 @@ h6 {
 }
 
 .landing-sub {
+  height: 17px;
   position: relative;
   font-family: Exo;
   font-style: normal;
   font-weight: normal;
-  font-size: 33px;
+  font-size: 24px;
   line-height: 95%;
   display: block;
   color: #DADCE0;
-}
-
-@-webkit-keyframes icon-link-hovers {
-  from {
-    color: white;
-  }
-
-  to {
-    color: #62A1EC;
-  }
-}
-
-@keyframes icon-link-hovers {
-  from {
-    color: white;
-  }
-
-  to {
-    color: #62A1EC;
-  }
-}
-
-.icon-link {
-  color: white;
-  letter-spacing: 15px;
-  line-height: 20px;
-}
-
-.icon-link:hover {
-  -webkit-animation-name: icon-link-hovers;
-          animation-name: icon-link-hovers;
-  -webkit-animation-duration: 0.5s;
-          animation-duration: 0.5s;
-  -webkit-animation-fill-mode: forwards;
-          animation-fill-mode: forwards;
 }
 
 .card-panel {
@@ -10924,6 +10890,41 @@ h6 {
 
 .breadcrumb:before {
   color: black !important;
+}
+
+@-webkit-keyframes icon-link-hovers {
+  from {
+    color: white;
+  }
+
+  to {
+    color: #62A1EC;
+  }
+}
+
+@keyframes icon-link-hovers {
+  from {
+    color: white;
+  }
+
+  to {
+    color: #62A1EC;
+  }
+}
+
+.icon-link {
+  color: white;
+  letter-spacing: 15px;
+  line-height: 20px;
+}
+
+.icon-link:hover {
+  -webkit-animation-name: icon-link-hovers;
+          animation-name: icon-link-hovers;
+  -webkit-animation-duration: 0.5s;
+          animation-duration: 0.5s;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
 }
 
 .banner-success {

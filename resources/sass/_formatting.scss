@@ -1,4 +1,3 @@
-
 body {
     display: flex;
     min-height: 100vh;
@@ -16,9 +15,9 @@ body {
     padding-bottom: 20px;
 }
 @media only screen and (min-width: 993px) {
-	.container {
-		width: 70%;
-	}
+    .container {
+        width: 70%;
+    }
 }
 .sidenav.sidenav-fixed {
     left: 0;
@@ -28,14 +27,14 @@ body {
 }
 .app{
     display: flex;
-	flex-direction: column;
-	padding-left: 250px;
+    flex-direction: column;
+    padding-left: 250px;
     height: 100%;
 }
 @media (max-width: 992px) {
-	.app {
-		padding-left: 0;
-	}
+    .app {
+        padding-left: 0;
+    }
 }
 #left-nav-btn {
     position: absolute;
@@ -164,30 +163,16 @@ h1, h2, h3, h4, h5, h6{
     // text-shadow: 0px 25px 50px rgba(0, 0, 0, 0.25);
 }
 .landing-sub{
+    height: 17px;
     position: relative;
     font-family: Exo;
     font-style: normal;
     font-weight: normal;
-    font-size: 33px;
+    font-size: 24px;
     line-height: 95%;
     display: block;
     color: #DADCE0;
     // text-shadow: 0px 25px 50px rgba(0, 0, 0, 0.25);
-}
-@keyframes icon-link-hovers {
-    from {color: white;}
-    to {color:  #62A1EC;}
-}
-.icon-link{
-    color: white;
-    letter-spacing: 15px;
-    line-height: 20px;
-}
-.icon-link:hover{
-    animation-name: icon-link-hovers;
-    animation-duration: .5s;
-    animation-fill-mode: forwards;
-
 }
 .card-panel{
     height: 275px;
@@ -267,4 +252,19 @@ h1, h2, h3, h4, h5, h6{
 }
 .breadcrumb:before {
     color: black !important;
+}
+@keyframes icon-link-hovers {
+    from {color: white;}
+    to {color:  #62A1EC;}
+}
+.icon-link{
+    color: white;
+    letter-spacing: 15px;
+    line-height: 20px;
+}
+.icon-link:hover{
+    animation-name: icon-link-hovers;
+    animation-duration: .5s;
+    animation-fill-mode: forwards;
+
 }
