@@ -10834,6 +10834,10 @@ h6 {
   #landing-header {
     padding-top: 150px;
   }
+
+  .icon-link {
+    font-size: 0.8em;
+  }
 }
 
 @media only screen and (max-width: 443px) {

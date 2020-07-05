@@ -13,7 +13,6 @@
                 <a href="{{route('pages.index')}}" class="brand-logo"><div class="valign-wrapper" style="margin: 5px 0px"><img alt="logo" class="lozad hide-on-med-and-down" id="img" data-src="https://cdn.driedsponge.net/img/logo/logo-square.webp"><span id="navtxt">Dried <span class="white-text">Sponge</span></span></div></a>
                 <a href="#" data-target="mobilenav" class="sidenav-trigger text-white"><i class="material-icons">menu</i></a>
             </div>
-            <a href="#" data-target="mobilenav" class="sidenav-trigger text-white"><i class="material-icons">menu</i></a>
             <ul class="right hide-on-med-and-down">
                 <li><a href="{{route('pages.index')}}">Projects</a></li>
                 <li><a href="{{route('pages.index')}}">Advertise</a></li>
