@@ -10721,6 +10721,16 @@ nav .brand-logo #navtxt {
   display: inline-block;
 }
 
+nav .brand-logo #navtxt-mobile {
+  color: #62A1EC;
+  font-size: 24px;
+  font-family: "Exo", sans-serif;
+  text-transform: uppercase;
+  font-weight: 600;
+  float: right;
+  white-space: nowrap;
+}
+
 nav .brand-logo #img {
   width: 51px;
   height: 51px;
@@ -10786,7 +10796,7 @@ h6 {
 .landing-sub {
   height: 17px;
   position: relative;
-  font-family: Exo;
+  font-family: Exo, sans-serif;
   font-style: normal;
   font-weight: normal;
   font-size: 24px;
@@ -10800,7 +10810,7 @@ h6 {
 }
 
 .card-panel h1 {
-  font-family: Exo;
+  font-family: Exo, sans-serif;
   text-transform: uppercase;
   font-style: normal;
   font-weight: 600;
@@ -10809,7 +10819,7 @@ h6 {
 }
 
 .card-panel p {
-  font-family: Exo;
+  font-family: Exo, sans-serif;
   font-style: normal;
   color: #444444;
   font-weight: normal;

@@ -10,7 +10,8 @@
     <div class="nav-wrapper">
         <div class="container">
             <div>
-                <a href="{{route('pages.index')}}" class="brand-logo"><div class="valign-wrapper" style="margin: 5px 0px"><img alt="logo" class="hide-on-med-and-down" id="img"src="https://cdn.driedsponge.net/img/logo/logo-square.webp"><span id="navtxt">Dried <span class="white-text">Sponge</span></span></div></a>
+                <a href="{{route('pages.index')}}" class="brand-logo hide-on-med-and-down"><div class="valign-wrapper" style="margin: 5px 0px"><img alt="logo" class="hide-on-med-and-down" id="img"src="https://cdn.driedsponge.net/img/logo/logo-square.webp"><span id="navtxt">Dried <span class="white-text">Sponge</span></span></div></a>
+                <a href="{{route('pages.index')}}" class="brand-logo hide-on-med-and-up show-on-medium-and-down"><span id="navtxt-mobile">Dried <span class="white-text">Sponge</span></span></a>
                 <a href="#" data-target="mobilenav" class="sidenav-trigger text-white"><i class="material-icons">menu</i></a>
             </div>
             <ul class="right hide-on-med-and-down">
