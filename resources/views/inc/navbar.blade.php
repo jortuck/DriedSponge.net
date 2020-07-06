@@ -60,11 +60,17 @@
             @endauth
         </div>
     </li>
-    <li><a href="#!"><i class="material-icons">cloud</i>First Link With Icon</a></li>
-    <li><a href="#!">Second Link</a></li>
-    <li>
-        <div class="divider"></div>
-    </li>
-    <li><a class="subheader">Subheader</a></li>
-    <li><a class="waves-effect" href="#!">Third Link With Waves</a></li>
+    <li><a class="subheader">General</a></li>
+    <li><a class="waves-effect" href="#!"><i class="material-icons">developer_board</i>Projects</a></li>
+    <li><a class="waves-effect" href="#!"><i class="material-icons">open_in_browser</i>Advertise</a></li>
+    @auth
+        <li>
+            <div class="divider"></div>
+        </li>
+        <li><a class="subheader">Account</a></li>
+    <li><a class="waves-effect" href="/logout/"><i class="material-icons">exit_to_app</i>Logout</a></li>
+        @can('Manage.See')
+            <li><a href="{{route('manage.index')}}"><i class="material-icons">dashboard</i> Management</a></li>
+        @endcan
+    @endauth
 </ul>
