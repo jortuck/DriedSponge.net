@@ -10734,7 +10734,7 @@ nav .brand-logo #img {
   width: 51px;
   height: 51px;
   background-color: rgba(126, 0, 0, 0);
-  border-radius: 12px;
+  border-radius: 360px;
   display: inline-block;
 }
 
@@ -10765,10 +10765,6 @@ h6 {
 
 .card-panel-header {
   font-size: 1.9em;
-}
-
-.card-panel {
-  border-radius: 10px;
 }
 
 .header-thing {
