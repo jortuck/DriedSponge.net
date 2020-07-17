@@ -19,71 +19,76 @@
     </div>
     <br>
     <br>
-    <div class="section" style="position: relative;">
-        <h2 class="center-align white-text" style="font-weight: 600">WHAT I DO</h2>
+    <div class="section colored-section-1 z-depth-5">
+        <h1 class="center-align white-text section-header">WHAT I DO</h1>
         <br>
         <div class="container">
-            <div class="row">
+            <div class="row same-h-row">
                 <div class="col s12 m6 l4">
                     <div class="hoverable card-panel center-align">
                         <h1>Backend Development</h1>
-                        <p class="flow-text">I have expierience with lots of backend development including
-                            laravel, python and node js.
+                        <p class="flow-text">
+                            I have experience with lots of backend development including Laravel, Python and Node JS. I use these skills to create websites and discord bots.
                         </p>
                     </div>
                 </div>
                 <div class="col s12 m6 l4">
                     <div class="hoverable card-panel center-align">
                         <h1>Server Infrastructure</h1>
-                        <p class="flow-text">Web services require servers and databases. Over the years I
-                            have aquried the knowlege to manage these types of services.
-                        </p>
+                        <p class="flow-text">Web services require servers and databases. Over the years I have acquired the knowledge to manage these types of services. I also have experience in setting up and configuring servers for games like Minecraft and Garry's Mod.</p>
                     </div>
                 </div>
                 <div class="col s12 m12 l4">
-                    <div class="hoverable card-panel center-align">
+                    <div class="hoverable card-panel-h card-panel center-align">
                         <h1>Web Design</h1>
                         <p class="flow-text">
-                            Using HTML, CSS, and JavaScript, I can transform your design into a beautiful webpage with a great, responsive, user interface.
+                            Using HTML, CSS, and JavaScript, I can transform your design into a beautiful webpage with a great, responsive, user interface & expierience.
                         </p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="section" style="background: #62A1EC;">
-        <h2 class="center-align white-text" style="font-weight: 600;">SERVICES I OFFER</h2>
-        <br>
+    <div class="section" style="background: #0E1013;">
+        <h2 class="center-align white-text" style="font-weight: 600;">CONTACT ME</h2>
         <div class="container">
-            <div class="row">
-                <div class="col s12 m6 l4">
-                    <div class="hoverable card-panel center-align">
-                        <h1>Backend Development</h1>
-                        <p class="flow-text">I have expierience with lots of backend development including
-                            laravel, python and node js.
-                        </p>
+            <p class="center-align flow-text white-text">Is there something I can do for you, or do you just have a general inquiry? Fill out the form below!</p>
+            <div class="card bg-secondary">
+                <form>
+                    <div class="card-content row">
+                        <h2 class="white-text roboto cent-on-med-down">CONTACT</h2>
+                        <div class="input-field col s12 m12 l4">
+                            <input id="your_name" type="text" class="validate" maxlength="50" data-length="50">
+                            <label for="your_name">Your Name *</label>
+                            <span id="your_name-msg" class="helper-text" data-error="" data-success=""></span>
+                        </div>
+                        <div class="input-field col s12 m12 l4">
+                            <input id="email" type="text" class="validate">
+                            <label for="email">Email *</label>
+                            <span id="email-msg" class="helper-text" data-error="" data-success=""></span>
+                        </div>
+                        <div class="input-field col s12 m12 l4">
+                            <input id="subject" type="text" class="validate" maxlength="50" data-length="50">
+                            <label for="subject">Subject *</label>
+                            <span id="subject-msg" class="helper-text" data-error="" data-success="" ></span>
+                        </div>
+                        <div class="input-field col s12 m12 l12">
+                            <textarea id="textarea1" class="materialize-textarea" maxlength="1000" data-length="1000"></textarea>
+                            <label for="textarea1">Message *</label>
+                            <label for="textarea1">Message *</label>
+                        </div>
                     </div>
-                </div>
-                <div class="col s12 m6 l4">
-                    <div class="hoverable card-panel center-align">
-                        <h1>Server Infrastructure</h1>
-                        <p class="flow-text">Web services require servers and databases. Over the years I
-                            have aquried the knowlege to manage these types of services.
-                        </p>
+                    <div class="card-action">
+
                     </div>
-                </div>
-                <div class="col s12 m12 l4">
-                    <div class="hoverable card-panel center-align">
-                        <h1>Web Design</h1>
-                        <p class="flow-text">
-                            Using HTML, CSS, and JavaScript, I can transform your design into a beautiful webpage with a great, responsive, user interface.
-                        </p>
-                    </div>
-                </div>
+                </form>
             </div>
         </div>
     </div>
     <script>
+        $(document).ready(function() {
+            $('textarea, input').characterCounter();
+        });
         const observer = lozad(); // lazy loads elements with default selector as '.lozad'
         observer.observe();
         $(document).ready(function () {

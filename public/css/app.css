@@ -10800,10 +10800,6 @@ h6 {
   color: #DADCE0;
 }
 
-.card-panel {
-  height: 275px;
-}
-
 .card-panel h1 {
   font-family: Exo, sans-serif;
   text-transform: uppercase;
@@ -10852,6 +10848,10 @@ h6 {
 }
 
 @media (max-width: 992px) {
+  .cent-on-med-down {
+    text-align: center;
+  }
+
   .landing-h1 {
     text-align: center;
   }
@@ -10936,6 +10936,10 @@ h6 {
           animation-fill-mode: forwards;
 }
 
+.bg-secondary {
+  background-color: #3A3A3A;
+}
+
 .banner-success {
   background-color: #44C849;
 }
@@ -10964,5 +10968,36 @@ h6 {
 .banner {
   color: white;
   text-align: center;
+}
+
+.colored-section-1 {
+  background: #3A3A3A;
+  position: relative;
+  padding-bottom: 45px;
+  padding-top: 45px;
+}
+
+.section-header {
+  font-weight: 600;
+  margin-top: 0;
+  margin-bottom: 50px;
+}
+
+.same-h-row {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.same-h-row > .col {
+  display: flex;
+  flex-direction: column;
+}
+
+.same-h-row > .col > .card-panel {
+  height: 100%;
+}
+
+.roboto {
+  font-family: Roboto, sans-serif;
 }
 

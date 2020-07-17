@@ -21,3 +21,28 @@
     color: white;
     text-align: center;
 }
+.colored-section-1{
+    background: #3A3A3A;
+    position: relative;
+    padding-bottom: 45px;
+    padding-top:45px;
+}
+.section-header{
+    font-weight: 600;
+    margin-top: 0;
+    margin-bottom: 50px;
+}
+.same-h-row {
+    display: flex;
+    flex-wrap: wrap;
+}
+.same-h-row > .col {
+    display: flex;
+    flex-direction: column;
+}
+.same-h-row > .col > .card-panel{
+    height: 100%;
+}
+.roboto{
+    font-family: Roboto, sans-serif;
+}
