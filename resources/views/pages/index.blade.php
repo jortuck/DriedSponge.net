@@ -3,6 +3,7 @@
 @section('description',"DriedSponge's Portfolio - Find out info about me and the stuff I make. It's epic guys.")
 @section('head')
     <script src="https://kit.fontawesome.com/0add82e87e.js" crossorigin="anonymous"></script>
+    <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit" async defer></script>
 @endsection
 @section('content')
     <div>
@@ -53,41 +54,110 @@
         <h2 class="center-align white-text" style="font-weight: 600;">CONTACT ME</h2>
         <div class="container">
             <p class="center-align flow-text white-text">Is there something I can do for you, or do you just have a general inquiry? Fill out the form below!</p>
+            @include('inc.FormMsg')
             <div class="card bg-secondary">
-                <form>
+                <form id="contact-form" disabled="">
                     <div class="card-content row">
                         <h2 class="white-text roboto cent-on-med-down">CONTACT</h2>
-                        <div class="input-field col s12 m12 l4">
+                        <div class="input-field on-dark col s12 m6 l4">
                             <input id="your_name" type="text" class="validate" maxlength="50" data-length="50">
                             <label for="your_name">Your Name *</label>
                             <span id="your_name-msg" class="helper-text" data-error="" data-success=""></span>
                         </div>
-                        <div class="input-field col s12 m12 l4">
+                        <div class="input-field on-dark col s12 m6 l4">
                             <input id="email" type="text" class="validate">
                             <label for="email">Email *</label>
                             <span id="email-msg" class="helper-text" data-error="" data-success=""></span>
                         </div>
-                        <div class="input-field col s12 m12 l4">
+                        <div class="input-field on-dark col s12 m12 l4">
                             <input id="subject" type="text" class="validate" maxlength="50" data-length="50">
                             <label for="subject">Subject *</label>
                             <span id="subject-msg" class="helper-text" data-error="" data-success="" ></span>
                         </div>
-                        <div class="input-field col s12 m12 l12">
-                            <textarea id="textarea1" class="materialize-textarea" maxlength="1000" data-length="1000"></textarea>
-                            <label for="textarea1">Message *</label>
-                            <label for="textarea1">Message *</label>
+                        <div class="input-field on-dark col s12 m12 l12">
+                            <textarea  id="message" class="materialize-textarea validate" maxlength="1000" data-length="1000"></textarea>
+                            <label for="message">Message *</label>
+                            <span id="message-msg" class="helper-text" data-error="" data-success="" ></span>
+                        </div>
+                        <div class="col s12 m12 l12">
+                            <div id="captcha" class="captcha"></div>
+                            <input type="hidden" value="" id="captcha_token">
+                            <button id="send" class="btn-large button-primary d-none" type="submit">SUBMIT</button>
                         </div>
                     </div>
-                    <div class="card-action">
-
-                    </div>
                 </form>
+                <script type="text/javascript">
+                    $('#contact-form').submit(function(e) {
+                        e.preventDefault()
+                        $(this).hide()
+                        $('#loading').removeClass('d-none');
+                        axios({
+                            method: 'post',
+                            url: '{{route('contact.send')}}',
+                            data: {
+                                captcha_token: $("#captcha_token").val(),
+                                your_name: $("#your_name").val(),
+                                email: $("#email").val(),
+                                subject:$("#subject").val(),
+                                message:$('message').val()
+                            }
+                        })
+                        .then(function(response) {
+                            $('#loading').addClass('d-none');
+                            if (response.data.success) {
+                                $("#succtext").html(response.data.success);
+                                $('#success-message').removeClass('d-none')
+                            } else {
+                                $('#contact-form').show()
+                                if (response.data.error) {
+                                    AlertMaterializeError(response.data.error);
+                                }
+                                if (response.data.captcha) {
+                                    AlertMaterializeError(response.data.captcha);
+                                }
+                                RegenCap()
+                                $.each(response.data, function(key, value) {
+                                    window.MaterialInvalidate('#' + key, value)
+                                });
+                            }
+                        });
+                    })
+                    VerifyCallback = function(response) {
+                        $('#send').removeClass('d-none')
+                        $('#captcha_token').attr('value',response)
+                        $('#captcha').addClass('d-none')
+                    }
+                    ExpiredCallback = function (response) {
+                        $('#captcha').removeClass('d-none')
+                        $('#captcha_token').attr('value','botmaybe')
+                        $('#send').addClass('d-none')
+                    }
+                    ErrorCallback = function (response) {
+                        AlertMaterializeError('Captcha faild, please try again.')
+                    }
+                    function RegenCap(){
+                        $('#captcha').removeClass('d-none')
+                        $('#captcha_token').attr('value','botmaybe')
+                        $('#send').addClass('d-none')
+                        grecaptcha.reset();
+                    }
+                    var onloadCallback = function() {
+                        grecaptcha.render('captcha', {
+                            'sitekey' : '6Ld9SaQUAAAAAG81x31GrfZeiJEd1gtd59CRMbC7',
+                            'theme': 'dark',
+                            'callback':VerifyCallback,
+                            'expired-callback':ExpiredCallback,
+                            'error-callback':ErrorCallback
+                        });
+                    };
+
+                </script>
             </div>
         </div>
     </div>
     <script>
         $(document).ready(function() {
-            $('textarea, input').characterCounter();
+            $('textarea, input[data-length]').characterCounter();
         });
         const observer = lozad(); // lazy loads elements with default selector as '.lozad'
         observer.observe();

@@ -22,9 +22,7 @@ Route::get('/', 'PagesController@index');
 Route::get('/home', 'PagesController@index')->name('pages.index');
 Route::get('/web-projects', 'PagesController@webprojects');
 
-//Feedback
-Route::get('/feedback', 'FeedBackController@create');
-Route::post('/feedback', 'FeedBackController@store');
+Route::post('/contact/send', 'ContactController@send')->name('contact.send');
 
 //Auth
 Route::get('/login', 'Auth\SteamLoginController@login')->name('login');

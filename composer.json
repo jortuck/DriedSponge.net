@@ -23,7 +23,9 @@
         "sentry/sentry-laravel": "^1.7",
         "spatie/laravel-permission": "^3.13",
         "xpaw/php-source-query-class": "^1.0",
-        "xpaw/steamid": "dev-master"
+        "xpaw/steamid": "dev-master",
+      "ext-json": "*",
+        "ext-curl": "*"
     },
     "require-dev": {
         "barryvdh/laravel-ide-helper": "^2.7",
