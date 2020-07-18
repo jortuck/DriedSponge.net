@@ -26,7 +26,7 @@
         <div class="container">
             <div class="row same-h-row">
                 <div class="col s12 m6 l4">
-                    <div class="hoverable card-panel center-align">
+                    <div class="hoverable index-panel card-panel center-align">
                         <h1>Backend Development</h1>
                         <p class="flow-text">
                             I have experience with lots of backend development including Laravel, Python and Node JS. I use these skills to create websites and discord bots.
@@ -34,13 +34,13 @@
                     </div>
                 </div>
                 <div class="col s12 m6 l4">
-                    <div class="hoverable card-panel center-align">
+                    <div class="hoverable index-panel card-panel center-align">
                         <h1>Server Infrastructure</h1>
                         <p class="flow-text">Web services require servers and databases. Over the years I have acquired the knowledge to manage these types of services. I also have experience in setting up and configuring servers for games like Minecraft and Garry's Mod.</p>
                     </div>
                 </div>
                 <div class="col s12 m12 l4">
-                    <div class="hoverable card-panel-h card-panel center-align">
+                    <div class="hoverable index-panel card-panel-h card-panel center-align">
                         <h1>Web Design</h1>
                         <p class="flow-text">
                             Using HTML, CSS, and JavaScript, I can transform your design into a beautiful webpage with a great, responsive, user interface & expierience.
@@ -50,32 +50,40 @@
             </div>
         </div>
     </div>
-    <div class="section" style="background: #0E1013;">
-        <h2 class="center-align white-text" style="font-weight: 600;">CONTACT ME</h2>
+    <div class="section">
+        <h2 class="center-align white-text " style="font-weight: 600;">CONTACT ME</h2>
         <div class="container">
             <p class="center-align flow-text white-text">Is there something I can do for you, or do you just have a general inquiry? Fill out the form below!</p>
             @include('inc.FormMsg')
+            <div class="card bg-secondary d-none" id="success-message">
+                <div class="card-content">
+                    <h3 class="roboto white-text">Success!</h3>
+                    <p id="succtext" class="white-text"></p>
+                    <br>
+                    <button onclick="Reset()" class="btn button-primary">Submit Another Response</button>
+                </div>
+            </div>
             <div class="card bg-secondary">
-                <form id="contact-form" disabled="">
+                <form id="contact-form">
                     <div class="card-content row">
                         <h2 class="white-text roboto cent-on-med-down">CONTACT</h2>
-                        <div class="input-field on-dark col s12 m6 l4">
+                        <div class="input-field on-dark col s12 m6 l6">
                             <input id="your_name" type="text" class="validate" maxlength="50" data-length="50">
                             <label for="your_name">Your Name *</label>
                             <span id="your_name-msg" class="helper-text" data-error="" data-success=""></span>
                         </div>
-                        <div class="input-field on-dark col s12 m6 l4">
+                        <div class="input-field on-dark col s12 m6 l6">
                             <input id="email" type="text" class="validate">
                             <label for="email">Email *</label>
                             <span id="email-msg" class="helper-text" data-error="" data-success=""></span>
                         </div>
-                        <div class="input-field on-dark col s12 m12 l4">
+                        <div class="input-field on-dark col s12 m12 l12">
                             <input id="subject" type="text" class="validate" maxlength="50" data-length="50">
                             <label for="subject">Subject *</label>
                             <span id="subject-msg" class="helper-text" data-error="" data-success="" ></span>
                         </div>
                         <div class="input-field on-dark col s12 m12 l12">
-                            <textarea  id="message" class="materialize-textarea validate" maxlength="1000" data-length="1000"></textarea>
+                            <textarea id="message" class="materialize-textarea validate" maxlength="1000" data-length="1000"></textarea>
                             <label for="message">Message *</label>
                             <span id="message-msg" class="helper-text" data-error="" data-success="" ></span>
                         </div>
@@ -99,7 +107,7 @@
                                 your_name: $("#your_name").val(),
                                 email: $("#email").val(),
                                 subject:$("#subject").val(),
-                                message:$('message').val()
+                                message:$('#message').val()
                             }
                         })
                         .then(function(response) {
@@ -122,6 +130,10 @@
                             }
                         });
                     })
+                    function Reset(){
+                        RegenCap()
+                        CreateNewResponse('#contact-form')
+                    }
                     VerifyCallback = function(response) {
                         $('#send').removeClass('d-none')
                         $('#captcha_token').attr('value',response)

@@ -35,6 +35,31 @@ class ContactController extends Controller
         ]);
         if($response['success']){
             if ($validator->passes()) {
+                $request = json_encode([
+                    "content" => "",
+                    "embeds" => [
+                        [
+                            "author" => [
+                                "name" => $request->your_name . " (" . $request->email . ")"
+                            ],
+                            "type" => "rich",
+                            "timestamp" => date("c"),
+                            "fields" => array(
+                                array('name'=>'Subject','value'=>$request->subject),
+                                array('name'=>'Message','value'=>$request->message)
+                            ),
+                        ]
+                    ]
+                ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
+                $ch = curl_init(env('FEEDBACKHOOK'));
+                curl_setopt_array($ch, [
+                    CURLOPT_POST => 1,
+                    CURLOPT_FOLLOWLOCATION => 1,
+                    CURLOPT_HTTPHEADER => array("Content-type: application/json"),
+                    CURLOPT_POSTFIELDS => $request,
+                    CURLOPT_RETURNTRANSFER => 1
+                ]);
+                curl_exec($ch);
                 return response()->json(['success' => 'Your message has been sent!']);
             }
             return response()->json($validator->errors());

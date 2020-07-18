@@ -22,11 +22,15 @@
     text-align: center;
 }
 .colored-section-1{
-    background: #3A3A3A;
+    background: $secondary-color;
     position: relative;
     padding-bottom: 45px;
     padding-top:45px;
 }
+.bg-secondary{
+    background-color:$secondary-color;
+}
+
 .section-header{
     font-weight: 600;
     margin-top: 0;
@@ -61,9 +65,18 @@
 .input-field.on-dark .character-counter {
     color: white !important;
 }
+@keyframes buttonhover {
+    from {background-color:  #406CE8;}
+    to {background-color:  #6089FE;}
+}
 .button-primary{
-    background-color: #62A1EC;
+    background-color: #406CE8;
     color: white;
+}
+.button-primary:hover{
+    animation-name: buttonhover;
+    animation-duration: .5s;
+    animation-fill-mode: forwards;
 }
 .input-field.on-dark textarea.materialize-textarea {
     color: white;
@@ -78,4 +91,8 @@
         transform-origin: 0 0;
         -webkit-transform-origin: 0 0;
     }
+}
+.index-panel{
+    color: black;
+    background-color: #F9F9F9;
 }
