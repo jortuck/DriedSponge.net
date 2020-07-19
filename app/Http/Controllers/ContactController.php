@@ -30,7 +30,7 @@ class ContactController extends Controller
             "message" => "required|max:1000"
         ]);
         $response = Http::asForm()->post('https://www.google.com/recaptcha/api/siteverify', [
-            'secret' => getenv('CAPTCHASECRET'),
+            'secret' => '6Ld9SaQUAAAAACIaPxcErESw-6RvtljAMd3IYsQL',
             'response' => $request->captcha_token,
         ]);
         if($response['success']){
@@ -64,7 +64,7 @@ class ContactController extends Controller
             }
             return response()->json($validator->errors());
         }else{
-            return response()->json(['captcha' => 'Captcha failed, please try again.','stuff'=>$response->json()]);
+            return response()->json(['captcha' => 'Captcha failed, please try again.']);
         }
     }
 }
