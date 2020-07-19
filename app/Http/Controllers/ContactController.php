@@ -64,7 +64,7 @@ class ContactController extends Controller
             }
             return response()->json($validator->errors());
         }else{
-            return response()->json(['captcha' => 'Captcha failed, please try again.']);
+            return response()->json(['captcha' => 'Captcha failed, please try again.','stuff'=>$response->json()]);
         }
     }
 }
