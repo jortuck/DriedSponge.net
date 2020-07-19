@@ -29,12 +29,13 @@ class ContactController extends Controller
             "subject" => "required|max:50",
             "message" => "required|max:1000"
         ]);
-        $response = Http::asForm()->post('https://www.google.com/recaptcha/api/siteverify', [
-            'secret' => '6Ld9SaQUAAAAACIaPxcErESw-6RvtljAMd3IYsQL',
-            'response' => $request->captcha_token,
-        ]);
-        if($response['success']){
-            if ($validator->passes()) {
+
+        if ($validator->passes()) {
+            $response = Http::asForm()->post('https://www.google.com/recaptcha/api/siteverify', [
+                'secret' => '6Ld9SaQUAAAAACIaPxcErESw-6RvtljAMd3IYsQL',
+                'response' => $request->captcha_token,
+            ]);
+            if ($response['success']) {
                 $request = json_encode([
                     "content" => "",
                     "embeds" => [
@@ -45,8 +46,8 @@ class ContactController extends Controller
                             "type" => "rich",
                             "timestamp" => date("c"),
                             "fields" => array(
-                                array('name'=>'Subject','value'=>$request->subject),
-                                array('name'=>'Message','value'=>$request->message)
+                                array('name' => 'Subject', 'value' => $request->subject),
+                                array('name' => 'Message', 'value' => $request->message)
                             ),
                         ]
                     ]
@@ -61,11 +62,10 @@ class ContactController extends Controller
                 ]);
                 curl_exec($ch);
                 return response()->json(['success' => 'Your message has been sent!']);
+            } else {
+                return response()->json(['captcha' => 'Captcha failed, please try again.']);
             }
-            return response()->json($validator->errors());
-        }else{
-            return response()->json(['captcha' => 'Captcha failed, please try again.']);
         }
+        return response()->json($validator->errors());
     }
 }
-

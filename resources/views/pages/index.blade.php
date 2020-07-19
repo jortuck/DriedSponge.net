@@ -121,9 +121,9 @@
                                     AlertMaterializeError(response.data.error);
                                 }
                                 if (response.data.captcha) {
+                                    RegenCap()
                                     AlertMaterializeError(response.data.captcha);
                                 }
-                                RegenCap()
                                 $.each(response.data, function(key, value) {
                                     window.MaterialInvalidate('#' + key, value)
                                 });
