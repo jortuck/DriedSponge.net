@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     @include('inc.head')
-    <body style="background: #121112;">
+    <body style="background:#0E1013;">
         @include('inc.navbar')
     <div>
         <div class="container">
