@@ -11,6 +11,7 @@
             <div><h1 data-aos="fade-down" class="landing-h1 center-align">Dried <span class="white-text">Sponge</span></h1></div>
             <h2 class="landing-sub center-align">Full Stack Web Developer</h2>
             <h2 class="center-align">
+                <a class="icon-link" target="_blank" href="mailto:jordan@driedsponge.net"><i class="fas fa-envelope"></i></a>
                 <a class="icon-link" target="_blank" href="https://github.com/DriedSponge"><i class="fab fa-github"></i></a>
                 <a class="icon-link" target="_blank" href="https://steamcommunity.com/id/driedsponge/"><i class="fab fa-steam"></i></a>
                 <a class="icon-link" target="_blank" href="https://twitter.com/dried_sponge"><i class="fab fa-twitter"></i></a>
@@ -68,17 +69,17 @@
                     <div class="card-content row">
                         <h2 class="white-text roboto cent-on-med-down">CONTACT</h2>
                         <div class="input-field on-dark col s12 m6 l6">
-                            <input id="your_name" type="text" class="validate" maxlength="50" data-length="50">
+                            <input id="your_name" type="text" class="validate" maxlength="150">
                             <label for="your_name">Your Name *</label>
                             <span id="your_name-msg" class="helper-text" data-error="" data-success=""></span>
                         </div>
                         <div class="input-field on-dark col s12 m6 l6">
-                            <input id="email" type="text" class="validate">
+                            <input id="email" maxlength="150" type="text" class="validate">
                             <label for="email">Email *</label>
                             <span id="email-msg" class="helper-text" data-error="" data-success=""></span>
                         </div>
                         <div class="input-field on-dark col s12 m12 l12">
-                            <input id="subject" type="text" class="validate" maxlength="50" data-length="50">
+                            <input id="subject" type="text" class="validate" maxlength="256" data-length="256">
                             <label for="subject">Subject *</label>
                             <span id="subject-msg" class="helper-text" data-error="" data-success="" ></span>
                         </div>
