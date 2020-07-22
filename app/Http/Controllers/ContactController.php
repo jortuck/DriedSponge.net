@@ -48,7 +48,7 @@ class ContactController extends Controller
                 $email->addContent(
                     "text/html", "DriedSponge.net Contact Form<br><hr><br><strong>Sender:</strong> $data->Name ($request->email)<br><strong>Subject:</strong>  $data->Subject<br><br>$request->message"
                 );
-                $sendgrid = new \SendGrid(getenv('SENDGRID_API_KEY'));
+                $sendgrid = new \SendGrid(env('SENDGRID_API_KEY'));
                 try {
                     $response = $sendgrid->send($email);
                     $request = json_encode([
