@@ -48,7 +48,7 @@ class ContactController extends Controller
                 $email->addContent(
                     "text/html", "DriedSponge.net Contact Form<br><hr><br><strong>Sender:</strong> $data->Name ($request->email)<br><strong>Subject:</strong>  $data->Subject<br><br>$request->message"
                 );
-                $sendgrid = new \SendGrid(env('SENDGRID_API_KEY'));
+                $sendgrid = new \SendGrid(env('SENDGRID_API_KEY',null));
                 try {
                     $response = $sendgrid->send($email);
                     $request = json_encode([
@@ -63,7 +63,7 @@ class ContactController extends Controller
                             ]
                         ]
                     ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
-                    $ch = curl_init(env('FEEDBACKHOOK'));
+                    $ch = curl_init(env('FEEDBACKHOOK',null));
                     curl_setopt_array($ch, [
                         CURLOPT_POST => 1,
                         CURLOPT_FOLLOWLOCATION => 1,
@@ -72,8 +72,7 @@ class ContactController extends Controller
                         CURLOPT_RETURNTRANSFER => 1
                     ]);
                     curl_exec($ch);
-                    dd($response);
-                    //return response()->json(['success' => 'Your message has been sent!']);
+                    return response()->json(['success' => 'Your message has been sent!']);
                 } catch (Exception $e) {
                     return response()->json(['error' => 'Message failed to send, please try again later']);
                 }
