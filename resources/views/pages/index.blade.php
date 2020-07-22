@@ -11,7 +11,6 @@
             <div><h1 data-aos="fade-down" class="landing-h1 center-align">Dried <span class="white-text">Sponge</span></h1></div>
             <h2 class="landing-sub center-align">Full Stack Web Developer</h2>
             <h2 class="center-align">
-                <a class="icon-link" target="_blank" href="mailto:jordan@driedsponge.net"><i class="fas fa-envelope"></i></a>
                 <a class="icon-link" target="_blank" href="https://github.com/DriedSponge"><i class="fab fa-github"></i></a>
                 <a class="icon-link" target="_blank" href="https://steamcommunity.com/id/driedsponge/"><i class="fab fa-steam"></i></a>
                 <a class="icon-link" target="_blank" href="https://twitter.com/dried_sponge"><i class="fab fa-twitter"></i></a>
@@ -79,12 +78,12 @@
                             <span id="email-msg" class="helper-text" data-error="" data-success=""></span>
                         </div>
                         <div class="input-field on-dark col s12 m12 l12">
-                            <input id="subject" type="text" class="validate" maxlength="256" data-length="256">
+                            <input data-valtarget="send" data-validation="required max=256" id="subject" type="text" class="validate" maxlength="256" data-length="256">
                             <label for="subject">Subject *</label>
                             <span id="subject-msg" class="helper-text" data-error="" data-success="" ></span>
                         </div>
                         <div class="input-field on-dark col s12 m12 l12">
-                            <textarea id="message" class="materialize-textarea validate" maxlength="1000" data-length="1000"></textarea>
+                            <textarea  id="message" class="materialize-textarea validate" maxlength="2000" data-length="2000"></textarea>
                             <label for="message">Message *</label>
                             <span id="message-msg" class="helper-text" data-error="" data-success="" ></span>
                         </div>
