@@ -51,31 +51,31 @@ class ContactController extends Controller
                 $sendgrid = new \SendGrid(getenv('SENDGRID_API_KEY'));
                 try {
                     $response = $sendgrid->send($email);
-                } catch (Exception $e) {
-                    echo 'Caught exception: '. $e->getMessage() ."\n";
-                }
-                $request = json_encode([
-                    "content" => "",
-                    "embeds" => [
-                        [
-                            "type" => "rich",
-                            "title"=>"New Contact Form Response",
-                            "description"=>"**Sender:** $data->Name ($data->Email)\n**Subject:** $data->Subject",
-                            "timestamp" => date("c"),
-                            "color"=> hexdec("00BE16"),
+                    $request = json_encode([
+                        "content" => "",
+                        "embeds" => [
+                            [
+                                "type" => "rich",
+                                "title"=>"New Contact Form Response",
+                                "description"=>"**Sender:** $data->Name ($data->Email)\n**Subject:** $data->Subject",
+                                "timestamp" => date("c"),
+                                "color"=> hexdec("00BE16"),
+                            ]
                         ]
-                    ]
-                ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
-                $ch = curl_init(env('FEEDBACKHOOK'));
-                curl_setopt_array($ch, [
-                    CURLOPT_POST => 1,
-                    CURLOPT_FOLLOWLOCATION => 1,
-                    CURLOPT_HTTPHEADER => array("Content-type: application/json"),
-                    CURLOPT_POSTFIELDS => $request,
-                    CURLOPT_RETURNTRANSFER => 1
-                ]);
-                curl_exec($ch);
-                return response()->json(['success' => 'Your message has been sent!']);
+                    ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
+                    $ch = curl_init(env('FEEDBACKHOOK'));
+                    curl_setopt_array($ch, [
+                        CURLOPT_POST => 1,
+                        CURLOPT_FOLLOWLOCATION => 1,
+                        CURLOPT_HTTPHEADER => array("Content-type: application/json"),
+                        CURLOPT_POSTFIELDS => $request,
+                        CURLOPT_RETURNTRANSFER => 1
+                    ]);
+                    curl_exec($ch);
+                    return response()->json(['success' => 'Your message has been sent!']);
+                } catch (Exception $e) {
+                    return response()->json(['error' => 'Message failed to send, please try again later']);
+                }
             } else {
                 return response()->json(['captcha' => 'Captcha failed, please try again.']);
             }
