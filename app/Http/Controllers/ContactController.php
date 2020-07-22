@@ -72,7 +72,8 @@ class ContactController extends Controller
                         CURLOPT_RETURNTRANSFER => 1
                     ]);
                     curl_exec($ch);
-                    return response()->json(['success' => 'Your message has been sent!']);
+                    dd($response);
+                    //return response()->json(['success' => 'Your message has been sent!']);
                 } catch (Exception $e) {
                     return response()->json(['error' => 'Message failed to send, please try again later']);
                 }
