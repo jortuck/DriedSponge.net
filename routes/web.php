@@ -35,9 +35,15 @@ Route::group(['middleware' => ['can:Manage.See']], function () {
         Route::resource('/manage/roles', 'Manage\RolesController');
     });
 
+    Route::group(['middleware' => ['can:Alerts.See']], function () {
+        Route::get('/manage/alerts', 'Manage\AlertsController@index')->name('alerts.index');
+        Route::get('/manage/alerts/create', 'Manage\AlertsController@create')->name('alerts.create');
+    });
+
     Route::group(['middleware' => ['can:Api.See']], function () {
         Route::resource('/manage/api', 'Manage\ApiKeysController');
     });
+
     Route::resource('/manage/permissions', 'Manage\PermissionsController');
     Route::get('/manage', 'Manage\ManageController@index')->name('manage.index');
 });

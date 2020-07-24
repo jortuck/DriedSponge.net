@@ -6,6 +6,8 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'tmhOAuth' => array($vendorDir . '/atymic/tmhoauth'),
+    'Thujohn\\Twitter' => array($vendorDir . '/thujohn/twitter/src'),
     'Sentry\\Laravel\\' => array($vendorDir . '/sentry/sentry-laravel/src'),
     'Mockery' => array($vendorDir . '/mockery/mockery/library'),
     'Highlight\\' => array($vendorDir . '/scrivo/highlight.php'),

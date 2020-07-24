@@ -5,6 +5,12 @@
 <body>
 @include('inc.manage.navbar')
 <style>
+    .sidenav.sidenav-fixed {
+        left: 0;
+        -webkit-transform: translateX(0);
+        transform: translateX(0);
+        position: fixed;
+    }php
     h1,h2,h3,h4,h5,h6{
         font-family: Roboto;
     }
@@ -18,6 +24,9 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 <script>
     M.AutoInit();
+    $(document).ready(function(){
+        $('.sidenav').sidenav();
+    });
     $('#theme-toggle').click(function () {
         let curtheme = getCookie('theme');
         if (curtheme === "dark") {

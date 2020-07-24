@@ -671,6 +671,20 @@ class ComposerStaticInitdcaf1edeb7a464470a05f1f1a161fb37
     );
 
     public static $prefixesPsr0 = array (
+        't' => 
+        array (
+            'tmhOAuth' => 
+            array (
+                0 => __DIR__ . '/..' . '/atymic/tmhoauth',
+            ),
+        ),
+        'T' => 
+        array (
+            'Thujohn\\Twitter' => 
+            array (
+                0 => __DIR__ . '/..' . '/thujohn/twitter/src',
+            ),
+        ),
         'S' => 
         array (
             'Sentry\\Laravel\\' => 
@@ -709,6 +723,7 @@ class ComposerStaticInitdcaf1edeb7a464470a05f1f1a161fb37
         'App\\ApiKey' => __DIR__ . '/../..' . '/app/ApiKey.php',
         'App\\Bans' => __DIR__ . '/../..' . '/app/Bans.php',
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
+        'App\\ContactResponses' => __DIR__ . '/../..' . '/app/ContactResponses.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
         'App\\Http\\Controllers\\ApiTest' => __DIR__ . '/../..' . '/app/Http/Controllers/ApiTest.php',
         'App\\Http\\Controllers\\Api\\SourceQueryApi' => __DIR__ . '/../..' . '/app/Http/Controllers/Api/SourceQueryApi.php',
@@ -723,6 +738,7 @@ class ComposerStaticInitdcaf1edeb7a464470a05f1f1a161fb37
         'App\\Http\\Controllers\\ContactController' => __DIR__ . '/../..' . '/app/Http/Controllers/ContactController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
         'App\\Http\\Controllers\\HomeController' => __DIR__ . '/../..' . '/app/Http/Controllers/HomeController.php',
+        'App\\Http\\Controllers\\Manage\\AlertsController' => __DIR__ . '/../..' . '/app/Http/Controllers/Manage/AlertsController.php',
         'App\\Http\\Controllers\\Manage\\ApiKeysController' => __DIR__ . '/../..' . '/app/Http/Controllers/Manage/ApiKeysController.php',
         'App\\Http\\Controllers\\Manage\\ManageController' => __DIR__ . '/../..' . '/app/Http/Controllers/Manage/ManageController.php',
         'App\\Http\\Controllers\\Manage\\PermissionsController' => __DIR__ . '/../..' . '/app/Http/Controllers/Manage/PermissionsController.php',
@@ -6008,6 +6024,24 @@ class ComposerStaticInitdcaf1edeb7a464470a05f1f1a161fb37
         'TheSeer\\Tokenizer\\TokenCollectionException' => __DIR__ . '/..' . '/theseer/tokenizer/src/TokenCollectionException.php',
         'TheSeer\\Tokenizer\\Tokenizer' => __DIR__ . '/..' . '/theseer/tokenizer/src/Tokenizer.php',
         'TheSeer\\Tokenizer\\XMLSerializer' => __DIR__ . '/..' . '/theseer/tokenizer/src/XMLSerializer.php',
+        'Thujohn\\Twitter\\Facades\\Twitter' => __DIR__ . '/..' . '/thujohn/twitter/src/Thujohn/Twitter/Facades/Twitter.php',
+        'Thujohn\\Twitter\\Traits\\AccountActivityTrait' => __DIR__ . '/..' . '/thujohn/twitter/src/Thujohn/Twitter/Traits/AccountActivityTrait.php',
+        'Thujohn\\Twitter\\Traits\\AccountTrait' => __DIR__ . '/..' . '/thujohn/twitter/src/Thujohn/Twitter/Traits/AccountTrait.php',
+        'Thujohn\\Twitter\\Traits\\BlockTrait' => __DIR__ . '/..' . '/thujohn/twitter/src/Thujohn/Twitter/Traits/BlockTrait.php',
+        'Thujohn\\Twitter\\Traits\\DirectMessageTrait' => __DIR__ . '/..' . '/thujohn/twitter/src/Thujohn/Twitter/Traits/DirectMessageTrait.php',
+        'Thujohn\\Twitter\\Traits\\FavoriteTrait' => __DIR__ . '/..' . '/thujohn/twitter/src/Thujohn/Twitter/Traits/FavoriteTrait.php',
+        'Thujohn\\Twitter\\Traits\\FriendshipTrait' => __DIR__ . '/..' . '/thujohn/twitter/src/Thujohn/Twitter/Traits/FriendshipTrait.php',
+        'Thujohn\\Twitter\\Traits\\GeoTrait' => __DIR__ . '/..' . '/thujohn/twitter/src/Thujohn/Twitter/Traits/GeoTrait.php',
+        'Thujohn\\Twitter\\Traits\\HelpTrait' => __DIR__ . '/..' . '/thujohn/twitter/src/Thujohn/Twitter/Traits/HelpTrait.php',
+        'Thujohn\\Twitter\\Traits\\ListTrait' => __DIR__ . '/..' . '/thujohn/twitter/src/Thujohn/Twitter/Traits/ListTrait.php',
+        'Thujohn\\Twitter\\Traits\\MediaTrait' => __DIR__ . '/..' . '/thujohn/twitter/src/Thujohn/Twitter/Traits/MediaTrait.php',
+        'Thujohn\\Twitter\\Traits\\SearchTrait' => __DIR__ . '/..' . '/thujohn/twitter/src/Thujohn/Twitter/Traits/SearchTrait.php',
+        'Thujohn\\Twitter\\Traits\\StatusTrait' => __DIR__ . '/..' . '/thujohn/twitter/src/Thujohn/Twitter/Traits/StatusTrait.php',
+        'Thujohn\\Twitter\\Traits\\TrendTrait' => __DIR__ . '/..' . '/thujohn/twitter/src/Thujohn/Twitter/Traits/TrendTrait.php',
+        'Thujohn\\Twitter\\Traits\\UserTrait' => __DIR__ . '/..' . '/thujohn/twitter/src/Thujohn/Twitter/Traits/UserTrait.php',
+        'Thujohn\\Twitter\\Twitter' => __DIR__ . '/..' . '/thujohn/twitter/src/Thujohn/Twitter/Twitter.php',
+        'Thujohn\\Twitter\\TwitterServiceProvider' => __DIR__ . '/..' . '/thujohn/twitter/src/Thujohn/Twitter/TwitterServiceProvider.php',
+        'Thujohn\\Twitter\\Utils' => __DIR__ . '/..' . '/thujohn/twitter/src/Thujohn/Twitter/Utils.php',
         'TijsVerkoyen\\CssToInlineStyles\\CssToInlineStyles' => __DIR__ . '/..' . '/tijsverkoyen/css-to-inline-styles/src/CssToInlineStyles.php',
         'TijsVerkoyen\\CssToInlineStyles\\Css\\Processor' => __DIR__ . '/..' . '/tijsverkoyen/css-to-inline-styles/src/Css/Processor.php',
         'TijsVerkoyen\\CssToInlineStyles\\Css\\Property\\Processor' => __DIR__ . '/..' . '/tijsverkoyen/css-to-inline-styles/src/Css/Property/Processor.php',
@@ -6126,6 +6160,7 @@ class ComposerStaticInitdcaf1edeb7a464470a05f1f1a161fb37
         'phpDocumentor\\Reflection\\Types\\This' => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src/Types/This.php',
         'phpDocumentor\\Reflection\\Types\\True_' => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src/Types/True_.php',
         'phpDocumentor\\Reflection\\Types\\Void_' => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src/Types/Void_.php',
+        'tmhOAuth' => __DIR__ . '/..' . '/atymic/tmhoauth/tmhOAuth.php',
         'voku\\helper\\ASCII' => __DIR__ . '/..' . '/voku/portable-ascii/src/voku/helper/ASCII.php',
         'xPaw\\SourceQuery\\Buffer' => __DIR__ . '/..' . '/xpaw/php-source-query-class/SourceQuery/Buffer.php',
         'xPaw\\SourceQuery\\Exception\\AuthenticationException' => __DIR__ . '/..' . '/xpaw/php-source-query-class/SourceQuery/Exception/AuthenticationException.php',

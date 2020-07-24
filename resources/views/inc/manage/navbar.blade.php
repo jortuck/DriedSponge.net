@@ -1,5 +1,5 @@
-<header>
-    <ul id='left-nav' class="sidenav sidenav-fixed" style="width: 250px;">
+
+<ul id='left-nav' class="sidenav sidenav-fixed" style="width: 250px;">
         <li>
             <div class="user-view shadowed">
                 <div class="background">
@@ -24,7 +24,21 @@
             </div>
         </li>
         <li><a class="waves-effect" href="{{route('manage.index')}}"><i
-                    class="material-icons">dashboard</i>Dashboard</a></li>
+                    class="material-icons">dashboard</i>Dashboard</a>
+        </li>
+        <li>
+            <div class="divider"></div>
+        </li>
+        @can('Manage.Communication')
+            <li><a class="subheader">Communication</a></li>
+            @can('Alerts.See')
+                <li id='alertlink'><a class="waves-effect" href="{{route('alerts.index')}}"><i class="material-icons">notifications_none</i>Alerts</a>
+                </li>
+            @endcan
+            @can('Contact.See')
+                <li><a class="waves-effect" href="{{route('permissions.index')}}"><i class="material-icons">forum</i>Form Responses</a>
+            @endcan
+        @endcan
         <li>
             <div class="divider"></div>
         </li>
@@ -59,6 +73,5 @@
                 <button class="btn waves-effect waves-light " id="theme-toggle">Toggle Dark Theme</button>
             </a></li>
     </ul>
-    <a href="#" data-target="left-nav" class="sidenav-trigger" id="left-nav-btn"><i class="material-icons"
+    <a href="#" data-target="left-nav" class="sidenav-trigger button-collapse"" id="left-nav-btn"><i class="material-icons"
                                                                                     style="color: white">menu</i></a>
-</header>

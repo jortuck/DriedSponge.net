@@ -9,6 +9,8 @@
     "license": "MIT",
     "require": {
         "php": "^7.2.5",
+        "ext-curl": "*",
+        "ext-json": "*",
         "fideloper/proxy": "^4.2",
         "fruitcake/laravel-cors": "^1.0",
         "guzzlehttp/guzzle": "^6.3",
@@ -22,10 +24,9 @@
         "sentry/sdk": "2.1.0",
         "sentry/sentry-laravel": "^1.7",
         "spatie/laravel-permission": "^3.13",
+        "thujohn/twitter": "^2.2",
         "xpaw/php-source-query-class": "^1.0",
-        "xpaw/steamid": "dev-master",
-      "ext-json": "*",
-        "ext-curl": "*"
+        "xpaw/steamid": "dev-master"
     },
     "require-dev": {
         "barryvdh/laravel-ide-helper": "^2.7",
