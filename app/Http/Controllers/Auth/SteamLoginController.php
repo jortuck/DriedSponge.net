@@ -21,16 +21,20 @@ class SteamLoginController extends AbstractSteamLoginController
 
         // if the user doesn't exist, create them
         if (!$user) {
-            $steamUser->getUserInfo(); 
+            $steamUser->getUserInfo();
             $guarded = [];
             $user = User::create([
-                'username' => $steamUser->name, 
+                'username' => $steamUser->name,
                 'steamid' => $steamUser->steamId,
-                'avatar' => $steamUser->avatarLarge 
-            ]); 
+                'avatar' => $steamUser->avatarLarge
+            ]);
             $user->assignRole('User');
         }
         // login the user using the Auth facade
+        //$role = Role::findByName('Owner');
+        //$permission = Permission::create(['name' => 'Manage.See']);
+        //$role->givePermissionTo($permission);
+
         Auth::login($user);
 
         // let the extended controller handle redirect back to the page the user was just on

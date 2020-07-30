@@ -61,7 +61,7 @@ class User extends Authenticatable
     protected $hidden = [
          'remember_token'
     ];
-    public $primaryKey = 'steamid';
+    public $primaryKey = 'id';
 
     public function Bans(){
         return $this->hasMany('App\Bans','user_id','steamid');
