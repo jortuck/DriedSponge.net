@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title','Home')
+@section('title','MC Server Status')
 @if($query['success'])
 @section('description',"Server Online - ".$query['info']['players']['online']."/".$query['info']['players']['max']." Players")
 @section('color','#43B581')
