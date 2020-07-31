@@ -7,11 +7,24 @@
     <title>@yield('title') - {{ config('app.name') }}</title>
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link id='dark-theme-css' rel="stylesheet" href="@if(Cookie::get('theme') == 'dark') /css/dark.css @endif">
-    <meta name="theme-color" content="#007BFF">
+    <meta name="theme-color" content="@yield('color','#007BFF')">
     <link href='https://fonts.googleapis.com/css?family=Bangers' rel='stylesheet'>
     <script src="{{ asset('js/app.js') }}"></script>
     <script src="{{ asset('js/functions.js') }}"></script>
     <link rel="icon" href="{{asset('images/favicon.png')}}" type="image/x-icon">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-140402227-3"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-140402227-3');
+    </script>
+
     @yield('head')
 
 </head>
