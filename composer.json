@@ -25,6 +25,7 @@
         "sentry/sentry-laravel": "^1.7",
         "spatie/laravel-permission": "^3.13",
         "thujohn/twitter": "^2.2",
+        "xpaw/php-minecraft-query": "^4.0",
         "xpaw/php-source-query-class": "^1.0",
         "xpaw/steamid": "dev-master"
     },

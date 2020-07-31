@@ -47,6 +47,7 @@ class ComposerStaticInitdcaf1edeb7a464470a05f1f1a161fb37
         'x' => 
         array (
             'xPaw\\SourceQuery\\' => 17,
+            'xPaw\\' => 5,
         ),
         'v' => 
         array (
@@ -231,6 +232,10 @@ class ComposerStaticInitdcaf1edeb7a464470a05f1f1a161fb37
         'xPaw\\SourceQuery\\' => 
         array (
             0 => __DIR__ . '/..' . '/xpaw/php-source-query-class/SourceQuery',
+        ),
+        'xPaw\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/xpaw/php-minecraft-query/src',
         ),
         'voku\\' => 
         array (
@@ -6162,6 +6167,10 @@ class ComposerStaticInitdcaf1edeb7a464470a05f1f1a161fb37
         'phpDocumentor\\Reflection\\Types\\Void_' => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src/Types/Void_.php',
         'tmhOAuth' => __DIR__ . '/..' . '/atymic/tmhoauth/tmhOAuth.php',
         'voku\\helper\\ASCII' => __DIR__ . '/..' . '/voku/portable-ascii/src/voku/helper/ASCII.php',
+        'xPaw\\MinecraftPing' => __DIR__ . '/..' . '/xpaw/php-minecraft-query/src/MinecraftPing.php',
+        'xPaw\\MinecraftPingException' => __DIR__ . '/..' . '/xpaw/php-minecraft-query/src/MinecraftPingException.php',
+        'xPaw\\MinecraftQuery' => __DIR__ . '/..' . '/xpaw/php-minecraft-query/src/MinecraftQuery.php',
+        'xPaw\\MinecraftQueryException' => __DIR__ . '/..' . '/xpaw/php-minecraft-query/src/MinecraftQueryException.php',
         'xPaw\\SourceQuery\\Buffer' => __DIR__ . '/..' . '/xpaw/php-source-query-class/SourceQuery/Buffer.php',
         'xPaw\\SourceQuery\\Exception\\AuthenticationException' => __DIR__ . '/..' . '/xpaw/php-source-query-class/SourceQuery/Exception/AuthenticationException.php',
         'xPaw\\SourceQuery\\Exception\\InvalidArgumentException' => __DIR__ . '/..' . '/xpaw/php-source-query-class/SourceQuery/Exception/InvalidArgumentException.php',

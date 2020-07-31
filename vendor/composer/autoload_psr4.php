@@ -7,6 +7,7 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'xPaw\\SourceQuery\\' => array($vendorDir . '/xpaw/php-source-query-class/SourceQuery'),
+    'xPaw\\' => array($vendorDir . '/xpaw/php-minecraft-query/src'),
     'voku\\' => array($vendorDir . '/voku/portable-ascii/src/voku'),
     'phpDocumentor\\Reflection\\' => array($vendorDir . '/phpdocumentor/reflection-common/src', $vendorDir . '/phpdocumentor/reflection-docblock/src', $vendorDir . '/phpdocumentor/type-resolver/src'),
     'kanalumaddela\\LaravelSteamLogin\\' => array($vendorDir . '/kanalumaddela/laravel-steam-login/src'),

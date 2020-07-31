@@ -9299,6 +9299,41 @@
         ]
     },
     {
+        "name": "xpaw/php-minecraft-query",
+        "version": "4.0.0",
+        "version_normalized": "4.0.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/xPaw/PHP-Minecraft-Query.git",
+            "reference": "92103ddcc61b10533ed07e3ce73d04634fa76dcd"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/xPaw/PHP-Minecraft-Query/zipball/92103ddcc61b10533ed07e3ce73d04634fa76dcd",
+            "reference": "92103ddcc61b10533ed07e3ce73d04634fa76dcd",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=7.0"
+        },
+        "time": "2019-12-24T10:02:17+00:00",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "xPaw\\": "src"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "description": "PHP library to query Minecraft servers",
+        "keywords": [
+            "minecraft"
+        ]
+    },
+    {
         "name": "xpaw/php-source-query-class",
         "version": "1.0.0",
         "version_normalized": "1.0.0.0",
