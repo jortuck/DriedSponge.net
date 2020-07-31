@@ -2,10 +2,10 @@
 @section('title','Home')
 @if($query['success'])
 @section('description',"Server Online - ".$query['info']['players']['online']."/".$query['info']['players']['max']." Players")
-@yield('color','#43B581')
+@section('color','#43B581')
 @else
     @section('description',"Server Offline")
-@yield('color','#F04747')
+@section('color','#F04747')
 
 @endif
 @section('content')
