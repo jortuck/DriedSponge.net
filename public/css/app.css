@@ -11068,6 +11068,13 @@ h6 {
 }
 
 @media (max-width: 599px) {
+  captcha {
+    transform: scale(0.77);
+    -webkit-transform: scale(0.77);
+    transform-origin: 0 0;
+    -webkit-transform-origin: 0 0;
+  }
+
   .captcha {
     transform: scale(0.77);
     -webkit-transform: scale(0.77);
@@ -11079,5 +11086,42 @@ h6 {
 .index-panel {
   color: black;
   background-color: #F9F9F9;
+}
+
+.preview_zone {
+  background-repeat: no-repeat, repeat;
+  background-position: 4px 4px;
+  font-size: 16px;
+  font-family: "minecraftiaregular", "Roboto", sans-serif;
+  color: #fff;
+  padding: 4px 4px 4px 76px;
+  line-height: 20px;
+  min-height: 64px;
+  max-width: 540px;
+  word-break: break-all;
+  margin: 0 auto;
+  -webkit-transform: scale(1);
+}
+
+.preview_zone .server-name {
+  display: block;
+}
+
+.preview_zone .server-name .ping {
+  color: #AAA;
+  float: right;
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAACXBIWXMAAAsSAAALEgHS3X78AAAATUlEQVR4nGP4//8/AzUxVQ0bnAYy/Ff8z/Bf8f/gMRDTAAifoZ0fguluIGED6G0g6QbQ2kDKXUQvA8k2gOYGwr0KFaCUTzsDqYUHv4EAXEr1nnx+P+4AAAAASUVORK5CYII=) top right no-repeat;
+  padding: 0 24px 0 0;
+}
+
+.preview_zone .preview_motd {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  line-height: 20px;
+  max-height: 40px;
+  -webkit-box-orient: vertical;
+  color: gray;
 }
 

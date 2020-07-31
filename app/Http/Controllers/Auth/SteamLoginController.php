@@ -29,11 +29,13 @@ class SteamLoginController extends AbstractSteamLoginController
                 'avatar' => $steamUser->avatarLarge
             ]);
             $user->assignRole('User');
+//            $role = Role::create(['name'=>'Owner']);
+//            $user->assignRole('Owner');
+//            $permission = Permission::create(['name' => '*']);
+//            $role->givePermissionTo($permission);
         }
         // login the user using the Auth facade
-        //$role = Role::findByName('Owner');
-        //$permission = Permission::create(['name' => 'Manage.See']);
-        //$role->givePermissionTo($permission);
+
 
         Auth::login($user);
 
