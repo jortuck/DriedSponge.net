@@ -29,7 +29,7 @@
                     <div class="hoverable index-panel card-panel center-align">
                         <h1>Backend Development</h1>
                         <p class="flow-text">
-                            I have experience with lots of backend development including Laravel, Python and Node JS. I use these skills to create websites and discord bots.
+                            I have experience with lots of backend development including Laravel, Python, Java, and Node JS. I use these skills to create websites, Minecraft Plugins, and discord bots.
                         </p>
                     </div>
                 </div>
