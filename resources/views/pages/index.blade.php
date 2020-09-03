@@ -155,7 +155,7 @@
                     }
                     var onloadCallback = function() {
                         grecaptcha.render('captcha', {
-                            'sitekey' : '6Ld9SaQUAAAAAG81x31GrfZeiJEd1gtd59CRMbC7',
+                            'sitekey' : '6LczSMcZAAAAADwXi4U34KxHyS324gn0T275nLTI',
                             'theme': 'dark',
                             'callback':VerifyCallback,
                             'expired-callback':ExpiredCallback,
