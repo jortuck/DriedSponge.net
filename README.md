@@ -1,7 +1,6 @@
 ## About
 
-This is the source code for my website [DriedSponge.net](https://driedsponge.net).
-
+This is the source code for my website [DriedSponge.net](https://driedsponge.net). You might be here just to take a look. If you really want to contribute you can, just make a pull request.
 ## Security Vulnerabilities
 If you find any security issues please let me know or create an issue .
 
