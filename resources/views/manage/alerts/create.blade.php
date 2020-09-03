@@ -12,38 +12,68 @@
             <p id="succtext"></p>
         </div>
         <div class="card-action">
-            <a href="{{route('roles.create')}}">Create Another Role</a>
-            <a href="{{route('roles.index')}}">Return To Roles Page</a>
+            <a href="#" onclick="CreateNewResponse('#create-alert')">Post Another Alert</a>
+            <a href="{{route('alerts.index')}}">Return To Alerts Page</a>
         </div>
     </div>
     <div class="card">
-        <form  id='create-role' class="col s6">
+        <form  id='create-alert' class="col s6">
         <div class="card-content">
           <div class="row">
-            <div class="input-field col s12">
-              <input  id="alert_message" type="text" class="validate">
-                <label  for="role_name">Role Name</label>
-                <span id="role_name-msg" class="helper-text" data-error="" data-success=""></span>
-            </div>
+              <div class="input-field on-dark col s12 m12 l12">
+                  <textarea  id="message" class="materialize-textarea validate" maxlength="1120 " data-length="1120 "></textarea>
+                  <label for="message">Message *</label>
+                  <span id="message-msg" class="helper-text" data-error="" data-success="" ></span>
+              </div>
+              <div class="input-field on-dark col s12 m12 l4">
+                  <p>
+                      <label>
+                          <input type="checkbox" id="twitter" class="filled-in" />
+                          <span>Post On Twitter</span>
+                      </label>
+                  </p>
+              </div>
+              <div class="input-field on-dark col s12 m12 l4">
+                  <p>
+                      <label>
+                          <input type="checkbox" id="website" class="filled-in" />
+                          <span>Post On Website</span>
+                      </label>
+                  </p>
+              </div>
+              <div class="input-field on-dark col s12 m12 l4">
+                  <p>
+                      <label>
+                          <input type="checkbox" id="discord" class="filled-in" />
+                          <span>Send To Discord</span>
+                      </label>
+                  </p>
+              </div>
           </div>
         </div>
         <div class="card-action">
-            <button type="submit" class="btn green">Create Role</button>
+            <button type="submit" class="btn green">Post Alert</button>
             &nbsp;
-            <a href="{{route('roles.index')}}" class="btn red">Cancel</a>
+            <a href="{{route('alerts.index')}}" class="btn red">Cancel</a>
         </div>
         </form>
       </div>
     <script>
-        $('#create-role').submit(function(e) {
+        $(document).ready(function() {
+            $('textarea, input[data-length]').characterCounter();
+        });
+        $('#create-alert').submit(function(e) {
             e.preventDefault()
             $(this).hide()
             $('#loading').removeClass('d-none');
             axios({
                     method: 'post',
-                    url: '{{route('roles.store')}}',
+                    url: '{{route('alerts.store')}}',
                     data: {
-                        role_name: $("#role_name").val()
+                        message: $("#message").val(),
+                        twitter: $("#twitter").is(":checked"),
+                        website: $("#website").is(":checked"),
+                        discord: $("#discord").is(":checked")
                     }
                 })
                 .then(function(response) {
@@ -52,7 +82,7 @@
                         $("#succtext").html(response.data.success);
                         $('#success-message').removeClass('d-none')
                     } else {
-                        $('#create-role').show()
+                        $('#create-alert').show()
                         if (response.data.error) {
                             wiwndow.AlertError(response.data.error);
                         }

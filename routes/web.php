@@ -39,6 +39,7 @@ Route::group(['middleware' => ['can:Manage.See']], function () {
 
     Route::group(['middleware' => ['can:Alerts.See']], function () {
         Route::get('/manage/alerts', 'Manage\AlertsController@index')->name('alerts.index');
+        Route::post('/manage/alerts', 'Manage\AlertsController@store')->name('alerts.store');
         Route::get('/manage/alerts/create', 'Manage\AlertsController@create')->name('alerts.create');
     });
 

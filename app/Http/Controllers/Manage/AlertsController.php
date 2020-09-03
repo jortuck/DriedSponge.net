@@ -40,11 +40,44 @@ class AlertsController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function store(Request $request)
     {
-        //
+        if (\Auth::user()->hasPermissionTo('Alerts.Create')) {
+            $validator = Validator::make($request->all(), [
+                "message" => "required|min:3|max:1120",
+                "discord" => "required",
+                "twitter" => "required",
+                "website" => "required"
+            ]);
+            if ($validator->passes()) {
+                //$role = Alert::create(['name' => $request->role_name]);
+                if($request->twitter){
+                    $messagearray = str_split ($request->message,271);
+                    $count = count($messagearray);
+                    if($count == 1){
+                        $form = $messagearray[0];
+                    }else{
+                        $form = $messagearray[0]."... (1/$count)";
+                    }
+                    $tweet = \Twitter::postTweet(['status' => $form, 'format' => 'json']);
+                    $id=json_decode($tweet,true)['id_str'];
+                    $i = 0;
+                    foreach ($messagearray as $chunk){
+                        $i++;
+                        if($i==1){
+                            continue;
+                        }
+                        $tweet2 = \Twitter::postTweet(['status' =>  $chunk."... ($i/$count)", 'format' => 'json','in_reply_to_status_id'=>$id]);
+                    }
+                }
+                return response()->json(['success' => 'Message has been posted!']);
+            }
+            return response()->json($validator->errors());
+        } else {
+            return response()->json(['error' => 'Unauthorized']);
+        }
     }
 
     /**

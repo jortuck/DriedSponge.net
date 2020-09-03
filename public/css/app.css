@@ -11004,27 +11004,6 @@ h6 {
   font-family: Roboto, sans-serif;
 }
 
-.input-field.on-dark label {
-  color: white !important;
-}
-
-/* label focus color */
-
-.input-field.on-dark input[type=text]:focus + label.active {
-  color: white !important;
-}
-
-.input-field.on-dark input[type=text]:focus,
-.input-field.on-dark textarea:focus {
-  border-bottom: 1px solid #62A1EC !important;
-  box-shadow: 0 1px 0 0 #62A1EC !important;
-  color: white;
-}
-
-.input-field.on-dark .character-counter {
-  color: white !important;
-}
-
 @-webkit-keyframes buttonhover {
   from {
     background-color: #406CE8;
@@ -11057,14 +11036,6 @@ h6 {
           animation-duration: 0.5s;
   -webkit-animation-fill-mode: forwards;
           animation-fill-mode: forwards;
-}
-
-.input-field.on-dark textarea.materialize-textarea {
-  color: white;
-}
-
-.input-field.on-dark input[type=text] {
-  color: white;
 }
 
 @media (max-width: 599px) {
