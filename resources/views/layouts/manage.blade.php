@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 @include('inc.head')
-
+<link id='dark-theme-css' rel="stylesheet" href="@if(Cookie::get('theme') == 'dark') /css/dark.css @endif">
 <body>
 @include('inc.manage.navbar')
 <style>
@@ -10,7 +10,7 @@
         -webkit-transform: translateX(0);
         transform: translateX(0);
         position: fixed;
-    }php
+    }
     h1,h2,h3,h4,h5,h6{
         font-family: Roboto;
     }

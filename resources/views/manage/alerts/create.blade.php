@@ -20,12 +20,12 @@
         <form  id='create-alert' class="col s6">
         <div class="card-content">
           <div class="row">
-              <div class="input-field on-dark col s12 m12 l12">
+              <div class="input-field col s12 m12 l12">
                   <textarea  id="message" class="materialize-textarea validate" maxlength="1120 " data-length="1120 "></textarea>
                   <label for="message">Message *</label>
                   <span id="message-msg" class="helper-text" data-error="" data-success="" ></span>
               </div>
-              <div class="input-field on-dark col s12 m12 l4">
+              <div class="input-field col s12 m12 l4">
                   <p>
                       <label>
                           <input type="checkbox" id="twitter" class="filled-in" />

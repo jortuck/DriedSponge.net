@@ -6,7 +6,6 @@
     <meta name="description" content="@yield('description')">
     <title>@yield('title') - {{ config('app.name') }}</title>
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-    <link id='dark-theme-css' rel="stylesheet" href="@if(Cookie::get('theme') == 'dark') /css/dark.css @endif">
     <meta name="theme-color" content="@yield('color','#007BFF')">
     <link href='https://fonts.googleapis.com/css?family=Bangers' rel='stylesheet'>
     <script src="{{ asset('js/app.js') }}"></script>
