@@ -66,10 +66,13 @@ class AlertsController extends Controller
                     $i = 0;
                     foreach ($messagearray as $chunk){
                         $i++;
-                        if($i==1){
+                        $end = "... ($i/$count)";
+                        if($i ==1){
                             continue;
+                        }elseif ($i==$count){
+                            $end = " ($i/$count)";
                         }
-                        $tweet2 = \Twitter::postTweet(['status' =>  $chunk."... ($i/$count)", 'format' => 'json','in_reply_to_status_id'=>$id]);
+                        $tweet2 = \Twitter::postTweet(['status' =>  $chunk.$end, 'format' => 'json','in_reply_to_status_id'=>$id]);
                     }
                 }
                 return response()->json(['success' => 'Message has been posted!']);
