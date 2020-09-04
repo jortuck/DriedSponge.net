@@ -30,7 +30,7 @@ class ContactController extends Controller
         ]);
         if ($validator->passes()) {
             $response = Http::asForm()->post('https://www.google.com/recaptcha/api/siteverify', [
-                'secret' => '6Ld9SaQUAAAAACIaPxcErESw-6RvtljAMd3IYsQL',
+                'secret' => env('CAPTCHASECRET',null),
                 'response' => $request->captcha_token,
             ]);
             if ($response['success']) {
