@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Manage;
 
+use App\Alerts;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use DB;
@@ -47,12 +48,13 @@ class AlertsController extends Controller
         if (\Auth::user()->hasPermissionTo('Alerts.Create')) {
             $validator = Validator::make($request->all(), [
                 "message" => "required|min:3|max:1120",
-                "discord" => "required",
-                "twitter" => "required",
-                "website" => "required"
+                "discord" => "required|boolean",
+                "twitter" => "required|boolean",
+                "website" => "required|boolean"
             ]);
             if ($validator->passes()) {
-                //$role = Alert::create(['name' => $request->role_name]);
+                $alert = new Alerts();
+                $alert->message = $request->message;
                 if($request->twitter){
                     $messagearray = str_split ($request->message,271);
                     $count = count($messagearray);
@@ -61,8 +63,10 @@ class AlertsController extends Controller
                     }else{
                         $form = $messagearray[0]."... (1/$count)";
                     }
-                    $tweet = \Twitter::postTweet(['status' => $form, 'format' => 'json']);
-                    $id=json_decode($tweet,true)['id_str'];
+                    $tweet = \Twitter::postTweet(['status' => $form, 'format' => 'object']);
+                    $tweetlink =  \Twitter::linkTweet($tweet);
+                    $id=$tweet->id_str;
+                    $alert->tweetid = $id;
                     $i = 0;
                     foreach ($messagearray as $chunk){
                         $i++;
@@ -75,7 +79,35 @@ class AlertsController extends Controller
                         $tweet2 = \Twitter::postTweet(['status' =>  $chunk.$end, 'format' => 'json','in_reply_to_status_id'=>$id]);
                     }
                 }
-                return response()->json(['success' => 'Message has been posted!']);
+                if($request->discord){
+                    $fields = array();
+                    if($request->twitter){
+                        array_push($fields, array("name" => "Tweet Link", "value" => $tweetlink));
+                    }
+                    $embed = array(
+                        "title" =>  "New Message",
+                        "type" => "rich",
+                        "color" => hexdec("007BFF"),
+                        "timestamp" => date("c"),
+                        "fields" => $fields,
+                        "description"=>$request->message
+                    );
+                    $request = json_encode([
+                        "content" => "",
+                        "embeds" => [$embed]
+                    ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
+                    $ch = curl_init(env('DISCORD_ALERTS_HOOK',null));
+                    curl_setopt_array($ch, [
+                        CURLOPT_POST => 1,
+                        CURLOPT_FOLLOWLOCATION => 1,
+                        CURLOPT_HTTPHEADER => array("Content-type: application/json"),
+                        CURLOPT_POSTFIELDS => $request,
+                        CURLOPT_RETURNTRANSFER => 1
+                    ]);
+                    curl_exec($ch);
+                }
+                $alert->save();
+                return response()->json(['success' => 'Message has been posted! '.$alert->tweetid]);
             }
             return response()->json($validator->errors());
         } else {

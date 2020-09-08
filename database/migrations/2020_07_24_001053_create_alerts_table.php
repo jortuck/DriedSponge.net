@@ -15,9 +15,7 @@ class CreateAlertsTable extends Migration
     {
         Schema::create('alerts', function (Blueprint $table) {
             $table->id();
-            $table->string('class')->nullable();
-            $table->boolean('dismissable')->default(0);
-            $table->boolean('onsite')->default(1);
+            $table->boolean('onsite')->default(0);
             $table->longText('message')->nullable();
             $table->string('tweetid')->nullable();
             $table->timestamps();
