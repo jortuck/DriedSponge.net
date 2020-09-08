@@ -725,6 +725,7 @@ class ComposerStaticInitdcaf1edeb7a464470a05f1f1a161fb37
     );
 
     public static $classMap = array (
+        'App\\Alerts' => __DIR__ . '/../..' . '/app/Alerts.php',
         'App\\ApiKey' => __DIR__ . '/../..' . '/app/ApiKey.php',
         'App\\Bans' => __DIR__ . '/../..' . '/app/Bans.php',
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
@@ -748,6 +749,7 @@ class ComposerStaticInitdcaf1edeb7a464470a05f1f1a161fb37
         'App\\Http\\Controllers\\Manage\\ManageController' => __DIR__ . '/../..' . '/app/Http/Controllers/Manage/ManageController.php',
         'App\\Http\\Controllers\\Manage\\PermissionsController' => __DIR__ . '/../..' . '/app/Http/Controllers/Manage/PermissionsController.php',
         'App\\Http\\Controllers\\Manage\\RolesController' => __DIR__ . '/../..' . '/app/Http/Controllers/Manage/RolesController.php',
+        'App\\Http\\Controllers\\McStatusController' => __DIR__ . '/../..' . '/app/Http/Controllers/McStatusController.php',
         'App\\Http\\Controllers\\PagesController' => __DIR__ . '/../..' . '/app/Http/Controllers/PagesController.php',
         'App\\Http\\Controllers\\ProfileController' => __DIR__ . '/../..' . '/app/Http/Controllers/ProfileController.php',
         'App\\Http\\Controllers\\UserController' => __DIR__ . '/../..' . '/app/Http/Controllers/UserController.php',
@@ -5019,6 +5021,7 @@ class ComposerStaticInitdcaf1edeb7a464470a05f1f1a161fb37
         'Ramsey\\Uuid\\UuidInterface' => __DIR__ . '/..' . '/ramsey/uuid/src/UuidInterface.php',
         'Ramsey\\Uuid\\Validator\\GenericValidator' => __DIR__ . '/..' . '/ramsey/uuid/src/Validator/GenericValidator.php',
         'Ramsey\\Uuid\\Validator\\ValidatorInterface' => __DIR__ . '/..' . '/ramsey/uuid/src/Validator/ValidatorInterface.php',
+        'RolesAndPermissionsSeeder' => __DIR__ . '/../..' . '/database/seeds/RolesAndPermissionsSeeder.php',
         'SebastianBergmann\\CodeCoverage\\CodeCoverage' => __DIR__ . '/..' . '/phpunit/php-code-coverage/src/CodeCoverage.php',
         'SebastianBergmann\\CodeCoverage\\CoveredCodeNotExecutedException' => __DIR__ . '/..' . '/phpunit/php-code-coverage/src/Exception/CoveredCodeNotExecutedException.php',
         'SebastianBergmann\\CodeCoverage\\Driver\\Driver' => __DIR__ . '/..' . '/phpunit/php-code-coverage/src/Driver/Driver.php',
@@ -6054,7 +6057,6 @@ class ComposerStaticInitdcaf1edeb7a464470a05f1f1a161fb37
         'TijsVerkoyen\\CssToInlineStyles\\Css\\Rule\\Processor' => __DIR__ . '/..' . '/tijsverkoyen/css-to-inline-styles/src/Css/Rule/Processor.php',
         'TijsVerkoyen\\CssToInlineStyles\\Css\\Rule\\Rule' => __DIR__ . '/..' . '/tijsverkoyen/css-to-inline-styles/src/Css/Rule/Rule.php',
         'TwilioEmail' => __DIR__ . '/..' . '/sendgrid/sendgrid/lib/TwilioEmail.php',
-        'UsersTableSeeder' => __DIR__ . '/../..' . '/database/seeds/UsersTableSeeder.php',
         'ValueError' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/ValueError.php',
         'Webmozart\\Assert\\Assert' => __DIR__ . '/..' . '/webmozart/assert/src/Assert.php',
         'Webmozart\\Assert\\Mixin' => __DIR__ . '/..' . '/webmozart/assert/src/Mixin.php',
