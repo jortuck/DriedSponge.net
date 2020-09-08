@@ -27,7 +27,8 @@
         "thujohn/twitter": "^2.2",
         "xpaw/php-minecraft-query": "^4.0",
         "xpaw/php-source-query-class": "^1.0",
-        "xpaw/steamid": "dev-master"
+        "xpaw/steamid": "dev-master",
+      "ext-simplexml": "*"
     },
     "require-dev": {
         "barryvdh/laravel-ide-helper": "^2.7",
