@@ -30,13 +30,6 @@
                                   class="ts tooltipped">{{\Carbon\Carbon::parse($alert->updated_at)->diffForHumans()}}</span>
                         </td>
                         <td class="center-align">
-                            @can('Alerts.Edit')
-                                <a href='/manage/api/{{$alert->id}}' class="btn-small waves-effect waves-light green"><i
-                                        class="material-icons center">show_chart
-                                    </i></a>
-                                <a href='/manage/api/{{$alert->id}}/edit' class="btn-small waves-effect waves-light blue"><i
-                                        class="material-icons center">mode_edit</i></a>
-                            @endcan
                             @can('Alerts.Delete')
                                 <button onclick="RevokeKey('{{$alert->id}}')" data-position="right"
                                         data-tooltip="Revoke Key" class="btn-small red tooltipped"><i

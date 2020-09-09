@@ -1,6 +1,6 @@
 @extends('layouts.manage')
-@section('title','Create New Role')
-@section('description',"Create New Role")
+@section('title','Create New Alert')
+@section('description',"Create New Alert")
 @section('content')
 <div class="container" id="#content">
     <h2>Create Alert</h2>
@@ -33,15 +33,8 @@
                       </label>
                   </p>
               </div>
-              <div class="input-field on-dark col s12 m12 l4">
-                  <p>
-                      <label>
-                          <input type="checkbox" id="website" class="filled-in" />
-                          <span>Post On Website</span>
-                      </label>
-                  </p>
-              </div>
-              <div class="input-field on-dark col s12 m12 l4">
+
+              <div class="input-field col s12 m12 l4">
                   <p>
                       <label>
                           <input type="checkbox" id="discord" class="filled-in" />
@@ -49,7 +42,29 @@
                       </label>
                   </p>
               </div>
+              <div class="input-field col s12 m12 l4">
+                  <p>
+                      <label>
+                          <input type="checkbox" id="website" class="filled-in" />
+                          <span>Set As Website Message</span>
+                      </label>
+                  </p>
+              </div>
+              <br>
           </div>
+            <div class="row">
+                <div class="input-field col s12 m12 l12">
+                    <select>
+                        <option value="" disabled selected>Select Class</option>
+                        <option value="1">Red</option>
+                        <option value="2">Green</option>
+                        <option value="3">Blue</option>
+                        <option value="4">Gradient</option>
+                        <option value="5">Amber</option>
+                    </select>
+                    <label>Select Banner Color</label>
+                </div>
+            </div>
         </div>
         <div class="card-action">
             <button type="submit" class="btn green">Post Alert</button>
