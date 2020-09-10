@@ -94,7 +94,9 @@
                         </div>
                     </div>
                 </form>
+                <p id="test">atatatafaf</p>
                 <script type="text/javascript">
+                    $("#test").addClass("fart");
                     $('#contact-form').submit(function(e) {
                         e.preventDefault()
                         $(this).hide()
@@ -124,9 +126,9 @@
                                     RegenCap()
                                     AlertMaterializeError(response.data.captcha);
                                 }
-                                $.each(response.data, function(key, value) {
-                                    window.MaterialInvalidate('#' + key, value)
-                                });
+                                // $.each(response.data, function(key, value) {
+                                //     window.MaterialInvalidate('#' + key, value)
+                                // });
                             }
                         });
                     })
@@ -162,18 +164,22 @@
                             'error-callback':ErrorCallback
                         });
                     };
-
                 </script>
             </div>
         </div>
     </div>
     <script>
-        $(document).ready(function() {
-            $('textarea, input[data-length]').characterCounter();
+
+        $(()=>{
+            console.log("Document Ready");
+        });
+        $(()=>{
+            // const textNeedCount = $('textarea, input[data-length]');
+            // const textNeedCountInstance = new M.CharacterCounter(textNeedCount);
         });
         const observer = lozad(); // lazy loads elements with default selector as '.lozad'
         observer.observe();
-        $(document).ready(function () {
+        $(()=>{
             AOS.init();
         })
     </script>

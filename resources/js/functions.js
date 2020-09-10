@@ -33,22 +33,6 @@ window.Loading = function Loading(show, id) {
     }
 }
 
-window.Load = function Load(thing, tippy) {
-    if (tippy == null) {
-        var tippy = false
-    }
-    url = $(thing).attr("url");
-    $(thing).html("<div class='text-center'>Loading</div>");
-    $.post(url, {
-        load: 1
-    })
-        .done(function (data) {
-            $(thing).html(data);
-            if (tippy) {
-                tippy('[data-tippy-content]');
-            }
-        });
-}
 
 window.AlertSuccess = function AlertSuccess(msg) {
     toastr["success"](msg, "Congratulations!");
@@ -79,53 +63,6 @@ window.getCookie = function getCookie(cname) {
     return "";
 }
 
-window.AjaxPagination = function AjaxPagination(pid, page, showload, col, order) {
-    var table = `[pid=${pid}]`;
-    var url = $(table).attr('url');
-    $(`#${pid}-b-${getCookie(`${pid}-page`)}`).removeClass("active");
-
-    if (showload == null) {
-        var showload = false;
-    }
-    if (showload) {
-        var loadthing = `#${pid}-loading`;
-        Loading(true, loadthing);
-        $(table).hide()
-    }
-    $(`#${pid}-blist`).hide()
-
-    if (col == null) {
-        var col = getCookie(`${pid}-col`);
-    }
-
-    if (order == null) {
-        var order = getCookie(`${pid}-order`);
-    }
-    $.post(url, {
-        load: 1,
-        page: page,
-        col: col,
-        order: order
-    })
-        .done(function (data) {
-            $(`#${pid}-num`).html(page);
-            $(`#${pid}-b-${page}`).addClass("active");
-            if (showload) {
-                Loading(false, loadthing);
-                $(table).show()
-            }
-            $(`#${pid}-blist`).show()
-
-            $(`${table} tbody`).html(data);
-            document.cookie = `${pid}-col=${col}`;
-            document.cookie = `${pid}-order=${order}`;
-            document.cookie = `${pid}-page=${page}`;
-            tippy('[data-tippy-content]', {
-                placement: "top",
-            });
-        });
-}
-
 window.MaterialInvalidate = function MaterialInvalidate(id, msg) {
     console.log(msg)
     $(`${id} + label + span`).attr('data-error', msg)
@@ -152,7 +89,7 @@ window.setCookie = function setCookie(name, value) {
     var expires = "expires=" + d.toUTCString();
     document.cookie = name + "=" + value + ";" + expires + ";path=/";
 }
-$(document).ready(function () {
+$(()=>{
     $('.click-to-reveal').click(function () {
         console.log($(this).data('revealed') )
         if($(this).attr('data-revealed') === 'false'){

@@ -68,7 +68,7 @@
         </div>
         <div class="card-action">
             <button type="submit" class="btn green">Post Alert</button>
-            &nbsp;
+            &nbsp
             <a href="{{route('alerts.index')}}" class="btn red">Cancel</a>
         </div>
         </form>

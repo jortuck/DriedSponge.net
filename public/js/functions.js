@@ -128,24 +128,6 @@ window.Loading = function Loading(show, id) {
   }
 };
 
-window.Load = function Load(thing, tippy) {
-  if (tippy == null) {
-    var tippy = false;
-  }
-
-  url = $(thing).attr("url");
-  $(thing).html("<div class='text-center'>Loading</div>");
-  $.post(url, {
-    load: 1
-  }).done(function (data) {
-    $(thing).html(data);
-
-    if (tippy) {
-      tippy('[data-tippy-content]');
-    }
-  });
-};
-
 window.AlertSuccess = function AlertSuccess(msg) {
   toastr["success"](msg, "Congratulations!");
 };
@@ -177,56 +159,6 @@ window.getCookie = function getCookie(cname) {
   }
 
   return "";
-};
-
-window.AjaxPagination = function AjaxPagination(pid, page, showload, col, order) {
-  var table = "[pid=".concat(pid, "]");
-  var url = $(table).attr('url');
-  $("#".concat(pid, "-b-").concat(getCookie("".concat(pid, "-page")))).removeClass("active");
-
-  if (showload == null) {
-    var showload = false;
-  }
-
-  if (showload) {
-    var loadthing = "#".concat(pid, "-loading");
-    Loading(true, loadthing);
-    $(table).hide();
-  }
-
-  $("#".concat(pid, "-blist")).hide();
-
-  if (col == null) {
-    var col = getCookie("".concat(pid, "-col"));
-  }
-
-  if (order == null) {
-    var order = getCookie("".concat(pid, "-order"));
-  }
-
-  $.post(url, {
-    load: 1,
-    page: page,
-    col: col,
-    order: order
-  }).done(function (data) {
-    $("#".concat(pid, "-num")).html(page);
-    $("#".concat(pid, "-b-").concat(page)).addClass("active");
-
-    if (showload) {
-      Loading(false, loadthing);
-      $(table).show();
-    }
-
-    $("#".concat(pid, "-blist")).show();
-    $("".concat(table, " tbody")).html(data);
-    document.cookie = "".concat(pid, "-col=").concat(col);
-    document.cookie = "".concat(pid, "-order=").concat(order);
-    document.cookie = "".concat(pid, "-page=").concat(page);
-    tippy('[data-tippy-content]', {
-      placement: "top"
-    });
-  });
 };
 
 window.MaterialInvalidate = function MaterialInvalidate(id, msg) {
@@ -262,7 +194,7 @@ window.setCookie = function setCookie(name, value) {
   document.cookie = name + "=" + value + ";" + expires + ";path=/";
 };
 
-$(document).ready(function () {
+$(function () {
   $('.click-to-reveal').click(function () {
     console.log($(this).data('revealed'));
 
