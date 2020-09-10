@@ -95,7 +95,6 @@
                     </div>
                 </form>
                 <script type="text/javascript">
-                    console.log($('#message').val());
                     $('#contact-form').submit(function(e) {
                         e.preventDefault()
                         $(this).hide()

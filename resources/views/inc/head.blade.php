@@ -1,6 +1,4 @@
 <head>
-    <script src="{{ asset('js/SpongeHelpers.js') }}"></script>
-
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,7 +9,7 @@
     <meta name="theme-color" content="@yield('color','#007BFF')">
     <link href='https://fonts.googleapis.com/css?family=Bangers' rel='stylesheet'>
     <script src="{{ asset('js/app.js') }}"></script>
-    <script src="{{ asset('js/functions.js') }}"></script>
+    <script src="{{ asset('js/all.js') }}"></script>
     <link rel="icon" href="{{asset('images/favicon.png')}}" type="image/x-icon">
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-140402227-3"></script>
