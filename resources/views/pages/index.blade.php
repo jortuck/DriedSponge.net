@@ -126,7 +126,7 @@
                                     AlertMaterializeError(response.data.captcha);
                                 }
                                 // $.each(response.data, function(key, value) {
-                                //     window.MaterialInvalidate('#' + key, value)
+                                //      window.MaterialInvalidate('#' + key, value)
                                 // });
                                 var r = response.data;
                                 for (var key in r){
