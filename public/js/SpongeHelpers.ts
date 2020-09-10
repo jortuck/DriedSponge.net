@@ -47,9 +47,17 @@ const DecorateCollection = collection => {// @ts-ignore
             element.setAttribute(attr, value);
         })
     }
-    collection.val = () => {
-        collection.forEach((element) => {
+    collection.val = (arg) => {
+        const element = collection[0];
+        if (typeof arg === 'string'){
+            element.value = arg;
+        }else{
             return element.value;
+        }
+    }
+    collection.html = (arg) => {
+        collection.forEach((element) => {
+            element.innerHTML = arg;
         })
     }
     collection.css = (...cssArgs) => {

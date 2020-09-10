@@ -94,9 +94,8 @@
                         </div>
                     </div>
                 </form>
-                <p id="test">atatatafaf</p>
                 <script type="text/javascript">
-                    $("#test").addClass("fart");
+                    console.log($('#message').val());
                     $('#contact-form').submit(function(e) {
                         e.preventDefault()
                         $(this).hide()
@@ -129,6 +128,10 @@
                                 // $.each(response.data, function(key, value) {
                                 //     window.MaterialInvalidate('#' + key, value)
                                 // });
+                                var r = response.data;
+                                for (var key in r){
+                                    window.MaterialInvalidate('#' + key, r[key])
+                                }
                             }
                         });
                     })

@@ -47,9 +47,18 @@ var DecorateCollection = function (collection) {
             element.setAttribute(attr, value);
         });
     };
-    collection.val = function () {
-        collection.forEach(function (element) {
+    collection.val = function (arg) {
+        var element = collection[0];
+        if (typeof arg === 'string') {
+            element.value = arg;
+        }
+        else {
             return element.value;
+        }
+    };
+    collection.html = function (arg) {
+        collection.forEach(function (element) {
+            element.innerHTML = arg;
         });
     };
     collection.css = function () {
