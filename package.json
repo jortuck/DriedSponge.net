@@ -13,20 +13,21 @@
         "axios": "^0.19.2",
         "cross-env": "^7.0",
         "jquery": "^3.2",
-        "laravel-mix": "^5.0.1",
-        "lodash": "^4.17.13",
+        "laravel-mix": "^5.0.5",
+        "lodash": "^4.17.20",
         "popper.js": "^1.12",
         "resolve-url-loader": "^2.3.1",
-        "sass": "^1.20.1",
+        "sass": "^1.26.11",
         "sass-loader": "^8.0.0",
-        "ts-loader": "^8.0.3",
-        "typescript": "^4.0.2",
-        "vue-template-compiler": "^2.6.11"
+        "ts-loader": "^8.0.4",
+        "typescript": "^4.0.3",
+        "vue-template-compiler": "^2.6.12"
     },
     "dependencies": {
+        "@driedsponge/spongehelpers": "^1.0.1",
         "aos": "^3.0.0-beta.6",
-        "lozad": "^1.14.0",
-        "materialize-css": "^1.0.0-rc.2",
+        "lozad": "^1.16.0",
+        "materialize-css": "^1.0.0",
         "toastr": "^2.1.4"
     }
 }

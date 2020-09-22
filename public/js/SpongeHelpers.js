@@ -81,30 +81,167 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 2);
+/******/ 	return __webpack_require__(__webpack_require__.s = 1);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ "./resources/js/SpongeHelpers.ts":
+/***/ "./resources/js/SpongeHelpers.js":
 /*!***************************************!*\
-  !*** ./resources/js/SpongeHelpers.ts ***!
+  !*** ./resources/js/SpongeHelpers.js ***!
   \***************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-throw new Error("Module build failed (from ./node_modules/ts-loader/index.js):\nError: Cannot find module 'typescript'\nRequire stack:\n- C:\\laragon\\www\\info\\node_modules\\ts-loader\\dist\\compilerSetup.js\n- C:\\laragon\\www\\info\\node_modules\\ts-loader\\dist\\instances.js\n- C:\\laragon\\www\\info\\node_modules\\ts-loader\\dist\\index.js\n- C:\\laragon\\www\\info\\node_modules\\ts-loader\\index.js\n- C:\\laragon\\www\\info\\node_modules\\loader-runner\\lib\\loadLoader.js\n- C:\\laragon\\www\\info\\node_modules\\loader-runner\\lib\\LoaderRunner.js\n- C:\\laragon\\www\\info\\node_modules\\webpack\\lib\\NormalModule.js\n- C:\\laragon\\www\\info\\node_modules\\webpack\\lib\\NormalModuleFactory.js\n- C:\\laragon\\www\\info\\node_modules\\webpack\\lib\\Compiler.js\n- C:\\laragon\\www\\info\\node_modules\\webpack\\lib\\webpack.js\n- C:\\laragon\\www\\info\\node_modules\\webpack-cli\\bin\\utils\\validate-options.js\n- C:\\laragon\\www\\info\\node_modules\\webpack-cli\\bin\\utils\\convert-argv.js\n- C:\\laragon\\www\\info\\node_modules\\webpack-cli\\bin\\cli.js\n- C:\\laragon\\www\\info\\node_modules\\webpack\\bin\\webpack.js\n    at Function.Module._resolveFilename (internal/modules/cjs/loader.js:1020:15)\n    at Function.Module._load (internal/modules/cjs/loader.js:890:27)\n    at Module.require (internal/modules/cjs/loader.js:1080:19)\n    at require (C:\\laragon\\www\\info\\node_modules\\v8-compile-cache\\v8-compile-cache.js:161:20)\n    at Object.<anonymous> (C:\\laragon\\www\\info\\node_modules\\ts-loader\\dist\\compilerSetup.js:5:20)\n    at Module._compile (C:\\laragon\\www\\info\\node_modules\\v8-compile-cache\\v8-compile-cache.js:192:30)\n    at Object.Module._extensions..js (internal/modules/cjs/loader.js:1196:10)\n    at Module.load (internal/modules/cjs/loader.js:1040:32)\n    at Function.Module._load (internal/modules/cjs/loader.js:929:14)\n    at Module.require (internal/modules/cjs/loader.js:1080:19)\n    at require (C:\\laragon\\www\\info\\node_modules\\v8-compile-cache\\v8-compile-cache.js:161:20)\n    at Object.<anonymous> (C:\\laragon\\www\\info\\node_modules\\ts-loader\\dist\\instances.js:8:25)\n    at Module._compile (C:\\laragon\\www\\info\\node_modules\\v8-compile-cache\\v8-compile-cache.js:192:30)\n    at Object.Module._extensions..js (internal/modules/cjs/loader.js:1196:10)\n    at Module.load (internal/modules/cjs/loader.js:1040:32)\n    at Function.Module._load (internal/modules/cjs/loader.js:929:14)\n    at Module.require (internal/modules/cjs/loader.js:1080:19)\n    at require (C:\\laragon\\www\\info\\node_modules\\v8-compile-cache\\v8-compile-cache.js:161:20)\n    at Object.<anonymous> (C:\\laragon\\www\\info\\node_modules\\ts-loader\\dist\\index.js:6:21)\n    at Module._compile (C:\\laragon\\www\\info\\node_modules\\v8-compile-cache\\v8-compile-cache.js:192:30)\n    at Object.Module._extensions..js (internal/modules/cjs/loader.js:1196:10)\n    at Module.load (internal/modules/cjs/loader.js:1040:32)\n    at Function.Module._load (internal/modules/cjs/loader.js:929:14)\n    at Module.require (internal/modules/cjs/loader.js:1080:19)\n    at require (C:\\laragon\\www\\info\\node_modules\\v8-compile-cache\\v8-compile-cache.js:161:20)\n    at Object.<anonymous> (C:\\laragon\\www\\info\\node_modules\\ts-loader\\index.js:1:76)\n    at Module._compile (C:\\laragon\\www\\info\\node_modules\\v8-compile-cache\\v8-compile-cache.js:192:30)\n    at Object.Module._extensions..js (internal/modules/cjs/loader.js:1196:10)\n    at Module.load (internal/modules/cjs/loader.js:1040:32)\n    at Function.Module._load (internal/modules/cjs/loader.js:929:14)\n    at Module.require (internal/modules/cjs/loader.js:1080:19)\n    at require (C:\\laragon\\www\\info\\node_modules\\v8-compile-cache\\v8-compile-cache.js:161:20)\n    at loadLoader (C:\\laragon\\www\\info\\node_modules\\loader-runner\\lib\\loadLoader.js:18:17)\n    at iteratePitchingLoaders (C:\\laragon\\www\\info\\node_modules\\loader-runner\\lib\\LoaderRunner.js:169:2)\n    at runLoaders (C:\\laragon\\www\\info\\node_modules\\loader-runner\\lib\\LoaderRunner.js:365:2)\n    at NormalModule.doBuild (C:\\laragon\\www\\info\\node_modules\\webpack\\lib\\NormalModule.js:295:3)");
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+!function (t) {
+  var o = {};
+
+  function e(n) {
+    if (o[n]) return o[n].exports;
+    var r = o[n] = {
+      i: n,
+      l: !1,
+      exports: {}
+    };
+    return t[n].call(r.exports, r, r.exports, e), r.l = !0, r.exports;
+  }
+
+  e.m = t, e.c = o, e.d = function (t, o, n) {
+    e.o(t, o) || Object.defineProperty(t, o, {
+      enumerable: !0,
+      get: n
+    });
+  }, e.r = function (t) {
+    "undefined" != typeof Symbol && Symbol.toStringTag && Object.defineProperty(t, Symbol.toStringTag, {
+      value: "Module"
+    }), Object.defineProperty(t, "__esModule", {
+      value: !0
+    });
+  }, e.t = function (t, o) {
+    if (1 & o && (t = e(t)), 8 & o) return t;
+    if (4 & o && "object" == _typeof(t) && t && t.__esModule) return t;
+    var n = Object.create(null);
+    if (e.r(n), Object.defineProperty(n, "default", {
+      enumerable: !0,
+      value: t
+    }), 2 & o && "string" != typeof t) for (var r in t) {
+      e.d(n, r, function (o) {
+        return t[o];
+      }.bind(null, r));
+    }
+    return n;
+  }, e.n = function (t) {
+    var o = t && t.__esModule ? function () {
+      return t["default"];
+    } : function () {
+      return t;
+    };
+    return e.d(o, "a", o), o;
+  }, e.o = function (t, o) {
+    return Object.prototype.hasOwnProperty.call(t, o);
+  }, e.p = "", e(e.s = 0);
+}([function (t, o, e) {
+  "use strict";
+
+  e.r(o), window.$ = function () {
+    for (var t = [], o = 0; o < arguments.length; o++) {
+      t[o] = arguments[o];
+    }
+
+    if ("function" == typeof t[0]) {
+      var e = t[0];
+      console.log("Document loaded"), document.addEventListener("DOMContentLoaded", e);
+    } else {
+      if ("string" == typeof t[0]) {
+        var r = t[0];
+        return n.apply(document.querySelectorAll(r));
+      }
+
+      if (t[0] instanceof HTMLElement) return n.apply([t[0]]);
+    }
+  };
+
+  var n = function n() {
+    return n.prototype.queue = [], n.prototype.delayed = !1, n.prototype["this"] = this, n.prototype;
+  };
+
+  n.prototype.hide = function () {
+    n.prototype["this"].forEach(function (t) {
+      t.style.display = "none";
+    });
+  }, n.prototype.show = function () {
+    n.prototype["this"].forEach(function (t) {
+      t.style.display = " ";
+    });
+  }, n.prototype.css = function () {
+    for (var t = [], o = 0; o < arguments.length; o++) {
+      t[o] = arguments[o];
+    }
+
+    if ("string" == typeof t[0]) {
+      var e = t[0],
+          r = t[1];
+      n.prototype["this"].forEach(function (t) {
+        t.style[e] = r;
+      });
+    } else if ("object" == _typeof(t[0])) {
+      var i = Object.entries(t[0]);
+      n.prototype["this"].forEach(function (t) {
+        i.forEach(function (o) {
+          var e = o[0],
+              n = o[1];
+          t.style[e] = n;
+        });
+      });
+    }
+  }, n.prototype.addClass = function (t) {
+    n.prototype["this"].forEach(function (o) {
+      o.classList.add(t);
+    });
+  }, n.prototype.removeClass = function (t) {
+    n.prototype["this"].forEach(function (o) {
+      o.classList.remove(t);
+    });
+  }, n.prototype.on = function (t, o) {
+    n.prototype["this"].forEach(function (e) {
+      e.addEventListener(t, o);
+    });
+  }, n.prototype.submit = function (t) {
+    n.prototype["this"].forEach(function (o) {
+      o.addEventListener("submit", t);
+    });
+  }, n.prototype.click = function (t) {
+    n.prototype["this"].forEach(function (o) {
+      o.addEventListener("click", t);
+    });
+  }, n.prototype.val = function (t) {
+    var o = n.prototype["this"][0];
+    if ("string" != typeof t) return o.value;
+    o.value = t;
+  }, n.prototype.attr = function (t, o) {
+    if (void 0 === o) return n.prototype["this"][0].getAttribute(t);
+    n.prototype["this"].forEach(function (e) {
+      e.setAttribute(t, o);
+    });
+  }, n.prototype.html = function (t) {
+    n.prototype["this"].forEach(function (o) {
+      o.innerHTML = t;
+    });
+  };
+}]);
 
 /***/ }),
 
-/***/ 2:
+/***/ 1:
 /*!*********************************************!*\
-  !*** multi ./resources/js/SpongeHelpers.ts ***!
+  !*** multi ./resources/js/SpongeHelpers.js ***!
   \*********************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\laragon\www\info\resources\js\SpongeHelpers.ts */"./resources/js/SpongeHelpers.ts");
+module.exports = __webpack_require__(/*! C:\laragon\www\info\resources\js\SpongeHelpers.js */"./resources/js/SpongeHelpers.js");
 
 
 /***/ })
