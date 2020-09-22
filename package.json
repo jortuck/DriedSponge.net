@@ -24,10 +24,10 @@
         "vue-template-compiler": "^2.6.12"
     },
     "dependencies": {
-        "@driedsponge/spongehelpers": "^1.0.1",
         "aos": "^3.0.0-beta.6",
         "lozad": "^1.16.0",
         "materialize-css": "^1.0.0",
+        "sponge-helpers": "^1.0.1",
         "toastr": "^2.1.4"
     }
 }
