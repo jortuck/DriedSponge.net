@@ -27,7 +27,7 @@
         "aos": "^3.0.0-beta.6",
         "lozad": "^1.16.0",
         "materialize-css": "^1.0.0",
-        "sponge-helpers": "^1.0.1",
+        "sponge-helpers": "^1.2.1",
         "toastr": "^2.1.4"
     }
 }
