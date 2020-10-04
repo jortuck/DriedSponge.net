@@ -2,15 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\ContactForm;
 use App\User;
 use Illuminate\Http\Response;
+use Mail;
 use Validator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Http;
 use App\ContactResponses;
-
+use Mailgun\Mailgun;
 class ContactController extends Controller
 {
     /**
@@ -40,17 +42,8 @@ class ContactController extends Controller
                 $data->Subject = $request->subject;
                 $data->Message = $request->message;
                 $data->save();
-                $email = new \SendGrid\Mail\Mail();
-                $email->setFrom("no-reply@driedsponge.net", "DriedSponge.net");
-                $email->setSubject('[Contact Form] '.$request->subject);
-                $email->addTo("jordan@driedsponge.net", "Jordan Tucker");
-                $email->setReplyTo($request->email);
-                $email->addContent(
-                    "text/html", "DriedSponge.net Contact Form<br><hr><br><strong>Sender:</strong> $data->Name ($request->email)<br><strong>Subject:</strong>  $data->Subject<br><br>$request->message"
-                );
-                $sendgrid = new \SendGrid(env('SENDGRID_API_KEY',null));
+                Mail::to('jordan@driedsponge.net')->send(new ContactForm($data));
                 try {
-                    $response = $sendgrid->send($email);
                     $request = json_encode([
                         "content" => "",
                         "embeds" => [

@@ -726,6 +726,7 @@ class ComposerStaticInitdcaf1edeb7a464470a05f1f1a161fb37
 
     public static $classMap = array (
         'App\\Alerts' => __DIR__ . '/../..' . '/app/Alerts.php',
+        'App\\Annoucement' => __DIR__ . '/../..' . '/app/Annoucement.php',
         'App\\ApiKey' => __DIR__ . '/../..' . '/app/ApiKey.php',
         'App\\Bans' => __DIR__ . '/../..' . '/app/Bans.php',
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
@@ -2388,7 +2389,9 @@ class ComposerStaticInitdcaf1edeb7a464470a05f1f1a161fb37
         'Http\\Client\\Common\\HttpMethodsClient' => __DIR__ . '/..' . '/php-http/client-common/src/HttpMethodsClient.php',
         'Http\\Client\\Common\\HttpMethodsClientInterface' => __DIR__ . '/..' . '/php-http/client-common/src/HttpMethodsClientInterface.php',
         'Http\\Client\\Common\\Plugin' => __DIR__ . '/..' . '/php-http/client-common/src/Plugin.php',
+        'Http\\Client\\Common\\PluginChain' => __DIR__ . '/..' . '/php-http/client-common/src/PluginChain.php',
         'Http\\Client\\Common\\PluginClient' => __DIR__ . '/..' . '/php-http/client-common/src/PluginClient.php',
+        'Http\\Client\\Common\\PluginClientBuilder' => __DIR__ . '/..' . '/php-http/client-common/src/PluginClientBuilder.php',
         'Http\\Client\\Common\\PluginClientFactory' => __DIR__ . '/..' . '/php-http/client-common/src/PluginClientFactory.php',
         'Http\\Client\\Common\\Plugin\\AddHostPlugin' => __DIR__ . '/..' . '/php-http/client-common/src/Plugin/AddHostPlugin.php',
         'Http\\Client\\Common\\Plugin\\AddPathPlugin' => __DIR__ . '/..' . '/php-http/client-common/src/Plugin/AddPathPlugin.php',
@@ -2456,6 +2459,7 @@ class ComposerStaticInitdcaf1edeb7a464470a05f1f1a161fb37
         'Http\\Message\\Authentication\\BasicAuth' => __DIR__ . '/..' . '/php-http/message/src/Authentication/BasicAuth.php',
         'Http\\Message\\Authentication\\Bearer' => __DIR__ . '/..' . '/php-http/message/src/Authentication/Bearer.php',
         'Http\\Message\\Authentication\\Chain' => __DIR__ . '/..' . '/php-http/message/src/Authentication/Chain.php',
+        'Http\\Message\\Authentication\\Header' => __DIR__ . '/..' . '/php-http/message/src/Authentication/Header.php',
         'Http\\Message\\Authentication\\Matching' => __DIR__ . '/..' . '/php-http/message/src/Authentication/Matching.php',
         'Http\\Message\\Authentication\\QueryParam' => __DIR__ . '/..' . '/php-http/message/src/Authentication/QueryParam.php',
         'Http\\Message\\Authentication\\RequestConditional' => __DIR__ . '/..' . '/php-http/message/src/Authentication/RequestConditional.php',
@@ -6057,6 +6061,7 @@ class ComposerStaticInitdcaf1edeb7a464470a05f1f1a161fb37
         'TijsVerkoyen\\CssToInlineStyles\\Css\\Rule\\Processor' => __DIR__ . '/..' . '/tijsverkoyen/css-to-inline-styles/src/Css/Rule/Processor.php',
         'TijsVerkoyen\\CssToInlineStyles\\Css\\Rule\\Rule' => __DIR__ . '/..' . '/tijsverkoyen/css-to-inline-styles/src/Css/Rule/Rule.php',
         'TwilioEmail' => __DIR__ . '/..' . '/sendgrid/sendgrid/lib/TwilioEmail.php',
+        'UnhandledMatchError' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/UnhandledMatchError.php',
         'UserSeeder' => __DIR__ . '/../..' . '/database/seeds/UserSeeder.php',
         'ValueError' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/ValueError.php',
         'Webmozart\\Assert\\Assert' => __DIR__ . '/..' . '/webmozart/assert/src/Assert.php',

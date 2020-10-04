@@ -7,6 +7,7 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'App\\Alerts' => $baseDir . '/app/Alerts.php',
+    'App\\Annoucement' => $baseDir . '/app/Annoucement.php',
     'App\\ApiKey' => $baseDir . '/app/ApiKey.php',
     'App\\Bans' => $baseDir . '/app/Bans.php',
     'App\\Console\\Kernel' => $baseDir . '/app/Console/Kernel.php',
@@ -1669,7 +1670,9 @@ return array(
     'Http\\Client\\Common\\HttpMethodsClient' => $vendorDir . '/php-http/client-common/src/HttpMethodsClient.php',
     'Http\\Client\\Common\\HttpMethodsClientInterface' => $vendorDir . '/php-http/client-common/src/HttpMethodsClientInterface.php',
     'Http\\Client\\Common\\Plugin' => $vendorDir . '/php-http/client-common/src/Plugin.php',
+    'Http\\Client\\Common\\PluginChain' => $vendorDir . '/php-http/client-common/src/PluginChain.php',
     'Http\\Client\\Common\\PluginClient' => $vendorDir . '/php-http/client-common/src/PluginClient.php',
+    'Http\\Client\\Common\\PluginClientBuilder' => $vendorDir . '/php-http/client-common/src/PluginClientBuilder.php',
     'Http\\Client\\Common\\PluginClientFactory' => $vendorDir . '/php-http/client-common/src/PluginClientFactory.php',
     'Http\\Client\\Common\\Plugin\\AddHostPlugin' => $vendorDir . '/php-http/client-common/src/Plugin/AddHostPlugin.php',
     'Http\\Client\\Common\\Plugin\\AddPathPlugin' => $vendorDir . '/php-http/client-common/src/Plugin/AddPathPlugin.php',
@@ -1737,6 +1740,7 @@ return array(
     'Http\\Message\\Authentication\\BasicAuth' => $vendorDir . '/php-http/message/src/Authentication/BasicAuth.php',
     'Http\\Message\\Authentication\\Bearer' => $vendorDir . '/php-http/message/src/Authentication/Bearer.php',
     'Http\\Message\\Authentication\\Chain' => $vendorDir . '/php-http/message/src/Authentication/Chain.php',
+    'Http\\Message\\Authentication\\Header' => $vendorDir . '/php-http/message/src/Authentication/Header.php',
     'Http\\Message\\Authentication\\Matching' => $vendorDir . '/php-http/message/src/Authentication/Matching.php',
     'Http\\Message\\Authentication\\QueryParam' => $vendorDir . '/php-http/message/src/Authentication/QueryParam.php',
     'Http\\Message\\Authentication\\RequestConditional' => $vendorDir . '/php-http/message/src/Authentication/RequestConditional.php',
@@ -5338,6 +5342,7 @@ return array(
     'TijsVerkoyen\\CssToInlineStyles\\Css\\Rule\\Processor' => $vendorDir . '/tijsverkoyen/css-to-inline-styles/src/Css/Rule/Processor.php',
     'TijsVerkoyen\\CssToInlineStyles\\Css\\Rule\\Rule' => $vendorDir . '/tijsverkoyen/css-to-inline-styles/src/Css/Rule/Rule.php',
     'TwilioEmail' => $vendorDir . '/sendgrid/sendgrid/lib/TwilioEmail.php',
+    'UnhandledMatchError' => $vendorDir . '/symfony/polyfill-php80/Resources/stubs/UnhandledMatchError.php',
     'UserSeeder' => $baseDir . '/database/seeds/UserSeeder.php',
     'ValueError' => $vendorDir . '/symfony/polyfill-php80/Resources/stubs/ValueError.php',
     'Webmozart\\Assert\\Assert' => $vendorDir . '/webmozart/assert/src/Assert.php',
