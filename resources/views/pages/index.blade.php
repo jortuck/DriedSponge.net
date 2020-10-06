@@ -157,7 +157,7 @@
                     }
                     var onloadCallback = function() {
                         grecaptcha.render('captcha', {
-                            'sitekey' : '6LczSMcZAAAAADwXi4U34KxHyS324gn0T275nLTI',
+                            'sitekey' : '{{env('CAPTCHA_SITEKEY',null)}}',
                             'theme': 'dark',
                             'callback':VerifyCallback,
                             'expired-callback':ExpiredCallback,
@@ -169,13 +169,9 @@
         </div>
     </div>
     <script>
-
         $(()=>{
-            console.log("Document Ready");
-        });
-        $(()=>{
-            // const textNeedCount = $('textarea, input[data-length]');
-            // const textNeedCountInstance = new M.CharacterCounter(textNeedCount);
+             //const textNeedCount = $('textarea, input[data-length]');
+             //const textNeedCountInstance = new M.CharacterCounter(textNeedCount);
         });
         const observer = lozad(); // lazy loads elements with default selector as '.lozad'
         observer.observe();
