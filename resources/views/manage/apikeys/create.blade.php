@@ -12,7 +12,7 @@
             <p id="succtext"></p>
         </div>
         <div class="card-action">
-            <a href="#" onclick="CreateNewResponse('#create-key')">Create Another Api Key</a>
+            <a href="#" onclick="Reset()">Create Another Api Key</a>
             <a href="{{route('api.index')}}">Return To Api Keys Page</a>
         </div>
     </div>
@@ -63,6 +63,10 @@
                     }
                 });
         })
+        function Reset(){
+            $('#success-message').addClass("d-none");
+            $('#create-key').show().formReset();
+        }
     </script>
 </div>
 <script>
