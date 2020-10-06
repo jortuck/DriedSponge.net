@@ -126,14 +126,15 @@
                                 }
                                 var r = response.data;
                                 for (var key in r){
-                                    window.MaterialInvalidate('#' + key, r[key])
+                                   MaterialInvalidate('#' + key, r[key])
                                 }
                             }
                         });
                     })
                     function Reset(){
                         RegenCap()
-                        CreateNewResponse('#contact-form')
+                        $('#contact-form').show().formReset();
+                        $('#success-message').addClass('d-none');
                     }
                     VerifyCallback = function(response) {
                         $('#send').removeClass('d-none')

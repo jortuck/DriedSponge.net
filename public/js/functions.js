@@ -210,12 +210,6 @@ $(function () {
   });
 });
 
-window.CreateNewResponse = function CreateNewResponse(form) {
-  $(form).show();
-  $(form)[0].reset();
-  $('#success-message').addClass('d-none');
-};
-
 /***/ }),
 
 /***/ 1:

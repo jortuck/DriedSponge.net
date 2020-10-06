@@ -86,17 +86,6 @@
 /************************************************************************/
 /******/ ({
 
-/***/ "./node_modules/@driedsponge/spongehelpers/dist/SpongeHelpers.js":
-/*!***********************************************************************!*\
-  !*** ./node_modules/@driedsponge/spongehelpers/dist/SpongeHelpers.js ***!
-  \***********************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-!function(t){var o={};function e(n){if(o[n])return o[n].exports;var r=o[n]={i:n,l:!1,exports:{}};return t[n].call(r.exports,r,r.exports,e),r.l=!0,r.exports}e.m=t,e.c=o,e.d=function(t,o,n){e.o(t,o)||Object.defineProperty(t,o,{enumerable:!0,get:n})},e.r=function(t){"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(t,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(t,"__esModule",{value:!0})},e.t=function(t,o){if(1&o&&(t=e(t)),8&o)return t;if(4&o&&"object"==typeof t&&t&&t.__esModule)return t;var n=Object.create(null);if(e.r(n),Object.defineProperty(n,"default",{enumerable:!0,value:t}),2&o&&"string"!=typeof t)for(var r in t)e.d(n,r,function(o){return t[o]}.bind(null,r));return n},e.n=function(t){var o=t&&t.__esModule?function(){return t.default}:function(){return t};return e.d(o,"a",o),o},e.o=function(t,o){return Object.prototype.hasOwnProperty.call(t,o)},e.p="",e(e.s=0)}([function(t,o,e){"use strict";e.r(o),window.$=function(){for(var t=[],o=0;o<arguments.length;o++)t[o]=arguments[o];if("function"==typeof t[0]){var e=t[0];console.log("Document loaded"),document.addEventListener("DOMContentLoaded",e)}else{if("string"==typeof t[0]){var r=t[0];return n.apply(document.querySelectorAll(r))}if(t[0]instanceof HTMLElement)return n.apply([t[0]])}};var n=function(){return n.prototype.queue=[],n.prototype.delayed=!1,n.prototype.this=this,n.prototype};n.prototype.hide=function(){n.prototype.this.forEach((function(t){t.style.display="none"}))},n.prototype.show=function(){n.prototype.this.forEach((function(t){t.style.display=" "}))},n.prototype.css=function(){for(var t=[],o=0;o<arguments.length;o++)t[o]=arguments[o];if("string"==typeof t[0]){var e=t[0],r=t[1];n.prototype.this.forEach((function(t){t.style[e]=r}))}else if("object"==typeof t[0]){var i=Object.entries(t[0]);n.prototype.this.forEach((function(t){i.forEach((function(o){var e=o[0],n=o[1];t.style[e]=n}))}))}},n.prototype.addClass=function(t){n.prototype.this.forEach((function(o){o.classList.add(t)}))},n.prototype.removeClass=function(t){n.prototype.this.forEach((function(o){o.classList.remove(t)}))},n.prototype.on=function(t,o){n.prototype.this.forEach((function(e){e.addEventListener(t,o)}))},n.prototype.submit=function(t){n.prototype.this.forEach((function(o){o.addEventListener("submit",t)}))},n.prototype.click=function(t){n.prototype.this.forEach((function(o){o.addEventListener("click",t)}))},n.prototype.val=function(t){var o=n.prototype.this[0];if("string"!=typeof t)return o.value;o.value=t},n.prototype.attr=function(t,o){if(void 0===o)return n.prototype.this[0].getAttribute(t);n.prototype.this.forEach((function(e){e.setAttribute(t,o)}))},n.prototype.html=function(t){n.prototype.this.forEach((function(o){o.innerHTML=t}))}}]);
-
-/***/ }),
-
 /***/ "./node_modules/aos/dist/aos.js":
 /*!**************************************!*\
   !*** ./node_modules/aos/dist/aos.js ***!
@@ -42570,6 +42559,17 @@ process.umask = function() { return 0; };
 
 /***/ }),
 
+/***/ "./node_modules/sponge-helpers/dist/SpongeHelpers.js":
+/*!***********************************************************!*\
+  !*** ./node_modules/sponge-helpers/dist/SpongeHelpers.js ***!
+  \***********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+!function(t){var e={};function n(r){if(e[r])return e[r].exports;var o=e[r]={i:r,l:!1,exports:{}};return t[r].call(o.exports,o,o.exports,n),o.l=!0,o.exports}n.m=t,n.c=e,n.d=function(t,e,r){n.o(t,e)||Object.defineProperty(t,e,{enumerable:!0,get:r})},n.r=function(t){"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(t,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(t,"__esModule",{value:!0})},n.t=function(t,e){if(1&e&&(t=n(t)),8&e)return t;if(4&e&&"object"==typeof t&&t&&t.__esModule)return t;var r=Object.create(null);if(n.r(r),Object.defineProperty(r,"default",{enumerable:!0,value:t}),2&e&&"string"!=typeof t)for(var o in t)n.d(r,o,function(e){return t[e]}.bind(null,o));return r},n.n=function(t){var e=t&&t.__esModule?function(){return t.default}:function(){return t};return n.d(e,"a",e),e},n.o=function(t,e){return Object.prototype.hasOwnProperty.call(t,e)},n.p="",n(n.s=0)}([function(t,e,n){"use strict";n.r(e);var r=function(){function t(t){t&&("function"==typeof t?document.addEventListener("DOMContentLoaded",t):"string"==typeof t?this.selected=document.querySelectorAll(t):t instanceof HTMLElement&&(this.selected=[t]))}return t.prototype.test=function(t){console.log(t)},t.prototype.init=function(e){return new t(e)},t}();window.$=r.prototype.init;r.prototype.html=function(t){return this.selected.forEach((function(e){e.innerHTML=t})),this};r.prototype.formReset=function(){return this.selected.forEach((function(t){"FORM"===t.tagName&&t.reset()})),this};r.prototype.hide=function(){return this.selected.forEach((function(t){t.style.display="none"})),this};r.prototype.show=function(){return this.selected.forEach((function(t){t.style.display=""})),this};r.prototype.css=function(t){if("object"==typeof t){var e=Object.entries(t);this.selected.forEach((function(t){e.forEach((function(e){var n=e[0],r=e[1];t.style[n]=r}))}))}return this};r.prototype.addClass=function(t){var e=this;return"string"==typeof t?this.selected.forEach((function(e){e.classList.add(t)})):t instanceof Array&&t.forEach((function(t){e.selected.forEach((function(e){e.classList.add(t)}))})),this};r.prototype.removeClass=function(t){var e=this;return"string"==typeof t?this.selected.forEach((function(e){e.classList.remove(t)})):t instanceof Array&&t.forEach((function(t){e.selected.forEach((function(e){e.classList.remove(t)}))})),this};r.prototype.on=function(t,e){this.selected.forEach((function(n){n.addEventListener(t,e)}))};r.prototype.submit=function(t){this.selected.forEach((function(e){e.addEventListener("submit",t)}))};r.prototype.click=function(t){this.selected.forEach((function(e){e.addEventListener("click",t)}))};r.prototype.keyDown=function(t){this.selected.forEach((function(e){e.addEventListener("keydown",t)}))};r.prototype.val=function(t){var e=this.selected[0];return"string"==typeof t?(e.value=t,this):e.value};r.prototype.attr=function(t,e){var n=this;if(t instanceof Array){var r={};return t.forEach((function(t){r[t]=n.selected[0].getAttribute(t)})),r}if("object"==typeof t){var o=Object.entries(t);return this.selected.forEach((function(t){o.forEach((function(e){var n=e[0],r=e[1];t.setAttribute(n,r)}))})),this}return"string"==typeof e&&"string"==typeof t?(this.selected.forEach((function(n){n.setAttribute(t,e)})),this):this.selected[0].getAttribute(t)};r.prototype.data=function(t,e){var n=this;if(t instanceof Array){var r={};return t.forEach((function(t){r[t]=n.selected[0].getAttribute("data-"+t)})),r}if("object"==typeof t){var o=Object.entries(t);return this.selected.forEach((function(t){o.forEach((function(e){var n=e[0],r=e[1];t.setAttribute("data-"+n,r)}))})),this}return"string"==typeof e&&"string"==typeof t?(this.selected.forEach((function(n){n.setAttribute("data-"+t,e)})),this):this.selected[0].getAttribute("data-"+t)}}]);
+
+/***/ }),
+
 /***/ "./node_modules/toastr/toastr.js":
 /*!***************************************!*\
   !*** ./node_modules/toastr/toastr.js ***!
@@ -43192,7 +43192,7 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 //     forceTLS: true
 // });
 
-__webpack_require__(/*! @driedsponge/spongehelpers */ "./node_modules/@driedsponge/spongehelpers/dist/SpongeHelpers.js"); //Materialize
+__webpack_require__(/*! sponge-helpers */ "./node_modules/sponge-helpers/dist/SpongeHelpers.js"); //Materialize
 
 
 window.M = __webpack_require__(/*! materialize-css */ "./node_modules/materialize-css/dist/js/materialize.js"); //toastr
