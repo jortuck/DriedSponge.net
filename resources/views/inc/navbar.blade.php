@@ -15,7 +15,7 @@
                 <a href="#" data-target="mobilenav" class="sidenav-trigger text-white"><i class="material-icons">menu</i></a>
             </div>
             <ul class="right hide-on-med-and-down">
-                <li><a href="{{route('pages.index')}}">Projects</a></li>
+                <li><a href="{{route('pages.projects')}}">Projects</a></li>
 {{--                <li><a href="{{route('pages.index')}}">Advertise</a></li>--}}
                 @guest
                     <li><a href="{{route('login')}}"><img style="vertical-align:middle" class="responsive-img"
@@ -57,7 +57,7 @@
         </div>
     </li>
     <li><a class="subheader">General</a></li>
-    <li><a class="waves-effect" href="#!"><i class="material-icons">developer_board</i>Projects</a></li>
+    <li><a class="waves-effect" href="{{route('pages.projects')}}"><i class="material-icons">developer_board</i>Projects</a></li>
 {{--    <li><a class="waves-effect" href="#!"><i class="material-icons">open_in_browser</i>Advertise</a></li>--}}
     @auth
         <li>

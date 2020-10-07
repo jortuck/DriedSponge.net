@@ -22,7 +22,9 @@ Route::get('/', 'PagesController@index');
 Route::get('/home', 'PagesController@index')->name('pages.index');
 Route::get('/mc', 'McStatusController@index')->name('pages.mc');
 Route::get('/mc/log', 'McStatusController@log')->name('pages.mc.log');
-Route::get('/web-projects', 'PagesController@webprojects');
+Route::get('/projects',function (){
+    return view("errors.wip");
+})->name("pages.projects");
 
 Route::post('/contact/send', 'ContactController@send')->name('contact.send');
 
