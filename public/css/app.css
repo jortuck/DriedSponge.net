@@ -10787,6 +10787,12 @@ h6 {
   display: block;
 }
 
+.landing-h1.error {
+  font-size: 100px;
+  line-height: normal;
+  margin-bottom: 0;
+}
+
 .landing-sub {
   height: 17px;
   position: relative;
@@ -10797,6 +10803,11 @@ h6 {
   line-height: 95%;
   display: block;
   color: #DADCE0;
+}
+
+.landing-sub.error {
+  font-size: 26px;
+  margin-top: 0;
 }
 
 .card-panel.index-panel h1 {
@@ -10929,6 +10940,28 @@ h6 {
           animation-duration: 0.5s;
   -webkit-animation-fill-mode: forwards;
           animation-fill-mode: forwards;
+}
+
+.errorlink {
+  color: white;
+}
+
+.errorlink:hover {
+  -webkit-animation-name: icon-link-hovers;
+          animation-name: icon-link-hovers;
+  -webkit-animation-duration: 0.5s;
+          animation-duration: 0.5s;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+}
+
+.errorlinks {
+  font-size: 26px;
+  font-weight: bold;
+}
+
+.errorlinks p {
+  margin: 0;
 }
 
 .banner-success {

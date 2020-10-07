@@ -42,11 +42,7 @@
     <li>
         <div class="user-view shadowed">
             <div class="background">
-
-                <img id='user-bg-img'
-                     class="lozad"
-                     data-src="@if(Cookie::get('theme') == 'dark')  https://cdn.driedsponge.net/img/nav/dark_sidenav_bg.webp @else https://cdn.driedsponge.net/img/nav/light_sidenav_bg.webp @endif"
-                     alt="Background image">
+                <img id='user-bg-img' src="https://cdn.driedsponge.net/img/nav/dark_sidenav_bg.webp" alt="Background image">
             </div>
             @guest
                 <a href="{{route('login')}}"><img alt="sign in with steam"
