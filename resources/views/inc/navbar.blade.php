@@ -16,7 +16,7 @@
             </div>
             <ul class="right hide-on-med-and-down">
                 <li><a href="{{route('pages.index')}}">Projects</a></li>
-                <li><a href="{{route('pages.index')}}">Advertise</a></li>
+{{--                <li><a href="{{route('pages.index')}}">Advertise</a></li>--}}
                 @guest
                     <li><a href="{{route('login')}}"><img style="vertical-align:middle" class="responsive-img"
                                                           alt="sign in with steam"
@@ -58,7 +58,7 @@
     </li>
     <li><a class="subheader">General</a></li>
     <li><a class="waves-effect" href="#!"><i class="material-icons">developer_board</i>Projects</a></li>
-    <li><a class="waves-effect" href="#!"><i class="material-icons">open_in_browser</i>Advertise</a></li>
+{{--    <li><a class="waves-effect" href="#!"><i class="material-icons">open_in_browser</i>Advertise</a></li>--}}
     @auth
         <li>
             <div class="divider"></div>
