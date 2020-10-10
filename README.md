@@ -1,6 +1,8 @@
 ## About
 
 This is the source code for my website [DriedSponge.net](https://driedsponge.net). You might be here just to take a look. If you really want to contribute you can, just make a pull request.
+
+In case you could not tell, this site uses the laravel framework.
 ## Security Vulnerabilities
 If you find any security issues please let me know or create an issue .
 
