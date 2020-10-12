@@ -20,5 +20,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::get('/source-query/all', 'Api\SourceQueryApi@GetAll')->middleware('ApiKey');
 Route::get('/source-query/info', 'Api\SourceQueryApi@Info')->middleware('ApiKey');
 Route::get('/walrus/facts', 'Api\Walrus@Facts')->middleware('ApiKey');
+Route::get('/github/webhook', 'Api\Github@Webhook')->middleware('ApiKey');
 
 
