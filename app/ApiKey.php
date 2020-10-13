@@ -29,5 +29,12 @@ class ApiKey extends Model
         $this->current_usage = $current;
         $this->save();
     }
+    public static function authed($apikey){
+        $keys = ApiKey::all()->where('api_token', $apikey)->count();
+        if ($keys == 1) {
+            return true;
+        }
+        return false;
+    }
 
 }

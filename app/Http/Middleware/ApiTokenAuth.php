@@ -21,8 +21,8 @@ class ApiTokenAuth
         if ($request->get('api_token') == '' and $request->header('HTTP_X_HUB_SIGNATURE') == '' ) {
             return response()->json(['success' => false,'message' => 'Unauthenticated'],401);
         } else {
-            $keys = ApiKey::all()->where('api_token', $request->get('api_token'))->count();
-            if ($keys != 1) {
+            $keys = ApiKey::authed($request->get('api_token'));
+            if (!$keys) {
                 return response()->json(['success' => false,'message' => 'Unauthenticated'],401);
             } else {
                 return $next($request);
