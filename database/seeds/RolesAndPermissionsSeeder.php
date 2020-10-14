@@ -56,7 +56,10 @@ class RolesAndPermissionsSeeder extends Seeder
             'SourceQuery',
 
             #WalrusAPI
-            'WalrusFacts'
+            'WalrusFacts',
+
+            #GitHub
+            'GitHubWebhook'
 
         ];
         $apipermissions = collect($arrayOfApiPermissionNames)->map(function ($permission) {

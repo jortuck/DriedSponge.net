@@ -18,11 +18,10 @@ class ApiTokenAuth
      */
     public function handle($request, Closure $next)
     {
-        if ($request->get('api_token') == '' and $request->header('HTTP_X_HUB_SIGNATURE') == '' ) {
+        if ($request->get('api_token') == ''){
             return response()->json(['success' => false,'message' => 'Unauthenticated'],401);
         } else {
-            $keys = ApiKey::all()->where('api_token', $request->get('api_token'))->count();
-            if ($keys != 1) {
+            if (!ApiKey::authed($request->get('api_token'))) {
                 return response()->json(['success' => false,'message' => 'Unauthenticated'],401);
             } else {
                 return $next($request);

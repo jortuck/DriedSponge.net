@@ -74,8 +74,8 @@
         </form>
       </div>
     <script>
-        $(document).ready(function() {
-            $('textarea, input[data-length]').characterCounter();
+        $(()=>{
+            //$('textarea, input[data-length]').characterCounter();
         });
         $('#create-alert').submit(function(e) {
             e.preventDefault()
@@ -86,9 +86,9 @@
                     url: '{{route('alerts.store')}}',
                     data: {
                         message: $("#message").val(),
-                        twitter: $("#twitter").is(":checked"),
-                        website: $("#website").is(":checked"),
-                        discord: $("#discord").is(":checked")
+                        twitter: $("#twitter").check(),
+                        website: $("#website").check(),
+                        discord: $("#discord").check()
                     }
                 })
                 .then(function(response) {
