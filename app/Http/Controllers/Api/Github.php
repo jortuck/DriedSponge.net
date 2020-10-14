@@ -8,19 +8,34 @@ use Illuminate\Http\Request;
 
 class Github extends Controller
 {
+    function SendGitEmbed($embed)
+    {
+        $request = json_encode([
+            "content" => "",
+            "embeds" => [$embed]
+        ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
+        $ch = curl_init(env('GUTHUB_DISCORD_WEBHOOKURL'));
+        curl_setopt_array($ch, [
+            CURLOPT_POST => 1,
+            CURLOPT_FOLLOWLOCATION => 1,
+            CURLOPT_HTTPHEADER => array("Content-type: application/json"),
+            CURLOPT_POSTFIELDS => $request,
+            CURLOPT_RETURNTRANSFER => 1
+        ]);
+        curl_exec($ch);
+    }
     function Webhook(Request $request)
     {
-        $apikey = $request->header('HTTP_X_HUB_SIGNATURE');
+        $apikey = $request->header('X-Hub-Signature');
         if ($apikey != null) {
             $postBody = file_get_contents('php://input');
             if ($apikey == 'sha1=' . hash_hmac('sha1', $postBody, env('GITHUB_WEBHOOK_SECRET'), false)) {
                 if ($request->post('payload') != null) {
                     $data = json_decode($request->post('payload'), true);
-                    $config = $data['config'];
                     $repo = $data['repository'];
                     $owner = $repo['owner'];
                     $sender = $data['sender'];
-                    switch ($request->header('HTTP_X_GITHUB_EVENT')) {
+                    switch ($request->header('X-GitHub-Event')) {
                         case "push":
                             $commits = $data['commits'];
                             $fields = array();
@@ -45,16 +60,17 @@ class Github extends Controller
                                     "fields" => $fields,
                                     "footer" => array("text" => "Powered by myself")
                                 );
-                                return response()->json(['success' => true, 'message' => 'No payload attached'], 200);
+                                $this->SendGitEmbed($embed);
+                                return response()->json(['success' => true, 'message' => 'Push webhook success'], 200);
 
                             }
                     }
                 }
                 return response()->json(['success' => false, 'message' => 'No payload attached'], 200);
             } else {
-                return response()->json(['success' => false, 'message' => 'Authenticated'], 403);
+                return response()->json(['success' => false, 'message' => 'Unauthorized'], 403);
             }
         }
-        return response()->json(['success' => false, 'message' => 'Unauthenticated'], 401);
+        return response()->json(['success' => false, 'message' =>  "Unauthenticated"], 401);
     }
 }
