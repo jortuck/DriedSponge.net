@@ -48,7 +48,7 @@ class Github extends Controller
                                     } else {
                                         $value = "([`Link`]($commtlink)) " . $commit['message'];
                                     }
-                                    array_push($fields, array("name" => "Commit from " . $commit['committer']['username'] . " - " . date("n/j/Y g:i A", strtotime($commit['timestamp'])), "value" => $value));
+                                    array_push($fields, array("name" =>$commit['committer']['username'] . " - " . date("n/j/Y g:i A", strtotime($commit['timestamp'])), "value" => $value));
                                 }
                                 $embed = array(
                                     "author" => array("name" => $sender['login'], "icon_url" => $sender['avatar_url'], "url" => $sender['html_url']),
