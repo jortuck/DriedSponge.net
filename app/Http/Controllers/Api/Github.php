@@ -8,6 +8,22 @@ use Illuminate\Http\Request;
 
 class Github extends Controller
 {
+    function SendGitEmbed($embed)
+    {
+        $request = json_encode([
+            "content" => "",
+            "embeds" => [$embed]
+        ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
+        $ch = curl_init(env('GUTHUB_DISCORD_WEBHOOKURL'));
+        curl_setopt_array($ch, [
+            CURLOPT_POST => 1,
+            CURLOPT_FOLLOWLOCATION => 1,
+            CURLOPT_HTTPHEADER => array("Content-type: application/json"),
+            CURLOPT_POSTFIELDS => $request,
+            CURLOPT_RETURNTRANSFER => 1
+        ]);
+        curl_exec($ch);
+    }
     function Webhook(Request $request)
     {
         $apikey = $request->header('X-Hub-Signature');
@@ -44,6 +60,7 @@ class Github extends Controller
                                     "fields" => $fields,
                                     "footer" => array("text" => "Powered by myself")
                                 );
+                                $this->SendGitEmbed($embed);
                                 return response()->json(['success' => true, 'message' => 'Push webhook success'], 200);
 
                             }
