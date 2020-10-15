@@ -34,6 +34,8 @@ class Github extends Controller
                     $repo = $data['repository'];
                     $sender = $data['sender'];
                     switch ($request->header('X-GitHub-Event')) {
+                        default:
+                            return response()->json(['success' => false, 'message' => 'No action for this method'], 200);
                         case "push":
                             $commits = $data['commits'];
                             $fields = array();
@@ -49,15 +51,32 @@ class Github extends Controller
                                 }
                                 $embed = array(
                                     "author" => array("name" => $sender['login'], "icon_url" => $sender['avatar_url'], "url" => $sender['html_url']),
-                                    "title" => "Pushed " . $ccount . " commits to " . $repo['name'],
+                                    "title" => "Pushed " . $ccount . " commits to " . '['.$repo['name'].':'.explode('/',$data['ref'])[2].']',
                                     "type" => "rich",
-                                    "url" => $repo['html_url'],
+                                    "url" => $data['compare'],
                                     "color" => hexdec("FCA326"),
                                     "timestamp" => date("c"),
                                     "fields" => $fields,
                                 );
                                 $this->SendGitEmbed($embed);
                                 return response()->json(['success' => true, 'message' => 'Push webhook success'], 200);
+                            }
+                            break;
+                        case 'pull_request':
+                            if($data['action']=='closed' && !$data['pull_request']['merged']){
+                                $commits = $data['commits'];
+                                $ccount = count($commits);
+                                $embed = array(
+                                    "author" => array("name" => $sender['login'], "icon_url" => $sender['avatar_url'], "url" => $sender['html_url']),
+                                    "title" => "Merged " . $ccount . " commits  to " . $repo['name'],
+                                    "type" => "rich",
+                                    "url" => $data['pull_request']['html_url'],
+                                    "color" => hexdec("FCA326"),
+                                    "timestamp" => date("c"),
+                                );
+                                $this->SendGitEmbed($embed);
+                                return response()->json(['success' => true, 'message' => 'Pull request webhook success'], 200);
+
                             }
                     }
                 }
