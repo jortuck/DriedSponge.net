@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\ApiKey;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -33,35 +32,50 @@ class Github extends Controller
                 if ($request->post('payload') != null) {
                     $data = json_decode($request->post('payload'), true);
                     $repo = $data['repository'];
-                    $owner = $repo['owner'];
                     $sender = $data['sender'];
                     switch ($request->header('X-GitHub-Event')) {
+                        default:
+                            return response()->json(['success' => false, 'message' => 'No action for this method'], 200);
                         case "push":
                             $commits = $data['commits'];
                             $fields = array();
                             $ccount = count($commits);
                             if ($ccount != 0) {
                                 foreach ($commits as $commit) {
-                                    $commtlink = $commit['url'];
                                     if (strpos($commit['message'], "!hide") !== false) {
                                         $value = "*Commit message hidden*";
                                     } else {
-                                        $value = "([`Link`]($commtlink)) " . $commit['message'];
+                                        $value = $commit['message'];
                                     }
-                                    array_push($fields, array("name" => "Commit from " . $commit['committer']['username'] . " - " . date("n/j/Y g:i A", strtotime($commit['timestamp'])), "value" => $value));
+                                    array_push($fields, array("name" =>$commit['committer']['username'] . " - " . date("n/j/Y g:i A", strtotime($commit['timestamp'])), "value" => $value));
                                 }
                                 $embed = array(
                                     "author" => array("name" => $sender['login'], "icon_url" => $sender['avatar_url'], "url" => $sender['html_url']),
-                                    "title" => "Pushed " . $ccount . " commits to " . $repo['name'],
+                                    "title" => "Pushed " . $ccount . " commits to " . '['.$repo['name'].':'.explode('/',$data['ref'])[2].']',
                                     "type" => "rich",
-                                    "url" => $repo['html_url'],
+                                    "url" => $data['compare'],
                                     "color" => hexdec("FCA326"),
                                     "timestamp" => date("c"),
                                     "fields" => $fields,
-                                    "footer" => array("text" => "Powered by myself")
                                 );
                                 $this->SendGitEmbed($embed);
                                 return response()->json(['success' => true, 'message' => 'Push webhook success'], 200);
+                            }
+                            break;
+                        case 'pull_request':
+                            if($data['action']=='closed' && !$data['pull_request']['merged']){
+                                $commits = $data['commits'];
+                                $ccount = count($commits);
+                                $embed = array(
+                                    "author" => array("name" => $sender['login'], "icon_url" => $sender['avatar_url'], "url" => $sender['html_url']),
+                                    "title" => "Merged " . $ccount . " commits  to " . $repo['name'],
+                                    "type" => "rich",
+                                    "url" => $data['pull_request']['html_url'],
+                                    "color" => hexdec("FCA326"),
+                                    "timestamp" => date("c"),
+                                );
+                                $this->SendGitEmbed($embed);
+                                return response()->json(['success' => true, 'message' => 'Pull request webhook success'], 200);
 
                             }
                     }
@@ -73,4 +87,5 @@ class Github extends Controller
         }
         return response()->json(['success' => false, 'message' =>  "Unauthenticated"], 401);
     }
+
 }
