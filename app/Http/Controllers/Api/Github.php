@@ -40,11 +40,10 @@ class Github extends Controller
                             $ccount = count($commits);
                             if ($ccount != 0) {
                                 foreach ($commits as $commit) {
-                                    $commtlink = $commit['url'];
                                     if (strpos($commit['message'], "!hide") !== false) {
                                         $value = "*Commit message hidden*";
                                     } else {
-                                        $value = "([`Link`]($commtlink)) " . $commit['message'];
+                                        $value = $commit['message'];
                                     }
                                     array_push($fields, array("name" =>$commit['committer']['username'] . " - " . date("n/j/Y g:i A", strtotime($commit['timestamp'])), "value" => $value));
                                 }
