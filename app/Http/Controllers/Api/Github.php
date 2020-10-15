@@ -23,6 +23,7 @@ class Github extends Controller
         ]);
         curl_exec($ch);
     }
+
     function Webhook(Request $request)
     {
         $apikey = $request->header('X-Hub-Signature');
@@ -47,11 +48,11 @@ class Github extends Controller
                                     } else {
                                         $value = $commit['message'];
                                     }
-                                    array_push($fields, array("name" =>$commit['committer']['username'] . " - " . date("n/j/Y g:i A", strtotime($commit['timestamp'])), "value" => $value));
+                                    array_push($fields, array("name" => $commit['committer']['username'] . " - " . date("n/j/Y g:i A", strtotime($commit['timestamp'])), "value" => $value));
                                 }
                                 $embed = array(
                                     "author" => array("name" => $sender['login'], "icon_url" => $sender['avatar_url'], "url" => $sender['html_url']),
-                                    "title" => "Pushed " . $ccount . " commits to " . '['.$repo['name'].':'.explode('/',$data['ref'])[2].']',
+                                    "title" => "Pushed " . $ccount . " commits to " . '[' . $repo['name'] . ':' . explode('/', $data['ref'])[2] . ']',
                                     "type" => "rich",
                                     "url" => $data['compare'],
                                     "color" => hexdec("FCA326"),
@@ -61,20 +62,21 @@ class Github extends Controller
                                 $this->SendGitEmbed($embed);
                                 return response()->json(['success' => true, 'message' => 'Push webhook success'], 200);
                             }
-                            break;
-                        case 'pull_request':
-                            if($data['action']=='closed' && !$data['pull_request']['merged']){
-                                $embed = array(
-                                    "author" => array("name" => $sender['login'], "icon_url" => $sender['avatar_url'], "url" => $sender['html_url']),
-                                    "title" => "Merged changes from [".$data['pull_request']['head']['label']."] into [". $data['pull_request']['base']['label']."]",
-                                    "type" => "rich",
-                                    "url" => $data['pull_request']['html_url'],
-                                    "color" => hexdec("FCA326"),
-                                    "timestamp" => date("c"),
-                                );
-                                $this->SendGitEmbed($embed);
-                                return response()->json(['success' => true, 'message' => 'Pull request webhook success'], 200);
-                            }
+                            return response()->json(['success' => false, 'message' => 'Error with payload'], 200);
+//                        case "pull_request":
+//                            if ($data['action'] == 'closed' && $data['pull_request']['merged']) {
+//                                $embed = array(
+//                                    "author" => array("name" => $sender['login'], "icon_url" => $sender['avatar_url'], "url" => $sender['html_url']),
+//                                    "title" => "Merged changes from [" . $data['pull_request']['head']['label'] . "] into [" . $data['pull_request']['base']['label'] . "]",
+//                                    "type" => "rich",
+//                                    "url" => $data['pull_request']['html_url'],
+//                                    "color" => hexdec("FCA326"),
+//                                    "timestamp" => date("c"),
+//                                );
+//                                $this->SendGitEmbed($embed);
+//                                return response()->json(['success' => true, 'message' => 'Pull request webhook success'], 200);
+//                            }
+//                            return response()->json(['success' => true, 'message' => 'Pull request must be closing and merged'], 200);
                     }
                 }
                 return response()->json(['success' => false, 'message' => 'No payload attached'], 200);
@@ -82,7 +84,6 @@ class Github extends Controller
                 return response()->json(['success' => false, 'message' => 'Unauthorized'], 403);
             }
         }
-        return response()->json(['success' => false, 'message' =>  "Unauthenticated"], 401);
+        return response()->json(['success' => false, 'message' => "Unauthenticated"], 401);
     }
-
 }
