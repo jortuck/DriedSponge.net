@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\ApiKey;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -33,7 +32,6 @@ class Github extends Controller
                 if ($request->post('payload') != null) {
                     $data = json_decode($request->post('payload'), true);
                     $repo = $data['repository'];
-                    $owner = $repo['owner'];
                     $sender = $data['sender'];
                     switch ($request->header('X-GitHub-Event')) {
                         case "push":
@@ -58,11 +56,9 @@ class Github extends Controller
                                     "color" => hexdec("FCA326"),
                                     "timestamp" => date("c"),
                                     "fields" => $fields,
-                                    "footer" => array("text" => "Powered by myself")
                                 );
                                 $this->SendGitEmbed($embed);
                                 return response()->json(['success' => true, 'message' => 'Push webhook success'], 200);
-
                             }
                     }
                 }
@@ -73,4 +69,5 @@ class Github extends Controller
         }
         return response()->json(['success' => false, 'message' =>  "Unauthenticated"], 401);
     }
+
 }
