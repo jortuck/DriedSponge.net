@@ -64,11 +64,9 @@ class Github extends Controller
                             break;
                         case 'pull_request':
                             if($data['action']=='closed' && !$data['pull_request']['merged']){
-                                $commits = $data['commits'];
-                                $ccount = count($commits);
                                 $embed = array(
                                     "author" => array("name" => $sender['login'], "icon_url" => $sender['avatar_url'], "url" => $sender['html_url']),
-                                    "title" => "Merged " . $ccount . " commits  to " . $repo['name'],
+                                    "title" => "Merged changes from [".$data['pull_request']['head']['label']."] into [". $data['pull_request']['base']['label']."]",
                                     "type" => "rich",
                                     "url" => $data['pull_request']['html_url'],
                                     "color" => hexdec("FCA326"),
@@ -76,7 +74,6 @@ class Github extends Controller
                                 );
                                 $this->SendGitEmbed($embed);
                                 return response()->json(['success' => true, 'message' => 'Pull request webhook success'], 200);
-
                             }
                     }
                 }
