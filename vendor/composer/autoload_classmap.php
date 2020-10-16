@@ -14,6 +14,7 @@ return array(
     'App\\ContactResponses' => $baseDir . '/app/ContactResponses.php',
     'App\\Exceptions\\Handler' => $baseDir . '/app/Exceptions/Handler.php',
     'App\\Http\\Controllers\\ApiTest' => $baseDir . '/app/Http/Controllers/ApiTest.php',
+    'App\\Http\\Controllers\\Api\\Github' => $baseDir . '/app/Http/Controllers/Api/Github.php',
     'App\\Http\\Controllers\\Api\\SourceQueryApi' => $baseDir . '/app/Http/Controllers/Api/SourceQueryApi.php',
     'App\\Http\\Controllers\\Api\\Walrus' => $baseDir . '/app/Http/Controllers/Api/Walrus.php',
     'App\\Http\\Controllers\\Auth\\ConfirmPasswordController' => $baseDir . '/app/Http/Controllers/Auth/ConfirmPasswordController.php',

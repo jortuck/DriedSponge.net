@@ -733,6 +733,7 @@ class ComposerStaticInitdcaf1edeb7a464470a05f1f1a161fb37
         'App\\ContactResponses' => __DIR__ . '/../..' . '/app/ContactResponses.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
         'App\\Http\\Controllers\\ApiTest' => __DIR__ . '/../..' . '/app/Http/Controllers/ApiTest.php',
+        'App\\Http\\Controllers\\Api\\Github' => __DIR__ . '/../..' . '/app/Http/Controllers/Api/Github.php',
         'App\\Http\\Controllers\\Api\\SourceQueryApi' => __DIR__ . '/../..' . '/app/Http/Controllers/Api/SourceQueryApi.php',
         'App\\Http\\Controllers\\Api\\Walrus' => __DIR__ . '/../..' . '/app/Http/Controllers/Api/Walrus.php',
         'App\\Http\\Controllers\\Auth\\ConfirmPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ConfirmPasswordController.php',
