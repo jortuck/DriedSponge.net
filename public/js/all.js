@@ -1,3 +1,9 @@
+$(()=> {
+    let textNeedCount = $('textarea[data-length], input[data-length]');
+    textNeedCount.selected.forEach((element) => {
+        new M.CharacterCounter(element);
+    })
+})
 window.Validate = function Validate(inputid, showmsg) {
     if (showmsg == null) {
         showmsg = false;
@@ -21,7 +27,7 @@ window.InValidate = function InValidate(inputid, msg) {
     var feedbackid = $(inputid).attr("feedback");
     $(inputid).addClass("is-invalid")
     $(feedbackid).addClass("invalid-feedback")
-    $(feedbackid).html(msg);
+    $(feedbackid);
 }
 
 window.Loading = function Loading(show, id) {

@@ -11001,6 +11001,10 @@ h6 {
   padding-top: 45px;
 }
 
+.bg-primary {
+  background-color: #0E1013;
+}
+
 .bg-secondary {
   background-color: #202226;
 }
@@ -11152,5 +11156,76 @@ h6 {
   border-bottom: 1px solid white !important;
   box-shadow: 0 1px 0 0 white !important;
   color: white;
+}
+
+.logo-wrapper {
+  margin: 5px 0;
+}
+
+.nav-drop-arrow-right {
+  padding-left: 0 !important;
+  margin-left: 0 !important;
+}
+
+.nav-login-img {
+  vertical-align: middle;
+}
+
+.page-footer {
+  padding: 0;
+}
+
+.footer-text a {
+  color: white;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.footer-text {
+  padding: 30px 0;
+}
+
+@-webkit-keyframes white-blue-link-hover {
+  from {
+    color: white;
+  }
+
+  to {
+    color: #62A1EC;
+  }
+}
+
+@keyframes white-blue-link-hover {
+  from {
+    color: white;
+  }
+
+  to {
+    color: #62A1EC;
+  }
+}
+
+.white-blue-link {
+  color: white;
+}
+
+.white-blue-link:hover {
+  -webkit-animation-name: white-blue-link-hover;
+          animation-name: white-blue-link-hover;
+  -webkit-animation-duration: 0.5s;
+          animation-duration: 0.5s;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+}
+
+html,
+body {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+main {
+  flex: 1 0 auto;
 }
 

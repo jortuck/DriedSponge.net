@@ -12,7 +12,7 @@
             <p id="succtext"></p>
         </div>
         <div class="card-action">
-            <a href="{{route('roles.create')}}">Create Another Role</a>
+            <a href="#" onclick="$('#create-role').show().formReset();$('#success-message').addClass('d-none');">Create Another Role</a>
             <a href="{{route('roles.index')}}">Return To Roles Page</a>
         </div>
     </div>

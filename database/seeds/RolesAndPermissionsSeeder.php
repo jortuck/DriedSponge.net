@@ -70,6 +70,6 @@ class RolesAndPermissionsSeeder extends Seeder
 
         #Create Default Roles
         Role::create(['name' => 'Owner'])->givePermissionTo(['*']);
-        Role::create(['name' => 'user']);
+        Role::create(['name' => 'User']);
     }
 }

@@ -170,13 +170,9 @@
     </div>
     <script>
         $(()=>{
-             //const textNeedCount = $('textarea, input[data-length]');
-             //const textNeedCountInstance = new M.CharacterCounter(textNeedCount);
+            AOS.init();
         });
         const observer = lozad(); // lazy loads elements with default selector as '.lozad'
         observer.observe();
-        $(()=>{
-            AOS.init();
-        })
     </script>
 @endsection
