@@ -3,14 +3,15 @@
     @include('inc.head')
     <body class="bg-primary">
         @include('inc.navbar')
-    <div>
+    <main>
         <div class="container">
             @include('inc.messages')
         </div>
         @yield('content')
-    </div>
+    </main>
     <script>
         M.AutoInit();
     </script>
+        @include('inc.footer')
     </body>
 </html>
