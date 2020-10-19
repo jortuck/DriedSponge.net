@@ -11158,3 +11158,16 @@ h6 {
   color: white;
 }
 
+.logo-wrapper {
+  margin: 5px 0;
+}
+
+.nav-drop-arrow-right {
+  padding-left: 0 !important;
+  margin-left: 0 !important;
+}
+
+.nav-login-img {
+  vertical-align: middle;
+}
+
