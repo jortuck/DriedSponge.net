@@ -74,23 +74,23 @@
                         if (response.data.success) {
                             AlertMaterializeSuccess(response.data.success);
                             if (second === "*") {
-                                $(`input[data-group="${group}"]`).prop('checked', response.data.status);
+                                $(`input[data-group="${group}"]`).checked(response.data.status);
                                 if (response.data.status === true) {
-                                    $(`input[data-group="${group}"]`).prop('disabled', true);
-                                    $(`input[data-group="${group}"][data-second='*']`).prop('disabled', false);
+                                    $(`input[data-group="${group}"]`).disabled(true);
+                                    $(`input[data-group="${group}"][data-second='*']`).disabled(false);
                                 } else {
-                                    $(`input[data-group="${group}"]`).prop('disabled', false);
+                                    $(`input[data-group="${group}"]`).disabled(false);
                                 }
                             } else if (group === "*") {
-                                $('input[type="checkbox"]').prop('checked', response.data.status);
+                                $('input[type="checkbox"]').checked(response.data.status);
                                 if (response.data.status === true) {
-                                    $('input[type="checkbox"]').prop('disabled', true);
-                                    $('input[data-group="*"]').prop('disabled', false);
+                                    $('input[type="checkbox"]').disabled(true);
+                                    $('input[data-group="*"]').disabled(false);
                                 } else {
-                                    $('input[type="checkbox"]').prop('disabled', false);
+                                    $('input[type="checkbox"]').disabled(false);
                                 }
                             } else {
-                                $(`input[data-name="${name}"]`).prop('checked', response.data.status);
+                                $(`input[data-name="${name}"]`).checked(response.data.status);
                             }
                         } else {
                             AlertMaterializeError(response.data.error);
