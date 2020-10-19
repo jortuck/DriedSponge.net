@@ -45,7 +45,7 @@
                             url: '/manage/permissions',
                             data: {
                                 perm_name: $("#perm_name").val(),
-                                api_perm: $('#api_perm').check()
+                                api_perm: $('#api_perm').checked()
                             }
                         })
                         .then(function(response) {
