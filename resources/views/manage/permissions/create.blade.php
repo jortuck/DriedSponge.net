@@ -11,7 +11,7 @@
                     <p id="succtext"></p>
                 </div>
                 <div class="card-action">
-                    <a href="{{route('permissions.create')}}">Create Another Permission</a>
+                    <a href="#" onclick="$('#create-perm').show().formReset();$('#success-message').addClass('d-none');">Create Another Permission</a>
                     <a href="{{route('permissions.index')}}">Return To Permissions Page</a>
                 </div>
             </div>
