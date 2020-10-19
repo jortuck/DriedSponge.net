@@ -12,7 +12,7 @@
             <p id="succtext"></p>
         </div>
         <div class="card-action">
-            <a href="#" onclick="CreateNewResponse('#create-alert')">Post Another Alert</a>
+            <a href="#" onclick="$('#create-alert').show().formReset();$('#success-message').addClass('d-none');">Post Another Alert</a>
             <a href="{{route('alerts.index')}}">Return To Alerts Page</a>
         </div>
     </div>
@@ -86,9 +86,9 @@
                     url: '{{route('alerts.store')}}',
                     data: {
                         message: $("#message").val(),
-                        twitter: $("#twitter").check(),
-                        website: $("#website").check(),
-                        discord: $("#discord").check()
+                        twitter: $("#twitter").checked(),
+                        website: $("#website").checked(),
+                        discord: $("#discord").checked()
                     }
                 })
                 .then(function(response) {
