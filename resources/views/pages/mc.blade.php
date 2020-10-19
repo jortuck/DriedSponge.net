@@ -27,7 +27,7 @@
                         }
                     </style>
                     @if($query['success'])
-                        <div class="preview_zone" id="preview_zone" style="">
+                        <div class="preview_zone" id="preview_zone">
                             <div class="server-name">Gaming Island <span class="ping">{{$query['info']['players']['online']}}<span>/</span>{{$query['info']['players']['max']}}</span>
                             </div>
                             <span class="preview_motd">
@@ -63,7 +63,7 @@
                         </span>
                         </div>
                     @else
-                        <div class="preview_zone" id="preview_zone" style="">
+                        <div class="preview_zone" id="preview_zone">
                             <div class="server-name">Gaming Island</div>
                             <span class="preview_motd">
                                 <span style="color: #AA0000">Can't connect to server</span>
