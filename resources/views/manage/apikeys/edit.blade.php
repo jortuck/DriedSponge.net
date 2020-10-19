@@ -119,9 +119,10 @@
                                 AlertMaterializeError(response.data.error);
                             }
                             MaterialValidate('#key_name')
-                            $.each(response.data, function (key, value) {
-                                MaterialInvalidate('#' + key, value)
-                            });
+                            var r = response.data;
+                            for (var key in r){
+                                MaterialInvalidate('#' + key, r[key])
+                            }
                         }
                     });
             })
