@@ -11001,6 +11001,10 @@ h6 {
   padding-top: 45px;
 }
 
+.bg-primary {
+  background-color: #0E1013;
+}
+
 .bg-secondary {
   background-color: #202226;
 }
