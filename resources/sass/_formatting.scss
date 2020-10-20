@@ -296,3 +296,9 @@ h1, h2, h3, h4, h5, h6{
 .errorlinks p{
     margin: 0;
 }
+.loading-thing{
+    z-index: 10;
+    background-color: black;
+    opacity: 75%;
+    position: absolute;
+}

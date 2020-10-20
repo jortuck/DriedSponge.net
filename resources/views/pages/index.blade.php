@@ -54,7 +54,6 @@
         <h2 class="center-align white-text " style="font-weight: 600;">CONTACT ME</h2>
         <div class="container">
             <p class="center-align flow-text white-text">Is there something I can do for you, or do you just have a general inquiry? Fill out the form below!</p>
-            @include('inc.FormMsg')
             <div class="card bg-secondary d-none" id="success-message">
                 <div class="card-content">
                     <h3 class="roboto white-text">Success!</h3>
@@ -64,6 +63,14 @@
                 </div>
             </div>
             <div class="card bg-secondary">
+                <div id="loading" class="d-none" style="height: 100%; width: 100%">
+                    <div class="loading-thing" style="height: 100%; width: 100%">
+
+                    </div>
+                    <div  class="valign-wrapper center-align" style="z-index: 11;vertical-align: middle;position: absolute; color: white; text-align: center;height: 100%; width: 100%;">
+                        <i style="width: 100%" class="fa-3x fas fa-spinner fa-spin"></i>
+                    </div>
+                </div>
                 <form id="contact-form">
                     <div class="card-content row">
                         <h2 class="white-text roboto cent-on-med-down">CONTACT</h2>
@@ -97,7 +104,6 @@
                 <script type="text/javascript">
                     $('#contact-form').submit(function(e) {
                         e.preventDefault()
-                        $(this).hide()
                         $('#loading').removeClass('d-none');
                         axios({
                             method: 'post',

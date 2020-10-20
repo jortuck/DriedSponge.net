@@ -70,10 +70,8 @@ window.getCookie = function getCookie(cname) {
 }
 
 window.MaterialInvalidate = function MaterialInvalidate(id, msg) {
-    console.log(msg)
-    $(`${id} + label + span`).attr('data-error', msg)
-    $(id).removeClass('valid')
-    $(id).addClass('invalid')
+    $(`${id} + label + span`).attr("data-error",msg)
+    $(id).removeClass('valid').addClass('invalid')
 }
 
 window.MaterialValidate = function MaterialValidate(id) {
