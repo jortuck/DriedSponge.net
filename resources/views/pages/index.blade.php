@@ -63,46 +63,67 @@
                 </div>
             </div>
             <div class="card bg-secondary">
-                <div id="loading" class="d-none" style="height: 100%; width: 100%">
-                    <div class="loading-thing" style="height: 100%; width: 100%">
-
-                    </div>
-                    <div  class="valign-wrapper center-align" style="z-index: 11;vertical-align: middle;position: absolute; color: white; text-align: center;height: 100%; width: 100%;">
-                        <i style="width: 100%" class="fa-3x fas fa-spinner fa-spin"></i>
-                    </div>
-                </div>
-                <form id="contact-form">
+                <form action="{{route('contact.send')}}" method="post" id="contact-form">
                     <div class="card-content row">
                         <h2 class="white-text roboto cent-on-med-down">CONTACT</h2>
                         <div class="input-field on-dark col s12 m6 l6">
-                            <input id="your_name" type="text" class="validate" maxlength="150">
+                            <input id="your_name" name="your_name" type="text" class="validate" maxlength="150">
                             <label for="your_name">Your Name *</label>
                             <span id="your_name-msg" class="helper-text" data-error="" data-success=""></span>
                         </div>
                         <div class="input-field on-dark col s12 m6 l6">
-                            <input id="email" maxlength="150" type="text" class="validate">
+                            <input id="email" name="email" maxlength="150" type="text" class="validate">
                             <label for="email">Email *</label>
                             <span id="email-msg" class="helper-text" data-error="" data-success=""></span>
                         </div>
                         <div class="input-field on-dark col s12 m12 l12">
-                            <input data-valtarget="send" data-validation="required max=256" id="subject" type="text" class="validate" maxlength="256" data-length="256">
+                            <input id="subject" name="subject" type="text" class="validate" maxlength="256" data-length="256">
                             <label for="subject">Subject *</label>
                             <span id="subject-msg" class="helper-text" data-error="" data-success="" ></span>
                         </div>
                         <div class="input-field on-dark col s12 m12 l12">
-                            <textarea  id="message" class="materialize-textarea validate" maxlength="2000" data-length="2000"></textarea>
+                            <textarea id="message" name="message" class="materialize-textarea validate" maxlength="2000" data-length="2000"></textarea>
                             <label for="message">Message *</label>
                             <span id="message-msg" class="helper-text" data-error="" data-success="" ></span>
                         </div>
                         <div class="col s12 m12 l12">
                             <div id="captcha" class="captcha"></div>
-                            <input type="hidden" value="" id="captcha_token">
+                            <input type="hidden" value="" name="captcha_token">
                             <button id="send" class="btn-large button-primary d-none" type="submit">SUBMIT</button>
                         </div>
                     </div>
                 </form>
                 <script type="text/javascript">
-                    $('#contact-form').submit(function(e) {
+                    $(() => {
+                        $('#contact-form').formInit({
+                            callback: function (response) {
+                                if (response.data.success) {
+                                    $("#contact-form").hide();
+                                    $("#succtext").html(response.data.success);
+                                    $('#success-message').removeClass('d-none')
+                                } else {
+                                    if (response.data.error) {
+                                        AlertMaterializeError(response.data.error);
+                                    }
+                                    if (response.data.captcha) {
+                                        RegenCap()
+                                        AlertMaterializeError(response.data.captcha);
+                                    }
+                                    var r = response.data;
+                                    for (var key in r){
+                                        MaterialInvalidate(key, r[key][0],true)
+                                    }
+                                }
+                            },
+                            loader: {
+                                enabled:true,
+                                fullScreen:false,
+                                destroyLoader:true,
+                                theme:"loading-cover-dark"
+                            },
+                        });
+                    })
+                    $('#fafa').submit(function(e) {
                         e.preventDefault()
                         $('#loading').removeClass('d-none');
                         axios({
@@ -144,7 +165,7 @@
                     }
                     VerifyCallback = function(response) {
                         $('#send').removeClass('d-none')
-                        $('#captcha_token').attr('value',response)
+                        $('[name="captcha_token"]').attr('value',response)
                         $('#captcha').addClass('d-none')
                     }
                     ExpiredCallback = function (response) {

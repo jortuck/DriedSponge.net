@@ -69,9 +69,14 @@ window.getCookie = function getCookie(cname) {
     return "";
 }
 
-window.MaterialInvalidate = function MaterialInvalidate(id, msg) {
-    $(`${id} + label + span`).attr("data-error",msg)
-    $(id).removeClass('valid').addClass('invalid')
+window.MaterialInvalidate = function MaterialInvalidate(id, msg, isname) {
+    if(isname){
+        $(`[name="${id}"] + label + span`).attr("data-error",msg)
+        $(`[name="${id}"]`).removeClass('valid').addClass('invalid')
+    }else{
+        $(`${id} + label + span`).attr("data-error",msg)
+        $(id).removeClass('valid').addClass('invalid')
+    }
 }
 
 window.MaterialValidate = function MaterialValidate(id) {

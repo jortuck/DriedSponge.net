@@ -21,5 +21,9 @@ Route::get('/source-query/all', 'Api\SourceQueryApi@GetAll')->middleware('ApiKey
 Route::get('/source-query/info', 'Api\SourceQueryApi@Info')->middleware('ApiKey');
 Route::get('/walrus/facts', 'Api\Walrus@Facts')->middleware('ApiKey');
 Route::post('/github/webhook', 'Api\Github@Webhook');
+Route::post('/test/post',function (){
+    sleep(3);
+    return response()->json(["test"=>"test","test2"=>"test2"]);
+});
 
 
