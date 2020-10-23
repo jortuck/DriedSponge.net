@@ -123,41 +123,6 @@
                             },
                         });
                     })
-                    $('#fafa').submit(function(e) {
-                        e.preventDefault()
-                        $('#loading').removeClass('d-none');
-                        axios({
-                            method: 'post',
-                            url: '{{route('contact.send')}}',
-                            data: {
-                                captcha_token: $("#captcha_token").val(),
-                                your_name: $("#your_name").val(),
-                                email: $("#email").val(),
-                                subject:$("#subject").val(),
-                                message:$('#message').val()
-                            }
-                        })
-                        .then(function(response) {
-                            $('#loading').addClass('d-none');
-                            if (response.data.success) {
-                                $("#succtext").html(response.data.success);
-                                $('#success-message').removeClass('d-none')
-                            } else {
-                                $('#contact-form').show()
-                                if (response.data.error) {
-                                    AlertMaterializeError(response.data.error);
-                                }
-                                if (response.data.captcha) {
-                                    RegenCap()
-                                    AlertMaterializeError(response.data.captcha);
-                                }
-                                var r = response.data;
-                                for (var key in r){
-                                   MaterialInvalidate('#' + key, r[key])
-                                }
-                            }
-                        });
-                    })
                     function Reset(){
                         RegenCap()
                         $('#contact-form').show().formReset();
