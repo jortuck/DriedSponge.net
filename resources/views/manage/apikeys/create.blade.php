@@ -17,11 +17,11 @@
         </div>
     </div>
     <div class="card">
-        <form  id='create-key' class="col s6">
+        <form action="{{route('api.store')}}" method="post"  id='create-key' class="col s6">
         <div class="card-content">
           <div class="row">
             <div class="input-field col s12">
-              <input  id="key_name" type="text" class="validate" maxlength="50">
+              <input  id="key_name" name="key_name" type="text" class="validate" maxlength="50">
                 <label  for="key_name">Key Name</label>
                 <span id="role_name-msg" class="helper-text" data-error="" data-success=""></span>
             </div>
@@ -35,20 +35,15 @@
         </form>
       </div>
     <script>
-        $('#create-key').submit(function(e) {
-            e.preventDefault()
-            $(this).hide()
-            $('#loading').removeClass('d-none');
-            axios({
-                    method: 'post',
-                    url: '{{route('api.store')}}',
-                    data: {
-                        key_name: $("#key_name").val()
-                    }
-                })
-                .then(function(response) {
-                    $('#loading').addClass('d-none');
+        function Reset(){
+            $('#success-message').addClass("d-none");
+            $('#create-key').show().formReset();
+        }
+        $(() => {
+            $('#create-key').formInit({
+                callback: function (response) {
                     if (response.data.success) {
+                        $("#create-key").hide();
                         $("#succtext").html(response.data.success);
                         $('#success-message').removeClass('d-none')
                     } else {
@@ -56,17 +51,20 @@
                         if (response.data.error) {
                             window.AlertError(response.data.error);
                         }
-                        window.MaterialValidate('#key_name')
-                        $.each(response.data, function(key, value) {
-                            window.MaterialInvalidate('#' + key, value)
-                        });
+                        var r = response.data;
+                        for (var key in r){
+                            MaterialInvalidate(key, r[key][0],true)
+                        }
                     }
-                });
+                },
+                loader: {
+                    enabled:true,
+                    fullScreen:false,
+                    destroyLoader:true,
+                    theme:"loading-cover-dark"
+                },
+            });
         })
-        function Reset(){
-            $('#success-message').addClass("d-none");
-            $('#create-key').show().formReset();
-        }
     </script>
 </div>
 <script>
