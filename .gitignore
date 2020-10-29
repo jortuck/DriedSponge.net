@@ -13,3 +13,6 @@ yarn-error.log
 sendgrid.env
 .idea
 .vscode
+.phpstorm.meta.php
+.styleci.yml
+phpunit.xml
