@@ -15,4 +15,3 @@ sendgrid.env
 .vscode
 .phpstorm.meta.php
 .styleci.yml
-phpunit.xml
