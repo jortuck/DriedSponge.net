@@ -17,7 +17,6 @@ services:
         volumes:
             - ./src:/var/www/html
             - ./nginx/default:/etc/nginx/conf.d/default.conf
-            - ./ssl:/etc/ssl
 
     mysql:
         image: mysql:5.7.22
@@ -72,7 +71,7 @@ services:
             - nginx
     artisan:
         depends_on:
-            - nginx
+            - composer
         networks:
             - laravel
         container_name: dnet_artisan
