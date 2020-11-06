@@ -1,2 +1,4 @@
 .phpstorm.meta.php
 .idea
+mysql.env
+/mysql/
