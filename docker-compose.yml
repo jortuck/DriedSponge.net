@@ -1,4 +1,4 @@
-version: '3'
+version: '3.8'
 
 networks:
     laravel:
@@ -19,7 +19,7 @@ services:
             - ./nginx/default:/etc/nginx/conf.d/default.conf
 
     mysql:
-        image: mysql:5.7.22
+        image: mysql:latest
         networks:
             - laravel
         restart: unless-stopped
@@ -31,7 +31,6 @@ services:
         env_file:
           - mysql.env
         container_name: mysql
-
 
     php:
         networks:
