@@ -11,7 +11,7 @@ services:
             - mysql
         networks:
             - laravel
-        container_name: nginx_dnet
+        container_name: dnet_nginx
         ports:
             - "3200:80"
         volumes:
@@ -30,12 +30,12 @@ services:
             - ./mysql:/var/lib/mysql
         env_file:
           - mysql.env
-        container_name: mysql_dnet
+        container_name: mysql
 
     php:
         networks:
             - laravel
-        container_name: php_dnet
+        container_name: dnet_php
         environment:
             - COMPOSER_MEMORY_LIMIT=-1
         ports:
@@ -45,6 +45,7 @@ services:
         build:
             context: .
             dockerfile: ./dockerfiles/php.dockerfile
+
     composer:
         networks:
             - laravel
@@ -52,21 +53,27 @@ services:
             - ./src:/app
         depends_on:
             - nginx
-        container_name: composer_dnet
+        container_name: dnet_composer
         build:
             context: .
             dockerfile: ./dockerfiles/composer.dockerfile
     npm:
-      image: node:13.7
-      container_name: npm_dnet
-      volumes:
-        - ./src:/var/www/html
-      working_dir: /var/www/html
-      entrypoint: [ 'npm' ]
-    artisan:
+        image: node:15.1.0-alpine3.10
         networks:
             - laravel
-        container_name: artisan_dnet
+        volumes:
+            - ./src:/app
+        container_name: dnet_npm
+        depends_on:
+            - nginx
+        working_dir: /app
+        command: ["/app/npm.sh"]
+    artisan:
+        depends_on:
+            - composer
+        networks:
+            - laravel
+        container_name: dnet_artisan
         environment:
             - COMPOSER_MEMORY_LIMIT=-1
         volumes:
@@ -75,4 +82,4 @@ services:
             context: .
             dockerfile: ./dockerfiles/php.dockerfile
         working_dir: /var/www/html/
-        entrypoint: ['php', '/var/www/html/artisan']
+        command: ["/var/www/html/artisan.sh"]

@@ -12,7 +12,7 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        $key = env('STEAM_LOGIN_API_KEY');
+        $key = env("STEAM_LOGIN_API_KEY");
         $file = file_get_contents("http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=$key&steamids=76561198357728256");
         $steamUser = json_decode($file)->response->players[0];
         $user = User::create([

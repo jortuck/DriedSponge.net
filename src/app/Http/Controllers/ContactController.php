@@ -56,7 +56,7 @@ class ContactController extends Controller
                             ]
                         ]
                     ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
-                    $ch = curl_init(env('DISCORD_NOTIFICATION_HOOK',null));
+                    $ch = curl_init(env("DISCORD_NOTIFICATION_HOOK",null));
                     curl_setopt_array($ch, [
                         CURLOPT_POST => 1,
                         CURLOPT_FOLLOWLOCATION => 1,
