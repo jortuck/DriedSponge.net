@@ -45,7 +45,6 @@ services:
         build:
             context: .
             dockerfile: ./dockerfiles/php.dockerfile
-
     composer:
         networks:
             - laravel

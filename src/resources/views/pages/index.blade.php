@@ -149,7 +149,7 @@
                     }
                     var onloadCallback = function() {
                         grecaptcha.render('captcha', {
-                            'sitekey' : '{{env('CAPTCHA_SITEKEY',null)}}',
+                            'sitekey' : '{{env("CAPTCHA_SITEKEY",null)}}',
                             'theme': 'dark',
                             'callback':VerifyCallback,
                             'expired-callback':ExpiredCallback,
