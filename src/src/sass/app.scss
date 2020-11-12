@@ -1,0 +1,58 @@
+@import url('https://fonts.googleapis.com/css2?family=Exo:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,531;1,600;1,700;1,800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+@font-face {
+  font-family: 'minecraftiaregular';
+  src: url('https://cdn.driedsponge.net/fonts/minecraftia-webfont.woff') format('woff'), url('https://cdn.driedsponge.net/fonts/minecraftia-webfont.ttf') format('truetype'), url("https://cdn.driedsponge.net/fonts/minecraftia-webfont.eot") format('embedded-opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+@import '~bulma';
+
+
+
+@mixin for-phone-only {
+  @media (max-width: 599px) {
+    @content;
+  }
+}
+
+@mixin for-small-phone-only {
+  @media (max-width: 443px) {
+    @content;
+  }
+}
+
+@mixin for-tablet-and-down {
+  @media (max-width: 992px) {
+    @content;
+  }
+}
+
+@mixin for-tablet-portrait-up {
+  @media (min-width: 600px) {
+    @content;
+  }
+}
+
+@mixin for-tablet-landscape-up {
+  @media (min-width: 900px) {
+    @content;
+  }
+}
+
+@mixin for-desktop-up {
+  @media (min-width: 1200px) {
+    @content;
+  }
+}
+
+@mixin for-big-desktop-up {
+  @media (min-width: 1800px) {
+    @content;
+  }
+}
+
+@import "components";
+@import "dom";
+
