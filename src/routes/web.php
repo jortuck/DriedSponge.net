@@ -18,9 +18,9 @@ use kanalumaddela\LaravelSteamLogin\Facades\SteamLogin;
 ;
 
 
-Route::get('/', function (){
-    return file_get_contents('../public/index.html');
-});
+//Route::get('/', function (){
+//    return file_get_contents('../public/index.html');
+//});
 //Route::get('/home', 'PagesController@index')->name('pages.index');
 //Route::get('/mc', 'McStatusController@index')->name('pages.mc');
 //Route::get('/mc/log', 'McStatusController@log')->name('pages.mc.log');
