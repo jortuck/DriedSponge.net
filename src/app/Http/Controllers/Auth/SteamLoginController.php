@@ -36,7 +36,7 @@ class SteamLoginController extends AbstractSteamLoginController
 
 
         //Auth::login($user);
-        return redirect(env('SPA_URL','http://localhost:8080').'/auth/callback/'.$user->createToken("token")->plainTextToken);
+        return redirect(env('SPA_URL','http://localhost:8080/#').'/auth/callback/'.$user->createToken("token")->plainTextToken);
         // let the extended controller handle redirect back to the page the user was just on
     }
 }
