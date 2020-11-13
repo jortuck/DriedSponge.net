@@ -27,3 +27,6 @@ Route::post('/test/post',function (){
 });
 
 
+Route::get('/user', function (Request $request){
+    return $request->user;
+});

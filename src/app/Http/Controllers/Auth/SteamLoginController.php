@@ -9,6 +9,8 @@ use kanalumaddela\LaravelSteamLogin\Http\Controllers\AbstractSteamLoginControlle
 use kanalumaddela\LaravelSteamLogin\SteamUser;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
+use Illuminate\Support\Facades\Hash;
+use Laravel\Sanctum\NewAccessToken;
 class SteamLoginController extends AbstractSteamLoginController
 {
     /**
@@ -33,8 +35,8 @@ class SteamLoginController extends AbstractSteamLoginController
         // login the user using the Auth facade
 
 
-        Auth::login($user);
-
+        //Auth::login($user);
+        return redirect(env('SPA_URL','http://localhost:8080').'/auth/callback/'.$user->createToken("token")->plainTextToken);
         // let the extended controller handle redirect back to the page the user was just on
     }
 }
