@@ -15,16 +15,14 @@ use kanalumaddela\LaravelSteamLogin\Facades\SteamLogin;
 |
 */
 
-;
-Route::get('/test', function (Request $request) {
-    return "test";
-});
+
 
 Route::get('/login', 'Auth\SteamLoginController@login')->name('login');
 Route::get('auth/steam', 'Auth\SteamLoginController@authenticate')->name('auth.steam');
 Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
-
-
+Route::get('/user', function (Request $request){
+    return Auth::user();
+});
 
 
 

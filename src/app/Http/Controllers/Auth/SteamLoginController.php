@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cookie;
 use kanalumaddela\LaravelSteamLogin\Http\Controllers\AbstractSteamLoginController;
 use kanalumaddela\LaravelSteamLogin\SteamUser;
 use Spatie\Permission\Models\Role;
@@ -33,10 +34,10 @@ class SteamLoginController extends AbstractSteamLoginController
             $user->assignRole('User');
         }
         // login the user using the Auth facade
-
-
-        //Auth::login($user);
-        return redirect(env('SPA_URL','http://localhost:8080/#').'/auth/callback/'.$user->createToken("token")->plainTextToken);
+        Auth::login($user);
+        //$token = $user->createToken("token")->plainTextToken;
+        //Cookie::queue("session", $token, "60");
+        return redirect(env('SPA_URL','http://localhost:8080/#').'/auth/callback/');
         // let the extended controller handle redirect back to the page the user was just on
     }
 }

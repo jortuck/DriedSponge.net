@@ -20,7 +20,7 @@ export default {
     setup: function () {
         axios.get("http://localhost:8000/sanctum/csrf-cookie").then(response => {
             console.log(response);
-            axios.get("http://localhost:8000/api/user").then(res => {
+            axios.get("http://localhost:8000/user").then(res => {
                 console.log(res);
             })
         })
