@@ -13,10 +13,9 @@ const routes = [
         component: () => import('../views/Projects.vue')
     },
     {
-        path: '/auth/callback/:token',
+        path: '/auth/callback/steam',
         name: 'authenticate',
-        component:Authenticate,
-        props: route => ({ token: route.params.token })
+        component:Authenticate
     }
 ]
 

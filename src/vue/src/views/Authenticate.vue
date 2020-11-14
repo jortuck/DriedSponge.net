@@ -1,27 +1,34 @@
 <template>
-    <div @click="saveAuth">
-        Test Authentication: {{ token }}
-    </div>
+    <Pagehead>
+        {{ status }}
+    </Pagehead>
 </template>
 
 <script>
 import axios from "axios";
+import Pagehead from "@/components/Pagehead";
+
 export default {
     name: "Authenticate",
-    props:['token'],
-    data: function (){
+    components: {Pagehead},
+    props: ['token'],
+    data: function () {
         return {
             status: "Authenticating..."
         }
     },
+    created() {
+        this.saveAuth()
+    },
     methods: {
         saveAuth() {
-            this.status = "Validating Token..."
-            axios.get("http://localhost:8000/sanctum/csrf-cookie").then(response => {
-                console.log(response);
-                axios.get("http://localhost:8000/user").then(res => {
-                    console.log(res);
-                })
+            this.status = 'Verifying...'
+            axios.get("http://localhost:8000/user").then(res => {
+                if(res.data === ""){
+                    this.status = "Unauthenticated..."
+                }else{
+                    this.status = "Logged in! Redirecting you back!"
+                }
             })
         }
     }
