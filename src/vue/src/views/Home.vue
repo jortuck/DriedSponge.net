@@ -7,8 +7,6 @@
 </template>
 <script>
 import Pagehead from "@/components/Pagehead";
-import axios from 'axios';
-
 export default {
     name: 'Home',
     components: {Pagehead},
@@ -17,14 +15,5 @@ export default {
             subhead: "Full Stack Web Developer"
         }
     },
-    setup: function () {
-        axios.get("http://localhost:8000/sanctum/csrf-cookie").then(response => {
-            console.log(response);
-            axios.get("http://localhost:8000/user").then(res => {
-                console.log(res);
-            })
-        })
-
-    }
 }
 </script>
