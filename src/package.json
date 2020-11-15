@@ -1,0 +1,37 @@
+{
+    "scripts": {
+        "dev": "npm run development",
+        "development": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+        "watch": "npm run development -- --watch",
+        "watch-poll": "npm run watch -- --watch-poll",
+        "hot": "cross-env NODE_ENV=development node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline --hot --disable-host-check --config=node_modules/laravel-mix/setup/webpack.config.js",
+        "prod": "npm run production",
+        "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+        "lint": "eslint --fix --ext .js,.vue resources/js"
+    },
+    "dependencies": {
+        "axios": "^0.21.0",
+        "bulma": "^0.9.1",
+        "core-js": "^3.6.5",
+        "node-sass": "^5.0.0",
+        "sponge-helpers": "^1.2.8",
+        "vue": "^3.0.0",
+        "vue-router": "^4.0.0-rc.3",
+        "vuex": "^4.0.0-0"
+    },
+    "devDependencies": {
+        "@vue/cli-plugin-babel": "~4.5.0",
+        "@vue/cli-plugin-eslint": "~4.5.0",
+        "@vue/cli-plugin-router": "^4.5.8",
+        "@vue/cli-plugin-vuex": "^4.5.8",
+        "@vue/cli-service": "~4.5.0",
+        "@vue/compiler-sfc": "^3.0.2",
+        "babel-eslint": "^10.1.0",
+        "eslint": "^6.7.2",
+        "eslint-plugin-vue": "^7.0.0-0",
+        "laravel-mix": "^6.0.0-beta.14",
+        "postcss": "^8.1.7",
+        "sass-loader": "^10.0.5",
+        "vue-loader": "^16.0.0-beta.9"
+    }
+}

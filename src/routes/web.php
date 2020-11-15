@@ -15,7 +15,7 @@ use kanalumaddela\LaravelSteamLogin\Facades\SteamLogin;
 |
 */
 
-Route::get('/{any}', function($any){
+Route::get('/{any}', function(){
     return view('spa');
 })->name('spa')->where('any', '.*');
 
