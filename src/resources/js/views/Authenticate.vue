@@ -23,7 +23,8 @@ export default {
     methods: {
         saveAuth() {
             this.status = 'Verifying...'
-            axios.get("http://localhost:8000/user").then(res => {
+            axios.get("/user").then(res => {
+                console.log(res);
                 if(res.data === ""){
                     this.status = "Unauthenticated..."
                 }else{

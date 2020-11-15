@@ -14,18 +14,16 @@ use kanalumaddela\LaravelSteamLogin\Facades\SteamLogin;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/{any}', function(){
-    return view('spa');
-})->name('spa')->where('any', '.*');
-
-
 Route::get('/login', 'Auth\SteamLoginController@login')->name('login');
 Route::get('auth/steam', 'Auth\SteamLoginController@authenticate')->name('auth.steam');
 Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
 Route::get('/user', function (Request $request){
     return Auth::user();
 });
+Route::get('/{any}', function(){
+    return view('spa');
+})->name('spa')->where('any', '.*');
+
 
 
 

@@ -25,8 +25,4 @@ Route::post('/test/post',function (){
     sleep(3);
     return response()->json(["test"=>"test","test2"=>"test2"]);
 });
-Route::get('/user', function (Request $request){
-    return Auth::user();
-});
-
 
