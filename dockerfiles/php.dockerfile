@@ -6,7 +6,7 @@ RUN apk --no-cache add icu-dev
 
 RUN docker-php-ext-install pdo_mysql curl gmp intl
 
-COPY /php/php.ini $PHP_INI_DIR/php.ini
+COPY /dockerfiles/php/php.ini $PHP_INI_DIR/php.ini
 
 
 
