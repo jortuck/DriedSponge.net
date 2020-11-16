@@ -29,7 +29,7 @@ services:
         volumes:
             - ./mysql:/var/lib/mysql
         env_file:
-          - /dockerfiles/mysql.env
+          - ./dockerfiles/mysql.env
         container_name: mysql
 
     php:
