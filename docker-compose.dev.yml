@@ -21,7 +21,7 @@ services:
   mysql:
     image: mysql:latest
     networks:
-      - laravel
+      - dnetdev
     restart: unless-stopped
     tty: true
     ports:
