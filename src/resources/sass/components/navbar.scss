@@ -2,24 +2,18 @@
   background-color: rgba(0,0,0,0);
 }
 .navbar .navbar-item, .navbar .navbar-item:focus, .navbar .navbar-item:focus-within{
-  color: #BBBBBB;
   text-transform: uppercase;
   font-weight: bold;
-  background-color: rgba(0,0,0,0);
   font-family: Exo;
-
 }
 
  .navbar .navbar-item.router-link-active{
    color: white;
  }
 
-.navbar .navbar-item:hover{
-  background-color: rgba(0,0,0,0);
-  color: white;
-}
 .navbar .navbar-brand .navbar-item{
   font-weight: bolder;
   font-size: 40px;
   font-family: Exo;
 }
+

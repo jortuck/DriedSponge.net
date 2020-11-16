@@ -3,7 +3,7 @@ import axios from "axios";
 
 const session = {
     state: reactive({
-        loading: false,
+        loaded: false,
         authenticated: false,
         user: {
             id: null,
@@ -18,7 +18,7 @@ const session = {
             if (this.state.authenticated) {
                 this.state.user = res.data;
             }
-            this.state.loading = true;
+            this.state.loaded = true;
         })
     },
 }

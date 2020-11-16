@@ -8,6 +8,7 @@
   font-style: normal;
 }
 
+@import "bulma_vars";
 @import "~bulma/bulma.sass";
 
 
@@ -55,4 +56,3 @@
 }
 
 @import "./components/index.scss";
-@import "./dom/index.scss";

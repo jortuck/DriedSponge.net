@@ -1,8 +1,18 @@
 <template>
-    <div v-if="state.loading" style="display: inherit">
-        <a v-if="state.authenticated" @click="logout" class="navbar-item">
-            {{ state.user.username }}
-        </a>
+    <div v-if="state.loaded" style="display: inherit">
+        <div v-if="state.authenticated" class="navbar-item has-dropdown is-hoverable">
+            <a class="navbar-link">
+                {{ state.user.username }}
+            </a>
+            <div class="navbar-dropdown is-right is-boxed">
+                <a class="navbar-item">
+                    Dashboard
+                </a>
+                <a class="navbar-item" @click="logout">
+                    Logout
+                </a>
+            </div>
+        </div>
         <div class="buttons navbar-item" v-else>
             <a @click="login" class="button is-dark is-outlined is-rounded is-inverted">
                 Login With Steam
