@@ -1,31 +1,41 @@
 <template>
-    <a v-if="Auth.authenticated" @click="logout" class="button is-dark is-outlined is-rounded is-inverted">
-        LOGOUT
-    </a>
-    <a  @click="login" class="button is-dark is-outlined is-rounded is-inverted" v-else>
-        Login With Steam
-    </a>
+    <div v-if="state.loading" style="display: inherit">
+        <a v-if="state.authenticated" @click="logout" class="navbar-item">
+            {{ state.user.username }}
+        </a>
+        <div class="buttons navbar-item" v-else>
+            <a @click="login" class="button is-dark is-outlined is-rounded is-inverted">
+                Login With Steam
+            </a>
+        </div>
+    </div>
+    <div v-else style="display: inherit">
+        <span class="navbar-item router-link-active" >
+            LOADING
+        </span>
+    </div>
 </template>
 <script>
-import Auth from "../store";
+import session from "../store/session.js";
 import axios from "axios"
+
 export default {
     name: "Loginbutton",
     methods: {
-        login(){
+        login() {
             window.location = "/login"
         },
-        logout(){
-            axios.post("/logout/").then(res=>{
-                Auth.authenticated= false;
+        logout() {
+            axios.post("/logout/").then(res => {
+                session.fetch();
             })
         }
     },
-    setup(){
-        return{
-            Auth
+    data() {
+        return {
+            state: session.state
         }
-    }
+    },
 }
 </script>
 

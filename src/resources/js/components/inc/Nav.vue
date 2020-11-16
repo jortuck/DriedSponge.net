@@ -15,23 +15,20 @@
             <div class="navbar-end">
                 <router-link class="navbar-item" :to="{ name: 'home'}">Home</router-link>
                 <router-link class="navbar-item" :to="{ name: 'projects'}">Projects</router-link>
-                <div class="navbar-item">
-                    <div class="buttons">
-                        <Loginbutton/>
-                    </div>
-                </div>
+                <Loginbutton/>
             </div>
         </div>
     </nav>
 </template>
 <script>
 import Loginbutton from "../Loginbutton";
+import axios from "axios";
 
 export default {
     name: "Nav",
     components:{
         Loginbutton
-    }
+    },
 }
 document.addEventListener('DOMContentLoaded', () => {
     const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);

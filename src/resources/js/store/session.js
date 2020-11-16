@@ -1,8 +1,9 @@
 import {reactive} from 'vue'
 import axios from "axios";
 
-const Auth = {
+const session = {
     state: reactive({
+        loading: false,
         authenticated: false,
         user: {
             id: null,
@@ -17,8 +18,9 @@ const Auth = {
             if (this.state.authenticated) {
                 this.state.user = res.data;
             }
+            this.state.loading = true;
         })
     },
 }
 
-export default Auth;
+export default session;

@@ -7,6 +7,8 @@
 </template>
 <script>
 import Pagehead from "../components/Pagehead";
+import axios from 'axios'
+import session from '../store/session.js'
 export default {
     name: 'Home',
     components: {Pagehead},
@@ -15,5 +17,8 @@ export default {
             subhead: "Full Stack Web Developer"
         }
     },
+    setup(){
+        session.fetch();
+    }
 }
 </script>

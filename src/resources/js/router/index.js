@@ -1,6 +1,5 @@
 import {createRouter, createWebHashHistory} from 'vue-router'
 import Home from '../views/Home.vue'
-import Authenticate from '../views/Authenticate'
 const routes = [
     {
         path: '/',
@@ -11,11 +10,6 @@ const routes = [
         path: '/projects',
         name: 'projects',
         component: () => import('../views/Projects.vue')
-    },
-    {
-        path: '/auth/callback/steam',
-        name: 'authenticate',
-        component:Authenticate
     }
 ]
 
