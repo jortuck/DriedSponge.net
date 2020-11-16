@@ -13,7 +13,7 @@ class Github extends Controller
             "content" => "",
             "embeds" => [$embed]
         ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
-        $ch = curl_init(env('GUTHUB_DISCORD_WEBHOOKURL'));
+        $ch = curl_init(config('extra.github_webhook_url'));
         curl_setopt_array($ch, [
             CURLOPT_POST => 1,
             CURLOPT_FOLLOWLOCATION => 1,
@@ -29,7 +29,7 @@ class Github extends Controller
         $apikey = $request->header('X-Hub-Signature');
         if ($apikey != null) {
             $postBody = file_get_contents('php://input');
-            if ($apikey == 'sha1=' . hash_hmac('sha1', $postBody, env('GITHUB_WEBHOOK_SECRET'), false)) {
+            if ($apikey == 'sha1=' . hash_hmac('sha1', $postBody, config('extra.github_webhook_secret'), false)) {
                 if ($request->post('payload') != null) {
                     $data = json_decode($request->post('payload'), true);
                     $repo = $data['repository'];
