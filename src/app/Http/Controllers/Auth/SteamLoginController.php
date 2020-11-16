@@ -35,8 +35,5 @@ class SteamLoginController extends AbstractSteamLoginController
         }
         // login the user using the Auth facade
         Auth::login($user);
-        //Cookie::queue("session", $token, "60");
-        //$token = $user->createToken("token")->plainTextToken;
-        // let the extended controller handle redirect back to the page the user was just on
     }
 }
