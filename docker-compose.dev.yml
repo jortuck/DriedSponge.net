@@ -39,7 +39,7 @@ services:
     environment:
       - COMPOSER_MEMORY_LIMIT=-1
     ports:
-      - "9002:9000"
+      - "9003:9000"
     volumes:
       - ./src:/var/www/html
     build:
