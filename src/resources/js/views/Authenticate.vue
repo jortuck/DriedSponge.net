@@ -7,7 +7,7 @@
 <script>
 import axios from "axios";
 import Pagehead from "../components/Pagehead";
-
+import Auth from  "../store";
 export default {
     name: "Authenticate",
     components: {Pagehead},
@@ -26,8 +26,10 @@ export default {
             axios.get("/user").then(res => {
                 console.log(res);
                 if(res.data === ""){
+                    Auth.authenticated=false;
                     this.status = "Unauthenticated..."
                 }else{
+                    Auth.authenticated=true;
                     this.status = "Logged in! Redirecting you back!"
                 }
             })

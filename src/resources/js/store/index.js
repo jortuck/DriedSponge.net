@@ -1,13 +1,6 @@
-// import { createStore } from 'vuex'
-//
-// export default createStore({
-//   state: {
-//   },
-//   mutations: {
-//   },
-//   actions: {
-//   },
-//   modules: {
-//   }
-// })
-console.log("vuex")
+import { reactive } from 'vue'
+
+const Auth =reactive({
+    authenticated:false
+})
+export default Auth;
