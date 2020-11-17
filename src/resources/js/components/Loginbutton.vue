@@ -14,13 +14,16 @@
             </div>
         </div>
         <div class="buttons navbar-item" v-else>
-            <a @click="login" class="button is-dark is-outlined is-rounded is-inverted">
-                Login With Steam
+            <a class="button login-button" @click="login">
+                    <span class="icon">
+                      <i class="fab fa-steam"></i>
+                    </span>
+                <span>LOGIN</span>
             </a>
         </div>
     </div>
     <div v-else style="display: inherit">
-        <span class="navbar-item router-link-active" >
+        <span class="navbar-item router-link-active">
             LOADING
         </span>
     </div>
