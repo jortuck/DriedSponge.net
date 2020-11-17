@@ -1,6 +1,6 @@
 <template>
     <div v-if="state.loaded" style="display: inherit">
-        <div v-if="state.authenticated" class="navbar-item has-dropdown is-hoverable">
+        <div v-if="state.authenticated" class="navbar-item has-dropdown">
             <a class="navbar-link">
                 {{ state.user.username }}
             </a>
