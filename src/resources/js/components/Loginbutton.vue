@@ -6,10 +6,16 @@
             </a>
             <div class="navbar-dropdown is-right is-boxed">
                 <a class="navbar-item">
-                    Dashboard
+                    <span class="icon has-text-primary">
+                      <i class="fas fa-columns"></i>
+                    </span>
+                    <span class="ml-1">Dashboard</span>
                 </a>
                 <a class="navbar-item" @click="logout">
-                    Logout
+                    <span class="icon has-text-danger ">
+                      <i class="fas fa-sign-out-alt"></i>
+                    </span>
+                    <span class="ml-1">Logout</span>
                 </a>
             </div>
         </div>
