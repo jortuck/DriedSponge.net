@@ -45,9 +45,7 @@ export default {
             window.location = "/login"
         },
         logout() {
-            axios.post("/logout/").then(res => {
-                session.fetch();
-            })
+            session.logout();
         }
     },
     data() {

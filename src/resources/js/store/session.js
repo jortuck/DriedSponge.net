@@ -21,6 +21,11 @@ const session = {
             this.state.loaded = true;
         })
     },
+    logout(){
+        axios.post("/logout/").then(res => {
+            this.fetch();
+        })
+    }
 }
 
 export default session;
