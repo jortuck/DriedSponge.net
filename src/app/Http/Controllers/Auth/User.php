@@ -8,6 +8,9 @@ use Illuminate\Http\Request;
 class User extends Controller
 {
     public function me(Request $request){
+        if(\Auth::guest()){
+            return;
+        }
         return response()->json(\Auth::user(), 200);
     }
 
