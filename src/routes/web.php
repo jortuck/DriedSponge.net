@@ -17,7 +17,7 @@ use kanalumaddela\LaravelSteamLogin\Facades\SteamLogin;
 Route::get('/login', 'Auth\SteamLoginController@login')->name('login');
 Route::get('auth/steam', 'Auth\SteamLoginController@authenticate')->name('auth.steam');
 Route::post('/logout', 'Auth\LoginController@logout')->name('logout');
-Route::get('/user', 'Auth\user@me');
+Route::get('/user', 'Auth\User@me');
 
 Route::get('/user/can/{pname}', 'Auth\user@can');
 
