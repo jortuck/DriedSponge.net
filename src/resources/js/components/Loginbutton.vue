@@ -5,12 +5,14 @@
                 {{ state.user.username }}
             </a>
             <div class="navbar-dropdown is-right is-boxed">
-                <a class="navbar-item">
+                <Can permission="manage">
+                    <a class="navbar-item">
                     <span class="icon has-text-primary">
                       <i class="fas fa-columns"></i>
                     </span>
-                    <span class="ml-1">Dashboard</span>
-                </a>
+                        <span class="ml-1">Dashboard</span>
+                    </a>
+                </Can>
                 <a class="navbar-item" @click="logout">
                     <span class="icon has-text-danger ">
                       <i class="fas fa-sign-out-alt"></i>
@@ -38,8 +40,7 @@
 </template>
 <script>
 import session from "../store/session.js";
-import axios from "axios"
-
+import Can from "./helpers/Can";
 export default {
     name: "Loginbutton",
     methods: {
@@ -55,6 +56,9 @@ export default {
             state: session.state
         }
     },
+    components: {
+        Can
+    }
 }
 </script>
 

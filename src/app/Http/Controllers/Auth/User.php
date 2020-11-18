@@ -11,7 +11,19 @@ class User extends Controller
         if(\Auth::guest()){
             return;
         }
-        return response()->json(\Auth::user(), 200);
+        $authuser = \Auth::user();
+        $perms =  \DB::table('permissions')->select('name','id')->orderBy('name', 'asc')->where('guard_name','web')->get();
+        $userperms =[];
+        foreach ($perms as $perm){
+            if($authuser->hasPermissionTo($perm->name)){
+                array_push($userperms,$perm->name);
+            }
+        }
+        $user=[
+            $authuser,
+            $userperms
+        ];
+        return response()->json($user, 200);
     }
 
     public function can(Request $request, $pname){
