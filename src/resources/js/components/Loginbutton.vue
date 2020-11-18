@@ -30,7 +30,9 @@
     </div>
     <div v-else style="display: inherit">
         <span class="navbar-item router-link-active">
-            LOADING
+            <span class="icon">
+                <i class="fas fa-sync fa-spin"></i>
+            </span>
         </span>
     </div>
 </template>
