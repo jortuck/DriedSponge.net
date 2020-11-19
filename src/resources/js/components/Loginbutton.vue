@@ -5,7 +5,7 @@
                 {{ state.user.username }}
             </a>
             <div class="navbar-dropdown is-right is-boxed">
-                <Can permission="manage">
+                <Can permission="Manage.See">
                     <a class="navbar-item">
                     <span class="icon has-text-primary">
                       <i class="fas fa-columns"></i>

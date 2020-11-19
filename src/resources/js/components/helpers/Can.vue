@@ -1,5 +1,5 @@
 <template>
-    <slot v-if="can"></slot>
+    <slot v-if="can.permissions[permission]"></slot>
 </template>
 
 <script>
@@ -13,12 +13,9 @@ export default {
             required: true
         }
     },
-    created() {
-        this.can = session.can("Manage.See");
-    },
     data(){
         return{
-            can: false
+            can: session.state
         }
     }
 }

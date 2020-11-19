@@ -7,11 +7,11 @@
 </template>
 <script>
 import Pagehead from "../components/Pagehead";
-import axios from 'axios'
 import session from '../store/session.js'
+import Can from "../components/helpers/Can"
 export default {
     name: 'Home',
-    components: {Pagehead},
+    components: {Pagehead, Can},
     data: function () {
         return {
             subhead: "Full Stack Web Developer"
@@ -19,6 +19,6 @@ export default {
     },
     setup(){
         session.fetch();
-    }
+    },
 }
 </script>

@@ -8,16 +8,20 @@ use Illuminate\Http\Request;
 class User extends Controller
 {
     public function me(Request $request){
-        if(\Auth::guest()){
-            return;
-        }
         $authuser = \Auth::user();
         $perms =  \DB::table('permissions')->select('name','id')->orderBy('name', 'asc')->where('guard_name','web')->get();
-        $userperms =[];
+        $userperms =array();
         foreach ($perms as $perm){
-            if($authuser->hasPermissionTo($perm->name)){
-                array_push($userperms,$perm->name);
+            if(\Auth::guest()){
+                $userperms[$perm->name] = false;
+            }else{
+                if($authuser->hasPermissionTo($perm->name)){
+                    $userperms[$perm->name] = true;
+                }else{
+                    $userperms[$perm->name] = false;
+                }
             }
+
         }
         $user=[
             $authuser,
