@@ -21,8 +21,6 @@ const session = {
             } else {
                 this.state.user = null;
             }
-            console.log(res.data[0])
-            console.log(res.data[1])
             this.state.permissions = res.data[1];
             this.state.loaded = true;
         })
