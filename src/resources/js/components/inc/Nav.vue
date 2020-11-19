@@ -15,6 +15,7 @@
             <div class="navbar-end">
                 <router-link class="navbar-item" :to="{ name: 'home'}">Home</router-link>
                 <router-link class="navbar-item" :to="{ name: 'projects'}">Projects</router-link>
+                <Snowcontroller />
                 <Loginbutton/>
             </div>
         </div>
@@ -22,12 +23,12 @@
 </template>
 <script>
 import Loginbutton from "../Loginbutton";
-import axios from "axios";
-
+import Snowcontroller from '../Snowcontroller';
 export default {
     name: "Nav",
     components:{
-        Loginbutton
+        Loginbutton,
+        Snowcontroller
     },
 }
 document.addEventListener('DOMContentLoaded', () => {
