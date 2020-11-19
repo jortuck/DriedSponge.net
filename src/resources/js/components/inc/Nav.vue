@@ -1,5 +1,5 @@
 <template>
-    <nav class="navbar container is-transparent" role="navigation" aria-label="main navigation">
+    <nav data-aos="fade-in" class="navbar container is-transparent" role="navigation" aria-label="main navigation">
         <div class="navbar-brand">
             <a class="navbar-item" href="https://driedsponge.net">
                 <span style="color: #62A1EC">D</span><span style="color: white">S</span>

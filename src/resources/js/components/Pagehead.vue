@@ -1,5 +1,5 @@
 <template>
-  <div class="has-text-centered container">
+  <div class="has-text-centered container" data-aos="fade-in">
     <h1 class="title">
       <slot></slot>
       {{ header }}
