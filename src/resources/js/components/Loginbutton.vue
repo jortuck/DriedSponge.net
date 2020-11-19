@@ -21,7 +21,7 @@
                 </a>
             </div>
         </div>
-        <div class="buttons navbar-item" v-else>
+        <div class="buttons navbar-item" v-else title="This is just for me to login and access my dashboard. You can login if you want but it does absolutley nothing for you.">
             <a class="button login-button" @click="login">
                     <span class="icon">
                       <i class="fab fa-steam"></i>
