@@ -1,7 +1,7 @@
 version: '3.8'
 
 networks:
-    laravel:
+    dnet:
 
 services:
     nginx:
@@ -10,7 +10,7 @@ services:
             - php
             - mysql
         networks:
-            - laravel
+            - dnet
         container_name: nginx_dnet
         ports:
             - "3200:80"
@@ -21,7 +21,7 @@ services:
     mysql:
         image: mysql:latest
         networks:
-            - laravel
+            - dnet
         restart: unless-stopped
         tty: true
         ports:
@@ -34,7 +34,7 @@ services:
 
     php:
         networks:
-            - laravel
+            - dnet
         container_name: php_dnet
         environment:
             - COMPOSER_MEMORY_LIMIT=-1
@@ -47,7 +47,7 @@ services:
             dockerfile: ./dockerfiles/php.dockerfile
     composer:
         networks:
-            - laravel
+            - dnet
         volumes:
             - ./src:/app
         depends_on:
@@ -65,7 +65,7 @@ services:
       entrypoint: [ 'npm' ]
     artisan:
         networks:
-            - laravel
+            - dnet
         container_name: artisan_dnet
         environment:
             - COMPOSER_MEMORY_LIMIT=-1

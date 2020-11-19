@@ -1,7 +1,7 @@
 version: '3.8'
 
 networks:
-  dnetdev:
+  dnet_dev:
 
 services:
   nginx:
@@ -10,8 +10,8 @@ services:
       - php
       - mysql
     networks:
-      - dnetdev
-    container_name: dnetdev_nginx
+      - dnet_dev
+    container_name: dnet_dev_nginx
     ports:
       - "3201:80"
     volumes:
@@ -21,7 +21,7 @@ services:
   mysql:
     image: mysql:latest
     networks:
-      - dnetdev
+      - dnet_dev
     restart: unless-stopped
     tty: true
     ports:
@@ -34,8 +34,8 @@ services:
 
   php:
     networks:
-      - dnetdev
-    container_name: dnetdev_php
+      - dnet_dev
+    container_name: dnet_dev_php
     environment:
       - COMPOSER_MEMORY_LIMIT=-1
     ports:
@@ -48,22 +48,22 @@ services:
 
   composer:
     networks:
-      - dnetdev
+      - dnet_dev
     volumes:
       - ./src:/app
     depends_on:
       - nginx
-    container_name: dnetdev_composer
+    container_name: dnet_dev_composer
     build:
       context: .
       dockerfile: ./dockerfiles/composer.dockerfile
   npm:
     image: node:15.2.0-alpine3.10
     networks:
-      - dnetdev
+      - dnet_dev
     volumes:
       - ./src:/app
-    container_name: dnetdev_npm
+    container_name: dnet_dev_npm
     depends_on:
       - nginx
     working_dir: /app
@@ -72,8 +72,8 @@ services:
     depends_on:
       - composer
     networks:
-      - dnetdev
-    container_name: dnetdev_artisan
+      - dnet_dev
+    container_name: dnet_dev_artisan
     environment:
       - COMPOSER_MEMORY_LIMIT=-1
     volumes:
