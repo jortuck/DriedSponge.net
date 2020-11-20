@@ -1,7 +1,7 @@
 <template>
   <section class="section">
     <Pagehead sub_header="Good stuff">
-      <span style="color: #62A1EC">Proj</span>ects
+      <span class="has-text-primary">Proj</span>ects
     </Pagehead>
   </section>
 </template>
