@@ -14,7 +14,9 @@ axios.defaults.withCredentials = true;
 require('./snowstorm-min');
 window.snowStorm.followMouse = false
 window.snowStorm.snowStick = false;
-
+snowStorm.vMaxX = 5;
+snowStorm.vMaxY = 6;
+snowStorm.flakesMaxActive = 85;
 
 
 // Vue init

@@ -3,18 +3,18 @@
         <Pagehead v-bind:sub_header="subhead">
             <span class="has-text-primary">DRIED</span> SPONGE
         </Pagehead>
-        <div class="has-text-centered" data-aos="fade-up">
+        <div class="has-text-centered mt-5" data-aos="fade-up">
             <a class="white-link" target="_blank" href="https://steamcommunity.com/id/driedsponge/">
-                <Icon classes="is-large mx-4 mt-5" icon="fab fa-twitter fa-3x" />
+                <Icon classes="is-large mx-4" icon="fab fa-twitter fa-3x" />
             </a>
             <a class="white-link" target="_blank" href="https://twitter.com/dried_sponge">
-                <Icon classes="is-large mx-4 mt-5" icon="fab fa-steam fa-3x" />
+                <Icon classes="is-large mx-4" icon="fab fa-steam fa-3x" />
             </a>
             <a class="white-link" href="https://discord.gg/YS4WZWG" target="_blank" >
-                <Icon classes="is-large mx-4 mt-5" icon="fab fa-discord fa-3x" />
+                <Icon classes="is-large mx-4" icon="fab fa-discord fa-3x" />
             </a>
             <a class="white-link" href="https://github.com/driedsponge" target="_blank" >
-                <Icon classes="is-large mx-4 mt-5" icon="fab fa-github fa-3x" />
+                <Icon classes="is-large mx-4" icon="fab fa-github fa-3x" />
             </a>
         </div>
     </section>
