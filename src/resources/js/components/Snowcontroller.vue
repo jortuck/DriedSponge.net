@@ -23,7 +23,6 @@
 
 <script>
 import {getCookie,setCookie} from "./helpers/cookies";
-
 export default {
     name: "Snowcontroller",
     data() {
@@ -40,6 +39,8 @@ export default {
             window.snowStorm.toggleSnow()
             this.state.toggled = !toggled;
             setCookie("snowstatus", thing);
+            //  '<strong>Snow Disabled</strong>':'<strong>Snow Enabled</strong>'
+            // toggled ? 'is-danger':'is-primary'
         },
         changeSpeed(){
             window.snowStorm.randomizeWind()

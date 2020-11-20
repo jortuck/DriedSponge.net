@@ -9,6 +9,7 @@
     <title>{{ config('app.name') }}</title>
     <link rel="stylesheet" type="text/css" href="{{ asset('css/app.css') }}">
     <script src="https://kit.fontawesome.com/993187c8db.js" crossorigin="anonymous"></script>
+    <link rel="icon" href="favicon.png">
 </head>
 <body>
 <div id="app">

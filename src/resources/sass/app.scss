@@ -12,7 +12,6 @@
 @import "~bulma/bulma.sass";
 @import "~aos/dist/aos.css";
 
-
 @mixin for-phone-only {
   @media (max-width: 599px) {
     @content;
