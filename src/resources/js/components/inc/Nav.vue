@@ -2,7 +2,7 @@
     <nav data-aos="fade-down" class="navbar container is-transparent" role="navigation" aria-label="main navigation">
         <div class="navbar-brand">
             <a class="navbar-item" href="https://driedsponge.net">
-                <span class="has-text-primary">D</span><span style="color: white">S</span>
+                <span class="has-text-primary">D</span><span class="has-text-white">S</span>
             </a>
             <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false"
                data-target="navbarMain">
