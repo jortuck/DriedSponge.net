@@ -30,7 +30,7 @@ services:
       - ./mysql:/var/lib/mysql
     env_file:
       - ./dockerfiles/mysql.env
-    container_name: mysql
+    container_name: dnet_dev_mysql
 
   php:
     networks:
