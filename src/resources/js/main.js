@@ -17,7 +17,6 @@ window.snowStorm.snowStick = false;
 snowStorm.vMaxX = 5;
 snowStorm.vMaxY = 6;
 snowStorm.flakesMaxActive = 75;
-
-
+console.log("%c11/22/20","color: lime; font-size: 20px; font-weight: bolder;-webkit-text-stroke: 1px black")
 // Vue init
 createApp(App).use(router).mount('#app')
