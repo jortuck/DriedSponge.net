@@ -16,7 +16,7 @@ window.snowStorm.followMouse = false
 window.snowStorm.snowStick = false;
 snowStorm.vMaxX = 5;
 snowStorm.vMaxY = 6;
-snowStorm.flakesMaxActive = 85;
+snowStorm.flakesMaxActive = 75;
 
 
 // Vue init
