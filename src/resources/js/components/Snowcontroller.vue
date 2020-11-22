@@ -34,13 +34,11 @@ export default {
     },
     methods: {
         toggle() {
-            var toggled = getCookie('snowstatus') === 'on'
+            var toggled = getCookie('snowstatus') !== 'off'
             var thing = toggled ? 'off' : 'on'
             window.snowStorm.toggleSnow()
             this.state.toggled = !toggled;
             setCookie("snowstatus", thing);
-            //  '<strong>Snow Disabled</strong>':'<strong>Snow Enabled</strong>'
-            // toggled ? 'is-danger':'is-primary'
         },
         changeSpeed(){
             window.snowStorm.randomizeWind()
