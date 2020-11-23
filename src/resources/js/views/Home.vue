@@ -29,7 +29,7 @@
                                 <Icon classes="is-medium mx-2" icon="fab fa-python fa-2x"/>
                                 <Icon classes="is-medium mx-2" icon="fab fa-node fa-2x"/>
                                 <br>
-                                dsagagahdejkrhjwgokjhgwjklghwkgrljwbgwkelgbwkjglbwgklwjbngwg
+                                dsag agahdejkr hjwgokjh gwjklg hwkgrlj wbgwkelg bwkj glb wgklw jbngwg
                             </div>
                         </div>
                     </div>
@@ -47,7 +47,7 @@
                                 <Icon classes="is-medium mx-2" icon="fab fa-html5 fa-2x"/>
                                 <Icon classes="is-medium mx-2" icon="fab fa-js fa-2x"/>
                                 <br>
-                                dsagagahdejkrhjwgokjhgwjklghwkgrljwbgwkelgbwkjglbwgklwjbngwg
+                                dsagagah dejkrh jwgok jhg wjklg hwkg rlj wbgwk elgbw kjg lbwg klwj bngwg
                             </div>
                         </div>
                     </div>
