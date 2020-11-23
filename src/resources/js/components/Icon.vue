@@ -1,5 +1,5 @@
 <template>
-    <span v-bind:class="spanClasses">
+    <span title="tooltips"  v-bind:class="spanClasses">
          <i v-bind:class="icon"></i>
     </span>
 </template>
