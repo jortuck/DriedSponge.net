@@ -62,6 +62,7 @@
                                 <Icon classes="is-medium mx-2" icon="fab fa-ubuntu fa-2x"/>
                                 <Icon classes="is-medium mx-2" icon="fab fa-digital-ocean fa-2x"/>
                                 <Icon classes="is-medium mx-2" icon="fas fa-database fa-2x"/>
+                                <Icon classes="is-medium mx-2" icon="fab fa-cloudflare fa-2x"/>
                                 <br>
                                 Web services require servers, databases, and other types of infrastructure to operate. I
                                 got tired of paying for shared hosting, so I taught myself how to setup and operate my
