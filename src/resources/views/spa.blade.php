@@ -12,6 +12,9 @@
     <link rel="icon" href="favicon.png">
 </head>
 <body>
+<noscript>
+    <h1 class="has-text-centered title page-title has-text-danger">YOU NEED TO ENABLE JAVASCRIPT TO MAKE THE SITE WORK</h1>
+</noscript>
 <div id="app">
     <app></app>
 </div>
