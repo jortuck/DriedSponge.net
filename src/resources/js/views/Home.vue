@@ -29,7 +29,10 @@
                                 <Icon classes="is-medium mx-2" icon="fab fa-python fa-2x"/>
                                 <Icon classes="is-medium mx-2" icon="fab fa-node fa-2x"/>
                                 <br>
-                                dsag agahdejkr hjwgokjh gwjklg hwkgrlj wbgwkelg bwkj glb wgklw jbngwg
+                                Aside from Web Development, I make discord bots. I'm familiar with both Discord JS and
+                                Discord PY. I actually used Discord PY to teach myself Python. I use these skills to
+                                make functional and efficient discord bots. Sometimes I make bots for myself (just for
+                                fun), or I take on jobs from other people.
                             </div>
                         </div>
                     </div>
@@ -47,7 +50,8 @@
                                 <Icon classes="is-medium mx-2" icon="fab fa-html5 fa-2x"/>
                                 <Icon classes="is-medium mx-2" icon="fab fa-js fa-2x"/>
                                 <br>
-                                dsagagah dejkrh jwgok jhg wjklg hwkg rlj wbgwk elgbw kjg lbwg klwj bngwg
+                                Full stack web development is my strongest suit. I've been developing websites for about
+                                {{ webtime.string }}. I'm skilled in many web development technologies (see icons above). I use these skills to create optimized websites with slick user interfaces and pleasant user experiences.
                             </div>
                         </div>
                     </div>
@@ -66,7 +70,7 @@
                                 Web services require servers, databases, and other types of infrastructure to operate. I
                                 got tired of paying for shared hosting, so I taught myself how to setup and operate my
                                 own servers running linux.
-                                I also taught myself how to use docker, so I can effieciently deploy applications at
+                                I also taught myself how to use docker, so I can efficiently deploy applications at
                                 scale.
                             </div>
                         </div>
@@ -92,5 +96,17 @@ export default {
     setup() {
         session.fetch();
     },
+    computed: {
+        webtime() {
+            let efromnow = Math.floor(Date.now() / 1000) - 1567728000;
+            let years = Math.floor((efromnow) / 31536000);
+            let months = Math.floor((efromnow) / 2628288) - 12 * years;
+            return {
+                string: years + " year(s) and " + months + " month(s)",
+                months: months,
+                year: years
+            };
+        }
+    }
 }
 </script>
