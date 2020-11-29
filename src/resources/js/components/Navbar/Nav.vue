@@ -22,8 +22,8 @@
     </nav>
 </template>
 <script>
-import Loginbutton from "../Loginbutton";
-import Snowcontroller from '../Snowcontroller';
+import Loginbutton from "./Loginbutton";
+import Snowcontroller from './Snowcontroller';
 export default {
     name: "Nav",
     components:{

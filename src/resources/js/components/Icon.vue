@@ -1,5 +1,5 @@
 <template>
-    <span title="tooltips"  v-bind:class="spanClasses">
+    <span title="tooltips">
          <i v-bind:class="icon"></i>
     </span>
 </template>
@@ -12,19 +12,6 @@ export default {
             type: String,
             required: true
         },
-        classes:{
-            type: String,
-            required: false
-        }
     },
-    computed:{
-        spanClasses(){
-            return "icon "+this.classes;
-        }
-    }
 }
 </script>
-
-<style scoped>
-
-</style>

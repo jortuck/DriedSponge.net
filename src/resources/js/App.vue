@@ -3,7 +3,7 @@
     <router-view/>
 </template>
 <script>
-import Nav from "./components/inc/Nav"
+import Nav from "./components/Navbar/Nav"
 export default {
     name: 'App',
     components: {
