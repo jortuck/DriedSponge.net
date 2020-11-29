@@ -81,7 +81,7 @@
     </section>
 </template>
 <script>
-import Pagehead from "../components/Pagehead";
+import Pagehead from "../components/includes/Pagehead";
 import session from '../store/session.js'
 import Icon from "../components/text/Icon";
 import Whitelink from "../components/text/Whitelink"
