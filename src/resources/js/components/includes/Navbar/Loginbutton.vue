@@ -39,8 +39,8 @@
     </div>
 </template>
 <script>
-import session from "../../store/session.js";
-import Can from "../helpers/Can";
+import session from "../../../store/session.js";
+import Can from "../../helpers/Can";
 export default {
     name: "Loginbutton",
     methods: {

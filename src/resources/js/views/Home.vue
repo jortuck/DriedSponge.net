@@ -4,18 +4,18 @@
             <span class="has-text-primary">DRIED</span> SPONGE
         </Pagehead>
         <div class="has-text-centered mt-5" data-aos="fade-up">
-            <a class="white-link" target="_blank" href="https://twitter.com/dried_sponge">
+            <Whitelink target="_blank" href="https://twitter.com/dried_sponge">
                 <Icon class="is-large is-me mx-4" icon="fab fa-twitter fa-3x"/>
-            </a>
-            <a class="white-link" target="_blank" href="https://steamcommunity.com/id/driedsponge/">
+            </Whitelink>
+            <Whitelink target="_blank" href="https://steamcommunity.com/id/driedsponge/">
                 <Icon class="is-large mx-4" icon="fab fa-steam fa-3x"/>
-            </a>
-            <a class="white-link" href="https://discord.gg/YS4WZWG" target="_blank">
+            </Whitelink>
+            <Whitelink class="white-link" href="https://discord.gg/YS4WZWG" target="_blank">
                 <Icon class="is-large mx-4" icon="fab fa-discord fa-3x"/>
-            </a>
-            <a class="white-link" href="https://github.com/driedsponge" target="_blank">
+            </Whitelink>
+            <Whitelink class="white-link" href="https://github.com/driedsponge" target="_blank">
                 <Icon class="is-large mx-4" icon="fab fa-github fa-3x"/>
-            </a>
+            </Whitelink>
         </div>
     </section>
     <section class="section" data-aos="fade-up">
@@ -83,11 +83,11 @@
 <script>
 import Pagehead from "../components/Pagehead";
 import session from '../store/session.js'
-import Icon from "../components/Icon";
-
+import Icon from "../components/text/Icon";
+import Whitelink from "../components/text/Whitelink"
 export default {
     name: 'Home',
-    components: {Pagehead, Icon},
+    components: {Pagehead, Icon,Whitelink},
     data: function () {
         return {
             subhead: "Full Stack Web Developer"

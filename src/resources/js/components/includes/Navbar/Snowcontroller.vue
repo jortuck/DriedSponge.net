@@ -22,7 +22,7 @@
 </template>
 
 <script>
-import {getCookie,setCookie} from "../helpers/cookies";
+import {getCookie,setCookie} from "../../helpers/cookies";
 export default {
     name: "Snowcontroller",
     data() {
