@@ -26,7 +26,7 @@ class Media extends Controller
             $upload->uuid = $name;
             $upload->save();
             $file->storeAs(
-                "/media/$extention", $upload->name
+                "/sharex/$extention", $upload->name
             );
             return response()->json(["success" => true, "id" => $upload->uuid, "url" => route('media.load-view', $upload->uuid), "raw_url" => route('media.load-file', $upload->uuid)]);
 
