@@ -23,9 +23,9 @@ class Media extends Controller
             $file->storeAs(
                 "/media/$extention", $name
             );
+            return response()->json(["success"=>false,"error"=>"The file you tried to send is too big","id"=>$upload->uuid]);
 
-            return $upload->uuid;
         }
-        return response()->json(["success"=>false,"error"=>"The file you tried to send is too big",""]);
+        return response()->json(["success"=>false,"error"=>"The file you tried to send is too big","id"=>"BIG"]);
     }
 }
