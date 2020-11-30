@@ -9,7 +9,9 @@
     <title>{{ config('app.name') }}</title>
     <link rel="stylesheet" type="text/css" href="{{ asset('css/app.css') }}">
     <script src="https://kit.fontawesome.com/993187c8db.js" crossorigin="anonymous"></script>
-    <link rel="icon" href="favicon.png">
+    <script src="https://www.google.com/recaptcha/api.js?render=explicit" async defer></script>
+    <meta id="captcha_site_key" name="captcha_site_key" content="{{config('extra.captcha_site_key')}}"/>
+    <link rel="icon" href="{{asset('favicon.png')}}">
 </head>
 <body>
 <noscript>

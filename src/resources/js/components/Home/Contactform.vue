@@ -1,5 +1,5 @@
 <template>
-    <form @submit="submit">
+    <form @submit="submit" class="is-loading">
         <div class="columns">
             <div class="column is-half-desktop is-full-mobile">
                 <Textinput @change="removeErr('name')" v-model="form.name.value" label="Name" placeholder="John Doe" :error="form.errors['name']" />
@@ -28,9 +28,10 @@
 import axios from "axios";
 import Textinput from "../form/Textinput";
 import Textarea from "../form/Textarea";
+import Captcha from "../form/Captcha";
 export default {
     name: "Contactform",
-    components:{Textinput,Textarea},
+    components:{Textinput,Textarea, Captcha},
     data(){
         return{
             error: "Something went wrong.",
