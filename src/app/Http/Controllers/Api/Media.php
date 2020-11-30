@@ -13,17 +13,17 @@ class Media extends Controller
     public function upload(Request $request){
         $file = $request->file('image');
         $extention = $file->extension();
-        $name = $request->file('image')->getClientOriginalName();
+        $name = Str::random(10);
         if($file->getSize()<99000000) {
             $upload = new SharexMedia();
-            $upload->name = $name;
+            $upload->name =  $name.'.'.$extention;
             $upload->type = $extention;
-            $upload->uuid = Str::random(10);
+            $upload->uuid = $name;
             $upload->save();
             $file->storeAs(
-                "/media/$extention", $name
+                "/media/$extention",  $upload->name
             );
-            return response()->json(["success"=>false,"error"=>"The file you tried to send is too big","id"=>$upload->uuid]);
+            return response()->json(["success"=>true,"id"=>$upload->uuid,"url"=>route('media.load-view',$upload->uuid),"raw_url"=>route('media.load-file',$upload->uuid)]);
 
         }
         return response()->json(["success"=>false,"error"=>"The file you tried to send is too big","id"=>"BIG"]);

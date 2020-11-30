@@ -16,8 +16,9 @@ class CreateSharexMediaTable extends Migration
         Schema::create('sharex_media', function (Blueprint $table) {
             $table->id();
             $table->string('uuid', 10)->unique();
-            $table->string('name');
+            $table->string('name')->unique();
             $table->string('type');
+            $table->boolean('private')->default(0);
             $table->timestamps();
         });
     }

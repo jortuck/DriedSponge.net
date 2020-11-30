@@ -14,6 +14,12 @@ use kanalumaddela\LaravelSteamLogin\Facades\SteamLogin;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+Route::domain(config('extra.image_domain'))->group(function () {
+    Route::get('/file/{uuid}', 'Media@loadFile')->name('media.load-file');
+    Route::get('/{uuid}', 'Media@loadView')->name('media.load-view');
+});
+
 Route::get('/login', 'Auth\SteamLoginController@login')->name('login');
 Route::get('auth/steam', 'Auth\SteamLoginController@authenticate')->name('auth.steam');
 Route::post('/logout', 'Auth\LoginController@logout')->name('logout');
