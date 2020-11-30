@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::domain('i.localhost')->group(function () {
+Route::domain(config('extra.image_domain'))->group(function () {
     Route::get('/upload', function () {
         return "test";
     });

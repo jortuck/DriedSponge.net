@@ -10,5 +10,6 @@ return [
     'captcha_secret' => env('CAPTCHASECRET'),
     'captcha_site_key'=>env('CAPTCHA_SITEKEY'),
 
+    'image_domain'=>env('IMAGE_DOMAIN','i.localhost')
 
 ];
