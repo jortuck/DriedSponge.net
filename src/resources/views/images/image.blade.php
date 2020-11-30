@@ -12,7 +12,7 @@
 <body>
     <section class="section">
         <div class="container">
-            @if($type == 'mp4')
+            @if($type == 'mp4' or $type == 'mov')
                 <video autoplay controls src="{{route('media.load-file',$uuid)}}"
             @else
                 <img src="{{route('media.load-file',$uuid)}}">
