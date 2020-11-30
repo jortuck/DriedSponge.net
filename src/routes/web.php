@@ -14,7 +14,7 @@ use kanalumaddela\LaravelSteamLogin\Facades\SteamLogin;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::domain('i.'.config('session.domain'))->group(function () {
+Route::domain('i.localhost')->group(function () {
     Route::get('/upload', function () {
         return "test";
     });
