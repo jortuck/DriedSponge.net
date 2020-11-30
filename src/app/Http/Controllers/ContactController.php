@@ -25,7 +25,7 @@ class ContactController extends Controller
     {
         $validator = Validator::make($request->all(), [
             "captcha_token" => "required",
-            "your_name" => "required|max:150",
+            "name" => "required|max:150",
             "email" => "required|max:150|email:rfc,dns,spoof",
             "subject" => "required|max:256",
             "message" => "required|max:2000"
@@ -37,7 +37,7 @@ class ContactController extends Controller
             ]);
             if ($response['success']) {
                 $data = new ContactResponses();
-                $data->Name = $request->your_name;
+                $data->Name = $request->name;
                 $data->Email = $request->email;
                 $data->Subject = $request->subject;
                 $data->Message = $request->message;

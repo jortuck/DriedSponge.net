@@ -21,6 +21,7 @@ Route::get('/user', 'Auth\User@me');
 
 Route::get('/user/can/{pname}', 'Auth\user@can');
 
+Route::post('/contact/send', 'ContactController@send')->name('contact.send');
 
 Route::get('/{any}', function(){
     return view('spa');

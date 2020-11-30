@@ -60,6 +60,11 @@
             </Tileancestor>
         </div>
     </section>
+    <section class="section">
+        <div class="container box">
+            <Contactform />
+        </div>
+    </section>
 </template>
 <script>
 import Pagehead from "../components/includes/Pagehead";
@@ -68,10 +73,10 @@ import Icon from "../components/text/Icon";
 import Whitelink from "../components/text/Whitelink"
 import Tileancestor from "../components/tiles/Tileancestor";
 import Homecard from "../components/Home/Homecard";
-
+import Contactform from "../components/Home/Contactform";
 export default {
     name: 'Home',
-    components: {Pagehead, Icon, Whitelink, Tileancestor, Homecard},
+    components: {Pagehead, Icon, Whitelink, Tileancestor, Homecard,Contactform},
     data: function () {
         return {
             subhead: "Full Stack Web Developer"
