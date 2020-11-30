@@ -12,18 +12,26 @@ class Media extends Controller
     {
         $file = SharexMedia::where("uuid", $uuid)->first();
         if ($file) {
-            $disk = Storage::get("/sharex/" . $file->type . "/" . $file->name);
-            $type = Storage::mimeType("/sharex/" . $file->type . "/" . $file->name);
-            return response($disk, 200)->header('Content-Type', $type);
+            if(Storage::exists("/sharex/" . $file->type . "/" . $file->name)) {
+                $disk = Storage::get("/sharex/" . $file->type . "/" . $file->name);
+                $type = Storage::mimeType("/sharex/" . $file->type . "/" . $file->name);
+                return response($disk, 200)->header('Content-Type', $type);
+            }else{
+                $file->delete();
+            }
         }
         return abort(404);
     }
     public function loadView(Request $request, $uuid){
         $file = SharexMedia::where("uuid", $uuid)->first();
         if ($file) {
-            $disk = Storage::get("/sharex/" . $file->type . "/" . $file->name);
-            $type = Storage::mimeType("/sharex/" . $file->type . "/" . $file->name);
-            return view('images.image',['name'=>$file->name,'type'=>$file->type,"uuid"=>$uuid]);
+            if(Storage::exists("/sharex/" . $file->type . "/" . $file->name)){
+                $disk = Storage::get("/sharex/" . $file->type . "/" . $file->name);
+                $type = Storage::mimeType("/sharex/" . $file->type . "/" . $file->name);
+                return view('images.image',['name'=>$file->name,'type'=>$file->type,"uuid"=>$uuid]);
+            }else{
+                $file->delete();
+            }
         }
         return abort(404);
     }
