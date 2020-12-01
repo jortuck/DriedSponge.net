@@ -28,7 +28,7 @@ class Media extends Controller
             if(Storage::exists("/sharex/" . $file->type . "/" . $file->name)){
                 $disk = Storage::get("/sharex/" . $file->type . "/" . $file->name);
                 $type = Storage::mimeType("/sharex/" . $file->type . "/" . $file->name);
-                return view('images.image',['name'=>$file->name,'type'=>$file->type,"uuid"=>$uuid]);
+                return view('images.image',['name'=>$file->name,'type'=>$file->type,"uuid"=>$uuid,"mimeType"=>$type,"rawUrl"=>route('media.load-file',$uuid)]);
             }else{
                 $file->delete();
             }
