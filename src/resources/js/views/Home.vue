@@ -62,7 +62,7 @@
     </section>
     <section class="section">
         <div class="container">
-            <Contactform />
+            <Contactform/>
         </div>
     </section>
 </template>

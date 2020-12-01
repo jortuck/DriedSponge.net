@@ -1,5 +1,6 @@
 <template>
-    <Tileancestor v-if="form.submitted">
+    <Pagehead class="mb-6" sub_header="Is there something I can do for you, or do you just have a general inquiry? Fill out the form below!"><span class="has-text-primary">CONTACT</span> ME</Pagehead>
+    <Tileancestor v-if="form.submitted" data-aos="fade-in">
         <div class="tile is-parent">
             <article class="tile is-child notification is-success has-text-centered box">
                 <div class="content">
@@ -12,8 +13,7 @@
             </article>
         </div>
     </Tileancestor>
-    <Pagehead class="mb-6" sub_header="Is there something I can do for you, or do you just have a general inquiry? Fill out the form below!"><span class="has-text-primary">CONTACT</span> ME</Pagehead>
-    <Tileancestor v-else>
+    <Tileancestor v-else data-aos="fade-up">
         <div class="tile is-parent">
             <div class="tile is-child box">
                 <form @submit="submit">
