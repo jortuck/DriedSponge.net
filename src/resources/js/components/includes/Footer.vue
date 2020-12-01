@@ -1,5 +1,5 @@
 <template>
-    <footer class="py-6 m-3">
+    <footer class="py-5 m-3" >
         <div class="container">
             <div class="level">
                 <div class="level-left">
@@ -13,19 +13,16 @@
                     <div class="level-item">
                         <div class="field has-addons level-item">
                             <p class="control">
-                                <button class="button is-light is-outlined">
-                                    <span>Left</span>
-                                </button>
+                                <a href="https://github.com/driedsponge" target="_blank" class="button is-light is-outlined">
+                                    <Icon icon="fab fa-github" class="is-left" />
+                                    <span>Source Code</span>
+                                </a>
                             </p>
                             <p class="control">
-                                <button class="button is-light is-outlined">
-                                    <span>Left</span>
-                                </button>
-                            </p>
-                            <p class="control">
-                                <button class="button is-light is-outlined">
-                                    <span>Left</span>
-                                </button>
+                                <router-link :to="{ name: 'home'}" class="button is-light is-outlined">
+                                    <Icon icon="fas fa-envelope" class="is-left" />
+                                    <span>Contact</span>
+                                </router-link>
                             </p>
                         </div>
                     </div>
@@ -36,7 +33,9 @@
     </footer>
 </template>
 <script>
+import Icon from "../text/Icon";
 export default {
-    name: "Footer"
+    name: "Footer",
+    components: {Icon}
 }
 </script>
