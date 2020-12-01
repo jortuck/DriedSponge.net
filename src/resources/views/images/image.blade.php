@@ -30,7 +30,7 @@
     <section class="section">
         <div class="container">
             @if($type == 'mp4' or $type == 'mov' )
-                <video autoplay controls src="{{route('media.load-file',$uuid)}}"
+                <video autoplay controls src="{{route('media.load-file',$uuid)}}"></video>
             @else
                 <img src="{{route('media.load-file',$uuid)}}">
             @endif
