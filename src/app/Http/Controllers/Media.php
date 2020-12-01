@@ -15,7 +15,11 @@ class Media extends Controller
             if(Storage::exists("/sharex/" . $file->type . "/" . $file->name)) {
                 $disk = Storage::get("/sharex/" . $file->type . "/" . $file->name);
                 $type = Storage::mimeType("/sharex/" . $file->type . "/" . $file->name);
-                return response($disk, 200)->header('Content-Type', $type);
+                if($request->get('download')){
+                    return Storage::download("/sharex/" . $file->type . "/" . $file->name);
+                }else{
+                    return response($disk, 200)->header('Content-Type', $type);
+                }
             }else{
                 $file->delete();
             }
