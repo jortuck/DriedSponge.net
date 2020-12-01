@@ -61,7 +61,7 @@
         </div>
     </section>
     <section class="section">
-        <div class="container box">
+        <div class="container">
             <Contactform />
         </div>
     </section>
