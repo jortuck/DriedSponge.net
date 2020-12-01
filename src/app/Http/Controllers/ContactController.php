@@ -24,18 +24,19 @@ class ContactController extends Controller
     public function send(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            "captcha_token" => "required",
+            //"captcha_token" => "required",
             "name" => "required|max:150",
             "email" => "required|max:150|email:rfc,dns,spoof",
             "subject" => "required|max:256",
             "message" => "required|max:2000"
         ]);
         if ($validator->passes()) {
-            $response = Http::asForm()->post('https://www.google.com/recaptcha/api/siteverify', [
-                'secret' => config('extra.captcha_secret'),
-                'response' => $request->captcha_token,
-            ]);
-            if ($response['success']) {
+//            $response = Http::asForm()->post('https://www.google.com/recaptcha/api/siteverify', [
+//                'secret' => config('extra.captcha_secret'),
+//                'response' => $request->captcha_token,
+//            ]);
+            //$response['success']
+            if (true) {
                 $data = new ContactResponses();
                 $data->Name = $request->name;
                 $data->Email = $request->email;
