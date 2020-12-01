@@ -2,7 +2,7 @@
 @section('title',$name)
 @section('head')
     @if(Str::contains($mimeType,'video'))
-        <meta property="og:type" content="video">
+        <meta property="og:type" content="website">
         <meta property="og:video" content="{{route('media.load-file',$uuid)}}">
         <meta property="og:video:type" content="{{$mimeType}}">
 
