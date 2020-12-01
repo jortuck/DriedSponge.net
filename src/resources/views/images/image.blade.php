@@ -1,7 +1,7 @@
 @extends("images.layout")
 @section('title',$name)
 @section('head')
-    @if($type == 'mp4' or $type == 'mov' )
+    @if(Str::contains($mimeType,'video'))
         <meta property="og:type" content="video">
         <meta property="og:video" content="{{route('media.load-file',$uuid)}}">
         <meta property="og:video:type" content="{{$mimeType}}">
@@ -23,7 +23,7 @@
 @section('content')
     <section class="section">
         <div class="container">
-            @if($type == 'mp4' or $type == 'mov' )
+            @if(Str::contains($mimeType,'video'))
                 <video autoplay controls src="{{route('media.load-file',$uuid)}}"></video>
             @else
                 <img src="{{route('media.load-file',$uuid)}}">
