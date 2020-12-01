@@ -47,6 +47,6 @@ class Media extends Controller
                 $file->delete();
             }
         }
-        return abort(404);
+        return response()->view("images.notfound")->setStatusCode(404);
     }
 }

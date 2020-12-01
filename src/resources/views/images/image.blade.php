@@ -40,7 +40,6 @@
                                    src="{{route('media.load-file',$uuid)}}"></video>
                         @else
                             <img class="is-align-self-center" src="{{route('media.load-file',$uuid)}}">
-
                         @endif
                     </a>
                 </figure>
