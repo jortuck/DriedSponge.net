@@ -9,6 +9,7 @@ use kanalumaddela\LaravelSteamLogin\Http\Controllers\AbstractSteamLoginControlle
 use kanalumaddela\LaravelSteamLogin\SteamUser;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
+use Laravel\Sanctum\NewAccessToken;
 class SteamLoginController extends AbstractSteamLoginController
 {
     /**
@@ -31,10 +32,6 @@ class SteamLoginController extends AbstractSteamLoginController
             $user->assignRole('User');
         }
         // login the user using the Auth facade
-
-
         Auth::login($user);
-
-        // let the extended controller handle redirect back to the page the user was just on
     }
 }

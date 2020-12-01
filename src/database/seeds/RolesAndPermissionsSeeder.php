@@ -16,6 +16,7 @@ class RolesAndPermissionsSeeder extends Seeder
             # Manage
             'Manage.Administration',
             'Manage.Communication',
+            'Manage.See',
             '*',
             # Roles
             'Roles.Create',

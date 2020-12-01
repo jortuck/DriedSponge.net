@@ -1,0 +1,21 @@
+.title {
+    font-family: Exo;
+}
+.subtitle {
+    font-family: Exo;
+}
+.title.page-title{
+  font-size: 60px;
+  text-transform: uppercase;
+  color: white;
+}
+@include for-tablet-and-down{
+  .title.page-title{
+    font-size: 43px;
+  }
+}
+
+.subtitle.page-subtitle{
+  font-size: 25px;
+  color: white;
+}

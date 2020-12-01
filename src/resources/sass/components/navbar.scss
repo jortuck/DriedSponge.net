@@ -1,0 +1,19 @@
+.navbar{
+  background-color: rgba(0,0,0,0);
+}
+.navbar .navbar-item, .navbar .navbar-item:focus, .navbar .navbar-item:focus-within{
+  text-transform: uppercase;
+  font-weight: bold;
+  font-family: Exo;
+}
+
+ .navbar .navbar-item.router-link-active{
+   color: white;
+ }
+
+.navbar .navbar-brand .navbar-item{
+  font-weight: bolder;
+  font-size: 40px;
+  font-family: Exo;
+}
+

@@ -24,20 +24,21 @@ class ContactController extends Controller
     public function send(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            "captcha_token" => "required",
-            "your_name" => "required|max:150",
+            //"captcha_token" => "required",
+            "name" => "required|max:150",
             "email" => "required|max:150|email:rfc,dns,spoof",
             "subject" => "required|max:256",
             "message" => "required|max:2000"
         ]);
         if ($validator->passes()) {
-            $response = Http::asForm()->post('https://www.google.com/recaptcha/api/siteverify', [
-                'secret' => env('CAPTCHASECRET',null),
-                'response' => $request->captcha_token,
-            ]);
-            if ($response['success']) {
+//            $response = Http::asForm()->post('https://www.google.com/recaptcha/api/siteverify', [
+//                'secret' => config('extra.captcha_secret'),
+//                'response' => $request->captcha_token,
+//            ]);
+            //$response['success']
+            if (true) {
                 $data = new ContactResponses();
-                $data->Name = $request->your_name;
+                $data->Name = $request->name;
                 $data->Email = $request->email;
                 $data->Subject = $request->subject;
                 $data->Message = $request->message;
@@ -56,7 +57,7 @@ class ContactController extends Controller
                             ]
                         ]
                     ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
-                    $ch = curl_init(env("DISCORD_NOTIFICATION_HOOK",null));
+                    $ch = curl_init(config('extra.discord_notification_hook'));
                     curl_setopt_array($ch, [
                         CURLOPT_POST => 1,
                         CURLOPT_FOLLOWLOCATION => 1,

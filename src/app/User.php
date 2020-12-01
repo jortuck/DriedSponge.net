@@ -38,10 +38,13 @@ use Spatie\Permission\Traits\HasRoles;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\User whereUsername($value)
  * @mixin \Eloquent
  */
+use Laravel\Sanctum\HasApiTokens;
 class User extends Authenticatable
 {
     use Notifiable;
     use HasRoles;
+    use HasApiTokens;
+
 
     /**
      * The attributes that are mass assignable.
