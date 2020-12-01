@@ -1,0 +1,13 @@
+$button-classes:
+    "dark" $dark-invert $dark,
+    "light" $light-invert $light;
+
+@each $name, $initial, $goto in $button-classes {
+    @keyframes button-is-#{$name}-hover{
+        0% { background-color: $initial; color: $goto}
+        100% { background-color:white;  color: $initial}
+    }
+    .button.is-#{$name}.is-outlined:hover{
+        animation: button-is-#{$name}-hover 0.3s forwards;
+    }
+}
