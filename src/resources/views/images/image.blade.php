@@ -14,6 +14,7 @@
     <meta property="og:url" content="{{url()->current()}}" />
     <meta property="og:site_name" content="DriedSponge.net | Images" />
     <meta property="og:title" content="{{$name}}" />
+    <link rel="icon" href="{{asset('favicon.png')}}">
     @if($type == 'mp4' or $type == 'mov' )
         <meta content="player" name="twitter:card">
         <meta property="og:video" content="{{route('media.load-file',$uuid)}}">
