@@ -5,7 +5,7 @@ import axios from 'axios'
 import AOS from 'aos';
 
 // AOS Settings
-AOS.init()
+AOS.init({once:true})
 
 // axios settings
 axios.defaults.withCredentials = true;
