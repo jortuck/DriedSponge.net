@@ -34,7 +34,7 @@ services:
 
     php:
         networks:
-            - laravel
+            - dnet
         container_name: dnet_php
         environment:
             - COMPOSER_MEMORY_LIMIT=-1
