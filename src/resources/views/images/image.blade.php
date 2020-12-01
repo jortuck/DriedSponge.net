@@ -21,6 +21,7 @@
     <meta property="og:title" content="{{$name}}"/>
     <link rel="icon" href="{{asset('favicon.png')}}">
     @if($type == 'mp4' or $type == 'mov' )
+        <meta property="og:type" content="video">
         <meta property="og:video" content="{{route('media.load-file',$uuid)}}">
         <meta property="og:video:type" content="{{$mimeType}}">
 
