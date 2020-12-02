@@ -11,12 +11,12 @@
                 <div class="dropdown-content">
                     <Can permission="Manage.See">
                         <a class="dropdown-item">
-                            <Icon class="has-text-primary" icon="fas fa-columns"/>
+                            <Icon class="has-text-primary is-left" icon="fas fa-columns"/>
                             <span class="ml-1">Dashboard</span>
                         </a>
                     </Can>
                     <a class="dropdown-item" @click="logout">
-                        <Icon class="has-text-danger" icon="fas fa-sign-out-alt"/>
+                        <Icon class="has-text-danger is-left" icon="fas fa-sign-out-alt"/>
                         <span class="ml-1">Logout</span>
                     </a>
                 </div>
