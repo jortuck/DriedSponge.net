@@ -1,5 +1,6 @@
-import {createRouter, createWebHashHistory} from 'vue-router'
+import {createRouter, createWebHistory} from 'vue-router'
 import session from "../store/session";
+
 const routes = [
     {
         path: '/',
@@ -10,14 +11,29 @@ const routes = [
         path: '/projects',
         name: 'projects',
         component: () => import('../views/Projects.vue')
+    },
+    {
+        path: '/manage',
+        component: () => import('../views/Projects.vue'),
+        children: [
+            {
+                path: 'bar',
+                component: () => import('../views/Home'),
+                meta: {requiresAuth: true}
+            }
+        ]
+    },
+    {
+        path: '/:pathMatch(.*)*',
+        component: () => import('../views/errors/404'),
     }
 ]
 
 const router = createRouter({
-    history: createWebHashHistory(),
+    history: createWebHistory(),
     routes
 })
-router.afterEach((to, from) => {
-     session.fetch();
+router.beforeEach((to, from) => {
+    session.fetch();
 })
 export default router
