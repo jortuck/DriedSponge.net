@@ -24,6 +24,9 @@
                                     <span>Contact</span>
                                 </router-link>
                             </p>
+                            <p class="control">
+                                <Loginbutton />
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -34,8 +37,9 @@
 </template>
 <script>
 import Icon from "../text/Icon";
+import Loginbutton from "./Navbar/Loginbutton";
 export default {
     name: "Footer",
-    components: {Icon}
+    components: {Loginbutton, Icon}
 }
 </script>

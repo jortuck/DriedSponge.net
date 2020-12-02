@@ -1,46 +1,44 @@
 <template>
     <div v-if="state.loaded" style="display: inherit">
-        <div v-if="state.authenticated" class="navbar-item has-dropdown is-hoverable">
-            <a class="navbar-link">
-                {{ state.user.username }}
-            </a>
-            <div class="navbar-dropdown is-right is-boxed">
-                <Can permission="Manage.See">
-                    <a class="navbar-item">
-                    <span class="icon has-text-primary">
-                      <i class="fas fa-columns"></i>
-                    </span>
-                        <span class="ml-1">Dashboard</span>
+        <div v-if="state.authenticated" :class="{'dropdown':true,'is-up':true,'is-active':dropdown_active}">
+            <div class="dropdown-trigger">
+                <button class="button is-light is-outlined" aria-haspopup="true" aria-controls="user-dropdown" @click="toggleDropdown">
+                    <Icon class="is-left" icon="fas fa-angle-up"/>
+                    <span>{{ state.user.username }}</span>
+                </button>
+            </div>
+            <div class="dropdown-menu" id="user-dropdown" role="menu">
+                <div class="dropdown-content">
+                    <Can permission="Manage.See">
+                        <a class="dropdown-item">
+                            <Icon class="has-text-primary" icon="fas fa-columns"/>
+                            <span class="ml-1">Dashboard</span>
+                        </a>
+                    </Can>
+                    <a class="dropdown-item" @click="logout">
+                        <Icon class="has-text-danger" icon="fas fa-sign-out-alt"/>
+                        <span class="ml-1">Logout</span>
                     </a>
-                </Can>
-                <a class="navbar-item" @click="logout">
-                    <span class="icon has-text-danger ">
-                      <i class="fas fa-sign-out-alt"></i>
-                    </span>
-                    <span class="ml-1">Logout</span>
-                </a>
+                </div>
             </div>
         </div>
-        <div class="buttons navbar-item" v-else title="This is just for me to login and access my dashboard. You can login if you want but it does absolutley nothing for you.">
-            <a class="button login-button" @click="login">
+        <a class="button is-light is-outlined" @click="login" v-else
+           title="This is just for me to login and access my dashboard. You can login if you want but it does absolutley nothing for you.">
                     <span class="icon">
                       <i class="fab fa-steam"></i>
                     </span>
-                <span>LOGIN</span>
-            </a>
-        </div>
+            <span>LOGIN</span>
+        </a>
     </div>
-    <div v-else style="display: inherit">
-        <span class="navbar-item router-link-active">
-            <span class="icon">
-                <i class="fas fa-sync fa-spin"></i>
-            </span>
-        </span>
-    </div>
+    <a class="button is-light is-outlined" v-else>
+        <span class="icon"><i class="fas fa-sync fa-spin"></i></span>
+    </a>
 </template>
 <script>
 import session from "../../../store/session.js";
 import Can from "../../helpers/Can";
+import Icon from "../../text/Icon";
+
 export default {
     name: "Loginbutton",
     methods: {
@@ -49,14 +47,19 @@ export default {
         },
         logout() {
             session.logout();
+        },
+        toggleDropdown(){
+          this.dropdown_active = !this.dropdown_active;
         }
     },
     data() {
         return {
-            state: session.state
+            state: session.state,
+            dropdown_active: false
         }
     },
     components: {
+        Icon,
         Can
     }
 }
