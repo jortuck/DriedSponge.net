@@ -82,9 +82,6 @@ export default {
             subhead: "Full Stack Web Developer"
         }
     },
-    setup() {
-        session.fetch();
-    },
     computed: {
         webtime() {
             let efromnow = Math.floor(Date.now() / 1000) - 1567728000;

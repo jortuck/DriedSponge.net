@@ -1,4 +1,5 @@
 import {createRouter, createWebHashHistory} from 'vue-router'
+import session from "../store/session";
 const routes = [
     {
         path: '/',
@@ -16,5 +17,7 @@ const router = createRouter({
     history: createWebHashHistory(),
     routes
 })
-
+router.afterEach((to, from) => {
+     session.fetch();
+})
 export default router
