@@ -15,7 +15,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::post('/sharex/upload', 'Api\Media@upload');
+Route::post('/uploads/upload', 'Api\FileUploads@upload');
+Route::get('/uploads/{uuid}/sharex-delete/{deltoken}', 'Api\FileUploads@sharexdelete')->name('sharex.delete');
 
 
 

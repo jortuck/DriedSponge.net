@@ -16,8 +16,8 @@ use kanalumaddela\LaravelSteamLogin\Facades\SteamLogin;
 */
 
 Route::domain(config('extra.image_domain'))->group(function () {
-    Route::get('/file/{uuid}', 'Media@loadFile')->name('media.load-file');
-    Route::get('/{uuid}', 'Media@loadView')->name('media.load-view');
+    Route::get('/file/{uuid}', 'FileUploads@loadFile')->name('upload.load-file');
+    Route::get('/{uuid}', 'FileUploads@loadView')->name('upload.load-view');
 });
 
 Route::get('/login', 'Auth\SteamLoginController@login')->name('login');

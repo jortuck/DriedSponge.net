@@ -3,7 +3,7 @@
 @section('head')
     @if(Str::contains($mimeType,'video'))
         <meta property="og:type" content="website">
-        <meta property="og:video" content="{{route('media.load-file',$uuid)}}">
+        <meta property="og:video" content="{{route('upload.load-file',$uuid)}}">
         <meta property="og:video:type" content="{{$mimeType}}">
 
         {{-- Twitter: --}}
@@ -37,10 +37,9 @@
                     <a href="{{$rawUrl}}" target="_blank">
                         @if(Str::contains($mimeType,'video'))
                             <video class="is-align-self-center" autoplay controls
-                                   src="{{route('media.load-file',$uuid)}}"></video>
+                                   src="{{route('upload.load-file',$uuid)}}"></video>
                         @else
-                            <img class="is-align-self-center" src="{{route('media.load-file',$uuid)}}">
-
+                            <img class="is-align-self-center" src="{{route('upload.load-file',$uuid)}}">
                         @endif
                     </a>
                 </figure>

@@ -2,17 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\SharexMedia;
+use App\FileUpload;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
-class Media extends Controller
+class FileUploads extends Controller
 {
     public function loadFile(Request $request, $uuid)
     {
-        $file = SharexMedia::where("uuid", $uuid)->first();
+        $file = FileUpload::where("uuid", $uuid)->first();
         if ($file) {
-            $path = "/sharex/" . $file->type . "/" . $file->name;
+            $path = "/uploads/" . $file->type . "/" . $file->name;
             if(Storage::exists($path)) {
                 $disk = Storage::get($path);
                 $type = Storage::mimeType($path);
@@ -28,9 +28,9 @@ class Media extends Controller
         return abort(404);
     }
     public function loadView(Request $request, $uuid){
-        $file = SharexMedia::where("uuid", $uuid)->first();
+        $file = FileUpload::where("uuid", $uuid)->first();
         if ($file) {
-            $path = "/sharex/" . $file->type . "/" . $file->name;
+            $path = "/uploads/" . $file->type . "/" . $file->name;
             if(Storage::exists($path)){
                 $disk = Storage::get($path);
                 $type = Storage::mimeType($path);
@@ -39,7 +39,7 @@ class Media extends Controller
                     'type'=>$file->type,
                     "uuid"=>$uuid,
                     "mimeType"=>$type,
-                    "rawUrl"=>route('media.load-file',$uuid),
+                    "rawUrl"=>route('upload.load-file',$uuid),
                     "size"=>Storage::size($path)/1000,
                     "created"=>$file->created_at
                 ]);
@@ -47,6 +47,6 @@ class Media extends Controller
                 $file->delete();
             }
         }
-        return abort(404);
+        return response()->view("images.notfound")->setStatusCode(200);
     }
 }

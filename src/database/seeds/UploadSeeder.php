@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class SharexSeeder extends Seeder
+class UploadSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -11,15 +11,15 @@ class SharexSeeder extends Seeder
      */
     public function run()
     {
-        if(Storage::exists('/sharex')){
-            foreach (Storage::allFiles('/sharex') as $file){
+        if(Storage::exists('/uploads')){
+            foreach (Storage::allFiles('/uploads') as $file){
                 $type = explode("/",Storage::mimeType($file))[1];
                 echo "\n".$file;
-                $data = new \App\SharexMedia();
+                $data = new \App\FileUpload();
                 $data->type  = $type;
                 $data->name =  explode("/",$file)[2];
                 $data->uuid = explode(".",$data->name)[0];
-                if(\App\SharexMedia::where("name",$data->name)->first()){
+                if(\App\FileUpload::where("name",$data->name)->first()){
                     echo "\n $file - File already exist!";
                     continue;
                 }
