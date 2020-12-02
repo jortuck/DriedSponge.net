@@ -11,7 +11,7 @@ class UploadSeeder extends Seeder
      */
     public function run()
     {
-        if(Storage::exists('/sharex')){
+        if(Storage::exists('/uploads')){
             foreach (Storage::allFiles('/uploads') as $file){
                 $type = explode("/",Storage::mimeType($file))[1];
                 echo "\n".$file;
