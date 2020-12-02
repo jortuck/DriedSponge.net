@@ -30,7 +30,7 @@ class FileUploads extends Controller
                     $file->storeAs(
                         "/uploads/$extention", $upload->name
                     );
-                    return response()->json(["success" => true, "id" => $upload->uuid, "url" => route('upload.load-view', $upload->uuid), "raw_url" => route('media.load-file', $upload->uuid)]);
+                    return response()->json(["success" => true, "id" => $upload->uuid, "url" => route('upload.load-view', $upload->uuid), "raw_url" => route('upload.load-file', $upload->uuid)]);
                 }
                 return response()->json(["success" => false, "error" => "Invalid File","errors"=>$validator->errors()],500);
             }
