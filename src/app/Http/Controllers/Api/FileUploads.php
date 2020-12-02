@@ -3,13 +3,13 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\SharexMedia;
+use App\FileUpload;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 
-class Media extends Controller
+class FileUploads extends Controller
 {
     public function upload(Request $request)
     {
@@ -22,15 +22,15 @@ class Media extends Controller
                     $file = $request->file('image');
                     $extention = $file->extension();
                     $name = Str::random(10);
-                    $upload = new SharexMedia();
+                    $upload = new FileUploads();
                     $upload->name = $name . '.' . $extention;
                     $upload->type = $extention;
                     $upload->uuid = $name;
                     $upload->save();
                     $file->storeAs(
-                        "/sharex/$extention", $upload->name
+                        "/uploads/$extention", $upload->name
                     );
-                    return response()->json(["success" => true, "id" => $upload->uuid, "url" => route('media.load-view', $upload->uuid), "raw_url" => route('media.load-file', $upload->uuid)]);
+                    return response()->json(["success" => true, "id" => $upload->uuid, "url" => route('upload.load-view', $upload->uuid), "raw_url" => route('media.load-file', $upload->uuid)]);
                 }
                 return response()->json(["success" => false, "error" => "Invalid File","errors"=>$validator->errors()],500);
             }

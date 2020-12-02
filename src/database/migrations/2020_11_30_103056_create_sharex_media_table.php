@@ -13,11 +13,13 @@ class CreateSharexMediaTable extends Migration
      */
     public function up()
     {
-        Schema::create('sharex_media', function (Blueprint $table) {
+        Schema::create('file_uploads', function (Blueprint $table) {
             $table->id();
             $table->string('uuid', 10)->unique();
             $table->string('name')->unique();
             $table->string('type');
+            $table->string('description')->nullable();
+            $table->string('deleteToken',64)->nullable();
             $table->boolean('private')->default(0);
             $table->timestamps();
         });

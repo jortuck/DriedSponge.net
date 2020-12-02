@@ -4,10 +4,10 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class SharexMedia extends Model
+class FileUpload extends Model
 {
     //Table Name
-    protected $table = 'sharex_media';
+    protected $table = 'file_uploads';
     //Primary key
     public $primaryKey = 'id';
     //Timestamps

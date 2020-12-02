@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::post('/sharex/upload', 'Api\Media@upload');
+Route::post('/sharex/upload', 'Api\FileUploads@upload');
 
 
 
