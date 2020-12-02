@@ -1,10 +1,10 @@
 import {createRouter, createWebHashHistory} from 'vue-router'
-import Home from '../views/Home.vue'
+import session from "../store/session";
 const routes = [
     {
         path: '/',
         name: 'home',
-        component: Home
+        component: () => import('../views/Home')
     },
     {
         path: '/projects',
@@ -17,5 +17,7 @@ const router = createRouter({
     history: createWebHashHistory(),
     routes
 })
-
+router.afterEach((to, from) => {
+     session.fetch();
+})
 export default router

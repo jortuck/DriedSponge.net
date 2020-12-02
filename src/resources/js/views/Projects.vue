@@ -1,6 +1,6 @@
 <template>
   <section class="section">
-    <Pagehead sub_header="Good stuff">
+    <Pagehead sub_header="Coming soon">
       <span class="has-text-primary">Proj</span>ects
     </Pagehead>
   </section>

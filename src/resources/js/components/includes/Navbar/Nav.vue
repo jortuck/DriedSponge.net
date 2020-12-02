@@ -16,7 +16,6 @@
                 <router-link class="navbar-item" :to="{ name: 'home'}">Home</router-link>
                 <router-link class="navbar-item" :to="{ name: 'projects'}">Projects</router-link>
                 <Snowcontroller />
-                <Loginbutton/>
             </div>
         </div>
     </nav>
