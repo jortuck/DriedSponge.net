@@ -41,7 +41,12 @@ class RolesAndPermissionsSeeder extends Seeder
             # Alerts
             'Alerts.Create',
             'Alerts.Delete',
-            'Alerts.See'
+            'Alerts.See',
+
+            # Alerts
+            'File.Create',
+            'File.Delete',
+            'File.Edit'
 
 
         ];
@@ -70,7 +75,14 @@ class RolesAndPermissionsSeeder extends Seeder
         Permission::insert($apipermissions->toArray());
 
         #Create Default Roles
-        Role::create(['name' => 'Owner'])->givePermissionTo(['*']);
-        Role::create(['name' => 'User']);
+        if(!Role::where('name','Owner')->first()){
+            Role::create(['name' => 'Owner'])->givePermissionTo(['*']);
+            echo "\nSeeded Owner Role\n";
+        }
+        if(!Role::where('name','User')->first()){
+            Role::create(['name' => 'User']);
+            echo "\nSeeded User Role\n";
+        }
+
     }
 }

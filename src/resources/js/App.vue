@@ -1,18 +1,21 @@
 <template>
-    <main>
-        <Nav/>
-        <router-view/>
-    </main>
-    <Footer />
+    <router-view/>
 </template>
 <script>
 import Nav from "./components/includes/Navbar/Nav"
 import Footer from "./components/includes/Footer";
+
 export default {
     name: 'App',
     components: {
         Nav,
         Footer
     },
+    props: {
+        manage: {
+            required: false,
+        }
+    },
+
 }
 </script>

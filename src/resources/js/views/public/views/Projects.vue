@@ -6,7 +6,7 @@
   </section>
 </template>
 <script>
-import Pagehead from "../components/includes/Pagehead";
+import Pagehead from "../../../components/includes/Pagehead";
 export default {
   name: 'Projects',
   components: {Pagehead}
