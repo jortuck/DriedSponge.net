@@ -1,6 +1,11 @@
 .navbar{
   background-color: rgba(0,0,0,0);
 }
+@include for-tablet-and-down{
+    .navbar{
+        background-color: $black;
+    }
+}
 .navbar .navbar-item, .navbar .navbar-item:focus, .navbar .navbar-item:focus-within{
   text-transform: uppercase;
   font-weight: bold;
@@ -16,4 +21,3 @@
   font-size: 40px;
   font-family: Exo;
 }
-
