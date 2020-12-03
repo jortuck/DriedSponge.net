@@ -37,7 +37,7 @@
 </template>
 <script>
 import Icon from "../text/Icon";
-import Loginbutton from "./Navbar/Loginbutton";
+import Loginbutton from "./Loginbutton";
 export default {
     name: "Footer",
     components: {Loginbutton, Icon}

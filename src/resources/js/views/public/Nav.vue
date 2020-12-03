@@ -20,7 +20,7 @@
     </nav>
 </template>
 <script>
-import Snowcontroller from './Snowcontroller';
+import Snowcontroller from '../../components/includes/Snowcontroller';
 export default {
     name: "Nav",
     components:{

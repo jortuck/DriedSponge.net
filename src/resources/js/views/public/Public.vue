@@ -7,7 +7,7 @@
 </template>
 <script>
 import Footer from "../../components/includes/Footer";
-import Nav from "../../components/includes/Navbar/Nav";
+import Nav from "./Nav";
 export default {
     name: "Public",
     components: {Nav, Footer}

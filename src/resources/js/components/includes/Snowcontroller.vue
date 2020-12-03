@@ -16,10 +16,9 @@
         </div>
     </div>
 </template>
-
 <script>
-import {getCookie,setCookie} from "../../helpers/cookies";
-import Icon from "../../text/Icon";
+import {getCookie,setCookie} from "../helpers/cookies";
+import Icon from "../text/Icon";
 export default {
     name: "Snowcontroller",
     components: {Icon},
