@@ -26,6 +26,7 @@ const session = {
         })
     },
     logout() {
+        this.state.loaded=false
         axios.post("/logout/").then(res => {
             this.fetch();
         })
