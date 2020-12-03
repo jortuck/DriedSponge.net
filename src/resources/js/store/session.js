@@ -31,6 +31,9 @@ const session = {
             this.fetch();
         })
     },
+    can(perm){
+        return this.state.permissions[perm]
+    }
 }
 
 export default session;
