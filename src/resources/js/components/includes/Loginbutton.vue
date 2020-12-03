@@ -1,6 +1,6 @@
 <template>
     <div v-if="state.loaded" style="display: inherit">
-        <div v-if="state.authenticated" class="dropdown is-up" :class="{'is-active':dropdown_active}">
+        <div v-if="state.authenticated" class="dropdown is-up is-right" :class="{'is-active':dropdown_active}">
             <div class="dropdown-trigger">
                 <button class="button is-light is-outlined" aria-haspopup="true" aria-controls="user-dropdown" @click="toggleDropdown">
                     <Icon class="is-left" icon="fas fa-angle-up"/>
@@ -64,7 +64,3 @@ export default {
     }
 }
 </script>
-
-<style scoped>
-
-</style>
