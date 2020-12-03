@@ -4,21 +4,30 @@ import session from "../store/session";
 const routes = [
     {
         path: '/',
-        name: 'home',
-        component: () => import('../views/Home')
-    },
-    {
-        path: '/projects',
-        name: 'projects',
-        component: () => import('../views/Projects.vue')
-    },
-    {
-        path: '/manage',
-        component: () => import('../views/Projects.vue'),
+        component: () => import('../views/public/Public'),
         children: [
             {
-                path: 'bar',
-                component: () => import('../views/Home'),
+                path: '',
+                name: 'home',
+                component: () => import('../views/public/views/Home')
+            },
+            {
+                path: '/projects',
+                name: 'projects',
+                component: () => import('../views/public/views/Projects.vue')
+            },
+        ]
+    },
+
+
+    {
+        path: '/manage',
+        meta: { requiresAuth: true},
+        component: () => import('../views/manage/Manage'),
+        children: [
+            {
+                path: '',
+                component: () => import('../views/manage/views/Dashboard'),
                 meta: {requiresAuth: true}
             }
         ]
