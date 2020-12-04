@@ -19,7 +19,7 @@ export default {
     computed: {
         load() {
             if (this.session.authenticated) {
-                if (session.can('Manage.See')) {
+                if (session.can(this.$route.meta.can) && session.can(this.$route.meta.can)){
                     return true;
                 } else {
                     return false
