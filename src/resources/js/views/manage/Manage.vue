@@ -1,37 +1,31 @@
 <template>
     <main>
         <router-view v-if="load"></router-view>
-        <section v-else class="section">
-            <div class="level">
-                <div class="level-item has-text-centered has-text-white">
-                    <Icon class="is-large" icon="fas fa-sync fa-spin fa-4x"/>
-                </div>
-            </div>
-        </section>
+        <Denied v-else />
     </main>
 </template>
 <script>
 import session from "../../store/session";
 import Icon from "../../components/text/Icon";
-
+import Denied from "../errors/Denied";
 export default {
     name: "Manage",
-    components: {Icon},
+    components: {Denied, Icon},
     data() {
         return {
-            session: session.state
+            session: session.state,
         }
     },
-    computed:{
-        load(){
-            if(this.session.authenticated){
-                if(session.can('Manage.See')){
+    computed: {
+        load() {
+            if (this.session.authenticated) {
+                if (session.can('Manage.See')) {
                     return true;
-                }else{
+                } else {
                     return false
                 }
-            }else{
-                window.location="/login"
+            } else {
+                window.location = "/login"
             }
         }
     }
