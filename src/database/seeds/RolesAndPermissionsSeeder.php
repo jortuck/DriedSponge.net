@@ -16,8 +16,10 @@ class RolesAndPermissionsSeeder extends Seeder
             # Manage
             'Manage.Administration',
             'Manage.Communication',
+            'Manage.Content',
             'Manage.See',
             '*',
+
             # Roles
             'Roles.Create',
             'Roles.Edit',
@@ -37,17 +39,24 @@ class RolesAndPermissionsSeeder extends Seeder
 
             # Contact
             'Contact.See',
+            'Contact.Delete',
 
             # Alerts
             'Alerts.Create',
             'Alerts.Delete',
             'Alerts.See',
 
-            # Alerts
+            # Files
             'File.Create',
             'File.Delete',
-            'File.Edit'
+            'File.Edit',
+            'File.See',
 
+            # Projects
+            'Project.Create',
+            'Project.Delete',
+            'Project.Edit',
+            'Project.See'
 
         ];
         $permissions = collect($arrayOfUserPermissionNames)->map(function ($permission) {

@@ -1,6 +1,6 @@
 <template>
     <section class="section">
-        <Pagehead>GOod Section</Pagehead>
+        <Pagehead sub_header="Coming soon">Dashboard</Pagehead>
     </section>
 </template>
 
