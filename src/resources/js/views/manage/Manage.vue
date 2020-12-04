@@ -25,7 +25,7 @@ export default {
             if (this.session.authenticated) {
                 return !!(session.can(this.$route.meta.can) && session.can(this.$route.meta.can));
             } else {
-                window.location = "/login"
+                return false
             }
         }
     }

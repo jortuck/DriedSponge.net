@@ -47,6 +47,7 @@ export default {
     name: "Managelogin",
     methods: {
         logout() {
+            this.$router.push({ name: 'home'})
             session.logout();
         }
     },
