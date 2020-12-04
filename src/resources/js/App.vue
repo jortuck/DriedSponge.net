@@ -2,7 +2,7 @@
     <router-view/>
 </template>
 <script>
-import Nav from "./components/includes/Navbar/Nav"
+import Nav from "./views/public/Nav"
 import Footer from "./components/includes/Footer";
 
 export default {

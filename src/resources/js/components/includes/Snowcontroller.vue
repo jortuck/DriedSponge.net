@@ -1,5 +1,5 @@
 <template>
-    <div :class="{'navbar-item':true, 'has-dropdown':true, 'is-clicked':true,'is-active':state.showShowSettings}">
+    <div class="navbar-item has-dropdown is-clicked" :class="{'is-active':state.showShowSettings}">
         <a class="navbar-link" @click="toggleDrop">
             Snow Settings
         </a>
@@ -16,10 +16,9 @@
         </div>
     </div>
 </template>
-
 <script>
-import {getCookie,setCookie} from "../../helpers/cookies";
-import Icon from "../../text/Icon";
+import {getCookie,setCookie} from "../helpers/cookies";
+import Icon from "../text/Icon";
 export default {
     name: "Snowcontroller",
     components: {Icon},

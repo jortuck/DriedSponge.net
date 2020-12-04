@@ -1,6 +1,6 @@
 <template>
     <div v-if="state.loaded" style="display: inherit">
-        <div v-if="state.authenticated" :class="{'dropdown':true,'is-up':true,'is-active':dropdown_active}">
+        <div v-if="state.authenticated" class="dropdown is-up is-right" :class="{'is-active':dropdown_active}">
             <div class="dropdown-trigger">
                 <button class="button is-light is-outlined" aria-haspopup="true" aria-controls="user-dropdown" @click="toggleDropdown">
                     <Icon class="is-left" icon="fas fa-angle-up"/>
@@ -10,10 +10,10 @@
             <div class="dropdown-menu" id="user-dropdown" role="menu">
                 <div class="dropdown-content">
                     <Can permission="Manage.See">
-                        <a class="dropdown-item">
+                        <router-link class="dropdown-item" :to="{name:'manage'}">
                             <Icon class="has-text-primary is-left" icon="fas fa-columns"/>
                             <span class="ml-1">Dashboard</span>
-                        </a>
+                        </router-link>
                     </Can>
                     <a class="dropdown-item" @click="logout">
                         <Icon class="has-text-danger is-left" icon="fas fa-sign-out-alt"/>
@@ -35,9 +35,9 @@
     </a>
 </template>
 <script>
-import session from "../../../store/session.js";
-import Can from "../../helpers/Can";
-import Icon from "../../text/Icon";
+import session from "../../store/session.js";
+import Can from "../helpers/Can";
+import Icon from "../text/Icon";
 
 export default {
     name: "Loginbutton",
@@ -64,7 +64,3 @@ export default {
     }
 }
 </script>
-
-<style scoped>
-
-</style>

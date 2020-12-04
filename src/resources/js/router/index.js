@@ -27,8 +27,9 @@ const routes = [
         children: [
             {
                 path: '',
+                name: 'manage',
                 component: () => import('../views/manage/views/Dashboard'),
-                meta: {requiresAuth: true}
+                meta: {can: "Manage.See"}
             }
         ]
     },
