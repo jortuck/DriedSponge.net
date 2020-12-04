@@ -1,5 +1,5 @@
 <template>
-    <div :class="{'navbar-item':true, 'has-dropdown':true, 'is-clicked':true,'is-active':state.showShowSettings}">
+    <div class="navbar-item has-dropdown is-clicked" :class="{'is-active':state.showShowSettings}">
         <a class="navbar-link" @click="toggleDrop">
             Snow Settings
         </a>
