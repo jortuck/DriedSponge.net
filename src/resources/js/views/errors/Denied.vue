@@ -1,5 +1,5 @@
 <template>
-    <div class="hero is-fullheight  has-text-centered is-bold is-large" v-else>
+    <div class="hero is-fullheight  has-text-centered is-bold is-large" >
         <div class="hero-body">
             <div class="container">
                 <h1 class="title is-size-1 has-text-danger">

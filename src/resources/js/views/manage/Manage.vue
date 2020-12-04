@@ -1,7 +1,9 @@
 <template>
-    <main>
-        <router-view v-if="load"></router-view>
-        <Denied v-else />
+    <main v-if="load">
+        <router-view ></router-view>
+    </main>
+    <main v-else>
+        <Denied />
     </main>
 </template>
 <script>
@@ -19,11 +21,7 @@ export default {
     computed: {
         load() {
             if (this.session.authenticated) {
-                if (session.can(this.$route.meta.can) && session.can(this.$route.meta.can)){
-                    return true;
-                } else {
-                    return false
-                }
+                return !!(session.can(this.$route.meta.can) && session.can(this.$route.meta.can));
             } else {
                 window.location = "/login"
             }
