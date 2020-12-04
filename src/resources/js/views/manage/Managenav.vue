@@ -14,9 +14,22 @@
             </div>
             <div class="navbar-menu" :class="{'is-active':navbarToggled}">
                 <div class="navbar-end">
-                    <router-link class="navbar-item" :to="{ name: 'home'}">Dashboard</router-link>
-                    <router-link class="navbar-item" :to="{ name: 'projects'}">Content</router-link>
-                    <router-link class="navbar-item" :to="{ name: 'projects'}">Communication</router-link>
+                    <Navdropdown text="CONTENT">
+                        <a class="navbar-item"  >
+                            <Icon icon="fas fa-snowflake" class="icon has-text-primary" />
+                            <span class="ml-1" >Projects</span>
+                        </a>
+                        <a class="navbar-item"  >
+                            <Icon icon="fas fa-snowflake" class="icon has-text-primary" />
+                            <span class="ml-1" >Files</span>
+                        </a>
+                    </Navdropdown>
+                    <Navdropdown text="COMMUNICATION">
+                        <a class="navbar-item"  >
+                            <Icon icon="fas fa-snowflake" class="icon has-text-primary" />
+                            <span class="ml-1" >Disable</span>
+                        </a>
+                    </Navdropdown>
                     <Navdropdown text="Administration">
                         <a class="navbar-item"  >
                             <Icon icon="fas fa-snowflake" class="icon has-text-primary" />
