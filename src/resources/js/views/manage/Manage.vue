@@ -1,5 +1,6 @@
 <template>
     <main v-if="load">
+        <
         <router-view ></router-view>
     </main>
     <main v-else>
