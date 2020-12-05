@@ -1,5 +1,5 @@
 <template>
-    <div class="navbar-item has-dropdown is-clicked" :class="{'is-active':state.showShowSettings}">
+    <div class="navbar-item has-dropdown is-hoverable">
         <a class="navbar-link" @click="toggleDrop">
             Snow Settings
         </a>
@@ -25,8 +25,7 @@ export default {
     data() {
         return {
             state:{
-                toggled: getCookie('snowstatus') !== "off",
-                showShowSettings: false,
+                toggled: getCookie('snowstatus') !== "off"
             }
         }
     },
@@ -40,9 +39,6 @@ export default {
         },
         changeSpeed(){
             window.snowStorm.randomizeWind()
-        },
-        toggleDrop(){
-            this.state.showShowSettings = !this.state.showShowSettings;
         }
     },
     setup(){

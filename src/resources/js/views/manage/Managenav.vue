@@ -14,28 +14,61 @@
             </div>
             <div class="navbar-menu" :class="{'is-active':navbarToggled}">
                 <div class="navbar-end">
-                    <Navdropdown text="CONTENT">
-                        <a class="navbar-item"  >
-                            <Icon icon="fas fa-snowflake" class="icon has-text-primary" />
-                            <span class="ml-1" >Projects</span>
-                        </a>
-                        <a class="navbar-item"  >
-                            <Icon icon="fas fa-snowflake" class="icon has-text-primary" />
-                            <span class="ml-1" >Files</span>
-                        </a>
-                    </Navdropdown>
-                    <Navdropdown text="COMMUNICATION">
-                        <a class="navbar-item"  >
-                            <Icon icon="fas fa-snowflake" class="icon has-text-primary" />
-                            <span class="ml-1" >Disable</span>
-                        </a>
-                    </Navdropdown>
-                    <Navdropdown text="Administration">
-                        <a class="navbar-item"  >
-                            <Icon icon="fas fa-snowflake" class="icon has-text-primary" />
-                            <span class="ml-1" >Disable</span>
-                        </a>
-                    </Navdropdown>
+                    <Can permission="Manage.Content">
+                        <Navdropdown text="CONTENT">
+                            <Can permission="Project.See">
+                                <a class="navbar-item">
+                                    <Icon icon="fas fa-project-diagram" class="has-text-primary"/>
+                                    <span class="ml-1">Projects</span>
+                                </a>
+                            </Can>
+                            <Can permission="File.See">
+                                <a class="navbar-item">
+                                    <Icon icon="fas fa-images" class="has-text-primary"/>
+                                    <span class="ml-1">Files</span>
+                                </a>
+                            </Can>
+                        </Navdropdown>
+                    </Can>
+                    <Can permission="Manage.Communication">
+                        <Navdropdown text="COMMUNICATION">
+                            <Can permission="Contact.See">
+                                <a class="navbar-item">
+                                    <Icon icon="fas fa-inbox" class="has-text-primary"/>
+                                    <span class="ml-1">Contact From Responses</span>
+                                </a>
+                            </Can>
+                            <Can permission="Alerts.See">
+                                <a class="navbar-item">
+                                    <Icon icon="fas fa-comment-alt" class="has-text-primary"/>
+                                    <span class="ml-1">Alerts</span>
+                                </a>
+                            </Can>
+                        </Navdropdown>
+                    </Can>
+                    <Can permission="Manage.Administration">
+                        <Navdropdown text="Administration">
+                            <Can permission="Permissions.See">
+                                <a class="navbar-item">
+                                    <Icon icon="fas fa-lock" class="has-text-primary"/>
+                                    <span class="ml-1">Permissions</span>
+                                </a>
+                            </Can>
+                            <Can permission="Roles.See">
+                                <a class="navbar-item">
+                                    <Icon icon="fas fa-users" class="has-text-primary"/>
+                                    <span class="ml-1">Roles</span>
+                                </a>
+                            </Can>
+                            <Can permission="Api.See">
+                                <a class="navbar-item">
+                                    <Icon icon="fas fa-key" class="has-text-primary"/>
+                                    <span class="ml-1">Api Keys</span>
+                                </a>
+                            </Can>
+                        </Navdropdown>
+                    </Can>
+                    <Managelogin />
                     <Snowcontroller/>
                 </div>
             </div>
@@ -46,9 +79,12 @@
 import Snowcontroller from "../../components/includes/Snowcontroller";
 import Navdropdown from "../../components/includes/Navbar/Dropdown";
 import Icon from "../../components/text/Icon";
+import Can from "../../components/helpers/Can";
+import Managelogin from "../../components/includes/Navbar/Managelogin";
+
 export default {
     name: "Managenav",
-    components: {Icon, Navdropdown, Snowcontroller},
+    components: {Managelogin, Can, Icon, Navdropdown, Snowcontroller},
     data() {
         return {
             navbarToggled: false
