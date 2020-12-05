@@ -1,5 +1,5 @@
 <template>
-    <div class="has-dropdown navbar-item is-hoverable">
+    <div class="has-dropdown navbar-item" :class="{'is-clicked':click,'is-hoverable':!click,'is-active':click&&state.showDropDown}">
         <a class="navbar-link" @click="toggleDrop">
             {{ text }}
         </a>
@@ -22,6 +22,11 @@ export default {
         text:{
             type: String,
             required: true,
+        },
+        click:{
+            type: Boolean,
+            default: false,
+            required: false
         }
     },
     methods: {
