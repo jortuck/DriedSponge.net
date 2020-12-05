@@ -4,6 +4,7 @@
 @include for-tablet-and-down{
     .navbar{
         background-color: $black;
+        border-bottom: 2px solid  $primary;
     }
 }
 .navbar .navbar-item, .navbar .navbar-item:focus, .navbar .navbar-item:focus-within{
