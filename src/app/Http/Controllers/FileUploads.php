@@ -8,9 +8,10 @@ use Illuminate\Support\Facades\Storage;
 
 class FileUploads extends Controller
 {
-    public function loadFile(Request $request, $uuid)
+    public function loadFile(Request $request, $name)
     {
-        $file = FileUpload::where("uuid", $uuid)->first();
+        $uuid = explode(".",$name)[0];
+        $file = FileUpload::where("uuid",$uuid)->first();
         if ($file) {
             $path = "/uploads/" . $file->type . "/" . $file->name;
             if(Storage::exists($path)) {
@@ -39,7 +40,7 @@ class FileUploads extends Controller
                     'type'=>$file->type,
                     "uuid"=>$uuid,
                     "mimeType"=>$type,
-                    "rawUrl"=>route('upload.load-file',$uuid),
+                    "rawUrl"=>route('upload.load-file',$uuid).".".$file->type,
                     "size"=>Storage::size($path)/1000,
                     "created"=>$file->created_at
                 ]);
