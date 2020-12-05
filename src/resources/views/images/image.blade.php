@@ -4,7 +4,7 @@
     @if(Str::contains($mimeType,'video'))
 
         <meta property="og:type" content="website">
-        <meta property="og:video" content="{{route('upload.load-file',$uuid)}}">
+        <meta property="og:video" content="{{$rawUrl}}">
         <meta property="og:video:type" content="{{$mimeType}}">
         <meta property="og:description" content="">
         <meta property="og:image" content="">

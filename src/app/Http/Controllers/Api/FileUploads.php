@@ -30,8 +30,8 @@ class FileUploads extends Controller
                         "success" => true,
                         "id" => $upload->uuid,
                         "url" => route('upload.load-view', $upload->uuid),
-                        "raw_url" => route('upload.load-file', $upload->uuid
-                        )];
+                        "raw_url" => route('upload.load-file', $upload->name)
+                    ];
                     if($request->set_delete_token){
                         $deltoken = Str::random(64);
                         $upload->deleteToken = $deltoken;
