@@ -1,5 +1,5 @@
 <template>
-    <div class="has-dropdown navbar-item is-clicked" :class="{'is-active':state.showDropDown}">
+    <div class="has-dropdown navbar-item is-hoverable">
         <a class="navbar-link" @click="toggleDrop">
             {{ text }}
         </a>
