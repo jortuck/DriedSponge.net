@@ -15,8 +15,6 @@
         <meta name="twitter:player" content="{{$rawUrl}}">
         <meta name="twitter:player:stream" content="{{$rawUrl}}">
         <meta name="twitter:player:height" content="480">
-        <meta name="twitter:text:player_width" content="480">
-        <meta name="twitter:player:width" content="480">
 
     @else
         <meta property="og:image" content="{{$rawUrl}}"/>
