@@ -13,6 +13,7 @@
     <meta name="twitter:site" content="@dried_sponge">
     <meta name="twitter:title" content="@yield('title')">
 
+
     <meta name="theme-color" content="#007BFF">
 
     <meta property="og:site_name" content="DriedSponge.net | Images"/>

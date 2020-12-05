@@ -2,9 +2,12 @@
 @section('title',$name)
 @section('head')
     @if(Str::contains($mimeType,'video'))
+
         <meta property="og:type" content="website">
         <meta property="og:video" content="{{route('upload.load-file',$uuid)}}">
         <meta property="og:video:type" content="{{$mimeType}}">
+        <meta property="og:description" content="">
+        <meta property="og:image" content="">
 
         {{-- Twitter: --}}
         <meta name="twitter:card" content="player">
@@ -14,6 +17,7 @@
         <meta name="twitter:player:height" content="480">
         <meta name="twitter:text:player_width" content="480">
         <meta name="twitter:player:width" content="480">
+
     @else
         <meta property="og:image" content="{{$rawUrl}}"/>
         <meta property="og:image:type" content="{{$mimeType}}"/>
