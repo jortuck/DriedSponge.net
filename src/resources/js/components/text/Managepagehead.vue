@@ -1,5 +1,5 @@
 <template>
-    <div class="container is-1 my-6" data-aos="fade-right">
+    <div class="container is-1 my-6 has-text-centered-mobile" data-aos="fade-right">
         <h1 class="title has-text-white is-2">
             <slot></slot>
             {{ header }}
