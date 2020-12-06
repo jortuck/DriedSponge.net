@@ -68,8 +68,8 @@
                             </Can>
                         </Navdropdown>
                     </Can>
-                    <Managelogin />
                     <Snowcontroller/>
+                    <Managelogin />
                 </div>
             </div>
         </div>
