@@ -1,6 +1,6 @@
 <template>
-    <div class="container is-1 my-6 has-text-centered-mobile" data-aos="fade-right">
-        <h1 class="title has-text-white is-2">
+    <div class="container my-1 has-text-centered-mobile">
+        <h1 class="title">
             <slot></slot>
             {{ header }}
         </h1>
@@ -9,6 +9,18 @@
 </template>
 <script>
 export default {
-    name: "Managepagehead"
+    name: "Managepagehead",
+    props: {
+        header: {
+            type: String,
+            required: false
+            default: null,
+        },
+        sub_header: {
+            type: String,
+            required: false,
+            default: null,
+        },
+    }
 }
 </script>

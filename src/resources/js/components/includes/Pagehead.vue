@@ -15,10 +15,12 @@ export default {
         header: {
             type: String,
             required: false
+            default: null,
         },
         sub_header: {
             type: String,
-            required: false
+            required: false,
+            default: null,
         },
     }
 }

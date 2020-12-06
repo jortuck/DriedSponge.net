@@ -29,6 +29,9 @@ Route::get('/user/can/{pname}', 'Auth\user@can');
 
 Route::post('/contact/send', 'ContactController@send')->name('contact.send');
 
+Route::get('/contact-form/get', 'Manage\Contact@index');
+
+
 Route::get('/{any}', function(){
     return view('spa');
 })->name('spa')->where('any', '.*');

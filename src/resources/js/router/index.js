@@ -34,7 +34,7 @@ const routes = [
             {
                 path: 'contact-form',
                 name: 'contactform',
-                component: () => import('../views/manage/views/Contactform'),
+                component: () => import('../views/manage/views/Contact/Contactform'),
                 meta: {can: "Contact.See"}
             }
         ]
