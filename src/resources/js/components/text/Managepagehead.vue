@@ -13,7 +13,7 @@ export default {
     props: {
         header: {
             type: String,
-            required: false
+            required: false,
             default: null,
         },
         sub_header: {
