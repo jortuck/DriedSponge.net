@@ -1,6 +1,6 @@
 <template>
     <div class="container is-1 my-6" data-aos="fade-right">
-        <h1 class="title has-text-white">
+        <h1 class="title has-text-white is-2">
             <slot></slot>
             {{ header }}
         </h1>
