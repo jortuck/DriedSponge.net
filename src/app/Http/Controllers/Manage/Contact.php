@@ -13,7 +13,7 @@ class Contact extends Controller
             return response()->json(['error' => 'Unauthorized'])->setStatusCode(401);
         }
         if (\Auth::user()->hasPermissionTo('Contact.See')) {
-            $responses = ContactResponses::paginate(10);
+            $responses = ContactResponses::select('id','Name','Email','Subject','created_at')->paginate(10);
             return response()->json($responses);
         }else{
             return response()->json(['error' => 'Unauthenticated'])->setStatusCode(403);
