@@ -10,6 +10,6 @@ $factory->define(App\ContactResponses::class, function (Faker $faker) {
         'Name' => $faker->name,
         'Email' => $faker->unique()->safeEmail,
         'Subject' => $faker->sentence, // password
-        'Message' => "this is a random message",
+        'Message' => $faker->paragraph
     ];
 });
