@@ -17,6 +17,7 @@
                     <router-link class="navbar-item" :to="{ name: 'home'}">Home</router-link>
                     <router-link class="navbar-item" :to="{ name: 'projects'}">Projects</router-link>
                     <Snowcontroller/>
+                    <Navlogin />
                 </div>
             </div>
         </div>
@@ -24,10 +25,12 @@
 </template>
 <script>
 import Snowcontroller from '../../components/includes/Snowcontroller';
+import Navlogin from "../../components/includes/Navbar/Navlogin";
 
 export default {
     name: "Nav",
     components: {
+        Navlogin,
         Snowcontroller
     },
     data() {
