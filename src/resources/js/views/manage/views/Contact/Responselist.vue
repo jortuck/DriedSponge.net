@@ -23,8 +23,8 @@
                 <td>{{ truncate(item.Subject, 30) }}</td>
                 <td>{{ format(item.created_at) }}</td>
                 <td class="has-text-centered">
-                    <button @click="viewMessage(item.id)" class="button is-primary is-small">Open</button>
-                    <button @click="del(item.id)" class="button is-danger is-small">Delete</button>
+                    <button @click="viewMessage(item.id)" class="button is-primary is-small mx-1"><Icon icon="fas fa-book-open"/></button>
+                    <button @click="del(item.id)" class="button is-danger is-small mx-1"><Icon icon="fas fa-trash"/></button>
                 </td>
             </tr>
             </tbody>
@@ -67,7 +67,7 @@
                     Reply
                 </a>
                 <button class="button is-danger" @click="delete(state.modal.messageid)">
-                    Delete
+                    <Icon icon="fas fa-trash"/>
                 </button>
                 <button class="button" @click="state.modal.active = false">Close</button>
             </footer>
@@ -150,7 +150,6 @@ export default {
             axios.delete("/contact-form/" + id)
                 .then(res => {
                     this.state.modal.active = false
-                    this.state.currentData = this.state.currentData.filter(item=>item.id !== id)
                     this.fetch(this.state.page)
                 })
                 .catch(error => {
