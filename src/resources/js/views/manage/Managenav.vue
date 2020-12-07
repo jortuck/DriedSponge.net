@@ -53,12 +53,6 @@
                     </Can>
                     <Can permission="Manage.Administration">
                         <Navdropdown text="Administration">
-                            <Can permission="Permissions.See">
-                                <a class="navbar-item">
-                                    <Icon icon="fas fa-lock" class="has-text-primary"/>
-                                    <span class="ml-1">Permissions</span>
-                                </a>
-                            </Can>
                             <Can permission="Roles.See">
                                 <a class="navbar-item">
                                     <Icon icon="fas fa-users" class="has-text-primary"/>
