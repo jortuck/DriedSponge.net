@@ -1,5 +1,5 @@
 <template>
-    <slot v-if="can.permissions[permission]"></slot>
+    <slot v-if="can(permission)"></slot>
 </template>
 
 <script>
@@ -13,9 +13,13 @@ export default {
             required: true
         }
     },
-    data(){
-        return{
-            can: session.state
+    methods:{
+        can(perm){
+            if(session.can(perm)){
+                return true
+            }else{
+                return false
+            }
         }
     }
 }
