@@ -23,7 +23,7 @@
                 <td>{{ truncate(item.Subject, 30) }}</td>
                 <td>{{ format(item.created_at) }}</td>
                 <td class="has-text-centered">
-                    <button @click="viewMessage(item.id)" class="button is-primary is-small mx-1"><Icon icon="fas fa-book-open"/></button>
+                    <button @click="viewMessage(item.id)" class="button is-primary is-small mx-1" :class="{'is-loading':state.modal.loading===item.id}"><Icon icon="fas fa-book-open"/></button>
                     <button @click="del(item.id)" class="button is-danger is-small mx-1" :class="{'is-loading':state.del_loading===item.id}"><Icon icon="fas fa-trash"/></button>
                 </td>
             </tr>
@@ -102,7 +102,7 @@ export default {
                     messageid: null,
                     subject: null,
                     email: null,
-                    loading: false
+                    loading: null
                 }
             },
         }
@@ -133,7 +133,7 @@ export default {
             return string.slice(0, num) + '...'
         },
         viewMessage(id) {
-            this.state.loading = true
+            this.state.modal.loading = id
             axios.get("/contact-form/" + id).then(res => {
                 this.state.modal.body = res.data.Message
                 this.state.modal.header = res.data.Name
@@ -141,7 +141,7 @@ export default {
                 this.state.modal.subject = res.data.Subject
                 this.state.modal.email = res.data.Email
                 this.state.modal.active = true
-                this.state.loading = false
+                this.state.modal.loading = null
             })
                 .catch(error =>  {
                     this.httpError(error)
@@ -149,11 +149,11 @@ export default {
         },
         del(id) {
             this.state.del_loading = id
-            axios.delete("/contact-form/" + id)
+            axios.delete("/contact-form/" + id,{data:{page:this.state.page}})
                 .then(res => {
                     this.state.del_loading = null
                     this.state.modal.active = false
-                    this.fetch(this.state.page)
+                    this.state.currentData = res.data.data.data;
                 })
                 .catch(error => {
                     this.httpError(error)
