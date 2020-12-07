@@ -44,7 +44,8 @@ class Contact extends Controller
             $responses = ContactResponses::find($id);
             if($responses){
                 $responses->delete();
-                return response()->json(['success' => true]);
+                $rest = ContactResponses::select('id','Name','Email','Subject','created_at')->paginate(10);
+                return response()->json(['success' => true,"data"=>$rest]);
             }else{
                 return response()->json(['error' => 'Not found'])->setStatusCode(404);
             }
