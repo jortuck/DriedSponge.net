@@ -30,6 +30,18 @@ const routes = [
                 name: 'manage',
                 component: () => import('../views/manage/views/Dashboard'),
                 meta: {can: "Manage.See"}
+            },
+            {
+                path: 'contact-form',
+                name: 'contactform',
+                component: () => import('../views/manage/views/Contact/Contactform'),
+                children: [
+                    {
+                        path: '',
+                        component: () => import('../views/manage/views/Contact/Responselist'),
+                        meta: {can: "Contact.See"}
+                    },
+                ]
             }
         ]
     },

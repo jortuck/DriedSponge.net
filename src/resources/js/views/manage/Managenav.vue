@@ -14,6 +14,11 @@
             </div>
             <div class="navbar-menu" :class="{'is-active':navbarToggled}">
                 <div class="navbar-end">
+                    <Can permission="Manage.See">
+                        <router-link class="navbar-item" :to="{'name':'manage'}">
+                            Dashboard
+                        </router-link>
+                    </Can>
                     <Can permission="Manage.Content">
                         <Navdropdown text="CONTENT">
                             <Can permission="Project.See">
@@ -33,10 +38,10 @@
                     <Can permission="Manage.Communication">
                         <Navdropdown text="COMMUNICATION">
                             <Can permission="Contact.See">
-                                <a class="navbar-item">
+                                <router-link class="navbar-item" :to="{'name':'contactform'}">
                                     <Icon icon="fas fa-inbox" class="has-text-primary"/>
                                     <span class="ml-1">Contact From Responses</span>
-                                </a>
+                                </router-link>
                             </Can>
                             <Can permission="Alerts.See">
                                 <a class="navbar-item">
@@ -68,8 +73,8 @@
                             </Can>
                         </Navdropdown>
                     </Can>
-                    <Managelogin />
                     <Snowcontroller/>
+                    <Managelogin />
                 </div>
             </div>
         </div>

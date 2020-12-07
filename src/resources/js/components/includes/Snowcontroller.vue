@@ -1,27 +1,23 @@
 <template>
-    <div class="navbar-item has-dropdown is-hoverable">
-        <a class="navbar-link" @click="toggleDrop">
-            Snow Settings
+    <Navdropdown text="Snow Settings">
+        <a class="navbar-item"  @click="toggle">
+            <Icon icon="fas fa-snowflake" class="icon has-text-primary" />
+            <span class="ml-1" v-if="state.toggled">Disable</span>
+            <span class="ml-1" v-else>Enable</span>
         </a>
-        <div class="navbar-dropdown is-right is-boxed">
-            <a class="navbar-item"  @click="toggle">
-                <Icon icon="fas fa-snowflake" class="icon has-text-primary" />
-                <span class="ml-1" v-if="state.toggled">Disable</span>
-                <span class="ml-1" v-else>Enable</span>
-            </a>
-            <a class="navbar-item"  @click="changeSpeed" v-if="state.toggled">
-                <Icon icon="fas fa-tachometer-alt" class="icon has-text-primary" />
-                <span class="ml-1" >Change Speed</span>
-            </a>
-        </div>
-    </div>
+        <a class="navbar-item"  @click="changeSpeed" v-if="state.toggled">
+            <Icon icon="fas fa-tachometer-alt" class="icon has-text-primary" />
+            <span class="ml-1" >Change Speed</span>
+        </a>
+    </Navdropdown>
 </template>
 <script>
 import {getCookie,setCookie} from "../helpers/cookies";
 import Icon from "../text/Icon";
+import Navdropdown from "./Navbar/Dropdown";
 export default {
     name: "Snowcontroller",
-    components: {Icon},
+    components: {Navdropdown, Icon},
     data() {
         return {
             state:{

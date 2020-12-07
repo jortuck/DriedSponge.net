@@ -8,11 +8,6 @@ use Spatie\Permission\Traits\HasRoles;
 
 class ContactResponses extends Model
 {
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
     protected $table = 'contact';
     //Primary key
     public $primaryKey = 'id';

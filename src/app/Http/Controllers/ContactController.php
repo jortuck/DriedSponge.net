@@ -76,4 +76,8 @@ class ContactController extends Controller
         }
         return response()->json($validator->errors());
     }
+    public function testDatabase()
+    {
+        $model = factory(\App\ContactResponses::class,300)->make();
+    }
 }
