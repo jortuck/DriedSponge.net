@@ -110,7 +110,7 @@ export default {
     methods: {
         fetch(page) {
             this.state.loading = true
-            axios.get("/contact-form/get", {params: {"page": page}}).then(res => {
+            axios.get("/app/contact-form/get", {params: {"page": page}}).then(res => {
                 this.state.currentData = res.data.data
                 this.state.page = res.data.current_page
                 this.state.next_page_url = res.data.next_page_url
@@ -134,7 +134,7 @@ export default {
         },
         viewMessage(id) {
             this.state.modal.loading = id
-            axios.get("/contact-form/" + id).then(res => {
+            axios.get("/app/contact-form/" + id).then(res => {
                 this.state.modal.body = res.data.Message
                 this.state.modal.header = res.data.Name
                 this.state.modal.messageid = res.data.id
@@ -149,7 +149,7 @@ export default {
         },
         del(id) {
             this.state.del_loading = id
-            axios.delete("/contact-form/" + id,{data:{page:this.state.page}})
+            axios.delete("/app/contact-form/" + id,{data:{page:this.state.page}})
                 .then(res => {
                     this.state.del_loading = null
                     this.state.modal.active = false

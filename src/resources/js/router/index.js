@@ -22,7 +22,6 @@ const routes = [
 
     {
         path: '/manage',
-        meta: { requiresAuth: true},
         component: () => import('../views/manage/Manage'),
         children: [
             {
@@ -33,14 +32,13 @@ const routes = [
             },
             {
                 path: 'contact-form',
-                name: 'contactform',
                 component: () => import('../views/manage/views/Contact/Contactform'),
-                meta: {can: "Contact.See"},
                 children: [
                     {
                         path: '',
+                        name: 'contactform',
                         component: () => import('../views/manage/views/Contact/Responselist'),
-                        meta: {can: "Contact.See"}
+                        meta: {can: "Contact.See"},
                     },
                 ]
             }

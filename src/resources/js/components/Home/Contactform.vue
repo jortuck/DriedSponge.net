@@ -88,7 +88,7 @@ export default {
         submit(e) {
             e.preventDefault();
             this.form.loading = true;
-            axios.post('/contact/send', {
+            axios.post('/app/contact/send', {
                 name: this.form.name.value,
                 email: this.form.email.value,
                 subject: this.form.subject.value,

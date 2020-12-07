@@ -14,7 +14,7 @@ const session = {
         permissions: {}
     }),
     fetch() {
-        axios.get("/user").then(res => {
+        axios.get("/app/user").then(res => {
             this.state.authenticated = res.data[0] !== null;
             if (this.state.authenticated) {
                 this.state.user = res.data[0];
