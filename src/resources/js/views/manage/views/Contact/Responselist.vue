@@ -24,7 +24,7 @@
                 <td>{{ format(item.created_at) }}</td>
                 <td class="has-text-centered">
                     <button @click="viewMessage(item.id)" class="button is-primary is-small mx-1"><Icon icon="fas fa-book-open"/></button>
-                    <button @click="del(item.id)" class="button is-danger is-small mx-1"><Icon icon="fas fa-trash"/></button>
+                    <button @click="del(item.id)" class="button is-danger is-small mx-1" :class="{'is-loading':state.del_loading===item.id}"><Icon icon="fas fa-trash"/></button>
                 </td>
             </tr>
             </tbody>
@@ -66,7 +66,7 @@
                    target="_blank">
                     Reply
                 </a>
-                <button class="button is-danger" @click="delete(state.modal.messageid)">
+                <button class="button is-danger" @click="del(state.modal.messageid)" :class="{'is-loading':state.del_loading===state.modal.messageid}">
                     <Icon icon="fas fa-trash"/>
                 </button>
                 <button class="button" @click="state.modal.active = false">Close</button>
@@ -89,6 +89,7 @@ export default {
         return {
             state: {
                 loading: false,
+                del_loading: null,
                 page: 1,
                 currentData: {},
                 next_page_url: null,
@@ -101,6 +102,7 @@ export default {
                     messageid: null,
                     subject: null,
                     email: null,
+                    loading: false
                 }
             },
         }
@@ -146,9 +148,10 @@ export default {
                 });
         },
         del(id) {
-            this.state.loading = true
+            this.state.del_loading = id
             axios.delete("/contact-form/" + id)
                 .then(res => {
+                    this.state.del_loading = null
                     this.state.modal.active = false
                     this.fetch(this.state.page)
                 })
@@ -158,6 +161,7 @@ export default {
         },
         httpError(error){
             this.state.loading = false
+            this.state.del_loading = null
             if (error.response) {
                 switch (error.response.status) {
                     case 404:
