@@ -30,17 +30,17 @@
             </tbody>
         </table>
         <nav class="pagination" role="navigation" aria-label="pagination">
-            <a @click="fetch(state.page-1)" class="pagination-previous" title="This is the first page"
+            <button @click="fetch(state.page-1)" class="pagination-previous" title="This is the first page"
                :disabled="state.prev_page_url != null ? null : 'disabled'">
                 <Icon icon="fas fa-arrow-left"/>
-            </a>
-            <a @click="fetch(state.page)" class="pagination-previous" title="This is the first page">
+            </button>
+            <button @click="fetch(state.page)" class="pagination-previous" title="This is the first page">
                 <Icon icon="fas fa-sync"/>
-            </a>
-            <a @click="fetch(state.page+1)" class="pagination-next"
+            </button>
+            <button @click="fetch(state.page+1)" class="pagination-next"
                :disabled="state.next_page_url != null ? null : 'disabled'">
                 <Icon icon="fas fa-arrow-right"/>
-            </a>
+            </button>
             <ul class="pagination-list">
                 <li v-for="index in state.last_page">
                     <a class="pagination-link" :class="{'is-current':index === state.page}"
