@@ -30,6 +30,8 @@ Route::get('/user/can/{pname}', 'Auth\user@can');
 Route::post('/contact/send', 'ContactController@send')->name('contact.send');
 
 Route::get('/contact-form/get', 'Manage\Contact@index');
+Route::get('/contact-form/{id}', 'Manage\Contact@read');
+Route::delete('/contact-form/{id}', 'Manage\Contact@delete');
 
 
 Route::get('/{any}', function(){

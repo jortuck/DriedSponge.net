@@ -19,4 +19,37 @@ class Contact extends Controller
             return response()->json(['error' => 'Unauthenticated'])->setStatusCode(403);
         }
     }
+
+    function read(Request $request, $id){
+        if(\Auth::guest()){
+            return response()->json(['error' => 'Unauthorized'])->setStatusCode(401);
+        }
+        if (\Auth::user()->hasPermissionTo('Contact.See')) {
+            $responses = ContactResponses::find($id);
+            if($responses){
+                return response()->json($responses);
+            }else{
+                return response()->json(['error' => 'Not found'])->setStatusCode(404);
+            }
+        }else{
+            return response()->json(['error' => 'Unauthenticated'])->setStatusCode(403);
+        }
+    }
+
+    function delete(Request $request, $id){
+        if(\Auth::guest()){
+            return response()->json(['error' => 'Unauthorized'])->setStatusCode(401);
+        }
+        if (\Auth::user()->hasPermissionTo('Contact.See')) {
+            $responses = ContactResponses::find($id);
+            if($responses){
+                $responses->delete();
+                return response()->json(['success' => true]);
+            }else{
+                return response()->json(['error' => 'Not found'])->setStatusCode(404);
+            }
+        }else{
+            return response()->json(['error' => 'Unauthenticated'])->setStatusCode(403);
+        }
+    }
 }
