@@ -78,6 +78,7 @@
 <script>
 import axios from "axios";
 import Icon from "../../../../components/text/Icon";
+import session from "../../../../store/session";
 
 export default {
     name: "Responselist",
@@ -168,7 +169,7 @@ export default {
                         console.log("Not found")
                         break
                     case 401:
-                        console.log("Unauthenticated")
+                        session.login();
                         break
                     case 403:
                         console.log("Unauthorized")
