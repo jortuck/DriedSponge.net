@@ -19,7 +19,7 @@
             <tbody>
             <tr v-for="item in state.currentData" :key="item.id" data-aos="fade-in">
                 <td>{{ item.Name }}</td>
-                <td><a :href="'mailto:'+item.email+'?subject=Re: '+item.Subject" target="_blank">{{ item.Email }}</a></td>
+                <td><a :href="'mailto:'+item.Email+'?subject=Re: '+item.Subject" target="_blank">{{ item.Email }}</a></td>
                 <td>{{ truncate(item.Subject, 30) }}</td>
                 <td>{{ format(item.created_at) }}</td>
                 <td class="has-text-centered">
