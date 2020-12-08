@@ -34,17 +34,17 @@
                     <h2 class="subtitle page-subtitle mt-2">{{\Carbon\Carbon::parse($created)->setTimezone("America/Los_Angeles")->toDayDateTimeString()}}</h2>
                 </div>
                 <br>
-
                 <figure class="is-flex is-justify-content-center">
-                    <a href="{{$rawUrl}}" target="_blank">
+
                         @if(Str::contains($mimeType,'video'))
                             <video class="is-align-self-center" controls>
                                 <source src="{{route('upload.load-file',$uuid)}}" type="{{$mimeType}}">
                             </video>
                         @else
+                        <a href="{{$rawUrl}}" target="_blank">
                             <img class="is-align-self-center" src="{{route('upload.load-file',$uuid)}}">
+                        </a>
                         @endif
-                    </a>
                 </figure>
                 <br>
                 <div class="container-sm">
