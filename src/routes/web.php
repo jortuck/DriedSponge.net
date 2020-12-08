@@ -25,7 +25,6 @@ Route::post('/logout', 'Auth\LoginController@logout')->name('logout');
 
 Route::prefix('app')->group(function () {
     Route::get('/app/login', 'Auth\SteamLoginController@login')->name('login');
-
     Route::get('/user', 'Auth\User@me');
     Route::get('/user/can/{pname}', 'Auth\user@can');
     Route::post('/contact/send', 'ContactController@send')->name('contact.send');
