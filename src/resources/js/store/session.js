@@ -31,6 +31,9 @@ const session = {
             this.fetch();
         })
     },
+    login(){
+        window.location = "/app/login"
+    },
     can(perm){
         return this.state.permissions[perm]
     }

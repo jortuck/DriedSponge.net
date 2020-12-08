@@ -1,13 +1,37 @@
 <template>
-     <Pagehead class="mt-6" sub_header="The page you are looking for could not be found!">
-         <span class="has-text-primary">4</span>0<span class="has-text-primary">4</span>
-     </Pagehead>
+    <div class="hero is-fullheight  has-text-centered is-bold is-large" >
+        <div class="hero-body">
+            <div class="container">
+                <h1 class="title is-size-1 has-text-white">
+                    <span class="has-text-primary">4</span>0<span class="has-text-primary">4</span>
+                </h1>
+                <h2 class="subtitle has-text-white">
+                    Not Found!
+                </h2>
+                <h3 class="is-5 has-text-white" data-aos="fade-in" v-if="quote"><em>"{{quote}}"</em> - {{author}}</h3>
+            </div>
+        </div>
+    </div>
 </template>
 
 <script>
 import Pagehead from "../../components/includes/Pagehead";
+import axios from "axios";
 export default {
     name: "404",
-    components: {Pagehead}
+    components: {Pagehead},
+    data(){
+        return{
+            quote: null,
+            author: null,
+
+        }
+    },
+    mounted(){
+        axios.get("https://www.breakingbadapi.com/api/quote/random",{withCredentials: false}).then(res=>{
+          this.quote = res.data[0].quote
+            this.author = res.data[0].author
+        })
+    }
 }
 </script>

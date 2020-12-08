@@ -43,7 +43,7 @@ export default {
     name: "Loginbutton",
     methods: {
         login() {
-            window.location = "/app/login"
+            session.login()
         },
         logout() {
             session.logout();
