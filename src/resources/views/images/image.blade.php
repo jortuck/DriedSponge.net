@@ -38,7 +38,7 @@
                 <figure class="is-flex is-justify-content-center">
                     <a href="{{$rawUrl}}" target="_blank">
                         @if(Str::contains($mimeType,'video'))
-                            <video class="is-align-self-center" controls src="{{route('upload.load-file',$uuid)}}">
+                            <video class="is-align-self-center" controls>
                                 <source src="{{route('upload.load-file',$uuid)}}" type="{{$mimeType}}">
                             </video>
                         @else
