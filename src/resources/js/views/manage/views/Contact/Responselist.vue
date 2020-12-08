@@ -49,7 +49,7 @@
             </ul>
         </nav>
     </div>
-    <div class="modal" :class="{'is-active':state.modal.active}">
+    <div class="modal is-active" v-if="state.modal.active" data-aos="fade-in">
         <div class="modal-background" @click="state.modal.active = false"></div>
         <div class="modal-card">
             <header class="modal-card-head">
