@@ -4,7 +4,7 @@
     </div>
     <div style="display: inherit" v-else>
         <table class="table is-fullwidth">
-            <div class="loading-cover-dark" v-if="state.loading">
+            <div class="loading-cover-dark" v-if="state.loading" data-aos="fade-in">
                 <Icon class="has-text-white is-large" icon="fas fa-spinner fa-spin fa-3x"/>
             </div>
             <thead>
@@ -17,7 +17,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr v-for="item in state.currentData" :key="item.id">
+            <tr v-for="item in state.currentData" :key="item.id" data-aos="fade-in">
                 <td>{{ item.Name }}</td>
                 <td>{{ item.Email }}</td>
                 <td>{{ truncate(item.Subject, 30) }}</td>
