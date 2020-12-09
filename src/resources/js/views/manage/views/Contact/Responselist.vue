@@ -19,7 +19,7 @@
             <tbody>
             <tr v-for="item in state.currentData" :key="item.id" data-aos="fade-in">
                 <td>{{ item.Name }}</td>
-                <td>{{ item.Email }}</td>
+                <td><a :href="'mailto:'+item.Email+'?subject=Re: '+item.Subject" target="_blank">{{ item.Email }}</a></td>
                 <td>{{ truncate(item.Subject, 30) }}</td>
                 <td>{{ format(item.created_at) }}</td>
                 <td class="has-text-centered">
@@ -78,6 +78,7 @@
 <script>
 import axios from "axios";
 import Icon from "../../../../components/text/Icon";
+import session from "../../../../store/session";
 
 export default {
     name: "Responselist",
@@ -168,7 +169,7 @@ export default {
                         console.log("Not found")
                         break
                     case 401:
-                        console.log("Unauthenticated")
+                        session.login();
                         break
                     case 403:
                         console.log("Unauthorized")
