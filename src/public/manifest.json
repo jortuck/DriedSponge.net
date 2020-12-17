@@ -1,0 +1,14 @@
+{
+    "name": "DriedSponge.net",
+    "short_name": "DriedSponge.net",
+    "theme_color": "#62A1EC",
+    "background_color": "#0E1013",
+    "display": "standalone",
+    "scope": "/",
+    "start_url": ".",
+    "icons": [{
+        "src": "https://i.driedsponge.net/file/3IypWNrHcq",
+        "sizes": "144x144",
+        "type": "image/png"
+    }]
+}
