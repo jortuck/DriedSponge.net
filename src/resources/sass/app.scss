@@ -11,7 +11,7 @@
 @import "bulma_vars";
 @import "~bulma/bulma.sass";
 @import "~aos/dist/aos.css";
-
+@import "~tippy.js/dist/tippy.css";
 @mixin for-phone-only {
   @media (max-width: 599px) {
     @content;
