@@ -5,16 +5,16 @@
         </Pagehead>
         <div class="has-text-centered mt-5" data-aos="fade-up">
             <Whitelink target="_blank" href="https://twitter.com/dried_sponge">
-                <Icon class="is-large is-me mx-4" icon="fab fa-twitter fa-3x"/>
+                <Icon tooltip="Twitter" class="is-large is-me mx-4" icon="fab fa-twitter fa-3x"/>
             </Whitelink>
             <Whitelink target="_blank" href="https://steamcommunity.com/id/driedsponge/">
-                <Icon class="is-large mx-4" icon="fab fa-steam fa-3x"/>
+                <Icon tooltip="Steam" class="is-large mx-4" icon="fab fa-steam fa-3x"/>
             </Whitelink>
-            <Whitelink class="white-link" href="https://discord.gg/YS4WZWG" target="_blank">
+            <Whitelink @click="copydiscord" ref="discordbtn">
                 <Icon class="is-large mx-4" icon="fab fa-discord fa-3x"/>
             </Whitelink>
             <Whitelink class="white-link" href="https://github.com/driedsponge" target="_blank">
-                <Icon class="is-large mx-4" icon="fab fa-github fa-3x"/>
+                <Icon tooltip="Github" class="is-large mx-4" icon="fab fa-github fa-3x"/>
             </Whitelink>
         </div>
     </section>
@@ -22,8 +22,8 @@
         <div class="container">
             <Tileancestor class="has-text-centered">
                 <Homecard heading="Discord Bots">
-                    <Icon class="is-medium mx-2" icon="fab fa-python fa-2x"/>
-                    <Icon class="is-medium mx-2" icon="fab fa-node fa-2x"/>
+                    <Icon tooltip="Python" class="is-medium mx-2" icon="fab fa-python fa-2x"/>
+                    <Icon tooltip="NodeJS" class="is-medium mx-2" icon="fab fa-node fa-2x"/>
                     <br>
                     Aside from Web Development, I make discord bots. I'm familiar with both Discord JS and
                     Discord PY. I actually used Discord PY to teach myself Python. I use these skills to
@@ -31,13 +31,13 @@
                     fun), or I take on jobs from other people.
                 </Homecard>
                 <Homecard heading="Web Development">
-                    <Icon class="is-medium mx-2" icon="fab fa-laravel fa-2x"/>
-                    <Icon class="is-medium mx-2" icon="fab fa-php fa-2x"/>
-                    <Icon class="is-medium mx-2" icon="fab fa-vuejs fa-2x"/>
-                    <Icon class="is-medium mx-2" icon="fab fa-css3-alt fa-2x"/>
-                    <Icon class="is-medium mx-2" icon="fab fa-sass fa-2x"/>
-                    <Icon class="is-medium mx-2" icon="fab fa-html5 fa-2x"/>
-                    <Icon class="is-medium mx-2" icon="fab fa-js fa-2x"/>
+                    <Icon tooltip="Laravel" class="is-medium mx-2" icon="fab fa-laravel fa-2x"/>
+                    <Icon tooltip="PHP" class="is-medium mx-2" icon="fab fa-php fa-2x"/>
+                    <Icon tooltip="VueJS" class="is-medium mx-2" icon="fab fa-vuejs fa-2x"/>
+                    <Icon tooltip="CSS3" class="is-medium mx-2" icon="fab fa-css3-alt fa-2x"/>
+                    <Icon tooltip="SASS" class="is-medium mx-2" icon="fab fa-sass fa-2x"/>
+                    <Icon tooltip="HTML" class="is-medium mx-2" icon="fab fa-html5 fa-2x"/>
+                    <Icon tooltip="JavaScript" class="is-medium mx-2" icon="fab fa-js fa-2x"/>
                     <br>
                     Full stack web development is my strongest suit. I've been developing websites for about
                     {{ webtime.string }}. I'm skilled in many web development technologies (see icons
@@ -45,11 +45,11 @@
                     pleasant user experiences.
                 </Homecard>
                 <Homecard heading="Server Infrastructure">
-                    <Icon class="is-medium mx-2" icon="fab fa-docker fa-2x"/>
-                    <Icon class="is-medium mx-2" icon="fab fa-linux fa-2x"/>
-                    <Icon class="is-medium mx-2" icon="fab fa-ubuntu fa-2x"/>
-                    <Icon class="is-medium mx-2" icon="fab fa-digital-ocean fa-2x"/>
-                    <Icon class="is-medium mx-2" icon="fab fa-cloudflare fa-2x"/>
+                    <Icon tooltip="Docker" class="is-medium mx-2" icon="fab fa-docker fa-2x"/>
+                    <Icon tooltip="Linux" class="is-medium mx-2" icon="fab fa-linux fa-2x"/>
+                    <Icon tooltip="Ubuntu" class="is-medium mx-2" icon="fab fa-ubuntu fa-2x"/>
+                    <Icon tooltip="Digital Ocean" class="is-medium mx-2" icon="fab fa-digital-ocean fa-2x"/>
+                    <Icon tooltip="Cloudflare" class="is-medium mx-2" icon="fab fa-cloudflare fa-2x"/>
                     <br>
                     Web services require servers, databases, and other types of infrastructure to operate. I
                     got tired of paying for shared hosting, so I taught myself how to setup and operate my
@@ -74,12 +74,16 @@ import Whitelink from "../../../components/text/Whitelink"
 import Tileancestor from "../../../components/tiles/Tileancestor";
 import Homecard from "../../../components/Home/Homecard";
 import Contactform from "../../../components/Home/Contactform";
+import tippy from "tippy.js";
 export default {
     name: 'Home',
     components: {Pagehead, Icon, Whitelink, Tileancestor, Homecard,Contactform},
     data: function () {
         return {
-            subhead: "Full Stack Web Developer"
+            subhead: "Full Stack Web Developer (i can code web stuff)",
+            discord_status: {
+                msg: "(Click to copy)",
+            }
         }
     },
     computed: {
@@ -92,6 +96,18 @@ export default {
                 months: months,
                 year: years
             };
+        }
+    },
+    methods:{
+        copydiscord(e){
+            navigator.clipboard.writeText("DriedSponge#4730")
+            tippy(e.target, {
+                content: "Copied!",
+                theme:"success",
+                onHidden(instance) {
+                    instance.destroy()
+                },
+            }).show();
         }
     }
 }

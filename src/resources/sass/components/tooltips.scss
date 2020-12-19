@@ -1,0 +1,33 @@
+.tippy-box[data-theme~='danger'] {
+    background-color: $danger;
+    color: white;
+}
+.tippy-box[data-theme~='danger'][data-placement^='top'] > .tippy-arrow::before {
+    border-top-color: $danger;
+}
+.tippy-box[data-theme~='danger'][data-placement^='bottom'] > .tippy-arrow::before {
+    border-bottom-color: $danger;
+}
+.tippy-box[data-theme~='$danger'][data-placement^='left'] > .tippy-arrow::before {
+    border-left-color: red;
+}
+.tippy-box[data-theme~='danger'][data-placement^='right'] > .tippy-arrow::before {
+    border-right-color: $danger;
+}
+
+.tippy-box[data-theme~='success'] {
+    background-color: $success;
+    color: white;
+}
+.tippy-box[data-theme~='success'][data-placement^='top'] > .tippy-arrow::before {
+    border-top-color: $success;
+}
+.tippy-box[data-theme~='success'][data-placement^='bottom'] > .tippy-arrow::before {
+    border-bottom-color: $success;
+}
+.tippy-box[data-theme~='success'][data-placement^='left'] > .tippy-arrow::before {
+    border-left-color: $success;
+}
+.tippy-box[data-theme~='success'][data-placement^='right'] > .tippy-arrow::before {
+    border-right-color: $success;
+}

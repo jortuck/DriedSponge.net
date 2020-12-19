@@ -22,8 +22,7 @@
                 </div>
             </div>
         </div>
-        <a class="button is-light is-outlined" @click="login" v-else
-           title="This is just for me to login and access my dashboard. You can login if you want but it does absolutley nothing for you.">
+        <a ref="lb" class="button is-light is-outlined" @click="login" v-else>
                     <span class="icon">
                       <i class="fab fa-steam"></i>
                     </span>
@@ -38,6 +37,7 @@
 import session from "../../store/session.js";
 import Can from "../helpers/Can";
 import Icon from "../text/Icon";
+import tippy from "tippy.js";
 
 export default {
     name: "Loginbutton",
@@ -51,6 +51,12 @@ export default {
         toggleDropdown(){
           this.dropdown_active = !this.dropdown_active;
         }
+    },
+    mounted() {
+        tippy(this.$refs.lb, {
+            content: "This is just for me to login and access my dashboard. You can login if you want but it does absolutley nothing for you.",
+            theme:"danger",
+        });
     },
     data() {
         return {

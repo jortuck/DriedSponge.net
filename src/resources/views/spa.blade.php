@@ -12,6 +12,8 @@
     <script src="https://www.google.com/recaptcha/api.js?render=explicit" async defer></script>
     <meta id="captcha_site_key" name="captcha_site_key" content="{{config('extra.captcha_site_key')}}"/>
     <link rel="icon" href="{{asset('favicon.png')}}">
+    <link rel="manifest" href="{{asset('manifest.json')}}">
+
 </head>
 <body>
 <noscript>
