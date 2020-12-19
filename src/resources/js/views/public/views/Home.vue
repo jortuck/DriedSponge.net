@@ -80,7 +80,7 @@ export default {
     components: {Pagehead, Icon, Whitelink, Tileancestor, Homecard,Contactform},
     data: function () {
         return {
-            subhead: "Full Stack Web Developer",
+            subhead: "Full Stack Web Developer (i can code web stuff)",
             discord_status: {
                 msg: "(Click to copy)",
             }
