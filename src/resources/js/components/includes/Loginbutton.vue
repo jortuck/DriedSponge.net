@@ -22,7 +22,7 @@
                 </div>
             </div>
         </div>
-        <a ref="loginbutton" class="button is-light is-outlined" @click="login" v-else>
+        <a ref="root" class="button is-light is-outlined" @click="login" v-else>
                     <span class="icon">
                       <i class="fab fa-steam"></i>
                     </span>
@@ -53,8 +53,8 @@ export default {
         },
         setToolTip(){
             console.log("test")
-            console.log(this.$refs["loginbutton"])
-            tippy(this.$refs["loginbutton"], {
+            console.log(this.$refs.root)
+            tippy(this.$refs.root, {
                 content: "This is just for me to login and access my dashboard. You can login if you want but it does absolutley nothing for you.",
                 theme:"danger",
             });
