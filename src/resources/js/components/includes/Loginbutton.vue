@@ -22,13 +22,12 @@
             </div>
         </div>
     </div>
-    <a ref="root" class="button is-light is-outlined" @click="login" v-else>
+    <a ref="lb" class="button is-light is-outlined" @click="login" v-else>
                     <span class="icon">
                       <i class="fab fa-steam"></i>
                     </span>
         <span>LOGIN</span>
     </a>
-
 </template>
 <script>
 import session from "../../store/session.js";
@@ -49,9 +48,7 @@ export default {
             this.dropdown_active = !this.dropdown_active;
         },
         setToolTip() {
-            console.log("test")
-            console.log(this.$refs.root)
-            tippy(this.$refs.root, {
+            tippy(this.$refs.lb, {
                 content: "This is just for me to login and access my dashboard. You can login if you want but it does absolutley nothing for you.",
                 theme: "danger",
             });
