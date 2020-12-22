@@ -22,7 +22,7 @@
                 </div>
             </div>
         </div>
-        <a ref="lb" class="button is-light is-outlined" @click="login" v-else>
+        <a ref="loginbutton" class="button is-light is-outlined" @click="login" v-else>
                     <span class="icon">
                       <i class="fab fa-steam"></i>
                     </span>
@@ -53,7 +53,8 @@ export default {
         }
     },
     mounted() {
-        tippy(this.$refs.lb, {
+        console.log("test")
+        tippy(this.$refs.loginbutton, {
             content: "This is just for me to login and access my dashboard. You can login if you want but it does absolutley nothing for you.",
             theme:"danger",
         });
