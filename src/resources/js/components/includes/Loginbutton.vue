@@ -54,6 +54,7 @@ export default {
     },
     mounted() {
         console.log("test")
+        console.log(this.$refs.loginbutton)
         tippy(this.$refs.loginbutton, {
             content: "This is just for me to login and access my dashboard. You can login if you want but it does absolutley nothing for you.",
             theme:"danger",
