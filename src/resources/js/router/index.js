@@ -41,6 +41,18 @@ const routes = [
                         meta: {can: "Contact.See"},
                     },
                 ]
+            },
+            {
+                path: 'alerts',
+                component: () => import('../views/manage/views/Contact/Contactform'),
+                children: [
+                    {
+                        path: '',
+                        name: 'alerts',
+                        component: () => import('../views/manage/views/Contact/Responselist'),
+                        meta: {can: "Alerts.See"},
+                    },
+                ]
             }
         ]
     },

@@ -44,10 +44,10 @@
                                 </router-link>
                             </Can>
                             <Can permission="Alerts.See">
-                                <a class="navbar-item">
+                                <router-link class="navbar-item" :to="{'name':'alerts'}">
                                     <Icon icon="fas fa-comment-alt" class="has-text-primary"/>
                                     <span class="ml-1">Alerts</span>
-                                </a>
+                                </router-link>
                             </Can>
                         </Navdropdown>
                     </Can>
