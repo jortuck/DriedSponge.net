@@ -44,12 +44,12 @@ const routes = [
             },
             {
                 path: 'alerts',
-                component: () => import('../views/manage/views/Contact/Contactform'),
+                component: () => import('../views/manage/views/Alerts/Alerts'),
                 children: [
                     {
                         path: '',
                         name: 'alerts',
-                        component: () => import('../views/manage/views/Contact/Responselist'),
+                        component: () => import('../views/manage/views/Alerts/Alertslist'),
                         meta: {can: "Alerts.See"},
                     },
                 ]
