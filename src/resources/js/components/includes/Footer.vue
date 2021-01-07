@@ -5,7 +5,7 @@
                 <div class="level-left">
                     <div class="level-item">
                         <div class="content has-text-white ">
-                            <p>&copy; Jordan Tucker 2020</p>
+                            <p>&copy; Jordan Tucker 2021</p>
                         </div>
                     </div>
                 </div>
