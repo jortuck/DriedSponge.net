@@ -22,7 +22,7 @@ class Contact extends Controller
 
     function read(Request $request, $id){
         if(\Auth::guest()){
-            return response()->json(['error' => 'Unauthorized'])->setStatusCode(401);
+            return response()->json(['error' => 'Unauthenticated'])->setStatusCode(401);
         }
         if (\Auth::user()->hasPermissionTo('Contact.See')) {
             $responses = ContactResponses::find($id);
@@ -32,13 +32,13 @@ class Contact extends Controller
                 return response()->json(['error' => 'Not found'])->setStatusCode(404);
             }
         }else{
-            return response()->json(['error' => 'Unauthenticated'])->setStatusCode(403);
+            return response()->json(['error' => 'Unauthorized'])->setStatusCode(403);
         }
     }
 
     function delete(Request $request, $id){
         if(\Auth::guest()){
-            return response()->json(['error' => 'Unauthorized'])->setStatusCode(401);
+            return response()->json(['error' => 'Unauthenticated'])->setStatusCode(401);
         }
         if (\Auth::user()->hasPermissionTo('Contact.See')) {
             $responses = ContactResponses::find($id);
@@ -50,7 +50,7 @@ class Contact extends Controller
                 return response()->json(['error' => 'Not found'])->setStatusCode(404);
             }
         }else{
-            return response()->json(['error' => 'Unauthenticated'])->setStatusCode(403);
+            return response()->json(['error' => 'Unauthorized'])->setStatusCode(403);
         }
     }
 }
