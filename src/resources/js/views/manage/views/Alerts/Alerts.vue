@@ -7,12 +7,12 @@
                 </Managepagehead>
                 <div class="tabs">
                     <ul>
-                       <router-link :to="{'name':'alerts'}"  v-slot="{ href, route, navigate, isActive, isExactActive }">
+                       <router-link custom :to="{'name':'alerts'}"  v-slot="{ href, route, navigate, isActive, isExactActive }">
                            <li :class="{'is-active':isExactActive}">
                                 <a :href="href"  @click="navigate">Alerts</a>
                            </li>
                        </router-link>
-                        <router-link :to="{'name':'alerts-create'}"  v-slot="{ href,navigate, isActive,isExactActive}">
+                        <router-link custom :to="{'name':'alerts-create'}"  v-slot="{ href,navigate, isActive,isExactActive}">
                             <li :class="{'is-active':isExactActive}">
                                 <a :href="href"  @click="navigate">Create New Alert</a>
                             </li>
@@ -26,10 +26,8 @@
 </template>
 <script>
 import Managepagehead from "../../../../components/text/Managepagehead";
-import Tileancestor from "../../../../components/tiles/Tileancestor";
-import axios from "axios";
 export default {
     name: "Alerts",
-    components: {Tileancestor, Managepagehead},
+    components: {Managepagehead},
 }
 </script>
