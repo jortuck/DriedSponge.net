@@ -45,7 +45,7 @@ export default {
         submit(e) {
             e.preventDefault();
             this.form.loading = true;
-            axios.post('/app/manage/alerts/post', {
+            axios.post('/app/manage/alerts', {
                 discord: this.form.discord,
                 twitter: this.form.twitter,
                 message: this.form.message.value,

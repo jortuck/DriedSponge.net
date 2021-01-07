@@ -32,7 +32,7 @@
             </tbody>
         </table>
         <nav class="pagination" role="navigation" aria-label="pagination">
-            <button @click="fetch(state.page-1)" class="pagination-previous">
+            <button @click="fetch(state.page-1)" class="pagination-previous"
                     :disabled="state.prev_page_url != null ? null : 'disabled'">
                 <Icon icon="fas fa-arrow-left"/>
             </button>
@@ -118,6 +118,18 @@ export default {
                 return string
             }
             return string.slice(0, num) + '...'
+        },
+        del(id) {
+            this.state.del_loading = id
+            axios.delete("/app/manage/alerts/" + id,{data:{page:this.state.page}})
+                .then(res => {
+                    this.state.del_loading = null
+                    this.state.modal.active = false
+                    this.state.currentData = res.data.data.data;
+                })
+                .catch(error => {
+                    this.httpError(error)
+                });
         },
     }
 }
