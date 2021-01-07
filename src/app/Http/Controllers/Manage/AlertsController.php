@@ -20,7 +20,7 @@ class AlertsController extends Controller
     {
         if(!\Auth::guest()){
             if(\Auth::user()->hasPermissionTo('Alerts.See')){
-                $alerts = DB::table('alerts')->paginate(10);
+                $alerts = DB::table('alerts')->orderBy('created_at','desc')->paginate(10);
                 return response()->json($alerts);
             }else{
                 return response()->json(['error' => 'Unauthorized'])->setStatusCode(403);
