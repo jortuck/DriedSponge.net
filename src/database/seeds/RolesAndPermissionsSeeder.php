@@ -45,6 +45,7 @@ class RolesAndPermissionsSeeder extends Seeder
             'Alerts.Create',
             'Alerts.Delete',
             'Alerts.See',
+            'Alerts.Edit',
 
             # Files
             'File.Create',
