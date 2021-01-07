@@ -20,7 +20,7 @@ class AlertsController extends Controller
     {
         if(!\Auth::guest()){
             if(\Auth::user()->hasPermissionTo('Alerts.See')){
-                $alerts = DB::table('alerts')->orderBy('created_at','desc')->paginate(10);
+                $alerts = Alerts::select('id','message','tweetid','created_at')->orderBy('created_at','desc')->paginate(10);
                 return response()->json($alerts);
             }else{
                 return response()->json(['error' => 'Unauthorized'])->setStatusCode(403);
@@ -147,8 +147,22 @@ class AlertsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request,$id)
     {
-        //
+        if(\Auth::guest()){
+            return response()->json(['error' => 'Unauthenticated'])->setStatusCode(401);
+        }
+        if (\Auth::user()->hasPermissionTo('Alerts.Delete')) {
+            $alert = Alerts::find($id);
+            if($alert){
+                $alert->deleteFull();
+                $rest = Alerts::select('id','message','tweetid','created_at')->orderBy('created_at','desc')->paginate(10);
+                return response()->json(['success' => true,"data"=>$rest]);
+            }else{
+                return response()->json(['error' => 'Not found'])->setStatusCode(404);
+            }
+        }else{
+            return response()->json(['error' => 'Unauthorized'])->setStatusCode(403);
+        }
     }
 }
