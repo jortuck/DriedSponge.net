@@ -18,9 +18,15 @@ class AlertsController extends Controller
      */
     public function index()
     {
-        //return \Twitter::postTweet(['status' => 'Ooh the tweet says its from driedsponge.net :) twitter api pretty cool', 'format' => 'json']);
-        $alerts = DB::table('alerts')->orderBy('created_at', 'asc')->get();
-        return view('manage.alerts.index')->with('alerts', $alerts);
+        if(!\Auth::guest()){
+            if(\Auth::user()->hasPermissionTo('Alerts.See')){
+                $alerts = DB::table('alerts')->paginate(10);
+                return response()->json($alerts);
+            }else{
+                return response()->json(['error' => 'Unauthorized'])->setStatusCode(403);
+            }
+        }
+        return response()->json(['error' => 'Unauthenticated'])->setStatusCode(401);
     }
 
     /**
@@ -96,7 +102,7 @@ class AlertsController extends Controller
                         "content" => "",
                         "embeds" => [$embed]
                     ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
-                    $ch = curl_init(env('DISCORD_ALERTS_HOOK',null));
+                    $ch = curl_init(config('extra.discord_alerts_hook'));
                     curl_setopt_array($ch, [
                         CURLOPT_POST => 1,
                         CURLOPT_FOLLOWLOCATION => 1,

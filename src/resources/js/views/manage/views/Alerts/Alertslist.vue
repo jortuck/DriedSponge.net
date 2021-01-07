@@ -10,24 +10,46 @@
             <thead>
             <tr>
                 <th>Message</th>
-                <th>TweetID</th>
+                <th>Tweet</th>
                 <th>Created</th>
                 <th class="has-text-centered">Actions</th>
             </tr>
             </thead>
             <tbody>
-<!--            <tr v-for="item in state.currentData" :key="item.id" data-aos="fade-in">-->
-<!--                <td>{{ item.Name }}</td>-->
-<!--                <td><a :href="'mailto:'+item.Email+'?subject=Re: '+item.Subject" target="_blank">{{ item.Email }}</a></td>-->
-<!--                <td>{{ truncate(item.Subject, 30) }}</td>-->
-<!--                <td>{{ format(item.created_at) }}</td>-->
-<!--                <td class="has-text-centered">-->
-<!--                    <button @click="viewMessage(item.id)" class="button is-primary is-small mx-1" :class="{'is-loading':state.modal.loading===item.id}"><Icon icon="fas fa-book-open"/></button>-->
-<!--                    <button @click="del(item.id)" class="button is-danger is-small mx-1" :class="{'is-loading':state.del_loading===item.id}"><Icon icon="fas fa-trash"/></button>-->
-<!--                </td>-->
-<!--            </tr>-->
+            <tr v-for="item in state.currentData" :key="item.id" data-aos="fade-in">
+                <td>{{ item.message }}</td>
+                <td>
+                    <a v-if="item.tweetid" target="_blank" :href="'https://twitter.com/driedsponge/status/'+item.tweetid">
+                        {{item.tweetid}}
+                    </a>
+                    <span v-else>N/A</span>
+                </td>
+                <td>{{ format(item.created_at) }}</td>
+                <td>
+
+                </td>
+            </tr>
             </tbody>
         </table>
+        <nav class="pagination" role="navigation" aria-label="pagination">
+            <button @click="fetch(state.page-1)" class="pagination-previous" title="This is the first page"
+                    :disabled="state.prev_page_url != null ? null : 'disabled'">
+                <Icon icon="fas fa-arrow-left"/>
+            </button>
+            <button @click="fetch(state.page)" class="pagination-previous" title="This is the first page">
+                <Icon icon="fas fa-sync"/>
+            </button>
+            <button @click="fetch(state.page+1)" class="pagination-next"
+                    :disabled="state.next_page_url != null ? null : 'disabled'">
+                <Icon icon="fas fa-arrow-right"/>
+            </button>
+            <ul class="pagination-list">
+                <li v-for="index in state.last_page">
+                    <a class="pagination-link" :class="{'is-current':index === state.page}"
+                       @click="fetch(index)">{{ index }}</a>
+                </li>
+            </ul>
+        </nav>
     </div>
 </template>
 
@@ -40,7 +62,7 @@ export default {
     name: "Alertslist",
     components: {Icon},
     beforeMount() {
-        //this.fetch(this.state.page);
+        this.fetch(this.state.page);
     },
     data() {
         return {
@@ -72,7 +94,31 @@ export default {
 
                 }
             }
-        }
+        },
+        fetch(page){
+            this.state.loading = true
+            axios.get("/app/manage/alerts", {params: {"page": page}}).then(res => {
+                this.state.currentData = res.data.data
+                this.state.page = res.data.current_page
+                this.state.next_page_url = res.data.next_page_url
+                this.state.prev_page_url = res.data.prev_page_url
+                this.state.last_page = res.data.last_page
+                this.state.loading = false
+            })
+                .catch(error => {
+                    this.httpError(error)
+                });
+        },
+        format(date) {
+            const options = {year: "numeric", month: "long", day: "numeric", hour: "numeric", minute: "numeric"}
+            return new Date(date).toLocaleDateString(undefined, options)
+        },
+        truncate(string, num) {
+            if (string.length <= num) {
+                return string
+            }
+            return string.slice(0, num) + '...'
+        },
     }
 }
 </script>

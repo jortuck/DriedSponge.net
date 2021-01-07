@@ -31,6 +31,9 @@ Route::prefix('app')->group(function () {
     Route::get('/contact-form/get', 'Manage\Contact@index');
     Route::get('/contact-form/{id}', 'Manage\Contact@read');
     Route::delete('/contact-form/{id}', 'Manage\Contact@delete');
+
+    Route::get('/manage/alerts', 'Manage\AlertsController@index');
+    Route::post('/manage/alerts/post', 'Manage\AlertsController@store');
 });
 
 
