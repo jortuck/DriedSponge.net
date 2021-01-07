@@ -12,4 +12,21 @@ class Alerts extends Model
     public $primaryKey = 'id';
     //Timestamps
     public $timestamps = true;
+
+    public function deleteFull()
+    {
+        if($this->tweetid){
+            $tweet = \Twitter::destroyTweet($this->tweetid);
+        }
+        $this->delete();
+        return true;
+    }
+    public function deleteTweet()
+    {
+        if($this->tweetid){
+            $tweet = \Twitter::destroyTweet($this->tweetid);
+            $this->tweetid = null;
+            return true;
+        }
+    }
 }
