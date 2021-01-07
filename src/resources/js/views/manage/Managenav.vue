@@ -15,7 +15,7 @@
             <div class="navbar-menu" :class="{'is-active':navbarToggled}">
                 <div class="navbar-end">
                     <Can permission="Manage.See">
-                        <router-link class="navbar-item" :to="{'name':'manage'}">
+                        <router-link class="navbar-item" :to="{'name':'manage'}" exact-active-class="is-active">
                             Dashboard
                         </router-link>
                     </Can>
@@ -38,13 +38,13 @@
                     <Can permission="Manage.Communication">
                         <Navdropdown text="COMMUNICATION">
                             <Can permission="Contact.See">
-                                <router-link class="navbar-item" :to="{'name':'contactform'}">
+                                <router-link class="navbar-item" :to="{'name':'contactform'}" exact-active-class="is-active">
                                     <Icon icon="fas fa-inbox" class="has-text-primary"/>
                                     <span class="ml-1">Contact From Responses</span>
                                 </router-link>
                             </Can>
                             <Can permission="Alerts.See">
-                                <router-link class="navbar-item" :to="{'name':'alerts'}">
+                                <router-link class="navbar-item" :to="{'name':'alerts'}" exact-active-class="is-active">
                                     <Icon icon="fas fa-comment-alt" class="has-text-primary"/>
                                     <span class="ml-1">Alerts</span>
                                 </router-link>
