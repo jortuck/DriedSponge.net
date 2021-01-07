@@ -32,11 +32,11 @@
             </tbody>
         </table>
         <nav class="pagination" role="navigation" aria-label="pagination">
-            <button @click="fetch(state.page-1)" class="pagination-previous" title="This is the first page"
+            <button @click="fetch(state.page-1)" class="pagination-previous">
                     :disabled="state.prev_page_url != null ? null : 'disabled'">
                 <Icon icon="fas fa-arrow-left"/>
             </button>
-            <button @click="fetch(state.page)" class="pagination-previous" title="This is the first page">
+            <button @click="fetch(state.page)" class="pagination-previous">
                 <Icon icon="fas fa-sync"/>
             </button>
             <button @click="fetch(state.page+1)" class="pagination-next"
