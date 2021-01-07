@@ -30,20 +30,6 @@ class AlertsController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\RedirectResponse
-     */
-    public function create()
-    {
-        if (\Auth::user()->hasPermissionTo('Alerts.Create')) {
-            return view('manage.alerts.create');
-        } else {
-            return redirect()->back()->with('error', 'Unauthorized');
-        }
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
