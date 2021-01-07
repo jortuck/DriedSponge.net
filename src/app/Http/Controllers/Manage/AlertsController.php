@@ -84,19 +84,7 @@ class AlertsController extends Controller
                         "fields" => $fields,
                         "description"=>$request->message
                     );
-                    $request = json_encode([
-                        "content" => "",
-                        "embeds" => [$embed]
-                    ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
-                    $ch = curl_init(config('extra.discord_alerts_hook'));
-                    curl_setopt_array($ch, [
-                        CURLOPT_POST => 1,
-                        CURLOPT_FOLLOWLOCATION => 1,
-                        CURLOPT_HTTPHEADER => array("Content-type: application/json"),
-                        CURLOPT_POSTFIELDS => $request,
-                        CURLOPT_RETURNTRANSFER => 1
-                    ]);
-                    curl_exec($ch);
+                    $response = \Http::post(config('extra.discord_alerts_hook'),["embeds" => [$embed]]);
                 }
                 $alert->save();
                 return response()->json(['success' => 'Message has been posted! '.$alert->tweetid]);
