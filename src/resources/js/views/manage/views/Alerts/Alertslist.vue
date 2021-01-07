@@ -26,7 +26,9 @@
                 </td>
                 <td>{{ format(item.created_at) }}</td>
                 <td class="has-text-centered">
-                    <button @click="del(item.id)" class="button is-danger is-small mx-1" :class="{'is-loading':state.del_loading===item.id}"><Icon icon="fas fa-trash"/></button>
+                    <Can permission="Alerts.Delete">
+                        <button @click="del(item.id)" class="button is-danger is-small mx-1" :class="{'is-loading':state.del_loading===item.id}"><Icon icon="fas fa-trash"/></button>
+                    </Can>
                 </td>
             </tr>
             </tbody>
@@ -57,10 +59,11 @@
 import axios from "axios";
 import Icon from "../../../../components/text/Icon";
 import session from "../../../../store/session";
+import Can from "../../../../components/helpers/Can";
 
 export default {
     name: "Alertslist",
-    components: {Icon},
+    components: {Can, Icon},
     beforeMount() {
         this.fetch(this.state.page);
     },
