@@ -40,7 +40,7 @@ class Contact extends Controller
         if(\Auth::guest()){
             return response()->json(['error' => 'Unauthenticated'])->setStatusCode(401);
         }
-        if (\Auth::user()->hasPermissionTo('Contact.See')) {
+        if (\Auth::user()->hasPermissionTo('Contact.Delete')) {
             $responses = ContactResponses::find($id);
             if($responses){
                 $responses->delete();
