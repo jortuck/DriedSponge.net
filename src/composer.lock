@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f5ac8805184296718159c792737ef67c",
+    "content-hash": "485f73817a3d72d2adf64b2b873a5c95",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -3749,6 +3749,47 @@
                 }
             ],
             "time": "2020-09-07T07:16:41+00:00"
+        },
+        {
+            "name": "socialiteproviders/discord",
+            "version": "4.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/SocialiteProviders/Discord.git",
+                "reference": "c6eddeb07ace7473e82d02d4db852dfacf5ef574"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/SocialiteProviders/Discord/zipball/c6eddeb07ace7473e82d02d4db852dfacf5ef574",
+                "reference": "c6eddeb07ace7473e82d02d4db852dfacf5ef574",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "php": "^7.2 || ^8.0",
+                "socialiteproviders/manager": "~4.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "SocialiteProviders\\Discord\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Christopher Eklund",
+                    "email": "eklundchristopher@gmail.com"
+                }
+            ],
+            "description": "Discord OAuth2 Provider for Laravel Socialite",
+            "support": {
+                "source": "https://github.com/SocialiteProviders/Discord/tree/4.1.1"
+            },
+            "time": "2021-01-05T22:03:58+00:00"
         },
         {
             "name": "socialiteproviders/google",

@@ -49,7 +49,7 @@ class User extends Authenticatable
      */
     protected $guarded = [];
     protected $fillable = [
-        'username', 'steamid', 'avatar',
+        'username', 'email', 'avatar'
     ];
 
     /**
@@ -62,6 +62,10 @@ class User extends Authenticatable
     ];
     public $primaryKey = 'id';
 
+    public function social_accounts()
+    {
+        return $this->hasMany('App\SocialAccounts');
+    }
 
 
 

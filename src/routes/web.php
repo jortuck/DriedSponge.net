@@ -18,6 +18,7 @@ Route::domain(config('extra.image_domain'))->group(function () {
 });
 
 Route::post('/logout', 'Auth\LoginController@logout')->name('logout');
+Route::get('/logout', 'Auth\LoginController@logout');
 
 Route::prefix('app')->group(function () {
 
@@ -26,8 +27,16 @@ Route::prefix('app')->group(function () {
     })->name('login.steam');
     Route::get('/auth/steam', 'Auth\SteamLoginController@auth')->name('auth.steam');
 
+    Route::get('/login/discord',function (){
+        return Socialite::driver('discord')->redirect(); //Discord Login
+    })->name('login.discord');
+    Route::get('/auth/discord', 'Auth\DiscordLoginController@auth')->name('auth.discord');
+
+
+
+
 //    Route::get('/login/google',function (){
-//        return Socialite::driver('google')->redirect(); //Steam Login
+//        return Socialite::driver('google')->redirect(); //Google Login
 //    })->name('login.google');
 //    Route::get('/auth/google', 'Auth\SteamLoginController@auth')->name('auth.google');
 
