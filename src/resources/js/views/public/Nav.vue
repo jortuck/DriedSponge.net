@@ -16,7 +16,6 @@
                 <div class="navbar-end">
                     <router-link class="navbar-item" :to="{ name: 'home'}" exact-active-class="is-active">Home</router-link>
                     <router-link class="navbar-item" :to="{ name: 'projects'}" exact-active-class="is-active">Projects</router-link>
-                    <Snowcontroller/>
                     <Navlogin />
                 </div>
             </div>
