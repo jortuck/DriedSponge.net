@@ -13,7 +13,6 @@ class DiscordLoginController extends Auth
     {
         $socialresponse = \Socialite::driver('discord')->user();
         $socialaccount = SocialAccounts::where('provider', 'discord')->where('provider_id', $socialresponse->user['id'])->first();
-
         if (!$socialaccount) {
             $socialaccount = new SocialAccounts();
             $socialaccount->provider = "discord";
@@ -26,7 +25,7 @@ class DiscordLoginController extends Auth
             ]);
             $user->social_accounts()->save($socialaccount) ;
         }
-        Auth::login($user);
+        Auth::login($socialaccount->user);
         return response()->redirectTo("/");
     }
 }
