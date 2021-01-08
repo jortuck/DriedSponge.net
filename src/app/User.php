@@ -16,8 +16,6 @@ use Spatie\Permission\Traits\HasRoles;
  * @property string|null $remember_token
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Bans[] $Bans
- * @property-read int|null $bans_count
  * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[] $notifications
  * @property-read int|null $notifications_count
  * @property-read \Illuminate\Database\Eloquent\Collection|\Spatie\Permission\Models\Permission[] $permissions
@@ -66,17 +64,7 @@ class User extends Authenticatable
     ];
     public $primaryKey = 'id';
 
-    public function Bans(){
-        return $this->hasMany('App\Bans','user_id','steamid');
-    }
-    public function IsBanned()
-    {
-        return $this->Bans()->Active()->first();
-    }
-    public function AllBans()
-    {
-        return $this->Bans()->History();
-    }
+
 
 
 }
