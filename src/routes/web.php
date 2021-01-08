@@ -1,9 +1,6 @@
 <?php
 
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Auth\SteamLoginController;
-use kanalumaddela\LaravelSteamLogin\Facades\SteamLogin;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -20,11 +17,16 @@ Route::domain(config('extra.image_domain'))->group(function () {
     Route::get('/{uuid}', 'FileUploads@loadView')->name('upload.load-view');
 });
 
-Route::get('auth/steam', 'Auth\SteamLoginController@authenticate')->name('auth.steam');
 Route::post('/logout', 'Auth\LoginController@logout')->name('logout');
 
 Route::prefix('app')->group(function () {
-    Route::get('/login', 'Auth\SteamLoginController@login')->name('login');
+
+    Route::get('/login/steam',function (){
+        return Socialite::driver('steam')->redirect(); //Steam Login
+    })->name('login.steam');
+    Route::get('/auth/steam', 'Auth\SteamLoginController@auth')->name('auth.steam');
+
+
     Route::get('/user', 'Auth\User@me');
     Route::get('/user/can/{pname}', 'Auth\user@can');
     Route::post('/contact/send', 'ContactController@send')->name('contact.send');

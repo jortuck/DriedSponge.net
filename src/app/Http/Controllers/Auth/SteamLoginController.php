@@ -10,28 +10,26 @@ use kanalumaddela\LaravelSteamLogin\SteamUser;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 use Laravel\Sanctum\NewAccessToken;
-class SteamLoginController extends AbstractSteamLoginController
+class SteamLoginController extends Auth
 {
     /**
      * {@inheritdoc}
      */
-    public function authenticated(Request $request, SteamUser $steamUser)
+    public function auth(Request $request)
     {
-
-        $user = User::where('steamid', $steamUser->steamId)->first();
-
-        // if the user doesn't exist, create them
+        $socialresponse = \Socialite::driver('steam')->user();
+        $user = User::where('steamid', $socialresponse->user)->first();
         if (!$user) {
-            $steamUser->getUserInfo();
             $guarded = [];
             $user = User::create([
-                'username' => $steamUser->name,
-                'steamid' => $steamUser->steamId,
-                'avatar' => $steamUser->avatarLarge
+                'username' => $user->nickname,
+                'steamid' => $user->id,
+                'avatar' => $user->avatar
             ]);
             $user->assignRole('User');
         }
         // login the user using the Auth facade
         Auth::login($user);
+        return response()->redirectTo("/");
     }
 }

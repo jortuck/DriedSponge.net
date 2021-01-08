@@ -139,6 +139,7 @@ return [
         /*
          * Laravel Framework Service Providers...
          */
+        \SocialiteProviders\Manager\ServiceProvider::class,
         Illuminate\Auth\AuthServiceProvider::class,
         Sentry\Laravel\ServiceProvider::class,
         Illuminate\Broadcasting\BroadcastServiceProvider::class,
@@ -177,7 +178,6 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-
     ],
 
     /*
