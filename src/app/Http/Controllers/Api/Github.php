@@ -31,7 +31,7 @@ class Github extends Controller
                             $ccount = count($commits);
                             if ($ccount != 0) {
                                 foreach ($commits as $commit) {
-                                    if (strpos($commit['message'], "!hide") !== false) {
+                                    if (strpos($commit['message'], "***") !== false) {
                                         $value = "*Commit message hidden*";
                                     } else {
                                         $value = $commit['message'];
