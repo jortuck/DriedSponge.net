@@ -5,7 +5,7 @@
                 <Managepagehead>
                     Alerts
                 </Managepagehead>
-                <div class="tabs">
+                <div class="tabs  is-medium">
                     <ul>
                        <router-link custom :to="{'name':'alerts'}"  v-slot="{ href, route, navigate, isActive, isExactActive }">
                            <li :class="{'is-active':isExactActive}">

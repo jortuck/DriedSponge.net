@@ -37,6 +37,8 @@ Route::prefix('app')->group(function () {
     Route::get('/manage/alerts', 'Manage\AlertsController@index');
     Route::post('/manage/alerts', 'Manage\AlertsController@store');
     Route::delete('/manage/alerts/{id}', 'Manage\AlertsController@destroy');
+    Route::get('/manage/alerts/{id}', 'Manage\AlertsController@show');
+    Route::put('/manage/alerts/{id}', 'Manage\AlertsController@update');
 });
 
 

@@ -20,7 +20,7 @@ class AlertsController extends Controller
     {
         if(!\Auth::guest()){
             if(\Auth::user()->hasPermissionTo('Alerts.See')){
-                $alerts = Alerts::select('id','message','tweetid','created_at')->orderBy('created_at','desc')->paginate(10);
+                $alerts = Alerts::select('id','message','tweetid','created_at','onsite')->orderBy('created_at','desc')->paginate(10);
                 return response()->json($alerts);
             }else{
                 return response()->json(['error' => 'Unauthorized'])->setStatusCode(403);
@@ -47,6 +47,7 @@ class AlertsController extends Controller
             if ($validator->passes()) {
                 $alert = new Alerts();
                 $alert->message = $request->message;
+                $alert->onsite = $request->website;
                 if($request->twitter){
                     $messagearray = str_split ($request->message,271);
                     $count = count($messagearray);
@@ -103,20 +104,20 @@ class AlertsController extends Controller
      */
     public function show($id)
     {
-        //
+        if(\Auth::guest()){
+            return response()->json(['error' => 'Unauthenticated'])->setStatusCode(401);
+        }
+        if (\Auth::user()->hasPermissionTo('Alerts.Edit')) {
+            $alert = Alerts::find($id);
+            if($alert){
+                return response()->json($alert);
+            }else{
+                return response()->json(['error' => 'Not found'])->setStatusCode(404);
+            }
+        }else{
+            return response()->json(['error' => 'Unauthorized'])->setStatusCode(403);
+        }
     }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
     /**
      * Update the specified resource in storage.
      *
@@ -126,7 +127,29 @@ class AlertsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        if(\Auth::guest()){
+            return response()->json(['error' => 'Unauthenticated'])->setStatusCode(401);
+        }
+        if (\Auth::user()->hasPermissionTo('Alerts.Edit')) {
+            $alert = Alerts::find($id);
+            if($alert){
+                $validator = Validator::make($request->all(), [
+                    "message" => "required|min:3|max:1120",
+                    "website" => "required|boolean"
+                ]);
+                if($validator->passes()){
+                    $alert->onsite = $request->website;
+                    $alert->message = $request->message;
+                    $alert->save();
+                    return response()->json(['success' => 'Message has been updated!']);
+                }
+                return response()->json($validator->errors());
+            }else{
+                return response()->json(['error' => 'Not found'])->setStatusCode(404);
+            }
+        }else{
+            return response()->json(['error' => 'Unauthorized'])->setStatusCode(403);
+        }
     }
 
     /**
@@ -144,7 +167,7 @@ class AlertsController extends Controller
             $alert = Alerts::find($id);
             if($alert){
                 $alert->deleteFull();
-                $rest = Alerts::select('id','message','tweetid','created_at')->orderBy('created_at','desc')->paginate(10);
+                $rest = Alerts::select('id','message','tweetid','created_at','onsite')->orderBy('created_at','desc')->paginate(10);
                 return response()->json(['success' => true,"data"=>$rest]);
             }else{
                 return response()->json(['error' => 'Not found'])->setStatusCode(404);

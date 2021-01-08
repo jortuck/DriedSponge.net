@@ -58,6 +58,12 @@ const routes = [
                         component: () => import('../views/manage/views/Alerts/Create'),
                         meta: {can: "Alerts.Create"},
                     },
+                    {
+                        path: ':id/edit',
+                        name: 'alerts-edit',
+                        component: () => import('../views/manage/views/Alerts/Edit'),
+                        meta: {can: "Alerts.Edit"},
+                    },
                 ]
             }
         ]

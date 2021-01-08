@@ -2,9 +2,9 @@
     <div class="field">
         <label class="label">{{ label }}</label>
         <div :class="{'control':true,'has-icons-right': error}">
-            <textarea class="textarea" :class="{'is-danger': error, 'input':true}"
+            <textarea  class="textarea" :class="{'is-danger': error, 'input':true}"
                       :placeholder="placeholder"
-                      @change="updateValue" :rows="rows"></textarea>
+                      @change="updateValue" :rows="rows">{{internal}}</textarea>
             <span v-if="error" class="icon is-small is-right">
                 <i class="fas fa-exclamation-triangle"></i>
             </span>
@@ -27,6 +27,11 @@ export default {
         label: {
             required: true,
             type: String
+        },
+        internal: {
+            required: false,
+            type: String,
+            default: null
         },
         placeholder: {
             required: false,

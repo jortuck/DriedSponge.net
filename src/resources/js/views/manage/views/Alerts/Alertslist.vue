@@ -10,24 +10,32 @@
             <thead>
             <tr>
                 <th>Message</th>
-                <th>Tweet</th>
-                <th>Created</th>
+                <th class="has-text-centered">Tweet</th>
+                <th class="has-text-centered">Created</th>
+                <th class="has-text-centered">Displayed On Website</th>
                 <th class="has-text-centered">Actions</th>
             </tr>
             </thead>
             <tbody>
             <tr v-for="item in state.currentData" :key="item.id" data-aos="fade-in">
                 <td>{{ item.message }}</td>
-                <td>
+                <td class="has-text-centered">
                     <a v-if="item.tweetid" target="_blank" :href="'https://twitter.com/driedsponge/status/'+item.tweetid">
                         {{item.tweetid}}
                     </a>
                     <span v-else>N/A</span>
                 </td>
-                <td>{{ format(item.created_at) }}</td>
+                <td class="has-text-centered">{{ format(item.created_at) }}</td>
+                <td class="has-text-centered">
+                    <span v-if="item.onsite" class="tag is-success">Yes</span>
+                    <span v-else class="tag is-danger ">Yes</span>
+                </td>
                 <td class="has-text-centered">
                     <Can permission="Alerts.Delete">
                         <button @click="del(item.id)" class="button is-danger is-small mx-1" :class="{'is-loading':state.del_loading===item.id}"><Icon icon="fas fa-trash"/></button>
+                    </Can>
+                    <Can permission="Alerts.Edit">
+                        <router-link :to="{'name':'alerts-edit','params':{'id':item.id}}" class="button is-primary is-small mx-1"><Icon icon="fas fa-edit"/></router-link>
                     </Can>
                 </td>
             </tr>
@@ -60,10 +68,10 @@ import axios from "axios";
 import Icon from "../../../../components/text/Icon";
 import session from "../../../../store/session";
 import Can from "../../../../components/helpers/Can";
-
+import Textarea from "../../../../components/form/Textarea";
 export default {
     name: "Alertslist",
-    components: {Can, Icon},
+    components: {Textarea, Can, Icon},
     beforeMount() {
         this.fetch(this.state.page);
     },
