@@ -26,6 +26,13 @@ Route::prefix('app')->group(function () {
     })->name('login.steam');
     Route::get('/auth/steam', 'Auth\SteamLoginController@auth')->name('auth.steam');
 
+//    Route::get('/login/google',function (){
+//        return Socialite::driver('google')->redirect(); //Steam Login
+//    })->name('login.google');
+//    Route::get('/auth/google', 'Auth\SteamLoginController@auth')->name('auth.google');
+
+
+
 
     Route::get('/user', 'Auth\User@me');
     Route::get('/user/can/{pname}', 'Auth\user@can');
