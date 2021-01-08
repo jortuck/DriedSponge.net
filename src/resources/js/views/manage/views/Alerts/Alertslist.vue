@@ -28,7 +28,7 @@
                 <td class="has-text-centered">{{ format(item.created_at) }}</td>
                 <td class="has-text-centered">
                     <span v-if="item.onsite" class="tag is-success">Yes</span>
-                    <span v-else class="tag is-danger ">Yes</span>
+                    <span v-else class="tag is-danger ">No</span>
                 </td>
                 <td class="has-text-centered">
                     <Can permission="Alerts.Delete">
