@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Laravel\Socialite\Facades\Socialite;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 class SteamLoginController extends Auth
@@ -14,7 +15,7 @@ class SteamLoginController extends Auth
      */
     public function auth(Request $request)
     {
-        $socialresponse = \Socialite::driver('steam')->user();
+        $socialresponse = Socialite::driver('steam')->user();
         $user = User::where('steamid', $socialresponse->user)->first();
         if (!$user) {
             $guarded = [];

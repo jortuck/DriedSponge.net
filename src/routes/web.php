@@ -22,26 +22,27 @@ Route::get('/logout', 'Auth\LoginController@logout');
 
 Route::prefix('app')->group(function () {
 
-    Route::get('/login/steam',function (){
-        return Socialite::driver('steam')->redirect(); //Steam Login
-    })->name('login.steam');
-    Route::get('/auth/steam', 'Auth\SteamLoginController@auth')->name('auth.steam');
+    Route::prefix('login')->group(function () {
+        Route::get('/steam',function (){
+            return Socialite::driver('steam')->redirect(); // Steam Login
+        })->name('login.steam');
+        Route::get('/discord',function (){
+            return Socialite::driver('discord')->redirect(); // Discord Login
+        })->name('login.discord');
+        Route::get('/github',function (){
+            return Socialite::driver('github')->redirect(); // github Login
+        })->name('login.github');
+        //Route::get('/login/google', function () {
+        //    return Socialite::driver('google')->redirect(); //Google Login
+        //})->name('login.google');
+    });
 
-    Route::get('/login/discord',function (){
-        return Socialite::driver('discord')->redirect(); //Discord Login
-    })->name('login.discord');
-    Route::get('/auth/discord', 'Auth\DiscordLoginController@auth')->name('auth.discord');
-
-
-
-
-//    Route::get('/login/google',function (){
-//        return Socialite::driver('google')->redirect(); //Google Login
-//    })->name('login.google');
-//    Route::get('/auth/google', 'Auth\SteamLoginController@auth')->name('auth.google');
-
-
-
+    Route::prefix('auth')->group(function () {
+        Route::get('/steam', 'Auth\SteamLoginController@auth')->name('auth.steam');
+        Route::get('/discord', 'Auth\DiscordLoginController@auth')->name('auth.discord');
+        Route::get('/github', 'Auth\GithubLoginController@auth')->name('auth.github');
+        //Route::get('/auth/google', 'Auth\SteamLoginController@auth')->name('auth.google');
+    });
 
     Route::get('/user', 'Auth\User@me');
     Route::get('/user/can/{pname}', 'Auth\user@can');
@@ -63,13 +64,3 @@ Route::prefix('app')->group(function () {
 Route::get('/{any}', function(){
     return view('spa');
 })->name('spa')->where('any', '.*');
-
-
-
-
-
-
-
-
-
-
