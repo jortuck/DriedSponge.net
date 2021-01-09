@@ -24,7 +24,9 @@ class GithubLoginController extends Auth
         if (!$socialaccount->user) {
             $user = User::where('email',$socialresponse->email)->first();
             if($user){
-                return Socialite::driver($user->social_accounts()->first()->provider)->redirect();
+                return redirect()->route('spa',['home'])->with('error',
+                    'There is an account that already exist with that email. Log into that account using discord, and link your github in order to login using github.');
+                //return Socialite::driver($user->social_accounts()->first()->provider)->redirect();
             }else{
                 $user = User::create([
                     'username' => $socialresponse->nickname,

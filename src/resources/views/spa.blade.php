@@ -19,6 +19,11 @@
 <noscript>
     <h1 class="has-text-centered title page-title has-text-danger">YOU NEED TO ENABLE JAVASCRIPT TO MAKE THE SITE WORK</h1>
 </noscript>
+@if(session('error'))
+    <div class="banner banner-danger">
+        <b>{{session('error')}}</b>
+    </div>
+@endif
 <div id="app">
     <app></app>
 </div>
