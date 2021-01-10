@@ -20,15 +20,7 @@ class DiscordLoginController extends Auth
             $socialaccount->provider = "discord";
         }
 
-        // Update their info
-        $socialaccount->provider_id = $socialresponse->id;
-        $socialaccount->provider_username = $socialresponse->nickname;
-        $socialaccount->provider_email = $socialresponse->email;
-        $socialaccount->provider_avatar = $socialresponse->avatar;
-        $socialaccount->provider_token = $socialresponse->token;
-        $socialaccount->provider_refresh_token = $socialresponse->refreshToken;
-        $socialaccount->token_expires = Carbon::now()->addSeconds($socialresponse->expiresIn);
-        $socialaccount->save();
+        $socialaccount->updateInfo($socialresponse);
 
         if (!$socialaccount->user) {
             $user = User::where('email',$socialresponse->email)->first();
@@ -43,7 +35,7 @@ class DiscordLoginController extends Auth
                 ]);
                 $user->assignRole('User');
                 $user->social_accounts()->save($socialaccount);
-                $socialaccount = SocialAccounts::getAccountByPID($socialresponse->id);
+                $socialaccount = SocialAccounts::where('provider', 'discord')->where('provider_id', $socialresponse->user['id'])->first();
             }
 
         }
