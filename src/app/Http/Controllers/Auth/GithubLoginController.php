@@ -21,14 +21,7 @@ class GithubLoginController extends Auth
             $socialaccount->provider = "github";
         }
 
-        $socialaccount->provider_id = $socialresponse->id;
-        $socialaccount->provider_username = $socialresponse->nickname;
-        $socialaccount->provider_email = $socialresponse->email;
-        $socialaccount->provider_avatar = $socialresponse->avatar;
-        $socialaccount->provider_token = $socialresponse->token;
-        $socialaccount->provider_refresh_token = $socialresponse->refreshToken;
-        $socialaccount->token_expires = Carbon::now()->addSeconds($socialresponse->expiresIn);
-        $socialaccount->save();
+        $socialaccount->updateInfo($socialresponse);
 
         if (!$socialaccount->user) {
             $user = User::where('email',$socialresponse->email)->first();
