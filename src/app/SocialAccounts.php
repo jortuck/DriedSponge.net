@@ -16,4 +16,8 @@ class SocialAccounts extends Model
     {
         return $this->hasOne('App\User','id', 'user_id');
     }
+
+    public function getAccountByPID($provider_id){
+        return $this->where('provider_id',$provider_id)->first();
+    }
 }

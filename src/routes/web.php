@@ -27,7 +27,7 @@ Route::prefix('app')->group(function () {
             return Socialite::driver('steam')->redirect(); // Steam Login
         })->name('login.steam');
         Route::get('/discord',function (){
-            return Socialite::driver('discord')->redirect(); // Discord Login
+            return Socialite::driver('discord')->scopes(['connections'])->redirect(); // Discord Login
         })->name('login.discord');
         Route::get('/github',function (){
             return Socialite::driver('github')->redirect(); // github Login

@@ -18,7 +18,14 @@ class CreateSocialAccountsTable extends Migration
             $table->string('user_id')->nullable();
             $table->string('provider')->required();
             $table->string('provider_id')->required()->unique();
+            $table->string('provider_username')->nullable();
+            $table->string('provider_email')->nullable();
+            $table->string('provider_avatar')->nullable();
+            $table->string('provider_token')->nullable();
+            $table->string('provider_refresh_token')->nullable();
+            $table->timestamp('token_expires')->nullable();
             $table->timestamps();
+
         });
     }
 

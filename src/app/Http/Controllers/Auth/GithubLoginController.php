@@ -14,6 +14,7 @@ class GithubLoginController extends Auth
     public function auth(Request $request)
     {
         $socialresponse = \Socialite::driver('github')->user();
+        dd( $socialresponse);
         $socialaccount = SocialAccounts::where('provider', 'github')->where('provider_id', $socialresponse->user['id'])->first();
         if (!$socialaccount) {
             $socialaccount = new SocialAccounts();
@@ -26,7 +27,6 @@ class GithubLoginController extends Auth
             if($user){
                 return redirect()->route('spa',['home'])->with('error',
                     'There is an account that already exist with that email. Log into that account using discord, and link your github in order to login using github.');
-                //return Socialite::driver($user->social_accounts()->first()->provider)->redirect();
             }else{
                 $user = User::create([
                     'username' => $socialresponse->nickname,
