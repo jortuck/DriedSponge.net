@@ -7,6 +7,7 @@ use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Http;
 use Laravel\Socialite\Facades\Socialite;
 
 class DiscordLoginController extends Auth
@@ -39,6 +40,8 @@ class DiscordLoginController extends Auth
             }
 
         }
+        $user = $socialaccount->user;
+        dd(Http::withHeaders(['Authorization'=>"Bearer ".$socialresponse->token])->get('https://discord.com/api/users/@me/connections')->object());
         Auth::login($socialaccount->user);
         return response()->redirectTo("/");
     }
