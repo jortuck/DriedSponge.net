@@ -41,7 +41,7 @@ class DiscordLoginController extends Auth
 
         }
         $user = $socialaccount->user;
-        dd(Http::withHeaders(['Authorization'=>"Bearer ".$socialresponse->token])->get('https://discord.com/api/users/@me/connections')->object());
+        dd(Http::withToken($socialresponse->token)->get('https://discord.com/api/users/@me/connections')->object());
         Auth::login($socialaccount->user);
         return response()->redirectTo("/");
     }
