@@ -100,7 +100,7 @@ class AlertsController extends Controller
      * Display the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\Response|object
      */
     public function show($id)
     {

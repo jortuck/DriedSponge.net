@@ -58,7 +58,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-         'remember_token'
+        'remember_token'
     ];
     public $primaryKey = 'id';
 
@@ -67,6 +67,16 @@ class User extends Authenticatable
         return $this->hasMany('App\Models\SocialAccounts');
     }
 
-
-
+    public function linkSocial($provider_name, $provider_id)
+    {
+        $social_account = SocialAccounts::where('provider', $provider_name)->where('provider_id', $provider_id)->first();
+        if (!$social_account) {
+            $social_account = SocialAccounts::create([
+                'provider' => $provider_name,
+                'provider_id' => $provider_id,
+            ]);
+        }
+        $this->social_accounts()->save($social_account);
+        return true;
+    }
 }

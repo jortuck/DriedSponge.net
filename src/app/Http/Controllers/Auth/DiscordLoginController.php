@@ -41,7 +41,14 @@ class DiscordLoginController extends Auth
 
         }
         $user = $socialaccount->user;
+        if($user->hasConnection(''))
         $connections = Http::withToken($socialresponse->token)->get('https://discord.com/api/users/@me/connections')->object();
+        foreach ($connections as $connection){
+            if($connection->type == "github" && $connection->verified){
+               $user->linkSocial('github',$connection->id);
+                break;
+            }
+        }
         Auth::login($socialaccount->user);
         return response()->redirectTo("/");
     }

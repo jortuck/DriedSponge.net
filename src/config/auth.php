@@ -68,11 +68,11 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => App\User::class,
+            'model' => App\Models\User::class,
         ],
         'api_keys' => [
             'driver' => 'eloquent',
-            'model' => App\ApiKey::class,
+            'model' => App\Modles\ApiKey::class,
         ],
         // 'users' => [
         //     'driver' => 'database',

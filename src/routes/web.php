@@ -44,7 +44,7 @@ Route::prefix('app')->group(function () {
         //Route::get('/auth/google', 'Auth\SteamLoginController@auth')->name('auth.google');
     });
 
-    Route::get('/user', 'Auth\User@me');
+    Route::get('/user',[App\Http\Controllers\Auth\User::class, 'me']);
     Route::get('/user/can/{pname}', 'Auth\user@can');
     Route::post('/contact/send', 'ContactController@send')->name('contact.send');
 
