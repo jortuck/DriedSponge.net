@@ -24,11 +24,11 @@ class DiscordLoginController extends Auth
         $socialaccount->updateInfo($socialresponse);
 
         if (!$socialaccount->user) {
-            $user = User::where('email',$socialresponse->email)->first();
-            if($user){
-                return redirect()->route('spa',['home'])->with('error',
+            $user = User::where('email', $socialresponse->email)->first();
+            if ($user) {
+                return redirect()->route('spa', ['home'])->with('error',
                     'There is an account that already exist with that email. Log into that account using github, and link your discord in order to login using discord.');
-            }else{
+            } else {
                 $user = User::create([
                     'username' => $socialresponse->user['username'],
                     'email' => $socialresponse->email,
@@ -41,14 +41,15 @@ class DiscordLoginController extends Auth
 
         }
         $user = $socialaccount->user;
-        if($user->hasConnection(''))
         $connections = Http::withToken($socialresponse->token)->get('https://discord.com/api/users/@me/connections')->object();
-        foreach ($connections as $connection){
-            if($connection->type == "github" && $connection->verified){
-               $user->linkSocial('github',$connection->id);
+        foreach ($connections as $connection) {
+            if ($connection->type == "github" && $connection->verified) {
+                $user->linkSocial('github', $connection->id);
                 break;
             }
         }
+
+
         Auth::login($socialaccount->user);
         return response()->redirectTo("/");
     }

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Mail\ContactForm;
-use App\User;
+use App\Models\User;
 use Illuminate\Http\Response;
 use Mail;
 use Validator;

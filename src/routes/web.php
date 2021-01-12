@@ -17,8 +17,12 @@ Route::domain(config('extra.image_domain'))->group(function () {
     Route::get('/{uuid}', 'FileUploads@loadView')->name('upload.load-view');
 });
 
-Route::post('/logout', 'Auth\LoginController@logout')->name('logout');
-Route::get('/logout', 'Auth\LoginController@logout');
+Route::post('/logout', function (){
+    \Auth::logout();
+})->name('logout');
+Route::get('/logout', function (){
+    \Auth::logout();
+});
 
 Route::prefix('app')->group(function () {
 
