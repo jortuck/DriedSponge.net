@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\SocialAccounts;
-use App\User;
+use App\Models\SocialAccounts;
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -41,7 +41,7 @@ class DiscordLoginController extends Auth
 
         }
         $user = $socialaccount->user;
-        dd(Http::withToken($socialresponse->token)->get('https://discord.com/api/users/@me/connections')->object());
+        $connections = Http::withToken($socialresponse->token)->get('https://discord.com/api/users/@me/connections')->object();
         Auth::login($socialaccount->user);
         return response()->redirectTo("/");
     }
