@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\FileUpload;
+use App\Models\FileUpload;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Manage;
 
-use App\ContactResponses;
+use App\Models\ContactResponses;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 

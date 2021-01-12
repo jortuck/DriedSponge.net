@@ -11,7 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Str;
 use Illuminate\View\View;
-use App\ApiKey as ApiKey;
+use App\Models\ApiKey as ApiKey;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 use Validator;
