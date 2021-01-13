@@ -79,4 +79,17 @@ class User extends Authenticatable
         $this->social_accounts()->save($social_account);
         return true;
     }
+
+    public function hasSocial($provider){
+        return $this->social_accounts()->where('provider',$provider)->exists();
+    }
+
+    public function socialId($provider){
+        $id = $this->social_accounts()->where("provider",$provider)->first();
+        if($id){
+            return $id->provider_id;
+        }else{
+            return null;
+        }
+    }
 }

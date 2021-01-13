@@ -28,7 +28,7 @@ class GithubLoginController extends Auth
                     'There is an account that already exist with that email. Log into that account using discord, and link your github in order to login using github.');
             }else{
                 $user = User::create([
-                    'username' => $socialresponse->user['username'],
+                    'username' => $socialresponse->nickname,
                     'email' => $socialresponse->email,
                     'avatar' => $socialresponse->avatar
                 ]);
