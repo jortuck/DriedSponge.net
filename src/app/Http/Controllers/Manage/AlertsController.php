@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Manage;
 
+use App\Jobs\SendAlert;
 use App\Models\Alerts;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -45,50 +46,9 @@ class AlertsController extends Controller
                 "website" => "required|boolean"
             ]);
             if ($validator->passes()) {
-                $alert = new Alerts();
-                $alert->message = $request->message;
-                $alert->onsite = $request->website;
-                if($request->twitter){
-                    $messagearray = str_split ($request->message,271);
-                    $count = count($messagearray);
-                    if($count == 1){
-                        $form = $messagearray[0];
-                    }else{
-                        $form = $messagearray[0]."... (1/$count)";
-                    }
-                    $tweet = \Twitter::postTweet(['status' => $form, 'format' => 'object']);
-                    $tweetlink =  \Twitter::linkTweet($tweet);
-                    $id=$tweet->id_str;
-                    $alert->tweetid = $id;
-                    $i = 0;
-                    foreach ($messagearray as $chunk){
-                        $i++;
-                        $end = "... ($i/$count)";
-                        if($i ==1){
-                            continue;
-                        }elseif ($i==$count){
-                            $end = " ($i/$count)";
-                        }
-                        $tweet2 = \Twitter::postTweet(['status' =>  $chunk.$end, 'format' => 'json','in_reply_to_status_id'=>$id]);
-                    }
-                }
-                if($request->discord){
-                    $fields = array();
-                    if($request->twitter){
-                        array_push($fields, array("name" => "Tweet Link", "value" => $tweetlink));
-                    }
-                    $embed = array(
-                        "title" =>  "New Message",
-                        "type" => "rich",
-                        "color" => hexdec("007BFF"),
-                        "timestamp" => date("c"),
-                        "fields" => $fields,
-                        "description"=>$request->message
-                    );
-                    $response = \Http::post(config('extra.discord_alerts_hook'),["embeds" => [$embed]]);
-                }
-                $alert->save();
-                return response()->json(['success' => 'Message has been posted! '.$alert->tweetid]);
+
+                SendAlert::dispatch($request->message, $request->twitter, $request->discord, $request->website);
+                return response()->json(['success' => 'Message has been posted!']);
             }
             return response()->json($validator->errors());
         } else {
@@ -123,7 +83,7 @@ class AlertsController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\Response|object
      */
     public function update(Request $request, $id)
     {
@@ -156,7 +116,7 @@ class AlertsController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\Response|object
      */
     public function destroy(Request $request,$id)
     {
