@@ -47,7 +47,6 @@
                 <Homecard heading="Server Infrastructure">
                     <Icon tooltip="Docker" class="is-medium mx-2" icon="fab fa-docker fa-2x"/>
                     <Icon tooltip="Linux" class="is-medium mx-2" icon="fab fa-linux fa-2x"/>
-                    <Icon tooltip="Ubuntu" class="is-medium mx-2" icon="fab fa-ubuntu fa-2x"/>
                     <Icon tooltip="Digital Ocean" class="is-medium mx-2" icon="fab fa-digital-ocean fa-2x"/>
                     <Icon tooltip="Cloudflare" class="is-medium mx-2" icon="fab fa-cloudflare fa-2x"/>
                     <br>
