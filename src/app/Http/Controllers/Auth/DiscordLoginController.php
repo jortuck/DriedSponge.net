@@ -30,11 +30,9 @@ class DiscordLoginController extends Auth
 
                 foreach ($connections as $connection) {
                     if ($connection->type == "github" && $connection->verified && $connection->id == $user->socialId("github")) {
-                        $user->linkSocial('github', $connection->id);
                         $user->social_accounts()->save($socialaccount);
                         Auth::login($user);
                         return response()->redirectTo("/");
-                        break;
                     }
                 }
 
