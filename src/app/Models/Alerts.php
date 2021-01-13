@@ -3,9 +3,11 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Alerts extends Model
 {
+    use HasFactory;
+
     //Table Name
     protected $table = 'alerts';
     //Primary key
