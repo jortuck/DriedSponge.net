@@ -1,15 +1,31 @@
 <?php
 
-/** @var \Illuminate\Database\Eloquent\Factory $factory */
+namespace Database\Factories;
 
-use App\ContactResponses;
-use Faker\Generator as Faker;
+use App\Models\ContactResponses;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
-$factory->define(App\ContactResponses::class, function (Faker $faker) {
-    return [
-        'Name' => $faker->name,
-        'Email' => $faker->unique()->safeEmail,
-        'Subject' => $faker->sentence, // password
-        'Message' => $faker->paragraph
-    ];
-});
+class ContactResponsesFactory extends Factory
+{
+    /**
+     * The name of the factory's corresponding model.
+     *
+     * @var string
+     */
+    protected $model = ContactResponses::class;
+
+    /**
+     * Define the model's default state.
+     *
+     * @return array
+     */
+    public function definition()
+    {
+        return [
+            'Name' => $this->faker->name,
+            'Email' => $this->faker->unique()->safeEmail,
+            'Subject' => $this->faker->sentence,
+            'Message' => $this->faker->paragraph
+        ];
+    }
+}
