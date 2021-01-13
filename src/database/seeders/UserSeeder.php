@@ -15,7 +15,8 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        if(!User::where('email',"ADMIN_EMAIL")->first()){
+        $user = User::where('email',"ADMIN_EMAIL")->first();
+        if(!$user){
             $user = User::create([
                 'username' => "DriedSponge",
                 'email' => config('app.adminemail'),
@@ -30,7 +31,11 @@ class UserSeeder extends Seeder
             $user->social_accounts()->save($socialaccount);
             echo "\nSeeded DriedSponge\n";
         }else{
-            echo "\nNo user to seed\n";
+            if($user->hasRole('Owner')){
+                echo "\nNo user to seed\n";
+            }else{
+                $user->assignRole('Owner');
+            }
         }
     }
 }
