@@ -106,6 +106,23 @@ class AlertsController extends Controller
                     $alert->onsite = $request->website;
                     $alert->message = $request->message;
                     $alert->save();
+
+                    if($alert->discordid){
+                        $fields = array();
+                        if($alert->tweetid){
+                            array_push($fields, array("name" => "Tweet Link", "value" => \Twitter::linkTweet(\Twitter::getTweet($alert->tweetid))));
+                        }
+                        $embed = array(
+                            "title" =>  "New Message",
+                            "type" => "rich",
+                            "color" => hexdec("007BFF"),
+                            "timestamp" => date("c"),
+                            "fields" => $fields,
+                            "description"=>$alert->message
+                        );
+                        $response = \Http::asJson()->patch(config('extra.discord_alerts_hook')."/messages/".$alert->discordid,["embeds" => [$embed]])->object();
+                    }
+
                     return response()->json(['success' => 'Message has been updated!']);
                 }
                 return response()->json($validator->errors());
