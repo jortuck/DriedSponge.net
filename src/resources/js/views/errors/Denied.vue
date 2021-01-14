@@ -9,7 +9,7 @@
                     Access Denied!
                 </h2>
                 <h2 class="subtitle has-text-white">
-                    <span v-if="!session.authenticated"><a href="/app/login" class="white-link">Login</a> | </span><router-link class="white-link" :to="{'name':'home'}">Home</router-link>
+                    <span v-if="!session.authenticated"><router-link :to="{'name':'login'}" class="white-link">Login</router-link> | </span><router-link class="white-link" :to="{'name':'home'}">Home</router-link>
                 </h2>
             </div>
         </div>
