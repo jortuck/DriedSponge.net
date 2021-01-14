@@ -13,16 +13,13 @@ class User extends Controller
 
         $authuser = Auth::user();
         $perms =  \DB::table('permissions')->select('name','id')->orderBy('name', 'asc')->where('guard_name','web')->get();
-        $userperms =array();
+        $userperms = $perms->keyBy('name');
         foreach ($perms as $perm){
             $userperms[$perm->name] =  !Auth::guest() && $authuser->hasPermissionTo($perm->name);
         }
         if($authuser){
-            $connections = [];
-            $accounts = Auth::user()->social_accounts()->select('provider_id','provider','provider_username')->get();
-            foreach ($accounts as $account){
-                $connections[$account->provider]=$account;
-            }
+            $accounts = Auth::user()->social_accounts()->select('provider_id','provider','provider_username','provider_avatar','created_at')->get();
+            $connections = $accounts->keyBy('provider');
         }else{
             $connections = null;
         }
