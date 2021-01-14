@@ -7,6 +7,7 @@ use App\Models\Alerts;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use DB;
+use Illuminate\Support\Str;
 use Validator;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
@@ -15,13 +16,17 @@ class AlertsController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Http\JsonResponse|\Illuminate\View\View|object
      */
     public function index()
     {
         if(!\Auth::guest()){
             if(\Auth::user()->hasPermissionTo('Alerts.See')){
                 $alerts = Alerts::select('id','message','tweetid','created_at','onsite')->orderBy('created_at','desc')->paginate(10);
+                $data = $alerts->transform(function ($item, $key) {
+                    $item->message =  Str::limit($item->message,25);
+                    return $item;
+                });
                 return response()->json($alerts);
             }else{
                 return response()->json(['error' => 'Unauthorized'])->setStatusCode(403);
