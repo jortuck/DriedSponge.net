@@ -22,20 +22,15 @@ class DiscordLoginController extends Auth
         }
 
         $socialaccount->updateInfo($socialresponse);
-        $connections = Http::withToken($socialresponse->token)->get('https://discord.com/api/users/@me/connections')->object();
-
+        $connections = collect(Http::withToken($socialresponse->token)->get('https://discord.com/api/users/@me/connections')->json())->keyBy('type');
         if (!$socialaccount->user) {
             $user = User::where('email', $socialresponse->email)->first();
             if ($user) {
-
-                foreach ($connections as $connection) {
-                    if ($connection->type == "github" && $connection->verified && $connection->id == $user->socialId("github")) {
-                        $user->social_accounts()->save($socialaccount);
-                        Auth::login($user);
-                        return response()->redirectTo("/");
-                    }
+                if ($connections->has('github') && $connections->get('github')["verified"] && $connections->get('github')['id'] == $user->socialId("github")) {
+                    $user->social_accounts()->save($socialaccount);
+                    Auth::login($user);
+                    return response()->redirectTo("/");
                 }
-
                 return redirect()->route('spa', ['home'])->with('error',
                     'There is an account that already exist with that email. Log into that account using github, and link your discord in order to login using discord.');
             } else {
@@ -50,15 +45,12 @@ class DiscordLoginController extends Auth
             }
 
         }
-        $user = $socialaccount->user;
-        $connections = Http::withToken($socialresponse->token)->get('https://discord.com/api/users/@me/connections')->object();
-        foreach ($connections as $connection) {
-            if ($connection->type == "github" && $connection->verified) {
-                $user->linkSocial('github', $connection->id);
-                break;
-            }
-        }
 
+        $user = $socialaccount->user;
+
+        if ($connections->has('github') && $connections->get('github')['verified']) {
+            $user->linkSocial('github', $connections->get('github')['id']);
+        }
 
         Auth::login($socialaccount->user);
         return response()->redirectTo("/");
