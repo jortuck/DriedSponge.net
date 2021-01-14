@@ -23,7 +23,7 @@ class AlertsController extends Controller
         if(!\Auth::guest()){
             if(\Auth::user()->hasPermissionTo('Alerts.See')){
                 $alerts = Alerts::select('id','message','tweetid','created_at','onsite')->orderBy('created_at','desc')->paginate(10);
-                $data = $alerts->transform(function ($item, $key) {
+                $alerts->transform(function ($item, $key) {
                     $item->message =  Str::limit($item->message,25);
                     return $item;
                 });
