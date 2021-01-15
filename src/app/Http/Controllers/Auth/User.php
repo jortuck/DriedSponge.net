@@ -18,7 +18,7 @@ class User extends Controller
             $userperms[$perm->name] =  !Auth::guest() && $authuser->hasPermissionTo($perm->name);
         }
         if($authuser){
-            $accounts = Auth::user()->social_accounts()->select('provider_id','provider','provider_username','provider_avatar','created_at')->get();
+            $accounts = Auth::user()->social_accounts()->select('provider_id','provider','provider_username','provider_avatar','token_expires','created_at')->get();
             $connections = $accounts->keyBy('provider');
         }else{
             $connections = null;
@@ -28,7 +28,7 @@ class User extends Controller
             "user"=>$authuser,
             "permissions"=>$userperms,
             'connections'=>$connections,
-
+            'session'=>session()
         ];
 
         return response()->json($user, 200);
