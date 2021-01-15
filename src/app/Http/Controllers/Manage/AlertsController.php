@@ -150,6 +150,10 @@ class AlertsController extends Controller
             if($alert){
                 $alert->deleteFull();
                 $rest = Alerts::select('id','message','tweetid','created_at','onsite')->orderBy('created_at','desc')->paginate(10);
+                $rest->transform(function ($item, $key) {
+                    $item->message =  Str::limit($item->message,25);
+                    return $item;
+                });
                 return response()->json(['success' => true,"data"=>$rest]);
             }else{
                 return response()->json(['error' => 'Not found'])->setStatusCode(404);
