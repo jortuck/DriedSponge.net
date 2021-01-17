@@ -4,15 +4,13 @@ namespace App\Http\Controllers\Auth;
 
 use App\Models\SocialAccounts;
 use App\Models\User;
-use Carbon\Carbon;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
 use Laravel\Socialite\Facades\Socialite;
 
 class DiscordLoginController extends Auth
 {
-    public function auth(Request $request)
+    public function auth()
     {
         $socialresponse = Socialite::driver('discord')->user();
         $socialaccount = SocialAccounts::where('provider', 'discord')->where('provider_id', $socialresponse->user['id'])->first();
