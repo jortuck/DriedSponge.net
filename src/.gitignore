@@ -41,3 +41,7 @@ sendgrid.env
 .vscode
 .phpstorm.meta.php
 .styleci.yml
+worker.log
+supervisord.log
+supervisord.pid
+./public/favicon.icoZone.Identifier
