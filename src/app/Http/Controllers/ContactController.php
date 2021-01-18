@@ -56,7 +56,7 @@ class ContactController extends Controller
                     "color" => hexdec("00BE16"),
                 ];
                 $response = \Http::post(config('extra.discord_notification_hook'), ["embeds" => [$embed]]);
-                return response()->json(['success' => 'Your message has been sent!']);
+                return response()->json(['success' => 'Your message has been sent!'],204);
             } else {
                 return response()->json(['captcha' => 'Captcha failed, please try again.']);
             }
