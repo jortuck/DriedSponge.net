@@ -9,19 +9,7 @@ class Github extends Controller
 {
     function SendGitEmbed($embed)
     {
-        $request = json_encode([
-            "content" => "",
-            "embeds" => [$embed]
-        ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
-        $ch = curl_init(config('extra.github_webhook_url'));
-        curl_setopt_array($ch, [
-            CURLOPT_POST => 1,
-            CURLOPT_FOLLOWLOCATION => 1,
-            CURLOPT_HTTPHEADER => array("Content-type: application/json"),
-            CURLOPT_POSTFIELDS => $request,
-            CURLOPT_RETURNTRANSFER => 1
-        ]);
-        curl_exec($ch);
+        $response = \Http::post(config('extra.github_webhook_url'),["embeds" => [$embed]]);
     }
 
     function Webhook(Request $request)
@@ -43,7 +31,7 @@ class Github extends Controller
                             $ccount = count($commits);
                             if ($ccount != 0) {
                                 foreach ($commits as $commit) {
-                                    if (strpos($commit['message'], "!hide") !== false) {
+                                    if (strpos($commit['message'], "***") !== false) {
                                         $value = "*Commit message hidden*";
                                     } else {
                                         $value = $commit['message'];

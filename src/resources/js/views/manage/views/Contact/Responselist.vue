@@ -19,26 +19,36 @@
             <tbody>
             <tr v-for="item in state.currentData" :key="item.id" data-aos="fade-in">
                 <td>{{ item.Name }}</td>
-                <td><a :href="'mailto:'+item.Email+'?subject=Re: '+item.Subject" target="_blank">{{ item.Email }}</a></td>
+                <td><a :href="'mailto:'+item.Email+'?subject=Re: '+item.Subject" target="_blank">{{ item.Email }}</a>
+                </td>
                 <td>{{ truncate(item.Subject, 30) }}</td>
                 <td>{{ format(item.created_at) }}</td>
                 <td class="has-text-centered">
-                    <button @click="viewMessage(item.id)" class="button is-primary is-small mx-1" :class="{'is-loading':state.modal.loading===item.id}"><Icon icon="fas fa-book-open"/></button>
-                    <button @click="del(item.id)" class="button is-danger is-small mx-1" :class="{'is-loading':state.del_loading===item.id}"><Icon icon="fas fa-trash"/></button>
+                    <button @click="viewMessage(item.id)" class="button is-primary is-small mx-1"
+                            :class="{'is-loading':state.modal.loading===item.id}">
+                        <Icon icon="fas fa-book-open"/>
+                    </button>
+                    <Can permission="Contact.Delete">
+                        <button @click="del(item.id)" class="button is-danger is-small mx-1"
+                                :class="{'is-loading':state.del_loading===item.id}">
+                            <Icon icon="fas fa-trash"/>
+                        </button>
+                    </Can>
+
                 </td>
             </tr>
             </tbody>
         </table>
         <nav class="pagination" role="navigation" aria-label="pagination">
-            <button @click="fetch(state.page-1)" class="pagination-previous" title="This is the first page"
-               :disabled="state.prev_page_url != null ? null : 'disabled'">
+            <button @click="fetch(state.page-1)" class="pagination-previous"
+                    :disabled="state.prev_page_url != null ? null : 'disabled'">
                 <Icon icon="fas fa-arrow-left"/>
             </button>
-            <button @click="fetch(state.page)" class="pagination-previous" title="This is the first page">
+            <button @click="fetch(state.page)" class="pagination-previous">
                 <Icon icon="fas fa-sync"/>
             </button>
             <button @click="fetch(state.page+1)" class="pagination-next"
-               :disabled="state.next_page_url != null ? null : 'disabled'">
+                    :disabled="state.next_page_url != null ? null : 'disabled'">
                 <Icon icon="fas fa-arrow-right"/>
             </button>
             <ul class="pagination-list">
@@ -66,9 +76,12 @@
                    target="_blank">
                     Reply
                 </a>
-                <button class="button is-danger" @click="del(state.modal.messageid)" :class="{'is-loading':state.del_loading===state.modal.messageid}">
-                    <Icon icon="fas fa-trash"/>
-                </button>
+                <Can permission="Contact.Delete">
+                    <button class="button is-danger" @click="del(state.modal.messageid)"
+                            :class="{'is-loading':state.del_loading===state.modal.messageid}">
+                        <Icon icon="fas fa-trash"/>
+                    </button>
+                </Can>
                 <button class="button" @click="state.modal.active = false">Close</button>
             </footer>
         </div>
@@ -79,10 +92,11 @@
 import axios from "axios";
 import Icon from "../../../../components/text/Icon";
 import session from "../../../../store/session";
+import Can from "../../../../components/helpers/Can";
 
 export default {
     name: "Responselist",
-    components: {Icon},
+    components: {Can, Icon},
     beforeMount() {
         this.fetch(this.state.page);
     },
@@ -111,7 +125,7 @@ export default {
     methods: {
         fetch(page) {
             this.state.loading = true
-            axios.get("/app/contact-form/get", {params: {"page": page}}).then(res => {
+            axios.get("/app/manage/contact-form/", {params: {"page": page}}).then(res => {
                 this.state.currentData = res.data.data
                 this.state.page = res.data.current_page
                 this.state.next_page_url = res.data.next_page_url
@@ -135,7 +149,7 @@ export default {
         },
         viewMessage(id) {
             this.state.modal.loading = id
-            axios.get("/app/contact-form/" + id).then(res => {
+            axios.get("/app/manage/contact-form/" + id).then(res => {
                 this.state.modal.body = res.data.Message
                 this.state.modal.header = res.data.Name
                 this.state.modal.messageid = res.data.id
@@ -144,13 +158,13 @@ export default {
                 this.state.modal.active = true
                 this.state.modal.loading = null
             })
-                .catch(error =>  {
+                .catch(error => {
                     this.httpError(error)
                 });
         },
         del(id) {
             this.state.del_loading = id
-            axios.delete("/app/contact-form/" + id,{data:{page:this.state.page}})
+            axios.delete("/app/manage/contact-form/" + id, {data: {page: this.state.page}})
                 .then(res => {
                     this.state.del_loading = null
                     this.state.modal.active = false
@@ -160,7 +174,7 @@ export default {
                     this.httpError(error)
                 });
         },
-        httpError(error){
+        httpError(error) {
             this.state.loading = false
             this.state.del_loading = null
             if (error.response) {

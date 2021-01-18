@@ -1,13 +1,12 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Notifications\Notifiable;
-use Spatie\Permission\Traits\HasRoles;
-
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 class ContactResponses extends Model
 {
+    use HasFactory;
     protected $table = 'contact';
     //Primary key
     public $primaryKey = 'id';

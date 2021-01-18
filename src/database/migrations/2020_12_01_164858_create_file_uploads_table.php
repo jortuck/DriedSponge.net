@@ -32,6 +32,6 @@ class CreateFileUploadsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('sharex_media');
+        Schema::dropIfExists('file_uploads');
     }
 }

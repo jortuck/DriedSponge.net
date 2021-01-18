@@ -1,13 +1,13 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class FileUpload extends Model
+class Annoucement extends Model
 {
     //Table Name
-    protected $table = 'file_uploads';
+    protected $table = 'annoucement';
     //Primary key
     public $primaryKey = 'id';
     //Timestamps

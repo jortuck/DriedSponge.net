@@ -41,7 +41,7 @@
                         </div>
                     </div>
                     <div class="control">
-                        <button :class="{'button':true,'is-primary':true,'is-loading':form.loading}">Submit</button>
+                        <button class="button is-primary" :class="{'is-loading':form.loading}">Submit</button>
                     </div>
                 </form>
             </div>

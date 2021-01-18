@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\Manage;
 
-use App\Alerts;
+use App\Jobs\SendAlert;
+use App\Models\Alerts;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use DB;
+use Illuminate\Support\Str;
 use Validator;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
@@ -14,27 +16,23 @@ class AlertsController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Http\JsonResponse|\Illuminate\View\View|object
      */
     public function index()
     {
-        //return \Twitter::postTweet(['status' => 'Ooh the tweet says its from driedsponge.net :) twitter api pretty cool', 'format' => 'json']);
-        $alerts = DB::table('alerts')->orderBy('created_at', 'asc')->get();
-        return view('manage.alerts.index')->with('alerts', $alerts);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\RedirectResponse
-     */
-    public function create()
-    {
-        if (\Auth::user()->hasPermissionTo('Alerts.Create')) {
-            return view('manage.alerts.create');
-        } else {
-            return redirect()->back()->with('error', 'Unauthorized');
+        if(!\Auth::guest()){
+            if(\Auth::user()->hasPermissionTo('Alerts.See')){
+                $alerts = Alerts::select('id','message','tweetid','created_at','onsite')->orderBy('created_at','desc')->paginate(10);
+                $alerts->transform(function ($item, $key) {
+                    $item->message =  Str::limit($item->message,25);
+                    return $item;
+                });
+                return response()->json($alerts);
+            }else{
+                return response()->json(['error' => 'Unauthorized'])->setStatusCode(403);
+            }
         }
+        return response()->json(['error' => 'Unauthenticated'])->setStatusCode(401);
     }
 
     /**
@@ -53,61 +51,9 @@ class AlertsController extends Controller
                 "website" => "required|boolean"
             ]);
             if ($validator->passes()) {
-                $alert = new Alerts();
-                $alert->message = $request->message;
-                if($request->twitter){
-                    $messagearray = str_split ($request->message,271);
-                    $count = count($messagearray);
-                    if($count == 1){
-                        $form = $messagearray[0];
-                    }else{
-                        $form = $messagearray[0]."... (1/$count)";
-                    }
-                    $tweet = \Twitter::postTweet(['status' => $form, 'format' => 'object']);
-                    $tweetlink =  \Twitter::linkTweet($tweet);
-                    $id=$tweet->id_str;
-                    $alert->tweetid = $id;
-                    $i = 0;
-                    foreach ($messagearray as $chunk){
-                        $i++;
-                        $end = "... ($i/$count)";
-                        if($i ==1){
-                            continue;
-                        }elseif ($i==$count){
-                            $end = " ($i/$count)";
-                        }
-                        $tweet2 = \Twitter::postTweet(['status' =>  $chunk.$end, 'format' => 'json','in_reply_to_status_id'=>$id]);
-                    }
-                }
-                if($request->discord){
-                    $fields = array();
-                    if($request->twitter){
-                        array_push($fields, array("name" => "Tweet Link", "value" => $tweetlink));
-                    }
-                    $embed = array(
-                        "title" =>  "New Message",
-                        "type" => "rich",
-                        "color" => hexdec("007BFF"),
-                        "timestamp" => date("c"),
-                        "fields" => $fields,
-                        "description"=>$request->message
-                    );
-                    $request = json_encode([
-                        "content" => "",
-                        "embeds" => [$embed]
-                    ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
-                    $ch = curl_init(env('DISCORD_ALERTS_HOOK',null));
-                    curl_setopt_array($ch, [
-                        CURLOPT_POST => 1,
-                        CURLOPT_FOLLOWLOCATION => 1,
-                        CURLOPT_HTTPHEADER => array("Content-type: application/json"),
-                        CURLOPT_POSTFIELDS => $request,
-                        CURLOPT_RETURNTRANSFER => 1
-                    ]);
-                    curl_exec($ch);
-                }
-                $alert->save();
-                return response()->json(['success' => 'Message has been posted! '.$alert->tweetid]);
+
+                SendAlert::dispatch($request->message, $request->twitter, $request->discord, $request->website);
+                return response()->json(['success' => 'Message has been posted!']);
             }
             return response()->json($validator->errors());
         } else {
@@ -119,44 +65,101 @@ class AlertsController extends Controller
      * Display the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\Response|object
      */
     public function show($id)
     {
-        //
+        if(\Auth::guest()){
+            return response()->json(['error' => 'Unauthenticated'])->setStatusCode(401);
+        }
+        if (\Auth::user()->hasPermissionTo('Alerts.Edit')) {
+            $alert = Alerts::find($id);
+            if($alert){
+                return response()->json($alert);
+            }else{
+                return response()->json(['error' => 'Not found'])->setStatusCode(404);
+            }
+        }else{
+            return response()->json(['error' => 'Unauthorized'])->setStatusCode(403);
+        }
     }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\Response|object
      */
     public function update(Request $request, $id)
     {
-        //
+        if(\Auth::guest()){
+            return response()->json(['error' => 'Unauthenticated'])->setStatusCode(401);
+        }
+        if (\Auth::user()->hasPermissionTo('Alerts.Edit')) {
+            $alert = Alerts::find($id);
+            if($alert){
+                $validator = Validator::make($request->all(), [
+                    "message" => "required|min:3|max:1120",
+                    "website" => "required|boolean"
+                ]);
+                if($validator->passes()){
+                    $alert->onsite = $request->website;
+                    $alert->message = $request->message;
+                    $alert->save();
+
+                    if($alert->discordid){
+                        $fields = array();
+                        if($alert->tweetid){
+                            array_push($fields, array("name" => "Tweet Link", "value" => \Twitter::linkTweet(\Twitter::getTweet($alert->tweetid))));
+                        }
+                        $embed = array(
+                            "title" =>  "New Message",
+                            "type" => "rich",
+                            "color" => hexdec("007BFF"),
+                            "timestamp" => date("c"),
+                            "fields" => $fields,
+                            "description"=>$alert->message
+                        );
+                        $response = \Http::asJson()->patch(config('extra.discord_alerts_hook')."/messages/".$alert->discordid,["embeds" => [$embed]])->object();
+                    }
+
+                    return response()->json(['success' => 'Message has been updated!']);
+                }
+                return response()->json($validator->errors());
+            }else{
+                return response()->json(['error' => 'Not found'])->setStatusCode(404);
+            }
+        }else{
+            return response()->json(['error' => 'Unauthorized'])->setStatusCode(403);
+        }
     }
 
     /**
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\Response|object
      */
-    public function destroy($id)
+    public function destroy(Request $request,$id)
     {
-        //
+        if(\Auth::guest()){
+            return response()->json(['error' => 'Unauthenticated'])->setStatusCode(401);
+        }
+        if (\Auth::user()->hasPermissionTo('Alerts.Delete')) {
+            $alert = Alerts::find($id);
+            if($alert){
+                $alert->deleteFull();
+                $rest = Alerts::select('id','message','tweetid','created_at','onsite')->orderBy('created_at','desc')->paginate(10);
+                $rest->transform(function ($item, $key) {
+                    $item->message =  Str::limit($item->message,25);
+                    return $item;
+                });
+                return response()->json(['success' => true,"data"=>$rest]);
+            }else{
+                return response()->json(['error' => 'Not found'])->setStatusCode(404);
+            }
+        }else{
+            return response()->json(['error' => 'Unauthorized'])->setStatusCode(403);
+        }
     }
 }

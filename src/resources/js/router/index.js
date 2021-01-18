@@ -8,6 +8,7 @@ const routes = [
         children: [
             {
                 path: '',
+                alias: ['/home'],
                 name: 'home',
                 component: () => import('../views/public/views/Home')
             },
@@ -16,6 +17,11 @@ const routes = [
                 name: 'projects',
                 component: () => import('../views/public/views/Projects.vue')
             },
+            {
+                path: '/login',
+                name: 'login',
+                component: () => import('../views/public/views/Login')
+            }
         ]
     },
 
@@ -39,6 +45,30 @@ const routes = [
                         name: 'contactform',
                         component: () => import('../views/manage/views/Contact/Responselist'),
                         meta: {can: "Contact.See"},
+                    },
+                ]
+            },
+            {
+                path: 'alerts',
+                component: () => import('../views/manage/views/Alerts/Alerts'),
+                children: [
+                    {
+                        path: '',
+                        name: 'alerts',
+                        component: () => import('../views/manage/views/Alerts/Alertslist'),
+                        meta: {can: "Alerts.See"},
+                    },
+                    {
+                        path: 'create',
+                        name: 'alerts-create',
+                        component: () => import('../views/manage/views/Alerts/Create'),
+                        meta: {can: "Alerts.Create"},
+                    },
+                    {
+                        path: ':id/edit',
+                        name: 'alerts-edit',
+                        component: () => import('../views/manage/views/Alerts/Edit'),
+                        meta: {can: "Alerts.Edit"},
                     },
                 ]
             }

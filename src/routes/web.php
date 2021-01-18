@@ -1,9 +1,6 @@
 <?php
 
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Auth\SteamLoginController;
-use kanalumaddela\LaravelSteamLogin\Facades\SteamLogin;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,32 +15,59 @@ use kanalumaddela\LaravelSteamLogin\Facades\SteamLogin;
 Route::domain(config('extra.image_domain'))->group(function () {
     Route::get('/file/{name}', 'FileUploads@loadFile')->name('upload.load-file');
     Route::get('/{uuid}', 'FileUploads@loadView')->name('upload.load-view');
+    Route::get('/g/{uuid}', function ($uuid){
+        return response()->redirectTo(\route('upload.load-view',["uuid"=>$uuid]));
+    });
 });
 
-Route::get('auth/steam', 'Auth\SteamLoginController@authenticate')->name('auth.steam');
-Route::post('/logout', 'Auth\LoginController@logout')->name('logout');
+Route::post('/logout', function (){
+    \Auth::logout();
+})->name('logout');
+Route::get('/logout', function (){
+    \Auth::logout();
+});
 
 Route::prefix('app')->group(function () {
-    Route::get('/login', 'Auth\SteamLoginController@login')->name('login');
-    Route::get('/user', 'Auth\User@me');
+
+    Route::prefix('login')->group(function () {
+        Route::get('/steam',function (){
+            return Socialite::driver('steam')->redirect(); // Steam Login
+        })->name('login.steam');
+        Route::get('/discord',function (){
+            return Socialite::driver('discord')->scopes(['connections'])->redirect(); // Discord Login
+        })->name('login.discord');
+        Route::get('/github',function (){
+            return Socialite::driver('github')->redirect(); // github Login
+        })->name('login.github');
+        //Route::get('/login/google', function () {
+        //    return Socialite::driver('google')->redirect(); //Google Login
+        //})->name('login.google');
+    });
+
+    Route::prefix('auth')->group(function () {
+        Route::get('/steam', 'Auth\SteamLoginController@auth')->name('auth.steam');
+        Route::get('/discord', 'Auth\DiscordLoginController@auth')->name('auth.discord');
+        Route::get('/github', 'Auth\GithubLoginController@auth')->name('auth.github');
+        //Route::get('/auth/google', 'Auth\SteamLoginController@auth')->name('auth.google');
+    });
+
+    Route::get('/user',[App\Http\Controllers\Auth\User::class, 'me']);
     Route::get('/user/can/{pname}', 'Auth\user@can');
     Route::post('/contact/send', 'ContactController@send')->name('contact.send');
-    Route::get('/contact-form/get', 'Manage\Contact@index');
-    Route::get('/contact-form/{id}', 'Manage\Contact@read');
-    Route::delete('/contact-form/{id}', 'Manage\Contact@delete');
+
+
+    Route::get('/manage/contact-form/', 'Manage\Contact@index');
+    Route::get('/manage/contact-form/{id}', 'Manage\Contact@read');
+    Route::delete('/manage/contact-form/{id}', 'Manage\Contact@delete');
+
+    Route::get('/manage/alerts', 'Manage\AlertsController@index');
+    Route::post('/manage/alerts', 'Manage\AlertsController@store');
+    Route::delete('/manage/alerts/{id}', 'Manage\AlertsController@destroy');
+    Route::get('/manage/alerts/{id}', 'Manage\AlertsController@show');
+    Route::put('/manage/alerts/{id}', 'Manage\AlertsController@update');
 });
 
 
 Route::get('/{any}', function(){
     return view('spa');
 })->name('spa')->where('any', '.*');
-
-
-
-
-
-
-
-
-
-

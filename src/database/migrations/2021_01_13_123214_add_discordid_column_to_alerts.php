@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddStatusColumnToBansTable extends Migration
+class AddDiscordidColumnToAlerts extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class AddStatusColumnToBansTable extends Migration
      */
     public function up()
     {
-        Schema::table('bans', function (Blueprint $table) {
-            $table->boolean('status')->default(1);
+        Schema::table('alerts', function (Blueprint $table) {
+            $table->string('discordid')->nullable()->after('tweetid');
         });
     }
 
@@ -25,8 +25,8 @@ class AddStatusColumnToBansTable extends Migration
      */
     public function down()
     {
-        Schema::table('bans', function (Blueprint $table) {
-            $table->dropColumn('status');
+        Schema::table('alerts', function (Blueprint $table) {
+            $table->dropColumn("discordid");
         });
     }
 }

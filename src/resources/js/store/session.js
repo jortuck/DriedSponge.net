@@ -15,13 +15,13 @@ const session = {
     }),
     fetch() {
         axios.get("/app/user").then(res => {
-            this.state.authenticated = res.data[0] !== null;
+            this.state.authenticated = res.data['user'] !== null;
             if (this.state.authenticated) {
-                this.state.user = res.data[0];
+                this.state.user = res.data['user'];
             } else {
                 this.state.user = null;
             }
-            this.state.permissions = res.data[1];
+            this.state.permissions = res.data['permissions'];
             this.state.loaded = true;
         })
     },
@@ -31,8 +31,8 @@ const session = {
             this.fetch();
         })
     },
-    login(){
-        window.location = "/app/login"
+    login(provider){
+        window.location = "/app/login/" + provider
     },
     can(perm){
         return this.state.permissions[perm]

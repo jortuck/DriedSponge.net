@@ -1,4 +1,5 @@
 <?php
+namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Role;
@@ -45,6 +46,7 @@ class RolesAndPermissionsSeeder extends Seeder
             'Alerts.Create',
             'Alerts.Delete',
             'Alerts.See',
+            'Alerts.Edit',
 
             # Files
             'File.Create',

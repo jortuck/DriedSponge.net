@@ -1,0 +1,25 @@
+.banner-success{
+    background-color: #44C849;
+}
+.banner-danger{
+    background-color: #F44336;
+}
+.banner-warning{
+    background-color: #FF9800;
+}
+.banner-primary{
+    background-color: #2196F3;
+}
+.banner-primary-gradient{
+    background: linear-gradient(180deg, #2196F3 -23.86%, #00D1FF 100%);
+}
+.banner a{
+    color: white !important;
+    text-decoration: underline;
+}
+.banner{
+    color: white;
+    text-align: center;
+    padding-top:8px;
+    padding-bottom:8px;
+}
