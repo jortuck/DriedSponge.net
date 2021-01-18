@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Mail\ContactForm;
 use App\Models\User;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\App;
 use Mail;
 use Validator;
 use Illuminate\Http\Request;
@@ -44,7 +45,9 @@ class ContactController extends Controller
                 $data->Subject = $request->subject;
                 $data->Message = $request->message;
                 $data->save();
-                Mail::to('jordan@driedsponge.net')->send(new ContactForm($data));
+                if (!App::environment('local')) {
+                    Mail::to('jordan@driedsponge.net')->send(new ContactForm($data));
+                }
                 $embed = [
                     "type" => "rich",
                     "title" => "New Contact Form Response",
