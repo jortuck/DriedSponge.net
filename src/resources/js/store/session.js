@@ -1,6 +1,6 @@
 import {reactive} from 'vue'
 import axios from "axios";
-
+import router from '../router'
 const session = {
     state: reactive({
         loaded: false,
@@ -32,7 +32,11 @@ const session = {
         })
     },
     login(provider){
-        window.location = "/app/login/" + provider
+        if(provider === undefined){
+            router.push({"name":"login"});
+        }else{
+            window.location = "/app/login/" + provider
+        }
     },
     can(perm){
         return this.state.permissions[perm]
