@@ -9,7 +9,6 @@ AOS.init({once:true})
 
 // axios settings
 axios.defaults.withCredentials = true;
-
 // Snow Storm Settings
 // require('./snowstorm-min');
 // window.snowStorm.followMouse = false
