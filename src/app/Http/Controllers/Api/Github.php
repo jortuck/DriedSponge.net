@@ -64,10 +64,10 @@ class Github extends Controller
                                 $this->SendGitEmbed($embed);
                                 return response()->json(['success' => true, 'message' => 'Pull request webhook success'], 200);
                             }
-                            return response()->json(['success' => true, 'message' => 'Pull request must be closing and merged'], 200);
+                            return response()->json(['success' => true, 'message' => 'Pull request must be closing and merged'], 400);
                     }
                 }
-                return response()->json(['success' => false, 'message' => 'No payload attached'], 200);
+                return response()->json(['success' => false, 'message' => 'No payload attached'], 400);
             } else {
                 return response()->json(['success' => false, 'message' => 'Unauthorized'], 403);
             }

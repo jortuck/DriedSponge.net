@@ -44,7 +44,7 @@ class FileUploads extends Controller
                     );
                     return response()->json($responsejson);
                 }
-                return response()->json(["success" => false, "error" => "Invalid File","errors"=>$validator->errors()],500);
+                return response()->json(["success" => false, "error" => "Invalid File","errors"=>$validator->errors()],400);
             }
             return  response()->json(["success"=>false,"error"=>"Unauthorized","url"=>"Unauthorized"],403);
         }
@@ -62,13 +62,13 @@ class FileUploads extends Controller
                         $upload->delete();
                         return "<script>alert('Deleted Image');window.close();</script>";
                     }
-                    return (403);
+                    return response()->setStatusCode(403);
                 }
-                return abort(403);
+                return response()->setStatusCode(403);
             }
             $upload->delete(); // If the file does not exist, delete the db entry and return 404
-            return abort(404);
+            return response()->setStatusCode(404);
         }
-        return abort(404);
+        return response()->setStatusCode(404);
     }
 }

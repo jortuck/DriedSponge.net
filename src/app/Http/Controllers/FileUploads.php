@@ -48,6 +48,6 @@ class FileUploads extends Controller
                 $file->delete();
             }
         }
-        return response()->view("images.notfound")->setStatusCode(200);
+        return response()->view("images.notfound")->setStatusCode(404);
     }
 }
