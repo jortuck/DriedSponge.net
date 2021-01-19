@@ -42,7 +42,7 @@ class FileUploads extends Controller
                     $file->storeAs(
                         "/uploads/$extention", $upload->name
                     );
-                    return response()->json($responsejson);
+                    return response()->json($responsejson)->setStatusCode(201);
                 }
                 return response()->json(["success" => false, "error" => "Invalid File","errors"=>$validator->errors()],400);
             }
