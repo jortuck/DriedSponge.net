@@ -2,9 +2,9 @@
     <nav data-aos="fade-down" class="navbar mb-5" role="navigation" aria-label="main navigation">
         <div class="container">
             <div class="navbar-brand">
-                <a class="navbar-item" href="https://driedsponge.net">
+                <router-link class="navbar-item" :to="{'name':'home'}">
                     <span class="has-text-primary">D</span><span class="has-text-white">S</span>
-                </a>
+                </router-link>
                 <a @click="toggleNav" role="button" class="navbar-burger burger" :class="{'is-active':navbarToggled}"
                    aria-label="menu" aria-expanded="false">
                     <span aria-hidden="true"></span>
