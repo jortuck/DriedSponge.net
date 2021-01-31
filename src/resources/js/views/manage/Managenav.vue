@@ -27,6 +27,12 @@
                                     <span class="ml-1">Projects</span>
                                 </a>
                             </Can>
+                            <Can permission="Project.See">
+                                <router-link class="navbar-item" exact-active-class="is-active" :to="{'name':'mc-servers'}">
+                                    <Icon icon="fas fa-server" class="has-text-primary"/>
+                                    <span class="ml-1">MC Servers</span>
+                                </router-link>
+                            </Can>
                             <Can permission="File.See">
                                 <a class="navbar-item">
                                     <Icon icon="fas fa-images" class="has-text-primary"/>
