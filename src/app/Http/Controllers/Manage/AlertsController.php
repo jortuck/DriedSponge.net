@@ -43,6 +43,9 @@ class AlertsController extends Controller
      */
     public function store(Request $request)
     {
+        if(\Auth::guest()){
+            return response()->json(['error' => 'Unauthenticated'],401);
+        }
         if (\Auth::user()->hasPermissionTo('Alerts.Create')) {
             $validator = Validator::make($request->all(), [
                 "message" => "required|min:3|max:1120",
