@@ -25,6 +25,7 @@
         "socialiteproviders/google": "^4.1",
         "socialiteproviders/steam": "^4.1",
         "spatie/laravel-permission": "^3.13",
+        "spirit55555/php-minecraft": "^1.2",
         "thujohn/twitter": "^2.2",
         "xpaw/php-minecraft-query": "^4.0",
         "xpaw/php-source-query-class": "^1.0"
