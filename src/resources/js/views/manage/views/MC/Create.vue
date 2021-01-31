@@ -19,6 +19,14 @@
                                v-model="form.description" :error="form.errors['description']"></Textarea>
             </div>
         </div>
+        <div class="columns">
+            <div class="column">
+                <label class="checkbox">
+                    <input v-model="form.private" type="checkbox">
+                    Private Server
+                </label>
+            </div>
+        </div>
         <div class="control">
             <button class="button is-primary" :class="{'is-loading':form.loading}">Add</button>
         </div>

@@ -6,7 +6,7 @@
         <div class="columns is-multiline is-mobile is-centered">
             <div class="column is-4" v-for="item in state.currentData" :key="item.id">
                 <div class="box">
-                    <p class="title">{{ item.name }}</p>
+                    <p class="title">{{ item.name }} - {{item.id}}</p>
                     <div class="tags has-addons">
                         <span class="tag">{{item.ip}}:{{item.port}}</span>
                         <span class="tag is-danger" v-if="item.private">Private</span>
