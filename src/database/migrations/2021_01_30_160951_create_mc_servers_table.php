@@ -19,6 +19,7 @@ class CreateMcServersTable extends Migration
             $table->string("ip");
             $table->integer("port")->default(25565);
             $table->longText("description")->nullable();
+            $table->string("password");
             $table->boolean("private")->default(0);
             $table->timestamps();
         });
