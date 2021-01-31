@@ -14,13 +14,13 @@ class McServerController extends Controller
     public function index(Request $request){
         if(!\Auth::guest()){
             if(\Auth::user()->hasPermissionTo('Projects.See')){
-                $alerts = McServer::select('id','ip','port','created_at','private','name','description')->orderBy('created_at','desc')->paginate(10);
+                $alerts = McServer::select('id','ip','port','created_at','private','name')->orderBy('created_at','desc')->paginate(10);
                 return response()->json($alerts);
             }else{
-                return response()->json(['error' => 'Unauthorized'])->setStatusCode(403);
+                return response()->json(['error' => 'Unauthorized'],403);
             }
         }
-        return response()->json(['error' => 'Unauthenticated'])->setStatusCode(401);
+        return response()->json(['error' => 'Unauthenticated'],401);
     }
 
     public function store(Request $request)
@@ -50,6 +50,24 @@ class McServerController extends Controller
             }
             return response()->json($validator->errors(),400);
         } else {
+            return response()->json(['error' => 'Unauthorized'],403);
+        }
+    }
+    public function destroy(Request $request,$id)
+    {
+        if(\Auth::guest()){
+            return response()->json(['error' => 'Unauthenticated'],401);
+        }
+        if (\Auth::user()->hasPermissionTo('Projects.Delete')) {
+            $mcserver = McServer::find($id);
+            if($mcserver){
+                $mcserver->delete();
+                $rest = McServer::select('id','ip','port','created_at','private','name')->orderBy('created_at','desc')->paginate(10);;
+                return response()->json(['success' => true,"data"=>$rest]);
+            }else{
+                return response()->json(['error' => 'Not found'],404);
+            }
+        }else{
             return response()->json(['error' => 'Unauthorized'],403);
         }
     }

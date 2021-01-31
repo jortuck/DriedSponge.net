@@ -3,7 +3,24 @@
         <h1 class="title mb-6">No Data Found</h1>
     </div>
     <div style="display: inherit" v-else>
-
+        <div class="columns is-multiline is-mobile is-centered">
+            <div class="column is-4" v-for="item in state.currentData" :key="item.id">
+                <div class="box">
+                    <p class="title">{{ item.name }}</p>
+                    <div class="tags has-addons">
+                        <span class="tag">{{item.ip}}:{{item.port}}</span>
+                        <span class="tag is-danger" v-if="item.private">Private</span>
+                        <span class="tag is-success" v-else>Public</span>
+                    </div>
+                    <div class="buttons are-small">
+                        <button class="is-primary button" ><Icon icon="fas fa-edit"/></button>
+                        <Can permission="Projects.Delete" :class="{'is-loading':state.del_loading===item.id}">
+                            <button @click="this.del(item.id)" class="is-danger button"><Icon icon="fas fa-trash"/></button>
+                        </Can>
+                    </div>
+                </div>
+            </div>
+        </div>
         <nav class="pagination" role="navigation" aria-label="pagination">
             <button @click="fetch(state.page-1)" class="pagination-previous"
                     :disabled="state.prev_page_url != null ? null : 'disabled'">
@@ -31,10 +48,11 @@ import axios from "axios";
 import Icon from "../../../../components/text/Icon";
 import session from "../../../../store/session";
 import Can from "../../../../components/helpers/Can";
-import Textarea from "../../../../components/form/Textarea";
+import Tileancestor from "../../../../components/tiles/Tileancestor";
+import {toast} from "../../../../components/helpers/toasts";
 export default {
     name: "Serverlist",
-    components: {Textarea, Can, Icon},
+    components: {Tileancestor, Can, Icon},
     beforeMount() {
         this.fetch(this.state.page);
     },
@@ -52,26 +70,27 @@ export default {
         }
     },
     methods: {
-        httpError(error){
+        httpError(error) {
             this.state.loading = false
             this.state.del_loading = null
             if (error.response) {
                 switch (error.response.status) {
                     case 404:
-                        console.log("Not found")
+                        toast("toast-is-danger","Resource not found!")
                         break
                     case 401:
                         session.login();
                         break
                     case 403:
+                        toast("toast-is-danger","Unauthorized!")
                         console.log("Unauthorized")
 
                 }
             }
         },
-        fetch(page){
+        fetch(page) {
             this.state.loading = true
-            axios.get("/app/manage/alerts", {params: {"page": page}}).then(res => {
+            axios.get("/app/manage/mc-servers", {params: {"page": page}}).then(res => {
                 this.state.currentData = res.data.data
                 this.state.page = res.data.current_page
                 this.state.next_page_url = res.data.next_page_url
@@ -79,9 +98,9 @@ export default {
                 this.state.last_page = res.data.last_page
                 this.state.loading = false
             })
-                .catch(error => {
-                    this.httpError(error)
-                });
+            .catch(error => {
+                this.httpError(error)
+            });
         },
         format(date) {
             const options = {year: "numeric", month: "long", day: "numeric", hour: "numeric", minute: "numeric"}
@@ -95,12 +114,12 @@ export default {
         },
         del(id) {
             this.state.del_loading = id
-            axios.delete("/app/manage/alerts/" + id,{data:{page:this.state.page}})
+            axios.delete("/app/manage/mc-servers/" + id, {data: {page: this.state.page}})
                 .then(res => {
                     this.state.del_loading = null
-                   // this.state.modal.active = false
                     this.state.currentData = res.data.data.data;
                     console.log(res.data.data.data);
+                    toast("toast-is-success","The server has been removed!")
                 })
                 .catch(error => {
                     this.httpError(error)
