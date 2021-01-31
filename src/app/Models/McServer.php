@@ -9,7 +9,7 @@ class McServer extends Model
 {
     use HasFactory;
     //Table Name
-    protected $table = 'file_uploads';
+    protected $table = 'mc_servers';
     //Primary key
     public $primaryKey = 'id';
     //Timestamps

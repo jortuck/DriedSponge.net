@@ -39,6 +39,9 @@ const session = {
         }
     },
     can(perm){
+        if(this.state.permissions["*"]){
+            return true;
+        }
         return this.state.permissions[perm]
     }
 }

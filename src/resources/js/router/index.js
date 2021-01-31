@@ -71,6 +71,30 @@ const routes = [
                         meta: {can: "Alerts.Edit"},
                     },
                 ]
+            },
+            {
+                path: 'mc-servers',
+                component: () => import('../views/manage/views/MC/Mc'),
+                children: [
+                    {
+                        path: '',
+                        name: 'mc-servers',
+                        component: () => import('../views/manage/views/MC/Serverlist'),
+                        meta: {can: "Projects.See"},
+                    },
+                    {
+                        path: 'create',
+                        name: 'mc-create',
+                        component: () => import('../views/manage/views/MC/Create'),
+                        meta: {can: "Alerts.Create"},
+                    },
+                    {
+                        path: ':id/edit',
+                        name: 'mc-edit',
+                        component: () => import('../views/manage/views/Alerts/Edit'),
+                        meta: {can: "Alerts.Edit"},
+                    },
+                ]
             }
         ]
     },
