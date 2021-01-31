@@ -2,14 +2,15 @@
     <div class="field">
         <label class="label">{{ label }}</label>
         <div :class="{'control':true,'has-icons-right': error}">
-            <textarea  class="textarea" :class="{'is-danger': error, 'input':true}"
+            <textarea @input="updateValue" :maxlength="maxCharacters > 0 ? maxCharacters:null"  class="textarea" :class="{'is-danger': error, 'input':true}"
                       :placeholder="placeholder"
-                      @change="updateValue" :rows="rows">{{internal}}</textarea>
+                      :rows="rows">{{internal}}</textarea>
             <span v-if="error" class="icon is-small is-right">
                 <i class="fas fa-exclamation-triangle"></i>
             </span>
         </div>
         <p class="help is-danger is-bold" v-if="error">{{ error }}</p>
+        <p class="help is-bold" v-if="maxCharacters">{{charCount }}/{{maxCharacters}}</p>
     </div>
 </template>
 
@@ -40,6 +41,10 @@ export default {
         error: {
             required: false,
             type: String
+        },
+        maxCharacters:{
+            required:false,
+            default: 0,
         }
     },
     emits: ['update:modelValue','change'],
@@ -47,8 +52,14 @@ export default {
         updateValue(e) {
             this.$emit('update:modelValue', e.target.value)
             this.$emit('change')
+            this.charCount = e.target.value.length;
         },
-    }
+    },
+    data(){
+        return{
+            charCount:0
+        }
+    },
 }
 </script>
 

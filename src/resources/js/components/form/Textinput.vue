@@ -1,9 +1,14 @@
 <template>
     <div class="field">
         <label class="label">{{ label }}</label>
-        <div :class="{'control':true,'has-icons-right': error}">
-            <input :class="{'is-danger': error, 'input':true}" :type="type" :placeholder="placeholder"
-                   @change="updateValue">
+        <div class="control" :class="{'has-icons-right': error}">
+            <input @input="updateValue"
+                   :maxlength="maxCharacters > 0 ? maxCharacters:null"
+                   :class="{'is-danger': error}"
+                   :type="type"
+                   :placeholder="placeholder"
+                   class="input"
+                   >
             <span v-if="error" class="icon is-small is-right">
                 <i class="fas fa-exclamation-triangle"></i>
             </span>
@@ -34,6 +39,10 @@ export default {
             required: false,
             default: "text",
             type: String
+        },
+        maxCharacters:{
+            required:false,
+            default: 0,
         }
     },
     emits: ['update:modelValue','change'],
@@ -41,7 +50,13 @@ export default {
         updateValue(e) {
             this.$emit('update:modelValue', e.target.value)
             this.$emit('change')
+            this.charCount = e.target.value.length;
         },
-    }
+    },
+    data(){
+        return{
+            charCount:0
+        }
+    },
 }
 </script>
