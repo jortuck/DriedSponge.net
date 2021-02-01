@@ -44,6 +44,7 @@ class McServerController extends Controller
                 $server->description = $request->description;
                 $server->private = $request->private;
                 $pass = Str::random(64);
+                $server->slug = Str::slug($request->name);
                 $server->password = Hash::make($pass);
                 $server->save();
                 return response()->json(['success' => "The server has been added! The servers api key is <b>$pass</b>! Don't lose it!"],201);

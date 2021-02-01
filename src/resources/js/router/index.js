@@ -32,9 +32,9 @@ const routes = [
                         component: () => import('../views/public/views/MC/Serverlist'),
                     },
                     {
-                        path: ':id/edit',
-                        name: 'alerts-edit',
-                        component: () => import('../views/manage/views/Alerts/Edit'),
+                        path: ':slug',
+                        name: 'mc-server',
+                        component: () => import('../views/public/views/MC/Server'),
                     },
                 ]
             },

@@ -10,9 +10,14 @@
     color: white;
 }
 .ping {
+    float: right;
+}
+.ping.is-online {
     color: #AAA;
     float: right;
     background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAACXBIWXMAAAsSAAALEgHS3X78AAAATUlEQVR4nGP4//8/AzUxVQ0bnAYy/Ff8z/Bf8f/gMRDTAAifoZ0fguluIGED6G0g6QbQ2kDKXUQvA8k2gOYGwr0KFaCUTzsDqYUHv4EAXEr1nnx+P+4AAAAASUVORK5CYII=) top right no-repeat;
     padding: 0 24px 0 0;
 }
-
+.ping.is-offline {
+    color:#AA0000;
+}
