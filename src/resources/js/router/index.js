@@ -102,13 +102,13 @@ const routes = [
                         path: 'create',
                         name: 'mc-create',
                         component: () => import('../views/manage/views/MC/Create'),
-                        meta: {can: "Alerts.Create"},
+                        meta: {can: "Projects.Create"},
                     },
                     {
                         path: ':id/edit',
                         name: 'mc-edit',
-                        component: () => import('../views/manage/views/Alerts/Edit'),
-                        meta: {can: "Alerts.Edit"},
+                        component: () => import('../views/manage/views/MC/Edit'),
+                        meta: {can: "Projects.Edit"},
                     },
                 ]
             }

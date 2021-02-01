@@ -13,7 +13,9 @@
                         <span class="tag is-success" v-else>Public</span>
                     </div>
                     <div class="buttons are-small">
-                        <button class="is-primary button" ><Icon icon="fas fa-edit"/></button>
+                         <Can permission="Projects.Edit">
+                             <router-link :to="{'name':'mc-edit','params':{'id':item.id}}"  class="is-primary button" ><Icon icon="fas fa-edit"/></router-link>
+                         </Can>
                         <Can permission="Projects.Delete" :class="{'is-loading':state.del_loading===item.id}">
                             <button @click="this.del(item.id)" class="is-danger button"><Icon icon="fas fa-trash"/></button>
                         </Can>
