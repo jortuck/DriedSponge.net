@@ -8,17 +8,14 @@
     <form @submit="submit" v-else>
         <div class="columns">
             <div class="column">
-                    <Textarea @change="removeErr('message')" rows="5" placeholder="A nice message" label="Message"
-                              v-model:val="form.message.value" :error="form.errors['message']"
-                              :internal="form.message.value"></Textarea>
+                    <Textarea rows="5" placeholder="A nice message" label="Message" :required="true"
+                              v-model:val="form.fields.message" v-model:error="form.errors['message']"
+                             ></Textarea>
             </div>
         </div>
         <div class="columns">
             <div class="column">
-                <label class="checkbox">
-                    <input type="checkbox" v-model="form.website" :checked="form.website">
-                    Display On Website
-                </label>
+                <Checkbox label="Display On Website" v-model:val="form.fields.website" />
             </div>
         </div>
         <div class="control">
@@ -32,9 +29,11 @@ import Textarea from "../../../../components/form/Textarea";
 import axios from "axios";
 import session from "../../../../store/session";
 import Icon from "../../../../components/text/Icon";
+import Checkbox from "../../../../components/form/Checkbox";
+import {toast} from "../../../../components/helpers/toasts";
 export default {
     name: "Edit",
-    components: {Textarea,Icon},
+    components: {Checkbox, Textarea,Icon},
     data() {
         return {
             error: "Something went wrong.",
@@ -45,23 +44,35 @@ export default {
                 submitted_msg: "",
                 loading: false,
                 errors: [],
-                website: 0,
-                message: {
-                    value: "",
-                },
+                fields:{
+                    website: 0,
+                    message: "",
+                }
             }
         }
     },
     mounted() {
         axios.get("/app/manage/alerts/" + this.$route.params.id).then(res => {
-            this.form.message.value = res.data.message
-            this.form.website = res.data.onsite === 1
+            this.form.fields.message = res.data.message
+            this.form.fields.website = res.data.onsite
             this.loading = false
         })
-        .catch(error => {
-            if(error.response.status ===404){
-                this.loading = false
-                this.notfound= true
+        .catch(err => {
+            this.loading = false
+            switch (err.response.status){
+                case 404:
+                    this.loading = false
+                    this.notfound= true
+                    break
+                case 403:
+                    toast("toast-is-danger","Permission Denied")
+                    break
+                case 401:
+                    toast("toast-is-danger","Permission Denied (Login)")
+                    break
+                default:
+                    toast("toast-is-danger","Something went wrong! Please try again later")
+                    break
             }
         })
     },
@@ -72,23 +83,32 @@ export default {
         submit(e) {
             e.preventDefault();
             this.form.loading = true;
-            axios.put('/app/manage/alerts/'+ this.$route.params.id, {
-                message: this.form.message.value,
-                website: this.form.website,
-            }).then(res => {
+            axios.put('/app/manage/alerts/'+ this.$route.params.id, this.form.fields).then(res => {
                 this.form.loading = false;
-                if (res.data.success) {
-                    this.form.submitted = true;
-                    this.form.submitted_msg = res.data['success'];
-                } else {
-                    for (var error in res.data) {
-                        this.form.errors[error] = res.data[error][0];
-                    }
+                this.form.submitted = true;
+                this.form.submitted_msg = res.data['success'];
+                toast("toast-is-success","The alert has been updated!")
+            })
+            .catch(err =>{
+                this.form.loading = false;
+                switch (err.response.status){
+                    case 400:
+                        for (var field in err.response.data) {
+                            this.form.errors[field] = err.response.data[field][0];
+                        }
+                        break
+                    case 403:
+                        toast("toast-is-danger","Permission Denied")
+                        break
+                    case 401:
+                        toast("toast-is-danger","Permission Denied (Login)")
+                        break
+                    default:
+                        toast("toast-is-danger","Something went wrong! Please try again later")
+                        break
                 }
             })
         },
     }
-
-
 }
 </script>

@@ -2,28 +2,19 @@
     <form @submit="submit">
         <div class="columns">
             <div class="column">
-                    <Textarea  @change="removeErr('message')" rows="5" placeholder="A nice message" label="Message"
-                              v-model:val="form.message.value" :error="form.errors['message']"></Textarea>
+                    <Textarea maxCharacters="1120" rows="5" placeholder="A nice message" label="Message"
+                              v-model:val="form.fields.message" v-model:error="form.errors['message']" :required="true"></Textarea>
             </div>
         </div>
         <div class="columns">
             <div class="column">
-                <label class="checkbox">
-                    <input type="checkbox" v-model="form.discord">
-                    Post On Discord
-                </label>
+                <Checkbox label="Post On Discord" v-model:val="form.fields.discord" />
             </div>
             <div class="column">
-                <label class="checkbox">
-                    <input type="checkbox" v-model="form.twitter">
-                    Post On Twitter
-                </label>
+                <Checkbox label="Post On Twitter" v-model:val="form.fields.twitter" />
             </div>
             <div class="column">
-                <label class="checkbox">
-                    <input type="checkbox" v-model="form.website">
-                    Post On Website
-                </label>
+                <Checkbox label="Post On Website" v-model:val="form.fields.website" />
             </div>
         </div>
         <div class="control">
@@ -35,6 +26,8 @@
 import Textinput from "../../../../components/form/Textinput";
 import Textarea from "../../../../components/form/Textarea";
 import axios from "axios";
+import Checkbox from "../../../../components/form/Checkbox";
+import {toast} from "../../../../components/helpers/toasts";
 
 export default {
     name: "Create",
@@ -44,26 +37,44 @@ export default {
         },
         submit(e) {
             e.preventDefault();
+            for(var i in this.form.fields){
+                if(this.form.errors[i] != null && this.form.errors[i] !== "" && this.form.errors[i] !== undefined){
+                    return toast("toast-is-danger","You still have some errors fix on the form.")
+                }
+            }
             this.form.loading = true;
-            axios.post('/app/manage/alerts', {
-                discord: this.form.discord,
-                twitter: this.form.twitter,
-                message: this.form.message.value,
-                website: this.form.website,
-            }).then(res => {
+            axios.post('/app/manage/alerts', this.form.fields).then(res => {
                 this.form.loading = false;
-                if (res.data.success) {
-                    this.form.submitted = true;
-                    this.form.submitted_msg = res.data['success'];
-                } else {
-                    for (var error in res.data) {
-                        this.form.errors[error] = res.data[error][0];
-                    }
+                this.form.submitted = true;
+                this.form.submitted_msg = res.data['success'];
+                this.form.fields.discord = false;
+                this.form.fields.twitter = false;
+                this.form.fields.website = false;
+                this.form.fields.message = "";
+                toast("toast-is-success","The alert has been queued and will be posted shortly!")
+            })
+            .catch(err =>{
+                this.form.loading = false;
+                switch (err.response.status){
+                    case 400:
+                        for (var field in err.response.data) {
+                            this.form.errors[field] = err.response.data[field][0];
+                        }
+                        break
+                    case 403:
+                        toast("toast-is-danger","Permission Denied")
+                        break
+                    case 401:
+                        toast("toast-is-danger","Permission Denied (Login)")
+                        break
+                    default:
+                        toast("toast-is-danger","Something went wrong! Please try again later")
+                        break
                 }
             })
         },
     },
-    components: {Textinput, Textarea},
+    components: {Checkbox, Textinput, Textarea},
     data() {
         return {
             error: "Something went wrong.",
@@ -72,12 +83,12 @@ export default {
                 submitted_msg: "",
                 loading: false,
                 errors: [],
-                discord: false,
-                twitter: false,
-                website: false,
-                message: {
-                    value: "",
-                },
+                fields:{
+                    discord: false,
+                    twitter: false,
+                    website: false,
+                    message: ""
+                }
             }
         }
     },

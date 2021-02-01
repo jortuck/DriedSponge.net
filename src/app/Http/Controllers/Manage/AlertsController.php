@@ -56,9 +56,9 @@ class AlertsController extends Controller
             if ($validator->passes()) {
 
                 SendAlert::dispatch($request->message, $request->twitter, $request->discord, $request->website);
-                return response()->json(['success' => 'Message has been posted!']);
+                return response()->json(['success' => 'Message has been posted!'],201);
             }
-            return response()->json($validator->errors());
+            return response()->json($validator->errors(),400);
         } else {
             return response()->json(['error' => 'Unauthorized']);
         }
@@ -109,7 +109,6 @@ class AlertsController extends Controller
                     $alert->onsite = $request->website;
                     $alert->message = $request->message;
                     $alert->save();
-
                     if($alert->discordid){
                         $fields = array();
                         if($alert->tweetid){
@@ -128,7 +127,7 @@ class AlertsController extends Controller
 
                     return response()->json(['success' => 'Message has been updated!']);
                 }
-                return response()->json($validator->errors());
+                return response()->json($validator->errors(),400);
             }else{
                 return response()->json(['error' => 'Not found'],404);
             }

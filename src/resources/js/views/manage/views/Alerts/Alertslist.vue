@@ -1,5 +1,5 @@
 <template>
-    <div v-if="state.currentData.length === 0" class="has-text-centered" >
+    <div v-if="state.currentData.length === 0" class="has-text-centered">
         <h1 class="title mb-6">No Data Found</h1>
     </div>
     <div style="display: inherit" v-else>
@@ -20,8 +20,9 @@
             <tr v-for="item in state.currentData" :key="item.id" data-aos="fade-in">
                 <td>{{ item.message }}</td>
                 <td class="has-text-centered">
-                    <a v-if="item.tweetid" target="_blank" :href="'https://twitter.com/driedsponge/status/'+item.tweetid">
-                        {{item.tweetid}}
+                    <a v-if="item.tweetid" target="_blank"
+                       :href="'https://twitter.com/driedsponge/status/'+item.tweetid">
+                        {{ item.tweetid }}
                     </a>
                     <span v-else>N/A</span>
                 </td>
@@ -32,10 +33,16 @@
                 </td>
                 <td class="has-text-centered">
                     <Can permission="Alerts.Delete">
-                        <button @click="del(item.id)" class="button is-danger is-small mx-1" :class="{'is-loading':state.del_loading===item.id}"><Icon icon="fas fa-trash"/></button>
+                        <button @click="del(item.id)" class="button is-danger is-small mx-1"
+                                :class="{'is-loading':state.del_loading===item.id}">
+                            <Icon icon="fas fa-trash"/>
+                        </button>
                     </Can>
                     <Can permission="Alerts.Edit">
-                        <router-link :to="{'name':'alerts-edit','params':{'id':item.id}}" class="button is-primary is-small mx-1"><Icon icon="fas fa-edit"/></router-link>
+                        <router-link :to="{'name':'alerts-edit','params':{'id':item.id}}"
+                                     class="button is-primary is-small mx-1">
+                            <Icon icon="fas fa-edit"/>
+                        </router-link>
                     </Can>
                 </td>
             </tr>
@@ -69,6 +76,8 @@ import Icon from "../../../../components/text/Icon";
 import session from "../../../../store/session";
 import Can from "../../../../components/helpers/Can";
 import Textarea from "../../../../components/form/Textarea";
+import {toast} from "../../../../components/helpers/toasts";
+
 export default {
     name: "Alertslist",
     components: {Textarea, Can, Icon},
@@ -89,24 +98,27 @@ export default {
         }
     },
     methods: {
-        httpError(error){
+        httpError(error) {
             this.state.loading = false
             this.state.del_loading = null
             if (error.response) {
                 switch (error.response.status) {
                     case 404:
-                        console.log("Not found")
+                        toast("toast-is-danger","Toast Not Found")
                         break
                     case 401:
                         session.login();
                         break
                     case 403:
-                        console.log("Unauthorized")
-
+                        toast("toast-is-danger","Unauthorized")
+                        break;
+                    default:
+                        toast("toast-is-danger","Something went wrong on the server side of things!")
+                        break;
                 }
             }
         },
-        fetch(page){
+        fetch(page) {
             this.state.loading = true
             axios.get("/app/manage/alerts", {params: {"page": page}}).then(res => {
                 this.state.currentData = res.data.data
@@ -132,12 +144,15 @@ export default {
         },
         del(id) {
             this.state.del_loading = id
-            axios.delete("/app/manage/alerts/" + id,{data:{page:this.state.page}})
+            axios.delete("/app/manage/alerts/" + id, {data: {page: this.state.page}})
                 .then(res => {
                     this.state.del_loading = null
-                   // this.state.modal.active = false
                     this.state.currentData = res.data.data.data;
-                    console.log(res.data.data.data);
+                    this.state.page = res.data.data.current_page
+                    this.state.next_page_url = res.data.data.next_page_url
+                    this.state.prev_page_url = res.data.data.prev_page_url
+                    this.state.last_page = res.data.data.last_page
+
                 })
                 .catch(error => {
                     this.httpError(error)
