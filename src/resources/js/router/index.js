@@ -28,13 +28,8 @@ const routes = [
                 children: [
                     {
                         path: '',
-                        name: 'mc-server-list',
+                        name: 'mc',
                         component: () => import('../views/public/views/MC/Serverlist'),
-                    },
-                    {
-                        path: 'create',
-                        name: 'alerts-create',
-                        component: () => import('../views/manage/views/Alerts/Create'),
                     },
                     {
                         path: ':id/edit',

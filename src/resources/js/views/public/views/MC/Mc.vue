@@ -6,9 +6,9 @@
             <div class="tabs is-toggle is-fullwidth">
                 <ul>
                     <li class="is-active">
-                        <a class="is-active">
+                        <router-link :to="{'name':'mc'}" exact-active-class="is-active">
                             <span class="mc-text">Servers</span>
-                        </a>
+                        </router-link>
                     </li>
                     <li>
                         <a>
