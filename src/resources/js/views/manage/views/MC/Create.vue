@@ -2,21 +2,21 @@
     <form @submit="submit" >
         <div class="columns">
             <div class="column">
-                <Textinput :error="form.errors['name']" label="Server Name" placeholder="DriedSponge Gaming" v-model="form.name" @change="removeErr('name')"/>
+                <Textinput :error="form.errors['name']" label="Server Name" placeholder="DriedSponge Gaming" v-model:val="form.name" @change="removeErr('name')"/>
             </div>
         </div>
         <div class="columns">
             <div class="column">
-                <Textinput :error="form.errors['ip']" label="Server IP" placeholder="X.X.X.X" v-model="form.ip" @change="removeErr('ip')"/>
+                <Textinput :error="form.errors['ip']" label="Server IP" placeholder="XX.XX.XX.XX" v-model:val="form.ip" @change="removeErr('ip')"/>
             </div>
             <div class="column">
-                <Textinput :error="form.errors['port']" label="Server Port" placeholder="25565" v-model="form.port" @change="removeErr('port')"/>
+                <Textinput type="number" :error="form.errors['port']" label="Server Port" placeholder="25565" v-model:val="form.port" @change="removeErr('port')"/>
             </div>
         </div>
         <div class="columns">
             <div class="column">
                     <Textarea maxCharacters="2000"  @change="removeErr('description')" rows="5" placeholder="A nice description" label="Server Description"
-                               v-model="form.description" :error="form.errors['description']"></Textarea>
+                               v-model:val="form.description" :error="form.errors['description']"></Textarea>
             </div>
         </div>
         <div class="columns">

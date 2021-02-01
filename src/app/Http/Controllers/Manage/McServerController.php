@@ -72,4 +72,20 @@ class McServerController extends Controller
             return response()->json(['error' => 'Unauthorized'],403);
         }
     }
+    public function show($id)
+    {
+        if(\Auth::guest()){
+            return response()->json(['error' => 'Unauthenticated'],401);
+        }
+        if (\Auth::user()->hasPermissionTo('Projects.Edit')) {
+            $server = McServer::select('name','ip','port','description','private')->where('id',$id)->first();
+            if($server){
+                return response()->json($server);
+            }else{
+                return response()->json(['error' => 'Not found'],404);
+            }
+        }else{
+            return response()->json(['error' => 'Unauthorized'],403);
+        }
+    }
 }

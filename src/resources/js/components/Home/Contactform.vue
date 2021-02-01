@@ -19,25 +19,25 @@
                 <form @submit="submit">
                     <div class="columns">
                         <div class="column is-half-desktop is-full-mobile">
-                            <Textinput maxCharacters="150" @change="removeErr('name')" v-model="form.name.value" label="Name"
+                            <Textinput maxCharacters="150" @change="removeErr('name')" v-model:val="form.name.value" label="Name"
                                        placeholder="John Doe"
                                        :error="form.errors['name']"/>
                         </div>
                         <div class="column is-half-desktop is-full-mobile">
-                            <Textinput  maxCharacters="150" @change="removeErr('email')" v-model="form.email.value" label="Email"
+                            <Textinput  maxCharacters="150" @change="removeErr('email')" v-model:val="form.email.value" label="Email"
                                        placeholder="email@example.com" :error="form.errors['email']"/>
                         </div>
                     </div>
                     <div class="columns">
                         <div class="column">
-                            <Textinput  maxCharacters="256" @change="removeErr('subject')" v-model="form.subject.value" label="Subject"
+                            <Textinput  maxCharacters="256" @change="removeErr('subject')" v-model:val="form.subject.value" label="Subject"
                                        placeholder="Some interesting subject..." :error="form.errors['subject']"/>
                         </div>
                     </div>
                     <div class="columns">
                         <div class="column">
                     <Textarea maxCharacters="2000" @change="removeErr('message')" rows="5" placeholder="A nice message" label="Message"
-                              v-model="form.message.value" :error="form.errors['message']"></Textarea>
+                              v-model:val="form.message.value" :error="form.errors['message']"></Textarea>
                         </div>
                     </div>
                     <div class="control">

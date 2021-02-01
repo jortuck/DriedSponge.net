@@ -69,6 +69,8 @@ Route::prefix('app')->group(function () {
     Route::get('/manage/mc-servers', 'Manage\McServerController@index');
     Route::post('/manage/mc-servers', 'Manage\McServerController@store');
     Route::delete('/manage/mc-servers/{id}', 'Manage\McServerController@destroy');
+    Route::get('/manage/mc-servers/{id}', 'Manage\McServerController@show');
+    Route::put('/manage/mc-servers/{id}', 'Manage\McServerController@update');
 
 });
 

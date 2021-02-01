@@ -3,7 +3,7 @@
         <div class="columns">
             <div class="column">
                     <Textarea  @change="removeErr('message')" rows="5" placeholder="A nice message" label="Message"
-                              v-model="form.message.value" :error="form.errors['message']"></Textarea>
+                              v-model:val="form.message.value" :error="form.errors['message']"></Textarea>
             </div>
         </div>
         <div class="columns">

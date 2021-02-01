@@ -2,9 +2,12 @@
     <div class="field">
         <label class="label">{{ label }}</label>
         <div :class="{'control':true,'has-icons-right': error}">
-            <textarea @input="updateValue" :maxlength="maxCharacters > 0 ? maxCharacters:null"  class="textarea" :class="{'is-danger': error, 'input':true}"
+            <textarea @input="updateValue"
+                      :maxlength="maxCharacters > 0 ? maxCharacters:null"
+                      class="textarea input"
+                      :class="{'is-danger': error}"
                       :placeholder="placeholder"
-                      :rows="rows">{{internal}}</textarea>
+                      :rows="rows">{{val}}</textarea>
             <span v-if="error" class="icon is-small is-right">
                 <i class="fas fa-exclamation-triangle"></i>
             </span>
@@ -18,7 +21,7 @@
 export default {
     name: "Textarea",
     props: {
-        modelValue: {
+        val: {
             required: false,
         },
         rows: {
@@ -28,11 +31,6 @@ export default {
         label: {
             required: true,
             type: String
-        },
-        internal: {
-            required: false,
-            type: String,
-            default: null
         },
         placeholder: {
             required: false,
@@ -47,10 +45,10 @@ export default {
             default: 0,
         }
     },
-    emits: ['update:modelValue','change'],
+    emits: ['update:val','change'],
     methods: {
         updateValue(e) {
-            this.$emit('update:modelValue', e.target.value)
+            this.$emit('update:val', e.target.value)
             this.$emit('change')
             this.charCount = e.target.value.length;
         },

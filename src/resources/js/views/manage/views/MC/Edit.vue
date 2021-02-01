@@ -8,16 +8,29 @@
     <form @submit="submit" v-else>
         <div class="columns">
             <div class="column">
-                    <Textarea @change="removeErr('message')" rows="5" placeholder="A nice message" label="Message"
-                              v-model="form.message.value" :error="form.errors['message']"
-                              :internal="form.message.value"></Textarea>
+                <Textinput :error="form.errors['name']" label="Server Name" placeholder="DriedSponge Gaming" v-model:val="form.fields.name"  @change="removeErr('name')"/>
+            </div>
+        </div>
+        <div class="columns">
+            <div class="column">
+                <Textinput :error="form.errors['ip']" label="Server Name" placeholder="XX.XX.XX.XX" v-model:val="form.fields.ip" :internal="form.fields.ip" @change="removeErr('ip')"/>
+            </div>
+            <div class="column">
+                <Textinput :error="form.errors['port']" label="Server Name" placeholder="25565" v-model:val="form.fields.port" :internal="form.fields.port" @change="removeErr('port')"/>
+
+            </div>
+        </div>
+        <div class="columns">
+            <div class="column">
+                <Textarea maxCharacters="2000"  @change="removeErr('description')" rows="5" placeholder="A nice description" label="Server Description"
+                              v-model:val="form.fields.description" :error="form.errors['description']"></Textarea>
             </div>
         </div>
         <div class="columns">
             <div class="column">
                 <label class="checkbox">
-                    <input type="checkbox" v-model="form.website" :checked="form.website">
-                    Display On Website
+                    <input type="checkbox" v-model="form.fields.private" :checked="form.fields.private">
+                    Private Server
                 </label>
             </div>
         </div>
@@ -32,9 +45,10 @@ import Textarea from "../../../../components/form/Textarea";
 import axios from "axios";
 import session from "../../../../store/session";
 import Icon from "../../../../components/text/Icon";
+import Textinput from "../../../../components/form/Textinput";
 export default {
     name: "Edit",
-    components: {Textarea,Icon},
+    components: {Textinput, Textarea,Icon},
     data() {
         return {
             error: "Something went wrong.",
@@ -45,23 +59,28 @@ export default {
                 submitted_msg: "",
                 loading: false,
                 errors: [],
-                website: 0,
-                message: {
-                    value: "",
-                },
+                fields:{
+                    name:"",
+                    ip:"",
+                    port:25565,
+                    description:"",
+                    private: 0,
+                }
             }
         }
     },
     mounted() {
-        axios.get("/app/manage/alerts/" + this.$route.params.id).then(res => {
-            this.form.message.value = res.data.message
-            this.form.website = res.data.onsite === 1
+        axios.get("/app/manage/mc-servers/" + this.$route.params.id).then(res => {
             this.loading = false
+            this.form.fields = res.data
+
         })
         .catch(error => {
-            if(error.response.status ===404){
-                this.loading = false
-                this.notfound= true
+            switch (error.response.status){
+                case 404:
+                    this.loading = false
+                    this.notfound= true
+                    break;
             }
         })
     },

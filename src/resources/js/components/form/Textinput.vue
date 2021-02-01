@@ -2,11 +2,12 @@
     <div class="field">
         <label class="label">{{ label }}</label>
         <div class="control" :class="{'has-icons-right': error}">
-            <input @input="updateValue"
+            <input @input="$emit('update:val', $event.target.value)"
                    :maxlength="maxCharacters > 0 ? maxCharacters:null"
                    :class="{'is-danger': error}"
                    :type="type"
                    :placeholder="placeholder"
+                   :value="val"
                    class="input"
                    >
             <span v-if="error" class="icon is-small is-right">
@@ -43,12 +44,15 @@ export default {
         maxCharacters:{
             required:false,
             default: 0,
+        },
+        val:{
+            required: false,
         }
     },
-    emits: ['update:modelValue','change'],
+    emits: ['update:val','change'],
     methods: {
         updateValue(e) {
-            this.$emit('update:modelValue', e.target.value)
+            this.$emit('update:val', e.target.value)
             this.$emit('change')
             this.charCount = e.target.value.length;
         },
