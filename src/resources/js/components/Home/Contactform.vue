@@ -56,7 +56,7 @@ import Textarea from "../form/Textarea";
 import Captcha from "../form/Captcha";
 import Tileancestor from "../tiles/Tileancestor";
 import Pagehead from "../includes/Pagehead";
-
+import {toast} from "../helpers/toasts"
 export default {
     name: "Contactform",
     components: {Pagehead, Textinput, Textarea, Captcha, Tileancestor},
@@ -95,13 +95,20 @@ export default {
                 message: this.form.message.value
             }).then(res => {
                 this.form.loading = false;
-                if (res.data.success) {
-                    this.form.submitted = true;
-                    this.form.submitted_msg = res.data['success'];
-                } else {
-                    for (var error in res.data) {
-                        this.form.errors[error] = res.data[error][0];
-                    }
+                this.form.submitted = true;
+                this.form.submitted_msg = res.data['success'];
+
+            })
+            .catch(err =>{
+                this.form.loading = false;
+                switch (err.response.status){
+                    case 400:
+                        for (var error in err.response.data) {
+                            this.form.errors[error] = err.response.data[error][0];
+                        }
+                        break;
+                    default:
+                        toast("toast-is-danger","Something went wrong on the server side! Plese try again later.")
                 }
             })
         },
