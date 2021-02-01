@@ -2,7 +2,7 @@
     <div class="field">
         <label class="label">{{ label }}</label>
         <div :class="{'control':true,'has-icons-right': error}">
-            <textarea @input="updateValue"
+            <textarea @focusout="updateValue" @input="updateValue"
                       :maxlength="maxCharacters > 0 ? maxCharacters:null"
                       class="textarea input"
                       :class="{'is-danger': error}"
@@ -43,14 +43,24 @@ export default {
         maxCharacters:{
             required:false,
             default: 0,
+        },
+        required:{
+            default: false,
+            type:Boolean
         }
     },
-    emits: ['update:val','change'],
+    emits: ['update:val','update:error'],
     methods: {
         updateValue(e) {
-            this.$emit('update:val', e.target.value)
-            this.$emit('change')
             this.charCount = e.target.value.length;
+            this.$emit("update:val",e.target.value)
+            if(this.required && e.target.value.length === 0){
+                this.$emit('update:error', "The "+this.label.toLowerCase()+" field is required!")
+            }else if(this.maxCharacters > 0 && this.charCount > this.maxCharacters){
+                this.$emit('update:error', "Please reduce the length of text in this field!")
+            }else{
+                this.$emit('update:error', null)
+            }
         },
     },
     data(){

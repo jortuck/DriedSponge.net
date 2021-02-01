@@ -6,36 +6,37 @@
         <h1 class="title mb-6">No Alert To Edit</h1>
     </div>
     <form @submit="submit" v-else>
+        <h1 class="title mb-4">Edit {{form.fields.name}}</h1>
         <div class="columns">
             <div class="column">
-                <Textinput :error="form.errors['name']" label="Server Name" placeholder="DriedSponge Gaming" v-model:val="form.fields.name"  @change="removeErr('name')"/>
+                <Textinput v-model:error="form.errors['name']" label="Server Name" placeholder="DriedSponge Gaming" v-model:val="form.fields.name" :required="true" :maxCharacters="100"/>
             </div>
         </div>
         <div class="columns">
             <div class="column">
-                <Textinput :error="form.errors['ip']" label="Server Name" placeholder="XX.XX.XX.XX" v-model:val="form.fields.ip" :internal="form.fields.ip" @change="removeErr('ip')"/>
+                <Textinput  v-model:error="form.errors['ip']" label="Server Name" placeholder="XX.XX.XX.XX" v-model:val="form.fields.ip" :required="true" :maxCharacters="100" />
             </div>
             <div class="column">
-                <Textinput :error="form.errors['port']" label="Server Name" placeholder="25565" v-model:val="form.fields.port" :internal="form.fields.port" @change="removeErr('port')"/>
+                <Textinput  v-model:error="form.errors['port']" label="Server Name" placeholder="25565" v-model:val="form.fields.port" />
 
             </div>
         </div>
         <div class="columns">
             <div class="column">
-                <Textarea maxCharacters="2000"  @change="removeErr('description')" rows="5" placeholder="A nice description" label="Server Description"
-                              v-model:val="form.fields.description" :error="form.errors['description']"></Textarea>
+                <Textarea maxCharacters="2000" rows="5" placeholder="A nice description" label="Server Description"
+                              v-model:val="form.fields.description" v-model::error="form.errors['description']"></Textarea>
             </div>
         </div>
         <div class="columns">
             <div class="column">
                 <label class="checkbox">
-                    <input type="checkbox" v-model="form.fields.private" :checked="form.fields.private">
-                    Private Server
+                    <Checkbox label="Private Server" v-model:val="form.fields.private"/>
                 </label>
             </div>
         </div>
-        <div class="control">
-            <button class="button is-primary" :class="{'is-loading':form.loading}">Save</button>
+        <div class="control buttons">
+            <button class="button is-primary" :class="{'is-loading':form.loading}" type="submit">Save</button>
+            <button class="button is-danger" type="button" :class="{'is-loading':regenload}" @click="regen">Regenerate API Key</button>
         </div>
     </form>
 </template>
@@ -46,14 +47,17 @@ import axios from "axios";
 import session from "../../../../store/session";
 import Icon from "../../../../components/text/Icon";
 import Textinput from "../../../../components/form/Textinput";
+import Checkbox from "../../../../components/form/Checkbox";
+import {toast} from  "../../../../components/helpers/toasts"
 export default {
     name: "Edit",
-    components: {Textinput, Textarea,Icon},
+    components: {Checkbox, Textinput, Textarea,Icon},
     data() {
         return {
             error: "Something went wrong.",
             loading: true,
             notfound: false,
+            regenload: false,
             form: {
                 submitted: false,
                 submitted_msg: "",
@@ -73,7 +77,6 @@ export default {
         axios.get("/app/manage/mc-servers/" + this.$route.params.id).then(res => {
             this.loading = false
             this.form.fields = res.data
-
         })
         .catch(error => {
             switch (error.response.status){
@@ -91,21 +94,59 @@ export default {
         submit(e) {
             e.preventDefault();
             this.form.loading = true;
-            axios.put('/app/manage/alerts/'+ this.$route.params.id, {
-                message: this.form.message.value,
-                website: this.form.website,
-            }).then(res => {
-                this.form.loading = false;
-                if (res.data.success) {
-                    this.form.submitted = true;
-                    this.form.submitted_msg = res.data['success'];
-                } else {
-                    for (var error in res.data) {
-                        this.form.errors[error] = res.data[error][0];
-                    }
+            axios.put('/app/manage/mc-servers/'+ this.$route.params.id, this.form.fields).then(res => {
+                this.form.loading = false
+                this.form.submitted = true;
+                this.form.submitted_msg = res.data['success'];
+                toast("toast-is-success",res.data['success'])
+            })
+            .catch(err=>{
+                this.form.loading = false
+                switch (err.response.status){
+                    case 400:
+                        for (var error in err.response.data) {
+                            this.form.errors[error] =err.response[error][0];
+                        }
+                        break;
+                    case 404:
+                        toast("toast-is-danger","The resource you are trying to edit does not exist")
+                        break;
+                    case 403:
+                        toast("toast-is-danger","Unauthorized")
+                        break;
+                    case 401:
+                        toast("toast-is-danger","Unauthenticated")
+                        break;
+                    default:
+                        toast("toast-is-danger","Something went wrong on the server side of things! Plese try again later.")
+                        break;
                 }
             })
         },
+        regen(){
+            this.regenload=true;
+            axios.patch('/app/manage/mc-servers/'+this.$route.params.id+'/key').then(res =>{
+                toast("toast-is-success",res.data['success'],0)
+                this.regenload=false;
+            })
+            .catch(err=>{
+                this.regenload=false;
+                switch (err.response.status){
+                    case 401:
+                        toast("toast-is-danger","Unauthenticated")
+                        break;
+                    case 403:
+                        toast("toast-is-danger","Unauthorized")
+                        break;
+                    case 404:
+                        toast("toast-is-danger","The resource you are trying to edit does not exist")
+                        break;
+                    default:
+                        toast("toast-is-danger","Something went wrong on the server side of things! Plese try again later.")
+                        break;
+                }
+            })
+        }
     }
 
 

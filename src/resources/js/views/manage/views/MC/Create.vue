@@ -1,30 +1,27 @@
 <template>
-    <form @submit="submit" >
+    <form @submit="submit" ref="form" >
         <div class="columns">
             <div class="column">
-                <Textinput :error="form.errors['name']" label="Server Name" placeholder="DriedSponge Gaming" v-model:val="form.name" @change="removeErr('name')"/>
+                <Textinput :maxCharacters="100" v-model:error="form.errors['name']" label="Server Name" placeholder="DriedSponge Gaming" v-model:val="form.fields.name" :required="true"/>
             </div>
         </div>
         <div class="columns">
             <div class="column">
-                <Textinput :error="form.errors['ip']" label="Server IP" placeholder="XX.XX.XX.XX" v-model:val="form.ip" @change="removeErr('ip')"/>
+                <Textinput  v-model:error="form.errors['ip']" label="Server IP" placeholder="XX.XX.XX.XX" v-model:val="form.fields.ip" :required="true" :maxCharacters="100" />
             </div>
             <div class="column">
-                <Textinput type="number" :error="form.errors['port']" label="Server Port" placeholder="25565" v-model:val="form.port" @change="removeErr('port')"/>
-            </div>
-        </div>
-        <div class="columns">
-            <div class="column">
-                    <Textarea maxCharacters="2000"  @change="removeErr('description')" rows="5" placeholder="A nice description" label="Server Description"
-                               v-model:val="form.description" :error="form.errors['description']"></Textarea>
+                <Textinput type="number" v-model:error="form.errors['port']" label="Server Port" placeholder="25565" v-model:val="form.fields.port" />
             </div>
         </div>
         <div class="columns">
             <div class="column">
-                <label class="checkbox">
-                    <input v-model="form.private" type="checkbox">
-                    Private Server
-                </label>
+                    <Textarea maxCharacters="2000" rows="5" placeholder="A nice description" label="Server Description"
+                               v-model:val="form.fields.description" v-model:error="form.errors['description']"></Textarea>
+            </div>
+        </div>
+        <div class="columns">
+            <div class="column">
+                <Checkbox label="Private Server" v-model:val="form.fields.private" v-model:error="form.errors['private']" />
             </div>
         </div>
         <div class="control">
@@ -37,6 +34,7 @@ import Textinput from "../../../../components/form/Textinput";
 import Textarea from "../../../../components/form/Textarea";
 import axios from "axios";
 import {toast} from "../../../../components/helpers/toasts";
+import Checkbox from "../../../../components/form/Checkbox";
 export default {
     name: "Create",
     methods: {
@@ -45,28 +43,26 @@ export default {
         },
         reset(){
             this.form.submitted = false;
-            this.form.errors= []
-            this.form.name=""
-            this.form.ip=""
-            this.form.port=25565
-            this.form.description=""
-            this.form.private= false
+            this.form.errors= [];
+            this.form.fields.name=""
+            this.form.fields.ip=""
+            this.form.fields.port=25565
+            this.form.fields.description=""
+            this.form.fields.private=false
         },
         submit(e) {
             e.preventDefault();
-            this.form.loading = true;
-            axios.post('/app/manage/mc-servers', {
-                name: this.form.name,
-                ip: this.form.ip,
-                port: this.form.port,
-                description: this.form.description,
-                private: this.form.private,
-            }).then(res => {
+            for(var i in this.form.fields){
+                if(this.form.errors[i] != null && this.form.errors[i] !== "" && this.form.errors[i] !== undefined){
+                    return toast("toast-is-danger","You still have some errors fix on the form.")
+                }
+            }
+            axios.post('/app/manage/mc-servers', this.form.fields).then(res => {
                 this.form.loading = false;
                 this.form.submitted = true;
                 this.form.submitted_msg = res.data['success'];
-                toast("toast-is-success",res.data['success'],-1)
                 this.reset();
+                toast("toast-is-success",res.data['success'],-1)
             })
             .catch(err=>{
                 this.form.loading = false;
@@ -89,7 +85,7 @@ export default {
             })
         },
     },
-    components: {Textinput, Textarea},
+    components: {Checkbox, Textinput, Textarea},
     data() {
         return {
             error: "Something went wrong.",
@@ -98,11 +94,13 @@ export default {
                 submitted_msg: "",
                 loading: false,
                 errors: [],
-                name:"",
-                ip:"",
-                port:25565,
-                description:"",
-                private: false,
+                fields:{
+                    "name":"",
+                    "ip":"",
+                    "port":25565,
+                    "description":"",
+                    "private": false,
+                }
             }
         }
     },

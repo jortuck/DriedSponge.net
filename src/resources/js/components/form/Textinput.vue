@@ -2,7 +2,7 @@
     <div class="field">
         <label class="label">{{ label }}</label>
         <div class="control" :class="{'has-icons-right': error}">
-            <input @input="$emit('update:val', $event.target.value)"
+            <input @focusout="updateValue" @input="updateValue"
                    :maxlength="maxCharacters > 0 ? maxCharacters:null"
                    :class="{'is-danger': error}"
                    :type="type"
@@ -21,9 +21,6 @@
 export default {
     name: "Textinput",
     props: {
-        modelValue: {
-            required: false,
-        },
         label: {
             required: true,
             type: String
@@ -47,19 +44,32 @@ export default {
         },
         val:{
             required: false,
-        }
+        },
+        required:{
+            type: Boolean,
+            required: false,
+            default:false
+        },
+
     },
-    emits: ['update:val','change'],
+    emits: ['update:val','update:error','update:invalid'],
     methods: {
         updateValue(e) {
-            this.$emit('update:val', e.target.value)
-            this.$emit('change')
             this.charCount = e.target.value.length;
+            this.$emit("update:val",e.target.value)
+            if(this.required && e.target.value.length === 0){
+                this.$emit('update:error', "The "+this.label.toLowerCase()+" field is required!")
+            }else if(this.maxCharacters > 0 && this.charCount > this.maxCharacters){
+                this.$emit('update:error', "Please reduce the length of text in this field!")
+            }else{
+                this.$emit('update:error', null)
+            }
+
         },
     },
     data(){
         return{
-            charCount:0
+            charCount:0,
         }
     },
 }
