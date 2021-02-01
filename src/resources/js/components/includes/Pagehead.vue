@@ -1,6 +1,6 @@
 <template>
     <div class="has-text-centered container" data-aos="fade-in">
-        <h1 class="title page-title mb-1">
+        <h1 class="title page-title mb-1" :class="customClass">
             <slot></slot>
             {{ header }}
         </h1>
@@ -22,6 +22,10 @@ export default {
             required: false,
             default: null,
         },
+        customClass:{
+            type: String,
+            required: false,
+        }
     }
 }
 </script>

@@ -21,7 +21,28 @@ const routes = [
                 path: '/login',
                 name: 'login',
                 component: () => import('../views/public/views/Login')
-            }
+            },
+            {
+                path: 'mc',
+                component: () => import('../views/public/views/MC/Mc'),
+                children: [
+                    {
+                        path: '',
+                        name: 'mc-server-list',
+                        component: () => import('../views/public/views/MC/Serverlist'),
+                    },
+                    {
+                        path: 'create',
+                        name: 'alerts-create',
+                        component: () => import('../views/manage/views/Alerts/Create'),
+                    },
+                    {
+                        path: ':id/edit',
+                        name: 'alerts-edit',
+                        component: () => import('../views/manage/views/Alerts/Edit'),
+                    },
+                ]
+            },
         ]
     },
 

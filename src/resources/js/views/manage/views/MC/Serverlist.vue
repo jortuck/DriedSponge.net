@@ -3,7 +3,7 @@
         <h1 class="title mb-6">No Data Found</h1>
     </div>
     <div style="display: inherit" v-else>
-        <div class="columns is-multiline is-mobile is-centered">
+        <div class="columns is-multiline is-centered">
             <div class="column is-4" v-for="item in state.currentData" :key="item.id">
                 <div class="box">
                     <p class="title">{{ item.name }} - {{item.id}}</p>

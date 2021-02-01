@@ -1,5 +1,5 @@
 <template>
-    <div v-if="state.currentData.length === 0" class="has-text-centered">
+    <div v-if="state.currentData.length === 0" class="has-text-centered" >
         <h1 class="title mb-6">No Data Found</h1>
     </div>
     <div style="display: inherit" v-else>
