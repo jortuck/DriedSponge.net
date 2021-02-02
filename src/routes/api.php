@@ -28,3 +28,5 @@ Route::post('/github/webhook', 'Api\Github@Webhook');
 // MC API
 Route::get('/mc', 'Api\McClient@index');
 Route::get('/mc/{slug}', 'Api\McClient@getServer');
+
+Route::post('/mc/stats/{id}', 'Api\McServer@saveStats');

@@ -14,4 +14,14 @@ class McServer extends Model
     public $primaryKey = 'id';
     //Timestamps
     public $timestamps = true;
+
+    public function stats()
+    {
+        return $this->hasMany(McStat::class,'server_id','id');
+    }
+
+    public function players()
+    {
+        return $this->belongsToMany(McPlayer::class)->withTimestamps();
+    }
 }

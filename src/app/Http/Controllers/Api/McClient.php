@@ -36,7 +36,7 @@ class McClient extends Controller
 
     public function getServer(Request $request, $slug)
     {
-        $mcserver = McServer::select("name", "ip", "port", "description")->where('private', false)->where('slug', $slug)->first();
+        $mcserver = McServer::select("name",'id', "ip", "port", "description")->where('private', false)->where('slug', $slug)->with('players')->first();
         if (!$mcserver) {
             return response()->json(["error" => "Not found"], 404);
         }
