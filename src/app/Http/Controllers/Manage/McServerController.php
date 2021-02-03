@@ -135,6 +135,7 @@ class McServerController extends Controller
             if($server){
                 $pass = Str::random(64);
                 $server->password = Hash::make($pass);
+                $server->save();
                 return response()->json(["success"=>"The server key has been regnerated! The new key is <b>$pass</b>. Don't lose it!"]);
             }else{
                 return response()->json(['error' => 'Not found'],404);
