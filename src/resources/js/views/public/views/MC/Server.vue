@@ -3,10 +3,10 @@
         <Icon class="has-text-white is-large" icon="fas fa-spinner fa-spin fa-3x"/>
     </div>
     <div v-else-if="notfound" class="has-text-centered">
-        <h1 class="title mb-6 mc-text has-text-white">The server you are looking for could not be found!</h1>
+        <h1 class="title mb-6 mc-text has-text-white" data-aos="fade-in">The server you are looking for could not be found!</h1>
     </div>
     <div v-else class="container">
-        <div class="box mc-server">
+        <div class="box mc-server" data-aos="fade-in">
             <p class="title is-4 mc-text has-text-white mb-6">
                 {{ server.name }}
                 <span class="ping is-online" v-if="server.online">{{server.playerCount.online}}/{{ server.playerCount.total }}</span>
@@ -19,11 +19,11 @@
             <br>
             <p v-if="server.players.length !== 0" class="subtitle is-5 mc-text has-text-white">Players:</p>
             <div class="tags has-addons" v-if="server.players.length !== 0">
-                <span class="mc-text mr-2" v-for="player in server.players">
+                <router-link :to="{'name':'mc-player','params':{'slug':player.username}}" class="mc-text mr-2" v-for="player in server.players">
                     <span class="tag">{{ player.username }}</span>
                     <span class="tag is-success" v-if="player.online">Online</span>
                     <span class="tag is-danger" v-else>Offline</span>
-                </span>
+                </router-link>
             </div>
             <br>
 

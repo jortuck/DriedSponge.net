@@ -7,7 +7,7 @@
     </div>
     <div class="container" v-else>
         <div class="columns is-multiline is-centered has-text-centered" >
-            <div class="column is-4" v-for="player in players" :key="player.username">
+            <div class="column is-4" v-for="player in players" :key="player.username" data-aos="fade-in">
                 <div class="box mc-server">
                     <h1 class="title is-4 mc-text mb-6 has-text-warning">{{player.username }}</h1>
 

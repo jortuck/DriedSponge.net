@@ -19,3 +19,13 @@
 .ping.is-offline {
     color:#AA0000;
 }
+.mc-select >select{
+    border-radius: 0 !important;
+    background-color: black;
+    border: 1px solid #8A8988;
+    color: white !important;
+    text-align: center;
+}
+.mc-select >select:focus{
+    border: 1px solid white;
+}

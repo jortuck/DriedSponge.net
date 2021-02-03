@@ -7,7 +7,7 @@
     </div>
     <div class="container" v-else>
         <div class="columns is-multiline is-centered">
-            <div class="column is-6" v-for="server in servers" :key="server.name">
+            <div class="column is-6" v-for="server in servers" :key="server.name" data-aos="fade-in">
                 <div class="box mc-server cursor-pointer" v-if="server.online" @click="goto(server.slug)">
                     <p class="title server-name is-5 mc-text">{{ server.name }}<span
                         class="ping is-online">{{ server.status.players.online }}/{{ server.status.players.max }}</span>
@@ -27,7 +27,7 @@
     </div>
     <br>
     <div class="has-text-centered">
-        <button class="button has-text-centered mc-text is-primary my-1" @click="this.fetch">Refresh</button>
+        <button data-aos="fade-in" data-aos-delay="300" class="button has-text-centered mc-text is-primary my-1" @click="this.fetch">Refresh</button>
     </div>
 </template>
 <script>
