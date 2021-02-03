@@ -14,7 +14,7 @@ use xPaw\MinecraftQueryException;
 
 class McClient extends Controller
 {
-    public function index()
+    public function getServers()
     {
         $mcservers = McServer::select("name", "ip", "port", "slug")->where('private', false)->get();
         $mcservers->transform(function ($item, $key) {
@@ -48,13 +48,14 @@ class McClient extends Controller
         $mcresponse->put('ip',$mcserver->ip);
         $mcresponse->put('port',$mcserver->port);
         $mcresponse->put('description',$mcserver->description);
+        $mcresponse->put('name',$mcserver->name);
 
         try {
             $ping = new MinecraftPing($mcserver->ip, $mcserver->port, 2, false);
             $status = $ping->Query();
             $mcresponse->put("online",true);
             $mcresponse->put("mc_version",Arr::get($status,"version.name"));
-            $mcresponse->put("motd",MinecraftColors::convertToHTML(Arr::get($status,"description.text")));
+            $mcresponse->put("message",MinecraftColors::convertToHTML(Arr::get($status,"description.text")));
 
             if(Arr::has($status,"players.sample")) { // Check if we have online players
                 foreach ($status['players']['sample'] as $ply) { // Loop through players connected to server, add them to the db and relate them to the server
@@ -100,4 +101,21 @@ class McClient extends Controller
         $mcresponse->put("players",$mcplayers);
         return response()->json(["success" => "true", "data" => $mcresponse->toArray()]);
     }
+
+    public function getPlayers()
+    {
+        $players = McPlayer::select("uuid",'username','id')->with(['servers:id,name,slug'])->get();
+        return response()->json(["success" => "true", "data" => $players]);
+    }
+
+    public function getPlayer(Request $request, $username)
+    {
+        $player = McPlayer::select("uuid",'username','id')->where('username',$username)->with('servers:id,name,slug')->first();
+        if(!$player){
+            return response()->json(["error"=>"Not found"],404);
+        }
+        $player->stats = $player->stats()->with('server:id,name')->get();
+        return response()->json(["success" => "true", "data" => $player]);
+    }
+
 }
