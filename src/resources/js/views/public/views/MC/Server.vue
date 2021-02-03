@@ -12,8 +12,8 @@
                 <span class="ping is-online" v-if="server.online">{{server.playerCount.online}}/{{ server.playerCount.total }}</span>
                 <span class="ping is-offline" v-else>Offline</span>
             </p>
-            <p class="subtitle is-5 mc-text">
-                <span v-if="server.online" v-html="server.motd"> - {{ server.description }}</span>
+            <p class="subtitle is-5 mc-text ">
+                <span v-if="server.online" v-html="server.message +' - '+ server.description"></span>
                 <span class="has-text-white" v-else>{{ server.description }}</span>
             </p>
             <br>
@@ -26,13 +26,15 @@
                 </span>
             </div>
             <br>
-            <p v-if="server.mods" class="subtitle is-5 mc-text has-text-white">Mods:</p>
-            <div  class="tags has-addons" v-if="server.online && server.mods">
+
+            <p v-if="server.mods" class="subtitle is-5 mc-text has-text-white has-text-centered-mobile">Mods:</p>
+            <div  class="tags has-addons has-text-centered-mobile is-centered" v-if="server.online && server.mods">
                 <span class="mc-text mr-3" v-for="mod in server.mods">
                     <span class="tag">{{ mod.modid }}</span>
                     <span class="tag is-success">{{ mod.version }}</span>
                 </span>
             </div>
+
         </div>
     </div>
 </template>
@@ -46,7 +48,7 @@ export default {
     name: "Server",
     components: {Icon},
     mounted() {
-        axios.get("/api/mc/" + this.$route.params.slug).then(res => {
+        axios.get("/api/mc/servers/" + this.$route.params.slug).then(res => {
             this.loading = false
             this.server = res.data.data
         })
