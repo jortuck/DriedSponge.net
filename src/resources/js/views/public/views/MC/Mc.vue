@@ -5,16 +5,20 @@
         <div class="container">
             <div class="tabs is-toggle is-fullwidth">
                 <ul>
-                    <li class="is-active">
-                        <router-link :to="{'name':'mc'}" exact-active-class="is-active">
-                            <span class="mc-text">Servers</span>
-                        </router-link>
-                    </li>
-                    <li>
-                        <a>
-                            <span class="mc-text">Players</span>
-                        </a>
-                    </li>
+                    <router-link custom :to="{'name':'mc'}"  v-slot="{ href,navigate, isActive,isExactActive}">
+                        <li :class="{'is-active':isExactActive}">
+                            <a :href="href" @click="navigate">
+                                <span class="mc-text">Servers</span>
+                            </a>
+                        </li>
+                    </router-link>
+                    <router-link custom :to="{'name':'mc-players'}"  v-slot="{ href,navigate, isActive,isExactActive}">
+                        <li :class="{'is-active':isExactActive}">
+                            <a :href="href" @click="navigate">
+                                <span class="mc-text">Players</span>
+                            </a>
+                        </li>
+                    </router-link>
                 </ul>
             </div>
         </div>
@@ -24,9 +28,10 @@
 </template>
 <script>
 import Pagehead from "../../../../components/includes/Pagehead";
+import Icon from "../../../../components/text/Icon";
 
 export default {
     name: "Mc",
-    components: {Pagehead}
+    components: {Icon, Pagehead}
 }
 </script>
