@@ -76,7 +76,7 @@ class McClient extends Controller
                 $onlineplayers = collect($status['players']['sample']);
                 $mcplayers = $mcserver->players()->get();
                 foreach ($mcplayers as $player){
-                     if($onlineplayers->where('name', $player->username)){
+                     if($onlineplayers->contains('name', $player->username)){
                          $player->online = true;
                      }else{
                          $player->online = false;
