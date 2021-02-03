@@ -42,6 +42,11 @@ const routes = [
                         name: 'mc-players',
                         component: () => import('../views/public/views/MC/Playerlist'),
                     },
+                    {
+                        path: 'players/:slug',
+                        name: 'mc-player',
+                        component: () => import('../views/public/views/MC/Player'),
+                    },
                 ]
             },
         ]

@@ -28,7 +28,7 @@
             <br>
 
             <p v-if="server.mods" class="subtitle is-5 mc-text has-text-white has-text-centered-mobile">Mods:</p>
-            <div  class="tags has-addons has-text-centered-mobile is-centered" v-if="server.online && server.mods">
+            <div  class="tags has-addons " v-if="server.online && server.mods">
                 <span class="mc-text mr-3" v-for="mod in server.mods">
                     <span class="tag">{{ mod.modid }}</span>
                     <span class="tag is-success">{{ mod.version }}</span>
