@@ -8,12 +8,12 @@
     <div class="container" v-else>
         <div class="columns is-multiline is-centered" >
             <div class="column is-6" v-for="server in servers" :key="server.name">
-                <div class="box mc-server" v-if="server.online" @click="goto(server.slug)">
+                <div class="box mc-server cursor-pointer" v-if="server.online" @click="goto(server.slug)">
                     <p class="title server-name is-5 mc-text">{{ server.name }}<span class="ping is-online">{{ server.status.players.online }}/{{ server.status.players.max }}</span></p>
                     <span class="subtitle is-5 mc-text" v-html="server.status.description.text">
                     </span>
                 </div>
-                <div class="box mc-server" v-else  @click="goto(server.slug)">
+                <div class="box mc-server cursor-pointer" v-else  @click="goto(server.slug)">
                     <p class="title server-name is-5 mc-text">{{ server.name }}<span class="ping-offline"></span></p>
                     <span class="subtitle is-5 mc-text">
                         <span style="color: #AA0000">Server Offline</span>
@@ -54,6 +54,7 @@ export default {
                 this.loading = false;
             })
             .catch(error=>{
+                this.loading = false;
                 toast("toast-is-danger","An error occurued on the server, please try again later!")
             })
         }

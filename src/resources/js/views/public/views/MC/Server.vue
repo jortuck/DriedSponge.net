@@ -9,22 +9,29 @@
         <div class="box mc-server">
             <p class="title is-4 mc-text has-text-white mb-6">
                 {{ server.name }}
-                <span class="ping is-online" v-if="server.online">{{
-                        server.status.players.online
-                    }}/{{ server.status.players.max }}</span>
+                <span class="ping is-online" v-if="server.online">{{server.playerCount.online}}/{{ server.playerCount.total }}</span>
                 <span class="ping is-offline" v-else>Offline</span>
             </p>
             <p class="subtitle is-5 mc-text">
-                <span v-if="server.online" v-html="server.status.description.text + ' - '"></span><span
-                class="has-text-white">{{ server.description }}</span>
+                <span v-if="server.online" v-html="server.motd"> - {{ server.description }}</span>
+                <span class="has-text-white" v-else>{{ server.description }}</span>
             </p>
             <br>
-            <p v-if="server.status.modinfo" class="subtitle is-5 mc-text has-text-white">Mods:</p>
-            <div class="tags" v-if="server.online && server.status.modinfo">
-                <div class="tags has-addons mc-text ml-2" v-for="mod in server.status.modinfo.modList">
+            <p v-if="server.players.length !== 0" class="subtitle is-5 mc-text has-text-white">Players:</p>
+            <div class="tags has-addons" v-if="server.players.length !== 0">
+                <span class="mc-text mr-2" v-for="player in server.players">
+                    <span class="tag">{{ player.username }}</span>
+                    <span class="tag is-success" v-if="player.online">Online</span>
+                    <span class="tag is-danger" v-else>Offline</span>
+                </span>
+            </div>
+            <br>
+            <p v-if="server.mods" class="subtitle is-5 mc-text has-text-white">Mods:</p>
+            <div  class="tags has-addons" v-if="server.online && server.mods">
+                <span class="mc-text mr-3" v-for="mod in server.mods">
                     <span class="tag">{{ mod.modid }}</span>
                     <span class="tag is-success">{{ mod.version }}</span>
-                </div>
+                </span>
             </div>
         </div>
     </div>
@@ -33,6 +40,7 @@
 import axios from "axios";
 import {toast} from "../../../../components/helpers/toasts";
 import Icon from "../../../../components/text/Icon";
+import tippy from "tippy.js";
 
 export default {
     name: "Server",
@@ -42,15 +50,16 @@ export default {
             this.loading = false
             this.server = res.data.data
         })
-            .catch(error => {
-                if (error.response.status === 404) {
-                    this.loading = false
-                    this.notfound = true
-                } else {
-                    this.loading = false
-                    toast("toast-is-danger", "Something went wrong on the server side of things, plese try again later.")
-                }
-            })
+        .catch(error => {
+            if (error.response.status === 404) {
+                this.loading = false
+                this.notfound = true
+            } else {
+                this.loading = false
+                toast("toast-is-danger", "Something went wrong on the server side of things, plese try again later.")
+            }
+        })
+
     },
     data() {
         return {
