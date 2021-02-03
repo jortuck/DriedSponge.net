@@ -56,7 +56,7 @@ class McServer extends Controller
                     }
                     return response()->json(['error'=>'invaild fields',"errors"=>$validator->errors()],400);
                 }
-                return response()->json(["sucess" => "Unauthorized"], 403);
+                return response()->json(["error" => "Unauthorized"], 403);
 
             }
             return response()->json(["error" => "Unauthenticated"], 401);
