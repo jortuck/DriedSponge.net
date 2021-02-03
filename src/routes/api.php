@@ -30,6 +30,7 @@ Route::get('/mc/servers', 'Api\McClient@getServers');
 Route::get('/mc/players', 'Api\McClient@getPlayers');
 Route::get('/mc/servers/{slug}', 'Api\McClient@getServer');
 Route::get('/mc/players/{username}', 'Api\McClient@getPlayer');
+Route::get('/mc/players/{username}/stats/{slug}', 'Api\McClient@getStats');
 
 
 Route::post('/mc/stats/{id}', 'Api\McServer@saveStats');

@@ -7,6 +7,7 @@ use App\Models\McPlayer;
 use App\Models\McServer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\DB;
 use Spirit55555\Minecraft\MinecraftColors;
 use xPaw\MinecraftPing;
 use xPaw\MinecraftPingException;
@@ -114,14 +115,29 @@ class McClient extends Controller
         if(!$player){
             return response()->json(["error"=>"Not found"],404);
         }
-        $stats = $player->stats()->with('server:id,name')->get();
-        $stats->transform(function ($item,$value){
-            $item->stats = json_decode($item->stats);
-            return $item;
-        });
+
+        $stats = $player->stats()->select('user_id','server_id')->with('server:id,name,slug')->get();
+
         $player->stats = $stats;
 
         return response()->json(["success" => "true", "data" => $player]);
     }
 
+    public function getStats(Request $request, $username, $slug)
+    {
+        $player = McPlayer::select("uuid",'username','id')->where('username',$username)->first();
+        if(!$player){
+            return response()->json(["error"=>"Player not found"],404);
+        }
+
+        $server = McServer::select('slug','id')->where('slug',$slug)->first();
+        if(!$server){
+            return response()->json(["error"=>"Server not found"],404);
+        }
+
+        $stat = $player->stats()->select('stats')->where('server_id',$server->id)->first();
+        $player->stats = json_decode($stat->stats,true);
+
+        return response()->json(["success" => "true", "data" => $player]);
+    }
 }
