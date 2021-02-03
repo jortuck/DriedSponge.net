@@ -24,17 +24,23 @@ const routes = [
             },
             {
                 path: 'mc',
+                redirect:  { name: 'mc' },
                 component: () => import('../views/public/views/MC/Mc'),
                 children: [
                     {
-                        path: '',
+                        path: 'servers',
                         name: 'mc',
                         component: () => import('../views/public/views/MC/Serverlist'),
                     },
                     {
-                        path: ':slug',
+                        path: 'servers/:slug',
                         name: 'mc-server',
                         component: () => import('../views/public/views/MC/Server'),
+                    },
+                    {
+                        path: 'players',
+                        name: 'mc-players',
+                        component: () => import('../views/public/views/MC/Playerlist'),
                     },
                 ]
             },

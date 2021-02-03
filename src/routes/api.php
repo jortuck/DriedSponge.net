@@ -26,7 +26,10 @@ Route::get('/walrus/facts', 'Api\Walrus@Facts')->middleware('ApiKey');
 Route::post('/github/webhook', 'Api\Github@Webhook');
 
 // MC API
-Route::get('/mc', 'Api\McClient@index');
-Route::get('/mc/{slug}', 'Api\McClient@getServer');
+Route::get('/mc/servers', 'Api\McClient@getServers');
+Route::get('/mc/players', 'Api\McClient@getPlayers');
+Route::get('/mc/servers/{slug}', 'Api\McClient@getServer');
+Route::get('/mc/players/{username}', 'Api\McClient@getPlayer');
+
 
 Route::post('/mc/stats/{id}', 'Api\McServer@saveStats');
