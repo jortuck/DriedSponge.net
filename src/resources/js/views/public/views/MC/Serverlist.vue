@@ -12,8 +12,9 @@
                     <p class="title server-name is-5 mc-text">{{ server.name }}<span
                         class="ping is-online">{{ server.status.players.online }}/{{ server.status.players.max }}</span>
                     </p>
-                    <p>
-                    <span class="subtitle is-5 mc-text" v-html="server.status.description.text"></span>
+                    <p  v-if="server.status.description.text">
+                        <span class="subtitle is-5 mc-text"
+                              v-html="server.status.description.text"></span>
                     </p>
                 </div>
                 <div class="box mc-server cursor-pointer" v-else @click="goto(server.slug)">
@@ -27,7 +28,9 @@
     </div>
     <br>
     <div class="has-text-centered">
-        <button data-aos="fade-in" data-aos-delay="300" class="button has-text-centered mc-text is-primary my-1" @click="this.fetch">Refresh</button>
+        <button data-aos="fade-in" data-aos-delay="300" class="button has-text-centered mc-text is-primary my-1"
+                @click="this.fetch">Refresh
+        </button>
     </div>
 </template>
 <script>

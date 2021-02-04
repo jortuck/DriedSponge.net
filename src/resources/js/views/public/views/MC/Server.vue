@@ -12,9 +12,11 @@
                 <span class="ping is-online" v-if="server.online">{{server.playerCount.online}}/{{ server.playerCount.total }}</span>
                 <span class="ping is-offline" v-else>Offline</span>
             </p>
-            <p class="subtitle is-5 mc-text ">
-                <span v-if="server.online" v-html="server.message +' - '+ server.description"></span>
-                <span class="has-text-white" v-else>{{ server.description }}</span>
+            <p class="subtitle is-5 mc-text " v-if="server.online">
+                <span  v-html="server.message"></span>
+            </p>
+            <p class="subtitle is-5 mc-text" v-if="server.description">
+                <span class="has-text-white">{{ server.description }}</span>
             </p>
             <br>
             <p v-if="server.players.length !== 0" class="subtitle is-5 mc-text has-text-white">Players:</p>
@@ -27,8 +29,8 @@
             </div>
             <br>
 
-            <p v-if="server.mods" class="subtitle is-5 mc-text has-text-white has-text-centered-mobile">Mods:</p>
-            <div  class="tags has-addons " v-if="server.online && server.mods">
+            <p v-if="server.mods" class="subtitle is-5 mc-text has-text-white">Mods:</p>
+            <div  class="tags has-addons" v-if="server.online && server.mods">
                 <span class="mc-text mr-3" v-for="mod in server.mods">
                     <span class="tag">{{ mod.modid }}</span>
                     <span class="tag is-success">{{ mod.version }}</span>
