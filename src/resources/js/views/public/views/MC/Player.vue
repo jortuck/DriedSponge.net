@@ -65,13 +65,15 @@ export default {
             this.stats = res.data.data.stats;
             this.fetchStats(res.data.data.stats[0].server.slug)
         })
-        .catch(error => {
-            if (error.response.status === 404) {
-                this.loading = false
-                this.notfound = true
-            } else {
-                this.loading = false
-                toast("toast-is-danger", "Something went wrong on the server side of things, plese try again later.")
+        .catch(err => {
+            if(err.response){
+                if (err.response.status === 404) {
+                    this.loading = false
+                    this.notfound = true
+                } else {
+                    this.loading = false
+                    toast("toast-is-danger", "Something went wrong on the server side of things, plese try again later.")
+                }
             }
         })
 
