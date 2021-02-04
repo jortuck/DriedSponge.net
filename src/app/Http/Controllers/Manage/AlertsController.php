@@ -29,10 +29,10 @@ class AlertsController extends Controller
                 });
                 return response()->json($alerts);
             }else{
-                return response()->json(['error' => 'Unauthorized'])->setStatusCode(403);
+                return response()->json(['error' => 'Unauthorized'],403);
             }
         }
-        return response()->json(['error' => 'Unauthenticated'])->setStatusCode(401);
+        return response()->json(['error' => 'Unauthenticated'],401);
     }
 
     /**
@@ -43,6 +43,9 @@ class AlertsController extends Controller
      */
     public function store(Request $request)
     {
+        if(\Auth::guest()){
+            return response()->json(['error' => 'Unauthenticated'],401);
+        }
         if (\Auth::user()->hasPermissionTo('Alerts.Create')) {
             $validator = Validator::make($request->all(), [
                 "message" => "required|min:3|max:1120",
@@ -53,9 +56,9 @@ class AlertsController extends Controller
             if ($validator->passes()) {
 
                 SendAlert::dispatch($request->message, $request->twitter, $request->discord, $request->website);
-                return response()->json(['success' => 'Message has been posted!']);
+                return response()->json(['success' => 'Message has been posted!'],201);
             }
-            return response()->json($validator->errors());
+            return response()->json($validator->errors(),400);
         } else {
             return response()->json(['error' => 'Unauthorized']);
         }
@@ -70,17 +73,17 @@ class AlertsController extends Controller
     public function show($id)
     {
         if(\Auth::guest()){
-            return response()->json(['error' => 'Unauthenticated'])->setStatusCode(401);
+            return response()->json(['error' => 'Unauthenticated'],401);
         }
         if (\Auth::user()->hasPermissionTo('Alerts.Edit')) {
             $alert = Alerts::find($id);
             if($alert){
                 return response()->json($alert);
             }else{
-                return response()->json(['error' => 'Not found'])->setStatusCode(404);
+                return response()->json(['error' => 'Not found'],404);
             }
         }else{
-            return response()->json(['error' => 'Unauthorized'])->setStatusCode(403);
+            return response()->json(['error' => 'Unauthorized'],403);
         }
     }
     /**
@@ -93,7 +96,7 @@ class AlertsController extends Controller
     public function update(Request $request, $id)
     {
         if(\Auth::guest()){
-            return response()->json(['error' => 'Unauthenticated'])->setStatusCode(401);
+            return response()->json(['error' => 'Unauthenticated'],401);
         }
         if (\Auth::user()->hasPermissionTo('Alerts.Edit')) {
             $alert = Alerts::find($id);
@@ -106,7 +109,6 @@ class AlertsController extends Controller
                     $alert->onsite = $request->website;
                     $alert->message = $request->message;
                     $alert->save();
-
                     if($alert->discordid){
                         $fields = array();
                         if($alert->tweetid){
@@ -125,12 +127,12 @@ class AlertsController extends Controller
 
                     return response()->json(['success' => 'Message has been updated!']);
                 }
-                return response()->json($validator->errors());
+                return response()->json($validator->errors(),400);
             }else{
-                return response()->json(['error' => 'Not found'])->setStatusCode(404);
+                return response()->json(['error' => 'Not found'],404);
             }
         }else{
-            return response()->json(['error' => 'Unauthorized'])->setStatusCode(403);
+            return response()->json(['error' => 'Unauthorized'],403);
         }
     }
 
@@ -143,7 +145,7 @@ class AlertsController extends Controller
     public function destroy(Request $request,$id)
     {
         if(\Auth::guest()){
-            return response()->json(['error' => 'Unauthenticated'])->setStatusCode(401);
+            return response()->json(['error' => 'Unauthenticated'],401);
         }
         if (\Auth::user()->hasPermissionTo('Alerts.Delete')) {
             $alert = Alerts::find($id);
@@ -156,10 +158,10 @@ class AlertsController extends Controller
                 });
                 return response()->json(['success' => true,"data"=>$rest]);
             }else{
-                return response()->json(['error' => 'Not found'])->setStatusCode(404);
+                return response()->json(['error' => 'Not found'],404);
             }
         }else{
-            return response()->json(['error' => 'Unauthorized'])->setStatusCode(403);
+            return response()->json(['error' => 'Unauthorized'],403);
         }
     }
 }

@@ -55,3 +55,6 @@
 }
 
 @import "./components/index.scss";
+body, html{
+    overflow-y: auto;
+}

@@ -19,25 +19,25 @@
                 <form @submit="submit">
                     <div class="columns">
                         <div class="column is-half-desktop is-full-mobile">
-                            <Textinput @change="removeErr('name')" v-model="form.name.value" label="Name"
+                            <Textinput maxCharacters="150" v-model:val="form.fields.name" label="Name"
                                        placeholder="John Doe"
-                                       :error="form.errors['name']"/>
+                                       v-model:error="form.errors['name']" :required="true"/>
                         </div>
                         <div class="column is-half-desktop is-full-mobile">
-                            <Textinput @change="removeErr('email')" v-model="form.email.value" label="Email"
-                                       placeholder="email@example.com" :error="form.errors['email']"/>
+                            <Textinput  maxCharacters="150" v-model:val="form.fields.email" label="Email"
+                                       placeholder="email@example.com" v-model:error="form.errors['email']" :required="true"/>
                         </div>
                     </div>
                     <div class="columns">
                         <div class="column">
-                            <Textinput @change="removeErr('subject')" v-model="form.subject.value" label="Subject"
-                                       placeholder="Some interesting subject..." :error="form.errors['subject']"/>
+                            <Textinput  maxCharacters="256" @change="removeErr('subject')" v-model:val="form.fields.subject" label="Subject"
+                                       placeholder="Some interesting subject..." v-model:error="form.errors['subject']" :required="true"/>
                         </div>
                     </div>
                     <div class="columns">
                         <div class="column">
-                    <Textarea @change="removeErr('message')" rows="5" placeholder="A nice message" label="Message"
-                              v-model="form.message.value" :error="form.errors['message']"></Textarea>
+                    <Textarea maxCharacters="2000" rows="5" placeholder="A nice message" label="Message"
+                              v-model:val="form.fields.message" v-model:error="form.errors['message']" :required="true"></Textarea>
                         </div>
                     </div>
                     <div class="control">
@@ -56,7 +56,7 @@ import Textarea from "../form/Textarea";
 import Captcha from "../form/Captcha";
 import Tileancestor from "../tiles/Tileancestor";
 import Pagehead from "../includes/Pagehead";
-
+import {toast} from "../helpers/toasts"
 export default {
     name: "Contactform",
     components: {Pagehead, Textinput, Textarea, Captcha, Tileancestor},
@@ -68,40 +68,40 @@ export default {
                 submitted_msg: "",
                 loading: false,
                 errors: [],
-                name: {
-                    value: "",
+                fields:{
+                    name: "",
+                    email: "",
+                    subject: "",
+                    message: "",
                 },
-                email: {
-                    value: "",
-                },
-                subject: {
-                    value: "",
-                },
-                message: {
-                    value: "",
-                },
-                captcha: "robot"
+
             }
         }
     },
     methods: {
         submit(e) {
             e.preventDefault();
+            for(var i in this.form.fields){
+                if(this.form.errors[i] != null && this.form.errors[i] !== "" && this.form.errors[i] !== undefined){
+                    return toast("toast-is-danger","You still have some errors fix on the form.")
+                }
+            }
             this.form.loading = true;
-            axios.post('/app/contact/send', {
-                name: this.form.name.value,
-                email: this.form.email.value,
-                subject: this.form.subject.value,
-                message: this.form.message.value
-            }).then(res => {
+            axios.post('/app/contact/send', this.form.fields).then(res => {
                 this.form.loading = false;
-                if (res.data.success) {
-                    this.form.submitted = true;
-                    this.form.submitted_msg = res.data['success'];
-                } else {
-                    for (var error in res.data) {
-                        this.form.errors[error] = res.data[error][0];
-                    }
+                this.form.submitted = true;
+                this.form.submitted_msg = res.data['success'];
+            })
+            .catch(err =>{
+                this.form.loading = false;
+                switch (err.response.status){
+                    case 400:
+                        for (var error in err.response.data) {
+                            this.form.errors[error] = err.response.data[error][0];
+                        }
+                        break;
+                    default:
+                        toast("toast-is-danger","Something went wrong on the server side! Plese try again later.")
                 }
             })
         },
@@ -110,10 +110,11 @@ export default {
         },
         reset() {
             this.form.submitted = false;
-            this.form.email.value = "";
-            this.form.subject.value = "";
-            this.form.message.value = "";
             this.form.errors = [];
+            this.form.fields.name = ""
+            this.form.fields.email = ""
+            this.form.fields.subject = ""
+            this.form.fields.message = ""
         }
     },
 }

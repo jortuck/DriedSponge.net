@@ -14,7 +14,7 @@ class McStatusController extends Controller
         $Query = new MinecraftQuery( );
         try
         {
-            $Info = new MinecraftPing( 'mc.driedsponge.net', 25565 );
+            $Info = new MinecraftPing( 'mc.driedsponge.net', 25565,false );
             $Query = array('success'=>true,'info'=>$Info->Query());
         }
         catch( MinecraftPingException $e )

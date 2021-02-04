@@ -21,7 +21,34 @@ const routes = [
                 path: '/login',
                 name: 'login',
                 component: () => import('../views/public/views/Login')
-            }
+            },
+            {
+                path: 'mc',
+                redirect:  { name: 'mc' },
+                component: () => import('../views/public/views/MC/Mc'),
+                children: [
+                    {
+                        path: 'servers',
+                        name: 'mc',
+                        component: () => import('../views/public/views/MC/Serverlist'),
+                    },
+                    {
+                        path: 'servers/:slug',
+                        name: 'mc-server',
+                        component: () => import('../views/public/views/MC/Server'),
+                    },
+                    {
+                        path: 'players',
+                        name: 'mc-players',
+                        component: () => import('../views/public/views/MC/Playerlist'),
+                    },
+                    {
+                        path: 'players/:slug',
+                        name: 'mc-player',
+                        component: () => import('../views/public/views/MC/Player'),
+                    },
+                ]
+            },
         ]
     },
 
@@ -69,6 +96,30 @@ const routes = [
                         name: 'alerts-edit',
                         component: () => import('../views/manage/views/Alerts/Edit'),
                         meta: {can: "Alerts.Edit"},
+                    },
+                ]
+            },
+            {
+                path: 'mc-servers',
+                component: () => import('../views/manage/views/MC/Mc'),
+                children: [
+                    {
+                        path: '',
+                        name: 'mc-servers',
+                        component: () => import('../views/manage/views/MC/Serverlist'),
+                        meta: {can: "Projects.See"},
+                    },
+                    {
+                        path: 'create',
+                        name: 'mc-create',
+                        component: () => import('../views/manage/views/MC/Create'),
+                        meta: {can: "Projects.Create"},
+                    },
+                    {
+                        path: ':id/edit',
+                        name: 'mc-edit',
+                        component: () => import('../views/manage/views/MC/Edit'),
+                        meta: {can: "Projects.Edit"},
                     },
                 ]
             }

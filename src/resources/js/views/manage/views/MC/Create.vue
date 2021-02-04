@@ -1,24 +1,31 @@
 <template>
-    <form @submit="submit">
+    <form @submit="submit" ref="form" >
         <div class="columns">
             <div class="column">
-                    <Textarea maxCharacters="1120" rows="5" placeholder="A nice message" label="Message"
-                              v-model:val="form.fields.message" v-model:error="form.errors['message']" :required="true"></Textarea>
+                <Textinput :maxCharacters="100" v-model:error="form.errors['name']" label="Server Name" placeholder="DriedSponge Gaming" v-model:val="form.fields.name" :required="true"/>
             </div>
         </div>
         <div class="columns">
             <div class="column">
-                <Checkbox label="Post On Discord" v-model:val="form.fields.discord" />
+                <Textinput  v-model:error="form.errors['ip']" label="Server IP" placeholder="XX.XX.XX.XX" v-model:val="form.fields.ip" :required="true" :maxCharacters="100" />
             </div>
             <div class="column">
-                <Checkbox label="Post On Twitter" v-model:val="form.fields.twitter" />
+                <Textinput type="number" v-model:error="form.errors['port']" label="Server Port" placeholder="25565" v-model:val="form.fields.port" />
             </div>
+        </div>
+        <div class="columns">
             <div class="column">
-                <Checkbox label="Post On Website" v-model:val="form.fields.website" />
+                    <Textarea maxCharacters="2000" rows="5" placeholder="A nice description" label="Server Description"
+                               v-model:val="form.fields.description" v-model:error="form.errors['description']"></Textarea>
+            </div>
+        </div>
+        <div class="columns">
+            <div class="column">
+                <Checkbox label="Private Server" v-model:val="form.fields.private" v-model:error="form.errors['private']" />
             </div>
         </div>
         <div class="control">
-            <button class="button is-primary" :class="{'is-loading':form.loading}">Post</button>
+            <button class="button is-primary" :class="{'is-loading':form.loading}">Add</button>
         </div>
     </form>
 </template>
@@ -26,14 +33,22 @@
 import Textinput from "../../../../components/form/Textinput";
 import Textarea from "../../../../components/form/Textarea";
 import axios from "axios";
-import Checkbox from "../../../../components/form/Checkbox";
 import {toast} from "../../../../components/helpers/toasts";
-
+import Checkbox from "../../../../components/form/Checkbox";
 export default {
     name: "Create",
     methods: {
         removeErr(thing) {
             this.form.errors[thing] = "";
+        },
+        reset(){
+            this.form.submitted = false;
+            this.form.errors= [];
+            this.form.fields.name=""
+            this.form.fields.ip=""
+            this.form.fields.port=25565
+            this.form.fields.description=""
+            this.form.fields.private=false
         },
         submit(e) {
             e.preventDefault();
@@ -42,18 +57,14 @@ export default {
                     return toast("toast-is-danger","You still have some errors fix on the form.")
                 }
             }
-            this.form.loading = true;
-            axios.post('/app/manage/alerts', this.form.fields).then(res => {
+            axios.post('/app/manage/mc-servers', this.form.fields).then(res => {
                 this.form.loading = false;
                 this.form.submitted = true;
                 this.form.submitted_msg = res.data['success'];
-                this.form.fields.discord = false;
-                this.form.fields.twitter = false;
-                this.form.fields.website = false;
-                this.form.fields.message = "";
-                toast("toast-is-success","The alert has been queued and will be posted shortly!")
+                this.reset();
+                toast("toast-is-success",res.data['success'],-1)
             })
-            .catch(err =>{
+            .catch(err=>{
                 this.form.loading = false;
                 switch (err.response.status){
                     case 400:
@@ -84,10 +95,11 @@ export default {
                 loading: false,
                 errors: [],
                 fields:{
-                    discord: false,
-                    twitter: false,
-                    website: false,
-                    message: ""
+                    "name":"",
+                    "ip":"",
+                    "port":25565,
+                    "description":"",
+                    "private": false,
                 }
             }
         }

@@ -45,7 +45,9 @@ services:
     build:
       context: .
       dockerfile: ./dockerfiles/php.dockerfile
-
+    dns:
+      - 1.1.1.1
+      - 1.0.0.1
   composer:
     networks:
       - dnet_dev

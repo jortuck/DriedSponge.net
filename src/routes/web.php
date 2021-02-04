@@ -65,6 +65,14 @@ Route::prefix('app')->group(function () {
     Route::delete('/manage/alerts/{id}', 'Manage\AlertsController@destroy');
     Route::get('/manage/alerts/{id}', 'Manage\AlertsController@show');
     Route::put('/manage/alerts/{id}', 'Manage\AlertsController@update');
+
+    Route::get('/manage/mc-servers', 'Manage\McServerController@index');
+    Route::post('/manage/mc-servers', 'Manage\McServerController@store');
+    Route::delete('/manage/mc-servers/{id}', 'Manage\McServerController@destroy');
+    Route::get('/manage/mc-servers/{id}', 'Manage\McServerController@show');
+    Route::put('/manage/mc-servers/{id}', 'Manage\McServerController@update');
+    Route::patch('/manage/mc-servers/{id}/key', 'Manage\McServerController@regen');
+
 });
 
 
