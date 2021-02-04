@@ -41,12 +41,14 @@ class McServer extends Controller
                         }
                         $stats = $player->stats()->where("server_id",$server->id)->first();
                         if($stats){
-                            $stats->stats= $request->stats;
+                            $stats->stats = $request->stats;
                             $stats->save();
+                            $server->stats()->save($stats);
+                            $player->stats()->save($stats);
                             return response()->json(["Data saved"],200);
                         }else{
                             $stats = new McStat();
-                            $stats->stats= $request->stats;
+                            $stats->stats = $request->stats;
                             $stats->save();
                             $server->stats()->save($stats);
                             $player->stats()->save($stats);
