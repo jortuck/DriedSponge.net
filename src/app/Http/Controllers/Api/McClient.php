@@ -136,7 +136,11 @@ class McClient extends Controller
         }
 
         $stat = $player->stats()->select('stats')->where('server_id',$server->id)->first();
-        $player->stats = json_decode($stat->stats,true);
+        if($stat){
+            $player->stats = json_decode($stat->stats,true);
+        }else{
+            return response()->json(['No stats found'],404);
+        }
 
         return response()->json(["success" => "true", "data" => $player]);
     }
