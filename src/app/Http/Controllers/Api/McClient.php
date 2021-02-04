@@ -118,11 +118,6 @@ class McClient extends Controller
 
         $stats = $player->stats()->select('user_id','server_id')->with('server:id,name,slug')->get();
 
-        foreach ($stats as $stat){
-            if($stat->server == null){
-                $stat->delete();
-            }
-        }
 
         $player->stats = $stats;
 

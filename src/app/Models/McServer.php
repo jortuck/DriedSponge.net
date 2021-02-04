@@ -15,6 +15,13 @@ class McServer extends Model
     //Timestamps
     public $timestamps = true;
 
+    protected static function booted()
+    {
+        static::deleted(function ($server) {
+            $server->stats()->delete();
+        });
+    }
+
     public function stats()
     {
         return $this->hasMany(McStat::class,'server_id','id');
