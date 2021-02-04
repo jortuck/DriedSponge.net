@@ -55,7 +55,7 @@ export default {
             this.$router.push({name: "mc-server", params: {slug}})
         },
         fetch() {
-            axios.get("http://localhost:3200/api/mc/servers").then(res => {
+            axios.get("/api/mc/servers").then(res => {
                 this.servers = res.data.data;
                 this.loading = false;
             })
