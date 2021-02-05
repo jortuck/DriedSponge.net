@@ -8,9 +8,9 @@
     <div v-else class="container">
         <div class="box mc-server" data-aos="fade-in">
 
-            <p class="title is-3 mc-text has-text-warning mb-5 has-text-centered">
+            <h1 class="title mc-text has-text-warning mb-5 has-text-centered is-3 is-size-4-mobile">
                 {{ player.username }}
-            </p>
+            </h1>
             <div class="has-text-centered">
                 <h2 class="subtitle is-5 mc-text has-text-white" v-if="player.servers.length !== 0">Servers Played On:</h2>
                 <div class="tags mc-text is-centered" v-if="player.servers.length !== 0">
