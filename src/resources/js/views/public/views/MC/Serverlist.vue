@@ -26,9 +26,11 @@
         </div>
     </div>
     <br>
-    <div class="has-text-centered">
-        <button data-aos="fade-in" data-aos-delay="300" class="button has-text-centered mc-text is-primary my-1"
-                @click="this.fetch">Refresh
+    <div class="has-text-centered"  data-aos="fade-in">
+        <button
+                class="button has-text-centered mc-text is-primary my-1"
+                @click="fetch" :class="{'is-loading':refreshing}">
+            Refresh
         </button>
     </div>
 </template>
@@ -43,7 +45,8 @@ export default {
     data() {
         return {
             servers: {},
-            loading: true
+            loading: true,
+            refreshing: false,
         }
     },
     beforeMount() {
@@ -54,14 +57,17 @@ export default {
             this.$router.push({name: "mc-server", params: {slug}})
         },
         fetch() {
+            this.refreshing = true
             axios.get("/api/mc/servers").then(res => {
                 this.servers = res.data.data;
                 this.loading = false;
+                this.refreshing = false
             })
-                .catch(error => {
-                    this.loading = false;
-                    toast("toast-is-danger", "An error occurued on the server, please try again later!")
-                })
+            .catch(error => {
+                this.loading = false;
+                this.refreshing = false
+                toast("toast-is-danger", "An error occurued on the server, please try again later!")
+            })
         }
     }
 }
