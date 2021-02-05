@@ -32,8 +32,8 @@
                     </div>
                 </div>
                 <div class="tags has-addons mc-text is-centered m-4"  v-if="stats.length !== 0">
-                    <template v-for="(key, value) in currstats" data-aos="fade-in">
-                        <span class="mx-1">
+                    <template v-for="(key, value) in currstats">
+                        <span class="mx-1" data-aos="fade-in">
                             <span class="tag">
                             {{value}}
                             </span>
