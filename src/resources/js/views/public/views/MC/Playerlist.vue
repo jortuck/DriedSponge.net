@@ -9,13 +9,13 @@
         <div class="columns is-multiline is-centered has-text-centered" >
             <div class="column is-4" v-for="player in players" :key="player.username" data-aos="fade-in">
                 <div class="box mc-server">
-                    <h1 class="title is-4 mc-text mb-6 has-text-warning">{{player.username }}</h1>
+                    <h1 class="title is-4 mc-text mb-6 has-text-warning is-size-5-mobile">{{player.username }}</h1>
 
-                    <h2 class="subtitle is-5 mc-text has-text-white" v-if="player.servers.length !== 0">Servers Played On:</h2>
+                    <h2 class="subtitle is-5 mc-text has-text-white is-size-6-mobile" v-if="player.servers.length !== 0">Servers Played On:</h2>
 
                     <div class="tags has-addons mc-text is-centered" v-if="player.servers.length !== 0">
                         <router-link :to="{'name':'mc-server','params':{'slug':server.slug}}" v-for="server in player.servers">
-                            <span class="tag is-dark is-success">{{server.name}}</span>
+                            <span class="tag is-primary">{{server.name}}</span>
                         </router-link>
                     </div>
 
