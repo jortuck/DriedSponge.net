@@ -6,7 +6,7 @@
     <Footer/>
 </template>
 <script>
-import Footer from "../../components/includes/Footer";
+import Footer from "../../components/includes/Footer/Footer";
 import Nav from "./Nav";
 
 export default {

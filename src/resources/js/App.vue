@@ -3,7 +3,7 @@
 </template>
 <script>
 import Nav from "./views/public/Nav"
-import Footer from "./components/includes/Footer";
+import Footer from "./components/includes/Footer/Footer";
 
 export default {
     name: 'App',
