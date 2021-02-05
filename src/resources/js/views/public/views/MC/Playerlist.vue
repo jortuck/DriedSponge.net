@@ -15,7 +15,7 @@
 
                     <div class="tags has-addons mc-text is-centered" v-if="player.servers.length !== 0">
                         <router-link :to="{'name':'mc-server','params':{'slug':server.slug}}" v-for="server in player.servers">
-                            <span class="tag is-dark is-success">{{server.name}}</span>
+                            <span class="tag is-primary">{{server.name}}</span>
                         </router-link>
                     </div>
 
