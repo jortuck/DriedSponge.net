@@ -30,62 +30,44 @@ $mc-colors: "darkblue" #0000AA #00002A,
     font-weight: normal;
 }
 
-.server-name {
-    color: white;
-}
-
 .ping {
     float: right;
+    &.is-online {
+        @extend .mc-color-white;
+        background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAACXBIWXMAAAsSAAALEgHS3X78AAAATUlEQVR4nGP4//8/AzUxVQ0bnAYy/Ff8z/Bf8f/gMRDTAAifoZ0fguluIGED6G0g6QbQ2kDKXUQvA8k2gOYGwr0KFaCUTzsDqYUHv4EAXEr1nnx+P+4AAAAASUVORK5CYII=) top right no-repeat;
+        padding: 0 24px 0 0;
+    }
+    &.is-offline {
+        @extend .mc-color-darkred;
+    }
+
 }
 
-.ping.is-online {
-    color: #AAA;
-    float: right;
-    background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAACXBIWXMAAAsSAAALEgHS3X78AAAATUlEQVR4nGP4//8/AzUxVQ0bnAYy/Ff8z/Bf8f/gMRDTAAifoZ0fguluIGED6G0g6QbQ2kDKXUQvA8k2gOYGwr0KFaCUTzsDqYUHv4EAXEr1nnx+P+4AAAAASUVORK5CYII=) top right no-repeat;
-    padding: 0 24px 0 0;
-}
-
-.ping.is-offline {
-    color: #AA0000;
-}
-
-select.mc-select {
+%mc-input-props{
+    @extend .mc-text;
+    @extend .mc-color-gray;
     border-radius: 0 !important;
     background-color: black;
     border: 2px solid #A0A0A0;
-    color: #AAAAAA !important;
-    text-shadow: #202020 2px 2px;
-    text-align: center;
-    font-family: 'minecraftiaregular', 'Roboto', sans-serif !important;
-
-    &:hover {
+    &:focus{
         border: 2px solid white;
-        color: #A8A8A8 !important;
     }
+}
 
+select.mc-select {
+    @extend %mc-input-props;
 }
 
 input.mc-input {
-    font-family: 'minecraftiaregular', 'Roboto', sans-serif !important;
-    background-color: #000;
-    color: #A8A8A8;
-    text-shadow: #202020 2px 2px;
-    border-radius: 0;
-    border: 2px solid #A0A0A0;
-
-    &:focus {
-        border: 2px solid white;
-    }
-
+    @extend %mc-input-props;
     &::placeholder {
-        color: #AAAAAA;
+        @extend .mc-color-gray;
     }
 }
 
 .mc-button {
-    font-family: 'minecraftiaregular', 'Roboto', sans-serif !important;
-    text-shadow: #3E3E3E 2px 2px;
-    color: #FCFCFC;
+    @extend .mc-text;
+    @extend .mc-color-white;
     border-radius: 0;
     background-color: #707070;
     border: 2px solid black;
@@ -93,20 +75,18 @@ input.mc-input {
     padding-bottom: 1px;
 
     &:hover {
-        color: #AAAAAA;
+        @extend .mc-color-white;
         border: 2px solid white;
     }
 }
 
 .mc-table.table {
-    font-family: 'minecraftiaregular', 'Roboto', sans-serif !important;
-    text-shadow: #3E3E3E 2px 2px;
+    @extend .mc-text;
+    @extend .mc-color-white;
     background-color: rgba(0, 0, 0, 0);
-    color: white;
 
     thead th {
-        text-shadow: #3E3E3E 2px 2px;
-        color: white;
+        @extend .mc-color-white;
     }
 
     tbody tr td {
@@ -114,28 +94,22 @@ input.mc-input {
     }
 
     &.is-hoverable tbody tr:not(.is-selected):hover {
-        @extend .mc-color-aqua;
+        @extend .mc-color-gold;
         background-color: rgba(0, 0, 0, 0);
     }
 
     &.is-striped tbody tr:not(.is-selected):nth-child(even) {
         background-color: rgba(0, 0, 0, 0);
-        color: #AAAAAA;
+        @extend .mc-color-gray;
         &:hover {
             background-color: rgba(0, 0, 0, 0);
-            @extend .mc-color-aqua;
+            @extend .mc-color-gold;
         }
     }
 }
 
 .mc-label {
     @extend .mc-text;
-    text-shadow: #3E3E3E 2px 2px;
-    color: white;
+    @extend .mc-color-white;
     font-size: 16px;
 }
-
-
-
-
-

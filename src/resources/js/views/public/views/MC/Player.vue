@@ -9,11 +9,11 @@
     <div v-else class="container">
         <div class="box mc-server" data-aos="fade-in">
 
-            <h1 class="title mc-text has-text-warning mb-5 has-text-centered is-3 is-size-4-mobile">
+            <h1 class="title mc-text mc-color-gold mb-5 has-text-centered is-3 is-size-4-mobile">
                 {{ player.username }}
             </h1>
             <div class="container">
-                <h2 class="subtitle is-5 mc-text has-text-white has-text-centered" v-if="player.servers.length !== 0">Servers Played
+                <h2 class="subtitle is-5 mc-text mc-color-white has-text-centered" v-if="player.servers.length !== 0">Servers Played
                     On:</h2>
                 <div class="tags mc-text is-centered" v-if="player.servers.length !== 0">
                     <router-link :to="{'name':'mc-server','params':{'slug':server.slug}}"
@@ -61,11 +61,14 @@
                         </tbody>
                     </table>
                 </div>
-                <p class="subtitle has-text-white has-text-danger mc-text is-5 has-text-centered" v-else>There appears to be no
+                <p class="subtitle mc-text is-5 has-text-centered mc-color-darkred" v-else>
+                    There appears to be no
                     statistical data on this player yet!<br></p>
 
-                <p class="subtitle has-text-white has-text-centered mc-text is-6">* Stats are updated every time the
-                    player disconnects from the server *</p>
+                <p class="subtitle has-text-centered mc-text is-6 mc-color-gray">
+                    * Stats are updated every time the
+                    player disconnects from the server *
+                </p>
             </div>
         </div>
     </div>

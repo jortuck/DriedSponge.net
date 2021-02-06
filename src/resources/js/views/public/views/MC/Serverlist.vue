@@ -9,7 +9,7 @@
         <div class="columns is-multiline is-centered">
             <div class="column is-6" v-for="server in servers" :key="server.name" data-aos="fade-in">
                 <div class="box mc-server cursor-pointer" v-if="server.online" @click="goto(server.slug)">
-                    <h1 class="title server-name is-5 mc-text is-size-6-mobile">{{ server.name }}<span
+                    <h1 class="title is-5 mc-text  mc-color-white is-size-6-mobile">{{ server.name }}<span
                         class="ping is-online is-size-6-mobile">{{ server.status.players.online }}/{{ server.status.players.max }}</span>
                     </h1>
                     <h2  v-if="server.status.description.text">
@@ -17,10 +17,8 @@
                     </h2>
                 </div>
                 <div class="box mc-server cursor-pointer" v-else @click="goto(server.slug)">
-                    <p class="title server-name is-5 mc-text is-size-6-mobile">{{ server.name }}<span class="ping-offline"></span></p>
-                    <span class="subtitle is-5 mc-text is-size-6-mobile">
-                        <span style="color: #AA0000">Server Offline</span>
-                    </span>
+                    <p class="title is-5 mc-text  mc-color-white is-size-6-mobile">{{ server.name }}<span class="ping-offline"></span></p>
+                    <span class="subtitle is-5 mc-text mc-color-darkred is-size-6-mobile">Server Offline</span>
                 </div>
             </div>
         </div>

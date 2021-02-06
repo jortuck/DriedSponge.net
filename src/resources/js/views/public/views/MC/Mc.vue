@@ -1,5 +1,5 @@
 <template>
-    <Pagehead>Minecraft</Pagehead>
+    <Pagehead customClass="mc-text mc-color-white" >Minecraft</Pagehead>
     <br>
     <div class="section">
         <div class="container">

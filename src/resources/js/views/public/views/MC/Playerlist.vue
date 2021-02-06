@@ -3,13 +3,13 @@
         <Icon class="has-text-white is-large" icon="fas fa-spinner fa-spin fa-3x"/>
     </div>
     <div v-else-if="players.length === 0" class="has-text-centered">
-        <h1 class="title is-3 my-4 mc-text has-text-white">No one has played...</h1>
+        <h1 class="title is-3 my-4 mc-text mc-color-white">No one has played...</h1>
     </div>
     <div class="container" v-else>
         <div class="columns is-multiline is-centered has-text-centered" >
             <div class="column is-4" v-for="player in players" :key="player.username" data-aos="fade-in">
                 <div class="box mc-server">
-                    <h1 class="title is-4 mc-text mb-6 has-text-warning is-size-5-mobile">{{player.username }}</h1>
+                    <h1 class="title is-4 mb-6 mc-text mc-color-gold is-size-5-mobile">{{player.username }}</h1>
 
                     <h2 class="subtitle is-5 mc-text has-text-white is-size-6-mobile" v-if="player.servers.length !== 0">Servers Played On:</h2>
 
@@ -19,7 +19,7 @@
                         </router-link>
                     </div>
 
-                    <h2 class="subtitle is-5 mc-text has-text-danger" v-else>No info on this player yet!</h2>
+                    <h2 class="subtitle is-5 mc-text mc-color-darkred" v-else>No info on this player yet!</h2>
                     <router-link class="button mc-button" :to="{'name':'mc-player','params':{'slug':player.username}}" >Stats</router-link>
 
                 </div>
