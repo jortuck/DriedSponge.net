@@ -20,7 +20,7 @@
                     </div>
 
                     <h2 class="subtitle is-5 mc-text has-text-danger" v-else>No info on this player yet!</h2>
-                    <router-link class="mc-text" :to="{'name':'mc-player','params':{'slug':player.username}}" >Stats</router-link>
+                    <router-link class="button mc-button" :to="{'name':'mc-player','params':{'slug':player.username}}" >Stats</router-link>
 
                 </div>
             </div>
