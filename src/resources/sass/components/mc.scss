@@ -1,7 +1,7 @@
 $mc-colors: "darkblue" #0000AA #00002A,
 "darkgreen" #00AA00 #002A00,
 "darkaqua" #00AAAA #002A2A,
-"darkred" #AA0000 #AA0000,
+"darkred" #AA0000 #2A0000,
 "darkpurple" #AA00AA #2A002A,
 "gold" #FFAA00 #2A2A00,
 "gray" #AAAAAA #2A2A2A,
@@ -10,7 +10,8 @@ $mc-colors: "darkblue" #0000AA #00002A,
 "green" #55FF55 #153F15,
 "aqua" #55FFFF #153F3F,
 "red" #FF5555 #3F1515,
-"yellow" #FFFF55 #3F3F15;
+"yellow" #FFFF55 #3F3F3F,
+"white" #FFFFFF #3F3F15;
 
 @each $name, $color, $bg in $mc-colors {
     .mc-color-#{$name} {
