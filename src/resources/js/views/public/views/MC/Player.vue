@@ -27,7 +27,7 @@
                 <div class="columns is-centered" v-if="stats.length !== 0">
                     <div class="column is-8 is-full-mobile">
                         <div class="field">
-                            <label class="label">Search Stats</label>
+                            <label class="label mc-label">Search Stats</label>
                             <div class="control ">
                                 <input class="input mc-input" type="text" placeholder="Enter Query..." v-model="query">
                             </div>
@@ -35,7 +35,7 @@
                     </div>
                     <div class="column is-4 is-full-mobile">
                         <div class="field">
-                            <label class="label">Select Server</label>
+                            <label class="label mc-label">Select Server</label>
                             <div class="control" v-if="stats.length !== 0">
                                 <div class="select is-fullwidth" :class="{'is-loading':loadingStats}">
                                     <select class="mc-select" @change="fetchStats($event.target.value)">
@@ -49,7 +49,7 @@
                     </div>
                 </div>
 
-                <div class="table-container"  v-if="stats.length !== 0">
+                <div class="table-container mb-6"  v-if="stats.length !== 0">
                     <table class="table is-fullwidth is-hoverable mc-table is-striped">
                         <tbody>
                             <template v-for="(key, value) in currstats" >
@@ -61,8 +61,9 @@
                         </tbody>
                     </table>
                 </div>
-                <p class="subtitle has-text-white has-text-danger mc-text is-5" v-else>There appears to be no
+                <p class="subtitle has-text-white has-text-danger mc-text is-5 has-text-centered" v-else>There appears to be no
                     statistical data on this player yet!<br></p>
+
                 <p class="subtitle has-text-white has-text-centered mc-text is-6">* Stats are updated every time the
                     player disconnects from the server *</p>
             </div>
