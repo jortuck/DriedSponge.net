@@ -3,13 +3,13 @@
         <Icon class="has-text-white is-large" icon="fas fa-spinner fa-spin fa-3x"/>
     </div>
     <div v-else-if="players.length === 0" class="has-text-centered">
-        <h1 class="title is-3 my-4 mc-text has-text-white">No one has played...</h1>
+        <h1 class="title is-3 my-4 mc-text mc-color-white">No one has played...</h1>
     </div>
     <div class="container" v-else>
         <div class="columns is-multiline is-centered has-text-centered" >
             <div class="column is-4" v-for="player in players" :key="player.username" data-aos="fade-in">
                 <div class="box mc-server">
-                    <h1 class="title is-4 mc-text mb-6 has-text-warning is-size-5-mobile">{{player.username }}</h1>
+                    <h1 class="title is-4 mb-6 mc-text mc-color-gold is-size-5-mobile">{{player.username }}</h1>
 
                     <h2 class="subtitle is-5 mc-text has-text-white is-size-6-mobile" v-if="player.servers.length !== 0">Servers Played On:</h2>
 
@@ -19,16 +19,20 @@
                         </router-link>
                     </div>
 
-                    <h2 class="subtitle is-5 mc-text has-text-danger" v-else>No info on this player yet!</h2>
-                    <router-link class="mc-text" :to="{'name':'mc-player','params':{'slug':player.username}}" >Stats</router-link>
+                    <h2 class="subtitle is-5 mc-text mc-color-darkred" v-else>No info on this player yet!</h2>
+                    <router-link class="button mc-button" :to="{'name':'mc-player','params':{'slug':player.username}}" >Stats</router-link>
 
                 </div>
             </div>
         </div>
     </div>
     <br>
-    <div class="has-text-centered">
-        <button class="button has-text-centered mc-text is-primary my-1" @click="this.fetch">Refresh</button>
+    <div class="has-text-centered"  data-aos="fade-in">
+        <button
+            class="button has-text-centered mc-text is-primary my-1"
+            @click="fetch" :class="{'is-loading':refreshing}">
+            Refresh
+        </button>
     </div>
 </template>
 <script>
@@ -42,7 +46,8 @@ export default {
     data() {
         return {
             players: {},
-            loading: true
+            loading: true,
+            refreshing: false,
         }
     },
     beforeMount() {
@@ -53,12 +58,15 @@ export default {
             this.$router.push({name:"mc-server",params:{slug}})
         },
         fetch(){
+            this.refreshing = true;
             axios.get("/api/mc/players").then(res => {
                 this.players = res.data.data;
                 this.loading = false;
+                this.refreshing = false;
             })
             .catch(error=>{
                 this.loading = false;
+                this.refreshing = false;
                 toast("toast-is-danger","An error occurued on the server, please try again later!")
             })
         }

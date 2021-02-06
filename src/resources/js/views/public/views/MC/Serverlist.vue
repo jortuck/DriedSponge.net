@@ -9,7 +9,7 @@
         <div class="columns is-multiline is-centered">
             <div class="column is-6" v-for="server in servers" :key="server.name" data-aos="fade-in">
                 <div class="box mc-server cursor-pointer" v-if="server.online" @click="goto(server.slug)">
-                    <h1 class="title server-name is-5 mc-text is-size-6-mobile">{{ server.name }}<span
+                    <h1 class="title is-5 mc-text  mc-color-white is-size-6-mobile">{{ server.name }}<span
                         class="ping is-online is-size-6-mobile">{{ server.status.players.online }}/{{ server.status.players.max }}</span>
                     </h1>
                     <h2  v-if="server.status.description.text">
@@ -17,18 +17,18 @@
                     </h2>
                 </div>
                 <div class="box mc-server cursor-pointer" v-else @click="goto(server.slug)">
-                    <p class="title server-name is-5 mc-text is-size-6-mobile">{{ server.name }}<span class="ping-offline"></span></p>
-                    <span class="subtitle is-5 mc-text is-size-6-mobile">
-                        <span style="color: #AA0000">Server Offline</span>
-                    </span>
+                    <p class="title is-5 mc-text  mc-color-white is-size-6-mobile">{{ server.name }}<span class="ping-offline"></span></p>
+                    <span class="subtitle is-5 mc-text mc-color-darkred is-size-6-mobile">Server Offline</span>
                 </div>
             </div>
         </div>
     </div>
     <br>
-    <div class="has-text-centered">
-        <button data-aos="fade-in" data-aos-delay="300" class="button has-text-centered mc-text is-primary my-1"
-                @click="this.fetch">Refresh
+    <div class="has-text-centered"  data-aos="fade-in">
+        <button
+                class="button has-text-centered mc-text is-primary my-1"
+                @click="fetch" :class="{'is-loading':refreshing}">
+            Refresh
         </button>
     </div>
 </template>
@@ -43,7 +43,8 @@ export default {
     data() {
         return {
             servers: {},
-            loading: true
+            loading: true,
+            refreshing: false,
         }
     },
     beforeMount() {
@@ -54,14 +55,17 @@ export default {
             this.$router.push({name: "mc-server", params: {slug}})
         },
         fetch() {
+            this.refreshing = true
             axios.get("/api/mc/servers").then(res => {
                 this.servers = res.data.data;
                 this.loading = false;
+                this.refreshing = false
             })
-                .catch(error => {
-                    this.loading = false;
-                    toast("toast-is-danger", "An error occurued on the server, please try again later!")
-                })
+            .catch(error => {
+                this.loading = false;
+                this.refreshing = false
+                toast("toast-is-danger", "An error occurued on the server, please try again later!")
+            })
         }
     }
 }
