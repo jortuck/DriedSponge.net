@@ -116,10 +116,9 @@ class McClient extends Controller
             return response()->json(["error"=>"Not found"],404);
         }
 
-        $stats = $player->stats()->select('user_id','server_id')->with('server:id,name,slug')->get();
+        $stats = $player->stats()->select('user_id','server_id')->with('server:id,name,slug')->get()->whereNotNull('server');
 
-
-        $player->stats = $stats;
+        $player->stats = $stats->values();
 
         return response()->json(["success" => "true", "data" => $player]);
     }

@@ -87,7 +87,9 @@ export default {
             this.loading = false
             this.player = res.data.data
             this.stats = res.data.data.stats;
-            this.fetchStats(res.data.data.stats[0].server.slug)
+            if(this.stats[0].server.slug){
+                this.fetchStats(this.stats[0].server.slug);
+            }
         })
             .catch(err => {
                 if (err.response) {
@@ -104,7 +106,8 @@ export default {
     },
     methods: {
         fetchStats(server) {
-            if (!this.notfound) {
+
+            if (!this.notfound && this.stats.length > 0) {
                 this.loadingStats = true;
                 axios.get("/api/mc/players/" + this.$route.params.slug + "/stats/" + server).then(res => {
                     this.currstats = res.data.data.stats
