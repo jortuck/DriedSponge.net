@@ -3,9 +3,9 @@
         <h1 class="title mb-6">No Data Found</h1>
     </div>
     <div style="display: inherit" v-else>
-        <div class="columns is-multiline is-centered">
+        <div class="columns is-multiline is-centered" >
             <div class="column is-4" v-for="item in state.currentData" :key="item.id">
-                <div class="box">
+                <div class="box" data-aos="fade-in">
                     <p class="title">{{ item.name }} - {{item.id}}</p>
                     <div class="tags has-addons">
                         <span class="tag">{{item.ip}}:{{item.port}}</span>
