@@ -40,7 +40,7 @@
                     <Icon tooltip="JavaScript" class="is-medium mx-2" icon="fab fa-js fa-2x"/>
                     <br>
                     Full stack web development is my strongest suit. I've been developing websites for about
-                    {{ webtime.string }}. I'm skilled in many web development technologies (see icons
+                    {{ webtime }}. I'm skilled in many web development technologies (see icons
                     above). I use these skills to create optimized websites with slick user interfaces and
                     pleasant user experiences.
                 </Homecard>
@@ -67,13 +67,15 @@
 </template>
 <script>
 import Pagehead from "../../../components/includes/Pagehead";
-import session from '../../../store/session.js'
 import Icon from "../../../components/text/Icon";
 import Whitelink from "../../../components/text/Whitelink"
 import Tileancestor from "../../../components/tiles/Tileancestor";
 import Homecard from "../../../components/Home/Homecard";
 import Contactform from "../../../components/Home/Contactform";
 import tippy from "tippy.js";
+import dayjs from "dayjs"
+import relativeTime from "dayjs/plugin/relativeTime"
+
 export default {
     name: 'Home',
     components: {Pagehead, Icon, Whitelink, Tileancestor, Homecard,Contactform},
@@ -87,14 +89,8 @@ export default {
     },
     computed: {
         webtime() {
-            let efromnow = Math.floor(Date.now() / 1000) - 1567728000;
-            let years = Math.floor((efromnow) / 31536000);
-            let months = Math.floor((efromnow) / 2628288) - 12 * years;
-            return {
-                string: years + " year(s) and " + months + " month(s)",
-                months: months,
-                year: years
-            };
+            dayjs.extend(relativeTime);
+            return dayjs.unix(1567728000).fromNow(true)
         }
     },
     methods:{
