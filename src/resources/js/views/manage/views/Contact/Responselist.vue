@@ -22,7 +22,7 @@
                 <td><a :href="'mailto:'+item.Email+'?subject=Re: '+item.Subject" target="_blank">{{ item.Email }}</a>
                 </td>
                 <td>{{ truncate(item.Subject, 30) }}</td>
-                <td>{{ format(item.created_at) }}</td>
+                <td><Timestamp :diffForHumans="true" :timestamp="item.created_at"/></td>
                 <td class="has-text-centered">
                     <button @click="viewMessage(item.id)" class="button is-primary is-small mx-1"
                             :class="{'is-loading':state.modal.loading===item.id}">
@@ -93,10 +93,10 @@ import axios from "axios";
 import Icon from "../../../../components/text/Icon";
 import session from "../../../../store/session";
 import Can from "../../../../components/helpers/Can";
-
+import Timestamp from "../../../../components/text/Timestamp";
 export default {
     name: "Responselist",
-    components: {Can, Icon},
+    components: {Timestamp, Can, Icon},
     beforeMount() {
         this.fetch(this.state.page);
     },
@@ -136,10 +136,6 @@ export default {
                 .catch(error => {
                     this.httpError(error)
                 });
-        },
-        format(date) {
-            const options = {year: "numeric", month: "long", day: "numeric", hour: "numeric", minute: "numeric"}
-            return new Date(date).toLocaleDateString(undefined, options)
         },
         truncate(string, num) {
             if (string.length <= num) {
