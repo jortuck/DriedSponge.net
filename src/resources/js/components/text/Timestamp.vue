@@ -11,7 +11,7 @@ export default {
         format:{
             type: String,
             required: false,
-            default:"M/D/YYYY h:mm A"
+            default:"MMMM D, YYYY, h:mm A"
         },
         timestamp:{
             type: String,
