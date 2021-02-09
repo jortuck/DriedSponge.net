@@ -26,7 +26,7 @@
                     </a>
                     <span v-else>N/A</span>
                 </td>
-                <td class="has-text-centered">{{ format(item.created_at) }}</td>
+                <td class="has-text-centered"><Timestamp :timestamp="item.created_at" :diffForHumans="true" /></td>
                 <td class="has-text-centered">
                     <span v-if="item.onsite" class="tag is-success">Yes</span>
                     <span v-else class="tag is-danger ">No</span>
@@ -77,10 +77,11 @@ import session from "../../../../store/session";
 import Can from "../../../../components/helpers/Can";
 import Textarea from "../../../../components/form/Textarea";
 import {toast} from "../../../../components/helpers/toasts";
+import Timestamp from "../../../../components/text/Timestamp";
 
 export default {
     name: "Alertslist",
-    components: {Textarea, Can, Icon},
+    components: {Timestamp, Textarea, Can, Icon},
     beforeMount() {
         this.fetch(this.state.page);
     },
@@ -131,10 +132,6 @@ export default {
                 .catch(error => {
                     this.httpError(error)
                 });
-        },
-        format(date) {
-            const options = {year: "numeric", month: "long", day: "numeric", hour: "numeric", minute: "numeric"}
-            return new Date(date).toLocaleDateString(undefined, options)
         },
         truncate(string, num) {
             if (string.length <= num) {
