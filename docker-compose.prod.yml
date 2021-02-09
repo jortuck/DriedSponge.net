@@ -61,7 +61,7 @@ services:
             context: .
             dockerfile: ./dockerfiles/composer.dockerfile
     npm:
-        image: node:15.2.0-alpine3.10
+        image: node:current-alpine3.12
         networks:
             - dnet
         volumes:
