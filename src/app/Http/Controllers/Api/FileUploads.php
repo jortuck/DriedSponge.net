@@ -62,13 +62,13 @@ class FileUploads extends Controller
                         $upload->delete();
                         return "<script>alert('Deleted Image');window.close();</script>";
                     }
-                    return response()->setStatusCode(403);
+                    return response()->json(['error'=>'Unauthorized'],403);
                 }
-                return response()->setStatusCode(403);
+                return response()->json(['error'=>'Unauthorized'],403);
             }
             $upload->delete(); // If the file does not exist, delete the db entry and return 404
-            return response()->setStatusCode(404);
+            return response()->json(['error'=>'Not found'],404);
         }
-        return response()->setStatusCode(404);
+        return response()->json(['error'=>'Not found'],404);
     }
 }
