@@ -35,8 +35,14 @@
             </div>
         </div>
         <div class="control buttons">
-            <button class="button is-primary" :class="{'is-loading':form.loading}" type="submit">Save</button>
-            <button class="button is-danger" type="button" :class="{'is-loading':regenload}" @click="regen">Regenerate API Key</button>
+            <button class="button is-primary" :class="{'is-loading':form.loading}" type="submit">
+                <Icon icon="fa fa-save" />
+                <span>Save</span>
+            </button>
+            <button class="button is-danger" type="button" :class="{'is-loading':regenload}" @click="regen">
+                <Icon icon="fas fa-sync-alt" />
+                <span>Regenerate API Key</span>
+            </button>
         </div>
     </form>
 </template>

@@ -74,15 +74,20 @@
             <footer class="modal-card-foot">
                 <a class="button is-primary" :href="'mailto:'+state.modal.email+'?subject=Re: '+state.modal.subject"
                    target="_blank">
-                    Reply
+                    <Icon icon="fas fa-reply"/>
+                    <span>Reply</span>
                 </a>
                 <Can permission="Contact.Delete">
                     <button class="button is-danger" @click="del(state.modal.messageid)"
                             :class="{'is-loading':state.del_loading===state.modal.messageid}">
                         <Icon icon="fas fa-trash"/>
+                        <span>Delete</span>
                     </button>
                 </Can>
-                <button class="button" @click="state.modal.active = false">Close</button>
+                <button class="button" @click="state.modal.active = false">
+                    <Icon class="fas fa-times" />
+                    <span>Close</span>
+                </button>
             </footer>
         </div>
     </div>

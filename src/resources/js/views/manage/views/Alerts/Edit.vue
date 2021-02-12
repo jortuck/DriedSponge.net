@@ -19,7 +19,10 @@
             </div>
         </div>
         <div class="control">
-            <button class="button is-primary" :class="{'is-loading':form.loading}">Save</button>
+            <button class="button is-primary" :class="{'is-loading':form.loading}">
+                <Icon icon="fa fa-save" />
+                <span>Save</span>
+            </button>
         </div>
     </form>
 </template>

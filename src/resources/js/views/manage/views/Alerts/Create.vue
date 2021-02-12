@@ -18,7 +18,10 @@
             </div>
         </div>
         <div class="control">
-            <button class="button is-primary" :class="{'is-loading':form.loading}">Post</button>
+            <button class="button is-primary" :class="{'is-loading':form.loading}">
+                <Icon icon="fas fa-share-square" />
+                <span>Post</span>
+            </button>
         </div>
     </form>
 </template>
@@ -28,6 +31,7 @@ import Textarea from "../../../../components/form/Textarea";
 import axios from "axios";
 import Checkbox from "../../../../components/form/Checkbox";
 import {toast} from "../../../../components/helpers/toasts";
+import Icon from "../../../../components/text/Icon";
 
 export default {
     name: "Create",
@@ -74,7 +78,7 @@ export default {
             })
         },
     },
-    components: {Checkbox, Textinput, Textarea},
+    components: {Icon, Checkbox, Textinput, Textarea},
     data() {
         return {
             error: "Something went wrong.",

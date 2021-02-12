@@ -41,7 +41,10 @@
                         </div>
                     </div>
                     <div class="control">
-                        <button class="button is-primary" :class="{'is-loading':form.loading}">Submit</button>
+                        <button class="button is-primary" :class="{'is-loading':form.loading}">
+                            <Icon icon="far fa-paper-plane" />
+                            <span>Submit</span>
+                        </button>
                     </div>
                 </form>
             </div>
@@ -57,9 +60,10 @@ import Captcha from "../form/Captcha";
 import Tileancestor from "../tiles/Tileancestor";
 import Pagehead from "../includes/Pagehead";
 import {toast} from "../helpers/toasts"
+import Icon from "../text/Icon";
 export default {
     name: "Contactform",
-    components: {Pagehead, Textinput, Textarea, Captcha, Tileancestor},
+    components: {Icon, Pagehead, Textinput, Textarea, Captcha, Tileancestor},
     data() {
         return {
             error: "Something went wrong.",
