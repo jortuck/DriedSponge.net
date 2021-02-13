@@ -42,7 +42,7 @@
                     </div>
                     <div class="control">
                         <button class="button is-primary" :class="{'is-loading':form.loading}">
-                            <Icon icon="far fa-paper-plane" />
+                            <Icon icon="fas fa-paper-plane" />
                             <span>Submit</span>
                         </button>
                     </div>
