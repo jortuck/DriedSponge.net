@@ -47,7 +47,7 @@ class McServerController extends Controller
                 $server->slug = Str::slug($request->name);
                 $server->password = Hash::make($pass);
                 $server->save();
-                return response()->json(['success' => "The server has been added! The servers api key is <b>$pass</b>! Don't lose it!"],201);
+                return response()->json(['success' => "The server has been added! The servers api key is $pass! Don't lose it!","token"=>$pass],201);
             }
             return response()->json($validator->errors(),400);
         } else {
@@ -64,7 +64,7 @@ class McServerController extends Controller
             $mcserver = McServer::find($id);
             if($mcserver){
                 $mcserver->delete();
-                $rest = McServer::select('id','ip','port','created_at','private','name')->orderBy('created_at','desc')->paginate(10);;
+                $rest = McServer::select('id','ip','port','created_at','private','name')->orderBy('created_at','desc')->paginate(10);
                 return response()->json(['success' => true,"data"=>$rest]);
             }else{
                 return response()->json(['error' => 'Not found'],404);
@@ -136,7 +136,7 @@ class McServerController extends Controller
                 $pass = Str::random(64);
                 $server->password = Hash::make($pass);
                 $server->save();
-                return response()->json(["success"=>"The server key has been regnerated! The new key is <b>$pass</b>. Don't lose it!"]);
+                return response()->json(["success"=>"The server key has been regnerated! The new key is $pass. Don't lose it!","token"=>$pass]);
             }else{
                 return response()->json(['error' => 'Not found'],404);
             }

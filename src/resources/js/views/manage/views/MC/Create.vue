@@ -41,10 +41,10 @@
 import Textinput from "../../../../components/form/Textinput";
 import Textarea from "../../../../components/form/Textarea";
 import axios from "axios";
-import {toast} from "../../../../components/helpers/toasts";
 import Checkbox from "../../../../components/form/Checkbox";
 import Icon from "../../../../components/text/Icon";
-
+import {POSITION, useToast} from "vue-toastification";
+import Token from  "../../../../components/text/Token"
 export default {
     name: "Create",
     methods: {
@@ -64,7 +64,7 @@ export default {
             e.preventDefault();
             for (var i in this.form.fields) {
                 if (this.form.errors[i] != null && this.form.errors[i] !== "" && this.form.errors[i] !== undefined) {
-                    return toast("toast-is-danger", "You still have some errors fix on the form.")
+                    return useToast().error("Please fix the errors on the form.")
                 }
             }
             axios.post('/app/manage/mc-servers', this.form.fields).then(res => {
@@ -72,7 +72,13 @@ export default {
                 this.form.submitted = true;
                 this.form.submitted_msg = res.data['success'];
                 this.reset();
-                toast("toast-is-success", res.data['success'], -1)
+                const content = {
+                    component: Token,
+                    props:{
+                        token:  res.data['token']
+                    }
+                }
+                useToast().success(content,{timeout: 0, closeOnClick: false, draggable: false,})
             })
                 .catch(err => {
                     this.form.loading = false;
@@ -83,13 +89,13 @@ export default {
                             }
                             break
                         case 403:
-                            toast("toast-is-danger", "Permission Denied")
+                            useToast().error("Permission Denied")
                             break
                         case 401:
-                            toast("toast-is-danger", "Permission Denied (Login)")
+                            useToast().error("Permission Denied (Login)")
                             break
                         default:
-                            toast("toast-is-danger", "Something went wrong! Please try again later")
+                            useToast().error("Something went wrong! Please try again later")
                             break
                     }
                 })

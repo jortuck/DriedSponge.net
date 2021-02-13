@@ -7,11 +7,11 @@
   font-weight: normal;
   font-style: normal;
 }
-@import "~toastify-js/src/toastify.css";
 @import "bulma_vars";
 @import "~bulma/bulma.sass";
 @import "~aos/dist/aos.css";
 @import "~tippy.js/dist/tippy.css";
+@import "~vue-toastification/dist/index.css";
 @mixin for-phone-only {
   @media (max-width: 599px) {
     @content;
