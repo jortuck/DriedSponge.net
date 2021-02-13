@@ -19,18 +19,18 @@
                 <form @submit="submit">
                     <div class="columns">
                         <div class="column is-half-desktop is-full-mobile">
-                            <Textinput maxCharacters="150" v-model:val="form.fields.name" label="Name"
+                            <Textinput icon="fas fa-signature" maxCharacters="150" v-model:val="form.fields.name" label="Name"
                                        placeholder="John Doe"
                                        v-model:error="form.errors['name']" :required="true"/>
                         </div>
                         <div class="column is-half-desktop is-full-mobile">
-                            <Textinput  maxCharacters="150" v-model:val="form.fields.email" label="Email"
+                            <Textinput  icon="fas fa-envelope" maxCharacters="150" v-model:val="form.fields.email" label="Email"
                                        placeholder="email@example.com" v-model:error="form.errors['email']" :required="true"/>
                         </div>
                     </div>
                     <div class="columns">
                         <div class="column">
-                            <Textinput  maxCharacters="256" @change="removeErr('subject')" v-model:val="form.fields.subject" label="Subject"
+                            <Textinput maxCharacters="256" @change="removeErr('subject')" v-model:val="form.fields.subject" label="Subject"
                                        placeholder="Some interesting subject..." v-model:error="form.errors['subject']" :required="true"/>
                         </div>
                     </div>
