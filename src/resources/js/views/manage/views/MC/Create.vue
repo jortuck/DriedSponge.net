@@ -45,6 +45,7 @@ import Checkbox from "../../../../components/form/Checkbox";
 import Icon from "../../../../components/text/Icon";
 import {POSITION, useToast} from "vue-toastification";
 import Token from  "../../../../components/text/Token"
+import httpError from "../../../../components/helpers/httpError";
 export default {
     name: "Create",
     methods: {
@@ -75,7 +76,8 @@ export default {
                 const content = {
                     component: Token,
                     props:{
-                        token:  res.data['token']
+                        token:  res.data['token'],
+                        msg: res.data['success']
                     }
                 }
                 useToast().success(content,{timeout: 0, closeOnClick: false, draggable: false,})
@@ -88,14 +90,8 @@ export default {
                                 this.form.errors[field] = err.response.data[field][0];
                             }
                             break
-                        case 403:
-                            useToast().error("Permission Denied")
-                            break
-                        case 401:
-                            useToast().error("Permission Denied (Login)")
-                            break
                         default:
-                            useToast().error("Something went wrong! Please try again later")
+                            httpError(err)
                             break
                     }
                 })

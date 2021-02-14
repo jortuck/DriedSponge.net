@@ -8,6 +8,7 @@ use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cookie;
 use Laravel\Socialite\Facades\Socialite;
 
 class GithubLoginController extends Auth
@@ -37,8 +38,7 @@ class GithubLoginController extends Auth
                 $socialaccount = SocialAccounts::where('provider', 'github')->where('provider_id', $socialresponse->id)->first();
             }
         }
-
         Auth::login($socialaccount->user);
-        return response()->redirectTo("/");
+        return response()->redirectTo("/")->header("test","test")->withCookie(Cookie::make("test","Test")->withHttpOnly(true));
     }
 }

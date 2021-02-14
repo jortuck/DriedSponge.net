@@ -57,8 +57,8 @@ import Icon from "../../../../components/text/Icon";
 import session from "../../../../store/session";
 import Can from "../../../../components/helpers/Can";
 import Tileancestor from "../../../../components/tiles/Tileancestor";
-import {toast} from "../../../../components/helpers/toasts";
 import Timestamp from "../../../../components/text/Timestamp";
+import {POSITION, useToast} from "vue-toastification";
 
 export default {
     name: "Serverlist",
@@ -86,14 +86,14 @@ export default {
             if (error.response) {
                 switch (error.response.status) {
                     case 404:
-                        toast("toast-is-danger", "Resource not found!")
+                        useToast().error("Resource not found!")
                         break
                     case 401:
                         session.login();
                         break
                     case 403:
-                        toast("toast-is-danger", "Unauthorized!")
-                        console.log("Unauthorized")
+                        useToast().error("Unauthorized!")
+                        break;
 
                 }
             }
@@ -112,24 +112,17 @@ export default {
                     this.httpError(error)
                 });
         },
-        format(date) {
-            const options = {year: "numeric", month: "long", day: "numeric", hour: "numeric", minute: "numeric"}
-            return new Date(date).toLocaleDateString(undefined, options)
-        },
-        truncate(string, num) {
-            if (string.length <= num) {
-                return string
-            }
-            return string.slice(0, num) + '...'
-        },
         del(id) {
             this.state.del_loading = id
             axios.delete("/app/manage/mc-servers/" + id, {data: {page: this.state.page}})
                 .then(res => {
+                    console.log("teest")
                     this.state.del_loading = null
-                    this.state.currentData = res.data.data.data;
-                    console.log(res.data.data.data);
-                    toast("toast-is-success", "The server has been removed!")
+                    this.state.currentData = res.data.data;
+                    this.state.next_page_url = res.data.next_page_url
+                    this.state.prev_page_url = res.data.prev_page_url
+                    this.state.last_page = res.data.last_page
+                    useToast().success("The server has been removed!")
                 })
                 .catch(error => {
                     this.httpError(error)
