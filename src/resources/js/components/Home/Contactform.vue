@@ -59,8 +59,9 @@ import Textarea from "../form/Textarea";
 import Captcha from "../form/Captcha";
 import Tileancestor from "../tiles/Tileancestor";
 import Pagehead from "../includes/Pagehead";
-import {toast} from "../helpers/toasts"
 import Icon from "../text/Icon";
+import {useToast} from "vue-toastification";
+import httpError from "../helpers/httpError"
 export default {
     name: "Contactform",
     components: {Icon, Pagehead, Textinput, Textarea, Captcha, Tileancestor},
@@ -87,7 +88,7 @@ export default {
             e.preventDefault();
             for(var i in this.form.fields){
                 if(this.form.errors[i] != null && this.form.errors[i] !== "" && this.form.errors[i] !== undefined){
-                    return toast("toast-is-danger","You still have some errors fix on the form.")
+                    return useToast().error("You still have some errors fix on the form.")
                 }
             }
             this.form.loading = true;
@@ -105,7 +106,8 @@ export default {
                         }
                         break;
                     default:
-                        toast("toast-is-danger","Something went wrong on the server side! Plese try again later.")
+                        httpError(err)
+                        break;
                 }
             })
         },
