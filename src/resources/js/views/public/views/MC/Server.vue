@@ -42,9 +42,8 @@
 </template>
 <script>
 import axios from "axios";
-import {toast} from "../../../../components/helpers/toasts";
+import httpError from "../../../../components/helpers/httpError";
 import Icon from "../../../../components/text/Icon";
-import tippy from "tippy.js";
 
 export default {
     name: "Server",
@@ -60,7 +59,7 @@ export default {
                 this.notfound = true
             } else {
                 this.loading = false
-                toast("toast-is-danger", "Something went wrong on the server side of things, plese try again later.")
+                httpError(err)
             }
         })
 

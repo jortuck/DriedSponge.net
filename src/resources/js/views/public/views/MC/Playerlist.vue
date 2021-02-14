@@ -38,7 +38,7 @@
 <script>
 import axios from 'axios'
 import Icon from "../../../../components/text/Icon";
-import {toast} from "../../../../components/helpers/toasts";
+import {POSITION, useToast} from "vue-toastification";
 
 export default {
     name: "Playerlist",
@@ -67,7 +67,7 @@ export default {
             .catch(error=>{
                 this.loading = false;
                 this.refreshing = false;
-                toast("toast-is-danger","An error occurued on the server, please try again later!")
+                useToast().error("An error occurued on the server, please try again later!")
             })
         }
     }
