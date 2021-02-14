@@ -59,6 +59,7 @@ import Can from "../../../../components/helpers/Can";
 import Tileancestor from "../../../../components/tiles/Tileancestor";
 import Timestamp from "../../../../components/text/Timestamp";
 import {POSITION, useToast} from "vue-toastification";
+import httpError from "../../../../components/helpers/httpError";
 
 export default {
     name: "Serverlist",
@@ -85,14 +86,11 @@ export default {
             this.state.del_loading = null
             if (error.response) {
                 switch (error.response.status) {
-                    case 404:
-                        useToast().error("Resource not found!")
-                        break
                     case 401:
                         session.login();
                         break
-                    case 403:
-                        useToast().error("Unauthorized!")
+                    default:
+                        httpError(error)
                         break;
 
                 }
