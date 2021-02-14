@@ -114,7 +114,6 @@ export default {
             this.state.del_loading = id
             axios.delete("/app/manage/mc-servers/" + id, {data: {page: this.state.page}})
                 .then(res => {
-                    console.log("teest")
                     this.state.del_loading = null
                     this.state.currentData = res.data.data;
                     this.state.next_page_url = res.data.next_page_url
