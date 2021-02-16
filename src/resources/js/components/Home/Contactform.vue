@@ -1,5 +1,5 @@
 <template>
-    <Pagehead class="mb-6" sub_header="Is there something I can do for you, or do you just have a general inquiry? Fill out the form below!"><span class="has-text-primary">CONTACT</span> ME</Pagehead>
+    <Pagehead data-aos="fade-up" class="mb-6" sub_header="Is there something I can do for you, or do you just have a general inquiry? Fill out the form below!"><span class="has-text-primary">CONTACT</span> ME</Pagehead>
     <Tileancestor v-if="form.submitted" data-aos="fade-in">
         <div class="tile is-parent">
             <article class="tile is-child notification is-success has-text-centered box">
