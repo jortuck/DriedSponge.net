@@ -85,7 +85,7 @@
                     </button>
                 </Can>
                 <button class="button" @click="state.modal.active = false">
-                    <Icon class="fas fa-times" />
+                    <Icon icon="fas fa-times" />
                     <span>Close</span>
                 </button>
             </footer>
