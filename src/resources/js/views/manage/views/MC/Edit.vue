@@ -86,11 +86,9 @@ export default {
             this.form.fields = res.data
         })
         .catch(error => {
-            switch (error.response.status){
-                case 404:
-                    this.loading = false
-                    this.notfound= true
-                    break;
+            if(error.response.status === 404){
+                this.loading = false
+                this.notfound= true
             }
         })
     },

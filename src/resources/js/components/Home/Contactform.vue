@@ -98,15 +98,12 @@ export default {
             })
             .catch(err =>{
                 this.form.loading = false;
-                switch (err.response.status){
-                    case 400:
-                        for (var error in err.response.data) {
-                            this.form.errors[error] = err.response.data[error][0];
-                        }
-                        break;
-                    default:
-                        httpError(err)
-                        break;
+                if(err.response.status === 400){
+                    for (var error in err.response.data) {
+                        this.form.errors[error] = err.response.data[error][0];
+                    }
+                }else{
+                    httpError(err)
                 }
             })
         },
