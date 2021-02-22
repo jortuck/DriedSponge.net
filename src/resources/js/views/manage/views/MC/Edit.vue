@@ -141,9 +141,6 @@ export default {
                 httpError(err)
             })
         },
-        httpErr(){
-
-        }
     }
 
 
