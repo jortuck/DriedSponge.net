@@ -76,9 +76,9 @@ import Icon from "../../../../components/text/Icon";
 import session from "../../../../store/session";
 import Can from "../../../../components/helpers/Can";
 import Textarea from "../../../../components/form/Textarea";
-import {toast} from "../../../../components/helpers/toasts";
 import Timestamp from "../../../../components/text/Timestamp";
-
+import {POSITION, useToast} from "vue-toastification";
+import httpError from  "../../../../components/helpers/httpError"
 export default {
     name: "Alertslist",
     components: {Timestamp, Textarea, Can, Icon},
@@ -102,22 +102,7 @@ export default {
         httpError(error) {
             this.state.loading = false
             this.state.del_loading = null
-            if (error.response) {
-                switch (error.response.status) {
-                    case 404:
-                        toast("toast-is-danger","Toast Not Found")
-                        break
-                    case 401:
-                        session.login();
-                        break
-                    case 403:
-                        toast("toast-is-danger","Unauthorized")
-                        break;
-                    default:
-                        toast("toast-is-danger","Something went wrong on the server side of things!")
-                        break;
-                }
-            }
+            httpError(error)
         },
         fetch(page) {
             this.state.loading = true
@@ -149,7 +134,7 @@ export default {
                     this.state.next_page_url = res.data.data.next_page_url
                     this.state.prev_page_url = res.data.data.prev_page_url
                     this.state.last_page = res.data.data.last_page
-
+                    useToast().success("The alert has been deleted!")
                 })
                 .catch(error => {
                     this.httpError(error)
