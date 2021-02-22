@@ -5,7 +5,7 @@
     <div v-else-if="notfound" class="has-text-centered">
         <h1 class="title mb-6">No Alert To Edit</h1>
     </div>
-    <form @submit="submit" v-else>
+    <form @submit.prevent="submit" v-else>
         <h1 class="title mb-4">Edit {{form.fields.name}}</h1>
         <div class="columns">
             <div class="column">
@@ -99,7 +99,6 @@ export default {
             this.form.errors[thing] = "";
         },
         submit(e) {
-            e.preventDefault();
             this.form.loading = true;
             axios.put('/app/manage/mc-servers/'+ this.$route.params.id, this.form.fields).then(res => {
                 this.form.loading = false

@@ -1,5 +1,5 @@
 <template>
-    <form @submit="submit">
+    <form @submit.prevent="submit">
         <div class="columns">
             <div class="column">
                     <Textarea maxCharacters="1120" rows="5" placeholder="A nice message" label="Message"
@@ -41,7 +41,6 @@ export default {
             this.form.errors[thing] = "";
         },
         submit(e) {
-            e.preventDefault();
             for(var i in this.form.fields){
                 if(this.form.errors[i] != null && this.form.errors[i] !== "" && this.form.errors[i] !== undefined){
                     return useToast().error("You still have some errors fix on the form.")

@@ -5,7 +5,7 @@
     <div v-else-if="notfound" class="has-text-centered">
         <h1 class="title mb-6">No Alert To Edit</h1>
     </div>
-    <form @submit="submit" v-else>
+    <form @submit.prevent="submit" v-else>
         <div class="columns">
             <div class="column">
                     <Textarea rows="5" placeholder="A nice message" label="Message" :required="true"
@@ -76,7 +76,6 @@ export default {
             this.form.errors[thing] = "";
         },
         submit(e) {
-            e.preventDefault();
             for(var i in this.form.fields){
                 if(this.form.errors[i] != null && this.form.errors[i] !== "" && this.form.errors[i] !== undefined){
                     return useToast().error("You still have some errors fix on the form.")

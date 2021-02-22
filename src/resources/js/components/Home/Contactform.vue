@@ -16,7 +16,7 @@
     <Tileancestor v-else data-aos="fade-up">
         <div class="tile is-parent">
             <div class="tile is-child box">
-                <form @submit="submit">
+                <form @submit.prevent="submit">
                     <div class="columns">
                         <div class="column is-half-desktop is-full-mobile">
                             <Textinput icon="fas fa-signature" maxCharacters="150" v-model:val="form.fields.name" label="Name"
@@ -85,7 +85,6 @@ export default {
     },
     methods: {
         submit(e) {
-            e.preventDefault();
             for(var i in this.form.fields){
                 if(this.form.errors[i] != null && this.form.errors[i] !== "" && this.form.errors[i] !== undefined){
                     return useToast().error("You still have some errors fix on the form.")
