@@ -99,6 +99,8 @@ import Icon from "../../../../components/text/Icon";
 import session from "../../../../store/session";
 import Can from "../../../../components/helpers/Can";
 import Timestamp from "../../../../components/text/Timestamp";
+import {POSITION, useToast} from "vue-toastification";
+import httpError from  "../../../../components/helpers/httpError"
 export default {
     name: "Responselist",
     components: {Timestamp, Can, Icon},
@@ -138,9 +140,9 @@ export default {
                 this.state.last_page = res.data.last_page
                 this.state.loading = false
             })
-                .catch(error => {
-                    this.httpError(error)
-                });
+            .catch(error => {
+                this.httpError(error)
+            });
         },
         truncate(string, num) {
             if (string.length <= num) {
@@ -159,9 +161,9 @@ export default {
                 this.state.modal.active = true
                 this.state.modal.loading = null
             })
-                .catch(error => {
-                    this.httpError(error)
-                });
+            .catch(error => {
+                this.httpError(error)
+            });
         },
         del(id) {
             this.state.del_loading = id
@@ -170,6 +172,11 @@ export default {
                     this.state.del_loading = null
                     this.state.modal.active = false
                     this.state.currentData = res.data.data.data;
+                    this.state.page = res.data.data.current_page
+                    this.state.next_page_url = res.data.data.next_page_url
+                    this.state.prev_page_url = res.data.data.prev_page_url
+                    this.state.last_page = res.data.data.last_page
+                    useToast().success("The contact response has been deleted!")
                 })
                 .catch(error => {
                     this.httpError(error)
@@ -178,19 +185,7 @@ export default {
         httpError(error) {
             this.state.loading = false
             this.state.del_loading = null
-            if (error.response) {
-                switch (error.response.status) {
-                    case 404:
-                        console.log("Not found")
-                        break
-                    case 401:
-                        session.login();
-                        break
-                    case 403:
-                        console.log("Unauthorized")
-
-                }
-            }
+            httpError(error);
         }
     }
 }
