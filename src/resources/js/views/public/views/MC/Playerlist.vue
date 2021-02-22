@@ -20,7 +20,7 @@
                     </div>
 
                     <h2 class="subtitle is-5 mc-text mc-color-darkred" v-else>No info on this player yet!</h2>
-                    <router-link class="button mc-button" :to="{'name':'mc-player','params':{'slug':player.username}}" >Stats</router-link>
+                    <router-link class="button mc-button is-fullwidth" :to="{'name':'mc-player','params':{'slug':player.username}}" >Stats</router-link>
 
                 </div>
             </div>
@@ -29,7 +29,7 @@
     <br>
     <div class="has-text-centered"  data-aos="fade-in">
         <button
-            class="button has-text-centered mc-text is-primary my-1"
+            class="button mc-button has-text-centered my-1"
             @click="fetch" :class="{'is-loading':refreshing}">
             Refresh
         </button>

@@ -26,7 +26,7 @@
     <br>
     <div class="has-text-centered"  data-aos="fade-in">
         <button
-                class="button has-text-centered mc-text is-primary my-1"
+                class="button mc-button has-text-centered my-1"
                 @click="fetch" :class="{'is-loading':refreshing}">
             Refresh
         </button>
