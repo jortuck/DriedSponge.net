@@ -1,5 +1,5 @@
 <template>
-    <form @submit="submit" ref="form">
+    <form @submit.prevent="submit" ref="form">
         <div class="columns">
             <div class="column">
                 <Textinput :maxCharacters="100" v-model:error="form.errors['name']" label="Server Name"
@@ -62,7 +62,6 @@ export default {
             this.form.fields.private = false
         },
         submit(e) {
-            e.preventDefault();
             for (var i in this.form.fields) {
                 if (this.form.errors[i] != null && this.form.errors[i] !== "" && this.form.errors[i] !== undefined) {
                     return useToast().error("Please fix the errors on the form.")
@@ -84,15 +83,12 @@ export default {
             })
                 .catch(err => {
                     this.form.loading = false;
-                    switch (err.response.status) {
-                        case 400:
-                            for (var field in err.response.data) {
-                                this.form.errors[field] = err.response.data[field][0];
-                            }
-                            break
-                        default:
-                            httpError(err)
-                            break
+                    if(err.response.status ===400){
+                        for (var field in err.response.data) {
+                            this.form.errors[field] = err.response.data[field][0];
+                        }
+                    }else{
+                        httpError(err)
                     }
                 })
         },

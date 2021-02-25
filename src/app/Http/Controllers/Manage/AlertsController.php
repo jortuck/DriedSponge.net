@@ -56,7 +56,7 @@ class AlertsController extends Controller
             if ($validator->passes()) {
 
                 SendAlert::dispatch($request->message, $request->twitter, $request->discord, $request->website);
-                return response()->json(['success' => 'Message has been posted!'],201);
+                return response()->json(['success' => 'The alert has been queued and will be posted shortly!'],201);
             }
             return response()->json($validator->errors(),400);
         } else {

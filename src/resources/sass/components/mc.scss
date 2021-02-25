@@ -67,16 +67,26 @@ input.mc-input {
 
 .mc-button {
     @extend .mc-text;
-    @extend .mc-color-white;
     border-radius: 0;
-    background-color: #707070;
-    border: 2px solid black;
-    padding-top: 1px;
-    padding-bottom: 1px;
+    background-color: #C6C6C6;
 
-    &:hover {
-        @extend .mc-color-white;
-        border: 2px solid white;
+    border-top: 2px solid #F7F7F7;
+    border-left: 2px solid #F7F7F7;
+
+    border-right: 2px solid #656465;
+    border-bottom: 2px solid #656465;
+
+    padding-top: 3px;
+    padding-bottom: 3px;
+    color: #4C4C4C;
+    &:hover,&:active,&:focus {
+        background-color: #218306;
+        border-top: 2px solid #17CD07;
+        border-left: 2px solid #17CD07;
+        border-right: 2px solid #004E00;
+        border-bottom: 2px solid #004E00;
+        outline: 2px solid white;
+        color: white;
     }
 }
 
