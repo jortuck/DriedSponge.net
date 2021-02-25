@@ -19,7 +19,10 @@
             </div>
         </div>
         <div class="control">
-            <button class="button is-primary" :class="{'is-loading':form.loading}">Save</button>
+            <button class="button is-primary" :class="{'is-loading':form.loading}">
+                <Icon icon="fa fa-save" />
+                <span>Save</span>
+            </button>
         </div>
     </form>
 </template>
@@ -30,7 +33,9 @@ import axios from "axios";
 import session from "../../../../store/session";
 import Icon from "../../../../components/text/Icon";
 import Checkbox from "../../../../components/form/Checkbox";
-import {toast} from "../../../../components/helpers/toasts";
+import httpError from "../../../../components/helpers/httpError";
+import {POSITION, useToast} from "vue-toastification";
+
 export default {
     name: "Edit",
     components: {Checkbox, Textarea,Icon},
@@ -59,20 +64,10 @@ export default {
         })
         .catch(err => {
             this.loading = false
-            switch (err.response.status){
-                case 404:
-                    this.loading = false
-                    this.notfound= true
-                    break
-                case 403:
-                    toast("toast-is-danger","Permission Denied")
-                    break
-                case 401:
-                    toast("toast-is-danger","Permission Denied (Login)")
-                    break
-                default:
-                    toast("toast-is-danger","Something went wrong! Please try again later")
-                    break
+            if(err.response.status ===404){
+                this.notfound= true
+            }else{
+                httpError(err);
             }
         })
     },
@@ -82,30 +77,26 @@ export default {
         },
         submit(e) {
             e.preventDefault();
+            for(var i in this.form.fields){
+                if(this.form.errors[i] != null && this.form.errors[i] !== "" && this.form.errors[i] !== undefined){
+                    return useToast().error("You still have some errors fix on the form.")
+                }
+            }
             this.form.loading = true;
             axios.put('/app/manage/alerts/'+ this.$route.params.id, this.form.fields).then(res => {
                 this.form.loading = false;
                 this.form.submitted = true;
                 this.form.submitted_msg = res.data['success'];
-                toast("toast-is-success","The alert has been updated!")
+                useToast().success("The alert has been updated!")
             })
             .catch(err =>{
                 this.form.loading = false;
-                switch (err.response.status){
-                    case 400:
-                        for (var field in err.response.data) {
-                            this.form.errors[field] = err.response.data[field][0];
-                        }
-                        break
-                    case 403:
-                        toast("toast-is-danger","Permission Denied")
-                        break
-                    case 401:
-                        toast("toast-is-danger","Permission Denied (Login)")
-                        break
-                    default:
-                        toast("toast-is-danger","Something went wrong! Please try again later")
-                        break
+                if(err.response.status ===400){
+                    for (var field in err.response.data) {
+                        this.form.errors[field] = err.response.data[field][0];
+                    }
+                }else{
+                    httpError(err);
                 }
             })
         },

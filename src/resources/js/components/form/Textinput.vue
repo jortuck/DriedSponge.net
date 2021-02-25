@@ -1,7 +1,8 @@
 <template>
     <div class="field">
         <label class="label">{{ label }}</label>
-        <div class="control" :class="{'has-icons-right': error}">
+        <div class="control" :class="{'has-icons-right': error, 'has-icons-left':icon}">
+
             <input @focusout="updateValue" @input="updateValue"
                    :maxlength="maxCharacters > 0 ? maxCharacters:null"
                    :class="{'is-danger': error}"
@@ -13,13 +14,17 @@
             <span v-if="error" class="icon is-small is-right">
                 <i class="fas fa-exclamation-triangle"></i>
             </span>
+            <Icon :icon="icon" class="is-small is-left" v-if="icon" />
+
         </div>
         <p class="help is-danger is-bold" v-if="error">{{ error }}</p>
     </div>
 </template>
 <script>
+import Icon from "../text/Icon";
 export default {
     name: "Textinput",
+    components: {Icon},
     props: {
         label: {
             required: true,
@@ -50,6 +55,10 @@ export default {
             required: false,
             default:false
         },
+        icon:{
+            type: String,
+            required: false
+        }
 
     },
     emits: ['update:val','update:error','update:invalid'],

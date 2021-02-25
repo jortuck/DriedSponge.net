@@ -10,3 +10,13 @@
     background: none !important;
     box-shadow: none !important;
 }
+
+.Vue-Toastification__toast--error {
+    background-color: $danger;
+}
+.Vue-Toastification__toast--success {
+    background-color: $success;
+}
+.Vue-Toastification__toast--info {
+    background-color: $primary;
+}

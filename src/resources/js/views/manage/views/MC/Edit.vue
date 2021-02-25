@@ -35,8 +35,14 @@
             </div>
         </div>
         <div class="control buttons">
-            <button class="button is-primary" :class="{'is-loading':form.loading}" type="submit">Save</button>
-            <button class="button is-danger" type="button" :class="{'is-loading':regenload}" @click="regen">Regenerate API Key</button>
+            <button class="button is-primary" :class="{'is-loading':form.loading}" type="submit">
+                <Icon icon="fa fa-save" />
+                <span>Save</span>
+            </button>
+            <button class="button is-danger" type="button" :class="{'is-loading':regenload}" @click="regen">
+                <Icon icon="fas fa-sync-alt" />
+                <span>Regenerate API Key</span>
+            </button>
         </div>
     </form>
 </template>
@@ -44,11 +50,12 @@
 <script>
 import Textarea from "../../../../components/form/Textarea";
 import axios from "axios";
-import session from "../../../../store/session";
 import Icon from "../../../../components/text/Icon";
 import Textinput from "../../../../components/form/Textinput";
 import Checkbox from "../../../../components/form/Checkbox";
-import {toast} from  "../../../../components/helpers/toasts"
+import {useToast} from "vue-toastification";
+import httpError from "../../../../components/helpers/httpError"
+import Token from "../../../../components/text/Token";
 export default {
     name: "Edit",
     components: {Checkbox, Textinput, Textarea,Icon},
@@ -97,8 +104,7 @@ export default {
             axios.put('/app/manage/mc-servers/'+ this.$route.params.id, this.form.fields).then(res => {
                 this.form.loading = false
                 this.form.submitted = true;
-                this.form.submitted_msg = res.data['success'];
-                toast("toast-is-success",res.data['success'])
+                useToast().success(res.data['success'])
             })
             .catch(err=>{
                 this.form.loading = false
@@ -109,16 +115,10 @@ export default {
                         }
                         break;
                     case 404:
-                        toast("toast-is-danger","The resource you are trying to edit does not exist")
-                        break;
-                    case 403:
-                        toast("toast-is-danger","Unauthorized")
-                        break;
-                    case 401:
-                        toast("toast-is-danger","Unauthenticated")
+                        useToast().error("The resource you are trying to edit does not exist")
                         break;
                     default:
-                        toast("toast-is-danger","Something went wrong on the server side of things! Plese try again later.")
+                        httpError(err)
                         break;
                 }
             })
@@ -126,27 +126,21 @@ export default {
         regen(){
             this.regenload=true;
             axios.patch('/app/manage/mc-servers/'+this.$route.params.id+'/key').then(res =>{
-                toast("toast-is-success",res.data['success'],0)
+                const content = {
+                    component: Token,
+                    props:{
+                        token:  res.data['token'],
+                        msg: res.data['success']
+                    }
+                }
+                useToast().success(content,{timeout: 0, closeOnClick: false, draggable: false,})
                 this.regenload=false;
             })
             .catch(err=>{
                 this.regenload=false;
-                switch (err.response.status){
-                    case 401:
-                        toast("toast-is-danger","Unauthenticated")
-                        break;
-                    case 403:
-                        toast("toast-is-danger","Unauthorized")
-                        break;
-                    case 404:
-                        toast("toast-is-danger","The resource you are trying to edit does not exist")
-                        break;
-                    default:
-                        toast("toast-is-danger","Something went wrong on the server side of things! Plese try again later.")
-                        break;
-                }
+                httpError(err)
             })
-        }
+        },
     }
 
 

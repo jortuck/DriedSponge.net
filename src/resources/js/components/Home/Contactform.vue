@@ -1,5 +1,5 @@
 <template>
-    <Pagehead class="mb-6" sub_header="Is there something I can do for you, or do you just have a general inquiry? Fill out the form below!"><span class="has-text-primary">CONTACT</span> ME</Pagehead>
+    <Pagehead data-aos="fade-up" class="mb-6" sub_header="Is there something I can do for you, or do you just have a general inquiry? Fill out the form below!"><span class="has-text-primary">CONTACT</span> ME</Pagehead>
     <Tileancestor v-if="form.submitted" data-aos="fade-in">
         <div class="tile is-parent">
             <article class="tile is-child notification is-success has-text-centered box">
@@ -19,18 +19,18 @@
                 <form @submit="submit">
                     <div class="columns">
                         <div class="column is-half-desktop is-full-mobile">
-                            <Textinput maxCharacters="150" v-model:val="form.fields.name" label="Name"
+                            <Textinput icon="fas fa-signature" maxCharacters="150" v-model:val="form.fields.name" label="Name"
                                        placeholder="John Doe"
                                        v-model:error="form.errors['name']" :required="true"/>
                         </div>
                         <div class="column is-half-desktop is-full-mobile">
-                            <Textinput  maxCharacters="150" v-model:val="form.fields.email" label="Email"
+                            <Textinput  icon="fas fa-envelope" maxCharacters="150" v-model:val="form.fields.email" label="Email"
                                        placeholder="email@example.com" v-model:error="form.errors['email']" :required="true"/>
                         </div>
                     </div>
                     <div class="columns">
                         <div class="column">
-                            <Textinput  maxCharacters="256" @change="removeErr('subject')" v-model:val="form.fields.subject" label="Subject"
+                            <Textinput maxCharacters="256" @change="removeErr('subject')" v-model:val="form.fields.subject" label="Subject"
                                        placeholder="Some interesting subject..." v-model:error="form.errors['subject']" :required="true"/>
                         </div>
                     </div>
@@ -41,7 +41,10 @@
                         </div>
                     </div>
                     <div class="control">
-                        <button class="button is-primary" :class="{'is-loading':form.loading}">Submit</button>
+                        <button class="button is-primary" :class="{'is-loading':form.loading}">
+                            <Icon icon="fas fa-paper-plane" />
+                            <span>Submit</span>
+                        </button>
                     </div>
                 </form>
             </div>
@@ -56,10 +59,12 @@ import Textarea from "../form/Textarea";
 import Captcha from "../form/Captcha";
 import Tileancestor from "../tiles/Tileancestor";
 import Pagehead from "../includes/Pagehead";
-import {toast} from "../helpers/toasts"
+import Icon from "../text/Icon";
+import {useToast} from "vue-toastification";
+import httpError from "../helpers/httpError"
 export default {
     name: "Contactform",
-    components: {Pagehead, Textinput, Textarea, Captcha, Tileancestor},
+    components: {Icon, Pagehead, Textinput, Textarea, Captcha, Tileancestor},
     data() {
         return {
             error: "Something went wrong.",
@@ -83,7 +88,7 @@ export default {
             e.preventDefault();
             for(var i in this.form.fields){
                 if(this.form.errors[i] != null && this.form.errors[i] !== "" && this.form.errors[i] !== undefined){
-                    return toast("toast-is-danger","You still have some errors fix on the form.")
+                    return useToast().error("You still have some errors fix on the form.")
                 }
             }
             this.form.loading = true;
@@ -101,7 +106,8 @@ export default {
                         }
                         break;
                     default:
-                        toast("toast-is-danger","Something went wrong on the server side! Plese try again later.")
+                        httpError(err)
+                        break;
                 }
             })
         },

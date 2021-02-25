@@ -75,9 +75,10 @@
 </template>
 <script>
 import axios from "axios";
-import {toast} from "../../../../components/helpers/toasts";
+import httpError from "../../../../components/helpers/httpError";
 import Icon from "../../../../components/text/Icon";
 import tippy from "tippy.js";
+import {POSITION, useToast} from "vue-toastification";
 
 export default {
     name: "Player",
@@ -98,7 +99,7 @@ export default {
                         this.notfound = true
                     } else {
                         this.loading = false
-                        toast("toast-is-danger", "Something went wrong on the server side of things, plese try again later.")
+                        httpError(err)
                     }
                 }
             })
@@ -118,10 +119,10 @@ export default {
                         this.loadingStats = false;
                         switch (err.response.status) {
                             case 404:
-                                toast("toast-is-danger", "No stats found for this server")
+                                useToast().error("No stats found for this server")
                                 break;
                             default:
-                                toast("toast-is-danger", "Something went wrong on the server side of things, plese try again later.")
+                                httpError(err)
                                 break;
                         }
                     })

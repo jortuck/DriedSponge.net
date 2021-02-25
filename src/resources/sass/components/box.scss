@@ -1,0 +1,13 @@
+.box{
+    &.is-danger{
+        border-bottom: 5px solid $danger;
+    }
+
+    &.is-primary{
+        border-bottom: 5px solid $primary;
+    }
+
+    &.is-success{
+        border-bottom: 5px solid $success;
+    }
+}
