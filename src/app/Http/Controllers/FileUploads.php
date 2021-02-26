@@ -20,7 +20,8 @@ class FileUploads extends Controller
                 if($request->get('download')){
                     return Storage::download($path);
                 }else{
-                    return response($disk, 200)->header('Content-Type', $type);
+                    //return Storage::response($path);
+                    return response($disk, 200)->header('Content-Type', $type)->header("Content-Length",Storage::size($path));
                 }
             }else{
                 $file->delete();
