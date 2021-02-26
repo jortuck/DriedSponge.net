@@ -30,6 +30,7 @@ Route::get('/logout', function (){
 });
 
 Route::prefix('app')->group(function () {
+
     Route::prefix('login')->group(function () {
         Route::get('/steam',function (){
             return Socialite::driver('steam')->redirect(); // Steam Login
