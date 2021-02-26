@@ -13,13 +13,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::domain(config('extra.image_domain'))->group(function () {
-    Route::middleware('cache.headers:public;max_age=2628000;etag')->group(function () {
-        Route::get('/file/{name}', 'FileUploads@loadFile')->name('upload.load-file');
-    });
     Route::get('/{uuid}', 'FileUploads@loadView')->name('upload.load-view');
-    Route::get('/g/{uuid}', function ($uuid){
-        return response()->redirectTo(\route('upload.load-view',["uuid"=>$uuid]),301);
-    });
+    Route::permanentRedirect('/g/{uuid}', "/{uuid}");
 });
 
 Route::post('/logout', function (){
