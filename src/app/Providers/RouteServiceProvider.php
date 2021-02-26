@@ -44,8 +44,10 @@ class RouteServiceProvider extends ServiceProvider
     {
         $this->mapApiRoutes();
 
-        $this->mapWebRoutes();
 
+
+        $this->mapNoWebRoutes();
+        $this->mapWebRoutes();
         //
     }
 
@@ -76,5 +78,12 @@ class RouteServiceProvider extends ServiceProvider
             ->middleware('api')
             ->namespace($this->namespace)
             ->group(base_path('routes/api.php'));
+    }
+
+    protected function mapNoWebRoutes()
+    {
+        Route::middleware('cache.headers:public;max_age=2628000;etag')
+            ->namespace($this->namespace)
+            ->group(base_path('routes/noweb.php'));
     }
 }
