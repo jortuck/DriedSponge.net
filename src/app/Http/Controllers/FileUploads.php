@@ -20,7 +20,7 @@ class FileUploads extends Controller
                 if($request->get('download')){
                     return Storage::download($path);
                 }else{
-                    return response($disk, 200)->header('Content-Type', $type);
+                    return response($disk, 200)->header('Content-Type', $type)->setPublic();
                 }
             }else{
                 $file->delete();
@@ -31,7 +31,7 @@ class FileUploads extends Controller
     public function loadView(Request $request, $uuid){
         $file = FileUpload::where("uuid", $uuid)->first();
         if ($file) {
-            $path = $file->private ? "/uploads/" . $file->type . "/" . $file->name : "/public/uploads/" . $file->type . "/" . $file->name;
+            $path = "/uploads/" . $file->type . "/" . $file->name;
             if(Storage::exists($path)){
                 $disk = Storage::get($path);
                 $type = Storage::mimeType($path);
