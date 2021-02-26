@@ -38,11 +38,11 @@
 
                         @if(Str::contains($mimeType,'video'))
                             <video class="is-align-self-center" controls>
-                                <source src="{{$rawUrl}}" type="{{$mimeType}}">
+                                <source src="{{route('upload.load-file',$uuid)}}" type="{{$mimeType}}">
                             </video>
                         @else
                         <a href="{{$rawUrl}}" target="_blank">
-                            <img class="is-align-self-center" src="{{$rawUrl}}">
+                            <img class="is-align-self-center" src="{{route('upload.load-file',$uuid)}}">
                         </a>
                         @endif
                 </figure>
