@@ -31,17 +31,16 @@ class FileUploads extends Controller
     public function loadView(Request $request, $uuid){
         $file = FileUpload::where("uuid", $uuid)->first();
         if ($file) {
-            $path = $file->private ? "/uploads/" . $file->type . "/" . $file->name : "/public/uploads/" . $file->type . "/" . $file->name;
+            $path = "/uploads/" . $file->type . "/" . $file->name;
             if(Storage::exists($path)){
                 $disk = Storage::get($path);
                 $type = Storage::mimeType($path);
-                $rawUrl = $file->private ? route('upload.load-file',$uuid).".".$file->type : asset("uploads/$file->type/$file->name");
                 return view('images.image',[
                     'name'=>$file->name,
                     'type'=>$file->type,
                     "uuid"=>$uuid,
                     "mimeType"=>$type,
-                    "rawUrl"=>$rawUrl,
+                    "rawUrl"=>route('upload.load-file',$uuid).".".$file->type,
                     "size"=>Storage::size($path)/1000,
                     "created"=>$file->created_at
                 ]);
