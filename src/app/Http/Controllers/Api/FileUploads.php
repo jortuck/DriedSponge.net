@@ -31,7 +31,7 @@ class FileUploads extends Controller
                         "success" => true,
                         "id" => $upload->uuid,
                         "url" => route('upload.load-view', $upload->uuid),
-                        "raw_url" => $upload->private ? route('upload.load-file',$upload->uuid).".".$upload->type : asset("uploads/$upload->type/$upload->name")
+                        "raw_url" =>route('upload.load-file',$upload->uuid).".".$upload->type
                     ];
                     if ($request->set_delete_token) {
                         $deltoken = Str::random(64);
@@ -41,7 +41,7 @@ class FileUploads extends Controller
                     }
                     $upload->save();
                     $file->storeAs(
-                        "/uploads/$extention", $upload->name, 'public'
+                        "/uploads/$extention", $upload->name
                     );
                     return response()->json($responsejson)->setStatusCode(201);
                 }
