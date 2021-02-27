@@ -116,6 +116,12 @@ const routes = [
                         meta: {can: "Projects.Create"},
                     },
                     {
+                        path: 'players',
+                        name: 'mc-manage-players',
+                        component: () => import('../views/manage/views/MC/Players'),
+                        meta: {can: "Projects.See"},
+                    },
+                    {
                         path: ':id/edit',
                         name: 'mc-edit',
                         component: () => import('../views/manage/views/MC/Edit'),

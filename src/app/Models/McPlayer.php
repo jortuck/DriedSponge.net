@@ -12,6 +12,13 @@ class McPlayer extends Model
     public $primaryKey = 'id';
     public $timestamps = true;
 
+    protected static function booted()
+    {
+        static::deleted(function ($server) {
+            $server->stats()->delete();
+        });
+    }
+
     public function servers(){
         return $this->belongsToMany(McServer::class)->withTimestamps();
     }

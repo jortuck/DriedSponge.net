@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Manage;
 
 use App\Http\Controllers\Controller;
+use App\Models\McPlayer;
 use App\Models\McServer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -137,6 +138,35 @@ class McServerController extends Controller
                 $server->password = Hash::make($pass);
                 $server->save();
                 return response()->json(["success"=>"The server key has been regnerated! Don't lose it!","token"=>$pass]);
+            }else{
+                return response()->json(['error' => 'Not found'],404);
+            }
+        }else{
+            return response()->json(['error' => 'Unauthorized'],403);
+        }
+    }
+
+    public function players(Request $request){
+        if(!\Auth::guest()){
+            if(\Auth::user()->hasPermissionTo('Projects.See')){
+                $players = McPlayer::select('id','username','uuid','created_at')->orderBy('created_at','desc')->paginate(9);
+                return response()->json($players);
+            }else{
+                return response()->json(['error' => 'Unauthorized'],403);
+            }
+        }
+        return response()->json(['error' => 'Unauthenticated'],401);
+    }
+    public function playerDelete(Request $request, $id){
+        if(\Auth::guest()){
+            return response()->json(['error' => 'Unauthenticated'],401);
+        }
+        if (\Auth::user()->hasPermissionTo('Projects.Delete')) {
+            $player = McPlayer::find($id);
+            if($player){
+                $player->delete();
+                $rest = McPlayer::select('id','username','uuid','created_at')->orderBy('created_at','desc')->paginate(9);
+                return response()->json($rest);
             }else{
                 return response()->json(['error' => 'Not found'],404);
             }
