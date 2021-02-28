@@ -15,8 +15,8 @@
                         Added <Timestamp class="is-italic" :diff-for-humans="true" :timestamp="item.created_at"/>
                     </p>
                     <div class="buttons is-centered are-small">
-                        <Can permission="Projects.Delete" :class="{'is-loading':state.del_loading===item.id}">
-                            <button @click="this.del(item.id)" class="is-danger button">
+                        <Can permission="Projects.Delete">
+                            <button @click="this.del(item.id)" class="is-danger button" :class="{'is-loading':state.del_loading===item.id}">
                                 <Icon icon="fas fa-trash"/>
                                 <span>Delete</span>
                             </button>

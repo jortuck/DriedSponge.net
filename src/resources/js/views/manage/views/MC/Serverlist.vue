@@ -19,8 +19,8 @@
                                 <span>Edit</span>
                             </router-link>
                         </Can>
-                        <Can permission="Projects.Delete" :class="{'is-loading':state.del_loading===item.id}">
-                            <button @click="this.del(item.id)" class="is-danger button">
+                        <Can permission="Projects.Delete" >
+                            <button @click="this.del(item.id)" class="is-danger button" :class="{'is-loading':state.del_loading===item.id}">
                                 <Icon icon="fas fa-trash"/>
                                 <span>Delete</span>
                             </button>
