@@ -36,51 +36,45 @@
                 <br>
                 <figure class="is-flex is-justify-content-center">
 
-                        @if(Str::contains($mimeType,'video'))
-                            <video class="is-align-self-center" controls>
-                                <source src="{{$rawUrl}}" type="{{$mimeType}}">
-                            </video>
-                        @else
+                    @if(Str::contains($mimeType,'video'))
+                        <video class="is-align-self-center" controls>
+                            <source src="{{$rawUrl}}" type="{{$mimeType}}">
+                        </video>
+                    @else
                         <a href="{{$rawUrl}}" target="_blank">
                             <img class="is-align-self-center" src="{{$rawUrl}}">
                         </a>
-                        @endif
+                    @endif
                 </figure>
                 <br>
                 <div class="container-sm">
-                    <div class="field has-addons is-justify-content-center">
-                        <p class="control">
-                            <button onclick="Copy('{{url()->current()}}')" class="button is-light is-outlined">
+                    <p class="buttons has-addons is-justify-content-center">
+                        <button onclick="Copy('{{url()->current()}}')" class="button is-light is-outlined" href="#">
                             <span class="icon is-left">
                                 <i class="fas fa-copy"></i>
                             </span>
-                                <span>Copy Url</span>
-                            </button>
-                        </p>
-                        <p class="control">
-                            <button  onclick="Copy('{{$rawUrl}}')" class="button is-light is-outlined">
+                            <span>Copy Url</span>
+                        </button>
+                        <button onclick="Copy('{{$rawUrl}}')" class="button is-light is-outlined" href="#">
                             <span class="icon is-left">
                                 <i class="fas fa-copy"></i>
                             </span>
-                                <span>Copy Raw Url</span>
-                            </button>
-                        </p>
-                        <p class="control">
-                            <a class="button is-light is-outlined" href="{{$rawUrl}}" download>
+                            <span>Copy Raw Url</span>
+                        </button>
+                        <button class="button is-light is-outlined" href="{{$rawUrl}}" download>
                             <span class="icon is-left">
                                 <i class="fas fa-download"></i>
                             </span>
-                                <span>Download</span>
-                            </a>
-                        </p>
-                    </div>
+                            <span>Download</span>
+                        </button>
+                    </p>
                 </div>
 
             </div>
         </div>
     </section>
     <script>
-        function Copy(text){
+        function Copy(text) {
             navigator.clipboard.writeText(text)
         }
     </script>
