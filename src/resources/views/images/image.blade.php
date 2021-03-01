@@ -27,60 +27,54 @@
         <div class="container">
             <div class="is-align-content-center is-align-items-center">
                 <div class="has-text-centered mb-4">
-                    <h1 class="title page-title mb-1">
+                    <h1 class="title page-title mb-1 is-size-3-mobile">
                         <span class="has-text-primary">{{$uuid}}</span>.{{$type}} - <span
                             class="has-text-primary">{{$size}}</span> KB
                     </h1>
-                    <h2 class="subtitle page-subtitle mt-2">{{\Carbon\Carbon::parse($created)->setTimezone("America/Los_Angeles")->toDayDateTimeString()}}</h2>
+                    <h2 class="subtitle page-subtitle mt-2 is-size-5-mobile">{{\Carbon\Carbon::parse($created)->setTimezone("America/Los_Angeles")->toDayDateTimeString()}}</h2>
                 </div>
                 <br>
                 <figure class="is-flex is-justify-content-center">
 
-                        @if(Str::contains($mimeType,'video'))
-                            <video class="is-align-self-center" controls>
-                                <source src="{{route('upload.load-file',$uuid)}}" type="{{$mimeType}}">
-                            </video>
-                        @else
+                    @if(Str::contains($mimeType,'video'))
+                        <video class="is-align-self-center" controls>
+                            <source src="{{$rawUrl}}" type="{{$mimeType}}">
+                        </video>
+                    @else
                         <a href="{{$rawUrl}}" target="_blank">
-                            <img class="is-align-self-center" src="{{route('upload.load-file',$uuid)}}">
+                            <img class="is-align-self-center" src="{{$rawUrl}}">
                         </a>
-                        @endif
+                    @endif
                 </figure>
                 <br>
                 <div class="container-sm">
-                    <div class="field has-addons is-justify-content-center">
-                        <p class="control">
-                            <button onclick="Copy('{{url()->current()}}')" class="button is-light is-outlined">
+                    <p class="buttons has-addons is-justify-content-center">
+                        <button onclick="Copy('{{url()->current()}}')" class="button is-light is-outlined">
                             <span class="icon is-left">
                                 <i class="fas fa-copy"></i>
                             </span>
-                                <span>Copy Url</span>
-                            </button>
-                        </p>
-                        <p class="control">
-                            <button  onclick="Copy('{{$rawUrl}}')" class="button is-light is-outlined">
+                            <span>Copy Url</span>
+                        </button>
+                        <button onclick="Copy('{{$rawUrl}}')" class="button is-light is-outlined">
                             <span class="icon is-left">
                                 <i class="fas fa-copy"></i>
                             </span>
-                                <span>Copy Raw Url</span>
-                            </button>
-                        </p>
-                        <p class="control">
-                            <a class="button is-light is-outlined" href="{{$rawUrl}}" download>
+                            <span>Copy Raw Url</span>
+                        </button>
+                        <a class="button is-light is-outlined" href="{{$rawUrl}}" download>
                             <span class="icon is-left">
                                 <i class="fas fa-download"></i>
                             </span>
-                                <span>Download</span>
-                            </a>
-                        </p>
-                    </div>
+                            <span>Download</span>
+                        </a>
+                    </p>
                 </div>
 
             </div>
         </div>
     </section>
     <script>
-        function Copy(text){
+        function Copy(text) {
             navigator.clipboard.writeText(text)
         }
     </script>
