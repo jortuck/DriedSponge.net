@@ -27,11 +27,11 @@
         <div class="container">
             <div class="is-align-content-center is-align-items-center">
                 <div class="has-text-centered mb-4">
-                    <h1 class="title page-title mb-1">
+                    <h1 class="title page-title mb-1 is-size-3-mobile">
                         <span class="has-text-primary">{{$uuid}}</span>.{{$type}} - <span
                             class="has-text-primary">{{$size}}</span> KB
                     </h1>
-                    <h2 class="subtitle page-subtitle mt-2">{{\Carbon\Carbon::parse($created)->setTimezone("America/Los_Angeles")->toDayDateTimeString()}}</h2>
+                    <h2 class="subtitle page-subtitle mt-2 is-size-5-mobile">{{\Carbon\Carbon::parse($created)->setTimezone("America/Los_Angeles")->toDayDateTimeString()}}</h2>
                 </div>
                 <br>
                 <figure class="is-flex is-justify-content-center">
@@ -49,24 +49,24 @@
                 <br>
                 <div class="container-sm">
                     <p class="buttons has-addons is-justify-content-center">
-                        <button onclick="Copy('{{url()->current()}}')" class="button is-light is-outlined" href="#">
+                        <button onclick="Copy('{{url()->current()}}')" class="button is-light is-outlined">
                             <span class="icon is-left">
                                 <i class="fas fa-copy"></i>
                             </span>
                             <span>Copy Url</span>
                         </button>
-                        <button onclick="Copy('{{$rawUrl}}')" class="button is-light is-outlined" href="#">
+                        <button onclick="Copy('{{$rawUrl}}')" class="button is-light is-outlined">
                             <span class="icon is-left">
                                 <i class="fas fa-copy"></i>
                             </span>
                             <span>Copy Raw Url</span>
                         </button>
-                        <button class="button is-light is-outlined" href="{{$rawUrl}}" download>
+                        <a class="button is-light is-outlined" href="{{$rawUrl}}" download>
                             <span class="icon is-left">
                                 <i class="fas fa-download"></i>
                             </span>
                             <span>Download</span>
-                        </button>
+                        </a>
                     </p>
                 </div>
 
