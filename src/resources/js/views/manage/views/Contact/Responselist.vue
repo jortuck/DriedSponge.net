@@ -40,14 +40,14 @@
             </tbody>
         </table>
         <nav class="pagination" role="navigation" aria-label="pagination">
-            <button @click="fetch(state.page-1)" class="pagination-previous"
+            <button @click="fetch(state.page-1)" class="button pagination-previous"
                     :disabled="state.prev_page_url != null ? null : 'disabled'">
                 <Icon icon="fas fa-arrow-left"/>
             </button>
-            <button @click="fetch(state.page)" class="pagination-previous">
+            <button @click="fetch(state.page)" class="button pagination-previous">
                 <Icon icon="fas fa-sync"/>
             </button>
-            <button @click="fetch(state.page+1)" class="pagination-next"
+            <button @click="fetch(state.page+1)" class="button pagination-next"
                     :disabled="state.next_page_url != null ? null : 'disabled'">
                 <Icon icon="fas fa-arrow-right"/>
             </button>
