@@ -5,27 +5,27 @@
     <div style="display: inherit" v-else>
         <div class="columns is-multiline is-centered">
             <div class="column is-4" v-for="item in state.currentData" :key="item.id">
-                <div class="box" :class="item.private ? 'is-danger' : 'is-success'" data-aos="fade-in">
-                    <h1 class="title has-text-centered">{{ item.name }} - {{ item.id }}</h1>
-                    <p class="block has-text-centered">
-                        <span class="has-text-weight-bold">{{ item.ip }}:{{ item.port }}</span>
-                        <br>
-                        <Timestamp class="is-italic" :diff-for-humans="true" :timestamp="item.created_at"/>
-                    </p>
-                    <div class="buttons is-centered are-small">
-                        <Can permission="Projects.Edit">
-                            <router-link :to="{'name':'mc-edit','params':{'id':item.id}}" class="is-primary button">
-                                <Icon icon="fas fa-edit"/>
-                                <span>Edit</span>
-                            </router-link>
-                        </Can>
-                        <Can permission="Projects.Delete" >
-                            <button @click="this.del(item.id)" class="is-danger button" :class="{'is-loading':state.del_loading===item.id}">
-                                <Icon icon="fas fa-trash"/>
-                                <span>Delete</span>
-                            </button>
-                        </Can>
+                <div class="card" data-aos="fade-in">
+                    <header class="card-header">
+                        <p class="card-header-title">
+                            {{item.name}}
+                        </p>
+                        <p class="card-header-icon has-text-danger" v-if="item.private">
+                          <Icon icon="fas fa-lock"/>
+                        </p>
+                        <p class="card-header-icon has-text-success" v-else>
+                            <Icon icon="fas fa-unlock"/>
+                        </p>
+                    </header>
+                    <div class="card-content">
+                        <div class="content">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec iaculis mauris.
+                        </div>
                     </div>
+                    <footer class="card-footer">
+                        <a href="#" class="card-footer-item">Edit</a>
+                        <a href="#" class="card-footer-item">Delete</a>
+                    </footer>
                 </div>
             </div>
         </div>
