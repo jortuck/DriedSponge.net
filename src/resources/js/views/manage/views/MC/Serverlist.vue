@@ -23,8 +23,10 @@
                         </div>
                     </div>
                     <footer class="card-footer">
-                        <a href="#" class="card-footer-item">Edit</a>
-                        <a href="#" class="card-footer-item">Delete</a>
+                        <router-link :to="{'name':'mc-edit','params':{'id':item.id}}" class="card-footer-item">
+                            <span>Edit</span>
+                        </router-link>
+                        <a @click="del(item.id)" class="card-footer-item has-text-danger">Delete</a>
                     </footer>
                 </div>
             </div>
