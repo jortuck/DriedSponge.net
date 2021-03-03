@@ -6,6 +6,9 @@
         <div class="columns is-multiline is-centered">
             <div class="column is-4" v-for="item in state.currentData" :key="item.id">
                 <div class="card" data-aos="fade-in">
+                    <div class="loading-cover-light" v-if="state.del_loading === item.id" style="border-radius: inherit" data-aos="fade-in">
+                        <Icon class="is-large has-text-grey" icon="fas fa-spinner fa-spin fa-3x"/>
+                    </div>
                     <header class="card-header">
                         <p class="card-header-title">
                             {{ item.name }} ({{item.id}})
@@ -150,7 +153,6 @@ export default {
                 });
         },
         tooltip(e,theme,text) {
-            console.log(e)
             tippy(e.el, {
                 content: text,
                 theme: theme,
