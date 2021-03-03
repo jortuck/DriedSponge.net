@@ -23,6 +23,7 @@ class FileUploads extends Controller
                     $file = $request->file('image');
                     $extention = $file->extension();
                     $name = Str::random(10);
+                    $isVideo = Str::contains($file->getMimeType(),"video");
                     $upload = new FileUpload();
                     $upload->name = $name . '.' . $extention;
                     $upload->type = $extention;
@@ -30,8 +31,8 @@ class FileUploads extends Controller
                     $responsejson = [
                         "success" => true,
                         "id" => $upload->uuid,
-                        "url" => route('upload.load-view', $upload->uuid),
-                        "raw_url" => route('upload.load-file', $upload->name)
+                        "url" =>  route('upload.load-view', $upload->uuid),
+                        "raw_url" => $isVideo ? asset("/videos/". $upload->name) : route('upload.load-file', $upload->name)
                     ];
                     if ($request->set_delete_token) {
                         $deltoken = Str::random(64);
@@ -40,9 +41,15 @@ class FileUploads extends Controller
                         $responsejson['deletion_url'] = $deleteurl;
                     }
                     $upload->save();
-                    $file->storeAs(
-                        "/uploads/$extention", $upload->name
-                    );
+                    if($isVideo){
+                        $file->storePubliclyAs(
+                            "public/videos", $upload->name
+                        );
+                    }else{
+                        $file->storeAs(
+                            "/uploads/$extention", $upload->name
+                        );
+                    }
                     return response()->json($responsejson)->setStatusCode(201);
                 }
                 return response()->json(["success" => false, "error" => "Invalid File", "errors" => $validator->errors()], 400);

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\FileUpload;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class FileUploads extends Controller
 {
@@ -31,7 +32,8 @@ class FileUploads extends Controller
     public function loadView(Request $request, $uuid){
         $file = FileUpload::where("uuid", $uuid)->first();
         if ($file) {
-            $path = "/uploads/" . $file->type . "/" . $file->name;
+            $isVideo = Str::contains($file->type,["mp4","webm"]);
+            $path =  $isVideo ? "public/videos/".$file->name : "/uploads/" . $file->type . "/" . $file->name;
             if(Storage::exists($path)){
                 $disk = Storage::get($path);
                 $type = Storage::mimeType($path);
@@ -40,7 +42,7 @@ class FileUploads extends Controller
                     'type'=>$file->type,
                     "uuid"=>$uuid,
                     "mimeType"=>$type,
-                    "rawUrl"=>route('upload.load-file',$uuid).".".$file->type,
+                    "rawUrl"=>$isVideo ? asset("/videos/". $file->name) : route('upload.load-file',$uuid).".".$file->type,
                     "size"=>Storage::size($path)/1000,
                     "created"=>$file->created_at
                 ]);
