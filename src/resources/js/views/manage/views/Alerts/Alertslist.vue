@@ -37,10 +37,15 @@
                         </div>
                     </Cardcontent>
                     <footer class="card-footer">
-                        <router-link :to="{'name':'alerts-edit','params':{'id':item.id}}" class="card-footer-item">
-                            <span>Edit</span>
-                        </router-link>
-                        <a @click="del(item.id)" class="card-footer-item has-text-danger">Delete</a>
+                        <a v-if="item.tweetid" target="_blank" :href="'https://twitter.com/Dried_Sponge/status/'+item.tweetid" class="card-footer-item">Open Tweet</a>
+                        <Can permission="Alerts.Edit">
+                            <router-link :to="{'name':'alerts-edit','params':{'id':item.id}}" class="card-footer-item">
+                                <span>Edit</span>
+                            </router-link>
+                        </Can>
+                        <Can permission="Alerts.Delete">
+                            <a @click="del(item.id)" class="card-footer-item has-text-danger">Delete</a>
+                        </Can>
                     </footer>
                 </div>
             </div>
