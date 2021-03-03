@@ -1,7 +1,8 @@
 $tooltip-themes: "danger" white $danger,
 "success" white $success,
 "primary" white $primary,
-"warnign" white $warning;
+"warning" white $warning,
+"grey" white $grey;
 
 
 @each $name, $color, $bgcolor in $tooltip-themes {

@@ -3,60 +3,54 @@
         <h1 class="title mb-6">No Data Found</h1>
     </div>
     <div style="display: inherit" v-else>
-        <table class="table is-fullwidth">
-            <div class="loading-cover-dark" v-if="state.loading" data-aos="fade-in">
-                <Icon class="has-text-white is-large" icon="fas fa-spinner fa-spin fa-3x"/>
-            </div>
-            <thead>
-            <tr>
-                <th>Message</th>
-                <th class="has-text-centered">Tweet</th>
-                <th class="has-text-centered">Created</th>
-                <th class="has-text-centered">Displayed On Website</th>
-                <th class="has-text-centered">Actions</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr v-for="item in state.currentData" :key="item.id" data-aos="fade-in">
-                <td>{{ item.message }}</td>
-                <td class="has-text-centered">
-                    <a v-if="item.tweetid" target="_blank"
-                       :href="'https://twitter.com/driedsponge/status/'+item.tweetid">
-                        {{ item.tweetid }}
-                    </a>
-                    <span v-else>N/A</span>
-                </td>
-                <td class="has-text-centered"><Timestamp :timestamp="item.created_at" :diffForHumans="true" /></td>
-                <td class="has-text-centered">
-                    <span v-if="item.onsite" class="tag is-success">Yes</span>
-                    <span v-else class="tag is-danger ">No</span>
-                </td>
-                <td class="has-text-centered">
-                    <Can permission="Alerts.Delete">
-                        <button @click="del(item.id)" class="button is-danger is-small mx-1"
-                                :class="{'is-loading':state.del_loading===item.id}">
-                            <Icon icon="fas fa-trash"/>
-                        </button>
-                    </Can>
-                    <Can permission="Alerts.Edit">
-                        <router-link :to="{'name':'alerts-edit','params':{'id':item.id}}"
-                                     class="button is-primary is-small mx-1">
-                            <Icon icon="fas fa-edit"/>
+        <div class="columns is-multiline is-centered">
+            <div class="column is-4" v-for="item in state.currentData" :key="item.id">
+                <div class="card" data-aos="fade-in">
+                    <header class="card-header">
+                        <p class="card-header-title">
+                            Alert {{item.id}}
+                        </p>
+                        <p class="card-header-icon has-text-grey" v-if="!item.onsite">
+                            <Icon @vnode-mounted="tooltip($event, 'grey', 'Hidden From Site')" icon="fas fa-eye"/>
+                        </p>
+                        <p class="card-header-icon has-text-success" v-else>
+                            <Icon @vnode-mounted="tooltip($event, 'success', 'Displayed On Site')" icon="fas fa-eye"/>
+                        </p>
+                    </header>
+                    <Cardcontent class="has-text-centered-mobile">
+                        <div class="columns">
+                            <div class="column is-6">
+                                <p class="block">
+                                    <span class="has-text-weight-bold">Last Updated:</span><br>
+                                    <span><Timestamp :timestamp="item.updated_at" :diffForHumans="true"/></span>
+                                </p>
+                            </div>
+                            <div class="column is-6">
+                                <p class="block">
+                                    <span class="has-text-weight-bold">Date Added:</span><br>
+                                    <span><Timestamp :timestamp="item.created_at" :diffForHumans="true"/></span>
+                                </p>
+                            </div>
+                        </div>
+                    </Cardcontent>
+                    <footer class="card-footer">
+                        <router-link :to="{'name':'alerts-edit','params':{'id':item.id}}" class="card-footer-item">
+                            <span>Edit</span>
                         </router-link>
-                    </Can>
-                </td>
-            </tr>
-            </tbody>
-        </table>
+                        <a @click="del(item.id)" class="card-footer-item has-text-danger">Delete</a>
+                    </footer>
+                </div>
+            </div>
+        </div>
         <nav class="pagination" role="navigation" aria-label="pagination">
-            <button @click="fetch(state.page-1)" class="pagination-previous"
+            <button @click="fetch(state.page-1)" class="button pagination-previous"
                     :disabled="state.prev_page_url != null ? null : 'disabled'">
                 <Icon icon="fas fa-arrow-left"/>
             </button>
-            <button @click="fetch(state.page)" class="pagination-previous">
+            <button @click="fetch(state.page)" class="button pagination-previous">
                 <Icon icon="fas fa-sync"/>
             </button>
-            <button @click="fetch(state.page+1)" class="pagination-next"
+            <button @click="fetch(state.page+1)" class="button pagination-next"
                     :disabled="state.next_page_url != null ? null : 'disabled'">
                 <Icon icon="fas fa-arrow-right"/>
             </button>
@@ -73,15 +67,16 @@
 <script>
 import axios from "axios";
 import Icon from "../../../../components/text/Icon";
-import session from "../../../../store/session";
 import Can from "../../../../components/helpers/Can";
 import Textarea from "../../../../components/form/Textarea";
 import Timestamp from "../../../../components/text/Timestamp";
 import {POSITION, useToast} from "vue-toastification";
 import httpError from  "../../../../components/helpers/httpError"
+import Cardcontent from "../../../../components/cards/Cardcontent";
+import tippy from "tippy.js";
 export default {
     name: "Alertslist",
-    components: {Timestamp, Textarea, Can, Icon},
+    components: {Timestamp, Textarea, Can, Icon,Cardcontent},
     beforeMount() {
         this.fetch(this.state.page);
     },
@@ -140,6 +135,14 @@ export default {
                     this.httpError(error)
                 });
         },
+        tooltip(e,theme,text) {
+            console.log(e)
+            tippy(e.el, {
+                content: text,
+                theme: theme,
+                hideOnClick: false
+            });
+        }
     }
 }
 </script>

@@ -22,11 +22,7 @@ class AlertsController extends Controller
     {
         if(!\Auth::guest()){
             if(\Auth::user()->hasPermissionTo('Alerts.See')){
-                $alerts = Alerts::select('id','message','tweetid','created_at','onsite')->orderBy('created_at','desc')->paginate(10);
-                $alerts->transform(function ($item, $key) {
-                    $item->message =  Str::limit($item->message,25);
-                    return $item;
-                });
+                $alerts = Alerts::select('id','tweetid','created_at','updated_at','onsite')->orderBy('created_at','desc')->paginate(9);
                 return response()->json($alerts);
             }else{
                 return response()->json(['error' => 'Unauthorized'],403);
@@ -151,11 +147,7 @@ class AlertsController extends Controller
             $alert = Alerts::find($id);
             if($alert){
                 $alert->deleteFull();
-                $rest = Alerts::select('id','message','tweetid','created_at','onsite')->orderBy('created_at','desc')->paginate(10);
-                $rest->transform(function ($item, $key) {
-                    $item->message =  Str::limit($item->message,25);
-                    return $item;
-                });
+                $rest = Alerts::select('id','tweetid','created_at','updated_at','onsite')->orderBy('created_at','desc')->paginate(9);
                 return response()->json(['success' => true,"data"=>$rest]);
             }else{
                 return response()->json(['error' => 'Not found'],404);

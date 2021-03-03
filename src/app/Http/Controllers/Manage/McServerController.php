@@ -15,7 +15,11 @@ class McServerController extends Controller
     public function index(Request $request){
         if(!\Auth::guest()){
             if(\Auth::user()->hasPermissionTo('Projects.See')){
-                $servers = McServer::select('id','ip','port','created_at','private','name')->orderBy('created_at','desc')->paginate(9);
+                $servers = McServer::select('id','ip','port','created_at','private','name')->orderBy('created_at','desc')->with('players:id')->paginate(9);
+                $servers->transform(function ($item,$key){
+                    $item->player_count = $item->players->count();
+                    return $item;
+                });
                 return response()->json($servers);
             }else{
                 return response()->json(['error' => 'Unauthorized'],403);

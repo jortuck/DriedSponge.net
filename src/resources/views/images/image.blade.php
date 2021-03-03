@@ -47,6 +47,12 @@
                     @endif
                 </figure>
                 <br>
+                @if(Str::contains($mimeType,'video'))
+                <div class="has-text-centered has-text-danger has-text-weight-bold is-hidden-tablet">
+                    Because you're on a mobile device, the video may not load. Sorry!
+                </div>
+                @endif
+                <br>
                 <div class="container-sm">
                     <p class="buttons has-addons is-justify-content-center">
                         <button onclick="Copy('{{url()->current()}}')" class="button is-light is-outlined">
@@ -69,7 +75,6 @@
                         </a>
                     </p>
                 </div>
-
             </div>
         </div>
     </section>

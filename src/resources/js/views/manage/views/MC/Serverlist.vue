@@ -5,39 +5,58 @@
     <div style="display: inherit" v-else>
         <div class="columns is-multiline is-centered">
             <div class="column is-4" v-for="item in state.currentData" :key="item.id">
-                <div class="box" :class="item.private ? 'is-danger' : 'is-success'" data-aos="fade-in">
-                    <h1 class="title has-text-centered">{{ item.name }} - {{ item.id }}</h1>
-                    <p class="block has-text-centered">
-                        <span class="has-text-weight-bold">{{ item.ip }}:{{ item.port }}</span>
-                        <br>
-                        <Timestamp class="is-italic" :diff-for-humans="true" :timestamp="item.created_at"/>
-                    </p>
-                    <div class="buttons is-centered are-small">
-                        <Can permission="Projects.Edit">
-                            <router-link :to="{'name':'mc-edit','params':{'id':item.id}}" class="is-primary button">
-                                <Icon icon="fas fa-edit"/>
-                                <span>Edit</span>
-                            </router-link>
-                        </Can>
-                        <Can permission="Projects.Delete" >
-                            <button @click="this.del(item.id)" class="is-danger button" :class="{'is-loading':state.del_loading===item.id}">
-                                <Icon icon="fas fa-trash"/>
-                                <span>Delete</span>
-                            </button>
-                        </Can>
-                    </div>
+                <div class="card" data-aos="fade-in">
+                    <header class="card-header">
+                        <p class="card-header-title">
+                            {{ item.name }} ({{item.id}})
+                        </p>
+                        <p class="card-header-icon has-text-danger" v-if="item.private">
+                            <Icon @vnode-mounted="tooltip($event, 'danger', 'Private Server')" icon="fas fa-lock"/>
+                        </p>
+                        <p class="card-header-icon has-text-success" v-else>
+                            <Icon @vnode-mounted="tooltip($event, 'success', 'Public Server')" icon="fas fa-unlock"/>
+                        </p>
+                    </header>
+                    <Cardcontent class="has-text-centered-mobile">
+                        <div class="columns is-multiline">
+                            <div class="column is-6">
+                                <p class="block">
+                                    <span class="has-text-weight-bold">Server Address:</span><br>
+                                    <span>{{ item.ip }}:{{ item.port }}</span>
+                                </p>
+                            </div>
+                            <div class="column is-6">
+                                <p class="block">
+                                    <span class="has-text-weight-bold">Date Added:</span><br>
+                                    <span><Timestamp :timestamp="item.created_at" :diffForHumans="true"/></span>
+                                </p>
+                            </div>
+                            <div class="column is-6">
+                                <p class="block">
+                                    <span class="has-text-weight-bold">Player Count:</span><br>
+                                    <span>{{ item.player_count }}</span>
+                                </p>
+                            </div>
+                        </div>
+                    </Cardcontent>
+                    <footer class="card-footer">
+                        <router-link :to="{'name':'mc-edit','params':{'id':item.id}}" class="card-footer-item">
+                            <span>Edit</span>
+                        </router-link>
+                        <a @click="del(item.id)" class="card-footer-item has-text-danger">Delete</a>
+                    </footer>
                 </div>
             </div>
         </div>
         <nav class="pagination" role="navigation" aria-label="pagination">
-            <button @click="fetch(state.page-1)" class="pagination-previous"
+            <button @click="fetch(state.page-1)" class="button pagination-previous"
                     :disabled="state.prev_page_url != null ? null : 'disabled'">
                 <Icon icon="fas fa-arrow-left"/>
             </button>
-            <button @click="fetch(state.page)" class="pagination-previous">
+            <button @click="fetch(state.page)" class="button pagination-previous">
                 <Icon icon="fas fa-sync"/>
             </button>
-            <button @click="fetch(state.page+1)" class="pagination-next"
+            <button @click="fetch(state.page+1)" class="button pagination-next"
                     :disabled="state.next_page_url != null ? null : 'disabled'">
                 <Icon icon="fas fa-arrow-right"/>
             </button>
@@ -60,10 +79,12 @@ import Tileancestor from "../../../../components/tiles/Tileancestor";
 import Timestamp from "../../../../components/text/Timestamp";
 import {POSITION, useToast} from "vue-toastification";
 import httpError from "../../../../components/helpers/httpError";
+import Cardcontent from "../../../../components/cards/Cardcontent";
+import tippy from "tippy.js";
 
 export default {
     name: "Serverlist",
-    components: {Timestamp, Tileancestor, Can, Icon},
+    components: {Cardcontent, Timestamp, Tileancestor, Can, Icon},
     beforeMount() {
         this.fetch(this.state.page);
     },
@@ -105,6 +126,9 @@ export default {
                 this.state.prev_page_url = res.data.prev_page_url
                 this.state.last_page = res.data.last_page
                 this.state.loading = false
+                console.log("before")
+
+                console.log("afters")
             })
                 .catch(error => {
                     this.httpError(error)
@@ -125,6 +149,14 @@ export default {
                     this.httpError(error)
                 });
         },
+        tooltip(e,theme,text) {
+            console.log(e)
+            tippy(e.el, {
+                content: text,
+                theme: theme,
+                hideOnClick: false
+            });
+        }
     }
 }
 </script>
