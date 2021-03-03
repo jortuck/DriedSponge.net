@@ -8,20 +8,37 @@
                 <div class="card" data-aos="fade-in">
                     <header class="card-header">
                         <p class="card-header-title">
-                            {{item.name}}
+                            {{ item.name }} ({{item.id}})
                         </p>
                         <p class="card-header-icon has-text-danger" v-if="item.private">
-                          <Icon icon="fas fa-lock"/>
+                            <Icon @vnode-mounted="tooltip($event, 'danger', 'Private Server')" icon="fas fa-lock"/>
                         </p>
                         <p class="card-header-icon has-text-success" v-else>
-                            <Icon icon="fas fa-unlock"/>
+                            <Icon @vnode-mounted="tooltip($event, 'success', 'Public Server')" icon="fas fa-unlock"/>
                         </p>
                     </header>
-                    <div class="card-content">
-                        <div class="content">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec iaculis mauris.
+                    <Cardcontent class="has-text-centered-mobile">
+                        <div class="columns is-multiline">
+                            <div class="column is-6">
+                                <p class="block">
+                                    <span class="has-text-weight-bold">Server Address:</span><br>
+                                    <span>{{ item.ip }}:{{ item.port }}</span>
+                                </p>
+                            </div>
+                            <div class="column is-6">
+                                <p class="block">
+                                    <span class="has-text-weight-bold">Date Added:</span><br>
+                                    <span><Timestamp :timestamp="item.created_at" :diffForHumans="true"/></span>
+                                </p>
+                            </div>
+                            <div class="column is-6">
+                                <p class="block">
+                                    <span class="has-text-weight-bold">Player Count:</span><br>
+                                    <span>{{ item.player_count }}</span>
+                                </p>
+                            </div>
                         </div>
-                    </div>
+                    </Cardcontent>
                     <footer class="card-footer">
                         <router-link :to="{'name':'mc-edit','params':{'id':item.id}}" class="card-footer-item">
                             <span>Edit</span>
@@ -62,10 +79,12 @@ import Tileancestor from "../../../../components/tiles/Tileancestor";
 import Timestamp from "../../../../components/text/Timestamp";
 import {POSITION, useToast} from "vue-toastification";
 import httpError from "../../../../components/helpers/httpError";
+import Cardcontent from "../../../../components/cards/Cardcontent";
+import tippy from "tippy.js";
 
 export default {
     name: "Serverlist",
-    components: {Timestamp, Tileancestor, Can, Icon},
+    components: {Cardcontent, Timestamp, Tileancestor, Can, Icon},
     beforeMount() {
         this.fetch(this.state.page);
     },
@@ -107,6 +126,9 @@ export default {
                 this.state.prev_page_url = res.data.prev_page_url
                 this.state.last_page = res.data.last_page
                 this.state.loading = false
+                console.log("before")
+
+                console.log("afters")
             })
                 .catch(error => {
                     this.httpError(error)
@@ -127,6 +149,14 @@ export default {
                     this.httpError(error)
                 });
         },
+        tooltip(e,theme,text) {
+            console.log(e)
+            tippy(e.el, {
+                content: text,
+                theme: theme,
+                hideOnClick: false
+            });
+        }
     }
 }
 </script>
