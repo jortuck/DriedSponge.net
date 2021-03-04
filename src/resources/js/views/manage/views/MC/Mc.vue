@@ -17,11 +17,13 @@
                                 <a :href="href"  @click="navigate">Players</a>
                             </li>
                         </router-link>
-                        <router-link custom :to="{'name':'mc-create'}"  v-slot="{ href,navigate, isActive,isExactActive}">
-                            <li :class="{'is-active':isExactActive}">
-                                <a :href="href"  @click="navigate">Add Another Server</a>
-                            </li>
-                        </router-link>
+                        <Can permission="Projects.Create">
+                            <router-link custom :to="{'name':'mc-create'}"  v-slot="{ href,navigate, isActive,isExactActive}">
+                                <li :class="{'is-active':isExactActive}">
+                                    <a :href="href"  @click="navigate">Add Another Server</a>
+                                </li>
+                            </router-link>
+                        </Can>
                     </ul>
                 </div>
                 <router-view></router-view>
@@ -31,8 +33,9 @@
 </template>
 <script>
 import Managepagehead from "../../../../components/text/Managepagehead";
+import Can from "../../../../components/helpers/Can";
 export default {
     name: "mc-servers",
-    components: {Managepagehead},
+    components: {Can, Managepagehead},
 }
 </script>

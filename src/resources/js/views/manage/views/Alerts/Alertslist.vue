@@ -6,6 +6,9 @@
         <div class="columns is-multiline is-centered">
             <div class="column is-4" v-for="item in state.currentData" :key="item.id">
                 <div class="card" data-aos="fade-in">
+                    <div class="loading-cover-light" v-if="state.del_loading === item.id" style="border-radius: inherit" data-aos="fade-in">
+                        <Icon class="is-large has-text-grey" icon="fas fa-spinner fa-spin fa-3x"/>
+                    </div>
                     <header class="card-header">
                         <p class="card-header-title">
                             Alert {{item.id}}
@@ -34,10 +37,15 @@
                         </div>
                     </Cardcontent>
                     <footer class="card-footer">
-                        <router-link :to="{'name':'alerts-edit','params':{'id':item.id}}" class="card-footer-item">
-                            <span>Edit</span>
-                        </router-link>
-                        <a @click="del(item.id)" class="card-footer-item has-text-danger">Delete</a>
+                        <a v-if="item.tweetid" target="_blank" :href="'https://twitter.com/Dried_Sponge/status/'+item.tweetid" class="card-footer-item">Open Tweet</a>
+                        <Can permission="Alerts.Edit">
+                            <router-link :to="{'name':'alerts-edit','params':{'id':item.id}}" class="card-footer-item">
+                                <span>Edit</span>
+                            </router-link>
+                        </Can>
+                        <Can permission="Alerts.Delete">
+                            <a @click="del(item.id)" class="card-footer-item has-text-danger">Delete</a>
+                        </Can>
                     </footer>
                 </div>
             </div>
@@ -136,7 +144,6 @@ export default {
                 });
         },
         tooltip(e,theme,text) {
-            console.log(e)
             tippy(e.el, {
                 content: text,
                 theme: theme,

@@ -108,7 +108,10 @@ class AlertsController extends Controller
                     if($alert->discordid){
                         $fields = array();
                         if($alert->tweetid){
-                            array_push($fields, array("name" => "Tweet Link", "value" => \Twitter::linkTweet(\Twitter::getTweet($alert->tweetid))));
+                            try {
+                                $tweet = \Twitter::getTweet($alert->tweetid);
+                                array_push($fields, array("name" => "Tweet Link", "value" => \Twitter::linkTweet($tweet)));
+                            } catch (\RuntimeException $e){};
                         }
                         $embed = array(
                             "title" =>  "New Message",

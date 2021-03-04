@@ -63,7 +63,7 @@ class FileUploads extends Controller
     {
         $upload = FileUpload::where('uuid', $uuid)->whereNotNull("deleteToken")->first();
         if ($upload) { // Does the db entry exist
-            $path = "/uploads/" . $upload->type . "/" . $upload->name;
+            $path =  $upload->path();
             if (Storage::exists($path)) { // Does the file associated with the db entry exist
                 if (Hash::check($deltoken, $upload->deleteToken)) { // Check token in db
                     Storage::delete($path);

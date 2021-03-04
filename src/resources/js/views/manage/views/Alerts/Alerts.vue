@@ -12,11 +12,13 @@
                                 <a :href="href"  @click="navigate">Alerts</a>
                            </li>
                        </router-link>
-                        <router-link custom :to="{'name':'alerts-create'}"  v-slot="{ href,navigate, isActive,isExactActive}">
-                            <li :class="{'is-active':isExactActive}">
-                                <a :href="href"  @click="navigate">Create New Alert</a>
-                            </li>
-                        </router-link>
+                        <Can permission="Alerts.Create">
+                            <router-link custom :to="{'name':'alerts-create'}"  v-slot="{ href,navigate, isActive,isExactActive}">
+                                <li :class="{'is-active':isExactActive}">
+                                    <a :href="href"  @click="navigate">Create New Alert</a>
+                                </li>
+                            </router-link>
+                        </Can>
                     </ul>
                 </div>
                 <router-view></router-view>
@@ -26,8 +28,9 @@
 </template>
 <script>
 import Managepagehead from "../../../../components/text/Managepagehead";
+import Can from "../../../../components/helpers/Can";
 export default {
     name: "Alerts",
-    components: {Managepagehead},
+    components: {Can, Managepagehead},
 }
 </script>
