@@ -29,7 +29,7 @@ class FileUpload extends Model
     // Get file url
     public function url()
     {
-        return $this->isVideo() ? asset("/videos/" . $this->name) : route('upload.load-file', $this) . "." . $this->type;
+        return $this->isVideo() ? asset("/videos/" . $this->name) : route('upload.load-file', $this->name) . "." . $this->type;
     }
 
 }
