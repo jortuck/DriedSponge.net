@@ -14,7 +14,7 @@ class FileUploads extends Controller
         $uuid = explode(".",$name)[0];
         $file = FileUpload::where("uuid",$uuid)->first();
         if ($file) {
-            $path = "/uploads/" . $file->type . "/" . $file->name;
+            $path = $file->path();
             if(Storage::exists($path)) {
                 $disk = Storage::get($path);
                 $type = Storage::mimeType($path);
@@ -32,8 +32,7 @@ class FileUploads extends Controller
     public function loadView(Request $request, $uuid){
         $file = FileUpload::where("uuid", $uuid)->first();
         if ($file) {
-            $isVideo = Str::contains($file->type,["mp4","webm"]);
-            $path =  $isVideo ? "public/videos/".$file->name : "/uploads/" . $file->type . "/" . $file->name;
+            $path =  $file->path();
             if(Storage::exists($path)){
                 $disk = Storage::get($path);
                 $type = Storage::mimeType($path);
@@ -42,7 +41,7 @@ class FileUploads extends Controller
                     'type'=>$file->type,
                     "uuid"=>$uuid,
                     "mimeType"=>$type,
-                    "rawUrl"=>$isVideo ? asset("/videos/". $file->name) : route('upload.load-file',$uuid).".".$file->type,
+                    "rawUrl"=> $file->url(),
                     "size"=>Storage::size($path)/1000,
                     "created"=>$file->created_at
                 ]);
