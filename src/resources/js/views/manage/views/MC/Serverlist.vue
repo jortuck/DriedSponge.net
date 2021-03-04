@@ -84,7 +84,7 @@ import session from "../../../../store/session";
 import Can from "../../../../components/helpers/Can";
 import Tileancestor from "../../../../components/tiles/Tileancestor";
 import Timestamp from "../../../../components/text/Timestamp";
-import {POSITION, useToast} from "vue-toastification";
+import {useToast} from "vue-toastification";
 import httpError from "../../../../components/helpers/httpError";
 import Cardcontent from "../../../../components/cards/Cardcontent";
 import tippy from "tippy.js";
@@ -133,9 +133,6 @@ export default {
                 this.state.prev_page_url = res.data.prev_page_url
                 this.state.last_page = res.data.last_page
                 this.state.loading = false
-                console.log("before")
-
-                console.log("afters")
             })
                 .catch(error => {
                     this.httpError(error)
