@@ -4,6 +4,7 @@
 <script>
 import Nav from "./views/public/Nav"
 import Footer from "./components/includes/Footer/Footer";
+import AOS from 'aos';
 
 export default {
     name: 'App',
@@ -16,6 +17,10 @@ export default {
             required: false,
         }
     },
+    beforeMount() {
+        AOS.init({once:true,disable: 'phone'})
+
+    }
 
 }
 </script>
