@@ -2,10 +2,10 @@
     <div class="hero is-fullheight  has-text-centered is-bold is-large" >
         <div class="hero-body">
             <div class="container">
-                <h1 class="title is-size-1 has-text-white">
+                <h1 class="title is-size-1 has-text-white" data-aos="fade-in">
                     <span class="has-text-primary">4</span>0<span class="has-text-primary">4</span>
                 </h1>
-                <h2 class="subtitle has-text-white">
+                <h2 class="subtitle has-text-white" data-aos="fade-in">
                     Not Found!
                 </h2>
                 <h3 class="is-5 has-text-white" data-aos="fade-in" v-if="quote"><em>"{{quote}}"</em> - {{author}}</h3>
