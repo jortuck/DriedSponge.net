@@ -30,7 +30,6 @@
 <script>
 import Textarea from "../../../../components/form/Textarea";
 import axios from "axios";
-import session from "../../../../store/session";
 import Icon from "../../../../components/text/Icon";
 import Checkbox from "../../../../components/form/Checkbox";
 import httpError from "../../../../components/helpers/httpError";

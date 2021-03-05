@@ -49,7 +49,6 @@
 <script>
 import axios from "axios";
 import Icon from "../../../../components/text/Icon";
-import session from "../../../../store/session";
 import Can from "../../../../components/helpers/Can";
 import Tileancestor from "../../../../components/tiles/Tileancestor";
 import Timestamp from "../../../../components/text/Timestamp";

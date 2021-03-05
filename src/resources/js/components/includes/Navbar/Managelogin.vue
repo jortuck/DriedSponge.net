@@ -40,7 +40,6 @@
     </div>
 </template>
 <script>
-import session from "../../../store/session.js";
 import Can from "../../helpers/Can";
 
 export default {
@@ -48,12 +47,12 @@ export default {
     methods: {
         logout() {
             this.$router.push({ name: 'home'})
-            session.logout();
+            this.$store.commit("logout");
         }
     },
     data() {
         return {
-            state: session.state
+            state: this.$store.state
         }
     },
     components: {

@@ -96,7 +96,6 @@
 <script>
 import axios from "axios";
 import Icon from "../../../../components/text/Icon";
-import session from "../../../../store/session";
 import Can from "../../../../components/helpers/Can";
 import Timestamp from "../../../../components/text/Timestamp";
 import {POSITION, useToast} from "vue-toastification";

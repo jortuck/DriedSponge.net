@@ -1,7 +1,7 @@
 import axios from "axios";
 import router from '../router'
 import { createStore } from 'vuex'
-const session = createStore({
+const store = createStore({
     state(){
         return{
             loaded: false,
@@ -36,18 +36,20 @@ const session = createStore({
                 window.location = "/app/login/" + provider
             }
         },
+        logout(state) {
+            state.loaded=false
+            axios.post("/logout/").then(res => {
+                this.commit('fetch');
+            })
+        }
+    },
+    actions:{
         can(state,perm){
             if(this.state.permissions["*"]){
                 return true;
             }
             return this.state.permissions[perm]
         },
-        logout(state) {
-            state.loaded=false
-            axios.post("/logout/").then(res => {
-                this.fetch();
-            })
-        }
-    },
+    }
 })
-export default session;
+export default store;

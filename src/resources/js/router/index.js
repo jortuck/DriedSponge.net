@@ -1,5 +1,5 @@
 import {createRouter, createWebHistory} from 'vue-router'
-import session from "../store/session";
+import store from "../store";
 
 const routes = [
     {
@@ -142,6 +142,6 @@ const router = createRouter({
     routes
 })
 router.beforeEach((to, from) => {
-    session.commit("fetch")
+    store.commit("fetch")
 })
 export default router

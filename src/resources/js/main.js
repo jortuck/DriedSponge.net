@@ -3,7 +3,7 @@ import App from './App.vue'
 import router from './router'
 import axios from 'axios'
 import Toast, {POSITION, TYPE} from "vue-toastification";
-import session from "./store/session";
+import store from "./store";
 
 // AOS Settings
 
@@ -21,5 +21,5 @@ const app = createApp(App).use(router).use(Toast,{
     timeout: 4000,
     position: POSITION.TOP_RIGHT,
     type: TYPE.INFO
-}).use(session).mount('#app')
+}).use(store).mount('#app')
 export default app;

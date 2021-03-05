@@ -80,7 +80,6 @@
 <script>
 import axios from "axios";
 import Icon from "../../../../components/text/Icon";
-import session from "../../../../store/session";
 import Can from "../../../../components/helpers/Can";
 import Tileancestor from "../../../../components/tiles/Tileancestor";
 import Timestamp from "../../../../components/text/Timestamp";
@@ -115,7 +114,7 @@ export default {
             if (error.response) {
                 switch (error.response.status) {
                     case 401:
-                        session.login();
+                        this.$store.commit("login")
                         break
                     default:
                         httpError(error)

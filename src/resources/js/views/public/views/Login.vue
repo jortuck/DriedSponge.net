@@ -30,13 +30,12 @@
 <script>
 import Tileancestor from "../../../components/tiles/Tileancestor";
 import Icon from "../../../components/text/Icon";
-import session from "../../../store/session"
 export default {
     name: "Login",
     components: {Icon, Tileancestor},
     data(){
         return{
-            session: session.state
+            session: this.$store.state
         }
     }
 }
