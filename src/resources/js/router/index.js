@@ -142,6 +142,6 @@ const router = createRouter({
     routes
 })
 router.beforeEach((to, from) => {
-    session.fetch();
+    session.commit("fetch")
 })
 export default router
