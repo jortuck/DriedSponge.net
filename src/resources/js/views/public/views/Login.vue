@@ -3,17 +3,17 @@
         <div class="container">
             <div class="columns is-justify-content-center">
                 <div class="column is-6-desktop is-12-mobile is-10-tablet">
-                    <div class="box" v-if="session.authenticated">
+                    <div class="box" v-if="session.authenticated" data-aos="fade-in">
                         <h2 class="title has-text-centered is-3 has-text-danger">You are already logged in!</h2>
                     </div>
-                    <div class="box" v-else>
+                    <div class="box" v-else data-aos="fade-in">
                         <h2 class="title has-text-centered is-3">Login</h2>
                         <p class="block has-text-danger has-text-centered has-text-weight-bold">
                             This is just for me to login and access my dashboard. You can login if you want but it does
                             absolutley nothing for you :).
                         </p>
-                        <div class="buttons" v-for="provider in providers">
-                            <a :href="provider.url" class="button is-large is-fullwidth is-light">
+                        <div class="buttons are-large" v-for="provider in providers">
+                            <a :href="provider.url" class="button is-fullwidth is-light">
                                 <Icon :icon="provider.icon" class="is-left"/>
                                 <span>{{ provider.name }}</span>
                             </a>
