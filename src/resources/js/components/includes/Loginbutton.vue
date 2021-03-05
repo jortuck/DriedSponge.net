@@ -23,9 +23,6 @@ export default {
         logout() {
             this.$store.commit("logout");
         },
-        login(provider) {
-            this.$store.commit("login","provider");
-        }
     },
     data() {
         return {
