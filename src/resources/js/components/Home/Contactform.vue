@@ -16,7 +16,7 @@
     <Tileancestor v-else data-aos="fade-up">
         <div class="tile is-parent">
             <div class="tile is-child box">
-                <form @submit.prevent="submit">
+                <form @submit.prevent="submit" id="contact">
                     <div class="columns">
                         <div class="column is-half-desktop is-full-mobile">
                             <Textinput icon="fas fa-signature" maxCharacters="150" v-model:val="form.fields.name" label="Name"

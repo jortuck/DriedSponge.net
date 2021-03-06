@@ -13,7 +13,7 @@
                             <Icon icon="fab fa-github" class="is-left"/>
                             <span>Source Code</span>
                         </Footerlink>
-                        <Footerlink :to="{ name: 'home'}">
+                        <Footerlink :to="{ name: 'home', hash:'#contact'}">
                             <Icon icon="fas fa-envelope" class="is-left"/>
                             <span>Contact</span>
                         </Footerlink>
