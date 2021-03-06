@@ -12,10 +12,10 @@
                             This is just for me to login and access my dashboard. You can login if you want but it does
                             absolutley nothing for you :).
                         </p>
-                        <div class="buttons are-large" v-for="provider in providers">
-                            <a :href="provider.url" class="button is-fullwidth is-light">
+                        <div class="buttons are-large">
+                            <a  v-for="provider in providers" :href="provider.url" class="button is-fullwidth">
                                 <Icon :icon="provider.icon" class="is-left"/>
-                                <span>{{ provider.name }}</span>
+                                <span class="icon-text">Login With {{ provider.name }}</span>
                             </a>
                         </div>
                     </div>
