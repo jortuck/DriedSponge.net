@@ -51,7 +51,7 @@
                 <p   v-if="stats.length !== 0" class="subtitle mc-text is-6 has-text-centered mc-color-aqua is-hidden-tablet">
                     Hello mobile user! You may have to scroll horizontally on the table to see the value of the stats
                 </p>
-                <div class="table-container mb-6"  v-if="stats.length !== 0">
+                <div class="table-container mb-6"  v-if="stats.length !== 0" data-aos="fade-in">
                     <table class="table is-fullwidth is-hoverable mc-table is-striped">
                         <tbody>
                             <template v-for="(key, value) in currstats" >

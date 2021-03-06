@@ -1,5 +1,5 @@
 <template>
-    <form @submit.prevent="submit">
+    <form @submit.prevent="submit" data-aos="fade-in">
         <div class="columns">
             <div class="column">
                     <Textarea maxCharacters="1120" rows="5" placeholder="A nice message" label="Message"
