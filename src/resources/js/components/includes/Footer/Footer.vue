@@ -9,11 +9,11 @@
                 </div>
                 <div class="column has-text-right has-text-centered-mobile">
                     <p class="buttons has-addons  is-inline-block">
-                        <Footerlink to="https://github.com/driedsponge">
+                        <Footerlink to="https://github.com/driedsponge/driedsponge.net">
                             <Icon icon="fab fa-github" class="is-left"/>
                             <span>Source Code</span>
                         </Footerlink>
-                        <Footerlink :to="{ name: 'home'}">
+                        <Footerlink :to="{ name: 'home', hash:'#contact'}">
                             <Icon icon="fas fa-envelope" class="is-left"/>
                             <span>Contact</span>
                         </Footerlink>
@@ -27,7 +27,7 @@
 </template>
 <script>
 import Icon from "../../text/Icon";
-import Loginbutton from "../Loginbutton";
+import Loginbutton from "./Loginbutton";
 import Footerlink from "./Footerlink";
 
 export default {

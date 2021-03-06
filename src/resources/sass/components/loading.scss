@@ -15,5 +15,6 @@ $loading-themes: ("dark": rgba(0, 0, 0, 0.7), "light": rgba(255, 255, 255, 0.7))
         left: 0;
         padding: 10px;
         z-index: 500;
+        border-radius: inherit
     }
 }

@@ -6,7 +6,7 @@
         <div class="columns is-multiline is-centered">
             <div class="column is-4" v-for="item in state.currentData" :key="item.id">
                 <div class="card" data-aos="fade-in">
-                    <div class="loading-cover-light" v-if="state.del_loading === item.id" style="border-radius: inherit" data-aos="fade-in">
+                    <div class="loading-cover-light" v-if="state.del_loading === item.id" data-aos="fade-in">
                         <Icon class="is-large has-text-grey" icon="fas fa-spinner fa-spin fa-3x"/>
                     </div>
                     <header class="card-header">
@@ -43,12 +43,12 @@
                         </div>
                     </Cardcontent>
                     <footer class="card-footer">
-                        <Can permission="Projects.Edit">
+                        <Can permission="Project.Edit">
                             <router-link :to="{'name':'mc-edit','params':{'id':item.id}}" class="card-footer-item">
                                 <span>Edit</span>
                             </router-link>
                         </Can>
-                        <Can permission="Projects.Delete">
+                        <Can permission="Project.Delete">
                             <a @click="del(item.id)" class="card-footer-item has-text-danger">Delete</a>
                         </Can>
                     </footer>
@@ -80,7 +80,6 @@
 <script>
 import axios from "axios";
 import Icon from "../../../../components/text/Icon";
-import session from "../../../../store/session";
 import Can from "../../../../components/helpers/Can";
 import Tileancestor from "../../../../components/tiles/Tileancestor";
 import Timestamp from "../../../../components/text/Timestamp";
@@ -115,7 +114,7 @@ export default {
             if (error.response) {
                 switch (error.response.status) {
                     case 401:
-                        session.login();
+                        this.$store.commit("login")
                         break
                     default:
                         httpError(error)

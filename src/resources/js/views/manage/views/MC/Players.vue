@@ -5,23 +5,39 @@
     <div style="display: inherit" v-else>
         <div class="columns is-multiline is-centered">
             <div class="column is-4" v-for="item in state.currentData" :key="item.id">
-                <div class="box is-primary" data-aos="fade-in">
-                    <h1 class="title has-text-centered">
-                        {{ item.username }}
-                    </h1>
-                    <p class="block has-text-centered">
-                        <span class="has-text-weight-bold">{{ item.uuid }}</span>
-                        <br>
-                        Added <Timestamp class="is-italic" :diff-for-humans="true" :timestamp="item.created_at"/>
-                    </p>
-                    <div class="buttons is-centered are-small">
-                        <Can permission="Projects.Delete">
-                            <button @click="this.del(item.id)" class="is-danger button" :class="{'is-loading':state.del_loading===item.id}">
-                                <Icon icon="fas fa-trash"/>
-                                <span>Delete</span>
-                            </button>
-                        </Can>
+                <div class="card" data-aos="fade-in">
+                    <div class="loading-cover-light" v-if="state.del_loading === item.id" data-aos="fade-in">
+                        <Icon class="is-large has-text-grey" icon="fas fa-spinner fa-spin fa-3x"/>
                     </div>
+                    <header class="card-header">
+                        <p class="card-header-title">
+                            {{item.username}}
+                        </p>
+                        <p class="card-header-icon">
+                            <Can permission="Project.Delete">
+                                <Icon icon="fas fa-trash" class="has-text-danger" @click="del(item.id)" @vnode-mounted="tooltip($event,'danger','Delete Player')" />
+                            </Can>
+                        </p>
+                    </header>
+                    <Cardcontent class="has-text-centered-mobile">
+                        <div class="columns is-multiline">
+                            <div class="column is-12">
+                                <p class="block">
+                                    <span class="has-text-weight-bold">UUID:</span><br>
+                                    <span>{{ item.uuid }}</span>
+                                </p>
+                            </div>
+                            <div class="column is-12">
+                                <p class="block">
+                                    <span class="has-text-weight-bold">Date Created:</span><br>
+                                    <span><Timestamp :timestamp="item.created_at" :diffForHumans="true"/></span>
+                                </p>
+                            </div>
+                        </div>
+                    </Cardcontent>
+                    <footer class="card-footer">
+                        <router-link :to="{name:'mc-player',params:{'slug':item.username}}" class="card-footer-item">Open Stats</router-link>
+                    </footer>
                 </div>
             </div>
         </div>
@@ -49,15 +65,16 @@
 <script>
 import axios from "axios";
 import Icon from "../../../../components/text/Icon";
-import session from "../../../../store/session";
 import Can from "../../../../components/helpers/Can";
 import Tileancestor from "../../../../components/tiles/Tileancestor";
 import Timestamp from "../../../../components/text/Timestamp";
 import {POSITION, useToast} from "vue-toastification";
 import httpError from "../../../../components/helpers/httpError";
+import Cardcontent from "../../../../components/cards/Cardcontent";
+import tippy from "tippy.js";
 export default {
     name: "Players",
-    components: {Timestamp, Tileancestor, Can, Icon},
+    components: {Cardcontent, Timestamp, Tileancestor, Can, Icon},
     beforeMount() {
         this.fetch(this.state.page);
     },
@@ -119,6 +136,13 @@ export default {
                     this.httpError(error)
                 });
         },
+        tooltip(e,theme,text) {
+            tippy(e.el, {
+                content: text,
+                theme: theme,
+                hideOnClick: false
+            });
+        }
     }
 }
 </script>

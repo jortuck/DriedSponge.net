@@ -3,8 +3,6 @@
 </template>
 
 <script>
-import session from "../../store/session";
-
 export default {
     name: "Can",
     props: {
@@ -15,16 +13,8 @@ export default {
     },
     methods:{
         can(perm){
-            if(session.can(perm)){
-                return true
-            }else{
-                return false
-            }
+            return this.$store.dispatch ("can", perm);
         }
     }
 }
 </script>
-
-<style scoped>
-
-</style>

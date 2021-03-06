@@ -14,19 +14,28 @@ class FileUpload extends Model
     //Timestamps
     public $timestamps = true;
 
-    // is the file a video
+    /**
+     * Check if the file is a video
+     * @return boolean
+     */
     public function isVideo()
     {
         return Str::contains($this->type, ["mp4", "webm"]);
     }
 
-    // Get file path
+    /**
+     * Get the storage path of the uploaded file
+     * @return string
+     */
     public function path()
     {
         return $this->isVideo() && !$this->private ? "public/videos/" . $this->name : "/uploads/" . $this->type . "/" . $this->name;
     }
 
-    // Get file url
+    /**
+     * Get the HTTP url of the uploaded file
+     * @return string
+     */
     public function url()
     {
         return $this->isVideo() ? asset("/videos/" . $this->name) : route('upload.load-file', $this->name) . "." . $this->type;

@@ -8,7 +8,6 @@
     </main>
 </template>
 <script>
-import session from "../../store/session";
 import Icon from "../../components/text/Icon";
 import Denied from "../errors/Denied";
 import Managenav from "./Managenav";
@@ -17,16 +16,12 @@ export default {
     components: {Managenav, Denied, Icon},
     data() {
         return {
-            session: session.state,
+            session: this.$store.state,
         }
     },
     computed: {
         load() {
-            if (this.session.authenticated) {
-                return !!(session.can(this.$route.meta.can) && session.can(this.$route.meta.can));
-            } else {
-                return false
-            }
+            return this.$store.state.authenticated && this.$store.dispatch("can",this.$route.meta.can);
         }
     }
 }

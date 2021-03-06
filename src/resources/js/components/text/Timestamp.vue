@@ -37,6 +37,7 @@ export default {
             tippy(this.$refs.root, {
                 content: dayjs(this.timestamp).format(this.format),
                 theme: "primary",
+                hideOnClick: false
             });
         }
     }

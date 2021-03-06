@@ -14,23 +14,19 @@
     </router-link>
 </template>
 <script>
-import session from "../../store/session.js";
-import Can from "../helpers/Can";
-import Icon from "../text/Icon";
+import Can from "../../helpers/Can";
+import Icon from "../../text/Icon";
 
 export default {
     name: "Loginbutton",
     methods: {
         logout() {
-            session.logout();
+            this.$store.commit("logout");
         },
-        login(provider) {
-            session.login(provider);
-        }
     },
     data() {
         return {
-            state: session.state,
+            state: this.$store.state,
             dropdown_active: false,
             dropdown2_active: false,
         }

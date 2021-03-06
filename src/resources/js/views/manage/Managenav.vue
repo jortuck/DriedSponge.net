@@ -80,7 +80,7 @@
     </nav>
 </template>
 <script>
-import Snowcontroller from "../../components/includes/Snowcontroller";
+import Snowcontroller from "../../components/includes/Navbar/Snowcontroller";
 import Navdropdown from "../../components/includes/Navbar/Dropdown";
 import Icon from "../../components/text/Icon";
 import Can from "../../components/helpers/Can";

@@ -5,7 +5,7 @@
     <div v-else-if="notfound" class="has-text-centered">
         <h1 class="title mb-6">No Alert To Edit</h1>
     </div>
-    <form @submit.prevent="submit" v-else>
+    <form @submit.prevent="submit" v-else data-aos="fade-in">
         <h1 class="title mb-4">Edit {{form.fields.name}}</h1>
         <div class="columns">
             <div class="column">

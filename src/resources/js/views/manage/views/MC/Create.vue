@@ -1,5 +1,5 @@
 <template>
-    <form @submit.prevent="submit" ref="form">
+    <form @submit.prevent="submit" ref="form" data-aos="fade-in">
         <div class="columns">
             <div class="column">
                 <Textinput :maxCharacters="100" v-model:error="form.errors['name']" label="Server Name"

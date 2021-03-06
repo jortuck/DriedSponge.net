@@ -5,7 +5,7 @@
     <div v-else-if="notfound" class="has-text-centered">
         <h1 class="title mb-6">No Alert To Edit</h1>
     </div>
-    <form @submit.prevent="submit" v-else>
+    <form @submit.prevent="submit" v-else data-aos="fade-in">
         <div class="columns">
             <div class="column">
                     <Textarea rows="5" placeholder="A nice message" label="Message" :required="true"
@@ -30,7 +30,6 @@
 <script>
 import Textarea from "../../../../components/form/Textarea";
 import axios from "axios";
-import session from "../../../../store/session";
 import Icon from "../../../../components/text/Icon";
 import Checkbox from "../../../../components/form/Checkbox";
 import httpError from "../../../../components/helpers/httpError";

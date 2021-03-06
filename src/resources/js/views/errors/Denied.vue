@@ -16,12 +16,11 @@
     </div>
 </template>
 <script>
-import session from "../../store/session";
 export default {
     name: "Denied",
     data(){
         return{
-            session: session.state
+            session: this.$store.state
         }
     }
 }

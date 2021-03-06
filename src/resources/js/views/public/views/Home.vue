@@ -1,20 +1,14 @@
 <template>
     <section class="section">
         <Pagehead v-bind:sub_header="subhead">
-            <span class="has-text-primary">DRIED</span> SPONGE
+            <span class="has-text-primary">DRIED</span>SPONGE
         </Pagehead>
         <div class="has-text-centered mt-5" data-aos="fade-up">
-            <Whitelink target="_blank" href="https://twitter.com/dried_sponge">
-                <Icon tooltip="Twitter" class="is-large is-me mx-4" icon="fab fa-twitter fa-3x"/>
-            </Whitelink>
-            <Whitelink target="_blank" href="https://steamcommunity.com/id/driedsponge/">
-                <Icon tooltip="Steam" class="is-large mx-4" icon="fab fa-steam fa-3x"/>
+            <Whitelink target="_blank" :href="social.url" v-for="social in socials">
+                <Icon :tooltip="social.name" class="is-large mx-4" :icon="`${social.icon} fa-3x`"/>
             </Whitelink>
             <Whitelink @click="copydiscord" ref="discordbtn">
                 <Icon class="is-large mx-4" icon="fab fa-discord fa-3x"/>
-            </Whitelink>
-            <Whitelink class="white-link" href="https://github.com/driedsponge" target="_blank">
-                <Icon tooltip="Github" class="is-large mx-4" icon="fab fa-github fa-3x"/>
             </Whitelink>
         </div>
     </section>
@@ -84,7 +78,12 @@ export default {
             subhead: "Full Stack Web Developer (i can code web stuff)",
             discord_status: {
                 msg: "(Click to copy)",
-            }
+            },
+            socials:[
+                {name:"Twitter",icon:"fab fa-twitter",url:"https://twitter.com/dried_sponge"},
+                {name:"Steam",icon:"fab fa-steam",url:"https://steamcommunity.com/id/driedsponge/"},
+                {name:"Github",icon:"fab fa-twitter",url:"https://github.com/driedsponge"}
+            ]
         }
     },
     computed: {
