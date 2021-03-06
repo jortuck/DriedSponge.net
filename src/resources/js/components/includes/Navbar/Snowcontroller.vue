@@ -12,9 +12,9 @@
     </Navdropdown>
 </template>
 <script>
-import {getCookie,setCookie} from "../helpers/cookies";
-import Icon from "../text/Icon";
-import Navdropdown from "./Navbar/Dropdown";
+import {getCookie,setCookie} from "../../helpers/cookies";
+import Icon from "../../text/Icon";
+import Navdropdown from "./Dropdown";
 export default {
     name: "Snowcontroller",
     components: {Navdropdown, Icon},

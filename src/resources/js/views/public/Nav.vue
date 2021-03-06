@@ -23,7 +23,7 @@
     </nav>
 </template>
 <script>
-import Snowcontroller from '../../components/includes/Snowcontroller';
+import Snowcontroller from '../../components/includes/Navbar/Snowcontroller';
 import Navlogin from "../../components/includes/Navbar/Navlogin";
 
 export default {

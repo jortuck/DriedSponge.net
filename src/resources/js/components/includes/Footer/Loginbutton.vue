@@ -14,8 +14,8 @@
     </router-link>
 </template>
 <script>
-import Can from "../helpers/Can";
-import Icon from "../text/Icon";
+import Can from "../../helpers/Can";
+import Icon from "../../text/Icon";
 
 export default {
     name: "Loginbutton",
