@@ -52,8 +52,8 @@
                     Hello mobile user! You may have to scroll horizontally on the table to see the value of the stats
                 </p>
                 <div class="table-container mb-6"  v-if="stats.length !== 0" data-aos="fade-in">
-                    <p class="block my-2 subtitle has-text-centered mc-text is-6 mc-color-gray">
-                        These stats were last updated <span class="mc-color-aqua"><Timestamp :diffForHumans="true" :timestamp="stats.updated_at" /></span>.
+                    <p class="block my-2 subtitle has-text-centered mc-text is-6 mc-color-gray" v-if="updated_at">
+                        These stats were last updated <span class="mc-color-aqua"><Timestamp :diffForHumans="true" :timestamp="updated_at" /></span>.
                     </p>
                     <table class="table is-fullwidth is-hoverable mc-table is-striped">
                         <tbody>
@@ -118,6 +118,7 @@ export default {
                 this.loadingStats = true;
                 axios.get("/api/mc/players/" + this.$route.params.slug + "/stats/" + server).then(res => {
                     this.currstats = res.data.data.stats
+                    this.updated_at = res.data.data.updated_at
                     this.loadingStats = false;
 
                 })
@@ -143,6 +144,7 @@ export default {
             stats: null,
             currstats: null,
             loadingStats: false,
+            updated_at: null,
             query: null
         }
     },
