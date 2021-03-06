@@ -14,7 +14,7 @@
                             {{item.username}}
                         </p>
                         <p class="card-header-icon">
-                            <Can permission="Projects.Delete">
+                            <Can permission="Project.Delete">
                                 <Icon icon="fas fa-trash" class="has-text-danger" @click="del(item.id)" @vnode-mounted="tooltip($event,'danger','Delete Player')" />
                             </Can>
                         </p>

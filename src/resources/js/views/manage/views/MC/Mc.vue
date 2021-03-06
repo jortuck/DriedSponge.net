@@ -17,7 +17,7 @@
                                 <a :href="href"  @click="navigate">Players</a>
                             </li>
                         </router-link>
-                        <Can permission="Projects.Create">
+                        <Can permission="Project.Create">
                             <router-link custom :to="{'name':'mc-create'}"  v-slot="{ href,navigate, isActive,isExactActive}">
                                 <li :class="{'is-active':isExactActive}">
                                     <a :href="href"  @click="navigate">Add Another Server</a>

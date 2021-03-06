@@ -43,12 +43,12 @@
                         </div>
                     </Cardcontent>
                     <footer class="card-footer">
-                        <Can permission="Projects.Edit">
+                        <Can permission="Project.Edit">
                             <router-link :to="{'name':'mc-edit','params':{'id':item.id}}" class="card-footer-item">
                                 <span>Edit</span>
                             </router-link>
                         </Can>
-                        <Can permission="Projects.Delete">
+                        <Can permission="Project.Delete">
                             <a @click="del(item.id)" class="card-footer-item has-text-danger">Delete</a>
                         </Can>
                     </footer>
