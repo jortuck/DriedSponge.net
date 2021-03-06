@@ -135,13 +135,13 @@ class McClient extends Controller
             return response()->json(["error"=>"Server not found"],404);
         }
 
-        $stat = $player->stats()->select('stats')->where('server_id',$server->id)->first();
+        $stat = $player->stats()->select('stats','updated_at')->where('server_id',$server->id)->first();
         if($stat){
             $player->stats = json_decode($stat->stats,true);
         }else{
             return response()->json(['No stats found'],404);
         }
-
+        $player->updated_at = $stat->updated_at;
         return response()->json(["success" => "true", "data" => $player]);
     }
 }

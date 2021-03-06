@@ -52,6 +52,9 @@
                     Hello mobile user! You may have to scroll horizontally on the table to see the value of the stats
                 </p>
                 <div class="table-container mb-6"  v-if="stats.length !== 0" data-aos="fade-in">
+                    <p class="block my-2 subtitle has-text-centered mc-text is-6 mc-color-gray">
+                        These stats were last updated <span class="mc-color-aqua"><Timestamp :diffForHumans="true" :timestamp="stats.updated_at" /></span>.
+                    </p>
                     <table class="table is-fullwidth is-hoverable mc-table is-striped">
                         <tbody>
                             <template v-for="(key, value) in currstats" >
@@ -81,10 +84,11 @@ import httpError from "../../../../components/helpers/httpError";
 import Icon from "../../../../components/text/Icon";
 import tippy from "tippy.js";
 import {POSITION, useToast} from "vue-toastification";
+import Timestamp from "../../../../components/text/Timestamp";
 
 export default {
     name: "Player",
-    components: {Icon},
+    components: {Timestamp, Icon},
     mounted() {
         axios.get("/api/mc/players/" + this.$route.params.slug).then(res => {
             this.loading = false
