@@ -3,42 +3,47 @@
         <h1 class="title mb-6">No Data Found</h1>
     </div>
     <div style="display: inherit" v-else>
-        <table class="table is-fullwidth">
-            <div class="loading-cover-dark" v-if="state.loading" data-aos="fade-in">
-                <Icon class="has-text-white is-large" icon="fas fa-spinner fa-spin fa-3x"/>
-            </div>
-            <thead>
-            <tr>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Subject</th>
-                <th>Date Sent</th>
-                <th class="has-text-centered">Actions</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr v-for="item in state.currentData" :key="item.id" data-aos="fade-in">
-                <td>{{ item.Name }}</td>
-                <td><a :href="'mailto:'+item.Email+'?subject=Re: '+item.Subject" target="_blank">{{ item.Email }}</a>
-                </td>
-                <td>{{ truncate(item.Subject, 30) }}</td>
-                <td><Timestamp :diffForHumans="true" :timestamp="item.created_at"/></td>
-                <td class="has-text-centered">
-                    <button @click="viewMessage(item.id)" class="button is-primary is-small mx-1"
-                            :class="{'is-loading':state.modal.loading===item.id}">
-                        <Icon icon="fas fa-book-open"/>
-                    </button>
-                    <Can permission="Contact.Delete">
-                        <button @click="del(item.id)" class="button is-danger is-small mx-1"
-                                :class="{'is-loading':state.del_loading===item.id}">
-                            <Icon icon="fas fa-trash"/>
+        <div class="table-container">
+            <table class="table is-fullwidth">
+                <div class="loading-cover-dark" v-if="state.loading" data-aos="fade-in">
+                    <Icon class="has-text-white is-large" icon="fas fa-spinner fa-spin fa-3x"/>
+                </div>
+                <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Subject</th>
+                    <th>Date Sent</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr v-for="item in state.currentData" :key="item.id" data-aos="fade-in">
+                    <td>{{ item.Name }}</td>
+                    <td><a :href="'mailto:'+item.Email+'?subject=Re: '+item.Subject" target="_blank">{{
+                            item.Email
+                        }}</a>
+                    </td>
+                    <td>{{ truncate(item.Subject, 30) }}</td>
+                    <td>
+                        <Timestamp :diffForHumans="true" :timestamp="item.created_at"/>
+                    </td>
+                    <td class="has-text-centered">
+                        <button @click="viewMessage(item.id)" class="button is-primary is-small mx-1"
+                                :class="{'is-loading':state.modal.loading===item.id}">
+                            <Icon icon="fas fa-book-open"/>
                         </button>
-                    </Can>
-
-                </td>
-            </tr>
-            </tbody>
-        </table>
+                        <Can permission="Contact.Delete">
+                            <button @click="del(item.id)" class="button is-danger is-small mx-1"
+                                    :class="{'is-loading':state.del_loading===item.id}">
+                                <Icon icon="fas fa-trash"/>
+                            </button>
+                        </Can>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
         <nav class="pagination" role="navigation" aria-label="pagination">
             <button @click="fetch(state.page-1)" class="button pagination-previous"
                     :disabled="state.prev_page_url != null ? null : 'disabled'">
@@ -85,7 +90,7 @@
                     </button>
                 </Can>
                 <button class="button" @click="state.modal.active = false">
-                    <Icon icon="fas fa-times" />
+                    <Icon icon="fas fa-times"/>
                     <span>Close</span>
                 </button>
             </footer>
@@ -99,7 +104,8 @@ import Icon from "../../../../components/text/Icon";
 import Can from "../../../../components/helpers/Can";
 import Timestamp from "../../../../components/text/Timestamp";
 import {POSITION, useToast} from "vue-toastification";
-import httpError from  "../../../../components/helpers/httpError"
+import httpError from "../../../../components/helpers/httpError"
+
 export default {
     name: "Responselist",
     components: {Timestamp, Can, Icon},
@@ -139,9 +145,9 @@ export default {
                 this.state.last_page = res.data.last_page
                 this.state.loading = false
             })
-            .catch(error => {
-                this.httpError(error)
-            });
+                .catch(error => {
+                    this.httpError(error)
+                });
         },
         truncate(string, num) {
             if (string.length <= num) {
@@ -160,9 +166,9 @@ export default {
                 this.state.modal.active = true
                 this.state.modal.loading = null
             })
-            .catch(error => {
-                this.httpError(error)
-            });
+                .catch(error => {
+                    this.httpError(error)
+                });
         },
         del(id) {
             this.state.del_loading = id
