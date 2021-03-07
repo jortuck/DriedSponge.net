@@ -63,17 +63,11 @@ class FileUploads extends Controller
     {
         $upload = FileUpload::where('uuid', $uuid)->whereNotNull("deleteToken")->first();
         if ($upload) { // Does the db entry exist
-            $path =  $upload->path();
-            if (Storage::exists($path)) { // Does the file associated with the db entry exist
-                if (Hash::check($deltoken, $upload->deleteToken)) { // Check token in db
-                    Storage::delete($path);
-                    $upload->delete();
-                    return "<script>alert('Deleted Image');window.close();</script>";
-                }
-                return response()->json(['error' => 'Unauthorized'], 403);
+            if (Hash::check($deltoken, $upload->deleteToken)) { // Check token in db
+                $upload->delete();
+                return "<script>alert('Deleted Image');window.close();</script>";
             }
-            $upload->delete(); // If the file does not exist, delete the db entry and return 404
-            return response()->json(['error' => 'Not found'], 404);
+            return response()->json(['error' => 'Unauthorized'], 403);
         }
         return response()->json(['error' => 'Not found'], 404);
     }
