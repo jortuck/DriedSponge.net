@@ -5,22 +5,10 @@
                 <Managepagehead>
                     Alerts
                 </Managepagehead>
-                <div class="tabs  is-medium">
-                    <ul>
-                       <router-link custom :to="{'name':'alerts'}"  v-slot="{ href, route, navigate, isActive, isExactActive }">
-                           <li :class="{'is-active':isExactActive}">
-                                <a :href="href"  @click="navigate">Alerts</a>
-                           </li>
-                       </router-link>
-                        <Can permission="Alerts.Create">
-                            <router-link custom :to="{'name':'alerts-create'}"  v-slot="{ href,navigate, isActive,isExactActive}">
-                                <li :class="{'is-active':isExactActive}">
-                                    <a :href="href"  @click="navigate">Create New Alert</a>
-                                </li>
-                            </router-link>
-                        </Can>
-                    </ul>
-                </div>
+                <Tabs>
+                    <Tablink :to="{'name':'alerts'}">Alerts</Tablink>
+                    <Tablink :to="{'name':'alerts-create'}" permission="Alerts.Create">Create New Alert</Tablink>
+                </Tabs>
                 <router-view></router-view>
             </div>
         </div>
@@ -29,8 +17,10 @@
 <script>
 import Managepagehead from "../../../../components/text/Managepagehead";
 import Can from "../../../../components/helpers/Can";
+import Tabs from "../../../../components/includes/Tabs/Tabs";
+import Tablink from "../../../../components/includes/Tabs/Tablink";
 export default {
     name: "Alerts",
-    components: {Can, Managepagehead},
+    components: {Tablink, Tabs, Can, Managepagehead},
 }
 </script>
