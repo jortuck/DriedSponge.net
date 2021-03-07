@@ -20,7 +20,7 @@ export default {
         }
     },
 
-    beforeMount() {
+    created() {
         AOS.init({once:true,startEvent: 'DOMContentLoaded'})
     }
 
