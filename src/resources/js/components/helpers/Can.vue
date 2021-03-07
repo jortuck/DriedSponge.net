@@ -1,5 +1,5 @@
 <template>
-    <slot v-if="can(permission)"></slot>
+    <slot v-if="can"></slot>
 </template>
 
 <script>
@@ -11,9 +11,9 @@ export default {
             required: true
         }
     },
-    methods:{
-        can(perm){
-            return this.$store.dispatch ("can", perm);
+    computed:{
+        can(){
+            return this.$store.state.permissions[this.permission] || this.$store.state.permissions["*"];
         }
     }
 }
