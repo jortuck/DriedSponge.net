@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Str;
 
 class FileUpload extends Model
@@ -46,6 +47,10 @@ class FileUpload extends Model
         static::deleted(function ($file) {
             if(\Storage::exists($file->path())){
                 \Storage::delete($file->path());
+            }
+            if(config("cloudflare.zone")){
+                $data = ["files"=>[$file->url()]];
+                Http::asJson()->withToken(config("cloudflare.token"))->post("https://api.cloudflare.com/client/v4/zones/".config("cloudflare.zone")."/purge_cache", $data);
             }
         });
     }
