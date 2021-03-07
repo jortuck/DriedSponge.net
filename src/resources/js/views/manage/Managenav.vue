@@ -30,7 +30,7 @@ export default {
                     name: "Content", perm: "Manage.Communication", links: [
                         {name: "Projects", perm: "Project.See", icon: "fas fa-project-diagram"},
                         {name: "MC Servers", perm: "Project.See", icon: "fas fa-server",to:{'name':'mc-servers'}},
-                        {name: "Files", perm: "File.See", icon: "fas fa-images"}
+                        {name: "Files", perm: "File.See", icon: "fas fa-images", to:{"name":"files"}}
                     ]
                 },
                 {

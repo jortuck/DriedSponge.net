@@ -128,6 +128,18 @@ const routes = [
                         meta: {can: "Projects.Edit"},
                     },
                 ]
+            },
+            {
+                path: 'files',
+                component: () => import('../views/manage/views/Files/Files'),
+                children: [
+                    {
+                        path: '',
+                        name: 'files',
+                        component: () => import('../views/manage/views/Files/Filelist'),
+                        meta: {can: "File.See"},
+                    },
+                ]
             }
         ]
     },
