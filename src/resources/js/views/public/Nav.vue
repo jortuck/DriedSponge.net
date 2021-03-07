@@ -1,23 +1,29 @@
 <template>
     <Navbar>
-        <router-link class="navbar-item" :to="{ name: 'home'}" exact-active-class="is-active">Home</router-link>
-        <router-link class="navbar-item" :to="{ name: 'projects'}" exact-active-class="is-active">Projects</router-link>
+        <Navlink  v-for="nav in navlinks" :to="nav.to">{{nav.name}}</Navlink>
         <Navlogin />
     </Navbar>
 </template>
 <script>
 import Navlogin from "../../components/includes/Navbar/Navlogin";
 import Navbar from "../../components/includes/Navbar/Navbar";
+import Navlink from "../../components/includes/Navbar/Navlink";
 
 export default {
     name: "Nav",
     components: {
+        Navlink,
         Navbar,
         Navlogin
     },
     data() {
         return {
-            navbarToggled: false
+            navbarToggled: false,
+            navlinks:[
+                {"name":"Home","to":{ name: 'home'}},
+                {"name":"Projects","to":{ name: 'projects'}},
+                {"name":"Minecraft","to":{ name: 'mc'}}
+            ]
         }
     },
     methods: {
@@ -27,7 +33,3 @@ export default {
     }
 }
 </script>
-
-<style scoped>
-
-</style>

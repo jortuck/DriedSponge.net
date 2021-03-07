@@ -1,5 +1,5 @@
 <template>
-    <div class="has-dropdown navbar-item" :class="{'is-clicked':click,'is-hoverable':!click,'is-active':click&&state.showDropDown}">
+    <div class="has-dropdown navbar-item" :class="{'is-clicked':click,'is-hoverable':!click,'is-active':click&&state.showDropDown}" v-if="can">
         <a class="navbar-link" @click="toggleDrop">
             {{ text }}
         </a>
@@ -27,13 +27,25 @@ export default {
             type: Boolean,
             default: false,
             required: false
-        }
+        },
+        permission: {
+            type: String,
+            required: false
+        },
     },
     methods: {
         toggleDrop(){
             this.state.showDropDown = !this.state.showDropDown;
         }
     },
+    computed:{
+        can(){
+            if(!this.permission){
+                return true;
+            }
+            return this.$store.state.permissions[this.permission] || this.$store.state.permissions["*"];
+        }
+    }
 
 }
 </script>

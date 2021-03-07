@@ -8,18 +8,20 @@ import AOS from 'aos';
 
 export default {
     name: 'App',
+
     components: {
         Nav,
         Footer
     },
+
     props: {
         manage: {
             required: false,
         }
     },
-    beforeMount() {
-        AOS.init({once:true,disable: 'phone'})
 
+    beforeMount() {
+        AOS.init({once:true,startEvent: 'DOMContentLoaded'})
     }
 
 }
