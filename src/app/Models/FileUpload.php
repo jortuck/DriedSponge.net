@@ -41,4 +41,13 @@ class FileUpload extends Model
         return $this->isVideo() ? asset("/videos/" . $this->name) : route('upload.load-file', $this->name) . "." . $this->type;
     }
 
+    protected static function booted()
+    {
+        static::deleted(function ($file) {
+            if(\Storage::exists($file->path())){
+                \Storage::delete($file->path());
+            }
+        });
+    }
+
 }

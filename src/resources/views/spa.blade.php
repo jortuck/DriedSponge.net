@@ -9,10 +9,11 @@
     <title>{{ config('app.name') }}</title>
     <link rel="stylesheet" type="text/css" href="{{ asset('css/app.css') }}">
     <script src="https://kit.fontawesome.com/993187c8db.js" crossorigin="anonymous"></script>
-    <meta id="captcha_site_key" name="captcha_site_key" content="{{config('extra.captcha_site_key')}}"/>
     <link rel="icon" href="{{asset('favicon.png')}}">
     <link rel="manifest" href="{{asset('manifest.json')}}">
-
+    <!-- Cloudflare Web Analytics -->
+    <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "f9f0c4b4b8654a11a4fab5c4abdfa18c", "spa": true}'></script>
+    <!-- End Cloudflare Web Analytics -->
 </head>
 <body>
 <noscript>
