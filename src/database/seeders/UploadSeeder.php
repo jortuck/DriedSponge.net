@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\FileCatergory;
 use App\Models\FileUpload;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Storage;
@@ -28,6 +29,14 @@ class UploadSeeder extends Seeder
                     continue;
                 }
                 $data->save();
+                $type = FileCatergory::where("mime_type",Storage::mimeType($file))->first();
+                if(!$type){
+                    $type = new FileCatergory();
+                    $type->extention =$type;
+                    $type->mime_type=Storage::mimeType($file);
+                    $type->save();
+                }
+                $type->files()->save($data);
                 echo "\n $file - imported!";
             }
         }else {
