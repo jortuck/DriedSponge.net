@@ -16,6 +16,10 @@ class FileUpload extends Model
     //Timestamps
     public $timestamps = true;
 
+    public function type(){
+        return $this->belongsTo(FileType::class,"file_type");
+    }
+
     /**
      * Check if the file is a video
      * @return boolean

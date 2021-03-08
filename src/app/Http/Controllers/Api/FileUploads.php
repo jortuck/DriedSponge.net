@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\FileType;
 use App\Models\FileUpload;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -37,10 +38,17 @@ class FileUploads extends Controller
                     if ($request->set_delete_token) {
                         $deltoken = Str::random(64);
                         $upload->deleteToken = Hash::make($deltoken);
-                        $deleteurl = route('sharex.delete', ["uuid" => $upload->uuid, 'deltoken' => $deltoken]);
-                        $responsejson['deletion_url'] = $deleteurl;
+                        $responsejson['deletion_url'] = route('sharex.delete', ["uuid" => $upload->uuid, 'deltoken' => $deltoken]);
                     }
                     $upload->save();
+                    $type = FileType::where("mime_type",$file->getMimeType())->first();
+                    if(!$type){
+                        $type = new FileType();
+                        $type->extention =$extention;
+                        $type->mime_type=$file->getMimeType();
+                        $type->save();
+                    }
+                    $type->files()->save($upload);
                     if($isVideo){
                         $file->storePubliclyAs(
                             "public/videos", $upload->name

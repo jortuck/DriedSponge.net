@@ -1,7 +1,7 @@
 <template>
     <Managebox header="Files">
         <Tabs>
-            <Tablink>All Files</Tablink>
+            <Tablink :to="{'name':'files'}">All Files</Tablink>
             <Tablink>Upload Files</Tablink>
             <Tablink>Danger Zone</Tablink>
         </Tabs>
