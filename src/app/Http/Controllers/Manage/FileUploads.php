@@ -13,7 +13,7 @@ class FileUploads extends Controller
             return response()->json(["error"=>"Unauthenticated"],401);
         }
         if (\Auth::user()->hasPermissionTo('File.See')) {
-            $responses = FileFolders::select("mime_type","extention")->get();
+            $responses = FileFolders::select("name","uuid")->get();
             return response()->json($responses);
         }else{
             return response()->json(['error' => 'Unauthorized'],403);
