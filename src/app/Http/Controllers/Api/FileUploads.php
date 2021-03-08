@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Models\FileCatergory;
+use App\Models\FileFolders;
 use App\Models\FileUpload;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -41,9 +41,9 @@ class FileUploads extends Controller
                         $responsejson['deletion_url'] = route('sharex.delete', ["uuid" => $upload->uuid, 'deltoken' => $deltoken]);
                     }
                     $upload->save();
-                    $catergory = FileCatergory::where("mime_type",$file->getMimeType())->first();
+                    $catergory = FileFolders::where("mime_type",$file->getMimeType())->first();
                     if(!$catergory){
-                        $catergory = new FileCatergory();
+                        $catergory = new FileFolders();
                         $catergory->extention =$extention;
                         $catergory->mime_type=$file->getMimeType();
                         $catergory->save();
