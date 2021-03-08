@@ -17,7 +17,7 @@ class FileUpload extends Model
     public $timestamps = true;
 
     public function type(){
-        return $this->belongsTo(FileFolders::class,"file_type");
+        return $this->belongsTo(FileFolders::class,"folder");
     }
 
     /**

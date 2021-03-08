@@ -23,7 +23,7 @@ class FileUploads extends Controller
                 if ($validator->passes()) {
                     $file = $request->file('image');
                     $extention = $file->extension();
-                    $name = Str::random(10);
+                    $name = Str::random(20);
                     $isVideo = Str::contains($file->getMimeType(),"video");
                     $upload = new FileUpload();
                     $upload->name = $name . '.' . $extention;
@@ -41,14 +41,14 @@ class FileUploads extends Controller
                         $responsejson['deletion_url'] = route('sharex.delete', ["uuid" => $upload->uuid, 'deltoken' => $deltoken]);
                     }
                     $upload->save();
-                    $catergory = FileFolders::where("mime_type",$file->getMimeType())->first();
+                    $catergory = FileFolders::where("name",Str::upper($extention))->first();
                     if(!$catergory){
                         $catergory = new FileFolders();
-                        $catergory->extention =$extention;
-                        $catergory->mime_type=$file->getMimeType();
+                        $catergory->uuid = Str::random(15);
+                        $catergory->name = Str::upper($extention);
                         $catergory->save();
                     }
-                    $type->files()->save($upload);
+                    $catergory->files()->save($upload);
                     if($isVideo){
                         $file->storePubliclyAs(
                             "public/videos", $upload->name

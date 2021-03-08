@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class FileFolders extends Model
 {
@@ -11,6 +12,7 @@ class FileFolders extends Model
     protected $table = 'file_folders';
 
     public function files(){
-        return $this->hasMany(FileUpload::class,"file_type","id");
+        return $this->hasMany(FileUpload::class,"folder","uuid");
     }
+
 }
