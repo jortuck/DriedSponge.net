@@ -2,14 +2,23 @@
     <div v-if="state.currentData.length === 0" class="has-text-centered">
         <h1 class="title mb-6">No Data Found</h1>
     </div>
-    <div style="display: inherit" v-else>
-        <div class="columns is-multiline is-centered">
-            <div class="column is-4" v-for="item in state.currentData" :key="item.uuid">
-                <div class="card" :style="'background-image: url('+item.url+')'">
-                    TEst
-                </div>
-            </div>
-        </div>
+    <div class="table-container" v-else>
+        <table class="table is-fullwidth is-hoverable">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Created At</th>
+                    <th>File Size</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="item in state.currentData">
+                    <td><Icon icon="fas fa-folder" /> {{ item.name }}</td>
+                    <td>{{ item.created_at }}</td>
+                    <td>{{ item.size }}/A</td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 </template>
 <script>
@@ -17,9 +26,11 @@ import httpError from "../../../../components/helpers/httpError";
 import axios from "axios";
 import {useToast} from "vue-toastification";
 import tippy from "tippy.js";
+import Icon from "../../../../components/text/Icon";
 
 export default {
     name: "Filelist",
+    components: {Icon},
     data(){
         return{
             state: {
@@ -54,12 +65,9 @@ export default {
         },
         fetch(page) {
             this.state.loading = true
-            axios.get("/app/manage/files/types", {params: {"page": page}}).then(res => {
-                this.state.currentData = res.data.data
+            axios.get("/app/manage/files/folders", {params: {"page": page}}).then(res => {
+                this.state.currentData = res.data
                 this.state.page = res.data.current_page
-                this.state.next_page_url = res.data.next_page_url
-                this.state.prev_page_url = res.data.prev_page_url
-                this.state.last_page = res.data.last_page
                 this.state.loading = false
             })
                 .catch(error => {
@@ -68,13 +76,10 @@ export default {
         },
         del(id) {
             this.state.del_loading = id
-            axios.delete("/app/manage/mc-servers/" + id, {data: {page: this.state.page}})
+            axios.delete("/app/manage/folders/" + id, {data: {page: this.state.page}})
                 .then(res => {
                     this.state.del_loading = null
-                    this.state.currentData = res.data.data;
-                    this.state.next_page_url = res.data.next_page_url
-                    this.state.prev_page_url = res.data.prev_page_url
-                    this.state.last_page = res.data.last_page
+                    this.state.currentData = res.data;
                     useToast().success("The server has been removed!")
                 })
                 .catch(error => {
