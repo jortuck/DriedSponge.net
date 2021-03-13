@@ -63,7 +63,7 @@ Route::prefix('app')->group(function () {
     Route::get('/manage/alerts/{id}', 'Manage\AlertsController@show');
     Route::put('/manage/alerts/{id}', 'Manage\AlertsController@update');
 
-    Route::get('/manage/files/folders', 'Manage\FileUploads@folders');
+    Route::get('/manage/files/{folder?}', 'Manage\FileUploads@files');
 
 
     Route::get('/manage/mc-servers', 'Manage\McServerController@index');

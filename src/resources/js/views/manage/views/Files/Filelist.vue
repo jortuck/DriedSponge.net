@@ -12,10 +12,15 @@
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="item in state.currentData">
-                    <td><Icon icon="fas fa-folder" /> {{ item.name }}</td>
-                    <td>{{ item.created_at }}</td>
-                    <td>{{ item.size }}/A</td>
+                <tr v-for="folder in state.currentData.folders">
+                    <td><Icon icon="fas fa-folder" /> {{ folder.name }}</td>
+                    <td><Timestamp :timestamp="folder.created_at" /></td>
+                    <td>-</td>
+                </tr>
+                <tr v-for="file in state.currentData.files">
+                    <td><Icon icon="fas fa-file" /> {{ file.name }}</td>
+                    <td><Timestamp :timestamp="file.created_at" /></td>
+                    <td>-</td>
                 </tr>
             </tbody>
         </table>
@@ -27,10 +32,11 @@ import axios from "axios";
 import {useToast} from "vue-toastification";
 import tippy from "tippy.js";
 import Icon from "../../../../components/text/Icon";
+import Timestamp from "../../../../components/text/Timestamp";
 
 export default {
     name: "Filelist",
-    components: {Icon},
+    components: {Timestamp, Icon},
     data(){
         return{
             state: {
@@ -65,7 +71,7 @@ export default {
         },
         fetch(page) {
             this.state.loading = true
-            axios.get("/app/manage/files/folders", {params: {"page": page}}).then(res => {
+            axios.get("/app/manage/files/").then(res => {
                 this.state.currentData = res.data
                 this.state.page = res.data.current_page
                 this.state.loading = false

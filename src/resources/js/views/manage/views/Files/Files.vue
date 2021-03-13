@@ -2,7 +2,6 @@
     <Managebox header="Files">
         <Tabs>
             <Tablink :to="{'name':'files'}">All Files</Tablink>
-            <Tablink>Upload Files</Tablink>
             <Tablink>Danger Zone</Tablink>
         </Tabs>
         <router-view></router-view>
