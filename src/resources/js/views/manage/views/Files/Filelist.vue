@@ -12,7 +12,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="folder in state.currentData.folders">
+                <tr v-for="folder in state.currentData.folders" @dblclick="this.$router.push({'name':'files',params:{'folder':folder.uuid}})">
                     <td><Icon icon="fas fa-folder" /> {{ folder.name }}</td>
                     <td><Timestamp :timestamp="folder.created_at" /></td>
                     <td>-</td>
@@ -37,6 +37,7 @@ import Timestamp from "../../../../components/text/Timestamp";
 export default {
     name: "Filelist",
     components: {Timestamp, Icon},
+
     data(){
         return{
             state: {
@@ -50,8 +51,8 @@ export default {
             },
         }
     },
-    beforeMount() {
-        this.fetch(this.state.page);
+    mounted() {
+        this.fetch();
     },
     methods: {
         httpError(error) {
@@ -69,16 +70,17 @@ export default {
                 }
             }
         },
-        fetch(page) {
+        fetch() {
+            const url = this.$route.params.folder ? "/app/manage/files/"+this.$route.params.folder :"/app/manage/files/"
             this.state.loading = true
-            axios.get("/app/manage/files/").then(res => {
+            axios.get(url).then(res => {
                 this.state.currentData = res.data
                 this.state.page = res.data.current_page
                 this.state.loading = false
             })
-                .catch(error => {
-                    this.httpError(error)
-                });
+            .catch(error => {
+                this.httpError(error)
+            });
         },
         del(id) {
             this.state.del_loading = id
@@ -98,7 +100,15 @@ export default {
                 theme: theme,
                 hideOnClick: false
             });
-        }
-    }
+        },
+    },
+    created() {
+        this.$watch(
+            () => this.$route.params,
+            (toParams, previousParams) => {
+                this.fetch();
+            }
+        )
+    },
 }
 </script>
