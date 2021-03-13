@@ -15,4 +15,8 @@ class FileFolders extends Model
         return $this->hasMany(FileUpload::class,"folder","uuid");
     }
 
+    public function subFolders(){
+        return $this->hasMany(FileFolders::class,"parent_folder","uuid");
+    }
+
 }

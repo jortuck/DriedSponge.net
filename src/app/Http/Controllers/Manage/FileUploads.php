@@ -15,8 +15,12 @@ class FileUploads extends Controller
         }
         if (\Auth::user()->hasPermissionTo('File.See')) {
             if($request->folder){
-                $folders = FileFolders::select("name","uuid","created_at")->get();
-                $files = FileUpload::select("name","uuid","created_at","folder")->where('folder',$request->folder)->get();
+                $folder = FileFolders::where("uuid",$request->folder)->first();
+                if(!$folder){
+                    return response()->json(['error' => 'Not found'],404);
+                }
+                $folders = $folder->subFolders()->select("name","uuid","created_at")->get();
+                $files = $folder->files()->select("name","uuid","type","mime_type","created_at")->get();
             }else{
                 $folders = FileFolders::select("name","uuid","created_at")->get();
                 $files = FileUpload::select("name","uuid","created_at","folder")->whereNull('folder')->get();
