@@ -3,7 +3,10 @@
         <h1 class="title mb-6">No Data Found</h1>
     </div>
     <div class="table-container" v-else>
-        <table class="table is-fullwidth is-hoverable">
+        <table class="table is-fullwidth is-hoverable" >
+            <div class="loading-cover-dark" v-if="state.loading">
+                <Icon class="has-text-white is-large" icon="fas fa-spinner fa-spin fa-3x"/>
+            </div>
             <thead>
                 <tr>
                     <th>Name</th>
