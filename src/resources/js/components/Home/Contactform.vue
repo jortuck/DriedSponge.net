@@ -40,11 +40,15 @@
                               v-model:val="form.fields.message" v-model:error="form.errors['message']" :required="true"></Textarea>
                         </div>
                     </div>
-                    <div class="control">
+                    <div class="control" data-aos="fade-in" v-show="this.form.fields.captcha && !form.errors['captcha']">
                         <button class="button is-primary" :class="{'is-loading':form.loading}">
                             <Icon icon="fas fa-paper-plane" />
                             <span>Submit</span>
                         </button>
+                    </div>
+                    <div class="control" data-aos="fade-in" v-show="!this.form.fields.captcha || form.errors['captcha']">
+                        <hcaptcha v-on:rendered="rendered" class="captcha" ref="captcha" @verify="captchaSolved" @expired="expired" sitekey="12e5c4f8-2eb4-4d27-8a5d-7c94c633b11a"></hcaptcha>
+                        <p class="help is-danger has-text-weight-bold" v-if="form.errors['captcha']">{{form.errors['captcha']}}</p>
                     </div>
                 </form>
             </div>
@@ -62,9 +66,10 @@ import Pagehead from "../includes/Pagehead";
 import Icon from "../text/Icon";
 import {useToast} from "vue-toastification";
 import httpError from "../helpers/httpError"
+import Hcaptcha from "../form/hcpatcha/hcaptcha";
 export default {
     name: "Contactform",
-    components: {Icon, Pagehead, Textinput, Textarea, Captcha, Tileancestor},
+    components: {Hcaptcha, Icon, Pagehead, Textinput, Textarea, Captcha, Tileancestor},
     data() {
         return {
             error: "Something went wrong.",
@@ -78,8 +83,9 @@ export default {
                     email: "",
                     subject: "",
                     message: "",
-                },
+                    captcha:null,
 
+                },
             }
         }
     },
@@ -99,6 +105,9 @@ export default {
             .catch(err =>{
                 this.form.loading = false;
                 if(err.response.status === 400){
+                    if(err.response.data['captcha']){
+                        this.$refs.captcha.reset();
+                    }
                     for (var error in err.response.data) {
                         this.form.errors[error] = err.response.data[error][0];
                     }
@@ -117,6 +126,19 @@ export default {
             this.form.fields.email = ""
             this.form.fields.subject = ""
             this.form.fields.message = ""
+            this.form.fields.captcha = ""
+        },
+        captchaSolved(token){
+            this.form.fields.captcha = token
+            this.form.errors['captcha'] = null
+        },
+        expired(){
+            this.form.fields.captcha = null
+            useToast().error("The captcha expired. Please complete it again!")
+            this.form.errors['captcha'] = "Captcha expired. Please complete it again."
+        },
+        rendered(){
+            console.log("capthca renderd")
         }
     },
 }

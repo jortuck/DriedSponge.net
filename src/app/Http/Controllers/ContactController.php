@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Mail\ContactForm;
 use App\Models\User;
+use App\Rules\Captcha;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\App;
 use Mail;
@@ -26,19 +27,16 @@ class ContactController extends Controller
     public function send(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            //"captcha_token" => "required",
+            "captcha" => "required",
             "name" => "required|max:150",
             "email" => "required|max:150|email:rfc,dns,spoof",
             "subject" => "required|max:256",
             "message" => "required|max:2000"
         ]);
         if ($validator->passes()) {
-//            $response = Http::asForm()->post('https://www.google.com/recaptcha/api/siteverify', [
-//                'secret' => config('extra.captcha_secret'),
-//                'response' => $request->captcha_token,
-//            ]);
-            //$response['success']
-            if (true) {
+            // We have to check teh captcha after everything else has been validated, other wise the user will have to redo the captcha every single time
+            // which would be annoying for them
+            if (Validator::make($request->all(), ["captcha"=>new Captcha()])->passes()) {
                 $data = new ContactResponses();
                 $data->Name = $request->name;
                 $data->Email = $request->email;
@@ -56,11 +54,11 @@ class ContactController extends Controller
                     "color" => hexdec("00BE16"),
                 ];
                 $response = \Http::post(config('extra.discord_notification_hook'), ["embeds" => [$embed]]);
-                return response()->json(['success' => 'Your message has been sent!'],201);
+                return response()->json(['success' => 'Your message has been sent!'], 201);
             } else {
-                return response()->json(['captcha' => 'Captcha failed, please try again.']);
+                return response()->json(['captcha' => ['You failed the captcha. Please try it again.']], 400);
             }
         }
-        return response()->json($validator->errors(),400);
+        return response()->json($validator->errors(), 400);
     }
 }
