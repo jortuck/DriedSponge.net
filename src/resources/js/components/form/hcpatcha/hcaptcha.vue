@@ -1,3 +1,4 @@
+<!-- Credit: https://github.com/hCaptcha/vue-hcaptcha/blob/master/src/hcaptcha.vue -->
 <template>
     <div id="hcap-script" />
 </template>

@@ -1,4 +1,5 @@
-/**
+// Credit: https://github.com/hCaptcha/vue-hcaptcha/blob/master/src/hcaptcha-script.js
+ /**
  * Used to prevent loading api.js multiple times
  * @type {string}
  */
