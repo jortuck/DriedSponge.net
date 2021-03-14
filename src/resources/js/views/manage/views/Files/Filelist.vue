@@ -12,12 +12,12 @@
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="folder in state.currentData.folders" @dblclick="this.$router.push({'name':'files',params:{'folder':folder.uuid}})">
+                <tr class="is-clickable" v-for="folder in state.currentData.folders" @dblclick="this.$router.push({'name':'files',params:{'folder':folder.uuid}})">
                     <td><Icon icon="fas fa-folder" /> {{ folder.name }}</td>
                     <td><Timestamp :timestamp="folder.created_at" /></td>
                     <td>-</td>
                 </tr>
-                <tr v-for="file in state.currentData.files">
+                <tr class="is-clickable" v-for="file in state.currentData.files">
                     <td><Icon icon="fas fa-file" /> {{ file.name }}</td>
                     <td><Timestamp :timestamp="file.created_at" /></td>
                     <td>-</td>
