@@ -11,13 +11,17 @@
     <script src="https://kit.fontawesome.com/993187c8db.js" crossorigin="anonymous"></script>
     <link rel="icon" href="{{asset('favicon.png')}}">
     <link rel="manifest" href="{{asset('manifest.json')}}">
+    @if(\Illuminate\Support\Facades\App::environment('production'))
     <!-- Cloudflare Web Analytics -->
-    <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "f9f0c4b4b8654a11a4fab5c4abdfa18c", "spa": true}'></script>
-    <!-- End Cloudflare Web Analytics -->
+        <script defer src='https://static.cloudflareinsights.com/beacon.min.js'
+                data-cf-beacon='{"token": "f9f0c4b4b8654a11a4fab5c4abdfa18c", "spa": true}'></script>
+        <!-- End Cloudflare Web Analytics -->
+    @endif
 </head>
 <body>
 <noscript>
-    <h1 class="has-text-centered title page-title has-text-danger">YOU NEED TO ENABLE JAVASCRIPT TO MAKE THE SITE WORK</h1>
+    <h1 class="has-text-centered title page-title has-text-danger">YOU NEED TO ENABLE JAVASCRIPT TO MAKE THE SITE
+        WORK</h1>
 </noscript>
 @if(session('error'))
     <div class="banner banner-danger">
