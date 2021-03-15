@@ -3,7 +3,7 @@
         <button class="button pagination-previous" :disabled="page === 1 ? 'disabled' : null" @click="changePage($event, page-1)">
             <Icon icon="fas fa-arrow-left"/>
         </button>
-        <button class="button pagination-previous" @click="changePage($event, page)">
+        <button class="button pagination-previous" @click="changePage($event, page)" @click="refresh($event,page)">
             <Icon icon="fas fa-sync"/>
         </button>
         <button class="button pagination-next" :disabled="page >= last_page ? 'disabled' :null "  @click="changePage($event, page+1)">
@@ -21,7 +21,7 @@ import Icon from "../../text/Icon";
 export default {
     name: "Pagination",
     components: {Icon},
-    emits:["pageChange"],
+    emits:["pageChange","refresh"],
     props: {
         last_page: {
             required: true
@@ -33,6 +33,9 @@ export default {
     methods:{
         changePage(e, page){
             this.$emit("pageChange",page)
+        },
+        refresh(e,page){
+            this.$emit("refresh",page)
         }
     }
 
