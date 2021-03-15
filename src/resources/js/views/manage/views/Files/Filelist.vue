@@ -3,7 +3,19 @@
         <h1 class="title mb-6">No Data Found</h1>
     </div>
     <div class="table-container" v-else>
-        <table class="table is-fullwidth is-hoverable">
+        <nav class="breadcrumb" aria-label="breadcrumbs" v-if="state.crumbs.length !== 0" data-aos="fade-in">
+            <ul>
+                <router-link custom :to="crumb.to"  v-slot="{ href,navigate, isActive,isExactActive}" v-for="crumb in state.crumbs">
+                    <li :class="{'is-active':isExactActive}">
+                        <a :href="href"  @click="navigate">{{crumb.name}}</a>
+                    </li>
+                </router-link>
+            </ul>
+        </nav>
+        <table class="table is-fullwidth is-hoverable" >
+            <div class="loading-cover-dark" v-if="state.loading">
+                <Icon class="has-text-white is-large" icon="fas fa-spinner fa-spin fa-3x"/>
+            </div>
             <thead>
                 <tr>
                     <th>Name</th>
@@ -12,12 +24,12 @@
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="folder in state.currentData.folders" @dblclick="this.$router.push({'name':'files',params:{'folder':folder.uuid}})">
+                <tr class="is-clickable" v-for="folder in state.folders" @dblclick="this.$router.push({'name':'files',params:{'folder':folder.uuid}})">
                     <td><Icon icon="fas fa-folder" /> {{ folder.name }}</td>
                     <td><Timestamp :timestamp="folder.created_at" /></td>
                     <td>-</td>
                 </tr>
-                <tr v-for="file in state.currentData.files">
+                <tr class="is-clickable" v-for="file in state.files.data">
                     <td><Icon icon="fas fa-file" /> {{ file.name }}</td>
                     <td><Timestamp :timestamp="file.created_at" /></td>
                     <td>-</td>
@@ -25,6 +37,7 @@
             </tbody>
         </table>
     </div>
+    <Pagination v-if="state.files.length !== 0" :loading_page="state.loading_files_page" v-on:pageChange="fetch" :page="state.files.current_page" :last_page="state.files.last_page" />
 </template>
 <script>
 import httpError from "../../../../components/helpers/httpError";
@@ -33,10 +46,11 @@ import {useToast} from "vue-toastification";
 import tippy from "tippy.js";
 import Icon from "../../../../components/text/Icon";
 import Timestamp from "../../../../components/text/Timestamp";
+import Pagination from "../../../../components/includes/Pagination/Pagination";
 
 export default {
     name: "Filelist",
-    components: {Timestamp, Icon},
+    components: {Pagination, Timestamp, Icon},
 
     data(){
         return{
@@ -45,9 +59,10 @@ export default {
                 del_loading: null,
                 page: 1,
                 currentData: {},
-                next_page_url: null,
-                prev_page_url: null,
-                last_page: null,
+                crumbs:[],
+                files:{},
+                loading_files_page:null,
+                folders:{},
             },
         }
     },
@@ -70,17 +85,33 @@ export default {
                 }
             }
         },
-        fetch() {
+        fetch(page) {
             const url = this.$route.params.folder ? "/app/manage/files/"+this.$route.params.folder :"/app/manage/files/"
-            this.state.loading = true
-            axios.get(url).then(res => {
-                this.state.currentData = res.data
-                this.state.page = res.data.current_page
+            this.state.loading = !page
+            this.state.loading_files_page = page ? page : null
+            axios.get(url,{params:{page:page}}).then(res => {
+                this.state.files = res.data.files
+                this.state.folders = res.data.folders
                 this.state.loading = false
+                this.state.loading_files_page = null
+                this.state.crumbs=[];
+                if(res.data.parents[0]){
+                    this.calcCrumbs(res.data.parents[0]);
+                }
+                if(res.data.folder){
+                    this.state.crumbs.push({name:res.data.folder.name,to:{name:"files",params:{folder:res.data.folder.uuid}}})
+                }
+                this.state.crumbs.unshift({name:"root",to:{name:"files"}})
             })
             .catch(error => {
                 this.httpError(error)
             });
+        },
+        calcCrumbs(parent){
+            this.state.crumbs.unshift({name:parent.name,to:{'name':'files',params:{"folder":parent.uuid}}})
+            if(parent.parents){
+                this.calcCrumbs(parent.parents);
+            }
         },
         del(id) {
             this.state.del_loading = id
