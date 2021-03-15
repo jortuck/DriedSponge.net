@@ -21,7 +21,7 @@ class FileUploads extends Controller
                 }
                 $parents = $folder->parents()->get();
                 $folders = $folder->children()->select("name","uuid","created_at")->get();
-                $files = $folder->files()->select("name","uuid","type","mime_type","created_at")->paginate(10);
+                $files = $folder->files()->select("name","uuid","type","mime_type","created_at")->paginate(20);
                 return response()->json(['folders'=>$folders,'files'=>$files,"parents"=>$parents,"folder"=>$folder]);
             }else{
                 $folders = FileFolders::select("name","uuid","created_at")->whereNull("parent_folder")->get();

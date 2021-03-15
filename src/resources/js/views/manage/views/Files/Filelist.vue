@@ -37,7 +37,7 @@
             </tbody>
         </table>
     </div>
-    <Pagination v-on:pageChange="fetch" :page="state.files.current_page" :last_page="state.files.last_page" />
+    <Pagination v-if="state.files.length !== 0" :loading_page="state.loading_files_page" v-on:pageChange="fetch" :page="state.files.current_page" :last_page="state.files.last_page" />
 </template>
 <script>
 import httpError from "../../../../components/helpers/httpError";
@@ -61,6 +61,7 @@ export default {
                 currentData: {},
                 crumbs:[],
                 files:{},
+                loading_files_page:null,
                 folders:{},
             },
         }
@@ -86,11 +87,13 @@ export default {
         },
         fetch(page) {
             const url = this.$route.params.folder ? "/app/manage/files/"+this.$route.params.folder :"/app/manage/files/"
-            this.state.loading = true
+            this.state.loading = !page
+            this.state.loading_files_page = page ? page : null
             axios.get(url,{params:{page:page}}).then(res => {
                 this.state.files = res.data.files
                 this.state.folders = res.data.folders
                 this.state.loading = false
+                this.state.loading_files_page = null
                 this.state.crumbs=[];
                 if(res.data.parents[0]){
                     this.calcCrumbs(res.data.parents[0]);
