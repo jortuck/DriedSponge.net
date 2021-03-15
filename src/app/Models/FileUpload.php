@@ -16,6 +16,10 @@ class FileUpload extends Model
     //Timestamps
     public $timestamps = true;
 
+    public function folder(){
+        return $this->belongsTo(FileFolders::class,"folder");
+    }
+
     /**
      * Check if the file is a video
      * @return boolean

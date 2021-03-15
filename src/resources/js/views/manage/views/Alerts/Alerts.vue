@@ -1,36 +1,19 @@
 <template>
-    <section class="section">
-        <div class="container">
-            <div class="box" data-aos="fade-up">
-                <Managepagehead>
-                    Alerts
-                </Managepagehead>
-                <div class="tabs  is-medium">
-                    <ul>
-                       <router-link custom :to="{'name':'alerts'}"  v-slot="{ href, route, navigate, isActive, isExactActive }">
-                           <li :class="{'is-active':isExactActive}">
-                                <a :href="href"  @click="navigate">Alerts</a>
-                           </li>
-                       </router-link>
-                        <Can permission="Alerts.Create">
-                            <router-link custom :to="{'name':'alerts-create'}"  v-slot="{ href,navigate, isActive,isExactActive}">
-                                <li :class="{'is-active':isExactActive}">
-                                    <a :href="href"  @click="navigate">Create New Alert</a>
-                                </li>
-                            </router-link>
-                        </Can>
-                    </ul>
-                </div>
-                <router-view></router-view>
-            </div>
-        </div>
-    </section>
+    <Managebox header="Alerts">
+        <Tabs>
+            <Tablink :to="{'name':'alerts'}">Alerts</Tablink>
+            <Tablink :to="{'name':'alerts-create'}" permission="Alerts.Create">Create New Alert</Tablink>
+        </Tabs>
+        <router-view></router-view>
+    </Managebox>
 </template>
 <script>
-import Managepagehead from "../../../../components/text/Managepagehead";
 import Can from "../../../../components/helpers/Can";
+import Tabs from "../../../../components/includes/Tabs/Tabs";
+import Tablink from "../../../../components/includes/Tabs/Tablink";
+import Managebox from "../../../../components/box/Managebox";
 export default {
     name: "Alerts",
-    components: {Can, Managepagehead},
+    components: {Managebox, Tablink, Tabs, Can},
 }
 </script>

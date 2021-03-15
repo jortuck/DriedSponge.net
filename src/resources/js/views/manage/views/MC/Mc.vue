@@ -1,41 +1,20 @@
 <template>
-    <section class="section">
-        <div class="container">
-            <div class="box" data-aos="fade-up">
-                <Managepagehead>
-                    Minecraft Servers
-                </Managepagehead>
-                <div class="tabs  is-medium">
-                    <ul>
-                       <router-link custom :to="{'name':'mc-servers'}"  v-slot="{ href, route, navigate, isActive, isExactActive }">
-                           <li :class="{'is-active':isExactActive}">
-                                <a :href="href"  @click="navigate">Servers</a>
-                           </li>
-                       </router-link>
-                        <router-link custom :to="{'name':'mc-manage-players'}"  v-slot="{ href, route, navigate, isActive, isExactActive }">
-                            <li :class="{'is-active':isExactActive}">
-                                <a :href="href"  @click="navigate">Players</a>
-                            </li>
-                        </router-link>
-                        <Can permission="Project.Create">
-                            <router-link custom :to="{'name':'mc-create'}"  v-slot="{ href,navigate, isActive,isExactActive}">
-                                <li :class="{'is-active':isExactActive}">
-                                    <a :href="href"  @click="navigate">Add Another Server</a>
-                                </li>
-                            </router-link>
-                        </Can>
-                    </ul>
-                </div>
-                <router-view></router-view>
-            </div>
-        </div>
-    </section>
+    <Managebox header="Minecraft Servers">
+        <Tabs>
+            <Tablink :to="{'name':'mc-servers'}">Servers</Tablink>
+            <Tablink :to="{'name':'mc-manage-players'}">Players</Tablink>
+            <Tablink :to="{'name':'mc-create'}" permission="Project.Create">Add Another Server</Tablink>
+        </Tabs>
+        <router-view></router-view>
+    </Managebox>
 </template>
 <script>
-import Managepagehead from "../../../../components/text/Managepagehead";
 import Can from "../../../../components/helpers/Can";
+import Tablink from "../../../../components/includes/Tabs/Tablink";
+import Tabs from "../../../../components/includes/Tabs/Tabs";
+import Managebox from "../../../../components/box/Managebox";
 export default {
     name: "mc-servers",
-    components: {Can, Managepagehead},
+    components: {Managebox, Tabs, Tablink, Can},
 }
 </script>

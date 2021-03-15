@@ -62,6 +62,10 @@ Route::prefix('app')->group(function () {
     Route::delete('/manage/alerts/{id}', 'Manage\AlertsController@destroy');
     Route::get('/manage/alerts/{id}', 'Manage\AlertsController@show');
     Route::put('/manage/alerts/{id}', 'Manage\AlertsController@update');
+
+    Route::get('/manage/files/{folder?}', 'Manage\FileUploads@files');
+
+
     Route::get('/manage/mc-servers', 'Manage\McServerController@index');
     Route::get('/manage/mc-servers/players', 'Manage\McServerController@players');
     Route::delete('/manage/mc-servers/players/{id}', 'Manage\McServerController@playerDelete');

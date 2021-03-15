@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\FileFolders;
 use App\Models\FileUpload;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -22,7 +23,7 @@ class FileUploads extends Controller
                 if ($validator->passes()) {
                     $file = $request->file('image');
                     $extention = $file->extension();
-                    $name = Str::random(10);
+                    $name = Str::random(20);
                     $isVideo = Str::contains($file->getMimeType(),"video");
                     $upload = new FileUpload();
                     $upload->name = $name . '.' . $extention;
@@ -37,10 +38,17 @@ class FileUploads extends Controller
                     if ($request->set_delete_token) {
                         $deltoken = Str::random(64);
                         $upload->deleteToken = Hash::make($deltoken);
-                        $deleteurl = route('sharex.delete', ["uuid" => $upload->uuid, 'deltoken' => $deltoken]);
-                        $responsejson['deletion_url'] = $deleteurl;
+                        $responsejson['deletion_url'] = route('sharex.delete', ["uuid" => $upload->uuid, 'deltoken' => $deltoken]);
                     }
                     $upload->save();
+                    $catergory = FileFolders::where("name",Str::upper($extention))->first();
+                    if(!$catergory){
+                        $catergory = new FileFolders();
+                        $catergory->uuid = Str::random(15);
+                        $catergory->name = Str::upper($extention);
+                        $catergory->save();
+                    }
+                    $catergory->files()->save($upload);
                     if($isVideo){
                         $file->storePubliclyAs(
                             "public/videos", $upload->name

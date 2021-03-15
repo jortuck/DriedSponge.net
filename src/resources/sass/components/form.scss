@@ -2,3 +2,11 @@ input[type=number],input::-webkit-inner-spin-button {
     -moz-appearance: textfield;
     -webkit-appearance: none;
 }
+@include for-phone-only {
+    .captcha {
+        transform: scale(0.77);
+        -webkit-transform: scale(0.77);
+        transform-origin: 0 0;
+        -webkit-transform-origin: 0 0;
+    }
+}

@@ -128,6 +128,18 @@ const routes = [
                         meta: {can: "Projects.Edit"},
                     },
                 ]
+            },
+            {
+                path: 'files',
+                component: () => import('../views/manage/views/Files/Files'),
+                children: [
+                    {
+                        path: ':folder?',
+                        name: 'files',
+                        component: () => import('../views/manage/views/Files/Filelist'),
+                        meta: {can: "File.See"},
+                    },
+                ]
             }
         ]
     },
@@ -141,7 +153,8 @@ const router = createRouter({
     history: createWebHistory(),
     routes
 })
-router.beforeEach((to, from) => {
+router.beforeEach((to, from,next) => {
     store.commit("fetch")
+    next()
 })
 export default router
