@@ -3,6 +3,15 @@
         <h1 class="title mb-6">No Data Found</h1>
     </div>
     <div class="table-container" v-else>
+        <nav class="breadcrumb" aria-label="breadcrumbs">
+            <ul>
+                <router-link custom :to="crumb.to"  v-slot="{ href,navigate, isActive,isExactActive}" v-for="crumb in state.crumbs">
+                    <li :class="{'is-active':isExactActive}">
+                        <a :href="href"  @click="navigate">{{crumb.name}}</a>
+                    </li>
+                </router-link>
+            </ul>
+        </nav>
         <table class="table is-fullwidth is-hoverable" >
             <div class="loading-cover-dark" v-if="state.loading">
                 <Icon class="has-text-white is-large" icon="fas fa-spinner fa-spin fa-3x"/>
@@ -51,6 +60,7 @@ export default {
                 next_page_url: null,
                 prev_page_url: null,
                 last_page: null,
+                crumbs:[]
             },
         }
     },
@@ -80,10 +90,24 @@ export default {
                 this.state.currentData = res.data
                 this.state.page = res.data.current_page
                 this.state.loading = false
+                this.state.crumbs=[];
+                if(res.data.parents[0]){
+                    this.calcCrumbs(res.data.parents[0]);
+                }
+                if(res.data.folder){
+                    this.state.crumbs.push({name:res.data.folder.name,to:{name:"files",params:{folder:res.data.folder.uuid}}})
+                }
+                this.state.crumbs.unshift({name:"root",to:{name:"files"}})
             })
             .catch(error => {
                 this.httpError(error)
             });
+        },
+        calcCrumbs(parent){
+            this.state.crumbs.unshift({name:parent.name,to:{'name':'files',params:{"folder":parent.uuid}}})
+            if(parent.parents){
+                this.calcCrumbs(parent.parents);
+            }
         },
         del(id) {
             this.state.del_loading = id

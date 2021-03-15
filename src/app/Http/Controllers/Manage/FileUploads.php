@@ -15,17 +15,20 @@ class FileUploads extends Controller
         }
         if (\Auth::user()->hasPermissionTo('File.See')) {
             if($request->folder){
-                $folder = FileFolders::where("uuid",$request->folder)->first();
+                $folder = FileFolders::select("name","uuid","parent_folder")->where("uuid",$request->folder)->first();
                 if(!$folder){
                     return response()->json(['error' => 'Not found'],404);
                 }
-                $folders = $folder->subFolders()->select("name","uuid","created_at")->get();
+                $parents = $folder->parents()->get();
+                $folders = $folder->children()->select("name","uuid","created_at")->get();
                 $files = $folder->files()->select("name","uuid","type","mime_type","created_at")->get();
+                return response()->json(['folders'=>$folders,'files'=>$files,"parents"=>$parents,"folder"=>$folder]);
             }else{
-                $folders = FileFolders::select("name","uuid","created_at")->get();
+                $folders = FileFolders::select("name","uuid","created_at")->whereNull("parent_folder")->get();
                 $files = FileUpload::select("name","uuid","created_at","folder")->whereNull('folder')->get();
+                return response()->json(['folders'=>$folders,'files'=>$files]);
             }
-            return response()->json(['folders'=>$folders,'files'=>$files]);
+
         }else{
             return response()->json(['error' => 'Unauthorized'],403);
         }
