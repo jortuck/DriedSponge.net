@@ -8,4 +8,11 @@ mix.js('./resources/js/main.js', './public/js').vue({ version: 3 })
 
 if (mix.inProduction()) {
     mix.version();
+    mix.then(() => {
+        const convertToFileHash = require("laravel-mix-make-file-hash");
+        convertToFileHash({
+            publicPath: "public",
+            manifestFilePath: "public/mix-manifest.json"
+        });
+    });
 }
