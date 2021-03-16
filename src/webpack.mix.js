@@ -12,7 +12,8 @@ if (mix.inProduction()) {
         const convertToFileHash = require("laravel-mix-make-file-hash");
         convertToFileHash({
             publicPath: "public",
-            manifestFilePath: "public/mix-manifest.json"
+            manifestFilePath: "public/mix-manifest.json",
+            delOptions: {force:true}
         });
     });
 }
