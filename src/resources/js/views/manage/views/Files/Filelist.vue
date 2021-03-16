@@ -37,7 +37,7 @@
             </tbody>
         </table>
     </div>
-    <Pagination v-if="state.files.length !== 0" :loading_page="state.loading_files_page" v-on:pageChange="fetch" :page="state.files.current_page" :last_page="state.files.last_page" />
+    <Pagination :delta="4" v-if="state.files.length !== 0" :loading_page="state.loading_files_page" v-on:pageChange="fetch" :page="state.files.current_page" :last_page="state.files.last_page" />
 </template>
 <script>
 import httpError from "../../../../components/helpers/httpError";
