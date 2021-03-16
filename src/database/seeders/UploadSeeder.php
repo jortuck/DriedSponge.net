@@ -33,16 +33,16 @@ class UploadSeeder extends Seeder
             echo "\n".$file;
             $data = new FileUpload();
             $data->type  = $type;
-            $data->mime_type  = Storage::mimeType($file);
+            //$data->mime_type  = Storage::mimeType($file);
             $data->name =  explode("/",$file)[2];
             $data->uuid = explode(".",$data->name)[0];
             $f = FileUpload::where("name",$data->name)->with('folder')->first();
             if($f){
-                if(!$f->mime_type){
-                    $f->mime_type = $data->mime_type;
-                    $f->save();
-                    echo "\n $file - Added mime type to file";
-                }
+//                if(!$f->mime_type){
+//                    $f->mime_type = $data->mime_type;
+//                    $f->save();
+//                    echo "\n $file - Added mime type to file";
+//                }
                 if($f->folder){
                     echo "\n $file - File already exist and so did the folder!";
                 }else{
