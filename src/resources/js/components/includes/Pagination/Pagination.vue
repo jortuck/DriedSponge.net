@@ -10,8 +10,13 @@
             <Icon icon="fas fa-arrow-right"/>
         </button>
         <ul class="pagination-list">
-            <li v-for="index in last_page">
-                <button @click="changePage($event, index)" class="button pagination-link" :class="{'is-current':index === page,'is-loading':loading_page===index}" :disabled="page === index ? 'disabled' :null ">{{ index }}</button>
+            <li v-for="item in paginationRange">
+                <button v-if="item !=='...'"
+                    @click="changePage($event, item)"
+                    class="button pagination-link"
+                    :class="{'is-current':item === page,'is-loading':loading_page===item}"
+                    :disabled="page ===item ? 'disabled' :null ">{{ item }}</button>
+                <span v-else class="pagination-ellipsis">&hellip;</span>
             </li>
         </ul>
     </nav>
@@ -31,6 +36,9 @@ export default {
         },
         loading_page:{
             default: null
+        },
+        delta: {
+            default: 2
         }
     },
     methods:{
@@ -40,6 +48,39 @@ export default {
         refresh(e,page){
             this.$emit("refresh",page)
         }
+    },
+    computed:{
+        paginationRange(){
+            // Thanks to this person https://gist.github.com/kottenator/9d936eb3e4e3c3e02598
+            var current = this.page,
+                last = this.last_page,
+                delta = this.delta,
+                left = current - delta,
+                right = current + delta + 1,
+                range = [],
+                rangeWithDots = [],
+                l;
+
+            for (let i = 1; i <= last; i++) {
+                if (i == 1 || i == last || i >= left && i < right) {
+                    range.push(i);
+                }
+            }
+
+            for (let i of range) {
+                if (l) {
+                    if (i - l === 2) {
+                        rangeWithDots.push(l + 1);
+                    } else if (i - l !== 1) {
+                        rangeWithDots.push('...');
+                    }
+                }
+                rangeWithDots.push(i);
+                l = i;
+            }
+
+            return rangeWithDots;
+        },
     }
 
 }
