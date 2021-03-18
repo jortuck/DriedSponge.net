@@ -48,6 +48,7 @@ class McServer extends Controller
                             $stats = new McStat();
                             $stats->stats = $request->stats;
                             $stats->save();
+                            $server->players()->save($player);
                             $server->stats()->save($stats);
                             $player->stats()->save($stats);
                             return response()->json(["Data saved"],201);
