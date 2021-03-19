@@ -7,10 +7,9 @@
     <meta name="theme-color" content="#007BFF">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>{{ config('app.name') }}</title>
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/app.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ mix('css/app.css') }}">
     <script src="https://kit.fontawesome.com/993187c8db.js" crossorigin="anonymous"></script>
     <link rel="icon" href="{{asset('favicon.png')}}">
-    <link rel="manifest" href="{{asset('manifest.json')}}">
     @if(\Illuminate\Support\Facades\App::environment('production'))
     <!-- Cloudflare Web Analytics -->
         <script defer src='https://static.cloudflareinsights.com/beacon.min.js'
