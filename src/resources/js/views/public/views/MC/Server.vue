@@ -18,7 +18,7 @@
             <p class="subtitle is-5 mc-text" v-if="server.description">
                 <span class="has-text-white">{{ server.description }}</span>
             </p>
-            <br>
+            <br v-if="server.players.length !== 0">
             <p v-if="server.players.length !== 0" class="subtitle is-5 mc-text has-text-white">Players:</p>
             <div class="tags has-addons" v-if="server.players.length !== 0">
                 <router-link :to="{'name':'mc-player','params':{'slug':player.username}}" class="mc-text mr-2" v-for="player in server.players">
@@ -27,8 +27,7 @@
                     <span class="tag is-danger" v-else>Offline</span>
                 </router-link>
             </div>
-            <br>
-
+            <br  v-if="server.mods">
             <p v-if="server.mods" class="subtitle is-5 mc-text has-text-white">Mods:</p>
             <div  class="tags has-addons" v-if="server.online && server.mods">
                 <span class="mc-text mr-3" v-for="mod in server.mods">

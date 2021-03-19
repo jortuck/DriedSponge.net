@@ -28,16 +28,11 @@ class McServer extends Controller
                     if($validator->passes()){
                         $player = McPlayer::where('uuid', $request->uuid)->first();
                         if (!$player) {
-                            $newPlayer = Http::get("https://api.mojang.com/users/profiles/minecraft/".$request->username);
-                            if($newPlayer->successful()){
-                                $player = new McPlayer();
-                                $player->uuid= $request->uuid;
-                                $player->username = $request->username;
-                                $player->save();
-                                $server->players()->save($player);
-                            }else{
-                                return response()->json(['error'=>'Invalid Player'],400);
-                            }
+                            $player = new McPlayer();
+                            $player->uuid= $request->uuid;
+                            $player->username = $request->username;
+                            $player->save();
+                            $server->players()->save($player);
                         }
                         $stats = $player->stats()->where("server_id",$server->id)->first();
                         if($stats){
@@ -48,7 +43,6 @@ class McServer extends Controller
                             $stats = new McStat();
                             $stats->stats = $request->stats;
                             $stats->save();
-                            $server->players()->save($player);
                             $server->stats()->save($stats);
                             $player->stats()->save($stats);
                             return response()->json(["Data saved"],201);
