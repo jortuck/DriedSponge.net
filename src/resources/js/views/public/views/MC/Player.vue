@@ -24,7 +24,7 @@
 
                 <br>
 
-                <div class="columns is-centered" v-if="stats.length !== 0">
+                <div class="columns is-centered" v-if="player.servers.length > 0">
                     <div class="column is-8 is-full-mobile">
                         <div class="field">
                             <label class="label mc-label">Search Stats</label>
@@ -36,25 +36,23 @@
                     <div class="column is-4 is-full-mobile">
                         <div class="field">
                             <label class="label mc-label">Select Server</label>
-                            <div class="control" v-if="stats.length !== 0">
+                            <div class="control" v-if="player.servers.length > 0">
                                 <div class="select is-fullwidth" :class="{'is-loading':loadingStats}">
                                     <select class="mc-select" @change="fetchStats($event.target.value)">
-                                        <template v-for="stat in stats">
-                                            <option :value="stat.server.slug" class="mc-text">{{stat.server.name }}</option>
-                                        </template>
+                                            <option v-for="server in player.servers" :value="server.slug" class="mc-text">{{server.name }}</option>
                                     </select>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <p   v-if="stats.length !== 0" class="block subtitle mc-text is-6 has-text-centered mc-color-aqua is-hidden-tablet">
+                <p   v-if="player.servers.length > 0" class="block subtitle mc-text is-6 has-text-centered mc-color-aqua is-hidden-tablet">
                     Hello mobile user! You may have to scroll horizontally on the table to see the value of the stats
                 </p>
                 <p class="block subtitle has-text-centered mc-text is-6 mc-color-gray" v-if="updated_at">
                     These stats were last updated <span class="mc-color-aqua"><Timestamp :diffForHumans="true" :timestamp="updated_at" /></span>.
                 </p>
-                <div class="table-container mb-6"  v-if="stats.length !== 0" data-aos="fade-in">
+                <div class="table-container mb-6"  v-if="player.servers.length > 0" data-aos="fade-in">
                     <table class="table is-fullwidth is-hoverable mc-table is-striped">
                         <tbody>
                             <template v-for="(key, value) in currstats" >
@@ -93,9 +91,8 @@ export default {
         axios.get("/api/mc/players/" + this.$route.params.slug).then(res => {
             this.loading = false
             this.player = res.data.data
-            this.stats = res.data.data.stats;
-            if(this.stats[0].server.slug){
-                this.fetchStats(this.stats[0].server.slug);
+            if(this.player.servers[0].slug){
+                this.fetchStats(this.player.servers[0].slug);
             }
         })
             .catch(err => {
@@ -114,7 +111,7 @@ export default {
     methods: {
         fetchStats(server) {
 
-            if (!this.notfound && this.stats.length > 0) {
+            if (!this.notfound && this.player.servers) {
                 this.loadingStats = true;
                 axios.get("/api/mc/players/" + this.$route.params.slug + "/stats/" + server).then(res => {
                     this.currstats = res.data.data.stats

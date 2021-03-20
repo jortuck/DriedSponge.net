@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\McPlayer;
 use App\Models\McServer;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
@@ -111,16 +112,18 @@ class McClient extends Controller
 
     public function getPlayer(Request $request, $username)
     {
-        $player = McPlayer::select("uuid",'username','id')->where('username',$username)->with('servers:id,name,slug')->first();
+        $player = McPlayer::select("uuid",'username','id')->where('username',$username)->first();
         if(!$player){
             return response()->json(["error"=>"Not found"],404);
         }
-
-        $stats = $player->stats()->select('user_id','server_id')->with('server:id,name,slug')->get()->whereNotNull('server');
-
-        $player->stats = $stats->values();
-
+        $player->loadMissing(['servers'=>function($q) use($player){
+            $q->select("name","slug");
+            $q->whereHas('stats', function (Builder $q) use ($player){
+                $q->where("user_id",$player->id);
+            });
+        }]);
         return response()->json(["success" => "true", "data" => $player]);
+
     }
 
     public function getStats(Request $request, $username, $slug)
