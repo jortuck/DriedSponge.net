@@ -21,7 +21,7 @@ class McClient extends Controller
         $mcservers = McServer::select("name", "ip", "port", "slug")->where('private', false)->get();
         $mcservers->transform(function ($item, $key) {
             try {
-                $ping = new MinecraftPing($item->ip, $item->port, 2, false);
+                $ping = new MinecraftPing($item->ip, $item->port, 1.5, false);
                 $status = $ping->Query();
                 $status['description']['text'] = MinecraftColors::convertToHTML($status['description']['text']);
                 $item->online = true;
@@ -47,8 +47,6 @@ class McClient extends Controller
 
         $mcplayers = $mcserver->players;
         $mcresponse = collect();
-        $mcresponse->put('ip',$mcserver->ip);
-        $mcresponse->put('port',$mcserver->port);
         $mcresponse->put('description',$mcserver->description);
         $mcresponse->put('name',$mcserver->name);
 
@@ -86,19 +84,16 @@ class McClient extends Controller
                 }
 
             }
-            //$mcresponse->put("players",$mcplayers);
             $mcresponse->put("playerCount",["online"=>Arr::get($status,"players.online",0),"total"=>Arr::get($status,"players.max",0)]);
             $mcresponse->put("mods",Arr::get($status,"modinfo.modList"));
         } catch (MinecraftPingException $e) {
             $mcresponse->put("online",false);
             $mcresponse->put("error",$e->getMessage());
-        }
-
-        foreach ($mcplayers as $player){
-            if(!$player->online){
+            foreach ($mcplayers as $player){
                 $player->online = false;
             }
         }
+
 
         $mcresponse->put("players",$mcplayers);
         return response()->json(["success" => "true", "data" => $mcresponse->toArray()]);
