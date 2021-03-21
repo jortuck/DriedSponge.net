@@ -6,7 +6,7 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>@yield('title') - DriedSponge.net | File Server</title>
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/app.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ mix('css/app.css') }}">
     <script src="https://kit.fontawesome.com/993187c8db.js" crossorigin="anonymous"></script>
     <meta name="twitter:card" content="summary_large_image"/>
     <meta name="twitter:site" content="@dried_sponge">
