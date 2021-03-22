@@ -12,6 +12,7 @@ services:
         networks:
             - dnet
         container_name: nginx_dnet
+        restart: unless-stopped
         ports:
             - "3200:80"
         volumes:
