@@ -82,7 +82,7 @@ export default {
             socials:[
                 {name:"Twitter",icon:"fab fa-twitter",url:"https://twitter.com/dried_sponge"},
                 {name:"Steam",icon:"fab fa-steam",url:"https://steamcommunity.com/id/driedsponge/"},
-                {name:"Github",icon:"fab fa-twitter",url:"https://github.com/driedsponge"}
+                {name:"Github",icon:"fab fa-github",url:"https://github.com/driedsponge"}
             ]
         }
     },
