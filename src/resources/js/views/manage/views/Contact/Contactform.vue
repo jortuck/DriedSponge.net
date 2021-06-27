@@ -1,5 +1,5 @@
 <template>
-    <Managebox heder="Contact Form Responses">
+    <Managebox header="Contact Form Responses">
         <router-view></router-view>
     </Managebox>
 </template>
