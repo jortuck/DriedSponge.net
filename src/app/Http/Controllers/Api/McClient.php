@@ -55,7 +55,7 @@ class McClient extends Controller
             $status = $ping->Query();
             $mcresponse->put("online",true);
             $mcresponse->put("mc_version",Arr::get($status,"version.name"));
-            $mcresponse->put("message",MinecraftColors::convertToHTML(Arr::get($status,"description.text")));
+            $mcresponse->put("message",MinecraftColors::convertToHTML(Arr::get($status,"description")));
 
             if(Arr::has($status,"players.sample")) { // Check if we have online players
                 foreach ($status['players']['sample'] as $ply) { // Loop through players connected to server, add them to the db and relate them to the server
