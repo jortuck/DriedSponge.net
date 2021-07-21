@@ -23,7 +23,7 @@ class McClient extends Controller
             try {
                 $ping = new MinecraftPing($item->ip, $item->port, 1.5, false);
                 $status = $ping->Query();
-                $status['description']['text'] = MinecraftColors::convertToHTML($status['description']['text']);
+                $status['description'] = MinecraftColors::convertToHTML($status['description']);
                 $item->online = true;
                 $item->status = $status;
 
@@ -112,10 +112,11 @@ class McClient extends Controller
             return response()->json(["error"=>"Not found"],404);
         }
         $player->loadMissing(['servers'=>function($q) use($player){
-            $q->select("name","slug");
+            $q->select("name","slug","mc_servers.updated_at");
             $q->whereHas('stats', function (Builder $q) use ($player){
                 $q->where("user_id",$player->id);
             });
+            $q->orderBy("mc_servers.updated_at","desc");
         }]);
         return response()->json(["success" => "true", "data" => $player]);
 
