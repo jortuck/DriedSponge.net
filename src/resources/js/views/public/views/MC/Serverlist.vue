@@ -12,8 +12,8 @@
                     <h1 class="title is-5 mc-text  mc-color-white is-size-6-mobile">{{ server.name }}<span
                         class="ping is-online is-size-6-mobile">{{ server.status.players.online }}/{{ server.status.players.max }}</span>
                     </h1>
-                    <h2  v-if="server.status.description.text">
-                        <span class="subtitle is-5 mc-text is-size-6-mobile" v-html="server.status.description.text"></span>
+                    <h2  v-if="server.status.description">
+                        <span class="subtitle is-5 mc-text is-size-6-mobile" v-html="server.status.description"></span>
                     </h2>
                 </div>
                 <div class="box mc-server cursor-pointer" v-else @click="goto(server.slug)">
