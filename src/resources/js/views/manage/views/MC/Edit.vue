@@ -14,10 +14,10 @@
         </div>
         <div class="columns">
             <div class="column">
-                <Textinput  v-model:error="form.errors['ip']" label="Server Name" placeholder="XX.XX.XX.XX" v-model:val="form.fields.ip" :required="true" :maxCharacters="100" />
+                <Textinput  v-model:error="form.errors['ip']" label="Server IP" placeholder="XX.XX.XX.XX" v-model:val="form.fields.ip" :required="true" :maxCharacters="100" />
             </div>
             <div class="column">
-                <Textinput  v-model:error="form.errors['port']" label="Server Name" placeholder="25565" v-model:val="form.fields.port" />
+                <Textinput  v-model:error="form.errors['port']" label="Server Port" placeholder="25565" v-model:val="form.fields.port" />
 
             </div>
         </div>
