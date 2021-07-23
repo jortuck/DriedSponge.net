@@ -23,7 +23,13 @@ class McClient extends Controller
             try {
                 $ping = new MinecraftPing($item->ip, $item->port, 1.5, false);
                 $status = $ping->Query();
-                $status['description'] = MinecraftColors::convertToHTML($status['description']);
+                if(is_array($status['description'])){
+                    $status['description'] = MinecraftColors::convertToHTML($status['description']['text']);
+
+                }else{
+                    $status['description'] = MinecraftColors::convertToHTML($status['description']);
+
+                }
                 $item->online = true;
                 $item->status = $status;
 
@@ -55,7 +61,12 @@ class McClient extends Controller
             $status = $ping->Query();
             $mcresponse->put("online",true);
             $mcresponse->put("mc_version",Arr::get($status,"version.name"));
-            $mcresponse->put("message",MinecraftColors::convertToHTML(Arr::get($status,"description")));
+
+            if(is_array($status['description'])){
+                $mcresponse->put("message",MinecraftColors::convertToHTML(Arr::get($status,"description.text")));
+            }else{
+                $mcresponse->put("message",MinecraftColors::convertToHTML(Arr::get($status,"description")));
+            }
 
             if(Arr::has($status,"players.sample")) { // Check if we have online players
                 foreach ($status['players']['sample'] as $ply) { // Loop through players connected to server, add them to the db and relate them to the server
