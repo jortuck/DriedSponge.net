@@ -18,7 +18,7 @@ class FileUploads extends Controller
         if ($request->header('Authorization')) {
             if ($request->header('Authorization') == "Bearer " . config("extra.image_secret")) {
                 $validator = Validator::make($request->all(), [
-                    "image" => "required|file|max:99000|mimes:jpeg,webp,png,mp4,gif,mov"
+                    "image" => "required|file|max:99000|mimes:jpeg,webp,png,mp4,gif,mov,pdf"
                 ]);
                 if ($validator->passes()) {
                     $file = $request->file('image');

@@ -40,9 +40,16 @@
                         <video class="is-align-self-center" controls>
                             <source src="{{$rawUrl}}" type="{{$mimeType}}">
                         </video>
+                    @elseif(Str::contains($mimeType,'pdf'))
+        
+                    <a href="{{$rawUrl}}" target="_blank">
+                       <iframe src="{{$rawUrl}}" width="1000" height="600" class="is-align-self-center"> 
+
+                       </iframe>
+                    </a>
                     @else
                         <a href="{{$rawUrl}}" target="_blank">
-                            <img class="is-align-self-center" src="{{$rawUrl}}">
+                            <img class="is-align-self-center" src="{{$rawUrl}}" >
                         </a>
                     @endif
                 </figure>
