@@ -1,2 +1,7 @@
-<h1>Welcome!</h1>
-<p class="text-red-500">Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
+<script>
+    import PageHead from "$lib/PageHead.svelte";
+</script>
+
+<PageHead>
+    DRIEDSPONGE
+</PageHead>
