@@ -1,3 +1,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@font-face {
+    font-family: JetBrainsMono;
+    src: url("/fonts/jetbrains/JetBrainsMono-Regular.woff2");
+}
+body {
+    font-family: JetBrainsMono;
+    background-color: #1c2128;
+}
