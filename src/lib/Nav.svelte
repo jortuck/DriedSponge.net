@@ -1,30 +1,22 @@
-<nav class="container mx-auto py-4">
-	<div class="flex justify-between items-center">
+<script>
+	import Navlink from "$lib/Navlink.svelte";
+</script>
+
+<nav class="container mx-auto max-w-5xl py-4">
+	<div class="flex items-center justify-between">
 		<div>
 			<a
-				class="nav-logo"
-				href="/">DS</a
+				class="text-4xl font-extrabold text-white"
+				href="/"><span class="text-myblue">D</span>S</a
 			>
 		</div>
-		<div class="space-x-2">
-			<a
-				href="/projects"
-				class="nav-item">Projects</a
-			>
-			<a
-				class="nav-item"
+		<div class="space-x-4">
+			<Navlink href="/">Home</Navlink>
+			<Navlink href="/projects">Projects</Navlink>
+			<Navlink
 				href="https://github.com/driedsponge"
-				target="_blank">Github</a
+				external="true">Github</Navlink
 			>
 		</div>
 	</div>
 </nav>
-
-<style lang="postcss">
-	.nav-item {
-		@apply text-white text-lg;
-	}
-	.nav-logo {
-		@apply text-3xl;
-	}
-</style>

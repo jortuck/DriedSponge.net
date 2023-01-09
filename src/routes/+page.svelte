@@ -1,7 +1,5 @@
 <script>
-    import PageHead from "$lib/PageHead.svelte";
+	import PageHead from '$lib/PageHead.svelte';
 </script>
 
-<PageHead>
-    DRIEDSPONGE
-</PageHead>
+<PageHead />
