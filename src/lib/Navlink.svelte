@@ -14,6 +14,7 @@
 	class:text-gray-400={!active}
 	{href}
 	rel={external ? "noopener" : null}
+	target={external ? "_blank" : null}
 >
 	<slot />
 </a>

@@ -1,9 +1,9 @@
 <script>
-    import "../app.css";
-    import Nav from "$lib/Nav.svelte";
+	import "../app.css";
+	import Nav from "$lib/Nav.svelte";
 </script>
 
-<main >
-    <Nav />
-    <slot />
+<main class="container mx-auto max-w-6xl">
+	<Nav />
+	<slot />
 </main>
