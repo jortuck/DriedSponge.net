@@ -11,7 +11,7 @@
 <a
 	class="text-xl transition-colors duration-200 ease-in-out hover:text-white"
 	class:text-white={active}
-	class:text-gray-400={!active}
+	class:text-gray-300={!active}
 	{href}
 	rel={external ? "noopener" : null}
 	target={external ? "_blank" : null}
