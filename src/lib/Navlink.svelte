@@ -10,6 +10,7 @@
 
 <a
 	class="text-xl transition-colors duration-200 ease-in-out hover:text-white"
+	on:click
 	class:text-white={active}
 	class:text-gray-300={!active}
 	{href}

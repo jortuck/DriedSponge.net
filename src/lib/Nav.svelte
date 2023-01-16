@@ -1,7 +1,6 @@
 <script>
 	import Navlink from "$lib/Navlink.svelte";
 	import { onMount } from "svelte";
-
 	const links = [
 		{
 			href: "/",
@@ -37,7 +36,9 @@
 		class="flex border-b-2 border-b-bgborder  bg-bgsecondary py-4 transition-colors duration-200 ease-in-out md:border-0 md:bg-transparent"
 		class:scrolled
 	>
-		<div class="container mx-auto flex hidden max-w-6xl items-center justify-between md:flex">
+		<div
+			class="container mx-auto flex hidden max-w-6xl items-center justify-between px-2 md:flex xl:px-0"
+		>
 			<div>
 				<a
 					class="text-3xl font-extrabold text-white"
@@ -53,7 +54,7 @@
 				{/each}
 			</div>
 		</div>
-		<div class="container mx-3 max-w-full transition-all duration-200 ease-in-out md:hidden">
+		<div class="container mx-3 max-w-full  transition-all duration-200 ease-in-out md:hidden">
 			<div class="flex items-center justify-between">
 				<div>
 					<a
@@ -66,22 +67,44 @@
 						on:click={() => {
 							expanded = !expanded;
 						}}
-						class="text-white">[]</a
+						class="text-white"
+						role="button"
 					>
+						<img
+							class="w-6"
+							class:hidden={!expanded}
+							src="/icons/cross.svg"
+							alt="Menu Button"
+						/>
+						<img
+							class:hidden={expanded}
+							class="w-6 "
+							src="/icons/menu-burger.svg"
+							alt="Menu Button"
+						/>
+					</a>
 				</div>
 			</div>
 			<div />
 		</div>
 	</nav>
 	<div
-		class:hidden={!expanded}
-		class="absolute z-10 w-full bg-bgsecondary md:hidden"
+		class:scale-y-0={!expanded}
+		class="absolute z-10 w-full origin-top bg-bgsecondary transition-all duration-200 ease-in-out md:hidden"
 	>
-		<li>TEst</li>
-		<li>TEst</li>
-		<li>TEst</li>
-		<li>TEst</li>
-		<li>TEst</li>
+		<ul class="space-y-4 py-4 text-center">
+			{#each links as link}
+				<li>
+					<Navlink
+						on:click={() => {
+							expanded = false;
+						}}
+						external={link.external}
+						href={link.href}>{link.title}</Navlink
+					>
+				</li>
+			{/each}
+		</ul>
 	</div>
 </div>
 
