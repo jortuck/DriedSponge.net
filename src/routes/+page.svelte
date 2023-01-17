@@ -21,6 +21,7 @@
 	<section class="w-full space-y-2 text-center">
 		<img
 			class="w-full"
+			alt="A graph showing my coding activity during the past week."
 			src="https://github-readme-stats.vercel.app/api/wakatime?username=DriedSponge&theme=dark&bg_color=2B323B&hide_border=true&custom_title=Here's what I've been up to this week:&layout=compact&text_color=fff&border_radius=10"
 		/>
 	</section>
