@@ -1,6 +1,7 @@
 <script>
 	import Navlink from "$lib/Navlink.svelte";
 	import { onMount } from "svelte";
+	import WakaTimeTotal from "$lib/WakaTimeTotal.svelte";
 	const links = [
 		{
 			href: "/",
@@ -31,13 +32,16 @@
 </script>
 
 <svelte:window on:scroll={evaluateScroll} />
-<div class="sticky top-0 z-10">
+<div
+	class="sticky top-0 z-10"
+	data-aos="fade-down"
+>
 	<nav
 		class="flex border-b-2 border-b-bgborder  bg-bgsecondary py-4 transition-colors duration-200 ease-in-out md:border-0 md:bg-transparent"
 		class:scrolled
 	>
 		<div
-			class="container mx-auto flex hidden max-w-6xl items-center justify-between px-2 md:flex xl:px-0"
+			class="max-w-8xl container mx-auto flex hidden items-center justify-between px-2 md:flex xl:px-0"
 		>
 			<div>
 				<a

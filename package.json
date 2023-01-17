@@ -24,5 +24,9 @@
 		"typescript": "^4.9.4",
 		"vite": "^4.0.4"
 	},
-	"type": "module"
+	"type": "module",
+	"dependencies": {
+		"aos": "^2.3.4",
+		"install": "^0.13.0"
+	}
 }
