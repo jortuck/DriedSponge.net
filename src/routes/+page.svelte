@@ -1,19 +1,61 @@
-<div class="mt-32 flex flex-col items-center justify-between space-y-10 lg:flex-row lg:space-y-0">
+<script>
+	import Github from "$lib/icons/Github.svelte";
+	import Steam from "$lib/icons/Steam.svelte";
+	import Mail from "$lib/icons/Mail.svelte";
+	import Discord from "$lib/icons/Discord.svelte";
+
+	const copyDiscord = async () => {
+		let discord = "DriedSponge#4730";
+		await navigator.clipboard.writeText(discord);
+	};
+</script>
+
+<svelte:head>
+	<title>DriedSponge.net | README.md</title>
+</svelte:head>
+<div
+	class="mt-28 flex flex-col items-center justify-between space-y-10 align-middle lg:mt-40 lg:flex-row lg:space-y-0"
+>
 	<section class="w-full space-y-4 text-center lg:text-left">
-		<h1 class="text-5xl font-extrabold text-white lg:text-6xl">Hello👋</h1>
-		<h2 class="spacing text-3xl leading-10 text-gray-100 lg:text-4xl">
+		<h1 class="text-5xl font-extrabold text-white xl:text-6xl">Hello👋</h1>
+		<h2 class="spacing text-3xl leading-10 text-gray-100 xl:text-4xl">
 			My name is <span class="emphasis">Jordan</span>
 		</h2>
-		<h2 class="spacing text-3xl leading-10 text-gray-100 lg:text-4xl">
+		<h2 class="spacing text-3xl leading-10 text-gray-100 xl:text-4xl">
 			I'm a <span class="emphasis">Full Stack Web Developer</span>
 		</h2>
+		<div class="space-x-4 text-center lg:text-left">
+			<a
+				href="https://github.com/driedsponge"
+				target="_blank"
+				rel="noreferrer"
+			>
+				<Github
+					class="inline h-11 w-11 fill-white transition-colors duration-200 ease-in-out hover:fill-myblue"
+				/>
+			</a>
+			<a
+				href="https://steamcommunity.com/id/driedsponge/"
+				target="_blank"
+				rel="noreferrer"
+			>
+				<Steam
+					class="inline h-11 w-11 fill-white transition-colors duration-200 ease-in-out hover:fill-myblue"
+				/>
+			</a>
+			<a href="mailto:jordan@driedsponge.net">
+				<Mail
+					class="inline h-11 w-11 fill-white transition-colors duration-200 ease-in-out hover:fill-myblue"
+				/>
+			</a>
+			<button on:click={copyDiscord}>
+				<Discord
+					class="inline h-11 w-11 fill-white transition-colors duration-200 ease-in-out hover:fill-myblue"
+				/>
+			</button>
+		</div>
 	</section>
-	<section class="w-full space-y-2 text-center">
-		<!--		<img-->
-		<!--			class="w-full"-->
-		<!--			alt="A graph showing my coding activity during the past week."-->
-		<!--			src="https://stats.driedsponge.net/api/wakatime?username=DriedSponge&theme=dark&bg_color=2B323B&hide_border=true&custom_title=Here's what I've been up to this week:&layout=compact&text_color=fff&border_radius=10"-->
-		<!--		/>-->
+	<section class="w-full text-center">
 		<img
 			class="w-full sm:hidden"
 			alt="My Github Stats"
