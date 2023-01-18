@@ -1,7 +1,6 @@
 <script>
 	import Navlink from "$lib/Navlink.svelte";
 	import { onMount } from "svelte";
-	import WakaTimeTotal from "$lib/WakaTimeTotal.svelte";
 	const links = [
 		{
 			href: "/",
@@ -37,11 +36,11 @@
 	data-aos="fade-down"
 >
 	<nav
-		class="flex border-b-2 border-b-bgborder  bg-bgsecondary py-4 transition-colors duration-200 ease-in-out md:border-0 md:bg-transparent"
+		class="flex border-b-2 border-b-bgborder  bg-bgsecondary py-4 transition-colors duration-200 ease-in-out lg:border-0 lg:bg-transparent"
 		class:scrolled
 	>
 		<div
-			class="max-w-8xl container mx-auto flex hidden items-center justify-between px-2 md:flex xl:px-0"
+			class="max-w-8xl container mx-auto flex hidden items-center justify-between px-2 lg:flex xl:px-0"
 		>
 			<div>
 				<a
@@ -58,7 +57,7 @@
 				{/each}
 			</div>
 		</div>
-		<div class="container mx-3 max-w-full  transition-all duration-200 ease-in-out md:hidden">
+		<div class="container mx-3 max-w-full  transition-all duration-200 ease-in-out lg:hidden">
 			<div class="flex items-center justify-between">
 				<div>
 					<a
@@ -94,7 +93,7 @@
 	</nav>
 	<div
 		class:scale-y-0={!expanded}
-		class="absolute z-10 w-full origin-top bg-bgsecondary transition-all duration-200 ease-in-out md:hidden"
+		class="absolute z-10 w-full origin-top bg-bgsecondary transition-all duration-200 ease-in-out lg:hidden"
 	>
 		<ul class="space-y-4 py-4 text-center">
 			{#each links as link}
