@@ -2,6 +2,14 @@
 	import "../app.css";
 	import Nav from "$lib/Nav.svelte";
 	import * as AOS from "aos";
+	// import "@fortawesome/fontawesome-free/js/fontawesome.min";
+	// import "@fortawesome/fontawesome-free/js/brands.min";
+	// import "@fortawesome/fontawesome-free/js/regular.min";
+
+	import "@fortawesome/fontawesome-free/css/fontawesome.css";
+	import "@fortawesome/fontawesome-free/css/brands.min.css";
+	import "@fortawesome/fontawesome-free/css/regular.min.css";
+
 	import "aos/dist/aos.css";
 	import { onMount } from "svelte";
 	import { browser } from "$app/environment";

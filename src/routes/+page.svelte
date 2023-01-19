@@ -1,9 +1,19 @@
 <script>
-	import Github from "$lib/icons/Github.svelte";
-	import Steam from "$lib/icons/Steam.svelte";
-	import Mail from "$lib/icons/Mail.svelte";
-	import Discord from "$lib/icons/Discord.svelte";
-
+	import IconLink from "$lib/IconLink.svelte";
+	const socials = [
+		{
+			link: "https://github.com/driedsponge",
+			icon: "fa-brands fa-github"
+		},
+		{
+			link: "https://steamcommunity.com/id/driedsponge/",
+			icon: "fa-brands fa-steam"
+		},
+		{
+			link: "mailto:jordan@driedsponge.net",
+			icon: "fa-regular fa-envelope"
+		}
+	];
 	const copyDiscord = async () => {
 		let discord = "DriedSponge#4730";
 		await navigator.clipboard.writeText(discord);
@@ -24,35 +34,14 @@
 		<h2 class="spacing text-3xl leading-10 text-gray-100 xl:text-4xl">
 			I'm a <span class="emphasis">Full Stack Web Developer</span>
 		</h2>
-		<div class="space-x-4 text-center lg:text-left">
-			<a
-				href="https://github.com/driedsponge"
-				target="_blank"
-				rel="noreferrer"
-			>
-				<Github
-					class="inline h-11 w-11 fill-white transition-colors duration-200 ease-in-out hover:fill-myblue"
+		<div class="space-x-5 text-center lg:text-left">
+			{#each socials as social}
+				<IconLink
+					external={true}
+					link={social.link}
+					icon={social.icon + " fa-3x"}
 				/>
-			</a>
-			<a
-				href="https://steamcommunity.com/id/driedsponge/"
-				target="_blank"
-				rel="noreferrer"
-			>
-				<Steam
-					class="inline h-11 w-11 fill-white transition-colors duration-200 ease-in-out hover:fill-myblue"
-				/>
-			</a>
-			<a href="mailto:jordan@driedsponge.net">
-				<Mail
-					class="inline h-11 w-11 fill-white transition-colors duration-200 ease-in-out hover:fill-myblue"
-				/>
-			</a>
-			<button on:click={copyDiscord}>
-				<Discord
-					class="inline h-11 w-11 fill-white transition-colors duration-200 ease-in-out hover:fill-myblue"
-				/>
-			</button>
+			{/each}
 		</div>
 	</section>
 	<section class="w-full text-center">
