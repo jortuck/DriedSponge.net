@@ -2,9 +2,9 @@ lockfileVersion: 5.4
 
 specifiers:
   '@fortawesome/fontawesome-free': ^6.2.1
-  '@sveltejs/adapter-auto': ^1.0.0
-  '@sveltejs/adapter-node': ^1.1.3
-  '@sveltejs/kit': ^1.1.0
+  '@sveltejs/adapter-auto': ^1.0.2
+  '@sveltejs/adapter-node': ^1.1.4
+  '@sveltejs/kit': ^1.2.0
   aos: ^2.3.4
   autoprefixer: ^10.4.13
   install: ^0.13.0
@@ -25,9 +25,9 @@ dependencies:
   install: 0.13.0
 
 devDependencies:
-  '@sveltejs/adapter-auto': 1.0.0_@sveltejs+kit@1.1.0
-  '@sveltejs/adapter-node': 1.1.3_@sveltejs+kit@1.1.0
-  '@sveltejs/kit': 1.1.0_svelte@3.55.1+vite@4.0.4
+  '@sveltejs/adapter-auto': 1.0.2_@sveltejs+kit@1.2.0
+  '@sveltejs/adapter-node': 1.1.4_@sveltejs+kit@1.2.0
+  '@sveltejs/kit': 1.2.0_svelte@3.55.1+vite@4.0.4
   autoprefixer: 10.4.13_postcss@8.4.21
   postcss: 8.4.21
   postcss-import: 15.1.0_postcss@8.4.21
@@ -351,29 +351,29 @@ packages:
       rollup: 3.10.0
     dev: true
 
-  /@sveltejs/adapter-auto/1.0.0_@sveltejs+kit@1.1.0:
-    resolution: {integrity: sha512-yKyPvlLVua1bJ/42FrR3X041mFGdB4GzTZOAEoHUcNBRE5Mhx94+eqHpC3hNvAOiLEDcKfVO0ObyKSu7qldU+w==}
+  /@sveltejs/adapter-auto/1.0.2_@sveltejs+kit@1.2.0:
+    resolution: {integrity: sha512-UXpEO/gutERZnD+Z5Vi4J/ifD3WSRuCI7xwtLJTcKNQvJ6t5Xsj1X3Mw2F8Vv/XTUuxf7xPLYUgThU331r0Y9w==}
     peerDependencies:
       '@sveltejs/kit': ^1.0.0
     dependencies:
-      '@sveltejs/kit': 1.1.0_svelte@3.55.1+vite@4.0.4
+      '@sveltejs/kit': 1.2.0_svelte@3.55.1+vite@4.0.4
       import-meta-resolve: 2.2.1
     dev: true
 
-  /@sveltejs/adapter-node/1.1.3_@sveltejs+kit@1.1.0:
-    resolution: {integrity: sha512-CXNYbYVAO8PlN95toqQRR6+QaFT8bejShDbmMwJfdokNpscjgxYbS8oAcWqrizxfPTBfyHlW+kDbu5KuWhxUNA==}
+  /@sveltejs/adapter-node/1.1.4_@sveltejs+kit@1.2.0:
+    resolution: {integrity: sha512-3iEBqi1fXLXP9YIbVuz2LXajoebRJCmAFEQbN40DlxAnA7G+InxUgnqFun3q9gBMz2Qvd99K51g/HxWetXRe8Q==}
     peerDependencies:
       '@sveltejs/kit': ^1.0.0
     dependencies:
       '@rollup/plugin-commonjs': 24.0.0_rollup@3.10.0
       '@rollup/plugin-json': 6.0.0_rollup@3.10.0
       '@rollup/plugin-node-resolve': 15.0.1_rollup@3.10.0
-      '@sveltejs/kit': 1.1.0_svelte@3.55.1+vite@4.0.4
+      '@sveltejs/kit': 1.2.0_svelte@3.55.1+vite@4.0.4
       rollup: 3.10.0
     dev: true
 
-  /@sveltejs/kit/1.1.0_svelte@3.55.1+vite@4.0.4:
-    resolution: {integrity: sha512-SSAOaEpiBtR7l4Y/jN+AGHonpZUQ2tcl4yhE7S+rqSJA8iw8dxiWPVpNe7JI3N70hXVylezTj9I6P3cykq8a1Q==}
+  /@sveltejs/kit/1.2.0_svelte@3.55.1+vite@4.0.4:
+    resolution: {integrity: sha512-Burt+zmAlAOkV2jsEJMHCipVI2w7eMyjDzC/63Z+CML4/xz/Kt4Kjl4CJf1o7ldtzP/C3GCjuq70aMrWhzTDRw==}
     engines: {node: ^16.14 || >=18}
     hasBin: true
     requiresBuild: true
@@ -394,7 +394,7 @@ packages:
       sirv: 2.0.2
       svelte: 3.55.1
       tiny-glob: 0.2.9
-      undici: 5.15.0
+      undici: 5.15.1
       vite: 4.0.4
     transitivePeerDependencies:
       - supports-color
@@ -492,7 +492,7 @@ packages:
       postcss: ^8.1.0
     dependencies:
       browserslist: 4.21.4
-      caniuse-lite: 1.0.30001444
+      caniuse-lite: 1.0.30001446
       fraction.js: 4.2.0
       normalize-range: 0.1.2
       picocolors: 1.0.0
@@ -534,7 +534,7 @@ packages:
     engines: {node: ^6 || ^7 || ^8 || ^9 || ^10 || ^11 || ^12 || >=13.7}
     hasBin: true
     dependencies:
-      caniuse-lite: 1.0.30001444
+      caniuse-lite: 1.0.30001446
       electron-to-chromium: 1.4.284
       node-releases: 2.0.8
       update-browserslist-db: 1.0.10_browserslist@4.21.4
@@ -566,8 +566,8 @@ packages:
     engines: {node: '>= 6'}
     dev: true
 
-  /caniuse-lite/1.0.30001444:
-    resolution: {integrity: sha512-ecER9xgJQVMqcrxThKptsW0pPxSae8R2RB87LNa+ivW9ppNWRHEplXcDzkCOP4LYWGj8hunXLqaiC41iBATNyg==}
+  /caniuse-lite/1.0.30001446:
+    resolution: {integrity: sha512-fEoga4PrImGcwUUGEol/PoFCSBnSkA9drgdkxXkJLsUBOnJ8rs3zDv6ApqYXGQFOyMPsjh79naWhF4DAxbF8rw==}
     dev: true
 
   /chokidar/3.5.3:
@@ -787,7 +787,7 @@ packages:
       fs.realpath: 1.0.0
       inflight: 1.0.6
       inherits: 2.0.4
-      minimatch: 5.1.4
+      minimatch: 5.1.6
       once: 1.4.0
     dev: true
 
@@ -946,8 +946,8 @@ packages:
       brace-expansion: 1.1.11
     dev: true
 
-  /minimatch/5.1.4:
-    resolution: {integrity: sha512-U0iNYXt9wALljzfnGkhFSy5sAC6/SCR3JrHrlsdJz4kF8MvhTRQNiC59iUi1iqsitV7abrNAJWElVL9pdnoUgw==}
+  /minimatch/5.1.6:
+    resolution: {integrity: sha512-lKwV/1brpG6mBUFHtb7NUmtABCb2WZZmm2wNiOA5hAb8VdCS4B3dtMWyvcoViccwAW/COERjXLt0zP1zXUN26g==}
     engines: {node: '>=10'}
     dependencies:
       brace-expansion: 2.0.1
@@ -1427,8 +1427,8 @@ packages:
     hasBin: true
     dev: true
 
-  /undici/5.15.0:
-    resolution: {integrity: sha512-wCAZJDyjw9Myv+Ay62LAoB+hZLPW9SmKbQkbHIhMw/acKSlpn7WohdMUc/Vd4j1iSMBO0hWwU8mjB7a5p5bl8g==}
+  /undici/5.15.1:
+    resolution: {integrity: sha512-XLk8g0WAngdvFqTI+VKfBtM4YWXgdxkf1WezC771Es0Dd+Pm1KmNx8t93WTC+Hh9tnghmVxkclU1HN+j+CvIUA==}
     engines: {node: '>=12.18'}
     dependencies:
       busboy: 1.6.0
