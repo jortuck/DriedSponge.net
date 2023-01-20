@@ -1,0 +1,13 @@
+version: '3.9'
+networks:
+  driedsponge:
+
+services:
+  myfiles:
+    image: ghcr.io/driedsponge/driedsponge.net
+    ports:
+      - 8000:3000
+    networks:
+      - driedsponge
+    restart: unless-stopped
+    container_name: driedsponge
