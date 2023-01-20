@@ -1,82 +1,13 @@
-version: '3.8'
-
+version: '3.9'
 networks:
-    dnet:
+  driedsponge:
 
 services:
-    nginx:
-        image: nginx:stable-alpine
-        depends_on:
-            - php
-            - mysql
-        networks:
-            - dnet
-        container_name: nginx_dnet
-        restart: unless-stopped
-        ports:
-            - "3200:80"
-        volumes:
-            - ./src:/var/www/html
-            - ./dockerfiles/nginx/default:/etc/nginx/conf.d/default.conf
-
-    mysql:
-        image: mysql:latest
-        networks:
-            - dnet
-        restart: unless-stopped
-        tty: true
-        ports:
-            - "3306:3306"
-        volumes:
-            - ./mysql:/var/lib/mysql
-        env_file:
-          - ./dockerfiles/mysql.env
-        container_name: mysql_dnet
-
-    php:
-        networks:
-            - dnet
-        container_name: php_dnet
-        environment:
-            - COMPOSER_MEMORY_LIMIT=-1
-        ports:
-            - "9000:9000"
-        volumes:
-            - ./src:/var/www/html
-        build:
-            context: .
-            dockerfile: ./dockerfiles/php.dockerfile
-        dns:
-          - 1.1.1.1
-          - 1.0.0.1
-    composer:
-        networks:
-            - dnet
-        volumes:
-            - ./src:/app
-        depends_on:
-            - nginx
-        container_name: composer_dnet
-        build:
-            context: .
-            dockerfile: ./dockerfiles/composer.dockerfile
-    npm:
-      image: node:current-alpine3.12
-      container_name: npm_dnet
-      volumes:
-        - ./src:/var/www/html
-      working_dir: /var/www/html
-      entrypoint: [ 'npm' ]
-    artisan:
-        networks:
-            - dnet
-        container_name: artisan_dnet
-        environment:
-            - COMPOSER_MEMORY_LIMIT=-1
-        volumes:
-            - ./src:/var/www/html
-        build:
-            context: .
-            dockerfile: ./dockerfiles/php.dockerfile
-        working_dir: /var/www/html/
-        entrypoint: ['php', '/var/www/html/artisan']
+  myfiles:
+    image: ghcr.io/driedsponge/driedsponge.net
+    ports:
+      - 8000:3000
+    networks:
+      - driedsponge
+    restart: unless-stopped
+    container_name: driedsponge
