@@ -1,3 +1,6 @@
+@import "@fortawesome/fontawesome-free/css/fontawesome.min.css";
+@import "@fortawesome/fontawesome-free/css/regular.min.css";
+@import "@fortawesome/fontawesome-free/css/brands.min.css";
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -6,6 +9,6 @@
 	src: url('/fonts/jetbrains/JetBrainsMono-Regular.woff2');
 }
 body {
-	font-family: JetBrainsMono;
+	font-family: JetBrainsMono, sans-serif;
 	background-color: #1c2128;
 }
