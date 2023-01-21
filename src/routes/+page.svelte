@@ -1,5 +1,6 @@
 <script>
 	import IconLink from "$lib/IconLink.svelte";
+	import { PUBLIC_EMAIL } from "$env/static/public";
 	const socials = [
 		{
 			link: "https://github.com/driedsponge",
@@ -10,14 +11,10 @@
 			icon: "fa-brands fa-steam"
 		},
 		{
-			link: "mailto:jordan@driedsponge.net",
+			link: `mailto:${PUBLIC_EMAIL}`,
 			icon: "fa-regular fa-envelope"
 		}
 	];
-	const copyDiscord = async () => {
-		let discord = "DriedSponge#4730";
-		await navigator.clipboard.writeText(discord);
-	};
 </script>
 
 <svelte:head>
