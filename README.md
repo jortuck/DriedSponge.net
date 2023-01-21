@@ -4,6 +4,9 @@ This is the source code for my website [DriedSponge.net](https://driedsponge.net
 
 In case you could not tell, this site uses the SvelteKit and TailwindCSS.
 
+Right now this website is hosted using Cloudflare pages becuase I just found out it supports SSR with SvelteKit.
+Hopefully it's fast. If the functions start running over 10ms I might have to switch back to self-hosting.
+
 ## Security Vulnerabilities
 
 If you find any security issues please let me know or create an issue .
