@@ -20,14 +20,14 @@
 	];
 	let gallery = [
 		{
-			imgUrl: `${PUBLIC_STATS_ENDPOINT}/top-langs?username=driedsponge&include_all_commits=true&hide_border=true&layout=compact&theme=dark&bg_color=2B323B&border_radius=10&custom_title=My Top Languages`,
+			imgUrl: `${PUBLIC_STATS_ENDPOINT}/top-langs?username=driedsponge&include_all_commits=true&hide_border=true&layout=compact&theme=dark&bg_color=2B323B&border_radius=10&cache_seconds=21600&custom_title=My Top Languages`,
 			imgDes: "My Top languages",
-			imgMobile: `${PUBLIC_STATS_ENDPOINT}/top-langs?username=driedsponge&include_all_commits=true&hide_border=true&theme=dark&bg_color=2B323B&border_radius=10&custom_title=My Top Languages`
+			imgMobile: `${PUBLIC_STATS_ENDPOINT}/top-langs?username=driedsponge&include_all_commits=true&hide_border=true&theme=dark&bg_color=2B323B&border_radius=10&cache_seconds=21600&custom_title=My Top Languages`
 		},
 		{
-			imgUrl: `${PUBLIC_STATS_ENDPOINT}?username=driedsponge&include_all_commits=true&hide_border=true&layout=compact&theme=dark&bg_color=2B323B&border_radius=10&custom_title=My Github Stats&show_icons=true&icon_color=62a1ec`,
+			imgUrl: `${PUBLIC_STATS_ENDPOINT}?username=driedsponge&include_all_commits=true&hide_border=true&layout=compact&theme=dark&bg_color=2B323B&border_radius=10&cache_seconds=21600&custom_title=My Github Stats&show_icons=true&icon_color=62a1ec`,
 			imgDes: "My Github Stats",
-			imgMobile: `${PUBLIC_STATS_ENDPOINT}?username=driedsponge&include_all_commits=true&hide_border=true&layout=compact&theme=dark&bg_color=2B323B&border_radius=10&custom_title=My Github Stats&show_icons=true&icon_color=62a1ec&hide_rank=true&card_width=290`
+			imgMobile: `${PUBLIC_STATS_ENDPOINT}?username=driedsponge&include_all_commits=true&hide_border=true&layout=compact&theme=dark&bg_color=2B323B&border_radius=10&cache_seconds=21600&custom_title=My Github Stats&show_icons=true&icon_color=62a1ec&hide_rank=true&card_width=290`
 		}
 	];
 	let stats = false;
