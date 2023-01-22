@@ -40,7 +40,7 @@
 			} else {
 				statsInfo = gallery[0];
 			}
-		}, 10000);
+		}, 9000);
 	});
 </script>
 
