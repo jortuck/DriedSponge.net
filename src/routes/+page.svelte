@@ -3,7 +3,7 @@
 	import { PUBLIC_EMAIL, PUBLIC_STATS_ENDPOINT } from "$env/static/public";
 	import Card from "$lib/Card.svelte";
 	import { onMount } from "svelte";
-	import { fade } from "svelte/transition";
+	import { fade, slide } from "svelte/transition";
 	const socials = [
 		{
 			link: "https://github.com/driedsponge",
@@ -20,9 +20,9 @@
 	];
 	let gallery = [
 		{
-			imgUrl: `${PUBLIC_STATS_ENDPOINT}/top-langs?username=driedsponge&include_all_commits=true&hide_border=true&layout=compact&theme=dark&bg_color=2B323B&border_radius=10&cache_seconds=21600&custom_title=My Top Languages`,
+			imgUrl: `${PUBLIC_STATS_ENDPOINT}/top-langs?username=driedsponge&include_all_commits=true&hide_border=true&layout=compact&theme=dark&bg_color=2B323B&border_radius=10&cache_seconds=21600&custom_title=My Most Used Languages`,
 			imgDes: "My Top languages",
-			imgMobile: `${PUBLIC_STATS_ENDPOINT}/top-langs?username=driedsponge&include_all_commits=true&hide_border=true&theme=dark&bg_color=2B323B&border_radius=10&cache_seconds=21600&custom_title=My Top Languages`
+			imgMobile: `${PUBLIC_STATS_ENDPOINT}/top-langs?username=driedsponge&include_all_commits=true&hide_border=true&theme=dark&bg_color=2B323B&border_radius=10&cache_seconds=21600&custom_title=My Most Used Languages`
 		},
 		{
 			imgUrl: `${PUBLIC_STATS_ENDPOINT}?username=driedsponge&include_all_commits=true&hide_border=true&layout=compact&theme=dark&bg_color=2B323B&border_radius=10&cache_seconds=21600&custom_title=My Github Stats&show_icons=true&icon_color=62a1ec`,
@@ -31,21 +31,32 @@
 		}
 	];
 	let stats = false;
-	let statsInfo = gallery[0];
+	let statsInfo = gallery[1];
 	onMount(() => {
 		setInterval(function () {
 			stats = !stats;
 			if (stats) {
-				statsInfo = gallery[1];
-			} else {
 				statsInfo = gallery[0];
+			} else {
+				statsInfo = gallery[1];
 			}
-		}, 9000);
+		}, 8500);
 	});
 </script>
 
 <svelte:head>
 	<title>DriedSponge.net | README.md</title>
+	<meta
+		name="description"
+		content="Hello 👋, my name is Jordan. I'm a full stack web developer who enjoys creating websites and Discord bots."
+	/>
+	<meta
+		property="Hello 👋, my name is Jordan. I'm a full stack web developer who enjoys creating websites and Discord bots."
+	/>
+	<meta
+		property="og:title"
+		content="DriedSponge.net | Welcome"
+	/>
 </svelte:head>
 <div
 	class="mt-28 flex flex-col items-center justify-between space-y-10 align-middle lg:mt-40 lg:flex-row lg:space-y-0"
@@ -72,15 +83,15 @@
 		<div class="relative h-96">
 			{#key stats}
 				<img
-					in:fade|local={{ duration: 1500, delay: 1800 }}
-					out:fade|local={{ duration: 1500 }}
+					in:fade|local={{ duration: 800, delay: 1000 }}
+					out:fade|local={{ duration: 800 }}
 					class="w-full sm:hidden"
 					alt={statsInfo.imgDes}
 					src={statsInfo.imgMobile}
 				/>
 				<img
-					in:fade|local={{ duration: 1000, delay: 1300, create: false }}
-					out:fade|local={{ duration: 1000 }}
+					in:fade|local={{ duration: 800, delay: 1100 }}
+					out:fade|local={{ duration: 800 }}
 					class="absolute top-0 right-0 bottom-0 left-0 hidden h-96 w-full sm:block"
 					alt={statsInfo.imgDes}
 					src={statsInfo.imgUrl}
