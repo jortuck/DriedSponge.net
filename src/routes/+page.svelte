@@ -15,7 +15,7 @@
 		},
 		{
 			link: `mailto:${PUBLIC_EMAIL}`,
-			icon: "fa-regular fa-envelope"
+			icon: "fa-solid fa-envelope"
 		}
 	];
 	let gallery = [
