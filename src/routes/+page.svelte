@@ -70,17 +70,17 @@
 	</section>
 	<section class="w-full text-center">
 		<div class="relative h-96">
-			{#key statsInfo}
+			{#key stats}
 				<img
-					in:fade={{ duration: 1500, delay: 1800 }}
-					out:fade={{ duration: 1500 }}
+					in:fade|local={{ duration: 1500, delay: 1800 }}
+					out:fade|local={{ duration: 1500 }}
 					class="w-full sm:hidden"
 					alt={statsInfo.imgDes}
 					src={statsInfo.imgMobile}
 				/>
 				<img
-					in:fade={{ duration: 1000, delay: 1300, create: false }}
-					out:fade={{ duration: 1000 }}
+					in:fade|local={{ duration: 1000, delay: 1300, create: false }}
+					out:fade|local={{ duration: 1000 }}
 					class="absolute top-0 right-0 bottom-0 left-0 hidden h-96 w-full sm:block"
 					alt={statsInfo.imgDes}
 					src={statsInfo.imgUrl}
