@@ -7,15 +7,18 @@
 	const socials = [
 		{
 			link: "https://github.com/driedsponge",
-			icon: "fa-brands fa-github"
+			icon: "fa-brands fa-github",
+			name: "Github"
 		},
 		{
 			link: "https://steamcommunity.com/id/driedsponge/",
-			icon: "fa-brands fa-steam"
+			icon: "fa-brands fa-steam",
+			name: "Steam"
 		},
 		{
 			link: `mailto:${PUBLIC_EMAIL}`,
-			icon: "fa-solid fa-envelope"
+			icon: "fa-solid fa-envelope",
+			name: "Email"
 		}
 	];
 	let gallery = [
@@ -73,6 +76,7 @@
 			{#each socials as social}
 				<IconLink
 					external={true}
+					title={social.name}
 					link={social.link}
 					icon={social.icon + " fa-3x"}
 				/>

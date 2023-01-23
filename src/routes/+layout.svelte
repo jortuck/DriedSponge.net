@@ -36,18 +36,18 @@
 		data-aos="fade-down"
 	>
 		<p class=" font-extrabold text-white">
-			This website is still a work in progress. Follow the development <a
+			This website is still a work in progress. Follow the development at the <a
 				class="underline transition-colors duration-200 ease-in-out hover:text-gray-300"
 				target="_blank"
 				rel="noreferrer"
-				href="https://github.com/driedsponge/DriedSponge.net">here</a
+				href="https://github.com/driedsponge/DriedSponge.net">GitHub repo</a
 			>.
 			<span
 				on:click={dismiss}
 				class="float-none cursor-pointer font-extrabold transition-colors duration-200 ease-in-out hover:text-gray-300 md:float-right"
 				title="Dismiss"
 			>
-				<i class="fa-regular fa-x fa-xl" />
+				<i class="fa-solid fa-x fa-xl" />
 			</span>
 		</p>
 	</div>
