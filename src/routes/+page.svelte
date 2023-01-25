@@ -54,9 +54,6 @@
 		content="Hello 👋, my name is Jordan. I'm a full stack web developer who enjoys creating websites and Discord bots."
 	/>
 	<meta
-		property="Hello 👋, my name is Jordan. I'm a full stack web developer who enjoys creating websites and Discord bots."
-	/>
-	<meta
 		property="og:title"
 		content="DriedSponge.net | Welcome"
 	/>
