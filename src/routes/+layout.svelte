@@ -2,10 +2,7 @@
 	import "../app.css";
 	import Nav from "$lib/Nav.svelte";
 	import * as AOS from "aos";
-	// import "@fortawesome/fontawesome-free/js/fontawesome.min";
-	// import "@fortawesome/fontawesome-free/js/brands.min";
-	// import "@fortawesome/fontawesome-free/js/regular.min";
-
+	import { slide } from "svelte/transition";
 	import "aos/dist/aos.css";
 	import { onMount } from "svelte";
 	import { browser } from "$app/environment";
@@ -34,6 +31,7 @@
 	<div
 		class="bg-amber-700 p-4 text-center"
 		data-aos="fade-down"
+		out:slide={{ duration: 500 }}
 	>
 		<p class=" font-extrabold text-white">
 			This website is still a work in progress. Follow the development at the <a
