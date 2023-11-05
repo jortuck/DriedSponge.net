@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	import IconLink from "$lib/IconLink.svelte";
 	import { PUBLIC_EMAIL, PUBLIC_STATS_ENDPOINT } from "$env/static/public";
 	import Card from "$lib/Card.svelte";
