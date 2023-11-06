@@ -4,7 +4,6 @@
     import { slide } from "svelte/transition";
     import { onMount } from "svelte";
     import { browser } from "$app/environment";
-    import contact from "$lib/name";
     let hideBanner = true;
 
     onMount(() => {
