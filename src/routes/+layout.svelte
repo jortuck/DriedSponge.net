@@ -3,7 +3,6 @@
     import Nav from "$lib/Nav.svelte";
     import { slide } from "svelte/transition";
     import { onMount } from "svelte";
-    import { browser } from "$app/environment";
     let hideBanner = true;
 
     onMount(() => {
@@ -31,13 +30,15 @@
                 rel="noreferrer"
                 href="https://github.com/driedsponge/DriedSponge.net">GitHub repo</a
         >.
-            <span
+            <button
+                    aria-label="Dismiss Warning"
+                    tabindex="0"
                     on:click={dismiss}
                     class="float-none cursor-pointer font-extrabold transition-colors duration-200 ease-in-out hover:text-gray-300 md:float-right"
                     title="Dismiss"
             >
 				<i class="fa-solid fa-x fa-xl" />
-			</span>
+			</button>
         </p>
     </div>
 {/if}
