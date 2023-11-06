@@ -62,7 +62,7 @@
 				<div>
 					<a
 						class="text-3xl font-extrabold text-white"
-						href="/"><span class="text-myblue">D</span>S</a
+						href="/"><span class="text-myblue">J</span>T</a
 					>
 				</div>
 				<div>
