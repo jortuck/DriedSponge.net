@@ -70,7 +70,7 @@
 	class="fadeIn mt-20 flex flex-col items-center justify-between space-y-10 align-middle md:mt-28 lg:mt-40 lg:flex-row lg:space-y-0"
 >
 	<section class="w-full space-y-8 text-center md:space-y-4 lg:text-left">
-		<h1 class="text-5xl font-extrabold text-white xl:text-6xl">
+		<h1 class="h-28 overflow-hidden text-5xl font-extrabold text-white sm:h-auto xl:text-6xl">
 			{welcomeTextFinal}
 		</h1>
 		<h2 class="spacing text-3xl leading-10 text-gray-100 xl:text-4xl">
