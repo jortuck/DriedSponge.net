@@ -1,10 +1,8 @@
 <script lang="ts">
 	import IconLink from "$lib/IconLink.svelte";
 	import { PUBLIC_EMAIL, PUBLIC_STATS_ENDPOINT } from "$env/static/public";
-	import Card from "$lib/Skillcard.svelte";
-	import { onMount } from "svelte";
-	import { fade, slide } from "svelte/transition";
 	import Skillcard from "$lib/Skillcard.svelte";
+	import { onMount } from "svelte";
 	const socials = [
 		{
 			link: "https://github.com/driedsponge",
@@ -17,7 +15,7 @@
 			name: "Steam"
 		},
 		{
-			link: `mailto:jordan@driedsponge.net`,
+			link: `mailto:${PUBLIC_EMAIL}`,
 			icon: "fa-solid fa-envelope",
 			name: "Email"
 		}
@@ -29,8 +27,20 @@
 			imgMobile: `${PUBLIC_STATS_ENDPOINT}?username=driedsponge&include_all_commits=true&hide_border=true&layout=compact&theme=dark&bg_color=2B323B&border_radius=10&cache_seconds=21600&custom_title=My Github Stats&show_icons=true&icon_color=62a1ec&hide_rank=true&card_width=290`
 		}
 	];
-	let stats = false;
 	let statsInfo = gallery[0];
+	let welcomeText = "Hello";
+	onMount(() => {
+		const timeOfDay = new Date().getHours();
+		if (timeOfDay >= 6 && timeOfDay < 12) {
+			welcomeText = "Good Morning!";
+		} else if (timeOfDay >= 12 && timeOfDay < 18) {
+			welcomeText = "Good Afternoon!";
+		} else if (timeOfDay >= 18 && timeOfDay < 22) {
+			welcomeText = "Good Evening!";
+		} else {
+			welcomeText = "Sup, you're up late";
+		}
+	});
 </script>
 
 <svelte:head>
@@ -52,7 +62,7 @@
 	class="mt-28 flex flex-col items-center justify-between space-y-10 align-middle lg:mt-40 lg:flex-row lg:space-y-0"
 >
 	<section class="w-full space-y-4 text-center lg:text-left">
-		<h1 class="text-5xl font-extrabold text-white xl:text-6xl">Hello👋</h1>
+		<h1 class="text-5xl font-extrabold text-white xl:text-6xl">{welcomeText}</h1>
 		<h2 class="spacing text-3xl leading-10 text-gray-100 xl:text-4xl">
 			My name is <span class="emphasis">Jordan</span>
 		</h2>
