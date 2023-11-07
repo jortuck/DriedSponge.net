@@ -31,11 +31,9 @@
 </script>
 
 <svelte:window on:scroll={evaluateScroll} />
-<div
-	class="sticky top-0 z-10"
->
+<div class="sticky top-0 z-10">
 	<nav
-		class="flex border-b-2 border-b-bgborder  bg-bgsecondary py-4 transition-colors duration-200 ease-in-out lg:border-0 lg:bg-transparent"
+		class="flex border-b-2 border-b-bgborder bg-bgsecondary py-4 transition-colors duration-200 ease-in-out lg:border-0 lg:bg-transparent"
 		class:scrolled
 	>
 		<div
@@ -56,7 +54,7 @@
 				{/each}
 			</div>
 		</div>
-		<div class="container mx-3 max-w-full  transition-all duration-200 ease-in-out lg:hidden">
+		<div class="container mx-3 max-w-full transition-all duration-200 ease-in-out lg:hidden">
 			<div class="flex items-center justify-between">
 				<div>
 					<a
@@ -81,7 +79,7 @@
 						/>
 						<img
 							class:hidden={expanded}
-							class="w-6 "
+							class="w-6"
 							src="/icons/menu-burger.svg"
 							alt="Menu Button"
 						/>
