@@ -30,6 +30,8 @@
 	];
 	let statsInfo = gallery[0];
 	let welcomeText = "Hello";
+	let welcomeTextFinal = "";
+	let blink = true;
 	onMount(() => {
 		const timeOfDay = new Date().getHours();
 		if (timeOfDay >= 6 && timeOfDay < 12) {
@@ -40,6 +42,11 @@
 			welcomeText = "Good Evening!";
 		} else {
 			welcomeText = "Sup, you're up late";
+		}
+		for (let i = 0; i < welcomeText.length; i++) {
+			setTimeout(() => {
+				welcomeTextFinal += welcomeText.split("")[i];
+			}, 100 * i);
 		}
 	});
 </script>
@@ -60,11 +67,11 @@
 	/>
 </svelte:head>
 <div
-	class="fadeIn mt-28 flex flex-col items-center justify-between space-y-10 align-middle lg:mt-40 lg:flex-row lg:space-y-0"
+	class="fadeIn mt-20 flex flex-col items-center justify-between space-y-10 align-middle md:mt-28 lg:mt-40 lg:flex-row lg:space-y-0"
 >
-	<section class="w-full space-y-4 text-center lg:text-left">
+	<section class="w-full space-y-8 text-center md:space-y-4 lg:text-left">
 		<h1 class="text-5xl font-extrabold text-white xl:text-6xl">
-			{welcomeText}
+			{welcomeTextFinal}
 		</h1>
 		<h2 class="spacing text-3xl leading-10 text-gray-100 xl:text-4xl">
 			My name is <span class="emphasis">Jordan</span>
