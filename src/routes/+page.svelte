@@ -3,6 +3,7 @@
 	import { PUBLIC_EMAIL, PUBLIC_STATS_ENDPOINT } from "$env/static/public";
 	import Skillcard from "$lib/Skillcard.svelte";
 	import { onMount } from "svelte";
+
 	const socials = [
 		{
 			link: "https://github.com/driedsponge",
@@ -59,10 +60,12 @@
 	/>
 </svelte:head>
 <div
-	class="mt-28 flex flex-col items-center justify-between space-y-10 align-middle lg:mt-40 lg:flex-row lg:space-y-0"
+	class="fadeIn mt-28 flex flex-col items-center justify-between space-y-10 align-middle lg:mt-40 lg:flex-row lg:space-y-0"
 >
 	<section class="w-full space-y-4 text-center lg:text-left">
-		<h1 class="text-5xl font-extrabold text-white xl:text-6xl">{welcomeText}</h1>
+		<h1 class="text-5xl font-extrabold text-white xl:text-6xl">
+			{welcomeText}
+		</h1>
 		<h2 class="spacing text-3xl leading-10 text-gray-100 xl:text-4xl">
 			My name is <span class="emphasis">Jordan</span>
 		</h2>
@@ -121,5 +124,20 @@
 <style lang="postcss">
 	.emphasis {
 		@apply font-bold text-myblue;
+	}
+
+	.fadeIn {
+		animation: fadeInAnimation ease 2s;
+		animation-iteration-count: 1;
+		animation-fill-mode: forwards;
+	}
+
+	@keyframes fadeInAnimation {
+		0% {
+			opacity: 0;
+		}
+		100% {
+			opacity: 1;
+		}
 	}
 </style>
