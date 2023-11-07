@@ -43,6 +43,10 @@
 		property="og:title"
 		content="Jordan Tucker | Home"
 	/>
+	<meta
+		property="og:description"
+		content="Hello 👋, my name is Jordan. I'm a full stack web developer who enjoys creating websites and Discord bots."
+	/>
 </svelte:head>
 <div
 	class="mt-28 flex flex-col items-center justify-between space-y-10 align-middle lg:mt-40 lg:flex-row lg:space-y-0"
