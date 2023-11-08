@@ -1,6 +1,5 @@
 <script lang="ts">
 	export let header: string = "";
-	export let projectCategory: string = "";
 </script>
 
 <div class="w-full rounded-lg bg-bgsecondary p-5">

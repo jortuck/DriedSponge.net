@@ -110,30 +110,22 @@
 <div
 	class="my-16 flex flex-col justify-between space-y-10 lg:my-32 lg:flex-row lg:space-x-10 lg:space-y-0"
 >
-	<Skillcard
-		header="Discord Bots"
-		projectCategory="discord-bots"
-	>
+	<Skillcard header="Server Infrastructure">
+		Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+		labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+		laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+	</Skillcard>
+	<Skillcard header="Web Development">
+		I first began working on websites during my freshman year of high school. I fell in love with
+		the technology and have been striving to learn more ever since. I am highly proficient in PHP,
+		JavaScript & Typescript, CSS, and frameworks such as Laravel, Svelte, and Vue. I also have
+		experience using design frameworks such as Tailwind CSS, Bulma, and Bootstrap.
+	</Skillcard>
+	<Skillcard header="Discord Bots">
 		Aside from Web Development, I make discord bots. I'm familiar with both Discord JS and Discord
 		JDA. I actually used Discord PY to teach myself Python. I use these skills to make functional
 		and efficient discord bots. Sometimes I make bots for myself (just for fun), or I take on jobs
 		from other people.
-	</Skillcard>
-	<Skillcard
-		header="Web Development"
-		projectCategory="web-development"
-	>
-		Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-		labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-		laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-	</Skillcard>
-	<Skillcard
-		header="Server Infrastructure"
-		projectCategory="server-infrastructure"
-	>
-		Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-		labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-		laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
 	</Skillcard>
 </div>
 <div
