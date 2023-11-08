@@ -1,8 +1,8 @@
-<script>
-	export let icon;
-	export let link;
-	export let external = false;
-	export let title;
+<script lang="ts">
+	export let icon: string;
+	export let link: string;
+	export let external: boolean = false;
+	export let title: string;
 </script>
 
 <a

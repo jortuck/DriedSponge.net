@@ -64,12 +64,11 @@
 				</div>
 
 				<div>
-					<a
+					<button
 						on:click={() => {
 							expanded = !expanded;
 						}}
 						class="text-white"
-						role="button"
 					>
 						<img
 							class="w-6"
@@ -83,7 +82,7 @@
 							src="/icons/menu-burger.svg"
 							alt="Menu Button"
 						/>
-					</a>
+					</button>
 				</div>
 			</div>
 			<div />

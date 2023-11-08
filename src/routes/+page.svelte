@@ -127,6 +127,27 @@
 		laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
 	</Skillcard>
 </div>
+<h1 class="my-16 text-center text-4xl font-extrabold text-white md:my-32 md:text-5xl">
+	Some Fun Facts...
+</h1>
+<div
+	class="my-16 flex flex-col justify-between space-y-10 md:my-32 md:flex-row md:space-x-10 md:space-y-0"
+>
+	<Skillcard header="I play the trombone!">
+		Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+		labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+		laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+	</Skillcard>
+	<Skillcard header="I attend the University of Washington.">
+		I am currently enrolled at the University of Washington and I plan on attaining a bachelors
+		degree in Informatics
+	</Skillcard>
+	<Skillcard header="Server Infrastructure">
+		Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+		labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+		laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+	</Skillcard>
+</div>
 
 <style lang="postcss">
 	.emphasis {
