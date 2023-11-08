@@ -10,7 +10,9 @@
 		<slot />
 	</p>
 	<a
-		href="#"
-		class="block rounded-lg bg-bgborder p-4 text-center text-white">View Projects</a
+		href="/projects"
+		class="group block rounded-lg bg-bgborder p-4 text-center text-white transition-all duration-200 ease-in-out hover:bg-myblue hover:shadow-2xl"
+		>View Projects <i class="fa-solid fa-arrow-right transition-all group-hover:translate-x-1.5 ease-in-out duration-200
+		></i></a
 	>
 </div>
