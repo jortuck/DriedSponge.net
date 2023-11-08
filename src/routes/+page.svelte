@@ -26,7 +26,6 @@
 	let statsInfo = gallery[0];
 	let welcomeText = "Hello";
 	let welcomeTextFinal = "";
-	let blink = true;
 	onMount(() => {
 		const timeOfDay = new Date().getHours();
 		if (timeOfDay >= 6 && timeOfDay < 12) {
@@ -108,12 +107,12 @@
 	What I do...
 </h1>
 <div
-	class="my-16 flex flex-col justify-between space-y-10 lg:my-32 lg:flex-row lg:space-x-10 lg:space-y-0"
+	class=" my-16 flex flex-col justify-between space-y-10 lg:my-32 lg:flex-row lg:space-x-10 lg:space-y-0"
 >
 	<Skillcard header="Server Infrastructure">
-		Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-		labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-		laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+		To save money on hosting cost as a teenager, I began researching Linux and other technologies
+		that enable websites and services to operate independently. I have experience with technologies
+		such as Docker, Cloudflare, Nginx, Apache, MySQL, and the Digital Ocean cloud hosting platform.
 	</Skillcard>
 	<Skillcard header="Web Development">
 		I first began working on websites during my freshman year of high school. I fell in love with
@@ -121,18 +120,80 @@
 		JavaScript & Typescript, CSS, and frameworks such as Laravel, Svelte, and Vue. I also have
 		experience using design frameworks such as Tailwind CSS, Bulma, and Bootstrap.
 	</Skillcard>
-	<Skillcard header="Discord Bots">
-		Aside from Web Development, I make discord bots. I'm familiar with both Discord JS and Discord
-		JDA. I actually used Discord PY to teach myself Python. I use these skills to make functional
-		and efficient discord bots. Sometimes I make bots for myself (just for fun), or I take on jobs
-		from other people.
+	<Skillcard header="Discord Bots"
+		>In my free time I like to create Discord bots as a hobby. I have experience writing them in
+		Python, Java, and JavaScript/TypeScript. I primarily make them for fun or for use by my friends.
+		The bots that I have made can do things such as playing music in a voice channel, image
+		manipulation, and other utility commands.
 	</Skillcard>
 </div>
-<div
-	class="my-8 rounded-lg bg-bgsecondary py-8"
+<h1
+	class="my-16 text-center text-4xl font-extrabold text-white md:my-32 md:text-5xl"
 	id="projects"
 >
-	<h1 class="mx-4 text-3xl font-extrabold text-white">My Projects</h1>
+	My Projects
+</h1>
+<div>
+	<div class="my-8 rounded-lg bg-bgsecondary py-8">
+		<h1 class="mx-4 text-2xl font-extrabold text-white">Freddy Bot</h1>
+		<p></p>
+	</div>
+	<div class="my-8 rounded-lg bg-bgsecondary py-8">
+		<h1 class="mx-4 text-2xl font-extrabold text-white">Freddy Bot</h1>
+		<p></p>
+	</div>
+	<div class="my-8 rounded-lg bg-bgsecondary py-8">
+		<h1 class="mx-4 text-2xl font-extrabold text-white">Freddy Bot</h1>
+		<p></p>
+	</div>
+	<div class="my-8 rounded-lg bg-bgsecondary py-8">
+		<h1 class="mx-4 text-2xl font-extrabold text-white">Freddy Bot</h1>
+		<p></p>
+	</div>
+	<div class="my-8 rounded-lg bg-bgsecondary py-8">
+		<h1 class="mx-4 text-2xl font-extrabold text-white">Freddy Bot</h1>
+		<p></p>
+	</div>
+	<div class="my-8 rounded-lg bg-bgsecondary py-8">
+		<h1 class="mx-4 text-2xl font-extrabold text-white">Freddy Bot</h1>
+		<p></p>
+	</div>
+	<div class="my-8 rounded-lg bg-bgsecondary py-8">
+		<h1 class="mx-4 text-2xl font-extrabold text-white">Freddy Bot</h1>
+		<p></p>
+	</div>
+	<div class="my-8 rounded-lg bg-bgsecondary py-8">
+		<h1 class="mx-4 text-2xl font-extrabold text-white">Freddy Bot</h1>
+		<p></p>
+	</div>
+	<div class="my-8 rounded-lg bg-bgsecondary py-8">
+		<h1 class="mx-4 text-2xl font-extrabold text-white">Freddy Bot</h1>
+		<p></p>
+	</div>
+	<div class="my-8 rounded-lg bg-bgsecondary py-8">
+		<h1 class="mx-4 text-2xl font-extrabold text-white">Freddy Bot</h1>
+		<p></p>
+	</div>
+	<div class="my-8 rounded-lg bg-bgsecondary py-8">
+		<h1 class="mx-4 text-2xl font-extrabold text-white">Freddy Bot</h1>
+		<p></p>
+	</div>
+	<div class="my-8 rounded-lg bg-bgsecondary py-8">
+		<h1 class="mx-4 text-2xl font-extrabold text-white">Freddy Bot</h1>
+		<p></p>
+	</div>
+	<div class="my-8 rounded-lg bg-bgsecondary py-8">
+		<h1 class="mx-4 text-2xl font-extrabold text-white">Freddy Bot</h1>
+		<p></p>
+	</div>
+	<div class="my-8 rounded-lg bg-bgsecondary py-8">
+		<h1 class="mx-4 text-2xl font-extrabold text-white">Freddy Bot</h1>
+		<p></p>
+	</div>
+	<div class="my-8 rounded-lg bg-bgsecondary py-8">
+		<h1 class="mx-4 text-2xl font-extrabold text-white">Freddy Bot</h1>
+		<p></p>
+	</div>
 </div>
 
 <style lang="postcss">
