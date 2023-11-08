@@ -1,11 +1,7 @@
 <script>
-	import { page } from "$app/stores";
 	export let href = "/";
 	export let external = false;
-	let active = false;
-	$: {
-		active = $page.route.id === href;
-	}
+	export let active = false;
 </script>
 
 <a

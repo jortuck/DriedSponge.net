@@ -5,12 +5,14 @@
 		{
 			href: "/",
 			title: "Home",
-			external: false
+			external: false,
+			active: true
 		},
 		{
 			href: "#projects",
 			title: "Projects",
-			external: false
+			external: false,
+			active: false
 		},
 		{
 			href: "https://github.com/driedsponge",
@@ -22,9 +24,14 @@
 	let expanded = false;
 	function evaluateScroll() {
 		scrolled = window.scrollY > 0;
+		if (document.getElementById("projects").getBoundingClientRect().y <= 0) {
+			links[0].active = false;
+			links[1].active = true;
+		} else {
+			links[0].active = true;
+			links[1].active = false;
+		}
 	}
-
-	// Make sure scroll pos is checked when page is initially loaded.
 	onMount(() => {
 		evaluateScroll();
 	});
@@ -48,6 +55,7 @@
 			<div class="space-x-10">
 				{#each links as link}
 					<Navlink
+						active={link.active}
 						external={link.external}
 						href={link.href}>{link.title}</Navlink
 					>

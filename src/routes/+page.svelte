@@ -60,7 +60,7 @@
 		content="Hello 👋, my name is Jordan. I'm a full stack web developer who enjoys creating websites and Discord bots."
 	/>
 </svelte:head>
-<div
+<section
 	class="fadeIn mt-20 flex flex-col items-center justify-between space-y-10 align-middle md:mt-28 lg:mt-40 lg:flex-row lg:space-y-0"
 >
 	<section class="w-full text-center md:space-y-6 lg:text-left">
@@ -102,7 +102,7 @@
 			/>
 		</div>
 	</section>
-</div>
+</section>
 <h1 class="my-16 text-center text-4xl font-extrabold text-white md:my-32 md:text-5xl">
 	What I do...
 </h1>
@@ -127,74 +127,73 @@
 		manipulation, and other utility commands.
 	</Skillcard>
 </div>
-<h1
-	class="my-16 text-center text-4xl font-extrabold text-white md:my-32 md:text-5xl"
-	id="projects"
->
-	My Projects
-</h1>
-<div>
-	<div class="my-8 rounded-lg bg-bgsecondary py-8">
-		<h1 class="mx-4 text-2xl font-extrabold text-white">Freddy Bot</h1>
-		<p></p>
+<section id="projects">
+	<h1 class="py-16 text-center text-4xl font-extrabold text-white md:py-32 md:text-5xl">
+		My Projects
+	</h1>
+	<div>
+		<div class="my-8 rounded-lg bg-bgsecondary py-8">
+			<h1 class="mx-4 text-2xl font-extrabold text-white">Freddy Bot</h1>
+			<p></p>
+		</div>
+		<div class="my-8 rounded-lg bg-bgsecondary py-8">
+			<h1 class="mx-4 text-2xl font-extrabold text-white">Freddy Bot</h1>
+			<p></p>
+		</div>
+		<div class="my-8 rounded-lg bg-bgsecondary py-8">
+			<h1 class="mx-4 text-2xl font-extrabold text-white">Freddy Bot</h1>
+			<p></p>
+		</div>
+		<div class="my-8 rounded-lg bg-bgsecondary py-8">
+			<h1 class="mx-4 text-2xl font-extrabold text-white">Freddy Bot</h1>
+			<p></p>
+		</div>
+		<div class="my-8 rounded-lg bg-bgsecondary py-8">
+			<h1 class="mx-4 text-2xl font-extrabold text-white">Freddy Bot</h1>
+			<p></p>
+		</div>
+		<div class="my-8 rounded-lg bg-bgsecondary py-8">
+			<h1 class="mx-4 text-2xl font-extrabold text-white">Freddy Bot</h1>
+			<p></p>
+		</div>
+		<div class="my-8 rounded-lg bg-bgsecondary py-8">
+			<h1 class="mx-4 text-2xl font-extrabold text-white">Freddy Bot</h1>
+			<p></p>
+		</div>
+		<div class="my-8 rounded-lg bg-bgsecondary py-8">
+			<h1 class="mx-4 text-2xl font-extrabold text-white">Freddy Bot</h1>
+			<p></p>
+		</div>
+		<div class="my-8 rounded-lg bg-bgsecondary py-8">
+			<h1 class="mx-4 text-2xl font-extrabold text-white">Freddy Bot</h1>
+			<p></p>
+		</div>
+		<div class="my-8 rounded-lg bg-bgsecondary py-8">
+			<h1 class="mx-4 text-2xl font-extrabold text-white">Freddy Bot</h1>
+			<p></p>
+		</div>
+		<div class="my-8 rounded-lg bg-bgsecondary py-8">
+			<h1 class="mx-4 text-2xl font-extrabold text-white">Freddy Bot</h1>
+			<p></p>
+		</div>
+		<div class="my-8 rounded-lg bg-bgsecondary py-8">
+			<h1 class="mx-4 text-2xl font-extrabold text-white">Freddy Bot</h1>
+			<p></p>
+		</div>
+		<div class="my-8 rounded-lg bg-bgsecondary py-8">
+			<h1 class="mx-4 text-2xl font-extrabold text-white">Freddy Bot</h1>
+			<p></p>
+		</div>
+		<div class="my-8 rounded-lg bg-bgsecondary py-8">
+			<h1 class="mx-4 text-2xl font-extrabold text-white">Freddy Bot</h1>
+			<p></p>
+		</div>
+		<div class="my-8 rounded-lg bg-bgsecondary py-8">
+			<h1 class="mx-4 text-2xl font-extrabold text-white">Freddy Bot</h1>
+			<p></p>
+		</div>
 	</div>
-	<div class="my-8 rounded-lg bg-bgsecondary py-8">
-		<h1 class="mx-4 text-2xl font-extrabold text-white">Freddy Bot</h1>
-		<p></p>
-	</div>
-	<div class="my-8 rounded-lg bg-bgsecondary py-8">
-		<h1 class="mx-4 text-2xl font-extrabold text-white">Freddy Bot</h1>
-		<p></p>
-	</div>
-	<div class="my-8 rounded-lg bg-bgsecondary py-8">
-		<h1 class="mx-4 text-2xl font-extrabold text-white">Freddy Bot</h1>
-		<p></p>
-	</div>
-	<div class="my-8 rounded-lg bg-bgsecondary py-8">
-		<h1 class="mx-4 text-2xl font-extrabold text-white">Freddy Bot</h1>
-		<p></p>
-	</div>
-	<div class="my-8 rounded-lg bg-bgsecondary py-8">
-		<h1 class="mx-4 text-2xl font-extrabold text-white">Freddy Bot</h1>
-		<p></p>
-	</div>
-	<div class="my-8 rounded-lg bg-bgsecondary py-8">
-		<h1 class="mx-4 text-2xl font-extrabold text-white">Freddy Bot</h1>
-		<p></p>
-	</div>
-	<div class="my-8 rounded-lg bg-bgsecondary py-8">
-		<h1 class="mx-4 text-2xl font-extrabold text-white">Freddy Bot</h1>
-		<p></p>
-	</div>
-	<div class="my-8 rounded-lg bg-bgsecondary py-8">
-		<h1 class="mx-4 text-2xl font-extrabold text-white">Freddy Bot</h1>
-		<p></p>
-	</div>
-	<div class="my-8 rounded-lg bg-bgsecondary py-8">
-		<h1 class="mx-4 text-2xl font-extrabold text-white">Freddy Bot</h1>
-		<p></p>
-	</div>
-	<div class="my-8 rounded-lg bg-bgsecondary py-8">
-		<h1 class="mx-4 text-2xl font-extrabold text-white">Freddy Bot</h1>
-		<p></p>
-	</div>
-	<div class="my-8 rounded-lg bg-bgsecondary py-8">
-		<h1 class="mx-4 text-2xl font-extrabold text-white">Freddy Bot</h1>
-		<p></p>
-	</div>
-	<div class="my-8 rounded-lg bg-bgsecondary py-8">
-		<h1 class="mx-4 text-2xl font-extrabold text-white">Freddy Bot</h1>
-		<p></p>
-	</div>
-	<div class="my-8 rounded-lg bg-bgsecondary py-8">
-		<h1 class="mx-4 text-2xl font-extrabold text-white">Freddy Bot</h1>
-		<p></p>
-	</div>
-	<div class="my-8 rounded-lg bg-bgsecondary py-8">
-		<h1 class="mx-4 text-2xl font-extrabold text-white">Freddy Bot</h1>
-		<p></p>
-	</div>
-</div>
+</section>
 
 <style lang="postcss">
 	.emphasis {
