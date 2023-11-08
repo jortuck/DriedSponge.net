@@ -8,7 +8,7 @@
 			external: false
 		},
 		{
-			href: "/projects",
+			href: "#projects",
 			title: "Projects",
 			external: false
 		},
@@ -42,7 +42,7 @@
 			<div>
 				<a
 					class="text-3xl font-extrabold text-white"
-					href="/"><span class="text-myblue">Jordan</span>Tucker</a
+					href="/"><span class="text-myblue">Jordan</span> Tucker</a
 				>
 			</div>
 			<div class="space-x-10">

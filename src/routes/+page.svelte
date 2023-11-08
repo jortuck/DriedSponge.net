@@ -11,11 +11,6 @@
 			name: "Github"
 		},
 		{
-			link: "https://steamcommunity.com/id/driedsponge/",
-			icon: "fa-brands fa-steam",
-			name: "Steam"
-		},
-		{
 			link: `mailto:${PUBLIC_EMAIL}`,
 			icon: "fa-solid fa-envelope",
 			name: "Email"
@@ -41,7 +36,7 @@
 		} else if (timeOfDay >= 18 && timeOfDay < 22) {
 			welcomeText = "Good Evening!";
 		} else {
-			welcomeText = "Sup, you're up late";
+			welcomeText = "Hello!";
 		}
 		for (let i = 0; i < welcomeText.length; i++) {
 			setTimeout(() => {
@@ -69,25 +64,29 @@
 <div
 	class="fadeIn mt-20 flex flex-col items-center justify-between space-y-10 align-middle md:mt-28 lg:mt-40 lg:flex-row lg:space-y-0"
 >
-	<section class="w-full space-y-8 text-center md:space-y-4 lg:text-left">
-		<h1 class="h-28 overflow-hidden text-5xl font-extrabold text-white sm:h-auto xl:text-6xl">
-			{welcomeTextFinal}
-		</h1>
-		<h2 class="spacing text-3xl leading-10 text-gray-100 xl:text-4xl">
-			My name is <span class="emphasis">Jordan</span>
-		</h2>
-		<h2 class="spacing text-3xl leading-10 text-gray-100 xl:text-4xl">
-			I'm a <span class="emphasis">Full Stack Web Developer</span>
-		</h2>
-		<div class="space-x-5 text-center lg:text-left">
-			{#each socials as social}
-				<IconLink
-					external={true}
-					title={social.name}
-					link={social.link}
-					icon={social.icon + " fa-3x"}
-				/>
-			{/each}
+	<section class="w-full text-center md:space-y-6 lg:text-left">
+		<div class="h-full space-y-4 lg:pr-10">
+			<h1 class="h-28 text-5xl font-extrabold text-white sm:h-auto xl:text-6xl">
+				{welcomeTextFinal}
+			</h1>
+			<h2 class="spacing text-3xl leading-10 text-gray-100 xl:text-4xl">
+				My name is <span class="emphasis">Jordan</span>.
+			</h2>
+			<h2 class="spacing xl:text-4xls text-3xl leading-10 text-gray-100">
+				I'm a <span class="emphasis">student</span> studying
+				<span class="emphasis">informatics</span>
+				at the <span class="emphasis">University of Washington</span>.
+			</h2>
+			<div class="space-x-5 text-center lg:text-left">
+				{#each socials as social}
+					<IconLink
+						external={true}
+						title={social.name}
+						link={social.link}
+						icon={social.icon + " fa-3x"}
+					/>
+				{/each}
+			</div>
 		</div>
 	</section>
 	<section class="w-full text-center">
@@ -109,44 +108,39 @@
 	What I do...
 </h1>
 <div
-	class="my-16 flex flex-col justify-between space-y-10 md:my-32 md:flex-row md:space-x-10 md:space-y-0"
+	class="my-16 flex flex-col justify-between space-y-10 lg:my-32 lg:flex-row lg:space-x-10 lg:space-y-0"
 >
-	<Skillcard header="Discord Bots">
+	<Skillcard
+		header="Discord Bots"
+		projectCategory="discord-bots"
+	>
+		Aside from Web Development, I make discord bots. I'm familiar with both Discord JS and Discord
+		JDA. I actually used Discord PY to teach myself Python. I use these skills to make functional
+		and efficient discord bots. Sometimes I make bots for myself (just for fun), or I take on jobs
+		from other people.
+	</Skillcard>
+	<Skillcard
+		header="Web Development"
+		projectCategory="web-development"
+	>
 		Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
 		labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
 		laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
 	</Skillcard>
-	<Skillcard header="Web Development">
-		Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-		labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-		laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-	</Skillcard>
-	<Skillcard header="Server Infrastructure">
+	<Skillcard
+		header="Server Infrastructure"
+		projectCategory="server-infrastructure"
+	>
 		Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
 		labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
 		laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
 	</Skillcard>
 </div>
-<h1 class="my-16 text-center text-4xl font-extrabold text-white md:my-32 md:text-5xl">
-	Some Fun Facts...
-</h1>
 <div
-	class="my-16 flex flex-col justify-between space-y-10 md:my-32 md:flex-row md:space-x-10 md:space-y-0"
+	class="my-8 rounded-lg bg-bgsecondary py-8"
+	id="projects"
 >
-	<Skillcard header="I play the trombone!">
-		Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-		labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-		laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-	</Skillcard>
-	<Skillcard header="I attend the University of Washington.">
-		I am currently enrolled at the University of Washington and I plan on attaining a bachelors
-		degree in Informatics
-	</Skillcard>
-	<Skillcard header="Server Infrastructure">
-		Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-		labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-		laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-	</Skillcard>
+	<h1 class="mx-4 text-3xl font-extrabold text-white">My Projects</h1>
 </div>
 
 <style lang="postcss">
