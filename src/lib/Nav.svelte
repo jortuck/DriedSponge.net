@@ -1,36 +1,14 @@
 <script>
-	import Navlink from "$lib/Navlink.svelte";
 	import { onMount } from "svelte";
-	const links = [
-		{
-			href: "/",
-			title: "Home",
-			external: false,
-			active: true
-		},
-		{
-			href: "#projects",
-			title: "Projects",
-			external: false,
-			active: false
-		},
-		{
-			href: "https://github.com/driedsponge",
-			title: "Github",
-			external: true
-		}
-	];
 	let scrolled = false;
 	let expanded = false;
+	let home = true;
 	function evaluateScroll() {
 		scrolled = window.scrollY > 0;
-		if (document.getElementById("projects").getBoundingClientRect().y <= 0) {
-			links[0].active = false;
-			links[1].active = true;
-		} else {
-			links[0].active = true;
-			links[1].active = false;
-		}
+		home = !(document.getElementById("projects").getBoundingClientRect().y <= 10);
+	}
+	function scrollTo(yPos) {
+		window.scrollTo({ top: yPos, behavior: "smooth" });
 	}
 	onMount(() => {
 		evaluateScroll();
@@ -53,13 +31,38 @@
 				>
 			</div>
 			<div class="space-x-10">
-				{#each links as link}
-					<Navlink
-						active={link.active}
-						external={link.external}
-						href={link.href}>{link.title}</Navlink
-					>
-				{/each}
+				<a
+					class="text-xl text-gray-400 transition-colors duration-200 ease-in-out hover:text-white"
+					class:text-gray-400={!home}
+					class:text-white={home}
+					on:click|preventDefault={() => {
+						scrollTo(0);
+					}}
+					href="/"
+				>
+					Home
+				</a>
+				<a
+					class="text-xl text-gray-400 transition-colors duration-200 ease-in-out hover:text-white"
+					href="#projects"
+					class:text-gray-400={home}
+					class:text-white={!home}
+					on:click|preventDefault={() => {
+						scrollTo(
+							document.getElementById("projects").getBoundingClientRect().top + window.pageYOffset
+						);
+					}}
+				>
+					Projects
+				</a>
+				<a
+					class="text-xl text-gray-400 transition-colors duration-200 ease-in-out hover:text-white"
+					href="https://github.com/driedsponge"
+					rel="noopener"
+					target="_blank"
+				>
+					Github
+				</a>
 			</div>
 		</div>
 		<div class="container mx-3 max-w-full transition-all duration-200 ease-in-out lg:hidden">
@@ -101,18 +104,49 @@
 		class="absolute z-10 w-full origin-top bg-bgsecondary transition-all duration-200 ease-in-out lg:hidden"
 	>
 		<ul class="space-y-4 py-4 text-center">
-			{#each links as link}
-				<li>
-					<Navlink
-						on:click={(event) => {
-							expanded = false;
-							event.preventDefault();
-						}}
-						external={link.external}
-						href={link.href}>{link.title}</Navlink
-					>
-				</li>
-			{/each}
+			<li>
+				<a
+					class="text-xl transition-colors duration-200 ease-in-out hover:text-white"
+					class:text-gray-400={!home}
+					class:text-white={home}
+					on:click|preventDefault={() => {
+						expanded = false;
+						scrollTo(0);
+					}}
+					href="/"
+				>
+					Home
+				</a>
+			</li>
+			<li>
+				<a
+					class="text-xl transition-colors duration-200 ease-in-out hover:text-white"
+					href="#projects"
+					class:text-gray-400={home}
+					class:text-white={!home}
+					on:click|preventDefault={() => {
+						expanded = false;
+						scrollTo(
+							document.getElementById("projects").getBoundingClientRect().top + window.pageYOffset
+						);
+					}}
+				>
+					Projects
+				</a>
+			</li>
+			<li>
+				<a
+					class="text-xl text-gray-400 transition-colors duration-200 ease-in-out hover:text-white"
+					on:click={() => {
+						expanded = false;
+					}}
+					href="https://github.com/driedsponge"
+					rel="noopener"
+					target="_blank"
+				>
+					Github
+				</a>
+			</li>
 		</ul>
 	</div>
 </div>
