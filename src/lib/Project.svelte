@@ -51,7 +51,7 @@
 		<div class="lg:w-1/2">
 			<img
 				src={image}
-				class="float-right w-full rounded-2xl shadow-2xl lg:w-auto lg:max-w-lg"
+				class="float-right w-full rounded-2xl shadow-2xl lg:w-auto lg:max-w-md xl:max-w-xl"
 				alt={imageAlt}
 			/>
 		</div>

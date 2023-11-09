@@ -7,6 +7,7 @@
 				<li>
 					Email: <a
 						class="underline"
+						rel="nofollow"
 						href="mailto:jordan@driedsponge.net">jordan@driedsponge.net</a
 					>
 				</li>
