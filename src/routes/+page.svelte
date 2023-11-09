@@ -5,6 +5,7 @@
 	import { onMount } from "svelte";
 	import Shield from "$lib/Shield.svelte";
 	import Project from "$lib/Project.svelte";
+	import Projects from "$lib/Projects.svelte";
 
 	const socials = [
 		{
@@ -133,35 +134,7 @@
 	<h1 class="py-16 text-center text-4xl font-extrabold text-white md:py-32 md:text-5xl">
 		My Projects
 	</h1>
-	<Project
-		projectTitle="Freddy Bot"
-		imageAlt="Image of freddy's discord profile."
-		image="/projects/freddy.png"
-		logos={[
-			{ text: "Java", logoColor: "white", logo: "openjdk", color: "orange" },
-			{ text: "Discord_API", logoColor: "", logo: "discord", color: "gray" }
-		]}
-		externalLinks={[
-			{
-				text: "Source Code",
-				href: "https://github.com/driedsponge/freddy",
-				faIcon: "fa-brands fa-github"
-			},
-			{
-				text: "Test it out!",
-				href: "https://discord.com/api/oauth2/authorize?client_id=914454054808211476&permissions=3230720&scope=bot",
-				faIcon: "fa-brands fa-discord"
-			}
-		]}
-	>
-		This bot was created using Discord JDA (Java Discord API). I was inspired to make it after
-		Google started cracking down on music bots that were using YouTube as an audio source. Because
-		of this, my friends and I could no longer listen to music together in a discord call. While this
-		bot I created still uses YouTube as an audio source, I doubt Google will send me a cease and
-		desists because it's used personally, not commercially. The goal here is not to make money. My
-		goal is to make it easy to self host, so people who need music in their Discord servers can have
-		access to it.
-	</Project>
+	<Projects></Projects>
 </section>
 
 <style lang="postcss">
