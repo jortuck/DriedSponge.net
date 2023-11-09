@@ -23,7 +23,7 @@
 		<div class="space-y-3 lg:w-1/2">
 			<div class="space-y-3">
 				<h1 class="text-center text-4xl font-extrabold text-white lg:text-left">{projectTitle}</h1>
-				<div class="flex w-full flex-row justify-center space-x-3 lg:justify-normal">
+				<div class="flex w-full flex-row flex-wrap justify-center space-x-3 lg:justify-normal">
 					{#each logos as logo}
 						<Shield
 							logoColor={logo.logoColor}
