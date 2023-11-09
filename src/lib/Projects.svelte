@@ -41,7 +41,7 @@
 	imageAlt="Image of the bothell.band website."
 	image="/projects/bothellband.png"
 	logos={[
-		{ text: "TypeScript", logoColor: "", logo: "typescript", color: "yellow" },
+		{ text: "TypeScript", logoColor: "", logo: "typescript", color: "black" },
 		{ text: "Svelte Kit", logoColor: "", logo: "svelte", color: "gray" },
 		{ text: "TailwindCSS", logoColor: "", logo: "tailwindcss", color: "white" },
 		{ text: "Cloudflare", logoColor: "white", logo: "cloudflare", color: "orange" }
@@ -78,7 +78,7 @@
 	imageAlt="A gif animation showing Chicas ability to add captions to images."
 	image="/projects/chicabot.gif"
 	logos={[
-		{ text: "TypeScript", logoColor: "", logo: "typescript", color: "yellow" },
+		{ text: "TypeScript", logoColor: "", logo: "typescript", color: "black" },
 		{ text: "Disocrd_API", logoColor: "", logo: "discord", color: "gray" },
 		{ text: "Docker", logoColor: "white", logo: "docker", color: "blue" }
 	]}
