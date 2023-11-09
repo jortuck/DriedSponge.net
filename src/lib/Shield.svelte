@@ -7,6 +7,6 @@
 
 <img
 	alt="Static Badge saying {text}"
-	class="my-1"
-	src="https://img.shields.io/badge/{text}-{color}?logo={logo}&logoColor={logoColor}"
+	class="my-1 rounded-md"
+	src="https://img.shields.io/badge/{text}-{color}?logo={logo}&logoColor={logoColor}&style=for-the-badge"
 />
