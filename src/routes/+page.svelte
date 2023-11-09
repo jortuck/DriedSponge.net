@@ -132,65 +132,36 @@
 		My Projects
 	</h1>
 	<div>
-		<div class="my-8 rounded-lg bg-bgsecondary py-8">
-			<h1 class="mx-4 text-2xl font-extrabold text-white">Freddy Bot</h1>
-			<p></p>
-		</div>
-		<div class="my-8 rounded-lg bg-bgsecondary py-8">
-			<h1 class="mx-4 text-2xl font-extrabold text-white">Freddy Bot</h1>
-			<p></p>
-		</div>
-		<div class="my-8 rounded-lg bg-bgsecondary py-8">
-			<h1 class="mx-4 text-2xl font-extrabold text-white">Freddy Bot</h1>
-			<p></p>
-		</div>
-		<div class="my-8 rounded-lg bg-bgsecondary py-8">
-			<h1 class="mx-4 text-2xl font-extrabold text-white">Freddy Bot</h1>
-			<p></p>
-		</div>
-		<div class="my-8 rounded-lg bg-bgsecondary py-8">
-			<h1 class="mx-4 text-2xl font-extrabold text-white">Freddy Bot</h1>
-			<p></p>
-		</div>
-		<div class="my-8 rounded-lg bg-bgsecondary py-8">
-			<h1 class="mx-4 text-2xl font-extrabold text-white">Freddy Bot</h1>
-			<p></p>
-		</div>
-		<div class="my-8 rounded-lg bg-bgsecondary py-8">
-			<h1 class="mx-4 text-2xl font-extrabold text-white">Freddy Bot</h1>
-			<p></p>
-		</div>
-		<div class="my-8 rounded-lg bg-bgsecondary py-8">
-			<h1 class="mx-4 text-2xl font-extrabold text-white">Freddy Bot</h1>
-			<p></p>
-		</div>
-		<div class="my-8 rounded-lg bg-bgsecondary py-8">
-			<h1 class="mx-4 text-2xl font-extrabold text-white">Freddy Bot</h1>
-			<p></p>
-		</div>
-		<div class="my-8 rounded-lg bg-bgsecondary py-8">
-			<h1 class="mx-4 text-2xl font-extrabold text-white">Freddy Bot</h1>
-			<p></p>
-		</div>
-		<div class="my-8 rounded-lg bg-bgsecondary py-8">
-			<h1 class="mx-4 text-2xl font-extrabold text-white">Freddy Bot</h1>
-			<p></p>
-		</div>
-		<div class="my-8 rounded-lg bg-bgsecondary py-8">
-			<h1 class="mx-4 text-2xl font-extrabold text-white">Freddy Bot</h1>
-			<p></p>
-		</div>
-		<div class="my-8 rounded-lg bg-bgsecondary py-8">
-			<h1 class="mx-4 text-2xl font-extrabold text-white">Freddy Bot</h1>
-			<p></p>
-		</div>
-		<div class="my-8 rounded-lg bg-bgsecondary py-8">
-			<h1 class="mx-4 text-2xl font-extrabold text-white">Freddy Bot</h1>
-			<p></p>
-		</div>
-		<div class="my-8 rounded-lg bg-bgsecondary py-8">
-			<h1 class="mx-4 text-2xl font-extrabold text-white">Freddy Bot</h1>
-			<p></p>
+		<div class="my-8 rounded-lg bg-bgsecondary px-4 py-8">
+			<div class="flex flex-col space-y-5">
+				<h1 class="text-3xl font-extrabold text-white">Freddy Bot</h1>
+				<div class="flex flex-row space-x-3"></div>
+				<p class="text-lg text-white">
+					This bot was created using Discord JDA (Java Discord API). I was inspired to make it after
+					Google started cracking down on music bots that were using YouTube as an audio source.
+					Because of this, my friends and I could no longer listen to music together in a discord
+					call. While this bot I created still uses YouTube as an audio source, I doubt Google will
+					send me a cease and desists because it's used personally, not commercially. The goal here
+					is not to make money. My goal is to make it easy to self host, so people who need music in
+					their Discord servers can have access to it.
+				</p>
+				<div class="py-3">
+					<a
+						class="rounded-lg bg-bgborder p-3 text-center text-white transition-all duration-200 ease-in-out hover:bg-myblue hover:shadow-2xl"
+						rel="noopener"
+						target="_blank"
+						href="https://github.com/driedsponge/freddy"
+						><i class="fa-brands fa-github"></i> Source Code</a
+					>
+					<a
+						class="rounded-lg bg-bgborder p-3 text-center text-white transition-all duration-200 ease-in-out hover:bg-myblue hover:shadow-2xl"
+						rel="noopener"
+						target="_blank"
+						href="https://discord.com/api/oauth2/authorize?client_id=914454054808211476&permissions=3230720&scope=bot"
+						><i class="fa-brands fa-discord"></i> Test it out!</a
+					>
+				</div>
+			</div>
 		</div>
 	</div>
 </section>
