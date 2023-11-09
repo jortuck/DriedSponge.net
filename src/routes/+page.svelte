@@ -51,8 +51,12 @@
 <svelte:head>
 	<title>Jordan Tucker | Home</title>
 	<meta
+		property="og:site_name"
+		content="jordantucker.dev"
+	/>
+	<meta
 		name="description"
-		content="Hello 👋, my name is Jordan. I'm a student at the University of Washington studying informatics who enjoys creating websites, Discord bots, & more."
+		content="Hello 👋, my name is Jordan. I'm a student at the University of Washington studying informatics. I enjoy creating websites, Discord bots, & more!"
 	/>
 	<meta
 		property="og:title"
@@ -60,7 +64,7 @@
 	/>
 	<meta
 		property="og:description"
-		content="Hello 👋, my name is Jordan. I'm a student at the University of Washington studying informatics who enjoys creating websites, Discord bots, & more."
+		content="Hello 👋, my name is Jordan. I'm a student at the University of Washington studying informatics. I enjoy creating websites, Discord bots, & more!"
 	/>
 </svelte:head>
 <section
