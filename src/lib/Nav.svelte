@@ -73,7 +73,7 @@
 
 				<div>
 					<button
-						on:click={() => {
+						on:click={(event) => {
 							expanded = !expanded;
 						}}
 						class="text-white"
@@ -104,8 +104,9 @@
 			{#each links as link}
 				<li>
 					<Navlink
-						on:click={() => {
+						on:click={(event) => {
 							expanded = false;
+							event.preventDefault();
 						}}
 						external={link.external}
 						href={link.href}>{link.title}</Navlink
