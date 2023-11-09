@@ -131,12 +131,23 @@
 	<h1 class="py-16 text-center text-4xl font-extrabold text-white md:py-32 md:text-5xl">
 		My Projects
 	</h1>
-	<div>
-		<div class="my-8 rounded-lg bg-bgsecondary px-4 py-8">
-			<div class="flex flex-col space-y-5">
-				<h1 class="text-3xl font-extrabold text-white">Freddy Bot</h1>
-				<div class="flex flex-row space-x-3"></div>
-				<p class="text-lg text-white">
+	<div class="my-8 rounded-lg bg-bgsecondary px-4 py-8 lg:bg-transparent">
+		<div class="flex flex-col content-center items-center space-y-10 lg:flex-row lg:space-y-0">
+			<div class="space-y-3 lg:w-1/2">
+				<div class="space-y-3">
+					<h1 class="text-center text-4xl font-extrabold text-white lg:text-left">Freddy Bot</h1>
+					<div class="flex w-full flex-row justify-center space-x-3 lg:justify-normal">
+						<img
+							alt="Static Badge"
+							src="https://img.shields.io/badge/Java-orange?logo=openjdk&logoColor=white"
+						/>
+						<img
+							alt="Static Badge"
+							src="https://img.shields.io/badge/Discord_API-gray?logo=discord"
+						/>
+					</div>
+				</div>
+				<p class="text-center text-lg text-white lg:text-left">
 					This bot was created using Discord JDA (Java Discord API). I was inspired to make it after
 					Google started cracking down on music bots that were using YouTube as an audio source.
 					Because of this, my friends and I could no longer listen to music together in a discord
@@ -145,22 +156,29 @@
 					is not to make money. My goal is to make it easy to self host, so people who need music in
 					their Discord servers can have access to it.
 				</p>
-				<div class="py-3">
+				<div class="space-y-3 py-3 text-center md:space-y-0 lg:text-left">
 					<a
-						class="rounded-lg bg-bgborder p-3 text-center text-white transition-all duration-200 ease-in-out hover:bg-myblue hover:shadow-2xl"
+						class="block rounded-lg bg-bgborder p-3 text-center text-white transition-all duration-200 ease-in-out hover:bg-myblue hover:shadow-2xl md:inline"
 						rel="noopener"
 						target="_blank"
 						href="https://github.com/driedsponge/freddy"
 						><i class="fa-brands fa-github"></i> Source Code</a
 					>
 					<a
-						class="rounded-lg bg-bgborder p-3 text-center text-white transition-all duration-200 ease-in-out hover:bg-myblue hover:shadow-2xl"
+						class="block rounded-lg bg-bgborder p-3 text-center text-white transition-all duration-200 ease-in-out hover:bg-myblue hover:shadow-2xl md:inline"
 						rel="noopener"
 						target="_blank"
 						href="https://discord.com/api/oauth2/authorize?client_id=914454054808211476&permissions=3230720&scope=bot"
 						><i class="fa-brands fa-discord"></i> Test it out!</a
 					>
 				</div>
+			</div>
+			<div class="lg:w-1/2">
+				<img
+					src="/projects/freddy.png"
+					class="float-right w-full rounded-2xl shadow-2xl lg:w-auto lg:max-w-lg"
+					alt="Image of freddy's discord profile."
+				/>
 			</div>
 		</div>
 	</div>
