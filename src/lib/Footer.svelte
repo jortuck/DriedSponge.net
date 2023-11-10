@@ -19,6 +19,13 @@
 						href="https://github.com/driedsponge">driedsponge</a
 					>
 				</li>
+				<li>
+					<a
+						class="underline"
+						target="_blank"
+						href="https://github.com/driedsponge/driedsponge.net">Website Source Code</a
+					>
+				</li>
 			</ul>
 		</div>
 

@@ -16,14 +16,29 @@
 	export let imageAlt: string;
 	export let projectTitle: string;
 	export let externalLinks: externalLink[] = [];
+	export let repository: string;
+	export let branch: string = "master";
+
+	externalLinks.unshift({
+		href: `https://github.com/driedsponge/${repository}`,
+		faIcon: "fa-brands fa-github",
+		text: "Source Code"
+	});
 </script>
 
 <div class="my-8 rounded-lg bg-bgsecondary px-4 py-8 lg:bg-transparent">
 	<div class="flex flex-col content-center items-center space-y-10 lg:flex-row lg:space-y-0">
 		<div class="space-y-3 lg:w-1/2">
 			<div class="space-y-3">
-				<h1 class="text-center text-4xl font-extrabold text-white lg:text-left">{projectTitle}</h1>
+				<h1 class="text-center text-3xl font-extrabold text-white lg:text-left lg:text-4xl">
+					{projectTitle}
+				</h1>
 				<div class="flex w-full flex-row flex-wrap justify-center space-x-3 lg:justify-normal">
+					<img
+						class="my-1 rounded-md"
+						alt="GitHub commit activity for {repository}"
+						src="https://shields.driedsponge.net/github/commit-activity/t/driedsponge/{repository}?style=for-the-badge&logo=github"
+					/>
 					{#each logos as logo}
 						<Shield
 							logoColor={logo.logoColor}
@@ -34,7 +49,7 @@
 					{/each}
 				</div>
 			</div>
-			<p class="text-center text-lg text-white lg:text-left">
+			<p class="text-md text-center text-white md:text-lg lg:text-left">
 				<slot />
 			</p>
 			<div class="space-y-3 py-3 text-center md:space-x-3 md:space-y-0 lg:text-left">

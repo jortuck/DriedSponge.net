@@ -7,16 +7,12 @@
 	imageAlt="Image of Freddy's discord profile."
 	image="/projects/freddy.png"
 	logos={[
-		{ text: "Java", logoColor: "white", logo: "openjdk", color: "orange" },
 		{ text: "Discord_API", logoColor: "white", logo: "discord", color: "gray" },
-		{ text: "Docker", logoColor: "white", logo: "docker", color: "blue" }
+		{ text: "Docker", logoColor: "white", logo: "docker", color: "blue" },
+		{ text: "Java", logoColor: "white", logo: "openjdk", color: "orange" }
 	]}
+	repository="freddy"
 	externalLinks={[
-		{
-			text: "Source Code",
-			href: "https://github.com/driedsponge/freddy",
-			faIcon: "fa-brands fa-github"
-		},
 		{
 			text: "Test it out!",
 			href: "https://discord.com/api/oauth2/authorize?client_id=914454054808211476&permissions=3230720&scope=bot",
@@ -41,23 +37,19 @@
 	imageAlt="Image of the bothell.band website."
 	image="/projects/bothellband.png"
 	logos={[
-		{ text: "TypeScript", logoColor: "", logo: "typescript", color: "black" },
+		{ text: "Cloudflare", logoColor: "white", logo: "cloudflare", color: "orange" },
 		{ text: "Svelte Kit", logoColor: "", logo: "svelte", color: "gray" },
 		{ text: "TailwindCSS", logoColor: "", logo: "tailwindcss", color: "white" },
-		{ text: "Cloudflare", logoColor: "white", logo: "cloudflare", color: "orange" }
+		{ text: "TypeScript", logoColor: "", logo: "typescript", color: "black" }
 	]}
 	externalLinks={[
-		{
-			text: "Source Code",
-			href: "https://github.com/driedsponge/chica",
-			faIcon: "fa-brands fa-github"
-		},
 		{
 			text: "Live Site!",
 			href: "https://bothell.band",
 			faIcon: "fa-solid fa-globe"
 		}
 	]}
+	repository="bothell.band"
 >
 	This website was created as a small side project to help assist the fundraising efforts for my
 	high school jazz band at the time. During my senior year of high school, our jazz band was
@@ -78,16 +70,12 @@
 	imageAlt="A gif animation showing Chicas ability to add captions to images."
 	image="/projects/chicabot.gif"
 	logos={[
-		{ text: "TypeScript", logoColor: "", logo: "typescript", color: "black" },
 		{ text: "Disocrd_API", logoColor: "white", logo: "discord", color: "gray" },
-		{ text: "Docker", logoColor: "white", logo: "docker", color: "blue" }
+		{ text: "Docker", logoColor: "white", logo: "docker", color: "blue" },
+		{ text: "TypeScript", logoColor: "", logo: "typescript", color: "black" }
 	]}
+	repository="chica"
 	externalLinks={[
-		{
-			text: "Source Code",
-			href: "https://github.com/driedsponge/chica",
-			faIcon: "fa-brands fa-github"
-		},
 		{
 			text: "Test it out!",
 			href: "https://discord.com/api/oauth2/authorize?client_id=813807335502905344&permissions=117760&scope=bot",
