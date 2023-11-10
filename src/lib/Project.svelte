@@ -17,7 +17,6 @@
 	export let projectTitle: string;
 	export let externalLinks: externalLink[] = [];
 	export let repository: string;
-	export let branch: string = "master";
 
 	externalLinks.unshift({
 		href: `https://github.com/driedsponge/${repository}`,
