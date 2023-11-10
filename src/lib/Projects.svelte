@@ -8,7 +8,7 @@
 	image="/projects/freddy.png"
 	logos={[
 		{ text: "Java", logoColor: "white", logo: "openjdk", color: "orange" },
-		{ text: "Discord_API", logoColor: "", logo: "discord", color: "gray" },
+		{ text: "Discord_API", logoColor: "white", logo: "discord", color: "gray" },
 		{ text: "Docker", logoColor: "white", logo: "docker", color: "blue" }
 	]}
 	externalLinks={[
@@ -79,7 +79,7 @@
 	image="/projects/chicabot.gif"
 	logos={[
 		{ text: "TypeScript", logoColor: "", logo: "typescript", color: "black" },
-		{ text: "Disocrd_API", logoColor: "", logo: "discord", color: "gray" },
+		{ text: "Disocrd_API", logoColor: "white", logo: "discord", color: "gray" },
 		{ text: "Docker", logoColor: "white", logo: "docker", color: "blue" }
 	]}
 	externalLinks={[
