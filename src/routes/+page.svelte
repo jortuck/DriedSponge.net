@@ -140,6 +140,11 @@
 	</h1>
 	<Projects></Projects>
 </section>
+<div
+	class="cf-turnstile"
+	data-sitekey="0x4AAAAAAAM_zzlgFJTXkdQy"
+	data-callback="javascriptCallback"
+></div>
 
 <style lang="postcss">
 	.emphasis {
