@@ -1,8 +1,8 @@
 <script>
 	import Project from "$lib/Project.svelte";
-	import chicabot from "$lib/assets/projects/chicabot.gif?enhanced";
-	import bothellband from "$lib/assets/projects/bothellband.png?enhanced";
-	import freddy from "$lib/assets/projects/freddy.png?enhanced";
+	import chicabot from "$lib/assets/projects/chicabot.gif";
+	import bothellband from "$lib/assets/projects/bothellband.png";
+	import freddy from "$lib/assets/projects/freddy.png";
 </script>
 
 <Project
