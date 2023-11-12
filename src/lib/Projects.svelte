@@ -1,11 +1,14 @@
 <script>
 	import Project from "$lib/Project.svelte";
+	import chicabot from "$lib/assets/projects/chicabot.gif?enhanced";
+	import bothellband from "$lib/assets/projects/bothellband.png?enhanced";
+	import freddy from "$lib/assets/projects/freddy.png?enhanced";
 </script>
 
 <Project
 	projectTitle="Freddy Bot"
 	imageAlt="Image of Freddy's discord profile."
-	image="/projects/freddy.png"
+	image={freddy}
 	logos={[
 		{ text: "Discord_API", logoColor: "white", logo: "discord", color: "gray" },
 		{ text: "Docker", logoColor: "white", logo: "docker", color: "blue" },
@@ -35,7 +38,7 @@
 <Project
 	projectTitle="bothell.band"
 	imageAlt="Image of the bothell.band website."
-	image="/projects/bothellband.png"
+	image={bothellband}
 	logos={[
 		{ text: "Cloudflare", logoColor: "white", logo: "cloudflare", color: "orange" },
 		{ text: "Svelte Kit", logoColor: "", logo: "svelte", color: "gray" },
@@ -68,7 +71,7 @@
 <Project
 	projectTitle="Chica Bot"
 	imageAlt="A gif animation showing Chicas ability to add captions to images."
-	image="/projects/chicabot.gif"
+	image={chicabot}
 	logos={[
 		{ text: "Disocrd_API", logoColor: "white", logo: "discord", color: "gray" },
 		{ text: "Docker", logoColor: "white", logo: "docker", color: "blue" },

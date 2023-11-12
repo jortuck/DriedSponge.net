@@ -12,7 +12,7 @@
 		href: string;
 	};
 	export let logos: logoShield[];
-	export let image: string;
+	export let image: any;
 	export let imageAlt: string;
 	export let projectTitle: string;
 	export let externalLinks: externalLink[] = [];
@@ -63,7 +63,7 @@
 			</div>
 		</div>
 		<div class="lg:w-1/2">
-			<img
+			<enhanced:img
 				src={image}
 				class="float-right w-full rounded-2xl shadow-2xl lg:w-auto lg:max-w-md xl:max-w-xl"
 				alt={imageAlt}

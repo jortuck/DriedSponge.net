@@ -12,14 +12,15 @@
 	"devDependencies": {
 		"@sveltejs/adapter-auto": "^2.1.1",
 		"@sveltejs/adapter-cloudflare": "^2.3.3",
-		"@sveltejs/kit": "^1.27.4",
+		"@sveltejs/enhanced-img": "^0.1.1",
+		"@sveltejs/kit": "^1.27.5",
 		"autoprefixer": "^10.4.16",
 		"postcss": "^8.4.31",
 		"prettier": "3.0.3",
-		"prettier-plugin-svelte": "^3.0.3",
+		"prettier-plugin-svelte": "^3.1.0",
 		"prettier-plugin-tailwindcss": "^0.5.7",
-		"svelte": "^4.2.2",
-		"svelte-check": "^3.5.2",
+		"svelte": "^4.2.3",
+		"svelte-check": "^3.6.0",
 		"tailwindcss": "^3.3.5",
 		"tslib": "^2.6.2",
 		"typescript": "^5.2.2",
@@ -27,6 +28,7 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"@fortawesome/fontawesome-free": "^6.4.2"
+		"@fortawesome/fontawesome-free": "^6.4.2",
+		"axios": "^1.6.1"
 	}
 }
