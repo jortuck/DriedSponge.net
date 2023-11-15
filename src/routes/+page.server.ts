@@ -1,7 +1,6 @@
 import type { Actions } from "./$types";
 import { fail } from "@sveltejs/kit";
 import { contactSchema } from "$lib/Validator";
-import axios from "axios";
 import { TURNSTILE_SECRET_KEY, MAILGUN_KEY, MAILGUN_DOMAIN, EMAIL } from "$env/static/private";
 export const actions = {
 	default: async ({ request }) => {
@@ -11,11 +10,18 @@ export const actions = {
 		const subject = data.get("subject");
 		const message = data.get("message");
 		const response = data.get("cf-turnstile-response");
-		const captcha = await axios.post("https://challenges.cloudflare.com/turnstile/v0/siteverify", {
-			secret: TURNSTILE_SECRET_KEY,
-			response: response
-		});
-		if (!captcha.data.success) {
+		const captcha = await fetch("https://challenges.cloudflare.com/turnstile/v0/siteverify", {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json"
+			},
+			body: JSON.stringify({
+				secret: TURNSTILE_SECRET_KEY,
+				response: response
+			})
+		}).then((response) => response.json());
+		console.log(captcha);
+		if (!captcha.success) {
 			return fail(400, {
 				success: false,
 				msg: "You failed our CAPTCHA. Please try submitting again."
