@@ -7,7 +7,6 @@
 	import { onMount } from "svelte";
 	import Projects from "$lib/Projects.svelte";
 	import type { PageData, ActionData } from "./$types";
-	import { page } from "$app/stores";
 	export let data: PageData;
 	let errors = {};
 	export let form: ActionData;

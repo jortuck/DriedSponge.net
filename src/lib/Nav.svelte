@@ -64,11 +64,6 @@
 					href="#projects"
 					class:text-gray-400={active !== "projects"}
 					class:text-white={active === "projects"}
-					on:click|preventDefault={() => {
-						scrollTo(
-							document.getElementById("projects").getBoundingClientRect().top + window.pageYOffset
-						);
-					}}
 				>
 					Projects
 				</a>
@@ -77,11 +72,6 @@
 					href="#contact"
 					class:text-gray-400={active !== "contact"}
 					class:text-white={active === "contact"}
-					on:click|preventDefault={() => {
-						scrollTo(
-							document.getElementById("contact").getBoundingClientRect().top + window.pageYOffset
-						);
-					}}
 				>
 					Contact
 				</a>
