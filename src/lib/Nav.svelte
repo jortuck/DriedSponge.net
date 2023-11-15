@@ -3,9 +3,26 @@
 	let scrolled = false;
 	let expanded = false;
 	let home = true;
+	let active = "home";
 	function evaluateScroll() {
 		scrolled = window.scrollY > 0;
-		home = !(document.getElementById("projects").getBoundingClientRect().y <= 10);
+		if (
+			window.scrollY >=
+				document.getElementById("projects").getBoundingClientRect().top +
+					window.pageYOffset -
+					120 &&
+			window.scrollY <
+				document.getElementById("contact").getBoundingClientRect().top + window.pageYOffset - 120
+		) {
+			active = "projects";
+		} else if (
+			window.scrollY >=
+			document.getElementById("contact").getBoundingClientRect().top + window.pageYOffset - 120
+		) {
+			active = "contact";
+		} else {
+			active = "home";
+		}
 	}
 	function scrollTo(yPos) {
 		window.scrollTo({ top: yPos, behavior: "smooth" });
@@ -33,8 +50,8 @@
 			<div class="space-x-10">
 				<a
 					class="text-xl text-gray-400 transition-colors duration-200 ease-in-out hover:text-white"
-					class:text-gray-400={!home}
-					class:text-white={home}
+					class:text-gray-400={active !== "home"}
+					class:text-white={active === "home"}
 					on:click|preventDefault={() => {
 						scrollTo(0);
 					}}
@@ -45,8 +62,8 @@
 				<a
 					class="text-xl text-gray-400 transition-colors duration-200 ease-in-out hover:text-white"
 					href="#projects"
-					class:text-gray-400={home}
-					class:text-white={!home}
+					class:text-gray-400={active !== "projects"}
+					class:text-white={active === "projects"}
 					on:click|preventDefault={() => {
 						scrollTo(
 							document.getElementById("projects").getBoundingClientRect().top + window.pageYOffset
@@ -54,6 +71,19 @@
 					}}
 				>
 					Projects
+				</a>
+				<a
+					class="text-xl text-gray-400 transition-colors duration-200 ease-in-out hover:text-white"
+					href="#contact"
+					class:text-gray-400={active !== "contact"}
+					class:text-white={active === "contact"}
+					on:click|preventDefault={() => {
+						scrollTo(
+							document.getElementById("contact").getBoundingClientRect().top + window.pageYOffset
+						);
+					}}
+				>
+					Contact
 				</a>
 				<a
 					class="text-xl text-gray-400 transition-colors duration-200 ease-in-out hover:text-white"
@@ -107,8 +137,8 @@
 			<li>
 				<a
 					class="text-xl transition-colors duration-200 ease-in-out hover:text-white"
-					class:text-gray-400={!home}
-					class:text-white={home}
+					class:text-gray-400={active !== "home"}
+					class:text-white={active === "home"}
 					on:click|preventDefault={() => {
 						expanded = false;
 						scrollTo(0);
@@ -122,8 +152,8 @@
 				<a
 					class="text-xl transition-colors duration-200 ease-in-out hover:text-white"
 					href="#projects"
-					class:text-gray-400={home}
-					class:text-white={!home}
+					class:text-gray-400={active !== "projects"}
+					class:text-white={active === "projects"}
 					on:click|preventDefault={() => {
 						expanded = false;
 						scrollTo(
@@ -132,6 +162,22 @@
 					}}
 				>
 					Projects
+				</a>
+			</li>
+			<li>
+				<a
+					class="text-xl transition-colors duration-200 ease-in-out hover:text-white"
+					href="#contact"
+					class:text-gray-400={active !== "contact"}
+					class:text-white={active === "contact"}
+					on:click|preventDefault={() => {
+						expanded = false;
+						scrollTo(
+							document.getElementById("contact").getBoundingClientRect().top + window.pageYOffset
+						);
+					}}
+				>
+					Contact
 				</a>
 			</li>
 			<li>

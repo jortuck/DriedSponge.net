@@ -4,13 +4,6 @@
 	>
 		<div class="text-center text-gray-300 lg:text-left">
 			<ul>
-				<li>
-					Email: <a
-						class="underline"
-						rel="nofollow"
-						href="mailto:jordan@driedsponge.net">jordan@driedsponge.net</a
-					>
-				</li>
 				<li>Discord: driedsponge</li>
 				<li>
 					Github: <a
