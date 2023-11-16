@@ -17,7 +17,7 @@
 	export let projectTitle: string;
 	export let externalLinks: externalLink[] = [];
 	export let repository: string;
-
+	export let enhance: boolean = true;
 	externalLinks.unshift({
 		href: `https://github.com/driedsponge/${repository}`,
 		faIcon: "fa-brands fa-github",
@@ -62,12 +62,22 @@
 				{/each}
 			</div>
 		</div>
-		<div class="lg:w-1/2">
-			<img
-				src={image}
-				class="float-right w-full rounded-2xl shadow-2xl lg:w-auto lg:max-w-md xl:max-w-xl"
-				alt={imageAlt}
-			/>
-		</div>
+		{#if enhance}
+			<div class="lg:w-1/2">
+				<enhanced:img
+					src={image}
+					class="float-right w-full rounded-2xl shadow-2xl lg:w-auto lg:max-w-md xl:max-w-xl"
+					alt={imageAlt}
+				/>
+			</div>
+		{:else}
+			<div class="lg:w-1/2">
+				<img
+					src={image}
+					class="float-right w-full rounded-2xl shadow-2xl lg:w-auto lg:max-w-md xl:max-w-xl"
+					alt={imageAlt}
+				/>
+			</div>
+		{/if}
 	</div>
 </div>

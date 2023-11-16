@@ -1,8 +1,8 @@
 <script>
 	import Project from "$lib/Project.svelte";
-	import chicabot from "$lib/assets/projects/chicabot.gif";
-	import bothellband from "$lib/assets/projects/bothellband.png";
-	import freddy from "$lib/assets/projects/freddy.png";
+	import chicabot from "$lib/assets/projects/chicabot.webp";
+	import bothellband from "$lib/assets/projects/bothellband.png?enhanced";
+	import freddy from "$lib/assets/projects/freddy.png?enhanced";
 </script>
 
 <Project
@@ -69,6 +69,7 @@
 	but I still maintain the website in hopes that it will prove useful for band families.
 </Project>
 <Project
+	enhance={false}
 	projectTitle="Chica Bot"
 	imageAlt="A gif animation showing Chicas ability to add captions to images."
 	image={chicabot}
