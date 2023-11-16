@@ -245,6 +245,7 @@
 							}}
 							maxlength="50"
 							name="email"
+							type="email"
 							value={form?.email ?? ""}
 							placeholder="name@example.com"
 							class:error={errors?.email}
