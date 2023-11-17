@@ -25,17 +25,8 @@
 			name: "Email"
 		}
 	];
-	let gallery = [
-		{
-			imgUrl: `${PUBLIC_STATS_ENDPOINT}?username=driedsponge&include_all_commits=true&hide_border=true&layout=compact&theme=dark&bg_color=2B323B&border_radius=10&cache_seconds=21600&custom_title=My Github Stats&show_icons=true&icon_color=62a1ec`,
-			imgDes: "My Github Stats",
-			imgMobile: `${PUBLIC_STATS_ENDPOINT}?username=driedsponge&include_all_commits=true&hide_border=true&layout=compact&theme=dark&bg_color=2B323B&border_radius=10&cache_seconds=21600&custom_title=My Github Stats&show_icons=true&icon_color=62a1ec&hide_rank=true&card_width=290`
-		}
-	];
-	let statsInfo = gallery[0];
 	let welcomeText: string = "Hello";
 	let welcomeTextFinal: string = "";
-	let errorMsg = "";
 	onMount(() => {
 		const timeOfDay = new Date().getHours();
 		if (timeOfDay >= 6 && timeOfDay < 12) {
@@ -57,6 +48,7 @@
 	let solvedCaptcha = false;
 	let turnstileId;
 
+	let errorMsg = "";
 	onMount(() => {
 		// @ts-ignore
 		window.turnstile.ready(function () {
@@ -139,13 +131,13 @@
 		<div class="relative md:h-96">
 			<img
 				class="w-full sm:hidden"
-				alt={statsInfo.imgDes}
-				src={statsInfo.imgMobile}
+				alt="My Github Stats"
+				src="{PUBLIC_STATS_ENDPOINT}?username=driedsponge&include_all_commits=true&hide_border=true&layout=compact&theme=dark&bg_color=2B323B&border_radius=10&cache_seconds=21600&custom_title=My Github Stats&show_icons=true&icon_color=62a1ec&hide_rank=true&card_width=290"
 			/>
 			<img
 				class="absolute bottom-0 left-0 right-0 top-0 hidden h-96 w-full sm:block"
-				alt={statsInfo.imgDes}
-				src={statsInfo.imgUrl}
+				alt="My Github Stats"
+				src="{PUBLIC_STATS_ENDPOINT}?username=driedsponge&include_all_commits=true&hide_border=true&layout=compact&theme=dark&bg_color=2B323B&border_radius=10&cache_seconds=21600&custom_title=My Github Stats&show_icons=true&icon_color=62a1ec"
 			/>
 		</div>
 	</section>
@@ -324,7 +316,6 @@
 		animation-iteration-count: 1;
 		animation-fill-mode: forwards;
 	}
-
 	@keyframes fadeInAnimation {
 		0% {
 			opacity: 0;
