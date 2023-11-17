@@ -10,5 +10,5 @@ export const contactSchema = object({
 		.max(100, "The maximum length is 100 characters!"),
 	message: string()
 		.required("Please write me a message.")
-		.max(500, "Your message must be less than 1000 characters.")
+		.max(1000, "Your message must be less than 1000 characters.")
 });

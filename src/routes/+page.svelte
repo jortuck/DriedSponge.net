@@ -11,6 +11,8 @@
 	let errors = {};
 	export let form: ActionData;
 	import { contactSchema } from "$lib/Validator";
+	import Input from "$lib/Input.svelte";
+	import Textarea from "$lib/Textarea.svelte";
 	const socials = [
 		{
 			link: "https://github.com/driedsponge",
@@ -218,85 +220,55 @@
 		>
 			<div class="space-y-4">
 				<div class="flex flex-col lg:flex-row lg:space-x-3">
-					<label
-						>Name<sup>*</sup>
-						<input
-							on:focusout={(event) => {
-								validate("name", { name: event.target.value });
-							}}
-							maxlength="50"
-							name="name"
-							placeholder="Jane Doe"
-							value={form?.name ?? ""}
-							class:error={errors?.name}
-						/>
-						<span>
-							<i class="fa-solid fa-triangle-exclamation"></i>
-							{#if errors?.name}
-								{errors.name}
-							{/if}
-						</span>
-					</label>
-					<label
-						>Email<sup>*</sup>
-						<input
-							on:focusout={(event) => {
-								validate("email", { email: event.target.value });
-							}}
-							maxlength="50"
-							name="email"
-							type="email"
-							value={form?.email ?? ""}
-							placeholder="name@example.com"
-							class:error={errors?.email}
-						/>
-						<span>
-							<i class="fa-solid fa-triangle-exclamation"></i>
-							{#if errors?.email}
-								{errors.email}
-							{/if}
-						</span>
-					</label>
-				</div>
-				<label
-					>Subject<sup>*</sup>
-					<input
-						on:focusout={(event) => {
-							validate("subject", { subject: event.target.value });
+					<Input
+						error={errors?.name}
+						label="Name"
+						required={true}
+						maxLength="50"
+						name="name"
+						value={form?.name ?? ""}
+						placeHolder="Jane Doe"
+						on:validate={(event) => {
+							validate("name", { name: event.detail });
 						}}
-						maxlength="100"
-						name="subject"
-						value={form?.subject ?? ""}
-						placeholder="I wanted to chat about..."
-						class:error={errors?.subject}
 					/>
-					<span>
-						<i class="fa-solid fa-triangle-exclamation"></i>
-						{#if errors?.subject}
-							{errors.subject}
-						{/if}
-					</span>
-				</label>
-				<label
-					>Message<sup>*</sup>
-					<textarea
-						on:focusout={(event) => {
-							validate("message", { message: event.target.value });
+					<Input
+						error={errors?.email}
+						label="Email"
+						required={true}
+						maxLength="50"
+						name="email"
+						value={form?.email ?? ""}
+						placeHolder="name@example.com"
+						on:validate={(event) => {
+							validate("email", { email: event.detail });
 						}}
-						maxlength="1000"
-						rows="6"
-						name="message"
-						class:error={errors?.message}
-						placeholder="I just wanted to let you know you're a really cool person!"
-						>{form?.message ?? ""}</textarea
-					>
-					<span>
-						<i class="fa-solid fa-triangle-exclamation"></i>
-						{#if errors?.message}
-							{errors.message}
-						{/if}
-					</span>
-				</label>
+					/>
+				</div>
+				<Input
+					error={errors?.subject}
+					label="Subject"
+					required={true}
+					maxLength="100"
+					name="subject"
+					value={form?.subject ?? ""}
+					placeHolder="I wanted to chat about..."
+					on:validate={(event) => {
+						validate("subject", { subject: event.detail });
+					}}
+				/>
+				<Textarea
+					error={errors?.message}
+					name="message"
+					label="Message"
+					placeHolder="I just wanted to let you know you're a really cool person!"
+					maxLength="1000"
+					rows="6"
+					required={true}
+					on:validate={(event) => {
+						validate("message", { message: event.detail });
+					}}
+				/>
 				<div
 					class="flex flex-col content-center items-center space-y-3 md:flex-row md:space-x-3 md:space-y-0"
 				>
@@ -366,23 +338,5 @@
 	}
 	button {
 		@apply w-full rounded-lg bg-bgborder p-3 text-center text-white transition-all duration-200 ease-in-out hover:bg-myblue hover:shadow-2xl;
-	}
-	label {
-		@apply my-2 block w-full text-white;
-	}
-	label > span {
-		@apply invisible mt-1 block text-sm italic;
-	}
-	input,
-	textarea {
-		@apply my-1 block w-full rounded-md border-2 border-transparent p-2  text-black shadow-xl  transition-colors duration-200 ease-in-out focus:border-myblue focus:outline-none;
-	}
-	input.error,
-	textarea.error {
-		@apply border-2 border-red-400;
-	}
-	input.error + span,
-	textarea.error + span {
-		@apply visible text-red-400;
 	}
 </style>
