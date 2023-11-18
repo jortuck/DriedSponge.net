@@ -68,6 +68,7 @@
 					src={image}
 					class="float-right w-full rounded-2xl shadow-2xl lg:w-auto lg:max-w-md xl:max-w-xl"
 					alt={imageAlt}
+					title={imageAlt}
 				/>
 			</div>
 		{:else}
@@ -76,6 +77,7 @@
 					src={image}
 					class="float-right w-full rounded-2xl shadow-2xl lg:w-auto lg:max-w-md xl:max-w-xl"
 					alt={imageAlt}
+					title={imageAlt}
 				/>
 			</div>
 		{/if}

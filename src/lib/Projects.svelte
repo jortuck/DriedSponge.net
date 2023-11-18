@@ -3,6 +3,7 @@
 	import chicabot from "$lib/assets/projects/chicabot.webp";
 	import bothellband from "$lib/assets/projects/bothellband.png?enhanced";
 	import freddy from "$lib/assets/projects/freddy.png?enhanced";
+	import driedspongenet from "$lib/assets/projects/driedspongenet.png?enhanced";
 </script>
 
 <Project
@@ -105,6 +106,26 @@
 		rel="noopener">node-canvas</a
 	> to achieve the ability to edit images. The bot supports JPEGs, PNGs, GIFs, and it even has the ability
 	to pull images directly from file URLs or Tenor!
+</Project>
+<Project
+	projectTitle="This Website (formerly driedsponge.net)"
+	imageAlt="A picture of the driedsponge.net website from July 20th, 2020."
+	image={driedspongenet}
+	logos={[
+		{ text: "Cloudflare", logoColor: "white", logo: "cloudflare", color: "orange" },
+		{ text: "Svelte Kit", logoColor: "", logo: "svelte", color: "gray" },
+		{ text: "TailwindCSS", logoColor: "", logo: "tailwindcss", color: "white" },
+		{ text: "TypeScript", logoColor: "", logo: "typescript", color: "black" }
+	]}
+	repository="driedsponge.net"
+>
+	I know it's unconventional to put a portfolio on a portfolio, but I thought I would add it here
+	because this website has a lengthy history (as you can tell by the 1k+ commits). It was the first
+	website I ever created on my own, and as I kept learning I kept changing it. Whenever I discovered
+	a new stack or technology, I would use this website as a sandbox for testing it. If you take the
+	time to view the commit history, you'll be able to see this website evolve from plain HTML & CSS,
+	to PHP, to Laravel & Vue, and now to Svelte Kit. I don't plan on redoing this website after Svelte
+	Kit, instead I hope to spend more time on other projects.
 </Project>
 
 <style lang="postcss">
