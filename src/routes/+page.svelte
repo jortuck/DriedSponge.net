@@ -8,7 +8,6 @@
 	import Projects from "$lib/Projects.svelte";
 	import type { PageData, ActionData } from "./$types";
 	export let data: PageData;
-	let errors = {};
 	export let form: ActionData;
 	import { contactSchema } from "$lib/Validator";
 	import Input from "$lib/Input.svelte";
@@ -45,10 +44,12 @@
 		}
 	});
 
-	let solvedCaptcha = false;
+	let errors = {};
+	let solvedCaptcha: boolean = false;
+	let loading: boolean = false;
 	let turnstileId;
-
 	let errorMsg = "";
+
 	onMount(() => {
 		// @ts-ignore
 		window.turnstile.ready(function () {
@@ -194,8 +195,10 @@
 			class="relative my-8 w-full rounded-lg bg-bgsecondary p-8 lg:w-1/2"
 			method="POST"
 			use:enhance={() => {
+				loading = true;
 				console.log("Submitting form...");
 				return async ({ result, update }) => {
+					loading = false;
 					solvedCaptcha = false;
 					window.turnstile.reset(turnstileId);
 					errors = result.data.error;
@@ -275,9 +278,16 @@
 					{/if}
 				</div>
 				<button
-					disabled={!solvedCaptcha || !(Object.keys(errors).length === 0)}
+					disabled={!solvedCaptcha || !(Object.keys(errors).length === 0) || loading}
 					title={solvedCaptcha ? "Submit" : "Awaiting Invisible Captcha Validation"}
-					type="submit"><i class="fa-regular fa-paper-plane"></i> Send</button
+					type="submit"
+				>
+					{#if loading}
+						<i class="fa-solid fa-spinner fa-spin"></i>
+					{:else}
+						<i class="fa-regular fa-paper-plane"></i>
+					{/if}
+					Send</button
 				>
 			</div>
 			{#if form?.success}
