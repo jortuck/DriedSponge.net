@@ -143,7 +143,10 @@
 		</div>
 	</section>
 </section>
-<h1 class="my-16 text-center text-4xl font-extrabold text-white md:my-32 md:text-5xl">
+<h1
+	data-observe="fadeUp"
+	class="fadeUp my-16 text-center text-4xl font-extrabold text-white transition-all duration-1000 ease-in-out md:my-32 md:text-5xl"
+>
 	What I do...
 </h1>
 <div
@@ -171,7 +174,10 @@
 	id="projects"
 	class="my-16"
 >
-	<h1 class="py-16 text-center text-4xl font-extrabold text-white md:py-32 md:text-5xl">
+	<h1
+		data-observe="fadeUp"
+		class="fadeUp py-16 text-center text-4xl font-extrabold text-white transition-all duration-1000 ease-in-out md:py-32 md:text-5xl"
+	>
 		My Projects
 	</h1>
 	<Projects></Projects>
@@ -317,6 +323,9 @@
 </section>
 
 <style lang="postcss">
+	.fadeUp {
+		@apply translate-y-[100px] opacity-0 lg:translate-y-[200px];
+	}
 	.emphasis {
 		@apply font-bold text-myblue;
 	}
