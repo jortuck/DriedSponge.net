@@ -7,7 +7,7 @@
 	export let placeHolder: string = "Please type here.";
 	export let error: string = "";
 	export let value: string = "";
-	export let maxLength: string = "";
+	export let maxLength: number | null = null;
 	const dispatch = createEventDispatcher();
 </script>
 
@@ -18,7 +18,7 @@
 	{/if}
 	<input
 		on:focusout={(event) => {
-			dispatch("validate", event.target.value);
+			dispatch("validate", event.target?.value);
 		}}
 		maxlength={maxLength}
 		{name}

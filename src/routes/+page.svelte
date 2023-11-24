@@ -219,7 +219,7 @@
 						error={errors?.name}
 						label="Name"
 						required={true}
-						maxLength="50"
+						maxLength={50}
 						name="name"
 						value={form?.name ?? ""}
 						placeHolder="Jane Doe"
@@ -231,7 +231,7 @@
 						error={errors?.email}
 						label="Email"
 						required={true}
-						maxLength="50"
+						maxLength={50}
 						name="email"
 						value={form?.email ?? ""}
 						placeHolder="name@example.com"
@@ -244,7 +244,7 @@
 					error={errors?.subject}
 					label="Subject"
 					required={true}
-					maxLength="100"
+					maxLength={100}
 					name="subject"
 					value={form?.subject ?? ""}
 					placeHolder="I wanted to chat about..."
@@ -257,8 +257,8 @@
 					name="message"
 					label="Message"
 					placeHolder="I just wanted to let you know you're a really cool person!"
-					maxLength="1000"
-					rows="6"
+					maxLength={1000}
+					rows={6}
 					required={true}
 					on:validate={(event) => {
 						validate("message", { message: event.detail });

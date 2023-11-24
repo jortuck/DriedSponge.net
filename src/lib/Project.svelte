@@ -24,35 +24,16 @@
 		faIcon: "fa-brands fa-github",
 		text: "Source Code"
 	});
-	onMount(() => {
-		const observer = new IntersectionObserver(
-			(entries) => {
-				entries.forEach((entry) => {
-					if (entry.isIntersecting) {
-						entry.target.classList.remove("opacity-0");
-						entry.target.classList.remove("lg:-translate-x-[100px]");
-						entry.target.classList.remove("lg:translate-x-[100px]");
-						observer.unobserve(entry.target);
-					}
-				});
-			},
-			{
-				threshold: 0.2
-			}
-		);
-		let entries = document.querySelectorAll(".ascroll");
-		entries.forEach((entry) => {
-			observer.observe(entry);
-		});
-	});
 </script>
 
 <div
-	class="ascroll my-8 rounded-lg bg-bgsecondary px-4 py-8 opacity-0 transition-opacity duration-[1500ms] ease-in-out lg:bg-transparent"
+	data-observe="opacity-0"
+	class="my-8 rounded-lg bg-bgsecondary px-4 py-8 opacity-0 transition-opacity duration-[1500ms] ease-in-out lg:bg-transparent"
 >
 	<div class="flex flex-col content-center items-center space-y-10 lg:flex-row lg:space-y-0">
 		<div
-			class="ascroll space-y-3 lg:w-1/2 lg:-translate-x-[100px] lg:transition-transform lg:duration-[1500ms] lg:ease-in-out"
+			data-observe="lg:-translate-x-[100px]"
+			class="space-y-3 lg:w-1/2 lg:-translate-x-[100px] lg:transition-transform lg:duration-[1500ms] lg:ease-in-out"
 		>
 			<div class="space-y-3">
 				<h1 class="text-center text-3xl font-extrabold text-white lg:text-left lg:text-4xl">
@@ -90,7 +71,8 @@
 		</div>
 		{#if enhance}
 			<div
-				class="ascroll lg:w-1/2 lg:translate-x-[100px] lg:transition-transform lg:duration-[1500ms] lg:ease-in-out"
+				data-observe="lg:translate-x-[100px]"
+				class="lg:w-1/2 lg:translate-x-[100px] lg:transition-transform lg:duration-[1500ms] lg:ease-in-out"
 			>
 				<enhanced:img
 					src={image}
@@ -101,7 +83,8 @@
 			</div>
 		{:else}
 			<div
-				class="ascroll lg:w-1/2 lg:translate-x-[100px] lg:transition-transform lg:duration-[1500ms] lg:ease-in-out"
+				data-observe="lg:translate-x-[100px]"
+				class="lg:w-1/2 lg:translate-x-[100px] lg:transition-transform lg:duration-[1500ms] lg:ease-in-out"
 			>
 				<img
 					src={image}

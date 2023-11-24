@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { createEventDispatcher } from "svelte";
+	import { number } from "yup";
 
 	export let label: string = "Form Field";
 	export let name: string = "form-field";
@@ -7,8 +8,8 @@
 	export let placeHolder: string = "Please type here.";
 	export let error: string = "";
 	export let value: string = "";
-	export let rows: string = "6";
-	export let maxLength: string = "";
+	export let rows: number = "6";
+	export let maxLength: number | null = null;
 	const dispatch = createEventDispatcher();
 </script>
 
