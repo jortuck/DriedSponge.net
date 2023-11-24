@@ -108,7 +108,7 @@
 	to pull images directly from file URLs or Tenor!
 </Project>
 <Project
-	projectTitle="This Website (formerly driedsponge.net)"
+	projectTitle="This Website"
 	imageAlt="A picture of the driedsponge.net website from July 20th, 2020."
 	image={driedspongenet}
 	logos={[
