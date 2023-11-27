@@ -4,6 +4,7 @@
 	import bothellband from "$lib/assets/projects/bothellband.png?enhanced";
 	import freddy from "$lib/assets/projects/freddy.png?enhanced";
 	import driedspongenet from "$lib/assets/projects/driedspongenet.png?enhanced";
+	import server from "$lib/assets/projects/server.jpg?enhanced";
 </script>
 
 <Project
@@ -126,6 +127,39 @@
 	time to view the commit history, you'll be able to see this website evolve from plain HTML & CSS,
 	to PHP, to Laravel & Vue, and now to Svelte Kit. I don't plan on redoing this website after Svelte
 	Kit, instead I hope to spend more time on other projects.
+</Project>
+<Project
+	projectTitle="My Home Server"
+	imageAlt="A picture of my home server."
+	image={server}
+	logos={[
+		{ text: "Ubuntu Server", logoColor: "white", logo: "ubuntu", color: "orange" },
+		{ text: "AMD Ryzen 7 3800X", logoColor: "white", logo: "amd", color: "red" },
+		{ text: "ASRock Rack X570D4U", logoColor: "white", logo: "", color: "gray" },
+		{ text: "64GB DDR4 3200MHZ", logoColor: "white", logo: "", color: "gray" },
+		{ text: "Samsung 980 PRO 1TB NVME SSD", logoColor: "white", logo: "", color: "gray" }
+	]}
+>
+	This is the server I use to host most of my personal projects. I originally started experimenting
+	with self hosting a few years ago as an effort to save money, and it just became a hobby of mine.
+	My server was originally an old Windows 7 laptop which I installed Linux on because my parents no
+	longer needed it, and it has since become it's own dedicated machine running on old computer parts
+	from my PC or hardware specifically purchased for it. Today I use it to host a variety of services
+	such as Minecraft servers, <a
+		href="https://www.jetbrains.com/teamcity/"
+		target="_blank"
+		rel="noopener">Teamcity</a
+	>,
+	<a
+		href="https://appwrite.io"
+		target="_blank"
+		rel="noopener">Appwrite</a
+	>,
+	<a
+		href="https://shields.io"
+		target="_blank"
+		rel="noopener">Shields</a
+	>, and many of my personal projects that require more computing resources to run.
 </Project>
 
 <style lang="postcss">

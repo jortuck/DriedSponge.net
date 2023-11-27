@@ -17,13 +17,15 @@
 	export let imageAlt: string;
 	export let projectTitle: string;
 	export let externalLinks: externalLink[] = [];
-	export let repository: string;
+	export let repository: string = "";
 	export let enhance: boolean = true;
-	externalLinks.unshift({
-		href: `https://github.com/driedsponge/${repository}`,
-		faIcon: "fa-brands fa-github",
-		text: "Source Code"
-	});
+	if (repository) {
+		externalLinks.unshift({
+			href: `https://github.com/driedsponge/${repository}`,
+			faIcon: "fa-brands fa-github",
+			text: "Source Code"
+		});
+	}
 </script>
 
 <div
@@ -39,12 +41,14 @@
 				<h1 class="text-center text-3xl font-extrabold text-white lg:text-left lg:text-4xl">
 					{projectTitle}
 				</h1>
-				<div class="flex w-full flex-row flex-wrap justify-center space-x-3 lg:justify-normal">
-					<img
-						class="my-1 rounded-md"
-						alt="GitHub commit activity for {repository}"
-						src="https://shields.driedsponge.net/github/commit-activity/t/driedsponge/{repository}?style=for-the-badge&logo=github"
-					/>
+				<div class="flex w-full flex-row flex-wrap justify-center gap-x-3 lg:justify-normal">
+					{#if repository}
+						<img
+							class="my-1 rounded-md"
+							alt="GitHub commit activity for {repository}"
+							src="https://shields.driedsponge.net/github/commit-activity/t/driedsponge/{repository}?style=for-the-badge&logo=github"
+						/>
+					{/if}
 					{#each logos as logo}
 						<Shield
 							logoColor={logo.logoColor}
