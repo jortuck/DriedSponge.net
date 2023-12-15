@@ -44,10 +44,10 @@
 		}
 	});
 
-	let errors = {};
+	let errors: any = {};
 	let solvedCaptcha: boolean = false;
 	let loading: boolean = false;
-	let turnstileId;
+	let turnstileId: any;
 	let errorMsg = "";
 
 	onMount(() => {
@@ -56,7 +56,7 @@
 			// @ts-ignore
 			turnstileId = window.turnstile.render(".cf-turnstile", {
 				sitekey: PUBLIC_TURNSTILE_SITE_KEY,
-				callback: function (token) {
+				callback: function (token: string) {
 					console.log(`Challenge Success ${token}`);
 					solvedCaptcha = true;
 					errorMsg = "";
@@ -68,7 +68,7 @@
 			});
 		});
 	});
-	async function validate(field, value) {
+	async function validate(field: string, value: string) {
 		try {
 			await contactSchema.validateAt(field, value);
 			if (errors[field]) {
@@ -206,6 +206,7 @@
 				return async ({ result, update }) => {
 					loading = false;
 					solvedCaptcha = false;
+					//@ts-ignore
 					window.turnstile.reset(turnstileId);
 					errors = result.data.error;
 					if (!result.data.success && result.data.msg) {

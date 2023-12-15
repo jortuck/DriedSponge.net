@@ -10,10 +10,11 @@
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch"
 	},
 	"devDependencies": {
-		"@sveltejs/adapter-auto": "^2.1.1",
-		"@sveltejs/adapter-cloudflare": "^2.3.4",
+		"@sveltejs/adapter-auto": "^3.0.0",
+		"@sveltejs/adapter-cloudflare": "^3.0.0",
 		"@sveltejs/enhanced-img": "^0.1.6",
-		"@sveltejs/kit": "^1.30.3",
+		"@sveltejs/kit": "^2.0.0",
+		"@sveltejs/vite-plugin-svelte": "^3.0.1",
 		"autoprefixer": "^10.4.16",
 		"postcss": "^8.4.32",
 		"prettier": "3.0.3",
@@ -24,7 +25,7 @@
 		"tailwindcss": "^3.3.6",
 		"tslib": "^2.6.2",
 		"typescript": "^5.3.3",
-		"vite": "^4.5.1",
+		"vite": "^5.0.10",
 		"wrangler": "^3.21.0"
 	},
 	"type": "module",
