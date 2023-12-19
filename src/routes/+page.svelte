@@ -300,7 +300,7 @@
 			{#if form?.success}
 				<div
 					transition:fade
-					class="absolute left-0 top-0 z-50 h-full w-full rounded-lg bg-bgsecondary p-8"
+					class="absolute left-0 top-0 z-40 h-full w-full rounded-lg bg-bgsecondary p-8"
 				>
 					<div
 						class="flex h-full flex-col content-center items-center justify-center space-y-8 align-middle"
