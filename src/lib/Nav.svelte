@@ -1,30 +1,26 @@
-<script>
+<script lang="ts">
 	import { onMount } from "svelte";
-	let scrolled = false;
-	let expanded = false;
-	let home = true;
-	let active = "home";
+	let scrolled: boolean = false;
+	let expanded: boolean = false;
+	let active: string = "home";
+	let projectsTop: any;
+	let contactTop: any;
 	function evaluateScroll() {
+		projectsTop = document.getElementById("projects")?.getBoundingClientRect()?.top;
+		contactTop = document.getElementById("contact")?.getBoundingClientRect()?.top;
 		scrolled = window.scrollY > 0;
 		if (
-			window.scrollY >=
-				document.getElementById("projects").getBoundingClientRect().top +
-					window.pageYOffset -
-					120 &&
-			window.scrollY <
-				document.getElementById("contact").getBoundingClientRect().top + window.pageYOffset - 120
+			window.scrollY >= projectsTop + window.scrollY - 120 &&
+			window.scrollY < contactTop + window.scrollY - 120
 		) {
 			active = "projects";
-		} else if (
-			window.scrollY >=
-			document.getElementById("contact").getBoundingClientRect().top + window.pageYOffset - 120
-		) {
+		} else if (window.scrollY >= contactTop + window.scrollY - 120) {
 			active = "contact";
 		} else {
 			active = "home";
 		}
 	}
-	function scrollTo(yPos) {
+	function scrollTo(yPos: number) {
 		window.scrollTo({ top: yPos, behavior: "smooth" });
 	}
 	onMount(() => {
@@ -44,7 +40,7 @@
 			<div>
 				<a
 					class="text-3xl font-extrabold text-white"
-					href="/"><span class="text-myblue">Jordan</span> Tucker</a
+					href="/"><span class="text-myblue">Jordan</span> Tucker {projectsTop}</a
 				>
 			</div>
 			<div class="space-x-10">
@@ -65,11 +61,7 @@
 					class:text-gray-400={active !== "projects"}
 					class:text-white={active === "projects"}
 					on:click|preventDefault={() => {
-						scrollTo(
-							document.getElementById("projects").getBoundingClientRect().top +
-								window.pageYOffset -
-								60
-						);
+						scrollTo(projectsTop + window.scrollY - 60);
 					}}
 				>
 					Projects
@@ -80,11 +72,7 @@
 					class:text-gray-400={active !== "contact"}
 					class:text-white={active === "contact"}
 					on:click|preventDefault={() => {
-						scrollTo(
-							document.getElementById("contact").getBoundingClientRect().top +
-								window.pageYOffset -
-								60
-						);
+						scrollTo(contactTop + window.scrollY - 60);
 					}}
 				>
 					Contact
@@ -160,9 +148,7 @@
 					class:text-white={active === "projects"}
 					on:click|preventDefault={() => {
 						expanded = false;
-						scrollTo(
-							document.getElementById("projects").getBoundingClientRect().top + window.pageYOffset
-						);
+						scrollTo(projectsTop + window.scrollY);
 					}}
 				>
 					Projects
@@ -176,9 +162,7 @@
 					class:text-white={active === "contact"}
 					on:click|preventDefault={() => {
 						expanded = false;
-						scrollTo(
-							document.getElementById("contact").getBoundingClientRect().top + window.pageYOffset
-						);
+						scrollTo(contactTop + window.scrollY);
 					}}
 				>
 					Contact
