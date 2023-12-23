@@ -1,17 +1,19 @@
 <script lang="ts">
 	import IconLink from "$lib/IconLink.svelte";
+	import { page } from "$app/stores";
 	import { fade } from "svelte/transition";
 	import { PUBLIC_STATS_ENDPOINT, PUBLIC_TURNSTILE_SITE_KEY } from "$env/static/public";
-	import { enhance } from "$app/forms";
+	import { enhance, applyAction } from "$app/forms";
 	import Skillcard from "$lib/Skillcard.svelte";
 	import { onMount } from "svelte";
 	import Projects from "$lib/Projects.svelte";
 	import type { PageData, ActionData } from "./$types";
-	export let data: PageData;
-	export let form: ActionData;
 	import { contactSchema } from "$lib/Validator";
 	import Input from "$lib/Input.svelte";
 	import Textarea from "$lib/Textarea.svelte";
+	export let data: PageData;
+	export let form: ActionData;
+
 	const socials = [
 		{
 			link: "https://github.com/driedsponge",
@@ -48,8 +50,8 @@
 	let solvedCaptcha: boolean = false;
 	let loading: boolean = false;
 	let turnstileId: any;
-	let errorMsg = "";
-
+	let showSuccess: boolean = false;
+	let errorMsg: string = "";
 	onMount(() => {
 		// @ts-ignore
 		window.turnstile.ready(function () {
@@ -68,14 +70,14 @@
 			});
 		});
 	});
-	async function validate(field: string, value: string) {
+	async function validate(field: string, value: any) {
 		try {
 			await contactSchema.validateAt(field, value);
 			if (errors[field]) {
 				errors[field] = null;
 				delete errors[field];
 			}
-		} catch (e) {
+		} catch (e: any) {
 			errors[field] = e.errors[0];
 		}
 	}
@@ -206,41 +208,36 @@
 				return async ({ result, update }) => {
 					loading = false;
 					solvedCaptcha = false;
+					if (result.type === "success") {
+						update({ reset: true, invalidateAll: true });
+						showSuccess = true;
+					} else {
+						applyAction(result);
+					}
 					//@ts-ignore
 					window.turnstile.reset(turnstileId);
-					errors = result.data.error;
-					if (!result.data.success && result.data.msg) {
-						console.log(result.data.msg);
-						errorMsg = result.data.msg;
-					}
-					if (result.data.success) {
-						errors = {};
-					}
-					update();
 				};
 			}}
 		>
 			<div class="space-y-4">
 				<div class="flex flex-col lg:flex-row lg:space-x-3">
 					<Input
-						error={errors?.name}
+						error={$page.form?.error?.name || errors["name"]}
 						label="Name"
 						required={true}
 						maxLength={50}
 						name="name"
-						value={form?.name ?? ""}
 						placeHolder="Jane Doe"
 						on:validate={(event) => {
 							validate("name", { name: event.detail });
 						}}
 					/>
 					<Input
-						error={errors?.email}
+						error={$page.form?.error?.email || errors["email"]}
 						label="Email"
 						required={true}
 						maxLength={50}
 						name="email"
-						value={form?.email ?? ""}
 						placeHolder="name@example.com"
 						on:validate={(event) => {
 							validate("email", { email: event.detail });
@@ -248,19 +245,18 @@
 					/>
 				</div>
 				<Input
-					error={errors?.subject}
+					error={$page.form?.error?.subject || errors["subject"]}
 					label="Subject"
 					required={true}
 					maxLength={100}
 					name="subject"
-					value={form?.subject ?? ""}
 					placeHolder="I wanted to chat about..."
 					on:validate={(event) => {
 						validate("subject", { subject: event.detail });
 					}}
 				/>
 				<Textarea
-					error={errors?.message}
+					error={$page.form?.error?.message || errors["message"]}
 					name="message"
 					label="Message"
 					placeHolder="I just wanted to let you know you're a really cool person!"
@@ -275,15 +271,17 @@
 					class="flex flex-col content-center items-center space-y-3 md:flex-row md:space-x-3 md:space-y-0"
 				>
 					<div class="cf-turnstile"></div>
-					{#if errorMsg}
+					{#if $page.form?.msg || errorMsg}
 						<p
 							transition:fade
 							class=" block text-center text-sm text-red-400 md:text-left"
 						>
-							{errorMsg}
+							{$page.form?.msg || errorMsg}
 						</p>
 					{/if}
 				</div>
+				<!--					-->
+
 				<button
 					disabled={!solvedCaptcha || !(Object.keys(errors).length === 0) || loading}
 					title={solvedCaptcha ? "Submit" : "Awaiting Invisible Captcha Validation"}
@@ -297,7 +295,7 @@
 					Send</button
 				>
 			</div>
-			{#if form?.success}
+			{#if showSuccess}
 				<div
 					transition:fade
 					class="absolute left-0 top-0 z-40 h-full w-full rounded-lg bg-bgsecondary p-8"
@@ -311,10 +309,8 @@
 							within the next 24 hours!
 						</p>
 						<button
-							type="reset"
-							on:click={() => {
-								form = null;
-							}}>Submit another response!</button
+							on:click={() => (showSuccess = false)}
+							type="reset">Submit another response!</button
 						>
 					</div>
 				</div>

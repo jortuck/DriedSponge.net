@@ -40,7 +40,7 @@
 			<div>
 				<a
 					class="text-3xl font-extrabold text-white"
-					href="/"><span class="text-myblue">Jordan</span> Tucker {projectsTop}</a
+					href="/"><span class="text-myblue">Jordan</span> Tucker</a
 				>
 			</div>
 			<div class="space-x-10">
