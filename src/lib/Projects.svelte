@@ -151,9 +151,9 @@
 		rel="noopener">Teamcity</a
 	>,
 	<a
-		href="https://appwrite.io"
+		href="https://pterodactyl.io"
 		target="_blank"
-		rel="noopener">Appwrite</a
+		rel="noopener">Pterodactyl</a
 	>,
 	<a
 		href="https://shields.io"
