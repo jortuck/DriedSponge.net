@@ -6,7 +6,7 @@
 			<ul>
 				<li>Discord: driedsponge</li>
 				<li>
-					Github: <a
+					GitHub: <a
 						class="underline"
 						target="_blank"
 						href="https://github.com/driedsponge">driedsponge</a

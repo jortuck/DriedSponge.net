@@ -83,7 +83,7 @@
 					rel="noopener"
 					target="_blank"
 				>
-					Github
+					GitHub
 				</a>
 			</div>
 		</div>
@@ -178,7 +178,7 @@
 					rel="noopener"
 					target="_blank"
 				>
-					Github
+					GitHub
 				</a>
 			</li>
 		</ul>

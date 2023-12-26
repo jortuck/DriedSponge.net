@@ -18,7 +18,7 @@
 		{
 			link: "https://github.com/driedsponge",
 			icon: "fa-brands fa-github",
-			name: "Github"
+			name: "GitHub"
 		},
 		{
 			link: `#contact`,
@@ -91,7 +91,7 @@
 	/>
 	<meta
 		name="description"
-		content="Hello 👋, my name is Jordan. I'm a student at the University of Washington studying informatics. I enjoy creating websites, Discord bots, & more!"
+		content="Hello 👋, my name is Jordan. I'm a student at the University of Washington studying Informatics. I enjoy creating websites, Discord bots, & more!"
 	/>
 	<meta
 		property="og:title"
@@ -99,7 +99,7 @@
 	/>
 	<meta
 		property="og:description"
-		content="Hello 👋, my name is Jordan. I'm a student at the University of Washington studying informatics. I enjoy creating websites, Discord bots, & more!"
+		content="Hello 👋, my name is Jordan. I'm a student at the University of Washington studying Informatics. I enjoy creating websites, Discord bots, & more!"
 	/>
 </svelte:head>
 <section
@@ -115,7 +115,7 @@
 			</h2>
 			<h2 class="spacing xl:text-4xls text-3xl leading-10 text-gray-100">
 				I'm a <span class="emphasis">student</span> studying
-				<span class="emphasis">informatics</span>
+				<span class="emphasis">Informatics</span>
 				at the <span class="emphasis">University of Washington</span>.
 			</h2>
 			<div class="space-x-5 text-center lg:text-left">
@@ -134,13 +134,13 @@
 		<div class="relative md:h-96">
 			<img
 				class="w-full sm:hidden"
-				alt="My Github Stats"
-				src="{PUBLIC_STATS_ENDPOINT}?username=driedsponge&include_all_commits=true&hide_border=true&layout=compact&theme=dark&bg_color=2B323B&border_radius=10&cache_seconds=21600&custom_title=My Github Stats&show_icons=true&icon_color=62a1ec&hide_rank=true&card_width=290"
+				alt="My GitHub Stats"
+				src="{PUBLIC_STATS_ENDPOINT}?username=driedsponge&include_all_commits=true&hide_border=true&layout=compact&theme=dark&bg_color=2B323B&border_radius=10&cache_seconds=21600&custom_title=My GitHub Stats&show_icons=true&icon_color=62a1ec&hide_rank=true&card_width=290"
 			/>
 			<img
 				class="absolute bottom-0 left-0 right-0 top-0 hidden h-96 w-full sm:block"
-				alt="My Github Stats"
-				src="{PUBLIC_STATS_ENDPOINT}?username=driedsponge&include_all_commits=true&hide_border=true&layout=compact&theme=dark&bg_color=2B323B&border_radius=10&cache_seconds=21600&custom_title=My Github Stats&show_icons=true&icon_color=62a1ec"
+				alt="My GitHub Stats"
+				src="{PUBLIC_STATS_ENDPOINT}?username=driedsponge&include_all_commits=true&hide_border=true&layout=compact&theme=dark&bg_color=2B323B&border_radius=10&cache_seconds=21600&custom_title=My GitHub Stats&show_icons=true&icon_color=62a1ec"
 			/>
 		</div>
 	</section>
