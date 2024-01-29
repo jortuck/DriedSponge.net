@@ -1,7 +1,23 @@
-import type { Actions } from "./$types";
+import type { Actions, PageServerLoad } from "./$types";
 import { fail } from "@sveltejs/kit";
 import { contactSchema } from "$lib/Validator";
 import { TURNSTILE_SECRET_KEY, MAILGUN_KEY, MAILGUN_DOMAIN, EMAIL } from "$env/static/private";
+import { API_KEY } from "$env/static/private";
+import { PUBLIC_API_HOST } from "$env/static/public";
+
+export const load: PageServerLoad = async ({ params }) => {
+	let data = await fetch(`${PUBLIC_API_HOST}/api/projects?populate=*&sort=createdAt:asc`, {
+		headers: {
+			Authorization: `Bearer ${API_KEY}`
+		}
+	});
+	let projects = await data.json();
+
+	return {
+		projects: projects.data
+	};
+};
+
 export const actions = {
 	default: async ({ request }) => {
 		const data = await request.formData();

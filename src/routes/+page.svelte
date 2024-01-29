@@ -2,15 +2,21 @@
 	import IconLink from "$lib/IconLink.svelte";
 	import { page } from "$app/stores";
 	import { fade } from "svelte/transition";
-	import { PUBLIC_STATS_ENDPOINT, PUBLIC_TURNSTILE_SITE_KEY } from "$env/static/public";
+	import {
+		PUBLIC_API_HOST,
+		PUBLIC_STATS_ENDPOINT,
+		PUBLIC_TURNSTILE_SITE_KEY
+	} from "$env/static/public";
 	import { enhance, applyAction } from "$app/forms";
 	import Skillcard from "$lib/Skillcard.svelte";
 	import { onMount } from "svelte";
-	import Projects from "$lib/Projects.svelte";
 	import type { PageData, ActionData } from "./$types";
 	import { contactSchema } from "$lib/Validator";
 	import Input from "$lib/Input.svelte";
 	import Textarea from "$lib/Textarea.svelte";
+	import Project from "$lib/project/Project.svelte";
+	import ProjectImage from "$lib/project/ProjectImage.svelte";
+	import Shield from "$lib/Shield.svelte";
 	export let data: PageData;
 	export let form: ActionData;
 
@@ -182,7 +188,69 @@
 	>
 		My Projects
 	</h1>
-	<Projects></Projects>
+	{#each data.projects as project}
+		<Project
+			let:Links
+			let:Description
+			let:Header
+		>
+			<Header
+				let:Title
+				let:Shields
+			>
+				<Title>
+					{project.attributes.title}
+				</Title>
+				<Shields repository={project.attributes.github}>
+					{#each project.attributes.technology as technology}
+						<Shield
+							text={technology.name}
+							logo={technology.logo}
+							color={technology.color}
+							logoColor={technology.logoColor}
+						/>
+					{/each}
+				</Shields>
+			</Header>
+			<Description>
+				{#each project.attributes.body[0].children as bodyPart}
+					{#if bodyPart.type === "text"}
+						{bodyPart.text}
+					{:else if bodyPart.type === "link"}
+						<a
+							target="_blank"
+							rel="noopener"
+							href={bodyPart.url}>{bodyPart.children[0].text}</a
+						>
+					{/if}
+				{/each}
+			</Description>
+			<Links let:Link>
+				{#if project.attributes.github}
+					<Link
+						icon="fa-brands fa-github"
+						href={`https://github.com/driedsponge/${project.attributes.github}`}
+					>
+						Source Code
+					</Link>
+				{/if}
+				{#each project.attributes.links as link}
+					<Link
+						icon={link.icon}
+						href={link.url}
+					>
+						{link.text}
+					</Link>
+				{/each}
+			</Links>
+			<ProjectImage
+				slot="image"
+				enhance={false}
+				image={PUBLIC_API_HOST + project.attributes.thumbnail.data.attributes.url}
+				imageAlt={PUBLIC_API_HOST + project.attributes.thumbnail.data.attributes.alt}
+			/>
+		</Project>
+	{/each}
 </section>
 <hr id="contact" />
 <section class="my-16">
@@ -345,5 +413,8 @@
 	}
 	button {
 		@apply w-full rounded-lg bg-bgborder p-3 text-center text-white transition-all duration-200 ease-in-out hover:bg-myblue hover:shadow-2xl;
+	}
+	a {
+		@apply text-myblue hover:underline;
 	}
 </style>
