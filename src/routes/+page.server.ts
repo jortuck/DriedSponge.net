@@ -57,7 +57,7 @@ export const actions = {
 		}
 		const body = new URLSearchParams();
 		body.append("to", EMAIL);
-		body.append("from", `${name} <noreply@driedsponge.net>`);
+		body.append("from", `${name}`);
 		body.append("h:Reply-To", `${name} <${email!.toString()}>`);
 		body.append("subject", "Portfolio Contact From Response- " + subject);
 		body.append("text", message!.toString());
