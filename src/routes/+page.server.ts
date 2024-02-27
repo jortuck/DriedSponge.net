@@ -57,9 +57,9 @@ export const actions = {
 		}
 		const body = new URLSearchParams();
 		body.append("to", EMAIL);
-		body.append("from", `${name} <postmaster@sandbox8a6e4e095680476ebca38b2aa1acabf1.mailgun.org>`);
+		body.append("from", `${name} <noreply@driedsponge.net>`);
 		body.append("h:Reply-To", `${name} <${email!.toString()}>`);
-		body.append("subject", "Portfolio Contact From Response- " + subject);
+		body.append("subject", "Portfolio Contact From Response - " + subject);
 		body.append("text", message!.toString());
 		const res = await fetch(`https://api.mailgun.net/v3/${MAILGUN_DOMAIN}/messages`, {
 			method: "POST",
