@@ -59,7 +59,7 @@ export const actions = {
 		body.append("to", EMAIL);
 		body.append("from", `${name} <noreply@driedsponge.net>`);
 		body.append("h:Reply-To", `${name} <${email!.toString()}>`);
-		body.append("subject", "Portfolio Contact From Response - " + subject);
+		body.append("subject", "Contact Form Response - " + subject);
 		body.append("text", message!.toString());
 		const res = await fetch(`https://api.mailgun.net/v3/${MAILGUN_DOMAIN}/messages`, {
 			method: "POST",
