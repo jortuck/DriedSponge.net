@@ -25,11 +25,6 @@
 			link: "https://github.com/driedsponge",
 			icon: "fa-brands fa-github",
 			name: "GitHub"
-		},
-		{
-			link: `#contact`,
-			icon: "fa-solid fa-envelope",
-			name: "Email"
 		}
 	];
 	let welcomeText: string = "Hello";
@@ -127,12 +122,18 @@
 			<div class="space-x-5 text-center lg:text-left">
 				{#each socials as social}
 					<IconLink
-						external={false}
+						external={true}
 						title={social.name}
 						link={social.link}
 						icon={social.icon + " fa-3x"}
 					/>
 				{/each}
+				<IconLink
+					external={false}
+					title="Send me a message!"
+					link="#contact"
+					icon="fa-solid fa-envelope fa-3x"
+				/>
 			</div>
 		</div>
 	</section>
