@@ -1,6 +1,4 @@
 <script lang="ts">
-	export const prerender = true;
-
 	import IconLink from "$lib/IconLink.svelte";
 	import { page } from "$app/stores";
 	import { fade } from "svelte/transition";
@@ -271,6 +269,7 @@
 			</p>
 		</div>
 		<form
+			action="/contactapi"
 			class="relative my-8 w-full rounded-lg bg-bgsecondary p-8 lg:w-1/2"
 			method="POST"
 			use:enhance={() => {
