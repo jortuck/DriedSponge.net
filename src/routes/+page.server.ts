@@ -4,7 +4,7 @@ import { contactSchema } from "$lib/Validator";
 import { TURNSTILE_SECRET_KEY, MAILGUN_KEY, MAILGUN_DOMAIN, EMAIL } from "$env/static/private";
 import { API_KEY } from "$env/static/private";
 import { PUBLIC_API_HOST } from "$env/static/public";
-
+export const prerender = true;
 export const load: PageServerLoad = async ({ params }) => {
 	let data = await fetch(`${PUBLIC_API_HOST}/api/projects?populate=*&sort=createdAt:asc`, {
 		headers: {
