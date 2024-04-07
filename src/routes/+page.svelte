@@ -1,4 +1,6 @@
 <script lang="ts">
+	export const prerender = true;
+
 	import IconLink from "$lib/IconLink.svelte";
 	import { page } from "$app/stores";
 	import { fade } from "svelte/transition";
