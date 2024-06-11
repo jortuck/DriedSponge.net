@@ -9,14 +9,21 @@
 					GitHub: <a
 						class="underline"
 						target="_blank"
-						href="https://github.com/driedsponge">driedsponge</a
+						href="https://github.com/jortuck">jortuck</a
+					>
+				</li>
+				<li>
+					LinkedIn: <a
+						class="underline"
+						target="_blank"
+						href="https://linkedin.com/in/jortuck">jortuck</a
 					>
 				</li>
 				<li>
 					<a
 						class="underline"
 						target="_blank"
-						href="https://github.com/driedsponge/driedsponge.net">Website Source Code</a
+						href="https://github.com/jortuck/driedsponge.net">Website Source Code</a
 					>
 				</li>
 			</ul>
@@ -26,7 +33,7 @@
 			<p class="text-center text-3xl font-extrabold text-white lg:text-right">
 				<span class="text-myblue">J</span>T
 			</p>
-			<p class="text-xs text-gray-400">© 2023 Jordan Tucker</p>
+			<p class="text-xs text-gray-400">© 2024 Jordan Tucker</p>
 		</div>
 	</div>
 </footer>
