@@ -127,7 +127,7 @@
 					href="https://washington.edu">University of Washington</a
 				>.
 			</h2>
-			<div class="space-x-5 text-center lg:text-left">
+			<div class="space-x-3 text-center lg:text-left">
 				{#each socials as social}
 					<IconLink
 						external={true}
@@ -135,8 +135,7 @@
 						link={social.link}
 						icon={social.icon + " fa-3x"}
 					/>
-				{/each}
-				<IconLink
+				{/each}<IconLink
 					external={false}
 					title="Send me a message!"
 					link="#contact"
