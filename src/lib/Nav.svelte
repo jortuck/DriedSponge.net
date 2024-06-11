@@ -174,7 +174,7 @@
 					on:click={() => {
 						expanded = false;
 					}}
-					href="https://github.com/driedsponge"
+					href="https://github.com/jortuck"
 					rel="noopener"
 					target="_blank"
 				>
