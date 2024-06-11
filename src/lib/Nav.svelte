@@ -79,7 +79,7 @@
 				</a>
 				<a
 					class="text-xl text-gray-400 transition-colors duration-200 ease-in-out hover:text-white"
-					href="https://github.com/driedsponge"
+					href="https://github.com/jortuck"
 					rel="noopener"
 					target="_blank"
 				>

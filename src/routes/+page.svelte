@@ -115,7 +115,7 @@
 				My name is <span class="emphasis">Jordan</span>.
 			</h2>
 			<h2 class="spacing xl:text-4xls text-3xl leading-10 text-gray-100">
-				I'm a <span class="emphasis">student</span> studying at the
+				I'm a student studying at the
 				<span class="emphasis">University of Washington</span>.
 			</h2>
 			<div class="space-x-5 text-center lg:text-left">
