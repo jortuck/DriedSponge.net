@@ -25,6 +25,11 @@
 			link: "https://github.com/jortuck",
 			icon: "fa-brands fa-github",
 			name: "GitHub"
+		},
+		{
+			link: "https://linkedin.com/in/jortuck",
+			icon: "fa-brands fa-linkedin",
+			name: "LinkedIn"
 		}
 	];
 	let welcomeText: string = "Hello";
