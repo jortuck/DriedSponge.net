@@ -22,7 +22,7 @@
 
 	const socials = [
 		{
-			link: "https://github.com/driedsponge",
+			link: "https://github.com/jortuck",
 			icon: "fa-brands fa-github",
 			name: "GitHub"
 		}
@@ -142,12 +142,12 @@
 			<img
 				class="w-full sm:hidden"
 				alt="My GitHub Stats"
-				src="{PUBLIC_STATS_ENDPOINT}?username=driedsponge&include_all_commits=true&hide_border=true&layout=compact&theme=dark&bg_color=2B323B&border_radius=10&cache_seconds=21600&custom_title=My GitHub Stats&show_icons=true&icon_color=62a1ec&hide_rank=true&card_width=290"
+				src="{PUBLIC_STATS_ENDPOINT}?username=jortuck&include_all_commits=true&hide_border=true&layout=compact&theme=dark&bg_color=2B323B&border_radius=10&cache_seconds=21600&custom_title=My GitHub Stats&show_icons=true&icon_color=62a1ec&hide_rank=true&card_width=290"
 			/>
 			<img
 				class="absolute bottom-0 left-0 right-0 top-0 hidden h-96 w-full sm:block"
 				alt="My GitHub Stats"
-				src="{PUBLIC_STATS_ENDPOINT}?username=driedsponge&include_all_commits=true&hide_border=true&layout=compact&theme=dark&bg_color=2B323B&border_radius=10&cache_seconds=21600&custom_title=My GitHub Stats&show_icons=true&icon_color=62a1ec"
+				src="{PUBLIC_STATS_ENDPOINT}?username=jortuck&include_all_commits=true&hide_border=true&layout=compact&theme=dark&bg_color=2B323B&border_radius=10&cache_seconds=21600&custom_title=My GitHub Stats&show_icons=true&icon_color=62a1ec"
 			/>
 		</div>
 	</section>
@@ -230,7 +230,7 @@
 				{#if project.attributes.github}
 					<Link
 						icon="fa-brands fa-github"
-						href={`https://github.com/driedsponge/${project.attributes.github}`}
+						href={`https://github.com/jortuck/${project.attributes.github}`}
 					>
 						Source Code
 					</Link>
