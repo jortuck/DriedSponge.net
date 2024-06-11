@@ -92,7 +92,7 @@
 	/>
 	<meta
 		name="description"
-		content="Hello 👋, my name is Jordan. I'm a student at the University of Washington studying Informatics. I enjoy creating websites, Discord bots, & more!"
+		content="Hello 👋, my name is Jordan. I'm a student studying at the University of Washington. I enjoy creating websites, Discord bots, & more!"
 	/>
 	<meta
 		property="og:title"
@@ -100,7 +100,7 @@
 	/>
 	<meta
 		property="og:description"
-		content="Hello 👋, my name is Jordan. I'm a student at the University of Washington studying Informatics. I enjoy creating websites, Discord bots, & more!"
+		content="Hello 👋, my name is Jordan. I'm a student studying at the University of Washington. I enjoy creating websites, Discord bots, & more!"
 	/>
 </svelte:head>
 <section
@@ -115,9 +115,8 @@
 				My name is <span class="emphasis">Jordan</span>.
 			</h2>
 			<h2 class="spacing xl:text-4xls text-3xl leading-10 text-gray-100">
-				I'm a <span class="emphasis">student</span> studying
-				<span class="emphasis">Informatics</span>
-				at the <span class="emphasis">University of Washington</span>.
+				I'm a <span class="emphasis">student</span> studying at the
+				<span class="emphasis">University of Washington</span>.
 			</h2>
 			<div class="space-x-5 text-center lg:text-left">
 				{#each socials as social}
