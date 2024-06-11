@@ -93,7 +93,7 @@
 	<title>Jordan Tucker | Home</title>
 	<meta
 		property="og:site_name"
-		content="jordantucker.dev"
+		content="jortuck.com"
 	/>
 	<meta
 		name="description"
