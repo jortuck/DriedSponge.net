@@ -1,15 +1,75 @@
-## About
+# Nuxt 3 Minimal Starter
 
-This is the source code for my portfolio https://jortuck.com. You might be here just to take a look. If you really want to contribute you can, just make a pull request.
+Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
 
-This site uses the SvelteKit and TailwindCSS for the front end, and the content is powered
-by a self-hosted Strapi API. You can view the API repository here: https://github.com/driedsponge/jordan-api.
+## Setup
 
-Right now this website is hosted using Cloudflare pages because I just found out it supports SSR with SvelteKit.
-Hopefully it's fast. If the functions start running over 10ms I might have to switch back to self-hosting.
+Make sure to install the dependencies:
 
-## Security Vulnerabilities
+```bash
+# npm
+npm install
 
-If you find any security issues please let me know or create an issue.
+# pnpm
+pnpm install
 
-You might find API keys, tokens, database details, webhook urls, etc., in older commits. I can assure you none of them work (if they did this repo would not be public).
+# yarn
+yarn install
+
+# bun
+bun install
+```
+
+## Development Server
+
+Start the development server on `http://localhost:3000`:
+
+```bash
+# npm
+npm run dev
+
+# pnpm
+pnpm run dev
+
+# yarn
+yarn dev
+
+# bun
+bun run dev
+```
+
+## Production
+
+Build the application for production:
+
+```bash
+# npm
+npm run build
+
+# pnpm
+pnpm run build
+
+# yarn
+yarn build
+
+# bun
+bun run build
+```
+
+Locally preview production build:
+
+```bash
+# npm
+npm run preview
+
+# pnpm
+pnpm run preview
+
+# yarn
+yarn preview
+
+# bun
+bun run preview
+```
+
+Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
