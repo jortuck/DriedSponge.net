@@ -1,0 +1,10 @@
+@font-face {
+    font-family: JetBrainsMono;
+    src: url('/assets/fonts/JetBrainsMono-Regular.woff2');
+}
+body {
+    font-family: JetBrainsMono, sans-serif;
+}
+html{
+    background-color: #1c2128;
+}
