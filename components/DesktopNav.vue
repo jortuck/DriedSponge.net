@@ -11,11 +11,11 @@ onMounted(()=>{
 </script>
 <template>
 	<nav
-		class="flex border-b-2 border-b-base-200 bg-base-100 py-4 transition-colors duration-200 ease-in-out lg:border-0 lg:bg-transparent"
+		class="lg:flex hidden border-b-2 border-b-base-200 bg-base-100 py-4 transition-colors duration-200 ease-in-out lg:border-0 lg:bg-transparent"
 		:class="{'scrolled':scroll > 0}"
 	>
 		<div
-			class="max-w-8xl container mx-auto flex hidden items-center justify-between px-2 lg:flex xl:px-0"
+			class="max-w-8xl container mx-auto hidden items-center justify-between px-2 lg:flex xl:px-0"
 		>
 			<div>
 				<a
