@@ -28,7 +28,7 @@
 					</li>
 				</ul>
 			</div>
-			<div>
+			<div class="space-y-2">
 				<p class="text-center text-3xl font-extrabold text-white lg:text-right">
 					<span class="text-primary">J</span>T
 				</p>
