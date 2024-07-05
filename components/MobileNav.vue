@@ -37,7 +37,7 @@ let menuBarOpen = ref(false)
 	</div>
 	<div
 		:class="{'scale-y-0':!menuBarOpen}"
-		class="absolute z-10 w-full origin-top bg-bgsecondary transition-all duration-200 ease-in-out lg:hidden"
+		class="absolute z-10 w-full origin-top bg-base-100 transition-all duration-200 ease-in-out lg:hidden"
 	>
 		<ul class="space-y-4 py-4 text-center">
 			<li>
