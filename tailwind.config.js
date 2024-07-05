@@ -1,5 +1,5 @@
 export default {
-	content: ["./src/**/*.{html,js,svelte,ts}"],
+	content: ["./src/**/*.{html,js,svelte,ts,vue}"],
 	theme: {
 		extend: {
 			colors: {
