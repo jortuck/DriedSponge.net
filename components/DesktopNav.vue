@@ -15,7 +15,7 @@ onMounted(()=>{
 		:class="{'scrolled':scroll > 0}"
 	>
 		<div
-			class="max-w-8xl container mx-auto hidden items-center justify-between px-2 lg:flex xl:px-0"
+			class="max-w-7xl container mx-auto hidden items-center justify-between px-2 lg:flex xl:px-0"
 		>
 			<div>
 				<a
@@ -23,7 +23,7 @@ onMounted(()=>{
 					href="/"><span class="text-primary">Jordan</span> Tucker</a
 				>
 			</div>
-			<div class="links space-x-10">
+			<div class="links space-x-5">
 				<a
 					href="/"
 				>

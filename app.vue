@@ -7,7 +7,7 @@
 <template>
 	<div class="flex h-screen flex-col">
 		<Navbar />
-		<main class="max-w-8xl container mx-auto flex-1 px-3 xl:px-0  ">
+		<main class="max-w-7xl container mx-auto flex-1 px-3 xl:px-0  ">
 			<NuxtPage/>
 		</main>
 		<Foot />
