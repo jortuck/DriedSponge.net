@@ -11,7 +11,7 @@ onMounted(()=>{
 </script>
 <template>
 	<nav
-		class="lg:flex hidden border-b-2 border-b-base-300 bg-base-200 py-4 transition-colors duration-200 ease-in-out lg:border-0 lg:bg-transparent"
+		class="lg:flex hidden border-b-2 border-b-base-300 bg-base-100 py-4 transition-colors duration-200 ease-in-out lg:border-0"
 		:class="{'scrolled':scroll > 0}"
 	>
 		<div
@@ -47,7 +47,7 @@ onMounted(()=>{
 </template>
 <style scoped lang="postcss">
 .scrolled {
-	@apply border-b-2 bg-base-200;
+	@apply border-b-2 backdrop-blur-2xl bg-opacity-80;
 }
 div.links > a {
 	@apply text-xl text-gray-400 transition-colors duration-200 ease-in-out hover:text-white font-medium

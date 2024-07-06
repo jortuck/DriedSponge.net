@@ -7,9 +7,9 @@ let menuBarOpen = ref(false)
 
 <template>
 	<nav
-		class="flex border-b-2 border-b-base-300 bg-base-200 py-4 lg:hidden"
+		class="flex  py-4 lg:hidden nav-bg"
 	>
-	<div class="container mx-3 max-w-full transition-all duration-200 ease-in-out lg:hidden">
+	<div class="container mx-3 max-w-full transition-all duration-200 ease-in-out lg:hidden ">
 		<div class="flex items-center justify-between">
 			<div>
 				<a
@@ -41,12 +41,13 @@ let menuBarOpen = ref(false)
 	</nav>
 	<div
 		:class="{'scale-y-0':!menuBarOpen}"
-		class="absolute z-10 w-full origin-top bg-base-200 transition-all duration-200 ease-in-out lg:hidden"
+		class="absolute z-10 w-full origin-top nav-bg transition-all duration-200 ease-in-out lg:hidden"
 	>
 		<ul class="space-y-4 py-4 text-center">
 			<li>
 				<NuxtLink
 					href="/"
+					activeClass="!text-white"
 				>
 					Home
 				</NuxtLink>
@@ -68,6 +69,7 @@ let menuBarOpen = ref(false)
 			<li>
 				<NuxtLink
 					href="/blog"
+					activeClass="!text-white"
 				>
 					Blog
 				</NuxtLink>
@@ -78,5 +80,8 @@ let menuBarOpen = ref(false)
 <style scoped lang="postcss">
 li > a {
 	@apply text-xl text-gray-400 transition-colors duration-200 ease-in-out hover:text-white
+}
+.nav-bg{
+	@apply bg-base-100 bg-opacity-80 backdrop-blur-2xl border-b-2 border-b-base-300;
 }
 </style>

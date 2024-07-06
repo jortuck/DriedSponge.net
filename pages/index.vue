@@ -14,14 +14,14 @@ useSeoMeta({
 		>
 			<section class="w-full text-center md:space-y-6 lg:text-left">
 				<div class="h-full space-y-9 lg:space-y-6 tracking-tighter lg:pr-10 bg-gradient-to-br from-white via-primary to-white to-70%  bg-clip-text text-transparent">
-					<h1 class="text-5xl lg:text-7xl font-semibold xl:text-8xl tracking-tighter select-none">
+					<h1 class="text-5xl lg:text-7xl font-semibold xl:text-8xl tracking-tighter select-none cooltext">
 						Hi, I'm Jordan.
 					</h1>
-					<h2 class="text-4xl font-semibold sm:h-auto xl:text-6xl tracking-tighter select-none">I'm a student at the University of Washington.</h2>
+					<h2 class="text-4xl font-semibold sm:h-auto xl:text-6xl tracking-tighter select-none cooltext">I'm a student at the University of Washington.</h2>
 					<div class="text-5xl space-x-6">
 						<a
 							target="_blank"
-							class="social-link"
+							class="social-link cooltext"
 							href="https://github.com/jortuck"
 							title="Github"
 						>
@@ -29,14 +29,14 @@ useSeoMeta({
 						</a>
 						<a
 							target="_blank"
-							class="social-link"
+							class="social-link cooltext"
 							href="https://linkedin.com/in/jortuck"
 							title="Linked In"
 						>
 							<i class="fa-brands fa-linkedin"></i>
 						</a>
 						<a
-							class="social-link"
+							class="social-link cooltext"
 							href="#contact"
 						>
 							<i class="fa-solid fa-envelope"></i>
@@ -86,5 +86,8 @@ useSeoMeta({
 <style scoped lang="postcss">
 .social-link{
 	@apply transition-colors duration-200 ease-in-out hover:text-white ;
+}
+.cooltext{
+	text-shadow:  0 0 90px #666666;
 }
 </style>
