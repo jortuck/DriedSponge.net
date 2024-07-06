@@ -15,12 +15,12 @@ onMounted(()=>{
 		:class="{'scrolled':scroll > 0}"
 	>
 		<div
-			class="max-w-7xl container mx-auto hidden items-center justify-between px-2 lg:flex xl:px-0"
+			class="max-w-6xl container mx-auto hidden items-center justify-between px-2 lg:flex xl:px-0"
 		>
 			<div>
 				<a
 					class="text-3xl font-extrabold text-white"
-					href="/"><span class="text-primary">Jordan</span> Tucker</a
+					href="/"><span class="text-primary">J</span>T</a
 				>
 			</div>
 			<div class="links space-x-5">
@@ -53,6 +53,6 @@ onMounted(()=>{
 	@apply border-b-2 bg-base-100;
 }
 div.links > a {
-	@apply text-xl text-gray-400 transition-colors duration-200 ease-in-out hover:text-white
+	@apply text-xl text-gray-400 transition-colors duration-200 ease-in-out hover:text-white font-medium
 }
 </style>

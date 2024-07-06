@@ -1,7 +1,7 @@
 <template>
 	<footer class="border-t-base-200 bg-base-100 py-8">
 		<div
-			class="max-w-7xl container mx-auto flex flex-col content-center items-center justify-between space-y-6 px-3 align-middle lg:flex-row lg:space-y-0 xl:px-0"
+			class="max-w-6xl container mx-auto flex flex-col content-center items-center justify-between space-y-6 px-3 align-middle lg:flex-row lg:space-y-0 xl:px-0"
 		>
 			<div class="text-center text-gray-300 lg:text-left">
 				<ul>
