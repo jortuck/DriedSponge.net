@@ -9,5 +9,5 @@ body {
     font-family: Inter, sans-serif;
 }
 html{
-    background-color: #1c2128;
+    @apply bg-base-100
 }

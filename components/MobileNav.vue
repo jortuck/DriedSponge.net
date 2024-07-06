@@ -7,7 +7,7 @@ let menuBarOpen = ref(false)
 
 <template>
 	<nav
-		class="flex border-b-2 border-b-base-200 bg-base-100 py-4 lg:hidden"
+		class="flex border-b-2 border-b-base-300 bg-base-200 py-4 lg:hidden"
 	>
 	<div class="container mx-3 max-w-full transition-all duration-200 ease-in-out lg:hidden">
 		<div class="flex items-center justify-between">
@@ -41,36 +41,36 @@ let menuBarOpen = ref(false)
 	</nav>
 	<div
 		:class="{'scale-y-0':!menuBarOpen}"
-		class="absolute z-10 w-full origin-top bg-base-100 transition-all duration-200 ease-in-out lg:hidden"
+		class="absolute z-10 w-full origin-top bg-base-200 transition-all duration-200 ease-in-out lg:hidden"
 	>
 		<ul class="space-y-4 py-4 text-center">
 			<li>
-				<a
+				<NuxtLink
 					href="/"
 				>
 					Home
-				</a>
+				</NuxtLink>
 			</li>
 			<li>
-				<a
+				<NuxtLink
 					href="#projects"
 				>
 					Projects
-				</a>
+				</NuxtLink>
 			</li>
 			<li>
-				<a
+				<NuxtLink
 					href="#contact"
 				>
 					Contact
-				</a>
+				</NuxtLink>
 			</li>
 			<li>
-				<a
+				<NuxtLink
 					href="/blog"
 				>
 					Blog
-				</a>
+				</NuxtLink>
 			</li>
 		</ul>
 	</div>

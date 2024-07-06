@@ -8,17 +8,17 @@ useSeoMeta({
 });
 </script>
 <template>
-	<div class="space-y-80">
+	<div class="space-y-32">
 		<section
-			class="mt-20 flex flex-col items-center justify-between space-y-10 align-middle md:mt-28 lg:mt-40 lg:flex-row lg:space-y-0"
+			class="mt-20 md:mt-28 lg:mt-40"
 		>
 			<section class="w-full text-center md:space-y-6 lg:text-left">
-				<div class="h-full space-y-4 tracking-tighter lg:pr-10 bg-gradient-to-br from-white via-primary to-white to-70%  bg-clip-text text-transparent">
-					<h1 class="text-5xl font-semibold sm:h-auto xl:text-8xl tracking-tighter select-none">
+				<div class="h-full space-y-9 lg:space-y-6 tracking-tighter lg:pr-10 bg-gradient-to-br from-white via-primary to-white to-70%  bg-clip-text text-transparent">
+					<h1 class="text-5xl lg:text-7xl font-semibold xl:text-8xl tracking-tighter select-none">
 						Hi, I'm Jordan.
 					</h1>
 					<h2 class="text-4xl font-semibold sm:h-auto xl:text-6xl tracking-tighter select-none">I'm a student at the University of Washington.</h2>
-					<div class="text-5xl space-x-6 text-gray-200">
+					<div class="text-5xl space-x-6">
 						<a
 							target="_blank"
 							class="social-link"
@@ -45,10 +45,10 @@ useSeoMeta({
 				</div>
 			</section>
 		</section>
-		<section class="">
-			<div class="bg-base-200 space-y-8 p-8 mb-96 rounded-lg">
+		<section class="mb-96 space-y-10">
+			<div class="space-y-8 rounded-lg">
 				<h1 class="text-white text-2xl font-bold">
-					About Me
+					About
 				</h1>
 				<p class="text-gray-100">
 					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum eu ullamcorper felis, ut tincidunt mauris.
@@ -65,11 +65,26 @@ useSeoMeta({
 					dictum purus euismod eget.
 				</p>
 			</div>
+			<div>
+				<h1 class="text-white text-2xl font-bold">
+					Technologies
+				</h1>
+			</div>
+			<div>
+				<h1 class="text-white text-2xl font-bold" id="projects">
+					Projects
+				</h1>
+			</div>
+			<div>
+				<h1 class="text-white text-2xl font-bold">
+					Contact
+				</h1>
+			</div>
 		</section>
 	</div>
 </template>
 <style scoped lang="postcss">
 .social-link{
-	@apply transition-colors duration-200 ease-in-out hover:text-white;
+	@apply transition-colors duration-200 ease-in-out hover:text-white ;
 }
 </style>

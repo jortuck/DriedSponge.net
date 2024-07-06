@@ -11,46 +11,43 @@ onMounted(()=>{
 </script>
 <template>
 	<nav
-		class="lg:flex hidden border-b-2 border-b-base-200 bg-base-100 py-4 transition-colors duration-200 ease-in-out lg:border-0 lg:bg-transparent"
+		class="lg:flex hidden border-b-2 border-b-base-300 bg-base-200 py-4 transition-colors duration-200 ease-in-out lg:border-0 lg:bg-transparent"
 		:class="{'scrolled':scroll > 0}"
 	>
 		<div
-			class="max-w-6xl container mx-auto hidden items-center justify-between px-2 lg:flex xl:px-0"
+			class="max-w-5xl container mx-auto hidden items-center justify-between px-2 lg:flex xl:px-0"
 		>
 			<div>
 				<a
-					class="text-3xl font-extrabold text-white"
+					class="text-4xl font-extrabold text-white"
 					href="/"><span class="text-primary">J</span>T</a
 				>
 			</div>
 			<div class="links space-x-5">
-				<a
-					href="/"
-				>
+				<NuxtLink href="/" activeClass="!text-white">
 					Home
-				</a>
-				<a
-					href="#projects"
-				>
+				</NuxtLink>
+				<NuxtLink href="#projects">
 					Projects
-				</a>
-				<a
+				</NuxtLink>
+				<NuxtLink
 					href="#contact"
 				>
 					Contact
-				</a>
-				<a
+				</NuxtLink>
+				<NuxtLink
+					activeClass="!text-white"
 					href="/blog"
 				>
 					Blog
-				</a>
+				</NuxtLink>
 			</div>
 		</div>
 	</nav>
 </template>
 <style scoped lang="postcss">
 .scrolled {
-	@apply border-b-2 bg-base-100;
+	@apply border-b-2 bg-base-200;
 }
 div.links > a {
 	@apply text-xl text-gray-400 transition-colors duration-200 ease-in-out hover:text-white font-medium
