@@ -88,6 +88,6 @@ useSeoMeta({
 	@apply transition-colors duration-200 ease-in-out hover:text-white ;
 }
 .cooltext{
-	text-shadow:  0 0 90px #666666;
+	text-shadow:  0 0 90px #555;
 }
 </style>
