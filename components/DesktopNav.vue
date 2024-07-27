@@ -35,12 +35,6 @@ onMounted(()=>{
 				>
 					Contact
 				</NuxtLink>
-				<NuxtLink
-					activeClass="!text-white"
-					href="/blog"
-				>
-					Blog
-				</NuxtLink>
 			</div>
 		</div>
 	</nav>

@@ -94,10 +94,6 @@ useSeoMeta({
 	@apply transition-colors duration-200 ease-in-out hover:text-white ;
 }
 
-.cooltext {
-	text-shadow: 0 0 90px #555;
-}
-
 .small-heading {
 	@apply text-2xl md:text-3xl font-bold bg-gradient-to-br from-white via-primary to-white bg-clip-text text-transparent;
 }

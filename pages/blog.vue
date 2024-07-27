@@ -1,3 +1,3 @@
 <template>
-	vue page
+	nothing to see here
 </template>

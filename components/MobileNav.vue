@@ -66,14 +66,6 @@ let menuBarOpen = ref(false)
 					Contact
 				</NuxtLink>
 			</li>
-			<li>
-				<NuxtLink
-					href="/blog"
-					activeClass="!text-white"
-				>
-					Blog
-				</NuxtLink>
-			</li>
 		</ul>
 	</div>
 </template>
