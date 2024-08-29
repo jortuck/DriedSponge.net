@@ -99,7 +99,7 @@ useSeoMeta({
 }
 
 .section-paragraph {
-	@apply text-gray-200;
+	@apply text-gray-200 text-lg;
 }
 
 .section-paragraph > a {
