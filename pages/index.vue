@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import Shield from "~/components/Shield.vue";
+
 useSeoMeta({
 	title: "Jordan Tucker | Home",
 	ogTitle: "Jordan Tucker | Home",
@@ -37,12 +39,6 @@ useSeoMeta({
 						>
 							<i class="fa-brands fa-linkedin"></i>
 						</a>
-						<a
-							class="social-link cooltext"
-							href="#contact"
-						>
-							<i class="fa-solid fa-envelope"></i>
-						</a>
 					</div>
 				</div>
 			</section>
@@ -56,25 +52,21 @@ useSeoMeta({
 					Hi my name is Jordan, I'm a student at the <NuxtLink to="https://washington.edu" external target="_blank">University of
 					Washington</NuxtLink> in Seattle. I have been teaching myself
 					to program since 2019, and have focused my efforts in web development, server-side applications, and data
-					science applications. At this point in time, I am currently working at the University of Washington's
+					science applications. My most recent project involved working at the University of Washington's
 					<NuxtLink to="https://ocean.washington.edu" external target="_blank">School
 				of Oceanography</NuxtLink> as a research assistant, building an interactive web application for the visualization
-					of paleocliamte data reconstructions.
-				</p>
-				<p class="section-paragraph">
-					Nullam id ex quis ligula consequat fringilla. Fusce in viverra enim. Nam pretium metus ac nisi consectetur, ac
-					sagittis magna posuere. Duis commodo odio vel molestie iaculis. Suspendisse pellentesque dictum mi, vitae
-					pellentesque urna aliquet sit amet. Nullam nec dignissim magna. Curabitur ultricies dignissim lectus, eget
-					dictum purus euismod eget.
+					of paleocliamte data reconstructions. You can check it out <NuxtLink to="https://pv.jortuck.com" external target="_blank">here</NuxtLink>.
 				</p>
 			</div>
 			<div class="space-y-8">
 				<h1 class="small-heading">
 					Technologies I Work With:
 				</h1>
-				<p class="section-paragraph">
-					I have experience with the following technologies:
-				</p>
+				<div class="flex flex-row space-x-3">
+					<Shield logo="docker" logo-color="white" badge-color="blue" text="Docker" />
+					<Shield logo="css3" logo-color="black" badge-color="yellow" text="CSS"  />
+					<Shield logo="svelte" logo-color="white" badge-color="orange" text="Svelte" />
+				</div>
 			</div>
 			<div>
 				<h1 class="small-heading" id="projects">
