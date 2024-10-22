@@ -64,7 +64,7 @@ useSeoMeta({
 				</h1>
 				<div class="flex flex-row space-x-3">
 					<Shield logo="docker" logo-color="white" badge-color="blue" text="Docker" />
-					<Shield logo="css3" logo-color="black" badge-color="yellow" text="CSS"  />
+					<Shield logo="css3" logo-color="black" badge-color="yellow" taext="CSS"  />
 					<Shield logo="svelte" logo-color="white" badge-color="orange" text="Svelte" />
 				</div>
 			</div>
