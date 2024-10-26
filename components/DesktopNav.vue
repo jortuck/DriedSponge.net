@@ -27,7 +27,7 @@ onMounted(()=>{
 				<NuxtLink href="/" activeClass="!text-white">
 					Home
 				</NuxtLink>
-				<NuxtLink href="#projects">
+				<NuxtLink href="/projects" activeClass="!text-white">
 					Projects
 				</NuxtLink>
 				<NuxtLink

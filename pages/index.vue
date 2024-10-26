@@ -58,20 +58,11 @@ useSeoMeta({
 					of paleocliamte data reconstructions. You can check it out <NuxtLink to="https://pv.jortuck.com" external target="_blank">here</NuxtLink>.
 				</p>
 			</div>
-			<div class="space-y-8">
-				<h1 class="small-heading">
-					Technologies I Work With:
-				</h1>
-				<div class="flex flex-row space-x-3">
-					<Shield logo="docker" logo-color="white" badge-color="blue" text="Docker" />
-					<Shield logo="css3" logo-color="black" badge-color="yellow" taext="CSS"  />
-					<Shield logo="svelte" logo-color="white" badge-color="orange" text="Svelte" />
-				</div>
-			</div>
 			<div>
 				<h1 class="small-heading" id="projects">
-					Projects
+					Featured Projects
 				</h1>
+				<a>View All Projects</a>
 			</div>
 			<div>
 				<h1 class="small-heading">
