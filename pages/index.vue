@@ -20,7 +20,7 @@ useSeoMeta({
 					<h1 class="text-5xl lg:text-7xl font-semibold xl:text-8xl tracking-tighter select-none cooltext">
 						Hi, I'm Jordan.
 					</h1>
-					<h2 class="text-4xl font-semibold sm:h-auto xl:text-6xl tracking-tighter select-none cooltext">I'm a student
+					<h2 class="text-4xl font-semibold sm:h-auto xl:text-6xl tracking-tighter select-none cooltext">I'm an Informatics student
 						at the University of Washington.</h2>
 					<div class="text-5xl space-x-6">
 						<a
@@ -49,8 +49,8 @@ useSeoMeta({
 					About Me
 				</h1>
 				<p class="section-paragraph">
-					Hi my name is Jordan, I'm a student at the <NuxtLink to="https://washington.edu" external target="_blank">University of
-					Washington</NuxtLink> in Seattle. I have been teaching myself
+					Hi my name is Jordan, I'm a student studying <NuxtLink external target="_blank" to="https://ischool.uw.edu/programs/informatics">Informatics</NuxtLink> at the <NuxtLink to="https://washington.edu" external target="_blank">University of
+					Washington</NuxtLink>. I have been teaching myself
 					to program since 2019, and have focused my efforts in web development, server-side applications, and data
 					science applications. My most recent project involved working at the University of Washington's
 					<NuxtLink to="https://ocean.washington.edu" external target="_blank">School
