@@ -2,8 +2,8 @@
 import Shield from "~/components/Shield.vue";
 
 useSeoMeta({
-	title: "Jordan Tucker | Home",
-	ogTitle: "Jordan Tucker | Home",
+	title: "Home",
+	ogTitle: "Home",
 	description: "Hello, my name is Jordan. I'm a student studying at the University of Washington. I enjoy creating websites, Discord bots, & more!",
 	ogDescription: "Hello , my name is Jordan. I'm a student studying at the University of Washington. I enjoy creating websites, Discord bots, & more!",
 	ogUrl: "https://jortuck.com"

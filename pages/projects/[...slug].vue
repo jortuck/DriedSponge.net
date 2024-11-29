@@ -8,6 +8,8 @@
 </template>/
 <style lang="postcss">
 .project-content h1 {
-	@apply text-white text-5xl font-bold;
+	@apply text-white text-6xl font-bold;
 }
 </style>/
+<script setup lang="ts">
+</script>
