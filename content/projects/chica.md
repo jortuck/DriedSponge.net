@@ -1,6 +1,6 @@
 ---
 title: 'Chica Bot'
-description: 'A free and open-source music bot built with Java for streaming music into your discord calls.'
+description: 'An open source Discord bot for adding text to images.'
 github: 'chica'
 thumbnail: 'chica.gif'
 head: 
