@@ -54,7 +54,8 @@ let menuBarOpen = ref(false)
 			</li>
 			<li>
 				<NuxtLink
-					href="#projects"
+					to="/projects"
+					activeClass="!text-white"
 				>
 					Projects
 				</NuxtLink>
