@@ -62,7 +62,6 @@ useSeoMeta({
 				<ProseH2>
 					Featured Projects
 				</ProseH2>
-				<a>View All Projects</a>
 			</div>
 			<div>
 				<ProseH2>

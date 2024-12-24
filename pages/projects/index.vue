@@ -12,7 +12,7 @@ useSeoMeta({
 				<div v-for="item in list" class="rounded-md flex flex-col border-base-300 border-2">
 					<div class="m-2 space-y-2 flex-1">
 						<div class="space-x-2">
-							<NuxtLink :to="item._path" class="text-2xl font-bold text-primary hover:underline">
+							<NuxtLink :to="item._path" class="md:text-2xl text-xl font-bold text-primary hover:underline">
 								{{ item.title }}
 							</NuxtLink>
 						</div>

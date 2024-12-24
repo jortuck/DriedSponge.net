@@ -1,6 +1,6 @@
 <template>
 	<NuxtLink
-		class="text-primary hover:underline"
+		class="text-[#80BAFF] hover:underline"
 		:href="props.href"
 		:target="props.target"
 	>
