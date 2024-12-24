@@ -47,6 +47,7 @@ let menuBarOpen = ref(false)
 			<li>
 				<NuxtLink
 					href="/"
+					@click="menuBarOpen = false"
 					activeClass="!text-white"
 				>
 					Home
@@ -55,6 +56,7 @@ let menuBarOpen = ref(false)
 			<li>
 				<NuxtLink
 					to="/projects"
+					@click="menuBarOpen = false"
 					activeClass="!text-white"
 				>
 					Projects
@@ -62,6 +64,7 @@ let menuBarOpen = ref(false)
 			</li>
 			<li>
 				<NuxtLink
+					@click="menuBarOpen = false"
 					href="#contact"
 				>
 					Contact
