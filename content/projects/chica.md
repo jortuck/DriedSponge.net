@@ -16,7 +16,6 @@ head:
 ::
 
 
-
 ## About
 I created this bot using Discord JS. My goal was to establish a way for my friends to easily create memes on the fly in
 a Discord channel without having to go online to manually make them. I decided to use a combination of sharp and
