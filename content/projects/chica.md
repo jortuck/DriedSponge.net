@@ -2,9 +2,10 @@
 title: 'Chica Bot'
 description: 'An open source Discord bot for adding text to images.'
 github: 'chica'
-image: '/thumbnail/chica.gif'
-head:
-  title: "Chica Bot | Jordan Tucker"
+image: 
+  src: '/thumbnail/chica.gif'
+  type: 'image/gif'
+
 ---
 ::ProjectHeader
 # Chica Bot
