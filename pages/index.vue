@@ -55,7 +55,7 @@ useSeoMeta({
 					science applications. My most recent project involved working at the University of Washington's
 					<NuxtLink class="text-primary hover:underline" to="https://ocean.washington.edu" external target="_blank">School
 				of Oceanography</NuxtLink> as a research assistant, building an interactive web application for the visualization
-					of paleocliamte data reconstructions. You can check it out <NuxtLink  class="text-primary hover:underline" to="https://pv.jortuck.com" external target="_blank">here</NuxtLink>.
+					of paleocliamte data reconstructions. You can check it out at <NuxtLink  class="text-primary hover:underline" to="https://pv.jortuck.com" external target="_blank">https://pv.jortuck.com</NuxtLink>.
 				</ProseP>
 			</div>
 			<div>
