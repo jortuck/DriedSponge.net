@@ -3,7 +3,7 @@ title: 'Chica Bot'
 description: 'An open source Discord bot for adding text to images.'
 github: 'chica'
 image: 
-  src: '/thumbnail/chica.gif'
+  src: 'https://jortuck.com/thumbnail/chica.gif'
   type: 'image/gif'
 
 ---

@@ -1,9 +1,10 @@
 ---
 title: 'Paleoclimate Visualizer'
-description: 'A free and open-source music bot built with Java for streaming music into your discord calls.'
+description: 'An open-source web app for visualizing climate data reconstructions.'
 github: 'PaleoclimateVisualizer'
-head:
-  title: "Paleoclimate Visualizer | Jordan Tucker"
+image:
+  src: 'https://jortuck.com/thumbnail/pv.png'
+  type: 'image/png'
 ---
 
 ::ProjectHeader
