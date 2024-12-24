@@ -10,6 +10,9 @@ head:
 # Freddy Bot
 :Tag{text="TypeScript"} :Tag{text="Discord API"} :Tag{text="Docker"}
 :CenteredImage{src="/thumbnails/freddy.png"}
+::TagButtonGroup
+:TagButton{url="https://github.com/jortuck/freddy" text="Source Code" icon="fa-brands fa-github"}
+::
 ::
 
 

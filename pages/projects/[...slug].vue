@@ -6,7 +6,7 @@
 </template>/
 <style lang="postcss">
 .project-content{
-	@apply space-y-6
+	@apply space-y-4
 }
 </style>/
 <script setup lang="ts">

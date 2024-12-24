@@ -2,14 +2,20 @@
 title: 'Chica Bot'
 description: 'An open source Discord bot for adding text to images.'
 github: 'chica'
+image: '/thumbnail/chica.gif'
 head:
   title: "Chica Bot | Jordan Tucker"
 ---
 ::ProjectHeader
 # Chica Bot
-:Tag{text="TypeScript"} :Tag{text="Discord API"} :Tag{text="Docker"}
+:Tag{text="Discord API"} :Tag{text="Docker"} :Tag{text="TypeScript"}
 :CenteredImage{src="/thumbnails/chica.gif"}
+::TagButtonGroup
+:TagButton{url="https://github.com/jortuck/chica" text="Source Code" icon="fa-brands fa-github"}
 ::
+::
+
+
 
 ## About
 I created this bot using Discord JS. My goal was to establish a way for my friends to easily create memes on the fly in
