@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 useSeoMeta({
-	title: "Projects | Jordan Tucker"
+	title: "Projects | Jordan Tucker",
+	ogTitle: "Projects | Jordan Tucker"
 });
 </script>
 <template>
