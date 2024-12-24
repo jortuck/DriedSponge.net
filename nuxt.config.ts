@@ -8,7 +8,10 @@ export default defineNuxtConfig({
 		// 	name: "page", mode: "out-in"
 		// },
 		head: {
-			link: [{ rel: "icon", href: "/favicon.webp" }]
+			link: [{ rel: "icon", href: "/favicon.webp" }],
+			htmlAttrs:{
+				lang: "en"
+			}
 		}
 	},
 
