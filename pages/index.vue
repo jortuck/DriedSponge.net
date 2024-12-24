@@ -45,29 +45,29 @@ useSeoMeta({
 		</section>
 		<section class="mb-96 space-y-10">
 			<div class="space-y-8">
-				<h1 class="small-heading">
+				<ProseH2>
 					About Me
-				</h1>
-				<p class="section-paragraph">
-					Hi my name is Jordan, I'm a student studying <NuxtLink external target="_blank" to="https://ischool.uw.edu/programs/informatics">Informatics</NuxtLink> at the <NuxtLink to="https://washington.edu" external target="_blank">University of
+				</ProseH2>
+				<ProseP>
+					Hi my name is Jordan, I'm a student studying <NuxtLink class="text-primary hover:underline" external target="_blank" to="https://ischool.uw.edu/programs/informatics">Informatics</NuxtLink> at the <NuxtLink to="https://washington.edu" external target="_blank">University of
 					Washington</NuxtLink>. I have been teaching myself
 					to program since 2019, and have focused my efforts in web development, server-side applications, and data
 					science applications. My most recent project involved working at the University of Washington's
-					<NuxtLink to="https://ocean.washington.edu" external target="_blank">School
+					<NuxtLink class="text-primary hover:underline" to="https://ocean.washington.edu" external target="_blank">School
 				of Oceanography</NuxtLink> as a research assistant, building an interactive web application for the visualization
-					of paleocliamte data reconstructions. You can check it out <NuxtLink to="https://pv.jortuck.com" external target="_blank">here</NuxtLink>.
-				</p>
+					of paleocliamte data reconstructions. You can check it out <NuxtLink  class="text-primary hover:underline" to="https://pv.jortuck.com" external target="_blank">here</NuxtLink>.
+				</ProseP>
 			</div>
 			<div>
-				<h1 class="small-heading" id="projects">
+				<ProseH2>
 					Featured Projects
-				</h1>
+				</ProseH2>
 				<a>View All Projects</a>
 			</div>
 			<div>
-				<h1 class="small-heading">
+				<ProseH2>
 					Contact
-				</h1>
+				</ProseH2>
 			</div>
 		</section>
 	</div>
