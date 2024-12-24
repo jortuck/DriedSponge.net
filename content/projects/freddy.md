@@ -2,11 +2,15 @@
 title: 'Freddy Bot'
 description: 'A free and open-source music bot built with Java for streaming music into your discord calls.'
 github: 'freddy'
-thumbnail: 'freddy.png'
 head: 
-    title: "Freddy Bot | Jordan Tucker"
+    title: "Freddy Bot"
 ---
 
-# Freddy
-## A free open-source music bot for streaming music into your discord calls.
+::ProjectHeader
+# Freddy Bot
+:Tag{text="TypeScript"} :Tag{text="Discord API"} :Tag{text="Docker"}
+:CenteredImage{src="/thumbnails/freddy.png"}
+::
+
+
 
