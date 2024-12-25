@@ -1,9 +1,10 @@
 import { z } from "zod";
 const schema = z.object({
-	name: z.string(),
-	email: z.string().email(),
-	subject: z.string(),
+	name: z.string().nonempty(),
+	email: z.string().email().nonempty(),
+	subject: z.string().nonempty(),
 	message: z.string().nonempty(),
+	cftoken: z.string().nonempty(),
 })
 export default defineEventHandler(async (event) => {
 

@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import Shield from "~/components/Shield.vue";
+import { z, ZodSchema } from "zod";
 const config = useRuntimeConfig();
 useSeoMeta({
 	title: "Home | Jordan Tucker",
@@ -8,20 +9,54 @@ useSeoMeta({
 	ogDescription: "Hello , my name is Jordan. I'm a student studying Informatics at the University of Washington. I enjoy creating websites, Discord bots, & more!",
 	ogUrl: "https://jortuck.com"
 });
+const schema = z.object({
+	name: z.string().nonempty("Name must contain at least 1 character.").max(50),
+	email: z.string().email().nonempty().max(50),
+	subject: z.string().nonempty("Subject must contain at least 1 character.").max(50),
+	message: z.string().nonempty("Message must contain at least 1 character.").max(1000),
+	cftoken: z.string().nonempty(),
+})
+// window.turnstile.reset("cf-chl-widget-xvjj6")
+let contactForm = ref({
+	name:"",
+	email:"",
+	subject:"",
+	message:"",
+	cftoken:"",
+})
+let errors: any = ref({
+	name:"",
+	email:"",
+	subject:"",
+	message:"",
+	cftoken:"",
+})
+let turnstileId = ref("");
 onMounted(()=>{
 	//@ts-ignore
 	window.turnstile.ready(function () {
 		// @ts-ignore
-		let turnstileId = window.turnstile.render(".cf-turnstile", {
+		turnstileId = window.turnstile.render(".cf-turnstile", {
 			sitekey: config.public.turnstileKey,
 			callback: function (token: string) {
 				console.log(`Challenge Success ${token}`);
+				 contactForm.value.cftoken = token;
 				},
 			"error-callback": function () {
 				}
 		});
 	});
 })
+function validate(schema:ZodSchema, data:object, field:string) {
+	let result = schema.safeParse(data);
+	if(!result.success){
+		errors.value[field] = result.error.issues[0].message;
+		console.log(result.error.issues[0]);
+
+	}else{
+		errors.value[field] = ""
+	}
+}
 </script>
 <template>
 	<div class="space-y-32">
@@ -102,26 +137,39 @@ onMounted(()=>{
 					your preferred method of communication, my username is <strong>jortuck</strong>.
 				</ProseP>
 				<div class="flex flex-row items-center justify-center w-full">
-					<form class="my-6 rounded-md flex flex-col space-y-5 w-full">
+					<form @submit.prevent class="my-6 rounded-md flex flex-col space-y-5 w-full">
 						<div class="flex md:flex-row flex-col w-full md:space-x-4 space-y-5 md:space-y-0">
 							<label
-							>Name*
-								<input name="name" type="text" placeholder="Chris P. Bacon" />
+							>Name* {{contactForm.name}}
+								<input v-model="contactForm.name" name="name" type="text" placeholder="Chris P. Bacon" :class='{error:errors["name"]}'
+											 maxlength="50"
+											 @focusout="(()=>{validate(schema.pick({name:true}),{name:contactForm.name},'name')})" />
+								<span class="error">{{errors["name"]}}</span>
 							</label>
 							<label
 							>Email*
-								<input name="email" type="text" placeholder="email@example.com" />
+								<input v-model="contactForm.email" name="email" type="text" placeholder="email@example.com" :class='{error:errors["email"]}'
+											 maxlength="50"
+											 @focusout="(()=>{validate(schema.pick({email:true}),{email:contactForm.email},'email')})"/>
+								<span class="error">{{errors["email"]}}</span>
 							</label>
 						</div>
 						<div class="space-y-5">
 							<label
 							>Subject (required)
-								<input placeholder="A nice message." name="subject" type="text" /></label>
+								<input v-model="contactForm.subject" placeholder="A nice message." name="subject" type="text" :class='{error:errors["subject"]}'
+											 maxlength="50"
+											 @focusout="(()=>{validate(schema.pick({subject:true}),{subject:contactForm.subject},'subject')})"/>
+							<span class="error">{{errors["subject"]}}</span>
+							</label>
 							<label
 							>Message*
-								<textarea name="message"
+								<textarea v-model="contactForm.message" name="message"
 													rows="4"
+													maxlength="1000"
+													@focusout="(()=>{validate(schema.pick({message:true}),{message:contactForm.message},'message')})" :class='{error:errors["message"]}'
 													placeholder="Had a slight weapons malfunction but, uh everything’s perfectly all right now. We’re fine. We’re all fine here now. Thank you. How are you?"></textarea>
+								<span class="error">{{errors["message"]}}</span>
 							</label>
 						</div>
 						<div
@@ -154,6 +202,13 @@ input {
 
 label {
 	@apply block w-full text-white font-bold;
+}
+
+input.error, textarea.error {
+	@apply border-2 border-red-400;
+}
+label > span.error{
+	@apply font-normal text-sm text-red-400;
 }
 
 textarea {
