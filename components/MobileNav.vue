@@ -65,7 +65,7 @@ let menuBarOpen = ref(false)
 			<li>
 				<NuxtLink
 					@click="menuBarOpen = false"
-					href="#contact"
+					href="/#contact"
 				>
 					Contact
 				</NuxtLink>

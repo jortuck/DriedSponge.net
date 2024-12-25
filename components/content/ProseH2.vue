@@ -1,7 +1,20 @@
 <template>
-	<h2 class="md:text-4xl text-3xl font-bold bg-gradient-to-br from-white via-primary to-white bg-clip-text text-transparent">
-		<slot/>
+	<h2 :id="props.id" class="md:text-4xl text-3xl font-bold bg-gradient-to-br from-white via-primary to-white bg-clip-text text-transparent">
+		<a
+			v-if="props.id && generate"
+			:href="`#${props.id}`"
+		>
+			<slot />
+		</a>
+		<slot v-else />
 	</h2>
 </template>
+
 <script setup lang="ts">
+import { computed, useRuntimeConfig } from '#imports'
+
+const props = defineProps<{ id?: string }>()
+
+const { headings } = useRuntimeConfig().public.mdc
+const generate = computed(() => props.id && ((typeof headings?.anchorLinks === 'boolean' && headings?.anchorLinks === true) || (typeof headings?.anchorLinks === 'object' && headings?.anchorLinks?.h2)))
 </script>

@@ -31,7 +31,7 @@ onMounted(()=>{
 					Projects
 				</NuxtLink>
 				<NuxtLink
-					href="#contact"
+					href="/#contact"
 				>
 					Contact
 				</NuxtLink>

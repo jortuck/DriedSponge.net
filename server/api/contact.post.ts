@@ -6,6 +6,7 @@ const schema = z.object({
 	message: z.string().nonempty(),
 })
 export default defineEventHandler(async (event) => {
+
 	let result = await readValidatedBody(event,body=>schema.safeParse(body));
 	if(!result.success){
 		console.log(result.error.issues);
