@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import Shield from "~/components/Shield.vue";
-
+const config = useRuntimeConfig();
 useSeoMeta({
 	title: "Home | Jordan Tucker",
 	ogTitle: "Home | Jordan Tucker",
@@ -8,8 +8,20 @@ useSeoMeta({
 	ogDescription: "Hello , my name is Jordan. I'm a student studying Informatics at the University of Washington. I enjoy creating websites, Discord bots, & more!",
 	ogUrl: "https://jortuck.com"
 });
-
-
+onMounted(()=>{
+	//@ts-ignore
+	window.turnstile.ready(function () {
+		// @ts-ignore
+		let turnstileId = window.turnstile.render(".cf-turnstile", {
+			sitekey: config.public.turnstileKey,
+			callback: function (token: string) {
+				console.log(`Challenge Success ${token}`);
+				},
+			"error-callback": function () {
+				}
+		});
+	});
+})
 </script>
 <template>
 	<div class="space-y-32">
@@ -112,6 +124,15 @@ useSeoMeta({
 													placeholder="Had a slight weapons malfunction but, uh everything’s perfectly all right now. We’re fine. We’re all fine here now. Thank you. How are you?"></textarea>
 							</label>
 						</div>
+						<div
+							class="flex flex-col content-center items-center space-y-3 md:flex-row md:space-x-3 md:space-y-0"
+						>
+							<div class="cf-turnstile"></div>
+							<p
+								class=" block text-center text-sm text-red-400 md:text-left"
+							>
+							</p>
+						</div>
 						<button type="submit" class="block bg-base-200 rounded-md p-3 text-white hover:bg-primary transition-colors duration-200 ease-in-out">
 							<i class="fa-solid fa-paper-plane"></i> Send
 						</button>
@@ -128,16 +149,16 @@ useSeoMeta({
 
 input {
 	@apply bg-base-200  active:bg-base-300 focus:bg-base-300 text-white focus:border-primary;
-	@apply block w-full mt-1 rounded-md border-2 border-transparent p-2 transition-colors duration-200 ease-in-out focus:outline-none;
+	@apply block w-full mt-1 rounded-md border-2 border-transparent p-2 transition-colors duration-200 ease-in-out focus:outline-none font-normal;
 }
 
 label {
-	@apply block w-full text-white;
+	@apply block w-full text-white font-bold;
 }
 
 textarea {
 	@apply bg-base-200 active:bg-base-300 focus:bg-base-300 text-white focus:border-primary;
-	@apply block w-full rounded-md border-2 border-transparent p-2 mt-1 shadow-xl  transition-colors duration-200 ease-in-out focus:outline-none;
+	@apply block w-full rounded-md border-2 border-transparent p-2 mt-1 transition-colors duration-200 ease-in-out focus:outline-none font-normal;
 }
 
 .small-heading {

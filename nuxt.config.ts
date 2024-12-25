@@ -2,6 +2,11 @@
 export default defineNuxtConfig({
 	devtools: { enabled: true },
 	modules: ["@nuxtjs/tailwindcss", "@nuxt/content"],
+	runtimeConfig:{
+		public:{
+			turnstileKey:''
+		}
+	},
 	routeRules:{
 		'/api/*':{prerender:false},
 		'/*':{prerender:true}
@@ -14,7 +19,10 @@ export default defineNuxtConfig({
 			link: [{ rel: "icon", href: "/favicon.webp" }],
 			htmlAttrs:{
 				lang: "en"
-			}
+			},
+			script: [
+				{src:"https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit"}
+			]
 		}
 	},
 
