@@ -1,6 +1,6 @@
 ---
 title: 'My Home Lab'
-description: 'An open source Discord bot for adding text to images.'
+description: 'A cost saving measure turned into a hobby.'
 image:
   src: 'https://jortuck.com/thumbnail/server.jpg'
   type: 'image/jpg'

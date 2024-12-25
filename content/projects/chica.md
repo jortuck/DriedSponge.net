@@ -1,6 +1,6 @@
 ---
 title: 'Chica Bot'
-description: 'An open source Discord bot for adding text to images.'
+description: 'An open source Discord bot for adding text to images and creating memes.'
 github: 'chica'
 image: 
   src: 'https://jortuck.com/thumbnail/chica.gif'

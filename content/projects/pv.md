@@ -1,6 +1,6 @@
 ---
 title: 'Paleoclimate Visualizer'
-description: 'An open-source web app for visualizing climate data reconstructions.'
+description: 'An open-source web app for visualizing climate data reconstructions, built during my time as an Undergraduate Research Assistant for the University of Washington School of Oceanography.'
 github: 'PaleoclimateVisualizer'
 image:
   src: 'https://jortuck.com/thumbnail/pv.png'
@@ -11,7 +11,7 @@ image:
 
 # Paleoclimate Visualizer
 
-:Tag{text="Svelte"} :Tag{text="Python"} :Tag{text="TailwindCSS"}
+:Tag{text="FastAPI"} :Tag{text="Python"} :Tag{text="Svelte"} :Tag{text="TypeScript"} :Tag{text="TailwindCSS"}
 :CenteredImage{src="/thumbnails/pv.png"}
 ::TagButtonGroup
 :TagButton{url="https://github.com/jortuck/PaleoClimateVisualizer" text="Source Code" icon="fa-brands fa-github"}
