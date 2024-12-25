@@ -7,11 +7,11 @@ export default defineNuxtConfig({
 			turnstileKey:''
 		}
 	},
-	routeRules:{
-		'/projects/*':{prerender:true},
-		'/projects':{prerender:true},
-		'/':{prerender:true}
-	},
+	// routeRules:{
+	// 	'/projects/*':{prerender:true},
+	// 	'/projects':{prerender:true},
+	// 	'/':{prerender:true}
+	// },
 	app: {
 		// pageTransition: {
 		// 	name: "page", mode: "out-in"
