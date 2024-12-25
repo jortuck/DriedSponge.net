@@ -7,10 +7,6 @@ export default defineNuxtConfig({
 			turnstileKey:''
 		}
 	},
-	routeRules:{
-		'/api/*':{prerender:false},
-		'/*':{prerender:true}
-	},
 	app: {
 		// pageTransition: {
 		// 	name: "page", mode: "out-in"
