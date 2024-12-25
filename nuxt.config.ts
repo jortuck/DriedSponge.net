@@ -2,7 +2,10 @@
 export default defineNuxtConfig({
 	devtools: { enabled: true },
 	modules: ["@nuxtjs/tailwindcss", "@nuxt/content"],
-
+	routeRules:{
+		'/api/*':{prerender:false},
+		'/*':{prerender:true}
+	},
 	app: {
 		// pageTransition: {
 		// 	name: "page", mode: "out-in"

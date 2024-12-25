@@ -15,7 +15,8 @@
     "@vueuse/core": "^10.11.1",
     "@vueuse/nuxt": "^10.11.1",
     "nuxt": "^3.14.1592",
-    "vue": "latest"
+    "vue": "latest",
+    "zod": "^3.24.1"
   },
   "devDependencies": {
     "@nuxtjs/tailwindcss": "^6.12.2",
