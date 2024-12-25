@@ -103,7 +103,7 @@ onMounted(()=>{
 				</ProseP>
 				<div class="flex flex-row items-center justify-center w-full">
 					<form class="my-6 rounded-md flex flex-col space-y-5 w-full">
-						<div class="flex flex-row w-full space-x-4">
+						<div class="flex md:flex-row flex-col w-full md:space-x-4 space-y-5 md:space-y-0">
 							<label
 							>Name*
 								<input name="name" type="text" placeholder="Chris P. Bacon" />
