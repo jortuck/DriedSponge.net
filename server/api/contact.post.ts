@@ -4,7 +4,7 @@ import { schema} from "#shared/ContactFormScheme";
 import { $fetch } from "ofetch";
 
 export default defineEventHandler(async (event) => {
-
+	let config = useRuntimeConfig();
 	let result = await readValidatedBody(event,body=>schema.safeParse(body));
 
 	if(!result.success){
@@ -15,8 +15,8 @@ export default defineEventHandler(async (event) => {
 	let captcha = await $fetch("https://challenges.cloudflare.com/turnstile/v0/siteverify",{
 		"method": "POST",
 		body: {
-			secret: useRuntimeConfig().turnstileSecret,
-			response: result.data["cftoken"],
+			secret: config.turnstileSecret,
+			response: result.data.cftoken,
 		},
 	})
 	if(!captcha.success){
