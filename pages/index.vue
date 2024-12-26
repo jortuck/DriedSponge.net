@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import Shield from "~/components/Shield.vue";
-import { ZodSchema } from "zod";
+import { ZodError, type ZodErrorMap, type ZodIssue, ZodSchema } from "zod";
 import { schema } from "~/shared/ContactFormScheme";
+import { $fetch, FetchError } from "ofetch";
 const config = useRuntimeConfig();
 useSeoMeta({
 	title: "Home | Jordan Tucker",
@@ -10,7 +11,7 @@ useSeoMeta({
 	ogDescription: "Hello , my name is Jordan. I'm a student studying Informatics at the University of Washington. I enjoy creating websites, Discord bots, & more!",
 	ogUrl: "https://jortuck.com"
 });
-// window.turnstile.reset("cf-chl-widget-xvjj6")
+
 let contactForm = ref({
 	name:"",
 	email:"",
@@ -44,6 +45,7 @@ onMounted(()=>{
 				 contactForm.value.cftoken = token;
 				},
 			"error-callback": function () {
+					errors.value.cftoken = "Unfortunately, it looks like you have been detected as a bot. Please refresh the page.";
 				}
 		});
 	});
@@ -67,6 +69,28 @@ const isErrors = computed(()=>{
 	})
 	return result;
 })
+async function handleSubmit(){
+	await $fetch("/api/contact",{method:"POST", body:contactForm.value,
+	}).catch((error: FetchError)=>{
+			console.log(error.status);
+			if(error.status == 400){
+				console.log(error.data)
+				error.data.forEach((element: ZodIssue)=>{
+					errors.value[element.path[0] as keyof Errors] = element.message;
+				})
+				// @ts-ignore
+				window.turnstile.reset(turnstileId);
+			}else if(error.status == 403){
+				errors.value["cftoken" as keyof Errors] = error.data.message;
+			}
+
+	})
+	.then((response: Response)=>{
+		if(response){
+
+		}
+	})
+}
 </script>
 <template>
 	<div class="space-y-32">
@@ -140,11 +164,11 @@ const isErrors = computed(()=>{
 				</ProseH2>
 				<ProseP>
 					Fill out this form to send a message directly to my inbox! No matter what you have to say, I would love to
-					hear from you! Feedback on this website is also much appreciated. You can also reach me on Discord if that's
-					your preferred method of communication, my username is <strong>jortuck</strong>.
+					hear from you! Feedback on this website is also much appreciated. You can also reach me on LinkedIn if that's
+					your preferred method of communication, my username is <ProseA href="https://linkedin.com/in/jortuck" target="_blank">jortuck</ProseA>.
 				</ProseP>
 				<div class="flex flex-row items-center justify-center w-full">
-					<form @submit.prevent class="my-6 rounded-md flex flex-col space-y-5 w-full">
+					<form @submit.prevent="handleSubmit" class="my-6 rounded-md flex flex-col space-y-5 w-full">
 						<div class="flex md:flex-row flex-col w-full md:space-x-4 space-y-5 md:space-y-0">
 							<label
 							>Name*
@@ -183,10 +207,10 @@ const isErrors = computed(()=>{
 							class="flex flex-col content-center items-center space-y-3 md:flex-row md:space-x-3 md:space-y-0"
 						>
 							<div class="cf-turnstile"></div>
-							<span class="error font-bold">Test Error</span>
+							<span class="error font-bold">{{errors["cftoken"]}}</span>
 						</div>
 						<button :disabled="isErrors" type="submit" class="submit-btn">
-							<i class="fa-solid fa-paper-plane"></i> Send {{isErrors}}
+							<i class="fa-solid fa-paper-plane"></i> Send
 						</button>
 					</form>
 				</div>

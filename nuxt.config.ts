@@ -5,7 +5,8 @@ export default defineNuxtConfig({
 	runtimeConfig:{
 		public:{
 			turnstileKey:''
-		}
+		},
+		turnstileSecret:''
 	},
 	// routeRules:{
 	// 	'/projects/*':{prerender:true},
