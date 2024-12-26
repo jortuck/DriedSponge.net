@@ -12,6 +12,7 @@ useSeoMeta({
 	ogUrl: "https://jortuck.com"
 });
 
+
 let contactForm = ref({
 	name:"",
 	email:"",
