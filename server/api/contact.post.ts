@@ -33,11 +33,11 @@ export default defineEventHandler(async (event) => {
 		}
 	})
 	const info = await transporter.sendMail({
-		from: '"No Reply" <noreply@driedsponge.net>', // sender address
-		to: "jordan@jortuck.com", // list of receivers
-		subject: "Hello", // Subject line
-		text: "Hello world?", // plain text body
-		html: "<b>Hello world?</b>", // html body
+		from: '"Contact Form" <noreply@jortuck.com>', // sender address
+		replyTo:`"${result.data.name}" <${result.data.email}>"`, // reply ro address
+		to: useRuntimeConfig().mailDestination, // list of receivers
+		subject: result.data.subject, // Subject line
+		text: result.data.message, // plain text body
 	});
 	return {success:true,message:"Your message has been sent!"}
 });

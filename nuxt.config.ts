@@ -10,6 +10,7 @@ export default defineNuxtConfig({
 		mailHost:'',
 		mailUser:'',
 		mailPassword:'',
+		mailDestination:'',
 	},
 	// routeRules:{
 	// 	'/projects/*':{prerender:true},
