@@ -80,7 +80,7 @@ async function handleSubmit(){
 					errors.value[element.path[0] as keyof Errors] = element.message;
 				})
 				// @ts-ignore
-				window.turnstile.reset(turnstileId);
+				// window.turnstile.reset(turnstileId);
 			}else if(error.status == 403){
 				errors.value["cftoken" as keyof Errors] = error.data.message;
 			}
