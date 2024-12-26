@@ -2,7 +2,7 @@ import { z } from "zod";
 import { schema} from "#shared/ContactFormScheme";
 import { $fetch } from "ofetch";
 import { SendEmailCommand, SES, SESClient } from "@aws-sdk/client-ses";
-
+import { AwsClient } from 'aws4fetch'
 export default defineEventHandler(async (event) => {
 	let config = useRuntimeConfig(event);
 	let result = await readValidatedBody(event,body=>schema.safeParse(body));
@@ -61,32 +61,45 @@ export default defineEventHandler(async (event) => {
 			],
 		});
 	};
-	let sesClient = new SESClient({
-		region:"us-east-1",
-		credentials:{
-			accessKeyId:config.mailUser,
-			secretAccessKey:config.mailPassword
-		}
+	const aws: AwsClient = new AwsClient({
+		accessKeyId:config.mailUser,
+		secretAccessKey:config.mailPassword,
 	})
 
-	const run = async () => {
-		const sendEmailCommand = createSendEmailCommand(
-			"jordan@jortuck.com",
-			"noreply@jortuck.com",
-		);
+	let email2= await aws.fetch("https://email.us-east-1.amazonaws.com?"+new URLSearchParams({
+		'Action': "SendEmail",
+		'Source':"noreply@jortuck.com",
+		'Destination.ToAddresses.member.1':config.mailDestination,
+		'Message.Subject.Data':"Test Email",
+		'Message.Body.Text.Data':"Test Message"
+	}),{
+		method: "GET"
+	})
+	// let sesClient = new SESClient({
+	// 	region:"us-east-1",
+	// 	credentials:{
+	// 		accessKeyId:config.mailUser,
+	// 		secretAccessKey:config.mailPassword
+	// 	}
+	// })
 
-		try {
-			return await sesClient.send(sendEmailCommand);
-		} catch (caught) {
-			if (caught instanceof Error && caught.name === "MessageRejected") {
-				/** @type { import('@aws-sdk/client-ses').MessageRejected} */
-				const messageRejectedError = caught;
-				return messageRejectedError;
-			}
-			throw caught;
-		}
-	};
-	await run();
+	// const run = async () => {
+	// 	const sendEmailCommand = createSendEmailCommand(
+	// 		"jordan@jortuck.com",
+	// 		"noreply@jortuck.com",
+	// 	);
+	// 	try {
+	// 		return await sesClient.send(sendEmailCommand);
+	// 	} catch (caught) {
+	// 		if (caught instanceof Error && caught.name === "MessageRejected") {
+	// 			/** @type { import('@aws-sdk/client-ses').MessageRejected} */
+	// 			const messageRejectedError = caught;
+	// 			return messageRejectedError;
+	// 		}
+	// 		throw caught;
+	// 	}
+	// };
+	// await run();
 	// const transporter = createTransport({
 	// 	host: useRuntimeConfig().mailHost,
 	// 	port: 465,
