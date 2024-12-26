@@ -6,7 +6,10 @@ export default defineNuxtConfig({
 		public:{
 			turnstileKey:''
 		},
-		turnstileSecret:''
+		turnstileSecret:'',
+		mailHost:'',
+		mailUser:'',
+		mailPassword:'',
 	},
 	// routeRules:{
 	// 	'/projects/*':{prerender:true},

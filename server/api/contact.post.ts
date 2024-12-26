@@ -23,6 +23,21 @@ export default defineEventHandler(async (event) => {
 		setResponseStatus(event, 403);
 		return {message:"Unfortunately my system has detected you as a bot. Please refresh your page or reach out via LinkedIn."}
 	}
-
+	const transporter = createTransport({
+		host: useRuntimeConfig().mailHost,
+		port: 465,
+		secure: true,
+		auth: {
+			user: useRuntimeConfig().mailUser,
+			pass: useRuntimeConfig().mailPassword,
+		}
+	})
+	const info = await transporter.sendMail({
+		from: '"No Reply" <noreply@driedsponge.net>', // sender address
+		to: "jordan@jortuck.com", // list of receivers
+		subject: "Hello", // Subject line
+		text: "Hello world?", // plain text body
+		html: "<b>Hello world?</b>", // html body
+	});
 	return {success:true,message:"Your message has been sent!"}
 });
