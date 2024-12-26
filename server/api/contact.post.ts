@@ -4,7 +4,7 @@ import { schema} from "#shared/ContactFormScheme";
 import { $fetch } from "ofetch";
 
 export default defineEventHandler(async (event) => {
-	let config = useRuntimeConfig();
+	let config = useRuntimeConfig(event);
 	let result = await readValidatedBody(event,body=>schema.safeParse(body));
 
 	if(!result.success){
