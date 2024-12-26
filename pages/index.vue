@@ -155,7 +155,7 @@ const isErrors = computed(()=>{
 							</label>
 							<label
 							>Email*
-								<input v-model="contactForm.email" name="email" type="text" placeholder="email@example.com" :class='{error:errors["email"]}'
+								<input v-model="contactForm.email" name="email" type="email" placeholder="email@example.com" :class='{error:errors["email"]}'
 											 maxlength="50"
 											 @focusout="(()=>{validate(schema.pick({email:true}),{email:contactForm.email},'email')})"/>
 								<span class="error">{{errors["email"]}}</span>
