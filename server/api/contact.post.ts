@@ -21,7 +21,7 @@ export default defineEventHandler(async (event) => {
 	})
 	if(!captcha.success){
 		setResponseStatus(event, 403);
-		console.log(captcha)
+		console.log(captcha,config.turnstileSecret)
 		return {message:"Unfortunately my system has detected you as a bot. Please refresh your page or reach out via LinkedIn."}
 	}
 	// const transporter = createTransport({
