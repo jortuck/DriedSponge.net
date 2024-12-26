@@ -1,11 +1,7 @@
 import { z } from "zod";
-const schema = z.object({
-	name: z.string().nonempty(),
-	email: z.string().email().nonempty(),
-	subject: z.string().nonempty(),
-	message: z.string().nonempty(),
-	cftoken: z.string().nonempty(),
-})
+
+import { schema} from "#shared/ContactFormScheme";
+
 export default defineEventHandler(async (event) => {
 
 	let result = await readValidatedBody(event,body=>schema.safeParse(body));

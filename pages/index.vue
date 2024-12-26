@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import Shield from "~/components/Shield.vue";
-import { z, ZodSchema } from "zod";
+import { ZodSchema } from "zod";
+import { schema } from "~/shared/ContactFormScheme";
+
 const config = useRuntimeConfig();
 useSeoMeta({
 	title: "Home | Jordan Tucker",
@@ -9,13 +11,6 @@ useSeoMeta({
 	ogDescription: "Hello , my name is Jordan. I'm a student studying Informatics at the University of Washington. I enjoy creating websites, Discord bots, & more!",
 	ogUrl: "https://jortuck.com"
 });
-const schema = z.object({
-	name: z.string().nonempty("Name must contain at least 1 character.").max(50),
-	email: z.string().email().nonempty().max(50),
-	subject: z.string().nonempty("Subject must contain at least 1 character.").max(50),
-	message: z.string().nonempty("Message must contain at least 1 character.").max(1000),
-	cftoken: z.string().nonempty(),
-})
 // window.turnstile.reset("cf-chl-widget-xvjj6")
 let contactForm = ref({
 	name:"",
@@ -33,6 +28,7 @@ let errors: any = ref({
 })
 let turnstileId = ref("");
 onMounted(()=>{
+	console.log("test")
 	//@ts-ignore
 	window.turnstile.ready(function () {
 		// @ts-ignore
