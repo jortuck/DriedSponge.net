@@ -2,7 +2,8 @@
 import Shield from "~/components/Shield.vue";
 import { ZodSchema } from "zod";
 import { schema } from "~/shared/ContactFormScheme";
-
+import { useVibrate } from "@vueuse/core";
+const { vibrate, stop, isSupported } = useVibrate({ pattern: [300, 100, 300] })
 const config = useRuntimeConfig();
 useSeoMeta({
 	title: "Home | Jordan Tucker",
@@ -19,7 +20,14 @@ let contactForm = ref({
 	message:"",
 	cftoken:"",
 })
-let errors: any = ref({
+type Errors = {
+	name: string;
+	email: string;
+	subject: string;
+	message: string;
+	cftoken: string;
+}
+let errors = ref<Errors>({
 	name:"",
 	email:"",
 	subject:"",
@@ -28,7 +36,7 @@ let errors: any = ref({
 })
 let turnstileId = ref("");
 onMounted(()=>{
-	console.log("test")
+	vibrate()
 	//@ts-ignore
 	window.turnstile.ready(function () {
 		// @ts-ignore
@@ -43,7 +51,7 @@ onMounted(()=>{
 		});
 	});
 })
-function validate(schema:ZodSchema, data:object, field:string) {
+function validate(schema:ZodSchema, data:object, field: keyof Errors) {
 	let result = schema.safeParse(data);
 	if(!result.success){
 		errors.value[field] = result.error.issues[0].message;
@@ -53,6 +61,15 @@ function validate(schema:ZodSchema, data:object, field:string) {
 		errors.value[field] = ""
 	}
 }
+const isErrors = computed(()=>{
+	let result : boolean = false;
+	Object.keys(errors.value).forEach((key:string) => {
+		if(errors.value[key as keyof Errors]  != ""){
+			result = true;
+		}
+	})
+	return result;
+})
 </script>
 <template>
 	<div class="space-y-32">
@@ -112,10 +129,7 @@ function validate(schema:ZodSchema, data:object, field:string) {
 					</NuxtLink>
 					as a research assistant, building an interactive web application for the visualization
 					of paleocliamte data reconstructions. You can check it out at
-					<NuxtLink class="text-primary hover:underline" to="https://pv.jortuck.com" external target="_blank">
-						https://pv.jortuck.com
-					</NuxtLink>
-					.
+					<NuxtLink class="text-primary hover:underline" to="https://pv.jortuck.com" external target="_blank">https://pv.jortuck.com</NuxtLink>.
 				</ProseP>
 			</div>
 			<div>
@@ -136,7 +150,7 @@ function validate(schema:ZodSchema, data:object, field:string) {
 					<form @submit.prevent class="my-6 rounded-md flex flex-col space-y-5 w-full">
 						<div class="flex md:flex-row flex-col w-full md:space-x-4 space-y-5 md:space-y-0">
 							<label
-							>Name* {{contactForm.name}}
+							>Name*
 								<input v-model="contactForm.name" name="name" type="text" placeholder="Chris P. Bacon" :class='{error:errors["name"]}'
 											 maxlength="50"
 											 @focusout="(()=>{validate(schema.pick({name:true}),{name:contactForm.name},'name')})" />
@@ -178,7 +192,7 @@ function validate(schema:ZodSchema, data:object, field:string) {
 							</p>
 						</div>
 						<button type="submit" class="block bg-base-200 rounded-md p-3 text-white hover:bg-primary transition-colors duration-200 ease-in-out">
-							<i class="fa-solid fa-paper-plane"></i> Send
+							<i class="fa-solid fa-paper-plane"></i> Send {{isErrors}}
 						</button>
 					</form>
 				</div>
