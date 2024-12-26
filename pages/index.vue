@@ -183,12 +183,9 @@ const isErrors = computed(()=>{
 							class="flex flex-col content-center items-center space-y-3 md:flex-row md:space-x-3 md:space-y-0"
 						>
 							<div class="cf-turnstile"></div>
-							<p
-								class=" block text-center text-sm text-red-400 md:text-left"
-							>
-							</p>
+							<span class="error font-bold">Test Error</span>
 						</div>
-						<button type="submit" class="block bg-base-200 rounded-md p-3 text-white hover:bg-primary transition-colors duration-200 ease-in-out">
+						<button :disabled="isErrors" type="submit" class="submit-btn">
 							<i class="fa-solid fa-paper-plane"></i> Send {{isErrors}}
 						</button>
 					</form>
@@ -215,9 +212,15 @@ input.error, textarea.error {
 	@apply border-2 border-red-400;
 }
 label > span.error{
-	@apply font-normal text-sm text-red-400;
+	@apply font-normal text-sm;
 }
-
+span.error{
+	@apply text-red-400;
+}
+.submit-btn{
+	@apply text-white hover:bg-primary disabled:hover:bg-base-200;
+	@apply block bg-base-200 rounded-md p-3 transition-colors duration-200 ease-in-out disabled:hover:cursor-not-allowed;
+}
 textarea {
 	@apply bg-base-200 active:bg-base-300 focus:bg-base-300 text-white focus:border-primary;
 	@apply block w-full rounded-md border-2 border-transparent p-2 mt-1 transition-colors duration-200 ease-in-out focus:outline-none font-normal;
