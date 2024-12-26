@@ -10,6 +10,7 @@ export default defineNuxtConfig({
 		awsAccessKeyId:'',
 		awsSecretAccessKey:'',
 		mailDestination:'',
+		discordWebhook:''
 	},
 	// routeRules:{
 	// 	'/projects/*':{prerender:true},

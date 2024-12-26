@@ -28,22 +28,38 @@ export default defineEventHandler(async (event) => {
 		accessKeyId:config.awsAccessKeyId,
 		secretAccessKey:config.awsSecretAccessKey,
 	})
-	console.log("https://email.us-east-1.amazonaws.com?"+new URLSearchParams({
-		'Action': "SendEmail",
-		'Source':"Contact Form <noreply@jortuck.com>",
-		'Destination.ToAddresses.member.1':config.mailDestination,
-		'Message.Subject.Data':result.data.subject,
-		'Message.Body.Text.Data':result.data.message
-	}))
-	let email2= await aws.fetch("https://email.us-east-1.amazonaws.com?"+new URLSearchParams({
-		'Action': "SendEmail",
-		'Source':"Contact Form <noreply@jortuck.com>",
-		'Destination.ToAddresses.member.1':config.mailDestination,
-		'Message.Subject.Data':`Message From ${result.data.name}: ${result.data.subject}`,
-		'Message.Body.Text.Data':result.data.message,
-		'ReplyToAddresses.member.1':`${result.data.name} <${result.data.email}>`,
-	}),{
-		method: "GET"
+	await $fetch(config.discordWebhook,{
+		method: "POST",
+		body: {
+			embeds:[{
+				color:"6463980",
+				title:`Contact Form Submission`,
+				timestamp:new Date().toISOString(),
+				description: `## ${result.data.subject}\n${result.data.message}`,
+				fields:[
+					{
+						name:"Sender Name",
+						value:result.data.name,
+						inline:true,
+					},
+					{
+						name:"Sender Email",
+						value:result.data.email,
+						inline:true,
+					}
+				]
+			}]
+		}
 	})
+	// let email2= await aws.fetch("https://email.us-east-1.amazonaws.com?"+new URLSearchParams({
+	// 	'Action': "SendEmail",
+	// 	'Source':"Contact Form <noreply@jortuck.com>",
+	// 	'Destination.ToAddresses.member.1':config.mailDestination,
+	// 	'Message.Subject.Data':`Message From ${result.data.name}: ${result.data.subject}`,
+	// 	'Message.Body.Text.Data':result.data.message,
+	// 	'ReplyToAddresses.member.1':`${result.data.name} <${result.data.email}>`,
+	// }),{
+	// 	method: "GET"
+	// })
 	return {success:true,message:"Your message has been sent!"}
 });
