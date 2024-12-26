@@ -23,6 +23,8 @@ export default defineEventHandler(async (event) => {
 		console.log(captcha)
 		return {message:"Unfortunately my system has detected you as a bot. Please refresh your page or reach out via LinkedIn."}
 	}
+
+
 	// const transporter = createTransport({
 	// 	host: useRuntimeConfig().mailHost,
 	// 	port: 465,
