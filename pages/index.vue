@@ -2,8 +2,6 @@
 import Shield from "~/components/Shield.vue";
 import { ZodSchema } from "zod";
 import { schema } from "~/shared/ContactFormScheme";
-import { useVibrate } from "@vueuse/core";
-const { vibrate, stop, isSupported } = useVibrate({ pattern: [300, 100, 300] })
 const config = useRuntimeConfig();
 useSeoMeta({
 	title: "Home | Jordan Tucker",
@@ -36,7 +34,6 @@ let errors = ref<Errors>({
 })
 let turnstileId = ref("");
 onMounted(()=>{
-	vibrate()
 	//@ts-ignore
 	window.turnstile.ready(function () {
 		// @ts-ignore
