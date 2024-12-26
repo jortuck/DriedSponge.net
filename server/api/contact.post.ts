@@ -28,8 +28,9 @@ export default defineEventHandler(async (event) => {
 		accessKeyId:config.awsAccessKeyId,
 		secretAccessKey:config.awsSecretAccessKey,
 	})
-	await $fetch(config.discordWebhook,{
+	let discord = await $fetch.raw(config.discordWebhook,{
 		method: "POST",
+		ignoreResponseError:true,
 		body: {
 			embeds:[{
 				color:"6463980",
@@ -51,15 +52,20 @@ export default defineEventHandler(async (event) => {
 			}]
 		}
 	})
-	// let email2= await aws.fetch("https://email.us-east-1.amazonaws.com?"+new URLSearchParams({
-	// 	'Action': "SendEmail",
-	// 	'Source':"Contact Form <noreply@jortuck.com>",
-	// 	'Destination.ToAddresses.member.1':config.mailDestination,
-	// 	'Message.Subject.Data':`Message From ${result.data.name}: ${result.data.subject}`,
-	// 	'Message.Body.Text.Data':result.data.message,
-	// 	'ReplyToAddresses.member.1':`${result.data.name} <${result.data.email}>`,
-	// }),{
-	// 	method: "GET"
-	// })
+	let ses= await aws.fetch("https://email.us-east-1.amazonaws.com?"+new URLSearchParams({
+		'Action': "SendEmailF",
+		'Source':"Contact Form <noreply@jortuck.com>",
+		'Destination.ToAddresses.member.1':config.mailDestination,
+		'Message.Subject.Data':`Message From ${result.data.name}: ${result.data.subject}`,
+		'Message.Body.Text.Data':result.data.message,
+		'ReplyToAddresses.member.1':`${result.data.name} <${result.data.email}>`,
+	}),{
+		method: "GET"
+	})
+	if(!ses.ok && !discord.ok){
+		setResponseStatus(event, 503);
+		return {success:false,message:"Unfortunately there is an internal error on my end. Please reach out via LinkedIn or try again later."}
+	}
+
 	return {success:true,message:"Your message has been sent!"}
 });
