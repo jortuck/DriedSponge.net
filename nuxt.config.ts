@@ -7,9 +7,8 @@ export default defineNuxtConfig({
 			turnstileKey:''
 		},
 		turnstileSecret:'',
-		mailHost:'',
-		mailUser:'',
-		mailPassword:'',
+		awsAccessKeyId:'',
+		awsSecretAccessKey:'',
 		mailDestination:'',
 	},
 	// routeRules:{
