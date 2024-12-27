@@ -140,18 +140,18 @@ async function handleSubmit(){
 		<section class="space-y-10">
 			<div class="space-y-8">
 				<ProseH2>
-					About Me
+					About
 				</ProseH2>
 				<ProseP>
-					Hi my name is Jordan, I'm a student studying
+					My name is Jordan, I'm a student studying
 					<NuxtLink class="text-primary hover:underline" external target="_blank"
 										to="https://ischool.uw.edu/programs/informatics">Informatics
 					</NuxtLink>
 					at the
 					<NuxtLink to="https://washington.edu" external target="_blank">University of
-						Washington
+						Washington.
 					</NuxtLink>
-					. I have been teaching myself
+					I have been teaching myself
 					to program since 2019, and have focused my efforts in web development, server-side applications, and data
 					science applications. My most recent project involved working at the University of Washington's
 					<NuxtLink class="text-primary hover:underline" to="https://ocean.washington.edu" external target="_blank">
@@ -163,10 +163,18 @@ async function handleSubmit(){
 					<NuxtLink class="text-primary hover:underline" to="https://pv.jortuck.com" external target="_blank">https://pv.jortuck.com</NuxtLink>.
 				</ProseP>
 			</div>
-			<div>
+			<div class="space-y-4">
 				<ProseH2>
-					Featured Projects
+					Experience
 				</ProseH2>
+				<ProseH3>Work</ProseH3>
+				<div class="flex flex-row">
+					<div>
+
+					</div>
+				</div>
+				<ProseH3>Education</ProseH3>
+				<ProseH3>Projects</ProseH3>
 			</div>
 			<div class="space-y-4">
 				<ProseH2 id="contact">
@@ -174,7 +182,7 @@ async function handleSubmit(){
 				</ProseH2>
 				<ProseP>
 					Fill out this form to send a message directly to my inbox! No matter what you have to say, I would love to
-					hear from you! Feedback on this website is also much appreciated. You can also reach me on LinkedIn if that's
+					hear from you! You can also reach me on LinkedIn if that's
 					your preferred method of communication, my username is <ProseA href="https://linkedin.com/in/jortuck" target="_blank">jortuck</ProseA>.
 				</ProseP>
 				<ProseP v-if="formError">
