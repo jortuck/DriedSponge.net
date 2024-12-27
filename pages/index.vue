@@ -172,7 +172,7 @@ async function handleSubmit(){
 			</div>
 			<div class="space-y-4">
 				<ProseH2 id="contact">
-					Contact {{contactForm.cftoken}}
+					Contact
 				</ProseH2>
 				<ProseP>
 					Fill out this form to send a message directly to my inbox! No matter what you have to say, I would love to
