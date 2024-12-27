@@ -103,7 +103,7 @@ async function handleSubmit(){
 }
 </script>
 <template>
-	<div class="space-y-32">
+	<div class="space-y-20">
 		<section
 			class="mt-20 md:mt-28 lg:mt-40"
 		>
@@ -137,7 +137,7 @@ async function handleSubmit(){
 				</div>
 			</section>
 		</section>
-		<section class="mb-96 space-y-10">
+		<section class="space-y-10">
 			<div class="space-y-8">
 				<ProseH2>
 					About Me
