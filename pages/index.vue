@@ -37,6 +37,7 @@ let errors = ref<Errors>({
 let turnstileId = ref("");
 let formError = ref("");
 let formSuccess = ref(false);
+let loading = ref(false);
 onMounted(()=>{
 	//@ts-ignore
 	window.turnstile.ready(function () {
@@ -73,7 +74,11 @@ const isErrors = computed(()=>{
 	return result;
 })
 async function handleSubmit(){
+	loading.value = true;
 	let response = await $fetch("/api/contact",{method:"POST", body:contactForm.value,
+		onResponse:()=>{
+			loading.value = false
+		}
 	}).catch((error: FetchError)=>{
 			console.log(error.status);
 			if(error.status == 400){
@@ -178,7 +183,7 @@ async function handleSubmit(){
 					<span class="text-red-400 font-bold">{{formError}}</span>
 				</ProseP>
 				<div class="flex flex-row items-center justify-center w-full">
-					<form @submit.prevent="handleSubmit" class="relative my-6 rounded-md flex flex-col space-y-5 w-full">
+					<form @submit.prevent="handleSubmit" class="relative my-6 rounded-md flex flex-col space-y-5 w-full" :class="{'animate-pulse':loading}">
 						<Transition>
 						<div v-if="formSuccess" class="absolute font-bold h-full w-full bg-base-100 border-2 border-base-300 bg-opacity-75 backdrop-blur-2xl rounded-md flex flex-col space-y-10 items-center justify-center">
 							<h1 class="text-green-500 text-center text-5xl">Success!</h1>
@@ -197,6 +202,7 @@ async function handleSubmit(){
 							>Name*
 								<input v-model="contactForm.name" name="name" type="text" placeholder="Chris P. Bacon" :class='{error:errors["name"]}'
 											 maxlength="50"
+											 :disabled="loading"
 											 @focusout="(()=>{validate(schema.pick({name:true}),{name:contactForm.name},'name')})" />
 								<span class="error">{{errors["name"]}}</span>
 							</label>
@@ -204,6 +210,7 @@ async function handleSubmit(){
 							>Email*
 								<input v-model="contactForm.email" name="email" type="email" placeholder="email@example.com" :class='{error:errors["email"]}'
 											 maxlength="50"
+											 :disabled="loading"
 											 @focusout="(()=>{validate(schema.pick({email:true}),{email:contactForm.email},'email')})"/>
 								<span class="error">{{errors["email"]}}</span>
 							</label>
@@ -213,12 +220,14 @@ async function handleSubmit(){
 							>Subject (required)
 								<input v-model="contactForm.subject" placeholder="A nice message." name="subject" type="text" :class='{error:errors["subject"]}'
 											 maxlength="50"
+											 :disabled="loading"
 											 @focusout="(()=>{validate(schema.pick({subject:true}),{subject:contactForm.subject},'subject')})"/>
 							<span class="error">{{errors["subject"]}}</span>
 							</label>
 							<label
 							>Message*
 								<textarea v-model="contactForm.message" name="message"
+													:disabled="loading"
 													rows="4"
 													maxlength="1000"
 													@focusout="(()=>{validate(schema.pick({message:true}),{message:contactForm.message},'message')})" :class='{error:errors["message"]}'
@@ -232,7 +241,7 @@ async function handleSubmit(){
 							<div class="cf-turnstile"></div>
 							<span class="error font-bold">{{errors["cftoken"]}}</span>
 						</div>
-						<button :disabled="isErrors" type="submit" class="submit-btn">
+						<button :disabled="isErrors || loading" type="submit" class="submit-btn">
 							<i class="fa-solid fa-paper-plane"></i> Send
 						</button>
 					</form>

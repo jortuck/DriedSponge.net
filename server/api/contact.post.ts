@@ -7,7 +7,7 @@ export default defineEventHandler(async (event) => {
 	let result = await readValidatedBody(event,body=>schema.safeParse(body));
 
 	if(!result.success){
-		setResponseStatus(event, 500);
+		setResponseStatus(event, 400);
 		return result.error.issues
 	}
 
@@ -53,7 +53,7 @@ export default defineEventHandler(async (event) => {
 		}
 	})
 	let ses= await aws.fetch("https://email.us-east-1.amazonaws.com?"+new URLSearchParams({
-		'Action': "SendEmailF",
+		'Action': "SendEmail",
 		'Source':"Contact Form <noreply@jortuck.com>",
 		'Destination.ToAddresses.member.1':config.mailDestination,
 		'Message.Subject.Data':`Message From ${result.data.name}: ${result.data.subject}`,
