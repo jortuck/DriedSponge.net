@@ -80,9 +80,7 @@ async function handleSubmit(){
 			loading.value = false
 		}
 	}).catch((error: FetchError)=>{
-			console.log(error.status);
 			if(error.status == 400){
-				console.log(error.data)
 				error.data.forEach((element: ZodIssue)=>{
 					errors.value[element.path[0] as keyof Errors] = element.message;
 				})
