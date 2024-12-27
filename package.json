@@ -18,11 +18,13 @@
     "aws4fetch": "^1.0.20",
     "nodemailer": "^6.9.16",
     "nuxt": "^3.15.0",
+    "prettier-plugin-tailwindcss": "^0.6.9",
     "vue": "latest",
     "zod": "^3.24.1"
   },
   "devDependencies": {
     "@nuxtjs/tailwindcss": "^6.12.2",
+    "prettier": "3.4.2",
     "tailwindcss": "^3.4.17"
   }
 }
