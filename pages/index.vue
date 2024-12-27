@@ -35,6 +35,8 @@ let errors = ref<Errors>({
 	cftoken:"",
 })
 let turnstileId = ref("");
+let formError = ref("");
+let formSuccess = ref(false);
 onMounted(()=>{
 	//@ts-ignore
 	window.turnstile.ready(function () {
@@ -71,7 +73,7 @@ const isErrors = computed(()=>{
 	return result;
 })
 async function handleSubmit(){
-	await $fetch("/api/contact",{method:"POST", body:contactForm.value,
+	let response = await $fetch("/api/contact",{method:"POST", body:contactForm.value,
 	}).catch((error: FetchError)=>{
 			console.log(error.status);
 			if(error.status == 400){
@@ -79,18 +81,22 @@ async function handleSubmit(){
 				error.data.forEach((element: ZodIssue)=>{
 					errors.value[element.path[0] as keyof Errors] = element.message;
 				})
-				// @ts-ignore
-				// window.turnstile.reset(turnstileId);
 			}else if(error.status == 403){
 				errors.value["cftoken" as keyof Errors] = error.data.message;
+			}else{
+				formError.value = "An internal error occured on my end. Please reach out using LinkedIn or try again later."
+				// @ts-ignore
+				window.turnstile.reset(turnstileId)
 			}
-
 	})
-	.then((response: Response)=>{
-		if(response){
-
+	if(response){
+		if(response.success){
+			formSuccess.value = true;
+			formError.value = ""
+			// @ts-ignore
+			window.turnstile.reset(turnstileId)
 		}
-	})
+	}
 }
 </script>
 <template>
@@ -161,15 +167,31 @@ async function handleSubmit(){
 			</div>
 			<div class="space-y-4">
 				<ProseH2 id="contact">
-					Contact
+					Contact {{contactForm.cftoken}}
 				</ProseH2>
 				<ProseP>
 					Fill out this form to send a message directly to my inbox! No matter what you have to say, I would love to
 					hear from you! Feedback on this website is also much appreciated. You can also reach me on LinkedIn if that's
 					your preferred method of communication, my username is <ProseA href="https://linkedin.com/in/jortuck" target="_blank">jortuck</ProseA>.
 				</ProseP>
+				<ProseP v-if="formError">
+					<span class="text-red-400 font-bold">{{formError}}</span>
+				</ProseP>
 				<div class="flex flex-row items-center justify-center w-full">
-					<form @submit.prevent="handleSubmit" class="my-6 rounded-md flex flex-col space-y-5 w-full">
+					<form @submit.prevent="handleSubmit" class="relative my-6 rounded-md flex flex-col space-y-5 w-full">
+						<Transition>
+						<div v-if="formSuccess" class="absolute font-bold h-full w-full bg-base-100 border-2 border-base-300 bg-opacity-75 backdrop-blur-2xl rounded-md flex flex-col space-y-10 items-center justify-center">
+							<h1 class="text-green-500 text-center text-5xl">Success!</h1>
+							<ProseP>Your message was successfully sent. I will do my best to get back to you within 24 hours.</ProseP>
+							<button
+								@click="()=>{
+									formSuccess = false
+									contactForm = {name: '', email: '', subject: '', message: '', cftoken: contactForm.cftoken}
+								}"
+								type="reset"
+								class="text-white hover:bg-base-300 bg-base-200 rounded-md p-3 transition-colors duration-200">Submit Another Response</button>
+						</div>
+						</Transition>
 						<div class="flex md:flex-row flex-col w-full md:space-x-4 space-y-5 md:space-y-0">
 							<label
 							>Name*
@@ -220,6 +242,15 @@ async function handleSubmit(){
 	</div>
 </template>
 <style scoped lang="postcss">
+.v-enter-active,
+.v-leave-active {
+	transition: opacity 0.5s ease;
+}
+
+.v-enter-from,
+.v-leave-to {
+	opacity: 0;
+}
 .social-link {
 	@apply transition-colors duration-200 ease-in-out hover:text-white;
 }

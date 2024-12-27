@@ -7,7 +7,7 @@ export default defineEventHandler(async (event) => {
 	let result = await readValidatedBody(event,body=>schema.safeParse(body));
 
 	if(!result.success){
-		setResponseStatus(event, 400);
+		setResponseStatus(event, 500);
 		return result.error.issues
 	}
 
