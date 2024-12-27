@@ -8,7 +8,8 @@ export default {
 				"base-150": "#181818",
 				"base-200": "#2B323B",
 				"base-300": "#444C56",
-				husky: "#4b2e83"
+				husky: "#4b2e83",
+				husky2: "#32006e"
 			}
 		}
 	},

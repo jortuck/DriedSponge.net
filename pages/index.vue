@@ -212,19 +212,28 @@ async function handleSubmit() {
 					</div>
 				</div>
 				<ProseH3>Education</ProseH3>
-				<div class="flex flex-row">
-					<div class="flex-0 bg-husky flex rounded-l-md py-10 align-middle">
-						<img
-							class="mx-auto w-1/2"
-							alt="University of Washington logo."
-							src="~/assets/images/uwlogo.png"
-						/>
+				<div class="flex flex-col md:flex-row">
+					<div
+						class="flex-0 from-husky to-husky2 flex rounded-t-md bg-gradient-to-br py-10 align-middle md:rounded-l-md md:rounded-tr-none"
+					>
+						<NuxtLink
+							to="https://uw.edu"
+							class="block"
+							external
+							target="_blank"
+						>
+							<img
+								class="mx-auto w-1/2"
+								alt="University of Washington."
+								src="~/assets/images/uwlogo.png"
+							/>
+						</NuxtLink>
 					</div>
 					<div
-						class="from-base-150 w-full rounded-br-md rounded-tr-md border-y-2 border-r-2 border-base-200 bg-gradient-to-br to-base-100"
+						class="from-base-150 w-full rounded-b-md border-b-2 border-l-2 border-r-2 border-base-200 bg-gradient-to-br to-base-100 md:rounded-b-none md:rounded-r-md md:border-l-0 md:border-t-2"
 					>
 						<div class="m-3 space-y-2">
-							<h4 class="text-xl font-bold text-white">
+							<h4 class="text-lg font-bold text-white md:text-xl">
 								Bachelor of Science - Informatics, Expected June 2027
 							</h4>
 							<ul class="list-inside list-disc text-white">
