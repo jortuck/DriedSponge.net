@@ -14,7 +14,11 @@ useSeoMeta({
 		"Hello , my name is Jordan. I'm a student studying Informatics at the University of Washington. I enjoy creating websites, Discord bots, & more!",
 	ogUrl: "https://jortuck.com"
 });
-
+let { data } = await useAsyncData("featuredProjects", () =>
+	queryContent("/projects")
+		.where({ title: { $in: ["Paleoclimate Visualizer", "Freddy Bot"] } })
+		.find()
+);
 let contactForm = ref({
 	name: "",
 	email: "",
@@ -274,6 +278,15 @@ async function handleSubmit() {
 				<!--					>Over time, I have developed my skills many areas of computing including web development,-->
 				<!--					server side applications, data science applications, and cloud/computing infrastructure.-->
 				<!--				</ProseP>-->
+				<div class="my-3 grid grid-cols-1 gap-3 md:grid-cols-2">
+					<ProjectCard
+						v-for="item in data"
+						:title="item.title"
+						:description="item.description"
+						:github="item.github"
+						:link="item._path"
+					/>
+				</div>
 				<NuxtLink
 					to="/projects"
 					class="block w-fit rounded-md bg-base-200 p-3 text-white hover:bg-base-300"
