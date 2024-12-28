@@ -26,3 +26,6 @@ music together in a discord call. While this bot I created still uses YouTube as
 send me a cease and desists letter because it's used personally, not commercially. If I do end up getting a letter from
 Google though, I would be proud of myself for managing to get their attention. My goal is to make it easy to self host,
 so people who need music in their Discord servers can have easy access to it.
+
+## Demo Video
+:VideoViewer{src="/videos/FreddyDemo.mp4" }
