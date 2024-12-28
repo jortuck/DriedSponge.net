@@ -11,7 +11,7 @@ image:
 
 # Paleoclimate Visualizer
 
-:Tag{text="FastAPI"} :Tag{text="Python"} :Tag{text="Svelte"} :Tag{text="TypeScript"} :Tag{text="TailwindCSS"}
+:Tag{text="AWS"} :Tag{text="Cloudflare"} :Tag{text="FastAPI"} :Tag{text="Python"} :Tag{text="Svelte"} :Tag{text="TypeScript"} :Tag{text="TailwindCSS"}
 :CenteredImage{src="/thumbnails/pv.png"}
 ::TagButtonGroup
 :TagButton{url="https://github.com/jortuck/PaleoClimateVisualizer" text="Source Code" icon="fa-brands fa-github"}

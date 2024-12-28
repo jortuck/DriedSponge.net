@@ -148,7 +148,7 @@ async function handleSubmit() {
 		</section>
 		<section class="space-y-12">
 			<div class="space-y-8">
-				<ProseH2> About </ProseH2>
+				<ProseH2>About</ProseH2>
 				<ProseP>
 					My name is Jordan, I'm a student studying
 					<NuxtLink
@@ -189,27 +189,52 @@ async function handleSubmit() {
 					.
 				</ProseP>
 			</div>
-			<div class="space-y-4">
+			<div class="space-y-6">
 				<ProseH2> Experience </ProseH2>
 				<ProseH3>Work</ProseH3>
-				<div class="my-3 grid grid-cols-1 gap-3 md:grid-cols-2">
-					<div
-						class="from-base-150 flex flex-col rounded-md border-2 border-base-200 bg-gradient-to-br to-base-100"
+				<div class="my-3 grid grid-cols-1 gap-3">
+					<ContentList
+						path="/work"
+						slot="item"
+						v-slot="{ list }"
 					>
-						<div class="m-2 flex-1 space-y-2">
-							<div class="space-x-2">
-								<h4 class="text-xl font-bold text-white">Undergraduate Teaching Assistant</h4>
+						<div
+							v-for="item in list"
+							class="from-base-150 flex flex-col rounded-md border-2 border-base-200 bg-gradient-to-br to-base-100"
+						>
+							<div class="m-2 flex-1 space-y-2 text-white">
+								<div>
+									<h4 class="text-lg font-bold md:text-xl">
+										{{ item.title }}
+									</h4>
+									<h5>{{ item.date }}</h5>
+									<h5 class="italic">{{ item.company }}, {{ item.location }}</h5>
+								</div>
+								<p>{{ item.description }}</p>
+								<ul
+									v-if="item.bullets"
+									class="list-inside list-disc"
+								>
+									<li v-for="bullet in item.bullets">{{ bullet }}</li>
+								</ul>
 							</div>
-							<p class="text-white">Teaching</p>
+							<div class="m-2 flex flex-wrap gap-2 text-white">
+								<NuxtLink
+									v-for="link in item.links"
+									:to="link.href"
+									class="block w-fit select-none space-x-2.5 rounded-md bg-base-200 px-2 py-1 text-sm hover:bg-base-300"
+								>
+									{{ link.text }} <i class="fa-solid fa-arrow-right"></i>
+								</NuxtLink>
+								<span
+									v-for="skill in item.skills"
+									class="block w-fit select-none space-x-2.5 rounded-md bg-base-200 px-2 py-1 text-sm"
+								>
+									{{ skill }}
+								</span>
+							</div>
 						</div>
-						<div class="m-2 space-x-2.5 text-white">
-							<span
-								class="select-none space-x-2.5 rounded-md bg-base-200 px-2 py-1 text-sm hover:bg-base-300"
-							>
-								Something <i class="fa-solid fa-arrow-right"></i>
-							</span>
-						</div>
-					</div>
+					</ContentList>
 				</div>
 				<ProseH3>Education</ProseH3>
 				<div class="flex flex-col md:flex-row">
@@ -232,11 +257,11 @@ async function handleSubmit() {
 					<div
 						class="from-base-150 w-full rounded-b-md border-b-2 border-l-2 border-r-2 border-base-200 bg-gradient-to-br to-base-100 md:rounded-b-none md:rounded-r-md md:border-l-0 md:border-t-2"
 					>
-						<div class="m-3 space-y-2">
-							<h4 class="text-lg font-bold text-white md:text-xl">
+						<div class="m-3 space-y-2 text-white">
+							<h4 class="text-lg font-bold md:text-xl">
 								Bachelor of Science - Informatics, Expected June 2027
 							</h4>
-							<ul class="list-inside list-disc text-white">
+							<ul class="list-inside list-disc">
 								<li>Minor in Mathematics.</li>
 								<li>Member of the Husky Marching Band.</li>
 								<li>Deans List Recipient: Autumn 2023, Winter 2024, Spring 2024, Autumn 2024.</li>
@@ -244,7 +269,16 @@ async function handleSubmit() {
 						</div>
 					</div>
 				</div>
-				<ProseH3>Projects</ProseH3>
+				<ProseH3>Fetured Projects</ProseH3>
+				<!--				<ProseP-->
+				<!--					>Over time, I have developed my skills many areas of computing including web development,-->
+				<!--					server side applications, data science applications, and cloud/computing infrastructure.-->
+				<!--				</ProseP>-->
+				<NuxtLink
+					to="/projects"
+					class="block w-fit rounded-md bg-base-200 p-3 text-white hover:bg-base-300"
+					>View All Projects <i class="fa-solid fa-arrow-right"></i
+				></NuxtLink>
 			</div>
 			<div class="space-y-4">
 				<ProseH2 id="contact"> Contact </ProseH2>

@@ -1,0 +1,12 @@
+{
+  "title": "Undergraduate Research Assistant",
+  "description": "Description of being a RA",
+  "date": "June 2024 - August 2024",
+  "location": "Seattle, WA",
+  "company": "University of Washington School of Oceanography",
+  "links": [{
+    "text": "View Project",
+    "href": "/projects/pv"
+  }],
+  "skills": ["Climate Research","Data Visualization","Python","Svelte"]
+}
