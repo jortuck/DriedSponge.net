@@ -204,7 +204,7 @@ async function handleSubmit() {
 					>
 						<div
 							v-for="item in list"
-							class="from-base-150 flex flex-col space-y-3 rounded-md border-2 border-base-200 bg-gradient-to-br to-base-100 p-3"
+							class="from-base-150 flex flex-col space-y-4 rounded-md border-2 border-base-200 bg-gradient-to-br to-base-100 p-3"
 						>
 							<div class="flex-1 space-y-2 text-white">
 								<div>
@@ -214,13 +214,15 @@ async function handleSubmit() {
 									<h5>{{ item.date }}</h5>
 									<h5 class="italic">{{ item.company }}, {{ item.location }}</h5>
 								</div>
-								<p>{{ item.description }}</p>
-								<ul
-									v-if="item.bullets"
-									class="list-inside list-disc"
-								>
-									<li v-for="bullet in item.bullets">{{ bullet }}</li>
-								</ul>
+								<div>
+									<p v-if="item.description">{{ item.description }}</p>
+									<ul
+										v-if="item.bullets"
+										class="list-inside list-disc"
+									>
+										<li v-for="bullet in item.bullets">{{ bullet }}</li>
+									</ul>
+								</div>
 							</div>
 							<div class="flex flex-wrap gap-2 text-white">
 								<NuxtLink
