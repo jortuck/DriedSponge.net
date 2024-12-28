@@ -206,7 +206,7 @@ async function handleSubmit() {
 							v-for="item in list"
 							class="from-base-150 flex flex-col space-y-4 rounded-md border-2 border-base-200 bg-gradient-to-br to-base-100 p-3"
 						>
-							<div class="flex-1 space-y-2 text-white">
+							<div class="flex-1 space-y-2 text-gray-50">
 								<div>
 									<h4 class="text-lg font-bold md:text-xl">
 										{{ item.title }}
@@ -224,7 +224,7 @@ async function handleSubmit() {
 									</ul>
 								</div>
 							</div>
-							<div class="flex flex-wrap gap-2 text-white">
+							<div class="flex flex-wrap gap-2 text-gray-50">
 								<NuxtLink
 									v-for="link in item.links"
 									:to="link.href"
@@ -263,7 +263,7 @@ async function handleSubmit() {
 					<div
 						class="from-base-150 w-full rounded-b-md border-b-2 border-l-2 border-r-2 border-base-200 bg-gradient-to-br to-base-100 md:rounded-b-none md:rounded-r-md md:border-l-0 md:border-t-2"
 					>
-						<div class="m-3 space-y-2 text-white">
+						<div class="m-3 space-y-2 text-gray-50">
 							<h4 class="text-lg font-bold md:text-xl">
 								Bachelor of Science - Informatics, Expected June 2027
 							</h4>
