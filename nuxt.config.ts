@@ -20,8 +20,7 @@ export default defineNuxtConfig({
 	app: {
 		pageTransition: {
 			name: "page",
-			mode: "out-in",
-			enabled: false
+			mode: "out-in"
 		},
 		head: {
 			link: [{ rel: "icon", href: "/favicon.webp" }],
