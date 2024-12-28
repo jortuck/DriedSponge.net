@@ -2,15 +2,15 @@
 export default defineNuxtConfig({
 	devtools: { enabled: true },
 	modules: ["@nuxtjs/tailwindcss", "@nuxt/content"],
-	runtimeConfig:{
-		public:{
-			turnstileKey:''
+	runtimeConfig: {
+		public: {
+			turnstileKey: ""
 		},
-		turnstileSecret:'',
-		awsAccessKeyId:'',
-		awsSecretAccessKey:'',
-		mailDestination:'',
-		discordWebhook:''
+		turnstileSecret: "",
+		awsAccessKeyId: "",
+		awsSecretAccessKey: "",
+		mailDestination: "",
+		discordWebhook: ""
 	},
 	// routeRules:{
 	// 	'/projects/*':{prerender:true},
@@ -18,17 +18,17 @@ export default defineNuxtConfig({
 	// 	'/':{prerender:true}
 	// },
 	app: {
-		// pageTransition: {
-		// 	name: "page", mode: "out-in"
-		// },
+		pageTransition: {
+			name: "page",
+			mode: "out-in",
+			enabled: false
+		},
 		head: {
 			link: [{ rel: "icon", href: "/favicon.webp" }],
-			htmlAttrs:{
+			htmlAttrs: {
 				lang: "en"
 			},
-			script: [
-				{src:"https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit"}
-			]
+			script: [{ src: "https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit" }]
 		}
 	},
 
