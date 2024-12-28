@@ -204,9 +204,9 @@ async function handleSubmit() {
 					>
 						<div
 							v-for="item in list"
-							class="from-base-150 flex flex-col rounded-md border-2 border-base-200 bg-gradient-to-br to-base-100"
+							class="from-base-150 flex flex-col space-y-3 rounded-md border-2 border-base-200 bg-gradient-to-br to-base-100 p-3"
 						>
-							<div class="m-2 flex-1 space-y-2 text-white">
+							<div class="flex-1 space-y-2 text-white">
 								<div>
 									<h4 class="text-lg font-bold md:text-xl">
 										{{ item.title }}
@@ -222,7 +222,7 @@ async function handleSubmit() {
 									<li v-for="bullet in item.bullets">{{ bullet }}</li>
 								</ul>
 							</div>
-							<div class="m-2 flex flex-wrap gap-2 text-white">
+							<div class="flex flex-wrap gap-2 text-white">
 								<NuxtLink
 									v-for="link in item.links"
 									:to="link.href"
