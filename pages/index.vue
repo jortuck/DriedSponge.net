@@ -273,7 +273,7 @@ async function handleSubmit() {
 						</div>
 					</div>
 				</div>
-				<ProseH3>Fetured Projects</ProseH3>
+				<ProseH3>Featured Projects</ProseH3>
 				<!--				<ProseP-->
 				<!--					>Over time, I have developed my skills many areas of computing including web development,-->
 				<!--					server side applications, data science applications, and cloud/computing infrastructure.-->
