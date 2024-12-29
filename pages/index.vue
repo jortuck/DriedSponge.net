@@ -245,12 +245,12 @@ async function handleSubmit() {
 				<ProseH3>Education</ProseH3>
 				<div class="flex flex-col md:flex-row">
 					<div
-						class="flex-0 flex items-center justify-center rounded-t-md bg-gradient-to-br from-husky to-husky2 py-10 align-middle md:rounded-l-md md:rounded-tr-none"
+						class="flex-0 flex items-center justify-center rounded-t-md bg-gradient-to-br from-husky to-husky2 py-10 align-middle md:w-2/3 md:rounded-l-md md:rounded-tr-none"
 					>
 						<img
-							class="block w-1/2"
+							class="block w-fit px-12 py-6"
 							alt="University of Washington."
-							src="~/assets/images/uwlogo.png"
+							src="~/assets/images/ischool.png"
 						/>
 					</div>
 					<div
