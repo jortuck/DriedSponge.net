@@ -1,10 +1,10 @@
 ---
-title: 'Freddy Bot'
-description: 'A free and open-source music bot built with Java for streaming music into your discord calls.'
-github: 'freddy'
+title: "Freddy Bot"
+description: "A free and open-source music bot built with Java for streaming music into your discord calls."
+github: "freddy"
 image:
-  src: 'https://jortuck.com/thumbnail/freddy.png'
-  type: 'image/png'
+  src: "https://jortuck.com/thumbnail/freddy.png"
+  type: "image/png"
 ---
 
 ::ProjectHeader
@@ -20,12 +20,21 @@ image:
 
 ## About
 
-This bot was created using [Discord JDA](https://github.com/discord-jda/JDA){target="_blank"} (Java Discord API). I was inspired to make it after Google started cracking down
+This bot was created using [Discord JDA](https://github.com/discord-jda/JDA){target="\_blank"} (Java Discord API). I was
+inspired to make it after Google started cracking down
 on music bots that were using YouTube as an audio source. Because of this, my friends and I could no longer listen to
 music together in a discord call. While this bot I created still uses YouTube as an audio source, I doubt Google will
-send me a cease and desists letter because it's used personally, not commercially. If I do end up getting a letter from
-Google though, I would be proud of myself for managing to get their attention. My goal is to make it easy to self host,
-so people who need music in their Discord servers can have easy access to it.
+send me a cease and desists letter because it's used personally, not commercially. The repository includes instructions
+on how users can self-host the bot using Docker or any local Java runtime version 21 or up. 
+
+Some features include:
+- Plays any song of your choice, as long as it's on YouTube.
+- YouTube searching enabled, no need to lookup URLs.
+- YouTube/Spotify playlist support for quickly adding your favorite songs to the queue.
+- Discord slash command support making it easy to control your music.
+- Queue up to 500 (can be configured) songs for you and your friends to listen to.
+
 
 ## Demo Video
+
 :VideoViewer{src="/videos/FreddyDemo.mp4" }

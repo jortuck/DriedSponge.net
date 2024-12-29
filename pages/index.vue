@@ -204,7 +204,7 @@ async function handleSubmit() {
 					>
 						<div
 							v-for="item in list"
-							class="from-base-150 flex flex-col space-y-4 rounded-md border-2 border-base-200 bg-gradient-to-br to-base-100 p-3"
+							class="flex flex-col space-y-4 rounded-md border-2 border-base-200 bg-gradient-to-br from-base-150 to-base-100 p-3"
 						>
 							<div class="flex-1 space-y-2 text-gray-50">
 								<div>
@@ -245,23 +245,16 @@ async function handleSubmit() {
 				<ProseH3>Education</ProseH3>
 				<div class="flex flex-col md:flex-row">
 					<div
-						class="flex-0 from-husky to-husky2 flex rounded-t-md bg-gradient-to-br py-10 align-middle md:rounded-l-md md:rounded-tr-none"
+						class="flex-0 flex items-center justify-center rounded-t-md bg-gradient-to-br from-husky to-husky2 py-10 align-middle md:rounded-l-md md:rounded-tr-none"
 					>
-						<NuxtLink
-							to="https://uw.edu"
-							class="block"
-							external
-							target="_blank"
-						>
-							<img
-								class="mx-auto w-1/2"
-								alt="University of Washington."
-								src="~/assets/images/uwlogo.png"
-							/>
-						</NuxtLink>
+						<img
+							class="block w-1/2"
+							alt="University of Washington."
+							src="~/assets/images/uwlogo.png"
+						/>
 					</div>
 					<div
-						class="from-base-150 w-full rounded-b-md border-b-2 border-l-2 border-r-2 border-base-200 bg-gradient-to-br to-base-100 md:rounded-b-none md:rounded-r-md md:border-l-0 md:border-t-2"
+						class="w-full rounded-b-md border-b-2 border-l-2 border-r-2 border-base-200 bg-gradient-to-br from-base-150 to-base-100 md:rounded-b-none md:rounded-r-md md:border-l-0 md:border-t-2"
 					>
 						<div class="m-3 space-y-2 text-gray-50">
 							<h4 class="text-lg font-bold md:text-xl">
