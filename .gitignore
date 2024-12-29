@@ -1,11 +1,26 @@
-.DS_Store
+# Nuxt dev/build outputs
+.output
+.data
+.nuxt
+.nitro
+.cache
+dist
+.svelte-kit
+build
+.wrangler
+# Node dependencies
 node_modules
-/build
-/.svelte-kit
-/package
+
+# Logs
+logs
+*.log
+
+# Misc
+.DS_Store
+.fleet
+.idea
+
+# Local env files
 .env
 .env.*
 !.env.example
-vite.config.js.timestamp-*
-vite.config.ts.timestamp-*
-.wrangler
