@@ -181,7 +181,7 @@ async function handleSubmit() {
 						School of Oceanography
 					</NuxtLink>
 					as a research assistant, building an interactive web application for the visualization of
-					paleocliamte data reconstructions. You can check it out at
+					paleoclimate data reconstructions. You can check it out at
 					<NuxtLink
 						class="text-primary hover:underline"
 						to="https://pv.jortuck.com"
